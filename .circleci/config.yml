@@ -1,0 +1,112 @@
+version: 2
+workflows:
+  version: 2
+  all:
+    jobs:
+      - node-latest
+      - node10:
+          requires:
+            - node-latest
+      - node9:
+          requires:
+            - node-latest
+      - node8:
+          requires:
+            - node-latest
+      - node6:
+          requires:
+            - node-latest
+      - release:
+          filters:
+            branches:
+              only: master
+          requires:
+            - node-latest
+            - node10
+            - node9
+            - node8
+            - node6
+jobs:
+  local:
+    docker:
+      - image: circleci/node:11
+    steps:
+      - checkout
+      - run: npm run verify
+  node-latest:
+    docker:
+      - image: circleci/node:11
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore node_modules cache
+          key: node_modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install Dependencies
+          command: |
+            if [ ! -d node_modules ]; then
+              npm ci
+              npm i --no-save jest-junit
+            fi
+      - save_cache:
+          name: Save node modules cache
+          key: node_modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - persist_to_workspace:
+          root: '.'
+          paths:
+            - node_modules
+      - run: npm run verify
+      - run: npx codecov
+      - store_test_results:
+          path: .reports/junit
+  node10:
+    docker:
+      - image: 'circleci/node:9'
+    steps:
+      - checkout
+      - attach_workspace:
+          at: '.'
+      - run: npm run verify
+      - store_test_results:
+          path: .reports/junit
+  node9:
+    docker:
+      - image: 'circleci/node:9'
+    steps:
+      - checkout
+      - attach_workspace:
+          at: '.'
+      - run: npm run verify
+      - store_test_results:
+          path: .reports/junit
+  node8:
+    docker:
+      - image: 'circleci/node:8'
+    steps:
+      - checkout
+      - attach_workspace:
+          at: '.'
+      - run: npm run verify
+      - store_test_results:
+          path: .reports/junit
+  node6:
+    docker:
+      - image: 'circleci/node:6'
+    steps:
+      - checkout
+      - attach_workspace:
+          at: '.'
+      - run: npm run verify
+      - store_test_results:
+          path: .reports/junit
+  release:
+    docker:
+      - image: circleci/node:11
+    steps:
+      - checkout
+      - attach_workspace:
+          at: '.'
+      - run: npm run build
+      - run: npx semantic-release

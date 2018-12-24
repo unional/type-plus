@@ -1,0 +1,21 @@
+language: node_js
+cache:
+  directories:
+    - ~/.npm
+notifications:
+  email: false
+node_js:
+  - '11'
+  - '10'
+  - '9'
+  - '8'
+  - '6'
+branches:
+  only:
+    - master
+    - /^greenkeeper.*$/
+script:
+  - npm i --no-save jest-junit
+  - npm run verify
+  - ./scripts/run-on-node-version.sh 11 "npm install -g codacy-coverage && cat ./coverage/lcov.info | codacy-coverage"
+  - ./scripts/run-on-node-version.sh 11 "npm install -g coveralls && cat ./coverage/lcov.info | coveralls"
