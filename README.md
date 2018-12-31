@@ -15,9 +15,16 @@
 [![Visual Studio Code][vscode-image]][vscode-url]
 [![Wallaby.js][wallaby-image]][wallaby-url]
 
-Provides additional types for `typescript`.
+Provides additional types and type adjusted utilities for `typescript`.
 
+- `filterKey()`
+- `findKey()`
+- `forEachKey()`
+- `mapKey()`
 - `RecursivePartial<T>`
+- `RecursiveRequired<T>`
+- `reduceKey()`
+- `ValueOf<T>`
 
 ## Contribute
 
