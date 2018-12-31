@@ -1,3 +1,4 @@
+export * from './filterKey';
 export * from './findKey';
 export * from './forEachKey';
 export * from './mapKey';
