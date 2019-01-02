@@ -12,10 +12,21 @@ test('add undefined to types', () => {
   acceptUndefined(obj)
   acceptUndefined(obj.x)
 
+  const comObj = { array: ['a'] } as RecursiveIntersect<{ array: string[] }, undefined>
+  acceptUndefined(comObj)
+  acceptUndefined(comObj.array)
+  acceptUndefined(comObj.array[0])
+
   const arr = ['1'] as RecursiveIntersect<string[], undefined>
   acceptUndefined(arr)
   const y = arr[0]
   acceptUndefined(y)
+
+  // not supported
+  // const comArr = [{ x: 1 }] as RecursiveIntersect<Array<{ x: number }>, undefined>
+  // acceptUndefined(comArr)
+  // acceptUndefined(comArr[0])
+  // acceptUndefined(comArr[0].x)
 
   function acceptUndefined(x: undefined) {
     return x
@@ -36,10 +47,20 @@ test('add object type to types', () => {
   acceptU(obj)
   acceptU(obj.x)
 
+  const comObj = addU({ array: ['a'] })
+  acceptU(comObj)
+  acceptU(comObj.array)
+  acceptU(comObj.array[0])
+
   const arr = addU(['1'])
   acceptU(arr)
-  const y = arr[0]
-  acceptU(y)
+  acceptU(arr[0])
+
+  // Not supported
+  // const comArr = addU([{ x: 1 }])
+  // acceptU(comArr)
+  // acceptU(comArr[0])
+  // acceptU(comArr[0].x)
 
   function addU<T>(x: T): RecursiveIntersect<typeof x, U> {
     return x as any
