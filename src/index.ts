@@ -1,6 +1,7 @@
 export * from './filterKey';
 export * from './findKey';
 export * from './forEachKey';
+export * from './KeyTypes';
 export * from './mapKey';
 export * from './RecursiveIntersect';
 export * from './RecursivePartial';
