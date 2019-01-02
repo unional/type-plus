@@ -4,3 +4,4 @@ export type RecursiveRequired<T> = {
   T[P] extends object ? RecursiveRequired<T[P]> :
   T[P];
 }
+

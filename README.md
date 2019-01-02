@@ -15,16 +15,45 @@
 [![Visual Studio Code][vscode-image]][vscode-url]
 [![Wallaby.js][wallaby-image]][wallaby-url]
 
-Provides additional types and type adjusted utilities for `typescript`.
+Provides additional types and type adjusted utilities for `typescript`
 
-- `filterKey()`
-- `findKey()`
-- `forEachKey()`
-- `mapKey()`
-- `RecursivePartial<T>`
-- `RecursiveRequired<T>`
-- `reduceKey()`
-- `ValueOf<T>`
+## API
+
+### `filterKey()`
+
+Type adjusted filter by key.
+
+### `findKey()`
+
+Type adjusted find by key.
+
+### `forEachKey()`
+
+Type adjusted for each by key.
+
+### `mapKey()`
+
+Type adjusted map by key.
+
+### `reduceKey()`
+
+Type adjusted reduce by key.
+
+### `RecursiveIntersect<T, U>`
+
+Intersect type U onto T recursively.
+
+### `RecursivePartial<T>`
+
+Make type T optional recursively.
+
+### `RecursiveRequired<T>`
+
+Make type T required recursively.
+
+### `ValueOf<T>`
+
+Type of the value of the properties of T.
 
 ## Contribute
 
