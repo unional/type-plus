@@ -55,6 +55,10 @@ Make type T required recursively.
 
 Type of the value of the properties of T.
 
+### `KeyTypes`
+
+Type of all keys.
+
 ## Contribute
 
 ```sh
