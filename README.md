@@ -35,6 +35,14 @@ Type adjusted for each by key.
 
 Type adjusted map by key.
 
+### `PartialPick<T, U>`
+
+Makes the properties specified in `U` becomes optional.
+
+### `PartialExcept<T, U>`
+
+Makes the properties not specified in `U` becomes optional.
+
 ### `reduceKey()`
 
 Type adjusted reduce by key.
