@@ -59,6 +59,14 @@ Make type T optional recursively.
 
 Make type T required recursively.
 
+### `RequiredPick<T, U>`
+
+Makes the properties specified in `U` becomes required.
+
+### `RequiredExcept<T, U>`
+
+Makes the properties not specified in `U` becomes required.
+
 ### `ValueOf<T>`
 
 Type of the value of the properties of T.
