@@ -19,61 +19,31 @@ Provides additional types and type adjusted utilities for `typescript`
 
 ## API
 
-### `filterKey()`
+### Identity type
 
-Type adjusted filter by key.
+- `Id<T>`: generic Id type
+- `createId<T>(type: T, value: string): Id<T>`: create id
+- `createIdCreator<T>(type: T): (value: string) => Id<T>`: create an id creator
 
-### `findKey()`
+### Object Key functions
 
-Type adjusted find by key.
+- `KeyTypes<T>`: type of all keys.
+- `filterKey()`: type adjusted filter by key.
+- `findKey()`: type adjusted find by key.
+- `forEachKey()`: type adjusted for each by key.
+- `mapKey()`: type adjusted map by key.
+- `reduceKey()`: type adjusted reduce by key.
 
-### `forEachKey()`
+### Type manipulation
 
-Type adjusted for each by key.
-
-### `mapKey()`
-
-Type adjusted map by key.
-
-### `PartialPick<T, U>`
-
-Makes the properties specified in `U` becomes optional.
-
-### `PartialExcept<T, U>`
-
-Makes the properties not specified in `U` becomes optional.
-
-### `reduceKey()`
-
-Type adjusted reduce by key.
-
-### `RecursiveIntersect<T, U>`
-
-Intersect type U onto T recursively.
-
-### `RecursivePartial<T>`
-
-Make type T optional recursively.
-
-### `RecursiveRequired<T>`
-
-Make type T required recursively.
-
-### `RequiredPick<T, U>`
-
-Makes the properties specified in `U` becomes required.
-
-### `RequiredExcept<T, U>`
-
-Makes the properties not specified in `U` becomes required.
-
-### `ValueOf<T>`
-
-Type of the value of the properties of T.
-
-### `KeyTypes`
-
-Type of all keys.
+- `PartialPick<T, U>`: makes the properties specified in `U` becomes optional.
+- `PartialExcept<T, U>`: makes the properties not specified in `U` becomes optional.
+- `RecursivePartial<T>`: make type T optional recursively.
+- `RecursiveRequired<T>`: make type T required recursively.
+- `RequiredPick<T, U>`: makes the properties specified in `U` becomes required.
+- `RequiredExcept<T, U>`: makes the properties not specified in `U` becomes required.
+- `RecursiveIntersect<T, U>`: intersect type U onto T recursively.
+- `ValueOf<T>`: type of the value of the properties of T.
 
 ## Contribute
 

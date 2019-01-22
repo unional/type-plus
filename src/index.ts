@@ -1,6 +1,7 @@
 export * from './filterKey';
 export * from './findKey';
 export * from './forEachKey';
+export * from './Id';
 export * from './KeyTypes';
 export * from './mapKey';
 export * from './RecursiveIntersect';
@@ -8,4 +9,4 @@ export * from './RecursivePartial';
 export * from './RecursiveRequired';
 export * from './reduceKey';
 export * from './Required';
-export * from './ValueOf'
+export * from './ValueOf';
