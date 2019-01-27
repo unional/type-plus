@@ -8,7 +8,7 @@ test('createId<T> creates Id<T>', () => {
   t.strictEqual(compatible(foo, bar), false)
 })
 
-test('createIdCreator<T> creates function that creates ID<T>', () => {
+test('createIdCreator<T> creates a function that creates Id<T>', () => {
   const fooc = createIdCreator('foo')
   const barc = createIdCreator('bar')
   let foo = fooc('sample')

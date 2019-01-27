@@ -3,6 +3,7 @@ export * from './findKey';
 export * from './forEachKey';
 export * from './Id';
 export * from './KeyTypes';
+export * from './literalArray';
 export * from './mapKey';
 export * from './RecursiveIntersect';
 export * from './RecursivePartial';
