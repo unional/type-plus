@@ -34,6 +34,10 @@ Provides additional types and type adjusted utilities for `typescript`
 - `mapKey()`: type adjusted map by key.
 - `reduceKey()`: type adjusted reduce by key.
 
+### Array function
+
+- `literalArray(...entries)`: return an array those items are restricted to the provided literals.
+
 ### Type manipulation
 
 - `PartialPick<T, U>`: makes the properties specified in `U` becomes optional.
