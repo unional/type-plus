@@ -5,3 +5,7 @@ export function acceptNoUndefined<T>(actual: Exclude<T, undefined>) { return act
 export function isNever(_: never) {
   return true
 }
+
+export function isNumber(_: number) {
+  return true
+}
