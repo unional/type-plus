@@ -40,14 +40,15 @@ Provides additional types and type adjusted utilities for `typescript`
 
 ### Type manipulation
 
+- `ExcludePropType<T, U>`: excludes type `U` from properties in `T`.
 - `PartialPick<T, U>`: makes the properties specified in `U` becomes optional.
 - `PartialExcept<T, U>`: makes the properties not specified in `U` becomes optional.
-- `RecursivePartial<T>`: make type T optional recursively.
-- `RecursiveRequired<T>`: make type T required recursively.
+- `RecursivePartial<T>`: make type `T` optional recursively.
+- `RecursiveRequired<T>`: make type `T` required recursively.
 - `RequiredPick<T, U>`: makes the properties specified in `U` becomes required.
 - `RequiredExcept<T, U>`: makes the properties not specified in `U` becomes required.
-- `RecursiveIntersect<T, U>`: intersect type U onto T recursively.
-- `ValueOf<T>`: type of the value of the properties of T.
+- `RecursiveIntersect<T, U>`: intersect type `U` onto `T` recursively.
+- `ValueOf<T>`: type of the value of the properties of `T`.
 
 ## Contribute
 
