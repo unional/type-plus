@@ -1,5 +1,5 @@
 {
-  "extends": "./tsconfig.build.json",
+  "extends": "./tsconfig.esnext.json",
   "compilerOptions": {
     "lib": [
       "es2015",
@@ -10,7 +10,6 @@
         "name": "tslint-language-service"
       }
     ],
-    "target": "esnext"
   },
   "include": [
     "src",

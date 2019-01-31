@@ -15,11 +15,17 @@
     "name": "Homa Wong (unional)",
     "email": "homawong@gmail.com"
   },
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "libm"
+  ],
+  "main": "lib/index",
+  "module": "libm/index",
+  "jsnext:main": "libm/index",
+  "typings": "lib/index",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "clean": "rimraf lib",
+    "build": "tsc -p tsconfig.es5.json && tsc -p tsconfig.esnext.json",
+    "clean": "rimraf lib libm",
     "dc": "npm run dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "lint": "tslint -p tsconfig.json",
@@ -28,7 +34,7 @@
     "watch": "jest --watch"
   },
   "devDependencies": {
-    "@unional/devpkg-node": "^1.1.6",
-    "assertron": "^6.0.0"
+    "@unional/devpkg-node": "^1.2.2",
+    "assertron": "^6.1.0"
   }
 }
