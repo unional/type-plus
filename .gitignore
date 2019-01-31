@@ -43,5 +43,5 @@ node_modules
 
 # project folders
 dist*
-lib
+lib*
 out*

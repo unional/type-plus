@@ -10,7 +10,6 @@
     "newLine": "LF",
     "noUnusedLocals": true,
     "noUnusedParameters": false,
-    "outDir": "lib",
     "removeComments": false,
     "sourceMap": true,
     "strict": true
