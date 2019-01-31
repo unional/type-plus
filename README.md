@@ -38,6 +38,10 @@ Provides additional types and type adjusted utilities for `typescript`
 
 - `literalArray(...entries)`: return an array those items are restricted to the provided literals.
 
+### Promise function
+
+- `isPromise<R>(subject: any)`: `isPromise()` type guard.
+
 ### Type manipulation
 
 - `ExcludePropType<T, U>`: excludes type `U` from properties in `T`.

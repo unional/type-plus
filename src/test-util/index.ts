@@ -9,3 +9,7 @@ export function isNever(_: never) {
 export function isNumber(_: number) {
   return true
 }
+
+export function isVoid(_: void) {
+  return true
+}

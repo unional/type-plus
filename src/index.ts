@@ -2,6 +2,7 @@ export * from './filterKey';
 export * from './findKey';
 export * from './forEachKey';
 export * from './Id';
+export * from './isPromise';
 export * from './KeyTypes';
 export * from './literalArray';
 export * from './mapKey';
