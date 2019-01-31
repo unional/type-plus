@@ -32,7 +32,7 @@ jobs:
       - image: circleci/node:11
     steps:
       - checkout
-      - run: npm run verify
+      - run: yarn verify
   node-latest:
     docker:
       - image: circleci/node:11
@@ -45,7 +45,7 @@ jobs:
           name: Install Dependencies
           command: |
             if [ ! -d node_modules ]; then
-              npm ci
+              yarn install
               npm i --no-save jest-junit
             fi
       - save_cache:
@@ -57,7 +57,7 @@ jobs:
           root: '.'
           paths:
             - node_modules
-      - run: npm run verify
+      - run: yarn verify
       - run: npx codecov
       - store_test_results:
           path: .reports/junit
@@ -68,7 +68,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: npm run verify
+      - run: yarn verify
       - store_test_results:
           path: .reports/junit
   node9:
@@ -78,7 +78,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: npm run verify
+      - run: yarn verify
       - store_test_results:
           path: .reports/junit
   node8:
@@ -88,7 +88,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: npm run verify
+      - run: yarn verify
       - store_test_results:
           path: .reports/junit
   node6:
@@ -98,7 +98,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: npm run verify
+      - run: yarn verify
       - store_test_results:
           path: .reports/junit
   release:
@@ -108,5 +108,5 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: npm run build
+      - run: yarn build
       - run: npx semantic-release
