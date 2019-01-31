@@ -45,7 +45,7 @@ jobs:
           name: Install Dependencies
           command: |
             if [ ! -d node_modules ]; then
-              npm run install
+              npm ci
               npm i --no-save jest-junit
             fi
       - save_cache:
