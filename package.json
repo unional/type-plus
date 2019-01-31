@@ -26,11 +26,11 @@
   "scripts": {
     "build": "tsc -p tsconfig.es5.json && tsc -p tsconfig.esnext.json",
     "clean": "rimraf lib libm",
-    "dc": "yarn dependency-check",
+    "dc": "npm run dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "lint": "tslint -p tsconfig.json",
     "test": "jest",
-    "verify": "yarn lint && yarn build && jest --coverage",
+    "verify": "npm run lint && npm run build && jest --coverage",
     "watch": "jest --watch"
   },
   "devDependencies": {

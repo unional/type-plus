@@ -32,7 +32,7 @@ jobs:
       - image: circleci/node:11
     steps:
       - checkout
-      - run: yarn verify
+      - run: npm run verify
   node-latest:
     docker:
       - image: circleci/node:11
@@ -40,24 +40,24 @@ jobs:
       - checkout
       - restore_cache:
           name: Restore node_modules cache
-          key: node_modules-{{ checksum "yarn.lock" }}
+          key: node_modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install Dependencies
           command: |
             if [ ! -d node_modules ]; then
-              yarn install
+              npm run install
               npm i --no-save jest-junit
             fi
       - save_cache:
           name: Save node modules cache
-          key: node_modules-{{ checksum "yarn.lock" }}
+          key: node_modules-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
       - persist_to_workspace:
           root: '.'
           paths:
             - node_modules
-      - run: yarn verify
+      - run: npm run verify
       - run: npx codecov
       - store_test_results:
           path: .reports/junit
@@ -68,7 +68,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: yarn verify
+      - run: npm run verify
       - store_test_results:
           path: .reports/junit
   node9:
@@ -78,7 +78,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: yarn verify
+      - run: npm run verify
       - store_test_results:
           path: .reports/junit
   node8:
@@ -88,7 +88,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: yarn verify
+      - run: npm run verify
       - store_test_results:
           path: .reports/junit
   node6:
@@ -98,7 +98,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: yarn verify
+      - run: npm run verify
       - store_test_results:
           path: .reports/junit
   release:
@@ -108,5 +108,5 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: yarn build
+      - run: npm run build
       - run: npx semantic-release
