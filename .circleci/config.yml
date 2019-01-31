@@ -40,7 +40,7 @@ jobs:
       - checkout
       - restore_cache:
           name: Restore node_modules cache
-          key: node_modules-{{ checksum "package-lock.json" }}
+          key: node_modules-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
           command: |
@@ -50,7 +50,7 @@ jobs:
             fi
       - save_cache:
           name: Save node modules cache
-          key: node_modules-{{ checksum "package-lock.json" }}
+          key: node_modules-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
       - persist_to_workspace:
