@@ -1,7 +1,7 @@
 import { RequiredExcept, RequiredPick } from './Required';
-import { excludeUndefined, acceptNoUndefined } from './test-util';
+import { typeAssert } from './typeAssert';
 
-test('make picked properties optional', () => {
+test('make picked properties required', () => {
   type Foo = {
     a?: number,
     b?: number,
@@ -10,12 +10,12 @@ test('make picked properties optional', () => {
 
   let y: RequiredPick<Foo, 'a'> = {} as any
 
-  acceptNoUndefined(y.a)
+  typeAssert.noUndefined(y.a)
   y.b = undefined
-  y.c = excludeUndefined(y.c)
+  typeAssert.noUndefined(y.c)
 })
 
-test('make not picked properties optional', () => {
+test('make not picked properties required', () => {
   type Foo = {
     a?: number,
     b?: number,
@@ -25,6 +25,6 @@ test('make not picked properties optional', () => {
   let y: RequiredExcept<Foo, 'a'> = {} as any
 
   y.a = undefined
-  acceptNoUndefined(y.b)
-  y.c = excludeUndefined(y.c)
+  typeAssert.noUndefined(y.b)
+  typeAssert.noUndefined(y.c)
 })
