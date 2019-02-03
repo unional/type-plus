@@ -1,5 +1,5 @@
 import { PartialExcept, PartialPick } from './Partial';
-import { excludeUndefined } from './test-util';
+import { typeAssert } from './typeAssert';
 
 test('make picked properties optional', () => {
   type Foo = {
@@ -11,8 +11,8 @@ test('make picked properties optional', () => {
   let y: PartialPick<Foo, 'a'> = {} as any
 
   y.a = undefined
-  y.b = excludeUndefined(y.b)
-  y.c = excludeUndefined(y.c)
+  typeAssert.noUndefined(y.b)
+  typeAssert.noUndefined(y.c)
 })
 
 test('make not picked properties optional', () => {
@@ -24,7 +24,7 @@ test('make not picked properties optional', () => {
 
   let y: PartialExcept<Foo, 'a'> = {} as any
 
-  y.a = excludeUndefined(y.a)
+  typeAssert.noUndefined(y.a)
   y.b = undefined
   y.c = undefined
 })
