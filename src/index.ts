@@ -11,4 +11,5 @@ export * from './RecursivePartial';
 export * from './RecursiveRequired';
 export * from './reduceKey';
 export * from './Required';
+export * from './typeAssert';
 export * from './ValueOf';

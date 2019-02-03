@@ -1,5 +1,5 @@
 import { literalArray } from '.';
-import { isNever } from './test-util';
+import { typeAssert } from './typeAssert';
 
 test('entries in array are restricted to the input literals', () => {
   const actual = literalArray('a', 'b')
@@ -7,5 +7,5 @@ test('entries in array are restricted to the input literals', () => {
   // the cast is just for assignment. Does not affect type.
   let x: (typeof actual[number]) & 'c' = 'c' as never
 
-  isNever(x)
+  typeAssert.isNever(x)
 })
