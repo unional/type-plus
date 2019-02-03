@@ -54,6 +54,13 @@ Provides additional types and type adjusted utilities for `typescript`
 - `RecursiveIntersect<T, U>`: intersect type `U` onto `T` recursively.
 - `ValueOf<T>`: type of the value of the properties of `T`.
 
+### Type assertion
+
+There are several type assertion functions inside `typeAssert`.
+
+- `isXXX(value)`: ensure typeof `value` is `XXX`
+- `noXXX(value)`: ensure typeof `value` does not contain `XXX`. i.e. cannot assign `XXX` to `value`.
+
 ## Contribute
 
 ```sh
