@@ -1,5 +1,4 @@
-import { Except } from './Except';
-import { typeAssert } from './typeAssert';
+import { Except, typeAssert } from '.';
 
 test('Remove properties', () => {
   type Foo = {
