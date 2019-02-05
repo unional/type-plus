@@ -44,6 +44,7 @@ Provides additional types and type adjusted utilities for `typescript`
 
 ### Type manipulation
 
+- `Except<T, K>`: From `T`, pick a set of properties whose keys are not in the union `K`. This is the opposite of `Pick<T, K>`
 - `ExcludePropType<T, U>`: excludes type `U` from properties in `T`.
 - `PartialPick<T, U>`: makes the properties specified in `U` becomes optional.
 - `PartialExcept<T, U>`: makes the properties not specified in `U` becomes optional.
