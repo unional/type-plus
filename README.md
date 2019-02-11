@@ -42,6 +42,12 @@ Provides additional types and type adjusted utilities for `typescript`
 
 - `isPromise<R>(subject: any)`: `isPromise()` type guard.
 
+### Nominal Type
+
+- `Flavor<FlavorT, T>`: a flavored nominal type.
+- `Brand<BrandT, T>`: a branded nominal type.
+- `createBrandCreator<BrandT, T>()`: creates a brand creator to create branded nominal type.
+
 ### Type manipulation
 
 - `Except<T, K>`: From `T`, pick a set of properties whose keys are not in the union `K`. This is the opposite of `Pick<T, K>`
@@ -54,6 +60,7 @@ Provides additional types and type adjusted utilities for `typescript`
 - `RequiredExcept<T, U>`: makes the properties not specified in `U` becomes required.
 - `RecursiveIntersect<T, U>`: intersect type `U` onto `T` recursively.
 - `ValueOf<T>`: type of the value of the properties of `T`.
+- `tryAssign<S, T>(from: S, to: T)`: try assign `from` to `to`. Return type `never` if not possible.
 
 ### Type assertion
 
@@ -61,6 +68,12 @@ There are several type assertion functions inside `typeAssert`.
 
 - `isXXX(value)`: ensure typeof `value` is `XXX`
 - `noXXX(value)`: ensure typeof `value` does not contain `XXX`. i.e. cannot assign `XXX` to `value`.
+
+## Attribution
+
+Some of the code in this library are created by other people in the TypeScript community.
+I merely adding them in and may be making some adjustments.
+When ever possible, I add attribution to the person who created those code in the file.
 
 ## Contribute
 

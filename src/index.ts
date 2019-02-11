@@ -1,6 +1,8 @@
+export * from './Brand';
 export * from './Except';
 export * from './filterKey';
 export * from './findKey';
+export * from './Flavor';
 export * from './forEachKey';
 export * from './Id';
 export * from './isPromise';
@@ -12,6 +14,6 @@ export * from './RecursivePartial';
 export * from './RecursiveRequired';
 export * from './reduceKey';
 export * from './Required';
-// export * from './tryCast';
+export * from './tryAssign';
 export * from './typeAssert';
 export * from './ValueOf';
