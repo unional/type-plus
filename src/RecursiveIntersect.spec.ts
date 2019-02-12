@@ -1,4 +1,4 @@
-import { RecursiveIntersect } from './RecursiveIntersect';
+import { RecursiveIntersect } from '.';
 
 test('add undefined to types', () => {
   acceptUndefined('a' as RecursiveIntersect<string, undefined>)

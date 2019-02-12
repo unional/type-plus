@@ -1,5 +1,6 @@
 export * from './Brand';
 export * from './Except';
+export * from './ExcludePropType';
 export * from './filterKey';
 export * from './findKey';
 export * from './Flavor';
@@ -9,6 +10,7 @@ export * from './isPromise';
 export * from './KeyTypes';
 export * from './literalArray';
 export * from './mapKey';
+export * from './Partial';
 export * from './RecursiveIntersect';
 export * from './RecursivePartial';
 export * from './RecursiveRequired';
