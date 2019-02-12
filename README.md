@@ -61,6 +61,7 @@ Provides additional types and type adjusted utilities for `typescript`
 - `RecursiveIntersect<T, U>`: intersect type `U` onto `T` recursively.
 - `ValueOf<T>`: type of the value of the properties of `T`.
 - `tryAssign<S, T>(from: S, to: T)`: try assign `from` to `to`. Return type `never` if not possible.
+- PropType: ...no helper type for this. Just do `YourType['propName']`
 
 ### Type assertion
 
