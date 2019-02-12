@@ -1,5 +1,6 @@
 import t from 'assert';
-import { createId, createIdCreator, Id } from './Id';
+import { createId, createIdCreator, Id } from '.';
+
 test('createId<T> creates Id<T>', () => {
   let foo = createId('foo', 'sample')
   let bar = createId('bar', 'sample')

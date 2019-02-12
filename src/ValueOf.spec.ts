@@ -1,5 +1,5 @@
 import t from 'assert';
-import { ValueOf } from './ValueOf';
+import { ValueOf } from '.';
 
 test('If all values has the same type, the result is of that type', () => {
   const HTTP_METHOD = {

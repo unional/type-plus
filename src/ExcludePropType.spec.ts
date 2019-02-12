@@ -1,5 +1,4 @@
-import { ExcludePropType } from './ExcludePropType';
-import { typeAssert } from './typeAssert';
+import { ExcludePropType, typeAssert } from '.';
 
 test('exclude type R from properties of T', () => {
   interface Customer {

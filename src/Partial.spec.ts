@@ -1,5 +1,4 @@
-import { PartialExcept, PartialPick } from './Partial';
-import { typeAssert } from './typeAssert';
+import { PartialExcept, PartialPick, typeAssert } from '.';
 
 test('make picked properties optional', () => {
   type Foo = {

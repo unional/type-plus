@@ -1,5 +1,4 @@
-import { RequiredExcept, RequiredPick } from './Required';
-import { typeAssert } from './typeAssert';
+import { RequiredExcept, RequiredPick, typeAssert } from '.';
 
 test('make picked properties required', () => {
   type Foo = {
