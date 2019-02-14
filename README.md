@@ -25,9 +25,14 @@ Provides additional types and type adjusted utilities for `typescript`
 - `createId<T>(type: T, value: string): Id<T>`: create id
 - `createIdCreator<T>(type: T): (value: string) => Id<T>`: create an id creator
 
+### Constant Types
+
+- `JSONTypes`: all JSON compatible types.
+- `KeyTypes`: type of all keys.
+- `PrimitiveTypes`: all primitive types, including `Function`, `symbol`, and `bigint`
+
 ### Object Key functions
 
-- `KeyTypes<T>`: type of all keys.
 - `filterKey()`: type adjusted filter by key.
 - `findKey()`: type adjusted find by key.
 - `forEachKey()`: type adjusted for each by key.
