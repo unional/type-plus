@@ -11,6 +11,7 @@ export * from './JSONTypes';
 export * from './KeyTypes';
 export * from './literalArray';
 export * from './mapKey';
+export * from './mapSeries';
 export * from './Partial';
 export * from './PrimitiveTypes';
 export * from './RecursiveIntersect';

@@ -29,14 +29,14 @@
     "dc": "npm run dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "lint": "tslint -p tsconfig.json",
-    "test": "jest",
-    "verify": "npm run lint && npm run build && jest --coverage",
+    "test": "jest --reporters=default",
+    "verify": "npm run lint && npm run build && jest --coverage --reporters=default",
     "watch": "jest --watch"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.0",
-    "@unional/devpkg-node": "^1.2.2",
-    "assertron": "^6.1.0",
-    "jest": "^24.1.0"
+    "@types/jest": "^24.0.11",
+    "@unional/devpkg-node": "^1.2.5",
+    "assertron": "^7.0.0",
+    "jest": "^24.5.0"
   }
 }
