@@ -29,8 +29,8 @@
     "dc": "npm run dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "lint": "tslint -p tsconfig.json",
-    "test": "jest",
-    "verify": "npm run lint && npm run build && jest --coverage",
+    "test": "jest --reporters=default",
+    "verify": "npm run lint && npm run build && jest --coverage --reporters=default",
     "watch": "jest --watch"
   },
   "devDependencies": {
