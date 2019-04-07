@@ -46,6 +46,7 @@ Provides additional types and type adjusted utilities for `typescript`
 ### Promise function
 
 - `isPromise<R>(subject: any)`: `isPromise()` type guard.
+- `PromiseValue<P>`: Gets the type within the Promise.
 - `mapSeries()`: Similar to `bluebird.mapSeries()` but works with `async`/`await`
 
 ### Nominal Type
