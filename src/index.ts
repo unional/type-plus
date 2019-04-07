@@ -14,6 +14,7 @@ export * from './mapKey';
 export * from './mapSeries';
 export * from './Partial';
 export * from './PrimitiveTypes';
+export * from './PromiseValue';
 export * from './RecursiveIntersect';
 export * from './RecursivePartial';
 export * from './RecursiveRequired';
