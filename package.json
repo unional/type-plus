@@ -17,7 +17,8 @@
   },
   "files": [
     "lib",
-    "libm"
+    "libm",
+    "src"
   ],
   "main": "lib/index",
   "module": "libm/index",
