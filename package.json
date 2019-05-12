@@ -1,7 +1,7 @@
 {
   "name": "type-plus",
-  "description": "Provides additional types for `typescript`.",
   "version": "1.0.0",
+  "description": "Provides additional types for `typescript`.",
   "homepage": "https://github.com/unional/type-plus",
   "bugs": {
     "url": "https://github.com/unional/type-plus/issues"
@@ -35,11 +35,9 @@
     "verify": "npm run lint && npm run build && npm run dependency-check && jest --coverage --reporters=default",
     "watch": "jest --watch"
   },
-  "size-limit": [
-    {
-      "limit": "5 kb"
-    }
-  ],
+  "dependencies": {
+    "unpartial": "^0.6.0"
+  },
   "devDependencies": {
     "@types/jest": "^24.0.12",
     "@unional/devpkg-node": "^1.2.5",
@@ -47,7 +45,9 @@
     "jest": "^24.8.0",
     "size-limit": "^1.3.1"
   },
-  "dependencies": {
-    "unpartial": "^0.6.0"
-  }
+  "size-limit": [
+    {
+      "limit": "5 kb"
+    }
+  ]
 }
