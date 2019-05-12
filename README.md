@@ -63,6 +63,8 @@ Provides additional types and type adjusted utilities for `typescript`
 - `PartialExcept<T, U>`: makes the properties not specified in `U` becomes optional.
 - `RecursivePartial<T>`: make type `T` optional recursively.
 - `RecursiveRequired<T>`: make type `T` required recursively.
+- `required(...)`: merge options and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
+- `requiredDeep(...)`: merge options deeply and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
 - `RequiredPick<T, U>`: makes the properties specified in `U` becomes required.
 - `RequiredExcept<T, U>`: makes the properties not specified in `U` becomes required.
 - `RecursiveIntersect<T, U>`: intersect type `U` onto `T` recursively.

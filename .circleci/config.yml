@@ -16,6 +16,9 @@ workflows:
       - node6:
           requires:
             - node-latest
+      - size-limit:
+          requires:
+            - node-latest
       - release:
           filters:
             branches:
@@ -101,6 +104,15 @@ jobs:
       - run: npm run verify
       - store_test_results:
           path: .reports/junit
+  size-limit:
+    docker:
+      - image: 'circleci/node:latest-browsers'
+    steps:
+      - checkout
+      - attach_workspace:
+          at: '.'
+      - run: npm run build
+      - run: npm run size
   release:
     docker:
       - image: circleci/node:11
