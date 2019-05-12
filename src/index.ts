@@ -1,3 +1,4 @@
+export { required, requiredDeep } from 'unpartial';
 export * from './Brand';
 export * from './Except';
 export * from './ExcludePropType';
