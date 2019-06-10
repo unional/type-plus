@@ -13,9 +13,9 @@ workflows:
       - node8:
           requires:
             - node-latest
-      - node6:
-          requires:
-            - node-latest
+      # - node6:
+      #     requires:
+      #       - node-latest
       - size-limit:
           requires:
             - node-latest
@@ -28,7 +28,7 @@ workflows:
             - node10
             - node9
             - node8
-            - node6
+            # - node6
 jobs:
   local:
     docker:

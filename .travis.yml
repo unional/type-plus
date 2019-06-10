@@ -9,7 +9,7 @@ node_js:
   - '10'
   - '9'
   - '8'
-  - '6'
+  # - '6'
 branches:
   only:
     - master
