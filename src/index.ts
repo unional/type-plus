@@ -2,6 +2,7 @@ export { required, requiredDeep } from 'unpartial';
 export * from './Brand';
 export * from './Except';
 export * from './ExcludePropType';
+export * from './facade';
 export * from './filterKey';
 export * from './findKey';
 export * from './Flavor';
