@@ -35,7 +35,7 @@ jobs:
       - image: circleci/node:11
     steps:
       - checkout
-      - run: npm run verify
+      - run: npm run verify:ci
   node-latest:
     docker:
       - image: circleci/node:11
@@ -60,7 +60,7 @@ jobs:
           root: '.'
           paths:
             - node_modules
-      - run: npm run verify
+      - run: npm run verify:ci
       - run: npx codecov
       - store_test_results:
           path: .reports/junit
@@ -71,7 +71,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: npm run verify
+      - run: npm run verify:ci
       - store_test_results:
           path: .reports/junit
   node9:
@@ -81,7 +81,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: npm run verify
+      - run: npm run verify:ci
       - store_test_results:
           path: .reports/junit
   node8:
@@ -91,7 +91,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: npm run verify
+      - run: npm run verify:ci
       - store_test_results:
           path: .reports/junit
   node6:
@@ -101,7 +101,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: npm run verify
+      - run: npm run verify:ci
       - store_test_results:
           path: .reports/junit
   size-limit:
