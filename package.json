@@ -33,6 +33,7 @@
     "size": "size-limit",
     "test": "jest --reporters=default",
     "verify": "npm run lint && npm run build && npm run dependency-check && jest --coverage --reporters=default",
+    "verify:ci": "npm run lint && npm run build && npm run dependency-check && jest --coverage --reporters=default --maxWorkers=2",
     "watch": "jest --watch"
   },
   "dependencies": {
