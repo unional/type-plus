@@ -40,3 +40,11 @@ test('distributive omit', () => {
 
   actions.push({ ...x, id: '1' })
 })
+
+test('intersection types with generic', () => {
+  type Foo = { a: string, b: string }
+  function foo<T>(input: Omit<Foo & T, 'a'>): void {
+    typeAssert.isString(input.b)
+  }
+  foo({ b: '1' })
+})
