@@ -14,6 +14,7 @@ export * from './KeyTypes';
 export * from './literalArray';
 export * from './mapKey';
 export * from './mapSeries';
+export * from './Omit';
 export * from './Partial';
 export * from './pick';
 export * from './PrimitiveTypes';
