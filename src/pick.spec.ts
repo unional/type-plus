@@ -1,4 +1,4 @@
-import { Pick, pick } from '.';
+import { Pick, pick, typeAssert } from '.';
 
 test('pick properties from object', () => {
   const actual = pick({ a: 1, b: 2 }, 'a')
@@ -26,4 +26,12 @@ test('distributive pick', () => {
   let actions: Action[] = []
 
   actions.push({ ...x, id: '1' })
+})
+
+test('intersection types with generic', () => {
+  type Foo = { a: string, b: string }
+  function foo<T>(input: Pick<Foo & T, 'a'>): void {
+    typeAssert.isString(input.a)
+  }
+  foo({ a: '1' })
 })
