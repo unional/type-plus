@@ -1,1 +1,1 @@
-export type UnionKeys<T> = T extends any ? keyof T : never
+export type UnionKeys<T> = T extends T ? keyof T : never

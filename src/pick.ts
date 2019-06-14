@@ -23,4 +23,4 @@ export function pick<T extends object>(subject: T, ...props: Array<keyof T>) {
 
 // by Titian Cernicova-Dragomir
 // https://github.com/microsoft/TypeScript/issues/28339#issuecomment-463577347
-export type Pick<T, K extends UnionKeys<T>> = T extends any ? { [P in K]: T[P] } : never
+export type Pick<T, K extends UnionKeys<T>> = T extends T ? { [P in K]: T[P] } : never
