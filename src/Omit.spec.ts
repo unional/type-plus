@@ -41,6 +41,21 @@ test('distributive omit', () => {
   actions.push({ ...x, id: '1' })
 })
 
+test('distributive Omit with disjoined keys', () => {
+  type Union = {
+    type: 'A',
+    foo: string
+  } | {
+    type: 'B',
+    foo: string
+    bar: string
+  }
+  type Id<T> = {} & { [P in keyof T]: T[P] }
+  let x: Id<Omit<Union, 'bar'>> = { type: 'A', foo: 'foo' }
+  x = { type: 'B', foo: 'bar' }
+  expect(x.foo).toBe('bar')
+})
+
 test('intersection types with generic', () => {
   type Foo = { a: string, b: string }
   function foo<T>(input: Omit<Foo & T, 'a'>): void {
