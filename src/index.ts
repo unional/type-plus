@@ -26,4 +26,5 @@ export * from './reduceKey';
 export * from './Required';
 export * from './tryAssign';
 export * from './typeAssert';
+export * from './UnionKeys';
 export * from './ValueOf';

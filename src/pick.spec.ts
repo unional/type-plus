@@ -28,6 +28,22 @@ test('distributive pick', () => {
   actions.push({ ...x, id: '1' })
 })
 
+test('distributive pick with disjoined keys', () => {
+  type Union = {
+    type: 'A',
+    foo: string
+  } | {
+    type: 'B',
+    foo: string
+    bar: string
+  }
+  type Id<T> = {} & { [P in keyof T]: T[P] }
+  let x: Id<Pick<Union, 'type' | 'bar'>> = { type: 'A' }
+  x = { type: 'B', bar: 'bar' }
+
+  expect(x.bar).toBe('bar')
+})
+
 test('intersection types with generic', () => {
   type Foo = { a: string, b: string }
   function foo<T>(input: Pick<Foo & T, 'a'>): void {
@@ -35,3 +51,4 @@ test('intersection types with generic', () => {
   }
   foo({ a: '1' })
 })
+
