@@ -7,6 +7,7 @@ export * from './filterKey';
 export * from './findKey';
 export * from './Flavor';
 export * from './forEachKey';
+export * from './getField';
 export * from './Id';
 export * from './isPromise';
 export * from './JSONTypes';
@@ -28,3 +29,4 @@ export * from './tryAssign';
 export * from './typeAssert';
 export * from './UnionKeys';
 export * from './ValueOf';
+

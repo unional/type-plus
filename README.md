@@ -62,16 +62,12 @@ Provides additional types and type adjusted utilities for `typescript`
 - `facade(subject, ...props)`: create a facade of `subject`.
 - `PartialPick<T, U>`: makes the properties specified in `U` becomes optional.
 - `PartialExcept<T, U>`: makes the properties not specified in `U` becomes optional.
-- `pick(obj, ...props)`: pick properties from `obj`.
 - `RecursivePartial<T>`: make type `T` optional recursively.
 - `RecursiveRequired<T>`: make type `T` required recursively.
-- `required(...)`: merge options and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
-- `requiredDeep(...)`: merge options deeply and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
 - `RequiredPick<T, U>`: makes the properties specified in `U` becomes required.
 - `RequiredExcept<T, U>`: makes the properties not specified in `U` becomes required.
 - `RecursiveIntersect<T, U>`: intersect type `U` onto `T` recursively.
 - `ValueOf<T>`: type of the value of the properties of `T`.
-- `tryAssign<S, T>(from: S, to: T)`: try assign `from` to `to`. Return type `never` if not possible.
 - PropType: ...no helper type for this. Just do `YourType['propName']`
 
 ### Type assertion
@@ -80,6 +76,14 @@ There are several type assertion functions inside `typeAssert`.
 
 - `isXXX(value)`: ensure typeof `value` is `XXX`
 - `noXXX(value)`: ensure typeof `value` does not contain `XXX`. i.e. cannot assign `XXX` to `value`.
+
+### Utility Functions
+
+- `getField(subject, key, defaultValue)`: get a field from a subject. Works against nullable and optional subject.
+- `pick(obj, ...props)`: pick properties from `obj`.
+- `required(...)`: merge options and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
+- `requiredDeep(...)`: merge options deeply and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
+- `tryAssign<S, T>(from: S, to: T)`: try assign `from` to `to`. Return type `never` if not possible.
 
 ## Attribution
 
