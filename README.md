@@ -59,7 +59,6 @@ Provides additional types and type adjusted utilities for `typescript`
 
 - `Except<T, K>`: From `T`, pick a set of properties whose keys are not in the union `K`. This is the opposite of `Pick<T, K>`
 - `ExcludePropType<T, U>`: excludes type `U` from properties in `T`.
-- `facade(subject, ...props)`: create a facade of `subject`.
 - `PartialPick<T, U>`: makes the properties specified in `U` becomes optional.
 - `PartialExcept<T, U>`: makes the properties not specified in `U` becomes optional.
 - `RecursivePartial<T>`: make type `T` optional recursively.
@@ -79,6 +78,7 @@ There are several type assertion functions inside `typeAssert`.
 
 ### Utility Functions
 
+- `facade(subject, ...props)`: create a facade of `subject`.
 - `getField(subject, key, defaultValue)`: get a field from a subject. Works against nullable and optional subject.
 - `pick(obj, ...props)`: pick properties from `obj`.
 - `required(...)`: merge options and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
