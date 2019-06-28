@@ -47,7 +47,7 @@ Provides additional types and type adjusted utilities for `typescript`
 
 - `isPromise<R>(subject: any)`: `isPromise()` type guard.
 - `PromiseValue<P>`: Gets the type within the Promise.
-- `mapSeries()`: Similar to `bluebird.mapSeries()` but works with `async`/`await`
+- `mapSeries()`: Similar to `bluebird.mapSeries()` but works with `async`/`await`.
 
 ### Nominal Type
 
@@ -57,8 +57,9 @@ Provides additional types and type adjusted utilities for `typescript`
 
 ### Type manipulation
 
-- `Except<T, K>`: From `T`, pick a set of properties whose keys are not in the union `K`. This is the opposite of `Pick<T, K>`
+- `Except<T, K>`: Deprecated. Same as `Omit<T, K>`.
 - `ExcludePropType<T, U>`: excludes type `U` from properties in `T`.
+- `Omit<T, K>`: From `T`, pick a set of properties whose keys are not in the union `K`. This is the opposite of `Pick<T, K>`.
 - `PartialPick<T, U>`: makes the properties specified in `U` becomes optional.
 - `PartialExcept<T, U>`: makes the properties not specified in `U` becomes optional.
 - `RecursivePartial<T>`: make type `T` optional recursively.
@@ -67,7 +68,7 @@ Provides additional types and type adjusted utilities for `typescript`
 - `RequiredExcept<T, U>`: makes the properties not specified in `U` becomes required.
 - `RecursiveIntersect<T, U>`: intersect type `U` onto `T` recursively.
 - `ValueOf<T>`: type of the value of the properties of `T`.
-- PropType: ...no helper type for this. Just do `YourType['propName']`
+- PropType: ...no helper type for this. Just do `YourType['propName']`.
 
 ### Type assertion
 
