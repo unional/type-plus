@@ -14,3 +14,8 @@ test('can specify default value', () => {
   const sub: { a?: number } = { a: undefined }
   expect(getField(sub, 'a', 2)).toBe(2)
 })
+
+test('get from union keys', () => {
+  const sub: { a: number, b: string } | { a: number, c: string } = { a: 1, b: 'b' } as any
+  expect(getField(sub, 'b')).toBe('b')
+})
