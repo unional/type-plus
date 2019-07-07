@@ -4,17 +4,21 @@
  */
 export function assertType<T>(subject: T): void { return }
 
-assertType.isUndefined = (value: undefined) => { return }
-assertType.noUndefined = <T>(value: Exclude<T, undefined>) => { return }
-assertType.isNull = (value: null) => { return }
-assertType.noNull = <T>(value: Exclude<T, null>) => { return }
-assertType.isNumber = (value: number) => { return }
-assertType.noNumber = <T>(value: Exclude<T, number>) => { return }
-assertType.isBoolean = (value: boolean) => { return }
-assertType.noBoolean = <T>(value: Exclude<T, boolean>) => { return }
-assertType.isString = (value: string) => { return }
-assertType.noString = <T>(value: Exclude<T, string>) => { return }
-assertType.isNever = (value: never) => { return }
+assertType.isUndefined = noop as (value: undefined) => void
+assertType.noUndefined = noop as <T>(value: Exclude<T, undefined>) => void
+assertType.isNull = noop as (value: null) => void
+assertType.noNull = noop as <T>(value: Exclude<T, null>) => void
+assertType.isNumber = noop as (value: number) => void
+assertType.noNumber = noop as <T>(value: Exclude<T, number>) => void
+assertType.isBoolean = noop as (value: boolean) => void
+assertType.noBoolean = noop as <T>(value: Exclude<T, boolean>) => void
+assertType.isTrue = noop as (value: true) => void
+assertType.isFalse = noop as (value: false) => void
+assertType.isString = noop as (value: string) => void
+assertType.noString = noop as <T>(value: Exclude<T, string>) => void
+assertType.isNever = noop as (value: never) => void
+
+function noop(value: any) { return }
 
 /**
  * create a type assertion function for the specified type.
