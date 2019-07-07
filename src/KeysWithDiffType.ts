@@ -1,5 +1,5 @@
-import { ValueOf } from './ValueOf';
 import { IsDisjoint } from './IsDisjoint';
+import { ValueOf } from './ValueOf';
 
 export type KeysWithDiffType<A extends object, B extends object> =
   IsDisjoint<A, B> extends true ? never :
