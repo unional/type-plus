@@ -113,6 +113,24 @@ function createFoo() {
 - `tryAssign<S, T>(from: S, to: T)`: try assign `from` to `to`. Return type `never` if not possible.
 - `typeOverrideIncompatible<T>()`: override only the incompatiable portion between two types.
 
+```ts
+type A =  {
+  foo: boolean,
+  bar: string,
+  baz: string
+}
+
+const overrider = typeOverrideIncompatible<A>()
+const source = {
+  foo: 1,
+  bar: 'bar',
+  baz: 'baz'
+}
+
+// only the `foo` property is available to override.
+overrider(source, { foo: !!source.foo })
+```
+
 ## Attribution
 
 Some of the code in this library are created by other people in the TypeScript community.
