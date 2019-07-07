@@ -36,6 +36,9 @@ Provides additional types and type adjusted utilities for `typescript`
 - `filterKey()`: type adjusted filter by key.
 - `findKey()`: type adjusted find by key.
 - `forEachKey()`: type adjusted for each by key.
+- `HasKey<T, K>`: predicate type checking `T` has key `K`.
+- `hasKey()`: function of `HasKey`.
+- `KeysWithDiffTypes<A, B>`: gets the keys common in `A` and `B` but with differnt value type.
 - `mapKey()`: type adjusted map by key.
 - `reduceKey()`: type adjusted reduce by key.
 
@@ -57,6 +60,8 @@ Provides additional types and type adjusted utilities for `typescript`
 
 ### Type manipulation
 
+- `ANotB<A, B>`: get object with properties in `A` and not in `B`, including properties with differnt value type.
+- `BNotA<A, B>`: flip of `ANotB`
 - `Except<T, K>`: Deprecated. Same as `Omit<T, K>`.
 - `ExcludePropType<T, U>`: excludes type `U` from properties in `T`.
 - `Omit<T, K>`: From `T`, pick a set of properties whose keys are not in the union `K`. This is the opposite of `Pick<T, K>`.
@@ -70,6 +75,16 @@ Provides additional types and type adjusted utilities for `typescript`
 - `RecursiveIntersect<T, U>`: intersect type `U` onto `T` recursively.
 - `ValueOf<T>`: type of the value of the properties of `T`.
 - PropType: ...no helper type for this. Just do `YourType['propName']`.
+
+### Type Predicates
+
+Type predicates are type alias that returns `true` or `false`.
+They can be used to compose complex types.
+
+- `HasKey<T, K>`: predicate type checking `T` has key `K`.
+- `IsDisjoint<A, B>`: is `A` and `B` is a disjoint set.
+- `IsSame<A, B>`: is `A` and `B` has the same properties and types.
+- `Not<T>`: not operator for type.
 
 ### Type assertion
 
@@ -91,11 +106,12 @@ function createFoo() {
 
 - `facade(subject, ...props)`: create a facade of `subject`.
 - `getField(subject, key, defaultValue)`: get a field from a subject. Works against nullable and optional subject.
+- `hasKey()`: function of `HasKey`.
 - `pick(obj, ...props)`: pick properties from `obj`.
 - `required(...)`: merge options and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
 - `requiredDeep(...)`: merge options deeply and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
 - `tryAssign<S, T>(from: S, to: T)`: try assign `from` to `to`. Return type `never` if not possible.
-
+- `typeOverrideIncompatible<T>()`: override only the incompatiable portion between two types.
 
 ## Attribution
 
