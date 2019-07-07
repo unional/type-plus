@@ -1,7 +1,7 @@
 import { PromiseValue } from '.';
-import { typeAssert } from './typeAssert';
+import { assertType } from './assertType';
 
 test('extract value from Promise', () => {
   let y: PromiseValue<Promise<string>> = {} as any
-  typeAssert.isString(y)
+  assertType.isString(y)
 })

@@ -1,4 +1,4 @@
-import { PartialExcept, PartialPick, typeAssert, PartialOmit } from '.';
+import { PartialExcept, PartialPick, assertType, PartialOmit } from '.';
 
 test('make picked properties optional', () => {
   type Foo = {
@@ -10,8 +10,8 @@ test('make picked properties optional', () => {
   let y: PartialPick<Foo, 'a'> = {} as any
 
   y.a = undefined
-  typeAssert.noUndefined(y.b)
-  typeAssert.noUndefined(y.c)
+  assertType.noUndefined(y.b)
+  assertType.noUndefined(y.c)
 })
 
 test('make not specified properties optional', () => {
@@ -24,7 +24,7 @@ test('make not specified properties optional', () => {
   // tslint:disable-next-line: deprecation
   let y: PartialExcept<Foo, 'a'> = {} as any
 
-  typeAssert.noUndefined(y.a)
+  assertType.noUndefined(y.a)
   y.b = undefined
   y.c = undefined
 })
@@ -39,7 +39,7 @@ test('make not specified properties optional', () => {
 
   let y: PartialOmit<Foo, 'a'> = {} as any
 
-  typeAssert.noUndefined(y.a)
+  assertType.noUndefined(y.a)
   y.b = undefined
   y.c = undefined
 })

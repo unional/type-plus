@@ -73,10 +73,19 @@ Provides additional types and type adjusted utilities for `typescript`
 
 ### Type assertion
 
-There are several type assertion functions inside `typeAssert`.
+- `assertType<T>(subject)`: assert `subject` satisfies type `T`.
+- `assertType.isXXX(value)`: ensure typeof `value` is `XXX`
+- `assertType.noXXX(value)`: ensure typeof `value` does not contain `XXX`. i.e. cannot assign `XXX` to `value`.
+- `typeAssert.*` is deprecated and moved under `assertType`.
+- `typeAssertion<T>()`: creates a type assertion function of type `T`
 
-- `isXXX(value)`: ensure typeof `value` is `XXX`
-- `noXXX(value)`: ensure typeof `value` does not contain `XXX`. i.e. cannot assign `XXX` to `value`.
+```ts
+type Foo = { a: number }
+const assertIsFoo = typeAssertion<Foo>()
+function createFoo() {
+  return assertIsFoo({ a: 1, b: 2 })
+}
+```
 
 ### Utility Functions
 
@@ -86,6 +95,7 @@ There are several type assertion functions inside `typeAssert`.
 - `required(...)`: merge options and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
 - `requiredDeep(...)`: merge options deeply and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
 - `tryAssign<S, T>(from: S, to: T)`: try assign `from` to `to`. Return type `never` if not possible.
+
 
 ## Attribution
 

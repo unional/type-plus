@@ -1,4 +1,4 @@
-import { RequiredExcept, RequiredPick, typeAssert } from '.';
+import { RequiredExcept, RequiredPick, assertType } from '.';
 
 test('make picked properties required', () => {
   type Foo = {
@@ -9,9 +9,9 @@ test('make picked properties required', () => {
 
   let y: RequiredPick<Foo, 'a'> = {} as any
 
-  typeAssert.noUndefined(y.a)
+  assertType.noUndefined(y.a)
   y.b = undefined
-  typeAssert.noUndefined(y.c)
+  assertType.noUndefined(y.c)
 })
 
 test('make not picked properties required', () => {
@@ -24,6 +24,6 @@ test('make not picked properties required', () => {
   let y: RequiredExcept<Foo, 'a'> = {} as any
 
   y.a = undefined
-  typeAssert.noUndefined(y.b)
-  typeAssert.noUndefined(y.c)
+  assertType.noUndefined(y.b)
+  assertType.noUndefined(y.c)
 })

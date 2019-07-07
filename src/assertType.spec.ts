@@ -1,8 +1,27 @@
-import { typeAssert } from '.';
+import { assertType, typeAssertion } from '.';
+
+describe('assertType()', () => {
+  test('input satisfies specified type', () => {
+    const subject = { a: 1, b: 2 } as const
+    assertType<{ a: 1 }>(subject)
+  })
+})
+
+describe('typeAssertion()', () => {
+  test('create a type assertion function', () => {
+    const subject = { a: 1, b: 2 } as const
+    typeAssertion<{ a: 1 }>()(subject)
+  })
+  test('return the actual type, not the assert type', () => {
+    const subject = { a: 1, b: 2 } as const
+    const actual = typeAssertion<{ a: 1 }>()(subject)
+    expect(actual.b).toBe(2)
+  })
+})
 
 describe('isUndefined()', () => {
   test('ensure the input type is undefined and nothing else', () => {
-    typeAssert.isUndefined(undefined)
+    assertType.isUndefined(undefined)
 
     // These fails
     // typeAssert.isUndefined(null)
@@ -17,12 +36,12 @@ describe('isUndefined()', () => {
 
 describe('noUndefined()', () => {
   test('ensure the input type does not contain undefined', () => {
-    typeAssert.noUndefined(null)
-    typeAssert.noUndefined(1)
-    typeAssert.noUndefined(true)
-    typeAssert.noUndefined('a')
-    typeAssert.noUndefined([])
-    typeAssert.noUndefined({})
+    assertType.noUndefined(null)
+    assertType.noUndefined(1)
+    assertType.noUndefined(true)
+    assertType.noUndefined('a')
+    assertType.noUndefined([])
+    assertType.noUndefined({})
 
     // These fails
     // typeAssert.noUndefined(undefined)
@@ -32,7 +51,7 @@ describe('noUndefined()', () => {
 
 describe('isNull()', () => {
   test('ensure the input type is null and nothing else', () => {
-    typeAssert.isNull(null)
+    assertType.isNull(null)
 
     // These fails
     // typeAssert.isNull(undefined)
@@ -47,12 +66,12 @@ describe('isNull()', () => {
 
 describe('noNull()', () => {
   test('ensure the input type does not contain undefined', () => {
-    typeAssert.noNull(undefined)
-    typeAssert.noNull(1)
-    typeAssert.noNull(true)
-    typeAssert.noNull('a')
-    typeAssert.noNull([])
-    typeAssert.noNull({})
+    assertType.noNull(undefined)
+    assertType.noNull(1)
+    assertType.noNull(true)
+    assertType.noNull('a')
+    assertType.noNull([])
+    assertType.noNull({})
 
     // These fails
     // typeAssert.noNull(null)
@@ -62,7 +81,7 @@ describe('noNull()', () => {
 
 describe('isNumber()', () => {
   test('ensure the input type is number and nothing else', () => {
-    typeAssert.isNumber(0)
+    assertType.isNumber(0)
 
     // These fails
     // typeAssert.isNumber(undefined)
@@ -77,12 +96,12 @@ describe('isNumber()', () => {
 
 describe('noNumber()', () => {
   test('ensure the input type does not contain number', () => {
-    typeAssert.noNumber(undefined)
-    typeAssert.noNumber(null)
-    typeAssert.noNumber(true)
-    typeAssert.noNumber('a')
-    typeAssert.noNumber([])
-    typeAssert.noNumber({})
+    assertType.noNumber(undefined)
+    assertType.noNumber(null)
+    assertType.noNumber(true)
+    assertType.noNumber('a')
+    assertType.noNumber([])
+    assertType.noNumber({})
 
     // These fails
     // typeAssert.noNumber(1)
@@ -92,7 +111,7 @@ describe('noNumber()', () => {
 
 describe('isBoolean()', () => {
   test('ensure the input type is boolean and nothing else', () => {
-    typeAssert.isBoolean(false)
+    assertType.isBoolean(false)
 
     // These fails
     // typeAssert.isBoolean(undefined)
@@ -107,12 +126,12 @@ describe('isBoolean()', () => {
 
 describe('noBoolean()', () => {
   test('ensure the input type does not contain boolean', () => {
-    typeAssert.noBoolean(undefined)
-    typeAssert.noBoolean(null)
-    typeAssert.noBoolean(1)
-    typeAssert.noBoolean('a')
-    typeAssert.noBoolean([])
-    typeAssert.noBoolean({})
+    assertType.noBoolean(undefined)
+    assertType.noBoolean(null)
+    assertType.noBoolean(1)
+    assertType.noBoolean('a')
+    assertType.noBoolean([])
+    assertType.noBoolean({})
 
     // These fails
     // typeAssert.noBoolean(true)
@@ -122,7 +141,7 @@ describe('noBoolean()', () => {
 
 describe('isString()', () => {
   test('ensure the input type is boolean and nothing else', () => {
-    typeAssert.isString('a')
+    assertType.isString('a')
 
     // These fails
     // typeAssert.isString(undefined)
@@ -137,12 +156,12 @@ describe('isString()', () => {
 
 describe('noString()', () => {
   test('ensure the input type does not contain boolean', () => {
-    typeAssert.noString(undefined)
-    typeAssert.noString(null)
-    typeAssert.noString(1)
-    typeAssert.noString(true)
-    typeAssert.noString([])
-    typeAssert.noString({})
+    assertType.noString(undefined)
+    assertType.noString(null)
+    assertType.noString(1)
+    assertType.noString(true)
+    assertType.noString([])
+    assertType.noString({})
 
     // These fails
     // typeAssert.noString('a')
