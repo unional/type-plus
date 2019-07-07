@@ -1,4 +1,4 @@
-import { createBrandCreator, tryAssign, typeAssert } from '.';
+import { createBrandCreator, tryAssign, assertType } from '.';
 
 describe('createBrandCreator()', () => {
   test('creates a typed brand creator', () => {
@@ -12,7 +12,7 @@ describe('createBrandCreator()', () => {
     personId = personId2
     personId2 = personId
 
-    typeAssert.isNever(tryAssign(blogPostId, personId))
-    typeAssert.isNever(tryAssign(personId, blogPostId))
+    assertType.isNever(tryAssign(blogPostId, personId))
+    assertType.isNever(tryAssign(personId, blogPostId))
   })
 })

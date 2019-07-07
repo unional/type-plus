@@ -1,4 +1,4 @@
-import { Flavor, tryAssign, typeAssert } from '.';
+import { Flavor, tryAssign, assertType } from '.';
 
 test('underlying type can be assigned to Flavor', () => {
   type PersonId = Flavor<'Person', number>
@@ -13,6 +13,6 @@ test('underlying type can be assigned to Flavor', () => {
   let blogId: BlogId = 1
 
 
-  typeAssert.isNever(tryAssign(blogId, personId))
-  typeAssert.isNever(tryAssign(personId, blogId))
+  assertType.isNever(tryAssign(blogId, personId))
+  assertType.isNever(tryAssign(personId, blogId))
 })

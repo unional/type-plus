@@ -1,4 +1,4 @@
-import { ExcludePropType, typeAssert } from '.';
+import { ExcludePropType, assertType } from '.';
 
 test('exclude type R from properties of T', () => {
   interface Customer {
@@ -9,5 +9,5 @@ test('exclude type R from properties of T', () => {
   type CustomerAgeNotNull = ExcludePropType<Customer, null>
 
   let x: CustomerAgeNotNull = {} as any
-  typeAssert.isNumber(x.age)
+  assertType.isNumber(x.age)
 })

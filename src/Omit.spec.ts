@@ -1,4 +1,4 @@
-import { Omit, typeAssert } from '.';
+import { Omit, assertType } from '.';
 
 test('Remove properties', () => {
   type Foo = {
@@ -10,13 +10,13 @@ test('Remove properties', () => {
   // tslint:disable-next-line: deprecation
   type Actual = Omit<Foo, 'c'>
   let a: Actual = {} as any
-  typeAssert.isNumber(a.a)
-  typeAssert.isString(a.b)
+  assertType.isNumber(a.a)
+  assertType.isString(a.b)
 
   // tslint:disable-next-line: deprecation
   type Revert = Omit<Foo, keyof Actual>
   let r: Revert = {} as any
-  typeAssert.isBoolean(r.c)
+  assertType.isBoolean(r.c)
 })
 
 test('distributive omit', () => {
@@ -59,7 +59,7 @@ test('distributive Omit with disjoined keys', () => {
 test('intersection types with generic', () => {
   type Foo = { a: string, b: string }
   function foo<T>(input: Omit<Foo & T, 'a'>): void {
-    typeAssert.isString(input.b)
+    assertType.isString(input.b)
   }
   foo({ b: '1' })
 })
