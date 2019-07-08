@@ -17,8 +17,8 @@ test('disjoint type override is A', () => {
 
 test('intersect type override is ANotB', () => {
   const a = { a: 1, b: 2 } as const
-  const b = { b: 2, c: 3 } as const
+  const b = { b: 3, c: 3 } as const
   const transform = typeOverrideIncompatible<typeof a>()
 
-  transform(b, { a: 1 })
+  transform(b, { a: 1, b: 2 })
 })
