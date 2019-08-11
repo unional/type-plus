@@ -95,7 +95,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: yarn size
+      - run: npx size-limit
   release:
     docker:
       - image: circleci/node:12
