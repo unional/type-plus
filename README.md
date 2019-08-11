@@ -41,6 +41,7 @@ Provides additional types and type adjusted utilities for `typescript`
 - `KeysWithDiffTypes<A, B>`: gets the keys common in `A` and `B` but with differnt value type.
 - `mapKey()`: type adjusted map by key.
 - `reduceKey()`: type adjusted reduce by key.
+- `someKey()`: type adjusted some by key.
 
 ### Array function
 

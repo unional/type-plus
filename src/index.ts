@@ -32,8 +32,8 @@ export * from './RecursivePartial';
 export * from './RecursiveRequired';
 export * from './reduceKey';
 export * from './Required';
+export * from './someKey';
 export * from './tryAssign';
 export * from './typeOverrideIncompatible';
 export * from './UnionKeys';
 export * from './ValueOf';
-
