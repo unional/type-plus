@@ -48,17 +48,16 @@ jobs:
       - run: yarn lint
       - run: yarn build
       - run: yarn dc
-      - run: yarn coverage --maxWorkers=2
       - persist_to_workspace:
           root: '.'
           paths:
             - lib
             - libm
-            - src
             - node_modules
-      - run: npx codecov
+      - run: yarn coverage --maxWorkers=2
       - store_test_results:
           path: .reports/junit
+      - run: yarn codecov
   node11:
     docker:
       - image: 'circleci/node:11'
@@ -96,7 +95,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: npm run size
+      - run: yarn size
   release:
     docker:
       - image: circleci/node:12
@@ -104,4 +103,4 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: npx semantic-release
+      - run: yarn semantic-release
