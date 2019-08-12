@@ -5,17 +5,15 @@ cache:
 notifications:
   email: false
 node_js:
+  - '12'
   - '11'
   - '10'
-  - '9'
   - '8'
-  # - '6'
 branches:
   only:
     - master
     - /^greenkeeper.*$/
 script:
-  - npm i --no-save jest-junit
-  - npm run verify:ci
-  - ./scripts/run-on-node-version.sh 11 "npm install -g codacy-coverage && cat ./coverage/lcov.info | codacy-coverage"
-  - ./scripts/run-on-node-version.sh 11 "npm install -g coveralls && cat ./coverage/lcov.info | coveralls"
+  - yarn verify:ci
+  - ./scripts/run-on-node-version.sh 12 "npm install -g codacy-coverage && cat ./coverage/lcov.info | codacy-coverage"
+  - ./scripts/run-on-node-version.sh 12 "npm install -g coveralls && cat ./coverage/lcov.info | coveralls"
