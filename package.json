@@ -34,7 +34,8 @@
     "lint": "tslint -p tsconfig.json",
     "semantic-release": "semantic-release",
     "test": "jest --reporters=default",
-    "verify": "yarn lint && yarn build && yarn dc && npx size-limit && jest --coverage --reporters=default",
+    "verify": "yarn lint && yarn build && yarn dc && npx size-limit && yarn coverage --reporters=default",
+    "verify:ci": "yarn lint && yarn build && yarn dc && npx size-limit && yarn coverage --maxWorkers=2",
     "watch": "jest --watch"
   },
   "dependencies": {
