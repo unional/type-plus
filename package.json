@@ -45,6 +45,7 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^2.1.0",
     "@unional/devpkg-node": "^1.4.0",
+    "assertron": "^7.1.2",
     "codecov": "^3.5.0",
     "semantic-release": "^15.13.21"
   },
