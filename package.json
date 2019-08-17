@@ -26,15 +26,16 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.es5.json && tsc -p tsconfig.esnext.json",
-    "clean": "rimraf lib libm",
+    "clean": "rimraf coverage lib libm",
     "coverage": "jest --coverage",
     "codecov": "codecov",
     "dc": "yarn depcheck",
     "depcheck": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "lint": "eslint \"src/**/*.ts\"",
+    "nuke": "yarn clean && rimraf node_modules",
     "semantic-release": "semantic-release",
-    "test": "jest --reporters=default",
-    "verify": "yarn lint && yarn build && yarn dc && npx size-limit && yarn coverage --reporters=default",
+    "test": "jest",
+    "verify": "yarn lint && yarn build && yarn dc && npx size-limit && yarn coverage",
     "verify:ci": "yarn lint && yarn build && yarn dc && npx size-limit && yarn coverage --maxWorkers=2",
     "watch": "jest --watch"
   },
@@ -42,15 +43,10 @@
     "unpartial": "^0.6.3"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^2.0.2",
-    "@types/jest": "^24.0.17",
+    "@size-limit/preset-small-lib": "^2.1.0",
     "@unional/devpkg-node": "^1.4.0",
-    "assertron": "^7.1.2",
     "codecov": "^3.5.0",
-    "eslint-plugin-harmony": "^2.0.4",
-    "jest": "^24.8.0",
-    "semantic-release": "^15.13.19",
-    "typescript": "^3.5.3"
+    "semantic-release": "^15.13.21"
   },
   "size-limit": [
     {
