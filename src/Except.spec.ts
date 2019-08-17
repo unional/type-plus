@@ -4,17 +4,17 @@ test('Remove properties', () => {
   type Foo = {
     a: number,
     b: string,
-    c: boolean
+    c: boolean,
   }
 
   // tslint:disable-next-line: deprecation
   type Actual = Except<Foo, 'c'>
-  let a: Actual = {} as any
+  const a: Actual = {} as any
   assertType.isNumber(a.a)
   assertType.isString(a.b)
 
   // tslint:disable-next-line: deprecation
   type Revert = Except<Foo, keyof Actual>
-  let r: Revert = {} as any
+  const r: Revert = {} as any
   assertType.isBoolean(r.c)
 })

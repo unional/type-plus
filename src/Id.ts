@@ -6,13 +6,13 @@
  */
 export type Id<T extends string> = {
   type: T,
-  value: string
+  value: string,
 }
 
 export function createId<T extends string>(type: T, value: string): Id<T> {
   return {
     type,
-    value
+    value,
   }
 }
 
@@ -20,7 +20,7 @@ export function createIdCreator<T extends string>(type: T) {
   return function createId(value: string): Id<T> {
     return {
       type,
-      value
+      value,
     }
   }
 }

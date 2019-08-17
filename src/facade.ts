@@ -27,7 +27,7 @@ export function facade<T extends object>(subject: T, ...props: (keyof T)[]) {
         },
         set(value: any) {
           return subject[k] = value
-        }
+        },
       })
     }
     return p

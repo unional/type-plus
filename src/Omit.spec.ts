@@ -4,18 +4,18 @@ test('Remove properties', () => {
   type Foo = {
     a: number,
     b: string,
-    c: boolean
+    c: boolean,
   }
 
   // tslint:disable-next-line: deprecation
   type Actual = Omit<Foo, 'c'>
-  let a: Actual = {} as any
+  const a: Actual = {} as any
   assertType.isNumber(a.a)
   assertType.isString(a.b)
 
   // tslint:disable-next-line: deprecation
   type Revert = Omit<Foo, keyof Actual>
-  let r: Revert = {} as any
+  const r: Revert = {} as any
   assertType.isBoolean(r.c)
 })
 
@@ -25,18 +25,18 @@ test('distributive omit', () => {
   type InvokeAction = {
     type: 'invoke',
     id: string,
-    payload: string[]
+    payload: string[],
   }
 
   type ReturnAction = {
     type: 'return',
     id: string,
-    payload: string
+    payload: string,
   }
 
-  let x: Omit<Action, 'id'> = {} as any
+  const x: Omit<Action, 'id'> = {} as any
 
-  let actions: Action[] = []
+  const actions: Action[] = []
 
   actions.push({ ...x, id: '1' })
 })
@@ -44,11 +44,11 @@ test('distributive omit', () => {
 test('distributive Omit with disjoined keys', () => {
   type Union = {
     type: 'A',
-    foo: string
+    foo: string,
   } | {
     type: 'B',
-    foo: string
-    bar: string
+    foo: string,
+    bar: string,
   }
   type Id<T> = {} & { [P in keyof T]: T[P] }
   let x: Id<Omit<Union, 'bar'>> = { type: 'A', foo: 'foo' }

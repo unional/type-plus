@@ -4,10 +4,10 @@ test('make picked properties required', () => {
   type Foo = {
     a?: number,
     b?: number,
-    c: number
+    c: number,
   }
 
-  let y: RequiredPick<Foo, 'a'> = {} as any
+  const y: RequiredPick<Foo, 'a'> = {} as any
 
   assertType.noUndefined(y.a)
   y.b = undefined
@@ -18,10 +18,10 @@ test('make not picked properties required', () => {
   type Foo = {
     a?: number,
     b?: number,
-    c: number
+    c: number,
   }
 
-  let y: RequiredExcept<Foo, 'a'> = {} as any
+  const y: RequiredExcept<Foo, 'a'> = {} as any
 
   y.a = undefined
   assertType.noUndefined(y.b)

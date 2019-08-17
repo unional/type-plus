@@ -2,7 +2,7 @@
  * assert the subject satisfies the specified type T
  * @type T the type to check against.
  */
-export function assertType<T>(subject: T): void { return }
+export function assertType<T>(_subject: T): void { return }
 
 assertType.isUndefined = noop as (value: undefined) => void
 assertType.noUndefined = noop as <T>(value: Exclude<T, undefined>) => void
@@ -17,8 +17,8 @@ assertType.isFalse = noop as (value: false) => void
 assertType.isString = noop as (value: string) => void
 assertType.noString = noop as <T>(value: Exclude<T, string>) => void
 assertType.isNever = noop as (value: never) => void
-
-function noop(value: any) { return }
+// assertType.hasProperty = <T>(value: T, propertyName: KeyTypes)
+function noop() { return }
 
 /**
  * create a type assertion function for the specified type.

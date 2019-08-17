@@ -10,7 +10,7 @@ test('underlying type can be assigned to Flavor', () => {
   personId = personId2
   personId2 = personId
 
-  let blogId: BlogId = 1
+  const blogId: BlogId = 1
 
 
   assertType.isNever(tryAssign(blogId, personId))

@@ -3,32 +3,32 @@ import { RecursiveRequired } from '.';
 
 test('simple optional property becomes required', () => {
   type SimpleOptional = {
-    x?: string
+    x?: string,
   }
 
-  let actual: RecursiveRequired<SimpleOptional> = { x: '' }
+  const actual: RecursiveRequired<SimpleOptional> = { x: '' }
   t.strictEqual(actual.x.length, 0)
 })
 
 test('deep optional object property becomes required', () => {
   type DeepOptonal = {
     x: {
-      y?: string
-    }
+      y?: string,
+    },
   }
 
-  let actual: RecursiveRequired<DeepOptonal> = { x: { y: '' } }
+  const actual: RecursiveRequired<DeepOptonal> = { x: { y: '' } }
   t.strictEqual(actual.x.y.length, 0)
 })
 
 test('deep optional array property becomes required', () => {
   type DeepArrayOptonal = {
     x: {
-      y?: string
-    }[]
+      y?: string,
+    }[],
   }
 
-  let actual: RecursiveRequired<DeepArrayOptonal> = { x: [{ y: '' }] }
+  const actual: RecursiveRequired<DeepArrayOptonal> = { x: [{ y: '' }] }
   t.strictEqual(actual.x[0].y.length, 0)
 })
 
