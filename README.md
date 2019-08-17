@@ -89,9 +89,13 @@ They can be used to compose complex types.
 
 ### Type assertion
 
-- `assignability<T>()`: creates a assignability function. To use it, do the following
-  `assertType.isTrue(assignability<YourType>()(subject))` or
-  `assertType.isFalse(assignability<YourType>()(subject))`
+- `assignability<T>()`: creates a assignability function. To use it, do the following:
+
+```ts
+assertType.isTrue(assignability<YourType>()(subject)) // or
+assertType.isFalse(assignability<YourType>()(subject))
+```
+
 - `assertType<T>(subject)`: assert `subject` satisfies type `T`.
 - `assertType.isXXX(value)`: ensure typeof `value` is `XXX`
 - `assertType.noXXX(value)`: ensure typeof `value` does not contain `XXX`. i.e. cannot assign `XXX` to `value`.
