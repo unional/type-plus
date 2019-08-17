@@ -7,7 +7,7 @@ describe('createBrandCreator()', () => {
     let personId2 = createPersonId(2)
 
     const createBlogPostId = createBrandCreator<'Blog', number>()
-    let blogPostId = createBlogPostId(1)
+    const blogPostId = createBlogPostId(1)
 
     personId = personId2
     personId2 = personId

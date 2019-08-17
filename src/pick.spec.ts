@@ -12,18 +12,18 @@ test('distributive pick', () => {
   type InvokeAction = {
     type: 'invoke',
     id: string,
-    payload: string[]
+    payload: string[],
   }
 
   type ReturnAction = {
     type: 'return',
     id: string,
-    payload: string
+    payload: string,
   }
 
-  let x: Pick<Action, 'type' | 'payload'> = {} as any
+  const x: Pick<Action, 'type' | 'payload'> = {} as any
 
-  let actions: Action[] = []
+  const actions: Action[] = []
 
   actions.push({ ...x, id: '1' })
 })
@@ -31,11 +31,11 @@ test('distributive pick', () => {
 test('distributive pick with disjoined keys', () => {
   type Union = {
     type: 'A',
-    foo: string
+    foo: string,
   } | {
     type: 'B',
-    foo: string
-    bar: string
+    foo: string,
+    bar: string,
   }
   type Id<T> = {} & { [P in keyof T]: T[P] }
   let x: Id<Pick<Union, 'type' | 'bar'>> = { type: 'A' }

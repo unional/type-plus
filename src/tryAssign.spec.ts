@@ -12,7 +12,7 @@ describe('tryAssign()', () => {
   })
 
   test('not assigned will return never type', () => {
-    const num: number = 1
+    const num = 1
 
     assertType.isNever(tryAssign(undefined, num))
   })

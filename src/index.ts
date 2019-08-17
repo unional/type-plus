@@ -12,6 +12,7 @@ export * from './forEachKey';
 export * from './getField';
 export * from './hasKey';
 export * from './Id';
+export * from './assignability';
 export * from './IsDisjoint';
 export * from './isPromise';
 export * from './IsSame';
