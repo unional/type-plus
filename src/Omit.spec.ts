@@ -1,4 +1,4 @@
-import { Omit, assertType } from '.';
+import { assertType, Omit, omit } from '.';
 
 test('Remove properties', () => {
   type Foo = {
@@ -7,13 +7,11 @@ test('Remove properties', () => {
     c: boolean,
   }
 
-  // tslint:disable-next-line: deprecation
   type Actual = Omit<Foo, 'c'>
   const a: Actual = {} as any
   assertType.isNumber(a.a)
   assertType.isString(a.b)
 
-  // tslint:disable-next-line: deprecation
   type Revert = Omit<Foo, keyof Actual>
   const r: Revert = {} as any
   assertType.isBoolean(r.c)
@@ -62,4 +60,10 @@ test('intersection types with generic', () => {
     assertType.isString(input.b)
   }
   foo({ b: '1' })
+})
+
+test('omit properties from object', () => {
+  const actual = omit({ a: 1, b: 2 }, 'a')
+
+  expect(actual).toEqual({ b: 2 })
 })
