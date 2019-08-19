@@ -116,6 +116,7 @@ function createFoo() {
 - `getField(subject, key, defaultValue)`: get a field from a subject. Works against nullable and optional subject.
 - `hasKey()`: function of `HasKey`.
 - `pick(obj, ...props)`: pick properties from `obj`.
+- `omit(obj, ...props)`: omit properties from `obj`.
 - `required(...)`: merge options and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
 - `requiredDeep(...)`: merge options deeply and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
 - `tryAssign<S, T>(from: S, to: T)`: try assign `from` to `to`. Return type `never` if not possible.
