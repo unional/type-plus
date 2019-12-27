@@ -52,3 +52,9 @@ test('intersection types with generic', () => {
   foo({ a: '1' })
 })
 
+test('optional property remains optional', () => {
+  type Foo = { a?: string, b: string }
+  const koo: Pick<Foo, 'a'> = {}
+
+  return koo
+})
