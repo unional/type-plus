@@ -12,6 +12,7 @@ export * from './Flavor';
 export * from './forEachKey';
 export * from './getField';
 export * from './hasKey';
+export * from './KeyofOptional'
 export * from './Id';
 export * from './IsDisjoint';
 export * from './isPromise';
