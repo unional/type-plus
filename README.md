@@ -65,6 +65,7 @@ Provides additional types and type adjusted utilities for `typescript`
 - `BNotA<A, B>`: flip of `ANotB`
 - `Except<T, K>`: Deprecated. Same as `Omit<T, K>`.
 - `ExcludePropType<T, U>`: excludes type `U` from properties in `T`.
+- `KeyofOptional<T>`: `keyof` that works with `Record<any, any> | undefined`.
 - `Omit<T, K>`: From `T`, pick a set of properties whose keys are not in the union `K`. This is the opposite of `Pick<T, K>`.
 - `PartialExcept<T, U>`: Deprecated. Same as `PartialOmit<T, U>`.
 - `PartialOmit<T, U>`: makes the properties not specified in `U` becomes optional.
