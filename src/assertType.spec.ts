@@ -174,12 +174,11 @@ describe('hasProperty', () => {
 
   const x: X = { name: 'n', a: 1 } as any
 
-  assertType.hasProperty(x, 'a')
-
-  expect(x.a).toBe(1)
+  if (assertType.hasProperty(x, 'a'))
+    expect(x.a).toBe(1)
 
   const y: X = { name: 'n', b: 2 } as any
-  assertType.hasProperty(y, 'b')
 
-  expect(y.b).toBe(2)
+  if (assertType.hasProperty(y, 'b'))
+    expect(y.b).toBe(2)
 });
