@@ -100,6 +100,7 @@ assertType.isFalse(assignability<YourType>()(subject))
 - `assertType<T>(subject)`: assert `subject` satisfies type `T`.
 - `assertType.isXXX(value)`: ensure typeof `value` is `XXX`
 - `assertType.noXXX(value)`: ensure typeof `value` does not contain `XXX`. i.e. cannot assign `XXX` to `value`.
+- `assertType.hasProperty(value, prop)`: assert `value` has property `prop`. This will pick the correct union type.
 - `typeAssert.*` (deprecated) replaced by `assertType`.
 - `typeAssertion<T>()`: creates a type assertion function of type `T`
 
