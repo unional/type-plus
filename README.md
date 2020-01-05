@@ -100,7 +100,6 @@ assertType.isFalse(assignability<YourType>()(subject))
 - `assertType<T>(subject)`: assert `subject` satisfies type `T`.
 - `assertType.isXXX(value)`: ensure typeof `value` is `XXX`
 - `assertType.noXXX(value)`: ensure typeof `value` does not contain `XXX`. i.e. cannot assign `XXX` to `value`.
-- `assertType.hasProperty(value, prop)`: assert `value` has property `prop`. This will pick the correct union type.
 - `typeAssert.*` (deprecated) replaced by `assertType`.
 - `typeAssertion<T>()`: creates a type assertion function of type `T`
 
@@ -117,6 +116,7 @@ function createFoo() {
 - `facade(subject, ...props)`: create a facade of `subject`.
 - `getField(subject, key, defaultValue)`: get a field from a subject. Works against nullable and optional subject.
 - `hasKey()`: function of `HasKey`.
+- `hasProperty(value, prop)`: assert `value` has property `prop`. This will pick the correct union type.
 - `pick(obj, ...props)`: pick properties from `obj`.
 - `omit(obj, ...props)`: omit properties from `obj`.
 - `required(...)`: merge options and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
