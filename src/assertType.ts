@@ -1,3 +1,5 @@
+import { UnionKeys } from './UnionKeys'
+
 /**
  * assert the subject satisfies the specified type T
  * @type T the type to check against.
@@ -17,6 +19,10 @@ assertType.isFalse = noop as (value: false) => void
 assertType.isString = noop as (value: string) => void
 assertType.noString = noop as <T>(value: Exclude<T, string>) => void
 assertType.isNever = noop as (value: never) => void
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+assertType.hasProperty = function hasProperty<T, P extends UnionKeys<T>>(value: T, prop: P): asserts value is T & Record<P, T[P]> { }
+
 // assertType.hasProperty = <T>(value: T, propertyName: KeyTypes)
 function noop() { return }
 
