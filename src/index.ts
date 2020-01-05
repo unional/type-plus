@@ -12,12 +12,13 @@ export * from './Flavor';
 export * from './forEachKey';
 export * from './getField';
 export * from './hasKey';
-export * from './KeyofOptional'
+export * from './hasProperty';
 export * from './Id';
 export * from './IsDisjoint';
 export * from './isPromise';
 export * from './IsSame';
 export * from './JSONTypes';
+export * from './KeyofOptional';
 export * from './KeysWithDiffType';
 export * from './KeyTypes';
 export * from './literalArray';
