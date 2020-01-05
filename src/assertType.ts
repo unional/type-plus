@@ -3,6 +3,7 @@
  * @type T the type to check against.
  */
 export function assertType<T>(_subject: T): void { return }
+// this does not work at the moment (TypeScript 3.7.3)
 // export function assertType<T, U extends T = T>(subject: U): asserts subject is T { return }
 
 assertType.isUndefined = noop as (value: undefined) => void
@@ -19,7 +20,6 @@ assertType.isString = noop as (value: string) => void
 assertType.noString = noop as <T>(value: Exclude<T, string>) => void
 assertType.isNever = noop as (value: never) => void
 
-// assertType.hasProperty = <T>(value: T, propertyName: KeyTypes)
 function noop() { return }
 
 /**
