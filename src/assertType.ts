@@ -21,7 +21,9 @@ assertType.noString = noop as <T>(value: Exclude<T, string>) => void
 assertType.isNever = noop as (value: never) => void
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-assertType.hasProperty = function hasProperty<T, P extends UnionKeys<T>>(value: T, prop: P): asserts value is T & Record<P, T[P]> { }
+assertType.hasProperty = function hasProperty<T, P extends UnionKeys<T>>(value: T, prop: P): value is T & Record<P, T[P]> {
+  return !!(value as any)[prop]
+}
 
 // assertType.hasProperty = <T>(value: T, propertyName: KeyTypes)
 function noop() { return }
