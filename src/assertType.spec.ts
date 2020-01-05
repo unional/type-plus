@@ -24,13 +24,13 @@ describe('isUndefined()', () => {
     assertType.isUndefined(undefined)
 
     // These fails
-    // typeAssert.isUndefined(null)
-    // typeAssert.isUndefined(1)
-    // typeAssert.isUndefined(true)
-    // typeAssert.isUndefined('a')
-    // typeAssert.isUndefined([])
-    // typeAssert.isUndefined({})
-    // typeAssert.isUndefined(undefined as undefined | number)
+    // assertType.isUndefined(null)
+    // assertType.isUndefined(1)
+    // assertType.isUndefined(true)
+    // assertType.isUndefined('a')
+    // assertType.isUndefined([])
+    // assertType.isUndefined({})
+    // assertType.isUndefined(undefined as undefined | number)
   })
 })
 
@@ -44,8 +44,8 @@ describe('noUndefined()', () => {
     assertType.noUndefined({})
 
     // These fails
-    // typeAssert.noUndefined(undefined)
-    // typeAssert.noUndefined(1 as undefined | number)
+    // assertType.noUndefined(undefined)
+    // assertType.noUndefined(1 as undefined | number)
   })
 })
 
@@ -54,13 +54,13 @@ describe('isNull()', () => {
     assertType.isNull(null)
 
     // These fails
-    // typeAssert.isNull(undefined)
-    // typeAssert.isNull(1)
-    // typeAssert.isNull(true)
-    // typeAssert.isNull('a')
-    // typeAssert.isNull([])
-    // typeAssert.isNull({})
-    // typeAssert.isNull(null as null | undefined)
+    // assertType.isNull(undefined)
+    // assertType.isNull(1)
+    // assertType.isNull(true)
+    // assertType.isNull('a')
+    // assertType.isNull([])
+    // assertType.isNull({})
+    // assertType.isNull(null as null | undefined)
   })
 })
 
@@ -74,8 +74,8 @@ describe('noNull()', () => {
     assertType.noNull({})
 
     // These fails
-    // typeAssert.noNull(null)
-    // typeAssert.noNull(undefined as undefined | null)
+    // assertType.noNull(null)
+    // assertType.noNull(undefined as undefined | null)
   })
 })
 
@@ -84,13 +84,13 @@ describe('isNumber()', () => {
     assertType.isNumber(0)
 
     // These fails
-    // typeAssert.isNumber(undefined)
-    // typeAssert.isNumber(null)
-    // typeAssert.isNumber(true)
-    // typeAssert.isNumber('a')
-    // typeAssert.isNumber([])
-    // typeAssert.isNumber({})
-    // typeAssert.isNumber(1 as number | undefined)
+    // assertType.isNumber(undefined)
+    // assertType.isNumber(null)
+    // assertType.isNumber(true)
+    // assertType.isNumber('a')
+    // assertType.isNumber([])
+    // assertType.isNumber({})
+    // assertType.isNumber(1 as number | undefined)
   })
 })
 
@@ -104,8 +104,8 @@ describe('noNumber()', () => {
     assertType.noNumber({})
 
     // These fails
-    // typeAssert.noNumber(1)
-    // typeAssert.noNumber(1 as number | undefined)
+    // assertType.noNumber(1)
+    // assertType.noNumber(1 as number | undefined)
   })
 })
 
@@ -114,13 +114,13 @@ describe('isBoolean()', () => {
     assertType.isBoolean(false)
 
     // These fails
-    // typeAssert.isBoolean(undefined)
-    // typeAssert.isBoolean(null)
-    // typeAssert.isBoolean(1)
-    // typeAssert.isBoolean('a')
-    // typeAssert.isBoolean([])
-    // typeAssert.isBoolean({})
-    // typeAssert.isBoolean(true as boolean | undefined)
+    // assertType.isBoolean(undefined)
+    // assertType.isBoolean(null)
+    // assertType.isBoolean(1)
+    // assertType.isBoolean('a')
+    // assertType.isBoolean([])
+    // assertType.isBoolean({})
+    // assertType.isBoolean(true as boolean | undefined)
   })
 })
 
@@ -134,8 +134,8 @@ describe('noBoolean()', () => {
     assertType.noBoolean({})
 
     // These fails
-    // typeAssert.noBoolean(true)
-    // typeAssert.noBoolean(true as boolean | undefined)
+    // assertType.noBoolean(true)
+    // assertType.noBoolean(true as boolean | undefined)
   })
 })
 
@@ -144,13 +144,13 @@ describe('isString()', () => {
     assertType.isString('a')
 
     // These fails
-    // typeAssert.isString(undefined)
-    // typeAssert.isString(null)
-    // typeAssert.isString(1)
-    // typeAssert.isString(true)
-    // typeAssert.isString([])
-    // typeAssert.isString({})
-    // typeAssert.isString('a' as string | undefined)
+    // assertType.isString(undefined)
+    // assertType.isString(null)
+    // assertType.isString(1)
+    // assertType.isString(true)
+    // assertType.isString([])
+    // assertType.isString({})
+    // assertType.isString('a' as string | undefined)
   })
 })
 
@@ -164,21 +164,7 @@ describe('noString()', () => {
     assertType.noString({})
 
     // These fails
-    // typeAssert.noString('a')
-    // typeAssert.noString('a' as string | undefined)
+    // assertType.noString('a')
+    // assertType.noString('a' as string | undefined)
   })
 })
-
-describe('hasProperty', () => {
-  type X = { name: string } & ({ a: 1 } | { b: 2 })
-
-  const x: X = { name: 'n', a: 1 } as any
-
-  if (assertType.hasProperty(x, 'a'))
-    expect(x.a).toBe(1)
-
-  const y: X = { name: 'n', b: 2 } as any
-
-  if (assertType.hasProperty(y, 'b'))
-    expect(y.b).toBe(2)
-});
