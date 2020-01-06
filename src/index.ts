@@ -21,6 +21,7 @@ export * from './JSONTypes';
 export * from './KeyofOptional';
 export * from './KeysWithDiffType';
 export * from './KeyTypes';
+export * from './KnownKeys';
 export * from './literalArray';
 export * from './mapKey';
 export * from './mapSeries';
