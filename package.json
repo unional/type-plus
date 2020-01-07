@@ -40,19 +40,25 @@
     "verify:ci": "yarn lint && yarn build && yarn dc && npx size-limit && yarn coverage --maxWorkers=2",
     "watch": "jest --watch"
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "dependencies": {
     "unpartial": "^0.6.3"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
-    "@size-limit/preset-small-lib": "^2.2.4",
+    "@commitlint/cli": "^8.3.4",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@size-limit/preset-small-lib": "^3.0.0",
     "@unional/devpkg-node": "^1.4.2",
     "assertron": "^7.1.2",
     "codecov": "^3.6.1",
     "commitlint-circle": "^1.0.0",
-    "husky": "^3.1.0",
-    "semantic-release": "^15.14.0"
+    "husky": "^4.0.0",
+    "semantic-release": "^15.14.0",
+    "size-limit": "^3.0.0"
   },
   "size-limit": [
     {
