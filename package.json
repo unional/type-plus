@@ -24,6 +24,7 @@
   "module": "libm/index.js",
   "jsnext:main": "libm/index.js",
   "typings": "lib/index.d.ts",
+  "sideEffects": false,
   "scripts": {
     "build": "tsc -p tsconfig.es5.json && tsc -p tsconfig.esnext.json",
     "clean": "rimraf coverage lib libm",
