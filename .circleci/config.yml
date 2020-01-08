@@ -10,9 +10,6 @@ workflows:
       - node10:
           requires:
             - node-latest
-      - node8:
-          requires:
-            - node-latest
       - release:
           filters:
             branches:
@@ -21,7 +18,6 @@ workflows:
             - node-latest
             - node11
             - node10
-            - node8
 jobs:
   node-latest:
     docker:
@@ -55,7 +51,7 @@ jobs:
       - run: yarn coverage --maxWorkers=2
       - store_test_results:
           path: .reports/junit
-      - run: yarn codecov
+      # - run: yarn codecov
   node11:
     docker:
       - image: 'circleci/node:11'
