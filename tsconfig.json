@@ -9,7 +9,7 @@
       {
         "name": "tslint-language-service"
       }
-    ],
+    ]
   },
   "include": [
     "src",
