@@ -1,6 +1,6 @@
 {
   "name": "type-plus",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "Provides additional types for `typescript`.",
   "homepage": "https://github.com/unional/type-plus",
   "bugs": {
@@ -27,8 +27,9 @@
   "scripts": {
     "build": "tsc -p tsconfig.es5.json && tsc -p tsconfig.esnext.json",
     "clean": "rimraf coverage lib libm",
-    "coverage": "jest --coverage",
+    "codacy": "cat coverage/lcov.info | codacy-coverage",
     "codecov": "codecov",
+    "coverage": "jest --coverage",
     "dc": "yarn dependency-check",
     "depcheck": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
@@ -54,6 +55,7 @@
     "@size-limit/preset-small-lib": "^3.0.0",
     "@unional/devpkg-node": "^1.4.2",
     "assertron": "^7.1.2",
+    "codacy-coverage": "^3.4.0",
     "codecov": "^3.6.1",
     "commitlint-circle": "^1.0.0",
     "husky": "^4.0.0",
