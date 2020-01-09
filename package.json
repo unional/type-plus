@@ -60,7 +60,7 @@
     "codecov": "^3.6.1",
     "commitlint-circle": "^1.0.0",
     "husky": "^4.0.0",
-    "semantic-release": "^15.14.0",
+    "semantic-release": "^16.0.0",
     "size-limit": "^3.0.0"
   },
   "size-limit": [
