@@ -61,7 +61,7 @@
     "commitlint-circle": "^1.0.0",
     "husky": "^4.0.0",
     "semantic-release": "^15.14.0",
-    "size-limit": "^3.0.0"
+    "size-limit": "^4.0.0"
   },
   "size-limit": [
     {
