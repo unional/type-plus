@@ -51,17 +51,17 @@
     "unpartial": "^0.6.3"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.3.4",
+    "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@size-limit/preset-small-lib": "^3.0.0",
-    "@unional/devpkg-node": "^1.4.2",
+    "@size-limit/preset-small-lib": "^4.0.1",
+    "@unional/devpkg-node": "^1.5.0",
     "assertron": "^7.1.2",
     "codacy-coverage": "^3.4.0",
-    "codecov": "^3.6.1",
+    "codecov": "^3.6.5",
     "commitlint-circle": "^1.0.0",
-    "husky": "^4.0.0",
-    "semantic-release": "^15.14.0",
-    "size-limit": "^4.0.0"
+    "husky": "^4.2.3",
+    "semantic-release": "^17.0.4",
+    "size-limit": "^4.0.1"
   },
   "size-limit": [
     {
