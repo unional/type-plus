@@ -1,18 +1,17 @@
 {
   "compilerOptions": {
-    "declaration": true,
     "esModuleInterop": true,
     "lib": [
       "es2015"
     ],
-    "module": "commonjs",
     "moduleResolution": "node",
     "newLine": "LF",
     "noUnusedLocals": true,
     "noUnusedParameters": false,
     "removeComments": false,
     "sourceMap": true,
-    "strict": true
+    "strict": true,
+    "useDefineForClassFields": true
   },
   "include": [
     "typings"

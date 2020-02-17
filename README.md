@@ -51,6 +51,7 @@ Provides additional types and type adjusted utilities for `typescript`
 
 - `isPromise<R>(subject: any)`: `isPromise()` type guard.
 - `PromiseValue<P>`: Gets the type within the Promise.
+- `PromiseValueMerge<P1, P2, ...P9>`: Merge the values of multiple promises.
 - `mapSeries()`: Similar to `bluebird.mapSeries()` but works with `async`/`await`.
 
 ### Nominal Type
