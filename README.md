@@ -1,6 +1,5 @@
 # type-plus
 
-![unstable][unstable-image]
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
 
@@ -183,7 +182,6 @@ git push
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
 [travis-image]: https://img.shields.io/travis/unional/type-plus/master.svg?style=flat
 [travis-url]: https://travis-ci.org/unional/type-plus?branch=master
-[unstable-image]: https://img.shields.io/badge/stability-unstable-yellow.svg
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
 [wallaby-image]: https://img.shields.io/badge/wallaby.js-configured-green.svg
