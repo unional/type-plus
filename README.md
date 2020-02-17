@@ -73,6 +73,7 @@ Provides additional types and type adjusted utilities for `typescript`
 - `PartialPick<T, U>`: makes the properties specified in `U` becomes optional.
 - `RecursivePartial<T>`: make type `T` optional recursively.
 - `RecursiveRequired<T>`: make type `T` required recursively.
+- `ReplaceProperty<T, K, V>`: replace property `K` in `T` with `V`.
 - `RequiredPick<T, U>`: makes the properties specified in `U` becomes required.
 - `RequiredExcept<T, U>`: makes the properties not specified in `U` becomes required.
 - `RecursiveIntersect<T, U>`: intersect type `U` onto `T` recursively.
