@@ -1,6 +1,5 @@
 # type-plus
 
-![unstable][unstable-image]
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
 
@@ -51,6 +50,7 @@ Provides additional types and type adjusted utilities for `typescript`
 
 - `isPromise<R>(subject: any)`: `isPromise()` type guard.
 - `PromiseValue<P>`: Gets the type within the Promise.
+- `PromiseValueMerge<P1, P2, ...P9>`: Merge the values of multiple promises.
 - `mapSeries()`: Similar to `bluebird.mapSeries()` but works with `async`/`await`.
 
 ### Nominal Type
@@ -66,6 +66,7 @@ Provides additional types and type adjusted utilities for `typescript`
 - `Except<T, K>`: Deprecated. Same as `Omit<T, K>`.
 - `ExcludePropType<T, U>`: excludes type `U` from properties in `T`.
 - `KeyofOptional<T>`: `keyof` that works with `Record<any, any> | undefined`.
+- `KnownKeys<T>`: extract known (defined) keys from type `T`.
 - `Omit<T, K>`: From `T`, pick a set of properties whose keys are not in the union `K`. This is the opposite of `Pick<T, K>`.
 - `PartialExcept<T, U>`: Deprecated. Same as `PartialOmit<T, U>`.
 - `PartialOmit<T, U>`: makes the properties not specified in `U` becomes optional.
@@ -181,7 +182,6 @@ git push
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
 [travis-image]: https://img.shields.io/travis/unional/type-plus/master.svg?style=flat
 [travis-url]: https://travis-ci.org/unional/type-plus?branch=master
-[unstable-image]: https://img.shields.io/badge/stability-unstable-yellow.svg
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
 [wallaby-image]: https://img.shields.io/badge/wallaby.js-configured-green.svg

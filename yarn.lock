@@ -9090,6 +9090,18 @@ size-limit@^3.0.0:
     globby "^11.0.0"
     read-pkg-up "^7.0.1"
 
+size-limit@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-4.0.0.tgz#56a6e1687df83da33549b29d00398f7ccb429ad0"
+  integrity sha512-geYo+mriszY6duwxxnIKREpFKAFD0uffK7PiRjmWXQ65uQIAswcFNpXFwoMAJSt3UZytagduGEfh4cReSuGwBQ==
+  dependencies:
+    bytes "^3.1.0"
+    chalk "^3.0.0"
+    ci-job-number "^0.3.1"
+    cosmiconfig "^6.0.0"
+    globby "^11.0.0"
+    read-pkg-up "^7.0.1"
+
 slash@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-2.0.0.tgz#de552851a1759df3a8f206535442f5ec4ddeab44"
