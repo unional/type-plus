@@ -1,4 +1,4 @@
-import { ANotB, assertType, BNotA, IsDisjoint } from '.';
+import { ANotB, assertType, BNotA, IsDisjoint, LeftJoin } from '.';
 
 describe('ANotB<A, B>', () => {
   test('same type returns never', () => {
@@ -56,5 +56,13 @@ describe('BNotA<A, B>', () => {
     type B = { a: string }
     const actual = { a: 'a' } as BNotA<A, B>
     assertType<B>(actual)
+  })
+});
+
+describe('LeftJoin', () => {
+  test('replaces property in A with property in B', () => {
+    type Orig = { type: 'a' | 'b', value: string }
+    const actual = {} as LeftJoin<Orig, { value: number }>
+    assertType<{ type: 'a' | 'b', value: number }>(actual)
   })
 });
