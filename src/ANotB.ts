@@ -12,8 +12,8 @@ export type ANotB<A extends object, B extends object> =
 export type BNotA<A extends object, B extends object> = ANotB<B, A>
 
 export type LeftJoin<A extends object, B extends object> =
-  IsSame<A, B> extends true ? never :
-  IsDisjoint<A, B> extends true ? A :
+  IsSame<A, B> extends true ? A :
+  IsDisjoint<A, B> extends true ? A & B:
   {
     [k in Exclude<keyof A, keyof B>]: A[k]
   } & {

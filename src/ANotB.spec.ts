@@ -60,6 +60,16 @@ describe('BNotA<A, B>', () => {
 });
 
 describe('LeftJoin', () => {
+  test('same type returns A', () => {
+    const actual = {} as LeftJoin<{ a: 1 }, { a: 1 }>
+    assertType<{ a: 1 }>(actual)
+  })
+
+  test('disjoint returns A & B', () => {
+    const actual = {} as LeftJoin<{ a: 1 }, { b: 1 }>
+    assertType<{ a: 1, b: 1 }>(actual)
+  })
+
   test('replaces property in A with property in B', () => {
     type Orig = { type: 'a' | 'b', value: string }
     const actual = {} as LeftJoin<Orig, { value: number }>
