@@ -1,7 +1,7 @@
 import { assertType, IsSame } from '.';
 
 test('same type is true', () => {
-  const y = false as IsSame<{ a: 1 }, { a: 1 }>
+  const y = true as IsSame<{ a: 1 }, { a: 1 }>
   assertType.isTrue(y)
 })
 

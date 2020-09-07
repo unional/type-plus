@@ -1,9 +1,20 @@
-import { assertType, typeAssertion } from '.';
+import a from 'assertron'
+import { assertType, typeAssertion } from '.'
 
 describe('assertType()', () => {
   test('input satisfies specified type', () => {
-    const subject = { a: 1, b: 2 } as const
+    const subject: unknown = { a: 1, b: 2, c: 3 }
     assertType<{ a: 1 }>(subject)
+    expect(subject.a).toBe(1)
+    // `subject.b` is not valid yet
+
+    assertType<{ b: 2 }>(subject)
+    expect(subject.b).toBe(2)
+
+    assertType(subject, (s: { c: 3 }) => !!s)
+    expect(subject.c).toBe(3)
+
+    a.throws(() => assertType(subject, (_s: { d: 4 }) => false), TypeError)
   })
 })
 
@@ -23,6 +34,12 @@ describe('isUndefined()', () => {
   test('ensure the input type is undefined and nothing else', () => {
     assertType.isUndefined(undefined)
 
+    a.throws(() => assertType.isUndefined(1 as any), TypeError)
+    const x: any = undefined
+    assertType.isUndefined(x)
+    // `x` is narrowed to `undefined` here
+    assertType.isUndefined(x)
+
     // These fails
     // assertType.isUndefined(null)
     // assertType.isUndefined(1)
@@ -31,6 +48,7 @@ describe('isUndefined()', () => {
     // assertType.isUndefined([])
     // assertType.isUndefined({})
     // assertType.isUndefined(undefined as undefined | number)
+    // assertType.isUndefined(undefined as unknown)
   })
 })
 
@@ -53,6 +71,12 @@ describe('isNull()', () => {
   test('ensure the input type is null and nothing else', () => {
     assertType.isNull(null)
 
+    a.throws(() => assertType.isNull(1 as any), TypeError)
+    const x: any = null
+    assertType.isNull(x)
+    // `x` is narrowed to `null` here
+    assertType.isNull(x)
+
     // These fails
     // assertType.isNull(undefined)
     // assertType.isNull(1)
@@ -61,11 +85,12 @@ describe('isNull()', () => {
     // assertType.isNull([])
     // assertType.isNull({})
     // assertType.isNull(null as null | undefined)
+    // assertType.isNull(null as unknown)
   })
 })
 
 describe('noNull()', () => {
-  test('ensure the input type does not contain undefined', () => {
+  test('ensure the input type does not contain null', () => {
     assertType.noNull(undefined)
     assertType.noNull(1)
     assertType.noNull(true)
@@ -83,6 +108,12 @@ describe('isNumber()', () => {
   test('ensure the input type is number and nothing else', () => {
     assertType.isNumber(0)
 
+    a.throws(() => assertType.isNumber(undefined as any), TypeError)
+    const x: any = 1
+    assertType.isNumber(x)
+    // `x` is narrowed to `number` here
+    assertType.isNumber(x)
+
     // These fails
     // assertType.isNumber(undefined)
     // assertType.isNumber(null)
@@ -91,6 +122,7 @@ describe('isNumber()', () => {
     // assertType.isNumber([])
     // assertType.isNumber({})
     // assertType.isNumber(1 as number | undefined)
+    // assertType.isNumber(1 as unknown)
   })
 })
 
@@ -112,6 +144,12 @@ describe('noNumber()', () => {
 describe('isBoolean()', () => {
   test('ensure the input type is boolean and nothing else', () => {
     assertType.isBoolean(false)
+
+    a.throws(() => assertType.isBoolean(1 as any), TypeError)
+    const x: any = false
+    assertType.isBoolean(x)
+    // `x` is narrowed to `boolean` here
+    assertType.isBoolean(x)
 
     // These fails
     // assertType.isBoolean(undefined)
@@ -139,9 +177,61 @@ describe('noBoolean()', () => {
   })
 })
 
+describe('isTrue()', () => {
+  test('ensure the input type is true and nothing else', () => {
+    assertType.isTrue(true)
+
+    a.throws(() => assertType.isTrue(false as any), TypeError)
+    const x: any = true
+    assertType.isTrue(x)
+    // `x` is narrowed to `true` here
+    assertType.isTrue(x)
+
+    // These fails
+    // assertType.isTrue(undefined)
+    // assertType.isTrue(null)
+    // assertType.isTrue(1)
+    // assertType.isTrue('a')
+    // assertType.isTrue(false)
+    // assertType.isTrue([])
+    // assertType.isTrue({})
+    // assertType.isTrue(true as true | undefined)
+    // assertType.isTrue(true as unknown)
+  })
+})
+
+describe('isFalse()', () => {
+  test('ensure the input type is false and nothing else', () => {
+    assertType.isFalse(false)
+
+    a.throws(() => assertType.isFalse(true as any), TypeError)
+    const x: any = false
+    assertType.isFalse(x)
+    // `x` is narrowed to `true` here
+    assertType.isFalse(x)
+
+    // These fails
+    // assertType.isFalse(undefined)
+    // assertType.isFalse(null)
+    // assertType.isFalse(1)
+    // assertType.isFalse('a')
+    // assertType.isFalse(false)
+    // assertType.isFalse([])
+    // assertType.isFalse({})
+    // assertType.isFalse(false as false | undefined)
+    // assertType.isFalse(false as unknown)
+  })
+})
+
 describe('isString()', () => {
-  test('ensure the input type is boolean and nothing else', () => {
+  test('ensure the input type is string and nothing else', () => {
     assertType.isString('a')
+
+    a.throws(() => assertType.isString(false as any), TypeError)
+    const x: any = ''
+    assertType.isString(x)
+    // `x` is narrowed to `true` here
+    assertType.isString(x)
 
     // These fails
     // assertType.isString(undefined)
@@ -151,6 +241,7 @@ describe('isString()', () => {
     // assertType.isString([])
     // assertType.isString({})
     // assertType.isString('a' as string | undefined)
+    // assertType.isString('a' as unknown)
   })
 })
 
@@ -167,4 +258,48 @@ describe('noString()', () => {
     // assertType.noString('a')
     // assertType.noString('a' as string | undefined)
   })
+})
+
+describe('isNever()', () => {
+  test('ensure the input type is never and nothing else', () => {
+    assertType.isNever(true as never)
+
+    // These fails
+    // assertType.isNever(undefined)
+    // assertType.isNever(null)
+    // assertType.isNever(1)
+    // assertType.isNever(true)
+    // assertType.isNever([])
+    // assertType.isNever({})
+    // assertType.isNever('a' as unknown)
+  })
+})
+
+describe('isError()', () => {
+  test('ensure the input type is instance of Error and nother else', () => {
+    assertType.isError(new Error('x'))
+
+    a.throws(() => assertType.isError(false as any), TypeError)
+    const x: any = new Error()
+    assertType.isError(x)
+    // `x` is narrowed to `true` here
+    assertType.isError(x)
+
+    // These fails
+    // assertType.isError(undefined)
+    // assertType.isError(null)
+    // assertType.isError(1)
+    // assertType.isError(true)
+    // assertType.isError([])
+    // assertType.isError({})
+    // assertType.isError('a')
+    // assertType.isError(new Error() as Error | undefined)
+    // assertType.isError(new Error() as unknown)
+  })
+
+  // test('ensure the input type is E', () => {
+  //   const ee = new EvalError() as unknown
+  //   assertUnknown.isError<EvalError>(ee)
+  //   typeAssertion<EvalError>()(ee)
+  // })
 })

@@ -18,7 +18,7 @@ describe('ANotB<A, B>', () => {
     const actual = { a: 1 } as ANotB<A, B>
 
     assertType<Pick<A, 'a' | 'b'>>(actual)
-    assertType.isTrue(false as IsDisjoint<B, typeof actual>)
+    assertType.isTrue(true as IsDisjoint<B, typeof actual>)
   })
 
   test('same property different type returns the type in A', () => {
@@ -48,7 +48,7 @@ describe('BNotA<A, B>', () => {
     const actual = { a: 1 } as BNotA<A, B>
 
     assertType<Pick<B, 'a' | 'b'>>(actual)
-    assertType.isTrue(false as IsDisjoint<A, typeof actual>)
+    assertType.isTrue(true as IsDisjoint<A, typeof actual>)
   })
 
   test('same property different type returns the type in B', () => {
