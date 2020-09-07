@@ -3,12 +3,10 @@
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
 
-[![Circle CI][circleci-image]][circleci-url]
-[![Travis CI][travis-image]][travis-url]
+[![Github NodeJS][github-nodejs]][github-action-url]
 [![Codecov][codecov-image]][codecov-url]
 [![Coveralls Status][coveralls-image]][coveralls-url]
 
-[![Greenkeeper][greenkeeper-image]][greenkeeper-url]
 [![Semantic Release][semantic-release-image]][semantic-release-url]
 
 [![Visual Studio Code][vscode-image]][vscode-url]
@@ -168,8 +166,8 @@ git push
 [coveralls-url]: https://coveralls.io/github/unional/type-plus
 [downloads-image]: https://img.shields.io/npm/dm/type-plus.svg?style=flat
 [downloads-url]: https://npmjs.org/package/type-plus
-[greenkeeper-image]: https://badges.greenkeeper.io/unional/type-plus.svg
-[greenkeeper-url]: https://greenkeeper.io/
+[github-nodejs]: https://github.com/unional/type-plus/workflows/nodejs/badge.svg
+[github-action-url]: https://github.com/unional/type-plus/actions
 [npm-image]: https://img.shields.io/npm/v/type-plus.svg?style=flat
 [npm-url]: https://npmjs.org/package/type-plus
 [semantic-release-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
