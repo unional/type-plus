@@ -1,4 +1,4 @@
-import { assertType, Omit, omit } from '.';
+import { assertType, Omit, omit } from '.'
 
 test('Remove properties', () => {
   type Foo = {
@@ -8,12 +8,12 @@ test('Remove properties', () => {
   }
 
   type Actual = Omit<Foo, 'c'>
-  const a: Actual = {} as any
+  const a: Actual = { a: 0, b: '' } as any
   assertType.isNumber(a.a)
   assertType.isString(a.b)
 
   type Revert = Omit<Foo, keyof Actual>
-  const r: Revert = {} as any
+  const r: Revert = { c: false } as any
   assertType.isBoolean(r.c)
 })
 

@@ -4,7 +4,7 @@ import { IsDisjoint } from './IsDisjoint';
 test('disjoint returns true', () => {
   type A = { a: 1 }
   type B = { b: 1 }
-  const actual = false as IsDisjoint<A, B>
+  const actual = true as IsDisjoint<A, B>
   assertType.isTrue(actual)
 })
 

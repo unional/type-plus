@@ -1,4 +1,4 @@
-import { Except, assertType } from '.';
+import { Except, assertType } from '.'
 
 test('Remove properties', () => {
   type Foo = {
@@ -9,12 +9,12 @@ test('Remove properties', () => {
 
   // tslint:disable-next-line: deprecation
   type Actual = Except<Foo, 'c'>
-  const a: Actual = {} as any
+  const a: Actual = { a: 0, b: '' } as any
   assertType.isNumber(a.a)
   assertType.isString(a.b)
 
   // tslint:disable-next-line: deprecation
   type Revert = Except<Foo, keyof Actual>
-  const r: Revert = {} as any
+  const r: Revert = { c: false } as any
   assertType.isBoolean(r.c)
 })

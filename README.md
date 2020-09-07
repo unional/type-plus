@@ -100,19 +100,11 @@ assertType.isTrue(assignability<YourType>()(subject)) // or
 assertType.isFalse(assignability<YourType>()(subject))
 ```
 
-- `assertType<T>(subject)`: assert `subject` satisfies type `T`.
+- `assertType<T>(subject: unknown, handler?: (s: T) => boolean)`: assert `subject` satisfies type `T`.
 - `assertType.isXXX(value)`: ensure typeof `value` is `XXX`
 - `assertType.noXXX(value)`: ensure typeof `value` does not contain `XXX`. i.e. cannot assign `XXX` to `value`.
 - `typeAssert.*` (deprecated) replaced by `assertType`.
-- `typeAssertion<T>()`: creates a type assertion function of type `T`
-
-```ts
-type Foo = { a: number }
-const assertIsFoo = typeAssertion<Foo>()
-function createFoo() {
-  return assertIsFoo({ a: 1, b: 2 })
-}
-```
+- `typeAssertion<T>()`: (deprecated) use `assertType()` instead.
 
 ### Utility Functions
 

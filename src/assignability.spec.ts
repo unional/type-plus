@@ -6,7 +6,7 @@ type Options = {
   version: string,
 }
 
-const canAssign = assignability<Options>()
+const canAssign = assignability<Options>(s => typeof s?.name === 'string' && typeof s?.version === 'string')
 
 test('not matched type is not assignable', () => {
   assertType.isFalse(canAssign({
