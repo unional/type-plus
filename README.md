@@ -93,7 +93,7 @@ They can be used to compose complex types.
 
 ### Type assertion
 
-- `assignability<T>()`: creates a assignability function. To use it, do the following:
+- `assignability<T>(handler?: (s: any) => boolean)`: creates a assignability function. To use it, do the following:
 
 ```ts
 assertType.isTrue(assignability<YourType>()(subject)) // or
