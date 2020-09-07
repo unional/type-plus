@@ -1,5 +1,5 @@
-import { assertType } from '.';
-import { assignability } from '.';
+import { assertType } from '.'
+import { assignability } from '.'
 
 type Options = {
   name: string,
@@ -28,4 +28,8 @@ test('with extra property is assignable', () => {
     version: '1.0.0',
     hello: 'world',
   }))
+})
+
+test('without handler', () => {
+  assertType.isTrue(assignability<{ a: number }>()({ a: 1 }))
 })
