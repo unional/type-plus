@@ -31,10 +31,10 @@ assertType.isBoolean = function (value: boolean): asserts value is boolean {
 assertType.noBoolean = noop as <T>(value: Exclude<T, boolean>) => void
 
 assertType.isTrue = function (value: true): asserts value is true {
-  if (value !== true) throw TypeError('value is not boolean true')
+  if (value !== true) throw TypeError('value is not true')
 }
 assertType.isFalse = function (value: false): asserts value is false {
-  if (value !== false) throw TypeError(`value is not boolean false`)
+  if (value !== false) throw TypeError(`value is not false`)
 }
 
 assertType.isString = function (value: string): asserts value is string {
