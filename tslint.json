@@ -1,6 +1,0 @@
-{
-  "extends": "tslint-config-unional/semi-standard",
-  "rules": {
-    "unified-signatures": false
-  }
-}
