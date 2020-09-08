@@ -1,0 +1,20 @@
+import { isConstructor } from './isConstructor'
+import { assertType } from './assertType'
+test('check constructor', () => {
+  const x: unknown = Error
+  if (isConstructor(x))
+    assertType<Function>(x)
+})
+
+test('check not constructor', () => {
+  expect(isConstructor(() => { })).toBe(false)
+})
+
+test('check throw function', () => {
+  expect(isConstructor(() => { throw new Error() })).toBe(false)
+})
+
+test('check throwing constructor is still true', () => {
+  class Foo { constructor() { throw new Error() } }
+  expect(isConstructor(Foo)).toBe(true)
+})
