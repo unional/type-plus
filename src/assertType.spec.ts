@@ -3,18 +3,8 @@ import { assertType, typeAssertion } from '.'
 
 describe('assertType()', () => {
   test('input satisfies specified type', () => {
-    const subject: unknown = { a: 1, b: 2, c: 3 }
+    const subject = { a: 1, b: 2 } as const
     assertType<{ a: 1 }>(subject)
-    expect(subject.a).toBe(1)
-    // `subject.b` is not valid yet
-
-    assertType<{ b: 2 }>(subject)
-    expect(subject.b).toBe(2)
-
-    assertType(subject, (s: { c: 3 }) => !!s)
-    expect(subject.c).toBe(3)
-
-    a.throws(() => assertType(subject, (_s: { d: 4 }) => false), TypeError)
   })
 })
 

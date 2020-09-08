@@ -2,13 +2,9 @@
  * assert the subject satisfies the specified type T
  * @type T the type to check against.
  */
-// export function assertType<T>(_subject: T): void { return }
+export function assertType<T>(_subject: T): void { return }
 // this does not work at the moment (TypeScript 3.7.3)
 // export function assertType<T, U extends T = T>(subject: U): asserts subject is T { return }
-export function assertType<T>(value: unknown, handler?: (s: T) => boolean): asserts value is T {
-  if (handler && !handler(value as any)) throw new TypeError(`fail to assert value through handler`)
-  return
-}
 
 assertType.isUndefined = function (value: undefined): asserts value is undefined {
   if (typeof value !== 'undefined') throw TypeError(`value is not undefined`)
