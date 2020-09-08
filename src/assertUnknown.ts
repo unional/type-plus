@@ -6,16 +6,3 @@ export function assertUnknown<T>(value: unknown, handler?: (s: T) => boolean): a
   if (handler && !handler(value as any)) throw new TypeError(`fail to assert value through handler`)
   return
 }
-
-/**
- * Ensure the specific value type is `never`.
- * This is a type-only assertion.
- */
-assertUnknown.isNever = noop as (value: never) => void
-
-assertUnknown.isError = function <E extends Error>(value: unknown): asserts value is E {
-  if (value instanceof Error) return
-  throw TypeError(`value is not instance of Error`)
-}
-
-function noop() { return }
