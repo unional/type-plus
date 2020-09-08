@@ -3,7 +3,7 @@ export function isConstructor(subject: unknown): subject is new (...args: any[])
     new (subject as any)()
   }
   catch (err) {
-    if (err.message.indexOf('is not a constructor') >= 0) {
+    if (err?.message.indexOf('is not a constructor') >= 0) {
       return false
     }
   }
