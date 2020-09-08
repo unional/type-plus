@@ -98,9 +98,10 @@ assertType.isTrue(assignability<YourType>()(subject)) // or
 assertType.isFalse(assignability<YourType>()(subject))
 ```
 
-- `assertType<T>(subject: unknown, handler?: (s: T) => boolean)`: assert `subject` satisfies type `T`.
+- `assertType<T>(subject: T)`: assert `subject` satisfies type `T`.
 - `assertType.isXXX(value)`: ensure typeof `value` is `XXX`
 - `assertType.noXXX(value)`: ensure typeof `value` does not contain `XXX`. i.e. cannot assign `XXX` to `value`.
+- `assertUnknown<T>(subject: unknown, handler?: (s: T) => boolean)`: assert `unknown` `subject` satisfies type `T`.
 - `typeAssert.*` (deprecated) replaced by `assertType`.
 - `typeAssertion<T>()`: (deprecated) use `assertType()` instead.
 
