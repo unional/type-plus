@@ -18,3 +18,13 @@ test('check throwing constructor is still true', () => {
   class Foo { constructor() { throw new Error() } }
   expect(isConstructor(Foo)).toBe(true)
 })
+
+test('constructor throwing non-error', () => {
+  class Foo { constructor() { throw 'abc' }}
+  expect(isConstructor(Foo)).toBe(true)
+})
+
+test('constructor throwing undefined', () => {
+  class Foo { constructor() { throw undefined }}
+  expect(isConstructor(Foo)).toBe(true)
+})
