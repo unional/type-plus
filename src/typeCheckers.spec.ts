@@ -76,4 +76,50 @@ describe('isType()', () => {
       assertType<null>(x)
     }
   })
+
+  test('union of one type gets that type', () => {
+    const u = Types.union(Types.Undefined)
+    expect(u).toBe(Types.Undefined)
+    assertType<typeof Types.Undefined>(u)
+  })
+
+  // test('union of same types gets the same type', () => {
+  //   const u = Types.union(Types.Undefined, Types.Undefined)
+  //   expect(isType(u, undefined)).toBe(true)
+  //   assertType<typeof Types.Undefined>(u)
+
+  //   const t: Types.UnionType<[typeof Types.Undefined]> = {} as any
+  //   const x: unknown = undefined
+  //   if (isType(t, x)) {
+  //     assertType<undefined>(x)
+  //   }
+  //   // if (isType(Types.union(Types.Undefined, Types.Undefined), x)) {
+  //   //   assertType<undefined>(x)
+  //   // }
+  // })
+
+  test('union of two different types', () => {
+    const t = Types.union(Types.Undefined, Types.Null)
+    expect(isType(t, undefined)).toBe(true)
+    expect(isType(t, null)).toBe(true)
+    expect(isType(t, 1)).toBe(false)
+  })
+
+  test('union of multiple types', () => {
+    const t = Types.union(Types.Undefined, Types.Null, Types.Boolean, Types.String)
+    expect(isType(t, undefined)).toBe(true)
+    expect(isType(t, null)).toBe(true)
+    expect(isType(t, false)).toBe(true)
+    expect(isType(t, '')).toBe(true)
+    expect(isType(t, 1)).toBe(false)
+  })
+
+  test('union with union', () => {
+    const t = Types.union(Types.Undefined, Types.union(Types.Null, Types.Boolean), Types.String)
+    expect(isType(t, undefined)).toBe(true)
+    expect(isType(t, null)).toBe(true)
+    expect(isType(t, false)).toBe(true)
+    expect(isType(t, '')).toBe(true)
+    expect(isType(t, 1)).toBe(false)
+  })
 })
