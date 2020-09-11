@@ -3,6 +3,8 @@ export function isType<T extends Types.AllTypes>(type: T, subject: unknown): sub
     case 'literal':
       return typeof subject === type.name
     case 'null':
+      return subject === null
+    default:
       return false
   }
 }
@@ -33,6 +35,7 @@ export namespace Types {
     T extends typeof String ? string :
     T extends typeof BigInt ? bigint :
     T extends typeof Symbol ? symbol :
+    T extends typeof Null ? null :
     never
 }
 
