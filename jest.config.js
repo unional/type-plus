@@ -26,7 +26,7 @@ module.exports = isCI ? {
     'reporters': [
       'default',
       'jest-progress-tracker',
-      ['jest-audio-reporter', { volume: 0.3 }],
+      // ['jest-audio-reporter', { volume: 0.3 }],
     ],
     'roots': [
       '<rootDir>/src',
