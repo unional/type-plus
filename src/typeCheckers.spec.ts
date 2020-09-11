@@ -66,4 +66,14 @@ describe('isType()', () => {
       assertType<symbol>(x)
     }
   })
+
+  test('null', () => {
+    expect(isType(Types.Null, true)).toBe(false)
+    expect(isType(Types.Null, null)).toBe(true)
+
+    const x: unknown = null
+    if (isType(Types.Null, x)) {
+      assertType<null>(x)
+    }
+  })
 })
