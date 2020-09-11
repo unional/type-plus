@@ -5,11 +5,7 @@
       "es2015",
       "esnext.bigint"
     ],
-    "plugins": [
-      {
-        "name": "tslint-language-service"
-      }
-    ]
+    "target": "ES2020"
   },
   "include": [
     "src",
