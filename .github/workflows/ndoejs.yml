@@ -79,15 +79,16 @@ jobs:
       - run: yarn
       - run: yarn coverage --maxWorkers=2
       - name: codecov
-        if: matrix.node-version == 12 && matrix.os == 'ubuntu-latest'
+        if: matrix.node-version == 14 && matrix.os == 'ubuntu-latest'
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: codacy
-        if: matrix.node-version == 12 && matrix.os == 'ubuntu-latest'
-        run: yarn codacy
-        env:
-          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+        if: matrix.node-version == 14 && matrix.os == 'ubuntu-latest'
+        uses: codacy/codacy-coverage-reporter-action@master
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: coverage/clover.xml
   release:
     name: release
     runs-on: ubuntu-latest

@@ -35,7 +35,6 @@ module.exports = isCI ? {
     'testMatch': ['**/?(*.)+(spec|test|integrate|accept|system|unit).[jt]s?(x)'],
     'watchPlugins': [
       'jest-watch-suspend',
-      'jest-watch-repeat',
       'jest-watch-typeahead/filename',
       'jest-watch-typeahead/testname',
       [
