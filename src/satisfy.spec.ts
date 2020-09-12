@@ -133,6 +133,14 @@ test(`string:'a'`, () => {
   }
 })
 
+test(`'' not satisfy 'a'`, () => {
+  expect(satisfy(types.String.val('a'), '')).toBe(false)
+})
+
+test(`'a' not satisfy ''`, () => {
+  expect(satisfy(types.String.val(''), 'a')).toBe(false)
+})
+
 test('if statement', () => {
   types.If(types.False, {}, false as const)
 })
