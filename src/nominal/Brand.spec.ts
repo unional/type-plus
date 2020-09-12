@@ -1,4 +1,4 @@
-import { createBrandCreator, tryAssign, assertType } from '.';
+import { createBrandCreator, tryAssign, assertType } from '..';
 
 describe('createBrandCreator()', () => {
   test('creates a typed brand creator', () => {
