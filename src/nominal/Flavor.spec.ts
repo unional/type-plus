@@ -1,4 +1,4 @@
-import { Flavor, tryAssign, assertType } from '.';
+import { Flavor, tryAssign, assertType } from '..';
 
 test('underlying type can be assigned to Flavor', () => {
   type PersonId = Flavor<'Person', number>
