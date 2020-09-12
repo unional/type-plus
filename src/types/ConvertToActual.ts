@@ -1,6 +1,7 @@
 import { AllTypes } from './AllTypes'
 import { Boolean, False, True } from './Boolean'
 import { Null } from './Null'
+import { Number } from './Number'
 import { Undefined } from './Undefined'
 
 export type ConvertToActual<T extends AllTypes> =
@@ -9,4 +10,5 @@ export type ConvertToActual<T extends AllTypes> =
   T extends True ? true :
   T extends False ? false :
   T extends Boolean ? boolean :
+  T extends Number ? number :
   unknown
