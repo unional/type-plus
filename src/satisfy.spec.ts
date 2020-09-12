@@ -1,6 +1,4 @@
-import { assertType } from './assertType'
-import { satisfy } from './satisfy'
-import * as types from './types'
+import { assertType, satisfy, types } from '.'
 
 test('undefined', () => {
   expect(satisfy(types.Undefined, undefined)).toBe(true)
