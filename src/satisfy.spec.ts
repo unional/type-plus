@@ -51,6 +51,26 @@ test('number', () => {
   }
 })
 
+test('number:0', () => {
+  expect(satisfy(types.Number.val(0), 0)).toBe(true)
+  notSatisfyTypesOtherThan(types.Number.val(0), 0)
+
+  const value: unknown = 0
+  if (satisfy(types.Number.val(0), value)) {
+    assertType<0>(value)
+  }
+})
+
+test('number:1', () => {
+  expect(satisfy(types.Number.val(1), 1)).toBe(true)
+  notSatisfyTypesOtherThan(types.Number.val(1), 1)
+
+  const value: unknown = 1
+  if (satisfy(types.Number.val(1), value)) {
+    assertType<1>(value)
+  }
+})
+
 test('false', () => {
   expect(satisfy(types.False, false)).toBe(true)
   notSatisfyTypesOtherThan(types.False, false)

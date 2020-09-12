@@ -10,5 +10,5 @@ export type ConvertToActual<T extends AllTypes> =
   T extends True ? true :
   T extends False ? false :
   T extends Boolean ? boolean :
-  T extends Number ? number :
+  T extends Number ? T['value'] :
   unknown
