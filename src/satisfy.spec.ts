@@ -43,8 +43,8 @@ test('false', () => {
   }
 })
 
-test('oneOf', () => {
-  const t = types.If(types.False, {}, false as const)
+test('if statement', () => {
+  types.If(types.False, {}, false as const)
 })
 
 function notSatisfyTypesOtherThan(type: types.AllTypes, ...excepts: unknown[]) {
