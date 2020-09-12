@@ -52,6 +52,14 @@ test('false', () => {
   }
 })
 
+test('true not satisfy False', () => {
+  expect(satisfy(types.False, true)).toBe(false)
+})
+
+test('false not satisfy True', () => {
+  expect(satisfy(types.True, false)).toBe(false)
+})
+
 test('number', () => {
   expect(satisfy(types.Number, 0)).toBe(true)
   notSatisfyTypesOtherThan(types.Number, 0, 1)
