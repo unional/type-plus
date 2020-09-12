@@ -1,8 +1,8 @@
-export type String<Value extends string = ''> = { name: 'string', value: Value }
+export type String<Value extends string = string> = { name: 'string', value: Value }
 
 export namespace String {
   export const name = 'string'
-  export const value = ''
+  export const value = '' as string
 
   /**
    * Creates a single value type.

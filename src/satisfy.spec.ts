@@ -86,7 +86,36 @@ test('number:1', () => {
 test.todo('number list')
 test.todo('number range')
 
+test('string', () => {
+  expect(satisfy(types.String, '')).toBe(true)
+  notSatisfyTypesOtherThan(types.String, '', 'a')
 
+  const value: unknown = ''
+  if (satisfy(types.String, value)) {
+    assertType<string>(value)
+    assertType.isFalse(assignability<''>()(value))
+  }
+})
+
+test(`string:''`, () => {
+  expect(satisfy(types.String, '')).toBe(true)
+  notSatisfyTypesOtherThan(types.String, '')
+
+  const value: unknown = ''
+  if (satisfy(types.String.val(''), value)) {
+    assertType<''>(value)
+  }
+})
+
+test(`string:'a'`, () => {
+  expect(satisfy(types.String, 'a')).toBe(true)
+  notSatisfyTypesOtherThan(types.String, '', 'a')
+
+  const value: unknown = 'a'
+  if (satisfy(types.String.val('a'), value)) {
+    assertType<'a'>(value)
+  }
+})
 
 test('if statement', () => {
   types.If(types.False, {}, false as const)
