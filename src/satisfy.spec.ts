@@ -41,6 +41,16 @@ test('true', () => {
   }
 })
 
+test('false', () => {
+  expect(satisfy(types.False, false)).toBe(true)
+  notSatisfyTypesOtherThan(types.False, false)
+
+  const value: unknown = false
+  if (satisfy(types.False, value)) {
+    assertType<false>(value)
+  }
+})
+
 test('number', () => {
   expect(satisfy(types.Number, 0)).toBe(true)
   notSatisfyTypesOtherThan(types.Number, 0, 1)
@@ -70,17 +80,6 @@ test('number:1', () => {
     assertType<1>(value)
   }
 })
-
-test('false', () => {
-  expect(satisfy(types.False, false)).toBe(true)
-  notSatisfyTypesOtherThan(types.False, false)
-
-  const value: unknown = false
-  if (satisfy(types.False, value)) {
-    assertType<false>(value)
-  }
-})
-
 
 test('if statement', () => {
   types.If(types.False, {}, false as const)
