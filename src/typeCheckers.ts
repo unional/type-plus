@@ -1,27 +1,9 @@
 /* eslint-disable no-inner-declarations */
-export function isType<T extends Types.AllTypes>(type: T, subject: unknown): subject is Types.ExtractTypes<T> {
-  switch (type.name) {
-    case 'undefined':
-    case 'boolean':
-    case 'number':
-    case 'string':
-    case 'bigint':
-    case 'symbol':
-      return typeof subject === type.name
-    case 'null':
-      return subject === null
-    case 'union':
-      return (type as typeof Types.Union).values.some(t => isType(t, subject))
-    default:
-      return false
-  }
-}
-
-export function satisfiesType() { }
+/* eslint-disable no-use-before-define */
 
 export namespace Types {
   export const Undefined = { name: 'undefined' } as const
-  export const Boolean = { name: 'boolean' } as const
+  export const Boolean = { name: 'boolean', value: '' } as const
   export const Number = { name: 'number' } as const
   export const String = { name: 'string' } as const
   export const BigInt = { name: 'bigint' } as const
@@ -30,13 +12,6 @@ export namespace Types {
   export const Never = { name: 'never' } as const
   export const Unknown = { name: 'unknown' } as const
   export const Any = { name: 'any' } as const
-  export type UnionType<T extends AllTypes[] = any> = {
-    name: 'union',
-    values: [...T]
-  }
-  export const Union = { name: 'union', values: [] } as UnionType
-  export const Object = { type: 'object' } as const
-  // function, object, array, tuple, union, intersection
 
   export type AllTypes = typeof Undefined
     | typeof Boolean
@@ -48,6 +23,13 @@ export namespace Types {
     | UnionType
     | typeof Never
 
+  export type UnionType<T extends AllTypes[] = any[]> = {
+    name: 'union',
+    values: T
+  }
+  export const Union = { name: 'union', values: [] } as UnionType
+  export const Object = { type: 'object' } as const
+  // function, object, array, tuple, union, intersection
   export type ExtractTypes<T extends AllTypes> = T extends typeof Undefined ? undefined :
     T extends typeof Boolean ? boolean :
     T extends typeof Number ? number :
@@ -94,6 +76,24 @@ export namespace Types {
 
   export function isUnion(type: AllTypes): type is typeof Union {
     return type.name === 'union'
+  }
+}
+
+export function isType<T extends Types.AllTypes>(type: T, subject: unknown): subject is Types.ExtractTypes<T> {
+  switch (type.name) {
+    case 'undefined':
+    case 'boolean':
+    case 'number':
+    case 'string':
+    case 'bigint':
+    case 'symbol':
+      return typeof subject === type.name
+    case 'null':
+      return subject === null
+    case 'union':
+      return (type as typeof Types.Union).values.some(t => isType(t, subject))
+    default:
+      return false
   }
 }
 
