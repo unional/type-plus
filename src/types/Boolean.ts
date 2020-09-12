@@ -1,6 +1,9 @@
-import { Brand } from '../Brand'
+import { Brand } from '../nominal'
 
-export type Boolean = { name: 'boolean', value: 'true' | 'false' }
+export type Boolean<
+  V extends 'true' | 'false' | '' = ''
+  > = V extends '' ? { name: 'boolean', value: 'true' | 'false' }
+  : Brand<{ name: 'boolean', value: V }, V>
 
 export namespace Boolean {
   export const name = 'boolean'
@@ -12,8 +15,8 @@ export namespace Boolean {
   }
 }
 
-export type True = Brand<{ name: 'boolean', value: 'true' }, 'true'>
+export type True = Boolean<'true'>
 export const True: True = { name: 'boolean', value: 'true' } as any
 
-export type False = Brand<{ name: 'boolean', value: 'false' }, 'false'>
+export type False = Boolean<'false'>
 export const False: False = { name: 'boolean', value: 'false' } as any
