@@ -91,6 +91,14 @@ test('number:1', () => {
   }
 })
 
+test('0 not satisfy 1', () => {
+  expect(satisfy(types.Number.val(1), 0)).toBe(false)
+})
+
+test('1 not satisfy 0', () => {
+  expect(satisfy(types.Number.val(0), 1)).toBe(false)
+})
+
 test.todo('number list')
 test.todo('number range')
 
