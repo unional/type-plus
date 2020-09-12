@@ -1,4 +1,5 @@
-import { Boolean, True, False } from './Boolean'
+import { Boolean, False, True } from './Boolean'
+import { Null } from './Null'
 import { Undefined } from './Undefined'
 
-export type AllTypes = Undefined | Boolean | True | False
+export type AllTypes = Undefined | Null | Boolean | True | False

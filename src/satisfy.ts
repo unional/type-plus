@@ -5,6 +5,8 @@ export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): su
     case 'undefined':
     case 'boolean':
       return typeof subject === type.name
+    case 'null':
+      return subject === null
   }
   return false
 }

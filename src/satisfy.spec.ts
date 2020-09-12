@@ -10,6 +10,16 @@ test('undefined', () => {
   }
 })
 
+test('null', () => {
+  expect(satisfy(types.Null, null)).toBe(true)
+  notSatisfyTypesOtherThan(types.Null, null)
+
+  const value: unknown = null
+  if (satisfy(types.Null, value)) {
+    assertType<null>(value)
+  }
+})
+
 test('boolean', () => {
   expect(satisfy(types.Boolean, true)).toBe(true)
   expect(satisfy(types.Boolean, false)).toBe(true)
