@@ -1,6 +1,7 @@
 import { Brand } from '../nominal'
 
-export type Boolean<Value extends 'true' | 'false' | '' = ''> = Value extends ''
+export type Boolean<Value extends 'true' | 'false' | '' = ''> =
+  Value extends ''
   ? { name: 'boolean', value: 'true' | 'false' }
   : Brand<{ name: 'boolean', value: Value }, Value>
 

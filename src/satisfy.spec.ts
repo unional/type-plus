@@ -1,4 +1,5 @@
 import { assertType, satisfy, types } from '.'
+import { assignability } from './assignability'
 
 test('undefined', () => {
   expect(satisfy(types.Undefined, undefined)).toBe(true)
@@ -58,6 +59,7 @@ test('number', () => {
   const value: unknown = 0
   if (satisfy(types.Number, value)) {
     assertType<number>(value)
+    assertType.isFalse(assignability<0>()(value))
   }
 })
 

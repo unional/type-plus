@@ -2,7 +2,7 @@ export type Number<Value extends number = number> = { name: 'number', value: Val
 
 export namespace Number {
   export const name = 'number'
-  export const value = 0
+  export const value = 0 as number
 
   /**
    * Creates a single value type.
