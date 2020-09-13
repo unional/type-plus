@@ -49,6 +49,8 @@ assertType.isError = function <E extends Error>(value: E): asserts value is E {
   throw TypeError(`value is not instance of Error`)
 }
 
+assertType.notAny = noop as (value: never) => void
+
 function noop() { return }
 
 /**
