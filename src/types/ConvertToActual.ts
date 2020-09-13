@@ -4,6 +4,7 @@ import { Boolean, False, True } from './Boolean'
 import { Null } from './Null'
 import { Number } from './Number'
 import { String } from './String'
+import { Symbol } from './Symbol'
 import { Undefined } from './Undefined'
 
 export type ConvertToActual<T extends AllTypes> =
@@ -12,6 +13,7 @@ export type ConvertToActual<T extends AllTypes> =
   T extends True ? true :
   T extends False ? false :
   T extends Boolean ? boolean :
+  T extends Symbol ? symbol :
   T extends Number ? T['value'] :
   T extends String ? T['value'] :
   T extends BigInt ? T['value'] :
