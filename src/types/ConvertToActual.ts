@@ -1,4 +1,5 @@
 import { AllTypes } from './AllTypes'
+import { BigInt } from './BigInt'
 import { Boolean, False, True } from './Boolean'
 import { Null } from './Null'
 import { Number } from './Number'
@@ -13,4 +14,5 @@ export type ConvertToActual<T extends AllTypes> =
   T extends Boolean ? boolean :
   T extends Number ? T['value'] :
   T extends String ? T['value'] :
+  T extends BigInt ? T['value'] :
   unknown

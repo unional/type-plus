@@ -7,6 +7,7 @@
  */
 
 export * from './AllTypes'
+export * from './BigInt'
 export * from './Boolean'
 export * from './ConvertToActual'
 export * from './If'
