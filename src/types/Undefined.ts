@@ -1,7 +1,2 @@
-export type Undefined = {
-  name: 'undefined'
-}
-
-export namespace Undefined {
-  export const name = 'undefined'
-}
+export type Undefined = { name: 'undefined' }
+export const Undefined: Undefined = { name: 'undefined' }

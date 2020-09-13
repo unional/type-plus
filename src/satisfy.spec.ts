@@ -180,12 +180,22 @@ test('1n not satisfy 0n', () => {
   expect(satisfy(types.BigInt.val(0n), 1n)).toBe(false)
 })
 
+test('symbol', () => {
+  expect(satisfy(types.Symbol, Symbol())).toBe(true)
+  notSatisfyTypesOtherThan(types.Symbol, Symbol())
+
+  const value: unknown = Symbol()
+  if (satisfy(types.Symbol, value)) {
+    assertType<symbol>(value)
+  }
+})
+
 test('if statement', () => {
   types.If(types.False, {}, false as const)
 })
 
 function notSatisfyTypesOtherThan(type: types.AllTypes, ...excepts: unknown[]) {
-  const values = [undefined, null, true, false, 0, 1, 0n, 1n, '', 'a', [], {}]
+  const values = [undefined, null, true, false, 0, 1, 0n, 1n, '', 'a', [], {}, Symbol(), Symbol.for('a')]
   values.forEach(v => {
     if (excepts.indexOf(v) !== -1) {
       expect(satisfy(type, v))
