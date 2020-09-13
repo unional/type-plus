@@ -1,3 +1,4 @@
+// istanbul ignore file
 export type BigInt<Value extends bigint = bigint> = { name: 'bigint', value: Value }
 
 export const bigint = {

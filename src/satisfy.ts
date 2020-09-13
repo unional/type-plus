@@ -1,4 +1,4 @@
-import { types } from './types'
+import * as types from './types'
 
 export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): subject is types.ConvertToActual<T> {
   switch (type.name) {
@@ -8,7 +8,7 @@ export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): su
     case 'boolean': return satisfyBoolean(type as types.Boolean, subject)
     case 'number': return satisfyType(types.number, type, subject)
     case 'string': return satisfyType(types.string, type, subject)
-    case 'bigint': return satisfyType(types.bigint, type, subject)
+    // case 'bigint': return satisfyType(types.bigint, type, subject)
     case 'union': return satisfyUnion(type as types.Union, subject)
   }
   return false
@@ -21,12 +21,12 @@ function satisfyBoolean(type: types.Boolean, subject: unknown) {
 }
 
 function satisfyType(
-  check: types.Number | types.String | types.BigInt,
+  baseType: types.Number | types.String, // | types.BigInt,
   type: types.AllTypes,
   subject: unknown
 ) {
-  if (typeof subject !== check.name) return false
-  if (type === check) return true
+  if (typeof subject !== baseType.name) return false
+  if (type === baseType) return true
   return subject === (type as any).value
 }
 

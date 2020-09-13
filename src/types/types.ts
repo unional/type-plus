@@ -1,20 +1,24 @@
-/**
- * A turing complete solution inspired by many.
- * The types is in Pascal Cases
- * because lower case type names (e.g. true) is a reserved keyword.
- * https://github.com/microsoft/TypeScript/issues/14833
- * https://github.com/tycho01/typical
- */
+// import { BigInt } from './BigInt'
+import { Boolean } from './Boolean'
+import { Null } from './Null'
+import { Number } from './Number'
+import { Object } from './Object'
+import { String } from './String'
+import { Symbol } from './Symbol'
+import { Undefined } from './Undefined'
+import { Union } from './Union'
 
-export * from './AllTypes'
-export * from './BigInt'
-export * from './Boolean'
-export * from './ConvertToActual'
-export * from './If'
-export { Null, nil as null } from './Null'
-export * from './Number'
-export * from './Object'
-export * from './String'
-export * from './Symbol'
-export { Undefined, undef as undefined } from './Undefined'
-export * from './Union'
+/** @internal */
+export type PrimitiveTypes = Undefined | Null | Boolean | Number | String
+
+/** @internal */
+export type ComplexTypes = Object // | Array
+
+/**
+ * @internal
+ * <https://www.rapidtables.com/math/symbols/Set_Symbols.html>
+ */
+export type SetTypes = Union // | Intersection | SubSet | SuperSet | Complement | Diff
+
+export type AllTypes = PrimitiveTypes | ComplexTypes | SetTypes | Symbol
+// | BigInt

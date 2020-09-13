@@ -1,13 +1,14 @@
-import { AllTypes } from './AllTypes'
-import { BigInt } from './BigInt'
+import { Tuple } from 'ts-toolbelt'
+// import { BigInt } from './BigInt'
 import { Boolean, False, True } from './Boolean'
 import { Null } from './Null'
 import { Number } from './Number'
 import { String } from './String'
 import { Symbol } from './Symbol'
+import { AllTypes } from './types'
 import { Undefined } from './Undefined'
 import { Union } from './Union'
-import { Tuple } from 'ts-toolbelt'
+
 
 export type ConvertToActual<T extends AllTypes> =
   T extends Undefined ? undefined :
@@ -18,7 +19,7 @@ export type ConvertToActual<T extends AllTypes> =
   T extends Symbol ? symbol :
   T extends Number ? T['value'] :
   T extends String ? T['value'] :
-  T extends BigInt ? T['value'] :
+  // T extends BigInt ? T['value'] :
   T extends Union ? ConvertToActual.UnionDevice<T['values']>['result'] :
   unknown
 

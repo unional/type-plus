@@ -141,44 +141,44 @@ test(`'a' not satisfy ''`, () => {
   expect(satisfy(types.string.val(''), 'a')).toBe(false)
 })
 
-test('bigint', () => {
-  expect(satisfy(types.bigint, 0n)).toBe(true)
-  notSatisfyTypesOtherThan(types.bigint, 0n, 1n)
+// test('bigint', () => {
+//   expect(satisfy(types.bigint, 0n)).toBe(true)
+//   notSatisfyTypesOtherThan(types.bigint, 0n, 1n)
 
-  const value: unknown = 0n
-  if (satisfy(types.bigint, value)) {
-    assertType<bigint>(value)
-    assertType.isFalse(assignability<0>()(value))
-  }
-})
+//   const value: unknown = 0n
+//   if (satisfy(types.bigint, value)) {
+//     assertType<bigint>(value)
+//     assertType.isFalse(assignability<0>()(value))
+//   }
+// })
 
-test('bigint:0', () => {
-  expect(satisfy(types.bigint.val(0n), 0n)).toBe(true)
-  notSatisfyTypesOtherThan(types.bigint.val(0n), 0n)
+// test('bigint:0', () => {
+//   expect(satisfy(types.bigint.val(0n), 0n)).toBe(true)
+//   notSatisfyTypesOtherThan(types.bigint.val(0n), 0n)
 
-  const value: unknown = 0n
-  if (satisfy(types.bigint.val(0n), value)) {
-    assertType<0n>(value)
-  }
-})
+//   const value: unknown = 0n
+//   if (satisfy(types.bigint.val(0n), value)) {
+//     assertType<0n>(value)
+//   }
+// })
 
-test('bigint:1', () => {
-  expect(satisfy(types.bigint.val(1n), 1n)).toBe(true)
-  notSatisfyTypesOtherThan(types.bigint.val(1n), 1n)
+// test('bigint:1', () => {
+//   expect(satisfy(types.bigint.val(1n), 1n)).toBe(true)
+//   notSatisfyTypesOtherThan(types.bigint.val(1n), 1n)
 
-  const value: unknown = 1n
-  if (satisfy(types.bigint.val(1n), value)) {
-    assertType<1n>(value)
-  }
-})
+//   const value: unknown = 1n
+//   if (satisfy(types.bigint.val(1n), value)) {
+//     assertType<1n>(value)
+//   }
+// })
 
-test('0n not satisfy 1n', () => {
-  expect(satisfy(types.bigint.val(1n), 0n)).toBe(false)
-})
+// test('0n not satisfy 1n', () => {
+//   expect(satisfy(types.bigint.val(1n), 0n)).toBe(false)
+// })
 
-test('1n not satisfy 0n', () => {
-  expect(satisfy(types.bigint.val(0n), 1n)).toBe(false)
-})
+// test('1n not satisfy 0n', () => {
+//   expect(satisfy(types.bigint.val(0n), 1n)).toBe(false)
+// })
 
 test('symbol', () => {
   expect(satisfy(types.symbol, Symbol())).toBe(true)
