@@ -191,6 +191,39 @@ test('symbol', () => {
   }
 })
 
+describe('array', () => {
+  test('base type satisfies any array', () => {
+    expect(satisfy(types.array, [])).toBe(true)
+    expect(satisfy(types.array, ['a'])).toBe(true)
+
+    const value: unknown = []
+    if (satisfy(types.array, value)) {
+      // Note that this test is weak.
+      // I don't have a good way to nail it down as it is a top type.
+      assertType<any[]>(value)
+    }
+  })
+  test('base type does not satisfy non-array', () => {
+    notSatisfyTypesOtherThan(types.array, [], ['a'])
+  })
+
+  test('unknown type assert result to unknown[]', () => {
+    expect(satisfy(types.array.unknown, [])).toBe(true)
+    expect(satisfy(types.array.unknown, ['a'])).toBe(true)
+
+    const value: unknown = []
+    if (satisfy(types.array.unknown, value)) {
+      // Note that this test is weak.
+      // I don't have a good way to nail it down as it is a top type.
+      assertType<unknown[]>(value)
+    }
+  })
+
+  test('unknown type does not satisfy non-array', () => {
+    notSatisfyTypesOtherThan(types.array.unknown, [], ['a'])
+  })
+})
+
 test('union', () => {
   const t = types.union.join(types.boolean, types.number)
   expect(satisfy(t, 0)).toBe(true)
@@ -210,35 +243,6 @@ test('union single type gets the type back', () => {
   if (satisfy(t, value)) {
     assertType<boolean>(value)
   }
-})
-
-describe('array', () => {
-  test('base type satisfies any array', () => {
-    expect(satisfy(types.array, [])).toBe(true)
-    expect(satisfy(types.array, ['a'])).toBe(true)
-
-    const value: unknown = []
-    if (satisfy(types.array, value)) {
-      // Note that this test is weak.
-      // I don't have a good way to nail it down as it is a top type.
-      assertType<any[]>(value)
-    }
-  })
-  test('base type not satisfy non-array', () => {
-    notSatisfyTypesOtherThan(types.array, [], ['a'])
-  })
-
-  test('unknown type assert result to unknown[]', () => {
-    expect(satisfy(types.array.unknown, [])).toBe(true)
-    expect(satisfy(types.array.unknown, ['a'])).toBe(true)
-
-    const value: unknown = []
-    if (satisfy(types.array.unknown, value)) {
-      // Note that this test is weak.
-      // I don't have a good way to nail it down as it is a top type.
-      assertType<unknown[]>(value)
-    }
-  })
 })
 
 test('union of multiple primitive types', () => {
