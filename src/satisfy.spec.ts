@@ -219,6 +219,8 @@ describe('array', () => {
 
     const value: unknown = []
     if (satisfy(types.array, value)) {
+      // Note that this test is weak.
+      // I don't have a good way to nail it down as it is a top type.
       assertType<any[]>(value)
     }
   })
@@ -232,6 +234,8 @@ describe('array', () => {
 
     const value: unknown = []
     if (satisfy(types.array.unknown, value)) {
+      // Note that this test is weak.
+      // I don't have a good way to nail it down as it is a top type.
       assertType<unknown[]>(value)
     }
   })
