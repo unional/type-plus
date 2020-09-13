@@ -190,9 +190,42 @@ test('symbol', () => {
   }
 })
 
-test('if statement', () => {
+test('union', () => {
+  const t = types.Union.join(types.Boolean, types.Number)
+  expect(satisfy(t, 0)).toBe(true)
+  expect(satisfy(t, false)).toBe(true)
+
+  const value: unknown = 0
+  if (satisfy(t, value)) {
+    assertType<boolean | number>(value)
+  }
+})
+
+test('union single type gets the type back', () => {
+  const t = types.Union.join(types.Boolean)
+  expect(satisfy(t, false)).toBe(true)
+
+  const value: unknown = true
+  if (satisfy(t, value)) {
+    assertType<boolean>(value)
+  }
+})
+
+test('union of multiple primitive types', () => {
+  const t = types.Union.join(types.Boolean, types.Null, types.Number)
+  expect(satisfy(t, false)).toBe(true)
+
+  const value: unknown = true
+  if (satisfy(t, value)) {
+    assertType<boolean | null | number>(value)
+  }
+})
+
+test('if condition', () => {
   types.If(types.False, {}, false as const)
 })
+
+test.todo('optional')
 
 function notSatisfyTypesOtherThan(type: types.AllTypes, ...excepts: unknown[]) {
   const values = [undefined, null, true, false, 0, 1, 0n, 1n, '', 'a', [], {}, Symbol(), Symbol.for('a')]

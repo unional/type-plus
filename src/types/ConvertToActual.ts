@@ -6,6 +6,8 @@ import { Number } from './Number'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Undefined } from './Undefined'
+import { Union } from './Union'
+import { Tuple } from 'ts-toolbelt'
 
 export type ConvertToActual<T extends AllTypes> =
   T extends Undefined ? undefined :
@@ -17,4 +19,13 @@ export type ConvertToActual<T extends AllTypes> =
   T extends Number ? T['value'] :
   T extends String ? T['value'] :
   T extends BigInt ? T['value'] :
+  T extends Union ? ConvertToActual.UnionDevice<T['values']>['result'] :
   unknown
+
+export namespace ConvertToActual {
+  export type UnionDevice<T extends AllTypes[]> = T['length'] extends 0
+    ? { result: never }
+    : {
+      result: ConvertToActual<T[0]> | UnionDevice<Tuple.Drop<T, '1'>>['result']
+    }
+}
