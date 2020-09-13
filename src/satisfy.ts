@@ -4,6 +4,8 @@ export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): su
   switch (type.name) {
     case 'undefined':
       return typeof subject === type.name
+    case 'null':
+      return subject === null
     case 'boolean': {
       if (typeof subject !== 'boolean') return false
       const t = type as types.Boolean
@@ -22,8 +24,12 @@ export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): su
       if (t === types.String) return true
       return subject === t.value
     }
-    case 'null':
-      return subject === null
+    case 'bigint': {
+      if (typeof subject !== 'bigint') return false
+      const t = type as types.BigInt
+      if (t === types.BigInt) return true
+      return subject === t.value
+    }
   }
   return false
 }

@@ -141,6 +141,45 @@ test(`'a' not satisfy ''`, () => {
   expect(satisfy(types.String.val(''), 'a')).toBe(false)
 })
 
+test('bigint', () => {
+  expect(satisfy(types.BigInt, 0n)).toBe(true)
+  notSatisfyTypesOtherThan(types.BigInt, 0n, 1n)
+
+  const value: unknown = 0n
+  if (satisfy(types.BigInt, value)) {
+    assertType<bigint>(value)
+    assertType.isFalse(assignability<0>()(value))
+  }
+})
+
+test('bigint:0', () => {
+  expect(satisfy(types.BigInt.val(0n), 0n)).toBe(true)
+  notSatisfyTypesOtherThan(types.BigInt.val(0n), 0n)
+
+  const value: unknown = 0n
+  if (satisfy(types.BigInt.val(0n), value)) {
+    assertType<0n>(value)
+  }
+})
+
+test('bigint:1', () => {
+  expect(satisfy(types.BigInt.val(1n), 1n)).toBe(true)
+  notSatisfyTypesOtherThan(types.BigInt.val(1n), 1n)
+
+  const value: unknown = 1n
+  if (satisfy(types.BigInt.val(1n), value)) {
+    assertType<1n>(value)
+  }
+})
+
+test('0n not satisfy 1n', () => {
+  expect(satisfy(types.BigInt.val(1n), 0n)).toBe(false)
+})
+
+test('1n not satisfy 0n', () => {
+  expect(satisfy(types.BigInt.val(0n), 1n)).toBe(false)
+})
+
 test('if statement', () => {
   types.If(types.False, {}, false as const)
 })
