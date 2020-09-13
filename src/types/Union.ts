@@ -14,7 +14,7 @@ export type Union<Values extends AllTypes[] = AllTypes[]> = {
   values: [...Values]
 }
 
-export const Union = {
+export const union = {
   join<Values extends AllTypes[]>(...types: Values): Union<Values> {
     return {
       name: 'union',

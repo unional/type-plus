@@ -1,6 +1,6 @@
 export type String<Value extends string = string> = { name: 'string', value: Value }
 
-export const String = {
+export const string = {
   name: 'string' as const,
   value: '',
   /**

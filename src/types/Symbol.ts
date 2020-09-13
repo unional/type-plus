@@ -1,2 +1,2 @@
 export type Symbol = { name: 'symbol' }
-export const Symbol: Symbol = { name: 'symbol' }
+export const symbol: Symbol = { name: 'symbol' }
