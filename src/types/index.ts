@@ -7,13 +7,14 @@
  */
 
 // export * from './BigInt'
+export * from './Array'
 export * from './Boolean'
 export * from './If'
-export { Null, nil as null } from './Null'
+export { nil as null, Null } from './Null'
 export * from './Number'
 export * from './Object'
 export * from './String'
 export * from './Symbol'
-export { Undefined, undef as undefined } from './Undefined'
-export * from './Union'
 export * from './types'
+export { undef as undefined, Undefined } from './Undefined'
+export * from './Union'

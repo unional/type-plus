@@ -1,5 +1,6 @@
-// import { BigInt } from './BigInt'
 import { Tuple } from 'ts-toolbelt'
+import { Array } from './Array'
+// import { BigInt } from './BigInt'
 import { Boolean, False, True } from './Boolean'
 import { Null } from './Null'
 import { Number } from './Number'
@@ -13,7 +14,7 @@ import { Union } from './Union'
 export type PrimitiveTypes = Undefined | Null | Boolean | Number | String
 
 /** @internal */
-export type ComplexTypes = Object // | Array
+export type ComplexTypes = Object | Array
 
 /**
  * @internal
@@ -32,8 +33,9 @@ export type ConvertToActual<T extends AllTypes> =
   T extends Symbol ? symbol :
   T extends Number ? T['value'] :
   T extends String ? T['value'] :
-  // T extends BigInt ? T['value'] :
   T extends Union ? ConvertToActual.UnionDevice<T['values']>['result'] :
+  T extends Array ? any[] :
+  // T extends BigInt ? T['value'] :
   unknown
 
 export namespace ConvertToActual {

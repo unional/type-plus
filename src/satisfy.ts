@@ -10,6 +10,7 @@ export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): su
     case 'string': return satisfyType(types.string, type, subject)
     // case 'bigint': return satisfyType(types.bigint, type, subject)
     case 'union': return satisfyUnion(type as types.Union, subject)
+    case 'array': return satisfyArray(type as types.Array, subject)
   }
   return false
 }
@@ -32,4 +33,9 @@ function satisfyType(
 
 function satisfyUnion<T extends types.Union>(type: T, subject: unknown) {
   return type.values.some(t => satisfy(t, subject))
+}
+
+function satisfyArray<T extends types.Array>(type: T, subject: unknown) {
+  if (!Array.isArray(subject)) return false
+  return true
 }
