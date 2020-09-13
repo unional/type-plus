@@ -1,6 +1,6 @@
 export type BigInt<Value extends bigint = bigint> = { name: 'bigint', value: Value }
 
-export const BigInt = {
+export const bigint = {
   name: 'bigint' as const,
   value: 0n,
   /**

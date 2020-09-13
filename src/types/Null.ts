@@ -1,2 +1,2 @@
 export type Null = { name: 'null' }
-export const Null: Null = { name: 'null' }
+export const nil: Null = { name: 'null' }

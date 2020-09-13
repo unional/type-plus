@@ -1,6 +1,6 @@
 export type Number<Value extends number = number> = { name: 'number', value: Value }
 
-export const Number = {
+export const number = {
   name: 'number' as const,
   value: 0,
   /**

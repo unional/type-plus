@@ -45,7 +45,7 @@ export * from './satisfy'
 export * from './someKey'
 export * from './tryAssign'
 export * from './typeOverrideIncompatible'
-export * as types from './types'
+export * from './types'
 export * from './UnionKeys'
 export * from './ValueOf'
 
