@@ -1,3 +1,4 @@
+import { satisfies } from 'satisfier'
 import { assertType, satisfy, types } from '.'
 import { assignability } from './assignability'
 
@@ -32,7 +33,7 @@ test('boolean', () => {
   }
 })
 
-test('true', () => {
+test('boolean:true', () => {
   expect(satisfy(types.boolean.true, true)).toBe(true)
   notSatisfyTypesOtherThan(types.boolean.true, true)
 
@@ -42,7 +43,7 @@ test('true', () => {
   }
 })
 
-test('false', () => {
+test('boolean:false', () => {
   expect(satisfy(types.boolean.false, false)).toBe(true)
   notSatisfyTypesOtherThan(types.boolean.false, false)
 
@@ -211,6 +212,21 @@ test('union single type gets the type back', () => {
   }
 })
 
+describe('array', () => {
+  test('base type satisfies any array', () => {
+    expect(satisfy(types.array, [])).toBe(true)
+    expect(satisfy(types.array, ['a'])).toBe(true)
+
+    const value: unknown = []
+    if (satisfy(types.array, value)) {
+      assertType<any[]>(value)
+    }
+  })
+  test('base type not satisfy non-array', () => {
+    notSatisfyTypesOtherThan(types.array, [], ['a'])
+  })
+})
+
 test('union of multiple primitive types', () => {
   const t = types.union.join(types.boolean, types.null, types.number)
   expect(satisfy(t, false)).toBe(true)
@@ -227,10 +243,10 @@ test('if condition', () => {
 
 test.todo('optional')
 
-function notSatisfyTypesOtherThan(type: types.AllTypes, ...excepts: unknown[]) {
-  const values = [undefined, null, true, false, 0, 1, 0n, 1n, '', 'a', [], {}, Symbol(), Symbol.for('a')]
+function notSatisfyTypesOtherThan(type: types.AllTypes, ...excepts: any[]) {
+  const values = [undefined, null, true, false, 0, 1, 0n, 1n, '', 'a', [], ['a'], {}, Symbol(), Symbol.for('a')]
   values.forEach(v => {
-    if (excepts.indexOf(v) !== -1) {
+    if (!excepts.some(e => satisfies(v, e))) {
       expect(satisfy(type, v))
     }
   })
