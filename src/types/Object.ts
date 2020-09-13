@@ -1,17 +1,23 @@
 // import { BigInt } from './BigInt'
-// import { Boolean } from './Boolean'
-// import { Null } from './Null'
-// import { Number } from './Number'
-// import { String } from './String'
-// import { Symbol } from './Symbol'
-// import { Undefined } from './Undefined'
-// type AllTypes = Undefined | Null | Boolean | Number | String
-//   | BigInt | Symbol
+import { Boolean } from './Boolean'
+import { Null } from './Null'
+import { Number } from './Number'
+import { String } from './String'
+import { Symbol } from './Symbol'
+import { Undefined } from './Undefined'
+import { Union } from './Union'
 
-export type Object = { name: 'object', fields: any[] }
+type AllTypes = Undefined | Null | Boolean | Number | String
+  | Symbol | Union<any> | Object<any>
+// | BigInt
+
+export type Object<T extends AllTypes[] = AllTypes[]> = {
+  name: 'object',
+  fields: T
+}
 
 export const object = {
-  props(fields: any): any {
+  val<T extends AllTypes[]>(fields: T): Object<T> {
     return {
       name: 'object',
       fields
