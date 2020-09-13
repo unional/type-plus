@@ -225,6 +225,16 @@ describe('array', () => {
   test('base type not satisfy non-array', () => {
     notSatisfyTypesOtherThan(types.array, [], ['a'])
   })
+
+  test('unknown type assert result to unknown[]', () => {
+    expect(satisfy(types.array.unknown, [])).toBe(true)
+    expect(satisfy(types.array.unknown, ['a'])).toBe(true)
+
+    const value: unknown = []
+    if (satisfy(types.array.unknown, value)) {
+      assertType<unknown[]>(value)
+    }
+  })
 })
 
 test('union of multiple primitive types', () => {
