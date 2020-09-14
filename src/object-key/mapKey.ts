@@ -1,3 +1,8 @@
-export function mapKey<R, T>(subject: T, callbackfn: (key: keyof T, index: number, obj: string[]) => R, thisArg?: any): R[] {
-  return Object.keys(subject).map(callbackfn as any, thisArg)
+import { KeyTypes } from './KeyTypes'
+
+export function mapKey<R, S extends Record<KeyTypes, any>, T = any>(
+  subject: S,
+  predicate: (this: T, key: keyof S, index: number, obj: Array<keyof S>) => R,
+  thisArg?: T): R[] {
+  return Object.keys(subject).map(predicate, thisArg)
 }

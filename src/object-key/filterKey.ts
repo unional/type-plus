@@ -1,5 +1,8 @@
-export function filterKey<T>(subject: T, callbackfn: (this: void, key: keyof T, index: number, obj: (keyof T)[]) => key is keyof T, thisArg?: any): (keyof T)[]
-export function filterKey<T>(subject: T, callbackfn: (key: keyof T, index: number, obj: (keyof T)[]) => boolean, thisArg?: any): (keyof T)[]
-export function filterKey<T>(subject: T, callbackfn: any, thisArg?: any) {
-  return Object.keys(subject).filter(callbackfn, thisArg)
+import { KeyTypes } from './KeyTypes'
+
+export function filterKey<S extends Record<KeyTypes, any>, T = any>(
+  subject: S,
+  predicate: (this: T, key: keyof S, index: number, obj: Array<keyof S>) => boolean,
+  thisArg?: T): Array<keyof S> {
+  return Object.keys(subject).filter(predicate, thisArg)
 }

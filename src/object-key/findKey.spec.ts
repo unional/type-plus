@@ -1,5 +1,5 @@
-import t from 'assert';
-import { findKey } from '..';
+import t from 'assert'
+import { findKey } from '..'
 
 test('predicate key can be used as indexer of the subject', () => {
   const subject = { a: 1, b: 2, c: 3 }
