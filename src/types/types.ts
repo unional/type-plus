@@ -1,4 +1,4 @@
-import { Tuple } from 'ts-toolbelt'
+import { Tuple as TTTuple } from 'ts-toolbelt'
 import { KeyTypes } from '../object-key/KeyTypes'
 import { Any } from './Any'
 import { Array } from './Array'
@@ -8,6 +8,7 @@ import { Null } from './Null'
 import { Number } from './Number'
 import { Object } from './Object'
 import { String } from './String'
+import { Tuple } from './Tuple'
 import { Symbol } from './Symbol'
 import { Undefined } from './Undefined'
 import { Union } from './Union'
@@ -17,7 +18,7 @@ import { Unknown } from './Unknown'
 export type PrimitiveTypes = Undefined | Null | Boolean | Number | String
 
 /** @internal */
-export type ComplexTypes = Object<any> | Array<any>
+export type ComplexTypes = Object<any> | Array<any> | Tuple<any>
 
 /**
  * @internal
@@ -40,6 +41,7 @@ export type Generate<T extends AllTypes> =
   T extends String ? T['value'] :
   T extends Object<any> ? Generate.ObjectDevice<T['props']>['result'] :
   T extends Array ? Generate<T['value']>[] :
+  T extends Tuple ? Generate.TupleDevice<T['values']>['result'] :
   T extends Union ? Generate.UnionDevice<T['values']>['result'] :
   // T extends BigInt ? T['value'] :
   unknown
@@ -47,7 +49,7 @@ export type Generate<T extends AllTypes> =
 export namespace Generate {
   export type UnionDevice<T extends AllTypes[]> = T['length'] extends 0
     ? { result: never }
-    : { result: Generate<T[0]> | UnionDevice<Tuple.Drop<T, '1'>>['result'] }
+    : { result: Generate<T[0]> | UnionDevice<TTTuple.Drop<T, '1'>>['result'] }
 
   export type ObjectDevice<T extends Record<KeyTypes, AllTypes> | undefined> = T extends undefined
     ? { result: Record<KeyTypes, any> }
@@ -56,4 +58,8 @@ export namespace Generate {
   export type MapProps<T extends Record<KeyTypes, AllTypes>> = {
     result: { [K in keyof T]: Generate<T[K]> }
   }
+
+  export type TupleDevice<T extends AllTypes[]> = T['length'] extends 1
+    ? { result: [Generate<T[0]>] }
+    : { result: [Generate<T[0]>, ...TupleDevice<TTTuple.Drop<T, '1'>>['result']] }
 }

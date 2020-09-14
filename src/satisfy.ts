@@ -15,6 +15,7 @@ export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): su
     case 'union': return satisfyUnion(type as types.Union, subject)
     case 'object': return satisfyObject(type as types.Object, subject)
     case 'array': return satisfyArray(type as types.Array, subject)
+    case 'tuple': return satisfyTuple(type as types.Tuple, subject)
   }
   return false
 }
@@ -50,4 +51,10 @@ function satisfyObject<T extends types.Object>(type: T, subject: unknown) {
   if (Array.isArray(subject)) return false
   if (type === types.object as types.Object) return true
   return everyKey(type.props!, p => satisfy(type.props![p], (subject as any)[p]))
+}
+
+function satisfyTuple<T extends types.Tuple>(type: T, subject: unknown) {
+  if (!Array.isArray(subject)) return false
+  if (subject.length !== type.values.length) return false
+  return subject.every((s, i) => satisfy(type.values[i], s))
 }
