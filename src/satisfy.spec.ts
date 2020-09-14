@@ -235,7 +235,7 @@ describe('union', () => {
   })
 
   test('nested union is flatten', () => {
-    // TODO: flatten union type at `join()`
+    // TODO: flatten union type at `create()`
     // currently it is not, but the recursion work at `satisfy()`
     // when types is complex,
     // this will not work as TypeScript has limited on the number of recursion.
