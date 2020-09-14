@@ -26,7 +26,7 @@ export type SetTypes = Union // | Intersection | SubSet | SuperSet | Complement 
 
 export type AllTypes = PrimitiveTypes | ComplexTypes | SetTypes | Symbol | Unknown | Any// | BigInt
 
-export type ConvertToActual<T extends AllTypes> =
+export type Generate<T extends AllTypes> =
   T extends Undefined ? undefined :
   T extends Null ? null :
   T extends True ? true :
@@ -37,15 +37,15 @@ export type ConvertToActual<T extends AllTypes> =
   T extends Unknown ? unknown :
   T extends Number ? T['value'] :
   T extends String ? T['value'] :
-  T extends Array ? ConvertToActual<T['value']>[] :
-  T extends Union ? ConvertToActual.UnionDevice<T['values']>['result'] :
+  T extends Array ? Generate<T['value']>[] :
+  T extends Union ? Generate.UnionDevice<T['values']>['result'] :
   // T extends BigInt ? T['value'] :
   unknown
 
-export namespace ConvertToActual {
+export namespace Generate {
   export type UnionDevice<T extends AllTypes[]> = T['length'] extends 0
     ? { result: never }
     : {
-      result: ConvertToActual<T[0]> | UnionDevice<Tuple.Drop<T, '1'>>['result']
+      result: Generate<T[0]> | UnionDevice<Tuple.Drop<T, '1'>>['result']
     }
 }

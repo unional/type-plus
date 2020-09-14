@@ -1,6 +1,6 @@
 import * as types from './types'
 
-export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): subject is types.ConvertToActual<T> {
+export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): subject is types.Generate<T> {
   switch (type.name) {
     case 'unknown':
     case 'any': return true
