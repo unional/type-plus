@@ -1,3 +1,9 @@
-export function someKey<T>(subject: T, predicate: (key: keyof T, index: number, array: string[]) => unknown, thisArg?: any) {
-  return Object.keys(subject).some(predicate as any, thisArg)
+import { KeyTypes } from './KeyTypes'
+
+export function someKey<S extends Record<KeyTypes, any>, T = any>(
+  subject: S,
+  predicate: (this: T, key: keyof S, index: number, array: string[]) => unknown,
+  thisArg?: T
+): boolean {
+  return Object.keys(subject).some(predicate, thisArg)
 }

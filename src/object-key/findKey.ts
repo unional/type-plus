@@ -1,5 +1,8 @@
-export function findKey<T>(subject: T, predicate: (this: void, key: keyof T, index: number, obj: (keyof T)[]) => key is keyof T, thisArg?: any): keyof T | undefined
-export function findKey<T>(subject: T, predicate: (key: keyof T, index: number, obj: (keyof T)[]) => boolean, thisArg?: any): keyof T | undefined
-export function findKey<T>(subject: T, predicate: any, thisArg?: any) {
+import { KeyTypes } from './KeyTypes'
+
+export function findKey<S extends Record<KeyTypes, any>, T = any>(
+  subject: S,
+  predicate: (this: T, key: keyof S, index: number, obj: Array<keyof S>) => boolean,
+  thisArg?: T): keyof S | undefined {
   return Object.keys(subject).find(predicate, thisArg)
 }
