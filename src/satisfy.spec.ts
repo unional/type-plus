@@ -343,7 +343,6 @@ describe('object', () => {
       assertType<{ a: 1, b: string }>(value)
     }
   })
-
   test('props with union', () => {
     const t = types.object.create({
       a: types.union.create(types.number.create(1), types.boolean.true),
@@ -358,7 +357,6 @@ describe('object', () => {
       assertType<{ a: true | 1, b: string }>(value)
     }
   })
-
   test('nested object', () => {
     const t = types.object.create({
       a: types.object.create({
@@ -371,6 +369,14 @@ describe('object', () => {
     if (satisfy(t, value)) {
       assertType<{ a: { b: number } }>(value)
     }
+  })
+  test('keys is string + number + symbol', () => {
+    // technically empty string is not a valid key.
+    // maybe we can do a disjoint or something
+    expect(satisfy(types.keys, '')).toBe(true)
+    expect(satisfy(types.keys, 'a')).toBe(true)
+    expect(satisfy(types.keys, 0)).toBe(true)
+    expect(satisfy(types.keys, Symbol.for('abc'))).toBe(true)
   })
 })
 
