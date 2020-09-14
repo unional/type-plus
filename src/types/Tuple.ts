@@ -15,16 +15,16 @@ type AllTypes = Undefined | Null | Boolean | Number | String
 
 export type Tuple<T extends AllTypes[][]> = {
   name: 'tuple',
-  types: [...T]
+  values: [...T]
 }
 
 export const tuple = {
   name: 'tuple' as const,
   types: [],
-  val<Value extends AllTypes[][]>(types: Value): Tuple<Value> {
+  create<Value extends AllTypes[][]>(values: Value): Tuple<Value> {
     return {
       name: 'tuple',
-      types
+      values
     }
   }
 }

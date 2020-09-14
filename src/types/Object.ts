@@ -11,16 +11,16 @@ type AllTypes = Undefined | Null | Boolean | Number | String
   | Symbol | Union<any> | Object<any>
 // | BigInt
 
-export type Object<T extends AllTypes[] = AllTypes[]> = {
+export type Object<Values extends AllTypes[] = AllTypes[]> = {
   name: 'object',
-  fields: T
+  values: Values
 }
 
 export const object = {
-  val<T extends AllTypes[]>(fields: T): Object<T> {
+  create<Values extends AllTypes[]>(...values: Values): Object<Values> {
     return {
       name: 'object',
-      fields
+      values
     }
   }
 }

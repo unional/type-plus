@@ -6,7 +6,7 @@ export const number = {
   /**
    * Creates a single value type.
    */
-  val<Value extends number>(value: Value): Number<Value> {
+  create<Value extends number>(value: Value): Number<Value> {
     // Cannot name this function as `const` because it is a reserved keyword.
     return { name: 'number', value }
   }

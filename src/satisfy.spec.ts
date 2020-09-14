@@ -73,31 +73,31 @@ test('number', () => {
 })
 
 test('number:0', () => {
-  expect(satisfy(types.number.val(0), 0)).toBe(true)
-  notSatisfyTypesOtherThan(types.number.val(0), 0)
+  expect(satisfy(types.number.create(0), 0)).toBe(true)
+  notSatisfyTypesOtherThan(types.number.create(0), 0)
 
   const value: unknown = 0
-  if (satisfy(types.number.val(0), value)) {
+  if (satisfy(types.number.create(0), value)) {
     assertType<0>(value)
   }
 })
 
 test('number:1', () => {
-  expect(satisfy(types.number.val(1), 1)).toBe(true)
-  notSatisfyTypesOtherThan(types.number.val(1), 1)
+  expect(satisfy(types.number.create(1), 1)).toBe(true)
+  notSatisfyTypesOtherThan(types.number.create(1), 1)
 
   const value: unknown = 1
-  if (satisfy(types.number.val(1), value)) {
+  if (satisfy(types.number.create(1), value)) {
     assertType<1>(value)
   }
 })
 
 test('0 not satisfy 1', () => {
-  expect(satisfy(types.number.val(1), 0)).toBe(false)
+  expect(satisfy(types.number.create(1), 0)).toBe(false)
 })
 
 test('1 not satisfy 0', () => {
-  expect(satisfy(types.number.val(0), 1)).toBe(false)
+  expect(satisfy(types.number.create(0), 1)).toBe(false)
 })
 
 test.todo('number list')
@@ -119,7 +119,7 @@ test(`string:''`, () => {
   notSatisfyTypesOtherThan(types.string, '')
 
   const value: unknown = ''
-  if (satisfy(types.string.val(''), value)) {
+  if (satisfy(types.string.create(''), value)) {
     assertType<''>(value)
   }
 })
@@ -129,17 +129,17 @@ test(`string:'a'`, () => {
   notSatisfyTypesOtherThan(types.string, '', 'a')
 
   const value: unknown = 'a'
-  if (satisfy(types.string.val('a'), value)) {
+  if (satisfy(types.string.create('a'), value)) {
     assertType<'a'>(value)
   }
 })
 
 test(`'' not satisfy 'a'`, () => {
-  expect(satisfy(types.string.val('a'), '')).toBe(false)
+  expect(satisfy(types.string.create('a'), '')).toBe(false)
 })
 
 test(`'a' not satisfy ''`, () => {
-  expect(satisfy(types.string.val(''), 'a')).toBe(false)
+  expect(satisfy(types.string.create(''), 'a')).toBe(false)
 })
 
 // test('bigint', () => {
@@ -154,31 +154,31 @@ test(`'a' not satisfy ''`, () => {
 // })
 
 // test('bigint:0', () => {
-//   expect(satisfy(types.bigint.val(0n), 0n)).toBe(true)
-//   notSatisfyTypesOtherThan(types.bigint.val(0n), 0n)
+//   expect(satisfy(types.bigint.create(0n), 0n)).toBe(true)
+//   notSatisfyTypesOtherThan(types.bigint.create(0n), 0n)
 
 //   const value: unknown = 0n
-//   if (satisfy(types.bigint.val(0n), value)) {
+//   if (satisfy(types.bigint.create(0n), value)) {
 //     assertType<0n>(value)
 //   }
 // })
 
 // test('bigint:1', () => {
-//   expect(satisfy(types.bigint.val(1n), 1n)).toBe(true)
-//   notSatisfyTypesOtherThan(types.bigint.val(1n), 1n)
+//   expect(satisfy(types.bigint.create(1n), 1n)).toBe(true)
+//   notSatisfyTypesOtherThan(types.bigint.create(1n), 1n)
 
 //   const value: unknown = 1n
-//   if (satisfy(types.bigint.val(1n), value)) {
+//   if (satisfy(types.bigint.create(1n), value)) {
 //     assertType<1n>(value)
 //   }
 // })
 
 // test('0n not satisfy 1n', () => {
-//   expect(satisfy(types.bigint.val(1n), 0n)).toBe(false)
+//   expect(satisfy(types.bigint.create(1n), 0n)).toBe(false)
 // })
 
 // test('1n not satisfy 0n', () => {
-//   expect(satisfy(types.bigint.val(0n), 1n)).toBe(false)
+//   expect(satisfy(types.bigint.create(0n), 1n)).toBe(false)
 // })
 
 test('symbol', () => {
@@ -193,7 +193,7 @@ test('symbol', () => {
 
 describe('union', () => {
   test('single type gets the type back', () => {
-    const t = types.union.join(types.boolean)
+    const t = types.union.create(types.boolean)
     expect(satisfy(t, false)).toBe(true)
 
     const value: unknown = true
@@ -203,7 +203,7 @@ describe('union', () => {
   })
 
   test('on two types', () => {
-    const t = types.union.join(types.boolean, types.number)
+    const t = types.union.create(types.boolean, types.number)
     expect(satisfy(t, 0)).toBe(true)
     expect(satisfy(t, false)).toBe(true)
 
@@ -214,7 +214,7 @@ describe('union', () => {
   })
 
   test('on multiple primitive types', () => {
-    const t = types.union.join(types.boolean, types.null, types.number)
+    const t = types.union.create(types.boolean, types.null, types.number)
     expect(satisfy(t, false)).toBe(true)
 
     const value: unknown = true
@@ -224,7 +224,11 @@ describe('union', () => {
   })
 
   test('nested union is flatten', () => {
-    const t = types.union.join(types.union.join(types.boolean, types.null))
+    // TODO: flatten union type at `join()`
+    // currently it is not, but the recursion work at `satisfy()`
+    // when types is complex,
+    // this will not work as TypeScript has limited on the number of recursion.
+    const t = types.union.create(types.union.create(types.boolean, types.null))
     expect(satisfy(t, false)).toBe(true)
     const value: unknown = true
     if (satisfy(t, value)) {
@@ -266,7 +270,7 @@ describe('array', () => {
   })
 
   test('specific type', () => {
-    const t = types.array.val(types.number)
+    const t = types.array.create(types.number)
     expect(satisfy(t, [])).toBe(true)
     expect(satisfy(t, [0])).toBe(true)
     expect(satisfy(t, [1, 2])).toBe(true)
@@ -281,7 +285,7 @@ describe('array', () => {
   })
 
   test('union type', () => {
-    const t = types.array.val(types.union.join(types.number, types.boolean))
+    const t = types.array.create(types.union.create(types.number, types.boolean))
     expect(satisfy(t, [])).toBe(true)
     expect(satisfy(t, [0])).toBe(true)
     expect(satisfy(t, [false])).toBe(true)

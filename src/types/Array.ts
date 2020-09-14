@@ -22,7 +22,7 @@ export type Array<T extends AllTypes = AllTypes> = {
 export const array = {
   name: 'array' as const,
   value: any,
-  val<T extends AllTypes>(value: T): Array<T> {
+  create<T extends AllTypes>(value: T): Array<T> {
     return {
       name: 'array',
       value
