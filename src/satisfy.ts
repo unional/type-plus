@@ -1,3 +1,4 @@
+import { everyKey } from './object-key'
 import * as types from './types'
 
 export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): subject is types.Generate<T> {
@@ -48,5 +49,5 @@ function satisfyObject<T extends types.Object>(type: T, subject: unknown) {
   if (subject === null) return false // techically wrong...
   if (Array.isArray(subject)) return false
   if (type === types.object as types.Object) return true
-  return false
+  return everyKey(type.props!, p => satisfy(type.props![p], (subject as any)[p]))
 }

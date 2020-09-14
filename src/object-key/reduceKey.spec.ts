@@ -1,5 +1,5 @@
-import t from 'assert';
-import { reduceKey } from '.';
+import t from 'assert'
+import { reduceKey } from '..'
 
 test('predicate key can be used as indexer of the subject', () => {
   const subject = { a: 1, b: 2, c: 3 }
@@ -11,6 +11,7 @@ test('predicate key can be used as indexer of the subject', () => {
 // Can't find a way to get k to be a more reasonable type that works with `subject[k]`
 // So leaving it as is for now.
 test('key type is string if subject type is plain object', () => {
+  // eslint-disable-next-line @typescript-eslint/ban-types
   const subject: {} = { a: 1 }
   const actual = reduceKey(subject, (p, k) => p += subject[k], 'a')
   t.strictEqual(actual, 'a1')

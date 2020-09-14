@@ -1,4 +1,4 @@
-import { PromiseValueMerge, ReplaceProperty, typeAssert } from '.'
+import { assertType, PromiseValueMerge, ReplaceProperty } from '.'
 
 test('replace', async () => {
   type T1 = {
@@ -14,5 +14,5 @@ test('replace', async () => {
 
   const result = replaced.getConfig()
   const value = await result
-  typeAssert<{ a: string, b: string }>(value)
+  assertType<{ a: string, b: string }>(value)
 })

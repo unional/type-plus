@@ -1,4 +1,4 @@
-import { KeyTypes } from '.';
+import { KeyTypes } from '..'
 
 test('contains type of all keys', () => {
   acceptKeys('a')
