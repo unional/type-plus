@@ -1,6 +1,7 @@
 import { satisfies } from 'satisfier'
 import { assertType, satisfy, types } from '.'
 import { assignability } from './assignability'
+import { KeyTypes } from './object-key/KeyTypes'
 
 test('undefined', () => {
   expect(satisfy(types.undefined, undefined)).toBe(true)
@@ -313,13 +314,16 @@ describe('object', () => {
 
     const value: unknown = { a: 1 }
     if (satisfy(types.object, value)) {
-      // Note that this test is weak.
-      // I don't have a good way to nail it down as it is a top type.
-      assertType<Record<string | number | symbol, any>>(value)
+      assertType<Record<KeyTypes, any>>(value)
     }
   })
-  test('base type does not satisfy array', () => {
-    expect(satisfy(types.object, [])).toBe(false)
+  test('base type does not satisfy non-object including array and null', () => {
+    notSatisfyTypesOtherThan(types.object, {}, { a: 1 })
+  })
+  test('single prop', () => {
+    const t = types.object.create({ a: types.number })
+    expect(satisfy(t, { a: 0 })).toBe(true)
+    expect(satisfy(t, { a: 1 })).toBe(true)
   })
 })
 
@@ -330,7 +334,7 @@ test('if condition', () => {
 test.todo('optional')
 
 function notSatisfyTypesOtherThan(type: types.AllTypes, ...excepts: any[]) {
-  const values = [undefined, null, true, false, 0, 1, 0n, 1n, '', 'a', [], ['a'], {}, Symbol(), Symbol.for('a')]
+  const values = [undefined, null, true, false, 0, 1, 0n, 1n, '', 'a', [], ['a'], {}, { a: 1 }, Symbol(), Symbol.for('a')]
   values.forEach(v => {
     if (!excepts.some(e => satisfies(v, e))) {
       expect(satisfy(type, v))

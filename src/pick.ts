@@ -1,4 +1,4 @@
-import { reduceKey } from './reduceKey';
+import { reduceKey } from './object-key/reduceKey';
 import { UnionKeys } from './UnionKeys';
 
 export function pick<T extends object, P1 extends UnionKeys<T>>(subject: T, prop1: P1): Pick<T, P1>

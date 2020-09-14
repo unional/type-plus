@@ -1,3 +1,4 @@
+import { KeyTypes } from '../object-key/KeyTypes'
 import { Array } from './Array'
 // import { BigInt } from './BigInt'
 import { Boolean } from './Boolean'
@@ -12,13 +13,13 @@ type AllTypes = Undefined | Null | Boolean | Number | String
   | Symbol | Union<any> | Array<any> | Object<any>
 // | BigInt
 
-export type Object<Values extends AllTypes[] = AllTypes[]> = {
+export type Object<Props extends Record<KeyTypes, AllTypes> | undefined = undefined> = {
   name: 'object',
-  values: Values
+  props: Props
 }
 
-function create<Values extends AllTypes[]>(...values: Values): Object<Values> {
-  return { name: 'object', values }
+function create<Props extends Record<KeyTypes, AllTypes> | undefined>(props: Props): Object<Props> {
+  return { name: 'object', props }
 }
 
-export const object = { ...create(), create }
+export const object = { ...create(undefined), create }
