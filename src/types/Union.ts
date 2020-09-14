@@ -13,14 +13,14 @@ type AllTypes = Undefined | Null | Boolean | Number | String
 
 export type Union<Values extends AllTypes[] = AllTypes[]> = {
   name: 'union',
-  values: [...Values]
+  values: Values
 }
 
 export const union = {
-  join<Values extends AllTypes[]>(...types: Values): Union<Values> {
+  create<Values extends AllTypes[]>(...values: Values): Union<Values> {
     return {
       name: 'union',
-      values: types
+      values
     }
   }
 }
