@@ -1,4 +1,5 @@
 import { Tuple } from 'ts-toolbelt'
+import { KeyTypes } from '../KeyTypes'
 import { Any } from './Any'
 import { Array } from './Array'
 // import { BigInt } from './BigInt'
@@ -37,6 +38,7 @@ export type Generate<T extends AllTypes> =
   T extends Unknown ? unknown :
   T extends Number ? T['value'] :
   T extends String ? T['value'] :
+  T extends Object ? T['values']['length'] extends 0 ? Record<KeyTypes, any> : unknown :
   T extends Array ? Generate<T['value']>[] :
   T extends Union ? Generate.UnionDevice<T['values']>['result'] :
   // T extends BigInt ? T['value'] :
