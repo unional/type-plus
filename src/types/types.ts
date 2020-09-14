@@ -37,7 +37,7 @@ export type ConvertToActual<T extends AllTypes> =
   T extends Unknown ? unknown :
   T extends Number ? T['value'] :
   T extends String ? T['value'] :
-  T extends Array ? ConvertToActual<T['type']>[] :
+  T extends Array ? ConvertToActual<T['value']>[] :
   T extends Union ? ConvertToActual.UnionDevice<T['values']>['result'] :
   // T extends BigInt ? T['value'] :
   unknown

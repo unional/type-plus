@@ -222,6 +222,35 @@ describe('array', () => {
   test('unknown type does not satisfy non-array', () => {
     notSatisfyTypesOtherThan(types.array.unknown, [], ['a'])
   })
+
+  test('specific type', () => {
+    const t = types.array.val(types.number)
+    expect(satisfy(t, [])).toBe(true)
+    expect(satisfy(t, [0])).toBe(true)
+    expect(satisfy(t, [1, 2])).toBe(true)
+    expect(satisfy(t, ['a'])).toBe(false)
+    expect(satisfy(t, [1, 'a'])).toBe(false)
+    expect(satisfy(t, ['a', 1])).toBe(false)
+
+    const value: unknown = ['a']
+    if (satisfy(t, value)) {
+      assertType<number[]>(value)
+    }
+  })
+
+  test('union type', () => {
+    const t = types.array.val(types.union.join(types.number, types.boolean))
+    expect(satisfy(t, [])).toBe(true)
+    expect(satisfy(t, [0])).toBe(true)
+    expect(satisfy(t, [false])).toBe(true)
+    expect(satisfy(t, [false, 0])).toBe(true)
+    expect(satisfy(t, [0, false, ''])).toBe(false)
+
+    const value: unknown = [0, false]
+    if (satisfy(t, value)) {
+      assertType<Array<number | boolean>>(value)
+    }
+  })
 })
 
 test('union', () => {

@@ -16,17 +16,17 @@ type AllTypes = Undefined | Null | Boolean | Number | String
 
 export type Array<T extends AllTypes = AllTypes> = {
   name: 'array',
-  type: T
+  value: T
 }
 
 export const array = {
   name: 'array' as const,
-  type: any,
-  val<T extends AllTypes>(type: T): Array<T> {
+  value: any,
+  val<T extends AllTypes>(value: T): Array<T> {
     return {
       name: 'array',
-      type
+      value
     }
   },
-  unknown: { name: 'array' as const, type: unknown }
+  unknown: { name: 'array' as const, value: unknown }
 }
