@@ -3,11 +3,11 @@ import { Array } from './Array'
 // import { BigInt } from './BigInt'
 import { Boolean } from './Boolean'
 import { Null } from './Null'
-import { Number } from './Number'
-import { String } from './String'
-import { Symbol } from './Symbol'
+import { number, Number } from './Number'
+import { string as str, String } from './String'
+import { symbol as sym, Symbol } from './Symbol'
 import { Undefined } from './Undefined'
-import { Union } from './Union'
+import { union, Union } from './Union'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
   | Symbol | Union<any> | Array<any> | Object<any>
@@ -23,3 +23,5 @@ function create<Props extends Record<KeyTypes, AllTypes> | undefined>(props: Pro
 }
 
 export const object = { ...create(undefined), create }
+
+export const keys = union.create(str, number, sym)
