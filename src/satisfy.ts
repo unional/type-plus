@@ -2,6 +2,8 @@ import * as types from './types'
 
 export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): subject is types.ConvertToActual<T> {
   switch (type.name) {
+    case 'unknown':
+    case 'any': return true
     case 'undefined':
     case 'symbol': return typeof subject === type.name
     case 'null': return subject === null
@@ -37,5 +39,5 @@ function satisfyUnion<T extends types.Union>(type: T, subject: unknown) {
 
 function satisfyArray<T extends types.Array>(type: T, subject: unknown) {
   if (!Array.isArray(subject)) return false
-  return true
+  return subject.every(s => satisfy(type.value, s))
 }
