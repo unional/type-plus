@@ -192,6 +192,16 @@ test('symbol', () => {
 })
 
 describe('union', () => {
+  test('zero type gets never', () => {
+    const t = types.union.create()
+    expect(satisfy(t, undefined)).toBe(false)
+
+    const value: unknown = true
+    if (satisfy(t, value)) {
+      assertType<never>(value)
+    }
+  })
+
   test('single type gets the type back', () => {
     const t = types.union.create(types.boolean)
     expect(satisfy(t, false)).toBe(true)
