@@ -324,6 +324,24 @@ describe('object', () => {
     const t = types.object.create({ a: types.number })
     expect(satisfy(t, { a: 0 })).toBe(true)
     expect(satisfy(t, { a: 1 })).toBe(true)
+
+    const value: unknown = { a: 1 }
+    if (satisfy(t, value)) {
+      assertType<{ a: number }>(value)
+    }
+  })
+  test('two props', () => {
+    const t = types.object.create({
+      a: types.number,
+      b: types.string
+    })
+    expect(satisfy(t, { a: 0, b: '' })).toBe(true)
+    expect(satisfy(t, { a: 1, b: 'b' })).toBe(true)
+
+    const value: unknown = { a: 1, b: '' }
+    if (satisfy(t, value)) {
+      assertType<{ a: number, b: string }>(value)
+    }
   })
 })
 

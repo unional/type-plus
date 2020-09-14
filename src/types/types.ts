@@ -38,7 +38,7 @@ export type Generate<T extends AllTypes> =
   T extends Unknown ? unknown :
   T extends Number ? T['value'] :
   T extends String ? T['value'] :
-  T extends Object ? T['props'] extends undefined ? Record<KeyTypes, any> : unknown :
+  T extends Object<any> ? Generate.ObjectDevice<T['props']>['result'] :
   T extends Array ? Generate<T['value']>[] :
   T extends Union ? Generate.UnionDevice<T['values']>['result'] :
   // T extends BigInt ? T['value'] :
@@ -47,7 +47,13 @@ export type Generate<T extends AllTypes> =
 export namespace Generate {
   export type UnionDevice<T extends AllTypes[]> = T['length'] extends 0
     ? { result: never }
-    : {
-      result: Generate<T[0]> | UnionDevice<Tuple.Drop<T, '1'>>['result']
-    }
+    : { result: Generate<T[0]> | UnionDevice<Tuple.Drop<T, '1'>>['result'] }
+
+  export type ObjectDevice<T extends Record<KeyTypes, AllTypes> | undefined> = T extends undefined
+    ? { result: Record<KeyTypes, any> }
+    : MapProps<Exclude<T, undefined>>
+
+  export type MapProps<T extends Record<KeyTypes, AllTypes>> = {
+    result: { [K in keyof T]: Generate<T[K]> }
+  }
 }
