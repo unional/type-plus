@@ -1,3 +1,5 @@
+import { Any } from './Any'
+import { Array } from './Array'
 // import { BigInt } from './BigInt'
 import { Boolean } from './Boolean'
 import { Null } from './Null'
@@ -10,21 +12,23 @@ import { Union } from './Union'
 import { Unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
-| Symbol | Union<any> | Object<any> | Array<any> | Unknown
+  | Symbol | Union<any> | Object<any> | Array<any> | Unknown | Any
 
-
-export type Tuple<T extends AllTypes[][]> = {
+export type Tuple<Values extends AllTypes[] = AllTypes[]> = {
   name: 'tuple',
-  values: [...T]
+  values: Values
 }
 
 export const tuple = {
   name: 'tuple' as const,
   types: [],
-  create<Value extends AllTypes[][]>(values: Value): Tuple<Value> {
+  create<Value extends AllTypes, Values extends AllTypes[]>(
+    value: Value,
+    ...values: Values
+  ): Tuple<[Value, ...Values]> {
     return {
       name: 'tuple',
-      values
+      values: [value, ...values]
     }
   }
 }

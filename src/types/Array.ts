@@ -14,15 +14,15 @@ type AllTypes = Undefined | Null | Boolean | Number | String
   | Symbol | Union | Object | Array<any> | Unknown | Any
 // | BigInt
 
-export type Array<T extends AllTypes = AllTypes> = {
+export type Array<Value extends AllTypes = AllTypes> = {
   name: 'array',
-  value: T
+  value: Value
 }
 
 export const array = {
   name: 'array' as const,
   value: any,
-  create<T extends AllTypes>(value: T): Array<T> {
+  create<Value extends AllTypes>(value: Value): Array<Value> {
     return {
       name: 'array',
       value

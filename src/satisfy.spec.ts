@@ -380,6 +380,32 @@ describe('object', () => {
   })
 })
 
+describe('tuple', () => {
+  test('single value', () => {
+    const t = types.tuple.create(types.number)
+    expect(satisfy(t, [0])).toBe(true)
+    expect(satisfy(t, [''])).toBe(false)
+    expect(satisfy(t, [0, 1])).toBe(false)
+
+    const value: unknown = [1]
+    if (satisfy(t, value)) {
+      assertType<[number]>(value)
+    }
+  })
+
+  test('two values', () => {
+    const t = types.tuple.create(types.number, types.string)
+    expect(satisfy(t, [0, ''])).toBe(true)
+    expect(satisfy(t, [0])).toBe(false)
+    expect(satisfy(t, [0, '', true])).toBe(false)
+
+    const value: unknown = [1, 'a']
+    if (satisfy(t, value)) {
+      assertType<[number, string]>(value)
+    }
+  })
+})
+
 test('if condition', () => {
   types.If(types.boolean.false, {}, false as const)
 })
