@@ -245,7 +245,7 @@ describe('union', () => {
       assertType<boolean | null>(value)
     }
   })
-});
+})
 
 describe('array', () => {
   test('base type satisfies any array', () => {
@@ -262,7 +262,6 @@ describe('array', () => {
   test('base type does not satisfy non-array', () => {
     notSatisfyTypesOtherThan(types.array, [], ['a'])
   })
-
   test('unknown type assert result to unknown[]', () => {
     expect(satisfy(types.array.unknown, [])).toBe(true)
     expect(satisfy(types.array.unknown, ['a'])).toBe(true)
@@ -274,11 +273,9 @@ describe('array', () => {
       assertType<unknown[]>(value)
     }
   })
-
   test('unknown type does not satisfy non-array', () => {
     notSatisfyTypesOtherThan(types.array.unknown, [], ['a'])
   })
-
   test('specific type', () => {
     const t = types.array.create(types.number)
     expect(satisfy(t, [])).toBe(true)
@@ -293,7 +290,6 @@ describe('array', () => {
       assertType<number[]>(value)
     }
   })
-
   test('union type', () => {
     const t = types.array.create(types.union.create(types.number, types.boolean))
     expect(satisfy(t, [])).toBe(true)
@@ -306,6 +302,24 @@ describe('array', () => {
     if (satisfy(t, value)) {
       assertType<Array<number | boolean>>(value)
     }
+  })
+})
+
+describe('object', () => {
+  test('base type satisfies any object', () => {
+    expect(satisfy(types.object, {})).toBe(true)
+    expect(satisfy(types.object, { a: 1 })).toBe(true)
+    expect(satisfy(types.object, { 0: 0 })).toBe(true)
+
+    const value: unknown = { a: 1 }
+    if (satisfy(types.object, value)) {
+      // Note that this test is weak.
+      // I don't have a good way to nail it down as it is a top type.
+      assertType<Record<string | number | symbol, any>>(value)
+    }
+  })
+  test('base type does not satisfy array', () => {
+    expect(satisfy(types.object, [])).toBe(false)
   })
 })
 
