@@ -406,9 +406,9 @@ describe('tuple', () => {
   })
 })
 
-test('if condition', () => {
-  types.If(types.boolean.false, {}, false as const)
-})
+// test('if condition', () => {
+//   types.If(types.boolean.false, {}, false as const)
+// })
 
 test.todo('optional')
 
