@@ -332,15 +332,44 @@ describe('object', () => {
   })
   test('two props', () => {
     const t = types.object.create({
-      a: types.number,
+      a: types.number.create(1),
       b: types.string
     })
-    expect(satisfy(t, { a: 0, b: '' })).toBe(true)
+    expect(satisfy(t, { a: 1, b: '' })).toBe(true)
     expect(satisfy(t, { a: 1, b: 'b' })).toBe(true)
 
     const value: unknown = { a: 1, b: '' }
     if (satisfy(t, value)) {
-      assertType<{ a: number, b: string }>(value)
+      assertType<{ a: 1, b: string }>(value)
+    }
+  })
+
+  test('props with union', () => {
+    const t = types.object.create({
+      a: types.union.create(types.number.create(1), types.boolean.true),
+      b: types.string
+    })
+    expect(satisfy(t, { a: 1, b: '' })).toBe(true)
+    expect(satisfy(t, { a: true, b: '' })).toBe(true)
+    expect(satisfy(t, { a: false, b: '' })).toBe(false)
+
+    const value: unknown = { a: 1, b: '' }
+    if (satisfy(t, value)) {
+      assertType<{ a: true | 1, b: string }>(value)
+    }
+  })
+
+  test('nested object', () => {
+    const t = types.object.create({
+      a: types.object.create({
+        b: types.number
+      })
+    })
+    expect(satisfy(t, { a: { b: 0 } })).toBe(true)
+
+    const value: unknown = { a: { b: 0 } }
+    if (satisfy(t, value)) {
+      assertType<{ a: { b: number } }>(value)
     }
   })
 })
