@@ -191,6 +191,48 @@ test('symbol', () => {
   }
 })
 
+describe('union', () => {
+  test('single type gets the type back', () => {
+    const t = types.union.join(types.boolean)
+    expect(satisfy(t, false)).toBe(true)
+
+    const value: unknown = true
+    if (satisfy(t, value)) {
+      assertType<boolean>(value)
+    }
+  })
+
+  test('on two types', () => {
+    const t = types.union.join(types.boolean, types.number)
+    expect(satisfy(t, 0)).toBe(true)
+    expect(satisfy(t, false)).toBe(true)
+
+    const value: unknown = 0
+    if (satisfy(t, value)) {
+      assertType<boolean | number>(value)
+    }
+  })
+
+  test('on multiple primitive types', () => {
+    const t = types.union.join(types.boolean, types.null, types.number)
+    expect(satisfy(t, false)).toBe(true)
+
+    const value: unknown = true
+    if (satisfy(t, value)) {
+      assertType<boolean | null | number>(value)
+    }
+  })
+
+  test('nested union is flatten', () => {
+    const t = types.union.join(types.union.join(types.boolean, types.null))
+    expect(satisfy(t, false)).toBe(true)
+    const value: unknown = true
+    if (satisfy(t, value)) {
+      assertType<boolean | null>(value)
+    }
+  })
+});
+
 describe('array', () => {
   test('base type satisfies any array', () => {
     expect(satisfy(types.array, [])).toBe(true)
@@ -251,37 +293,6 @@ describe('array', () => {
       assertType<Array<number | boolean>>(value)
     }
   })
-})
-
-test('union', () => {
-  const t = types.union.join(types.boolean, types.number)
-  expect(satisfy(t, 0)).toBe(true)
-  expect(satisfy(t, false)).toBe(true)
-
-  const value: unknown = 0
-  if (satisfy(t, value)) {
-    assertType<boolean | number>(value)
-  }
-})
-
-test('union single type gets the type back', () => {
-  const t = types.union.join(types.boolean)
-  expect(satisfy(t, false)).toBe(true)
-
-  const value: unknown = true
-  if (satisfy(t, value)) {
-    assertType<boolean>(value)
-  }
-})
-
-test('union of multiple primitive types', () => {
-  const t = types.union.join(types.boolean, types.null, types.number)
-  expect(satisfy(t, false)).toBe(true)
-
-  const value: unknown = true
-  if (satisfy(t, value)) {
-    assertType<boolean | null | number>(value)
-  }
 })
 
 test('if condition', () => {
