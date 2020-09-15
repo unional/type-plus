@@ -118,10 +118,10 @@ describe('number', () => {
       assertType<1>(value)
     }
   })
-  test('0 not satisfy 1', () => {
+  test('0 does not satisfy 1', () => {
     expect(satisfy(types.number.create(1), 0)).toBe(false)
   })
-  test('1 not satisfy 0', () => {
+  test('1 does not satisfy 0', () => {
     expect(satisfy(types.number.create(0), 1)).toBe(false)
   })
   test.todo('number list')
@@ -145,8 +145,9 @@ describe('number', () => {
 })
 
 describe('string', () => {
-  test('string', () => {
+  test('base type satisfies any string', () => {
     expect(satisfy(types.string, '')).toBe(true)
+    expect(satisfy(types.string, 'a')).toBe(true)
     notSatisfyTypesOtherThan(types.string, '', 'a')
 
     const value: unknown = ''
@@ -155,8 +156,7 @@ describe('string', () => {
       assertType.isFalse(assignability<''>()(value))
     }
   })
-
-  test(`string:''`, () => {
+  test(`''`, () => {
     expect(satisfy(types.string, '')).toBe(true)
     notSatisfyTypesOtherThan(types.string, '')
 
@@ -165,8 +165,7 @@ describe('string', () => {
       assertType<''>(value)
     }
   })
-
-  test(`string:'a'`, () => {
+  test(`'a'`, () => {
     expect(satisfy(types.string, 'a')).toBe(true)
     notSatisfyTypesOtherThan(types.string, '', 'a')
 
@@ -175,13 +174,27 @@ describe('string', () => {
       assertType<'a'>(value)
     }
   })
-
-  test(`'' not satisfy 'a'`, () => {
+  test(`'' does not satisfy 'a'`, () => {
     expect(satisfy(types.string.create('a'), '')).toBe(false)
   })
-
-  test(`'a' not satisfy ''`, () => {
+  test(`'a' does not satisfy ''`, () => {
     expect(satisfy(types.string.create(''), 'a')).toBe(false)
+  })
+  test('optional', () => {
+    const t = types.string.optional
+    expect(satisfy(t, undefined)).toBe(true)
+
+    const value: unknown = undefined
+    if (satisfy(t, value)) {
+      assertType<string | undefined>(value)
+    }
+  })
+  test('optional create', () => {
+    const t = types.string.optional.create('a')
+    const value: unknown = undefined
+    if (satisfy(t, value)) {
+      assertType<'a' | undefined>(value)
+    }
   })
 })
 
