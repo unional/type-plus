@@ -17,13 +17,12 @@ export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): su
     case 'array': return satisfyArray(type as types.Array, subject)
     case 'tuple': return satisfyTuple(type as types.Tuple, subject)
   }
-  return false
 }
 
 function satisfyBoolean(type: types.Boolean, subject: unknown) {
   if (typeof subject !== 'boolean') return false
   if (type === types.boolean) return true
-  return type.value === 'true' ? subject : !subject
+  return type.value ? subject : !subject
 }
 
 function satisfyType(

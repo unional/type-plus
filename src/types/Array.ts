@@ -19,6 +19,9 @@ export type Array<Value extends AllTypes = any> = {
   value: Value
 }
 
+/**
+ * Creates an array type.
+ */
 function create<Value extends AllTypes>(value: Value): Array<Value> {
   return {
     name: 'array',
@@ -31,6 +34,9 @@ export const array = {
   create,
   optional: {
     ...union.create(create(any), undef),
+    /**
+     * Creates an optional array type.
+     */
     create<Value extends AllTypes>(value: Value): Union<[Array<Value>, Undefined]> {
       return union.create(create(value), undef)
     }
