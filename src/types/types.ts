@@ -26,7 +26,7 @@ export type ComplexTypes = Object<any> | Array<any> | Tuple<any>
  */
 export type SetTypes = Union // | Intersection | SubSet | SuperSet | Complement | Diff
 
-export type AllTypes = PrimitiveTypes | ComplexTypes | SetTypes | Symbol | Unknown | Any// | BigInt
+export type AllTypes = PrimitiveTypes | ComplexTypes | SetTypes | Symbol | Unknown | Any // | BigInt
 
 export type Generate<T extends AllTypes> =
   T extends Undefined ? undefined :

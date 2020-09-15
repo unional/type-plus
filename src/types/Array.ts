@@ -6,27 +6,34 @@ import { Number } from './Number'
 import { Object } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
-import { Undefined } from './Undefined'
-import { Union } from './Union'
+import { undef, Undefined } from './Undefined'
+import { union, Union } from './Union'
 import { Unknown, unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
-  | Symbol | Union | Object | Array<any> | Unknown | Any
+  | Symbol | Union<any> | Object | Array<any> | Unknown | Any
 // | BigInt
 
-export type Array<Value extends AllTypes = AllTypes> = {
+export type Array<Value extends AllTypes = any> = {
   name: 'array',
   value: Value
 }
 
+function create<Value extends AllTypes>(value: Value): Array<Value> {
+  return {
+    name: 'array',
+    value: value
+  }
+}
+
 export const array = {
-  name: 'array' as const,
-  value: any,
-  create<Value extends AllTypes>(value: Value): Array<Value> {
-    return {
-      name: 'array',
-      value
+  ...create(any),
+  create,
+  optional: {
+    ...union.create(create(any), undef),
+    create<Value extends AllTypes>(value: Value): Union<[Array<Value>, Undefined]> {
+      return union.create(create(value), undef)
     }
   },
-  unknown: { name: 'array' as const, value: unknown }
+  unknown: create(unknown)
 }

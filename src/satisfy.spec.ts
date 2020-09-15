@@ -304,6 +304,23 @@ describe('array', () => {
       assertType<Array<number | boolean>>(value)
     }
   })
+  test('optional', () => {
+    const t = types.array.optional
+    const value: unknown = undefined
+    if (satisfy(t, value)) {
+      assertType<any[] | undefined>(value)
+    }
+    else {
+      fail('should not reach')
+    }
+  })
+  test('optional create', () => {
+    const t = types.array.optional.create(types.string)
+    const value: unknown = undefined
+    if (satisfy(t, value)) {
+      assertType<string[] | undefined>(value)
+    }
+  })
 })
 
 describe('object', () => {
