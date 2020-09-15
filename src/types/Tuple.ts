@@ -7,8 +7,8 @@ import { Number } from './Number'
 import { Object } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
-import { Undefined } from './Undefined'
-import { Union } from './Union'
+import { undef, Undefined } from './Undefined'
+import { union, Union } from './Union'
 import { Unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
@@ -19,16 +19,32 @@ export type Tuple<Values extends AllTypes[] = AllTypes[]> = {
   values: Values
 }
 
+/**
+ * Creates a tuple type.
+ */
+function create<Value extends AllTypes, Values extends AllTypes[]>(
+  value: Value,
+  ...values: Values
+): Tuple<[Value, ...Values]> {
+  return {
+    name: 'tuple',
+    values: [value, ...values]
+  }
+}
 export const tuple = {
-  name: 'tuple' as const,
-  types: [],
-  create<Value extends AllTypes, Values extends AllTypes[]>(
-    value: Value,
-    ...values: Values
-  ): Tuple<[Value, ...Values]> {
-    return {
-      name: 'tuple',
-      values: [value, ...values]
+  create,
+  optional: {
+    /**
+     * Creates an optional tuple type.
+     */
+    create<Value extends AllTypes, Values extends AllTypes[]>(
+      value: Value,
+      ...values: Values
+    ): Union<[Tuple<[Value, ...Values]>, Undefined]> {
+      return union.create({
+        name: 'tuple',
+        values: [value, ...values]
+      }, undef)
     }
   }
 }

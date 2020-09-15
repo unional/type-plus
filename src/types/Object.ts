@@ -1,5 +1,5 @@
 import { KeyTypes } from '../object-key/KeyTypes'
-import { Any, any } from './Any'
+import { Any } from './Any'
 import { Array } from './Array'
 // import { BigInt } from './BigInt'
 import { Boolean } from './Boolean'
@@ -22,14 +22,14 @@ export type Object<Props extends Record<KeyTypes, AllTypes> | Any = Any> = {
 /**
  * create specific object type.
  */
-function create<Props extends Record<KeyTypes, AllTypes> | Any>(props: Props): Object<Props> {
+function create<Props extends Record<KeyTypes, AllTypes>>(props: Props): Object<Props> {
   return { name: 'object', props }
 }
 
 export const object = {
-  ...create(any), create,
+  ...create(undefined as any), create,
   optional: {
-    ...union.create(create(any), undef),
+    ...union.create(create(undefined as any), undef),
     /**
      * Creates an optional object type.
      */

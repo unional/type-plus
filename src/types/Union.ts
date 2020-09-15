@@ -1,5 +1,5 @@
-import { Array } from './Array'
 import { Any } from './Any'
+import { Array } from './Array'
 // import { BigInt } from './BigInt'
 import { Boolean } from './Boolean'
 import { Null } from './Null'
@@ -7,11 +7,13 @@ import { Number } from './Number'
 import { Object } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
-import { Undefined } from './Undefined'
+import { Tuple } from './Tuple'
+import { undef, Undefined } from './Undefined'
 import { Unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
-  | Symbol | Union<any> | Object<any> | Array<any> | Unknown | Any
+  | Symbol | Union<any> | Unknown | Any |
+  Object<any> | Array<any> | Tuple<any>
 // | BigInt
 
 export type Union<Values extends AllTypes[] = AllTypes[]> = {
@@ -19,11 +21,25 @@ export type Union<Values extends AllTypes[] = AllTypes[]> = {
   values: Values
 }
 
+/**
+ * Create union type.
+ */
+function create<Values extends AllTypes[]>(...values: Values): Union<Values> {
+  return {
+    name: 'union',
+    values
+  }
+}
+
 export const union = {
-  create<Values extends AllTypes[]>(...values: Values): Union<Values> {
-    return {
-      name: 'union',
-      values
+  create,
+  optional: {
+    /**
+     * Creates an optional unional type.
+     */
+    create<Values extends AllTypes[]>(...values: Values): Union<[...Values, Undefined]> {
+      values.push(undef)
+      return create(...values as any)
     }
   }
 }

@@ -80,6 +80,8 @@ describe('boolean', () => {
   })
   test('optional create', () => {
     const t = types.boolean.optional.create(true)
+    expect(satisfy(t, undefined)).toBe(true)
+
     const value: unknown = undefined
     if (satisfy(t, value)) {
       assertType<true | undefined>(value)
@@ -137,6 +139,8 @@ describe('number', () => {
   })
   test('optional create', () => {
     const t = types.number.optional.create(1)
+    expect(satisfy(t, undefined)).toBe(true)
+
     const value: unknown = undefined
     if (satisfy(t, value)) {
       assertType<1 | undefined>(value)
@@ -191,6 +195,8 @@ describe('string', () => {
   })
   test('optional create', () => {
     const t = types.string.optional.create('a')
+    expect(satisfy(t, undefined)).toBe(true)
+
     const value: unknown = undefined
     if (satisfy(t, value)) {
       assertType<'a' | undefined>(value)
@@ -257,7 +263,6 @@ describe('union', () => {
       assertType<never>(value)
     }
   })
-
   test('single type gets the type back', () => {
     const t = types.union.create(types.boolean)
     expect(satisfy(t, false)).toBe(true)
@@ -267,7 +272,6 @@ describe('union', () => {
       assertType<boolean>(value)
     }
   })
-
   test('on two types', () => {
     const t = types.union.create(types.boolean, types.number)
     expect(satisfy(t, 0)).toBe(true)
@@ -278,7 +282,6 @@ describe('union', () => {
       assertType<boolean | number>(value)
     }
   })
-
   test('on multiple primitive types', () => {
     const t = types.union.create(types.boolean, types.null, types.number)
     expect(satisfy(t, false)).toBe(true)
@@ -288,7 +291,6 @@ describe('union', () => {
       assertType<boolean | null | number>(value)
     }
   })
-
   test('nested union is flatten', () => {
     // TODO: flatten union type at `create()`
     // currently it is not, but the recursion work at `satisfy()`
@@ -299,6 +301,15 @@ describe('union', () => {
     const value: unknown = true
     if (satisfy(t, value)) {
       assertType<boolean | null>(value)
+    }
+  })
+  test('optional create', () => {
+    const t = types.union.optional.create(types.boolean)
+    expect(satisfy(t, undefined)).toBe(true)
+
+    const value: unknown = undefined
+    if (satisfy(t, value)) {
+      assertType<boolean | undefined>(value)
     }
   })
 })
@@ -361,16 +372,17 @@ describe('array', () => {
   })
   test('optional', () => {
     const t = types.array.optional
+    expect(satisfy(t, undefined)).toBe(true)
+
     const value: unknown = undefined
     if (satisfy(t, value)) {
       assertType<any[] | undefined>(value)
     }
-    else {
-      fail('should not reach')
-    }
   })
   test('optional create', () => {
     const t = types.array.optional.create(types.string)
+    expect(satisfy(t, undefined)).toBe(true)
+
     const value: unknown = undefined
     if (satisfy(t, value)) {
       assertType<string[] | undefined>(value)
@@ -452,18 +464,19 @@ describe('object', () => {
   })
   test('optional', () => {
     const t = types.object.optional
+    expect(satisfy(t, undefined)).toBe(true)
+
     const value: unknown = undefined
     if (satisfy(t, value)) {
       assertType<Record<KeyTypes, any> | undefined>(value)
-    }
-    else {
-      fail('should not reach')
     }
   })
   test('optional create', () => {
     const t = types.object.optional.create({
       a: types.string
     })
+    expect(satisfy(t, undefined)).toBe(true)
+
     const value: unknown = undefined
     if (satisfy(t, value)) {
       assertType<{ a: string } | undefined>(value)
@@ -483,7 +496,6 @@ describe('tuple', () => {
       assertType<[number]>(value)
     }
   })
-
   test('two values', () => {
     const t = types.tuple.create(types.number, types.string)
     expect(satisfy(t, [0, ''])).toBe(true)
@@ -495,13 +507,29 @@ describe('tuple', () => {
       assertType<[number, string]>(value)
     }
   })
+  test('optional', () => {
+    const t = types.tuple.optional.create(types.boolean)
+    expect(satisfy(t, undefined)).toBe(true)
+
+    const value: unknown = undefined
+    if (satisfy(t, value)) {
+      assertType<[boolean] | undefined>(value)
+    }
+  })
+  test('optional create', () => {
+    const t = types.tuple.optional.create(types.boolean)
+    expect(satisfy(t, undefined)).toBe(true)
+
+    const value: unknown = undefined
+    if (satisfy(t, value)) {
+      assertType<[boolean] | undefined>(value)
+    }
+  })
 })
 
 // test('if condition', () => {
 //   types.If(types.boolean.false, {}, false as const)
 // })
-
-test.todo('optional')
 
 function notSatisfyTypesOtherThan(type: types.AllTypes, ...excepts: any[]) {
   const values = [undefined, null, true, false, 0, 1, 0n, 1n, '', 'a', [], ['a'], {}, { a: 1 }, Symbol(), Symbol.for('a')]
