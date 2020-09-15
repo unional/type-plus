@@ -1,4 +1,5 @@
 import { KeyTypes } from '../object-key/KeyTypes'
+import { Any, any } from './Any'
 import { Array } from './Array'
 // import { BigInt } from './BigInt'
 import { Boolean } from './Boolean'
@@ -13,7 +14,7 @@ type AllTypes = Undefined | Null | Boolean | Number | String
   | Symbol | Union<any> | Array<any> | Object<any>
 // | BigInt
 
-export type Object<Props extends Record<KeyTypes, AllTypes> | undefined = undefined> = {
+export type Object<Props extends Record<KeyTypes, AllTypes> | Any = Any> = {
   name: 'object',
   props: Props
 }
@@ -21,20 +22,20 @@ export type Object<Props extends Record<KeyTypes, AllTypes> | undefined = undefi
 /**
  * create specific object type.
  */
-function create<Props extends Record<KeyTypes, AllTypes> | undefined>(props: Props): Object<Props> {
+function create<Props extends Record<KeyTypes, AllTypes> | Any>(props: Props): Object<Props> {
   return { name: 'object', props }
 }
 
 export const object = {
-  ...create(undefined), create,
+  ...create(any), create,
   optional: {
-    ...union.create(create(undefined), undef),
+    ...union.create(create(any), undef),
     /**
      * Creates an optional object type.
      */
-    create<Props extends Record<KeyTypes, AllTypes> | undefined>(props: Props): Union<[Object<Props>, Undefined]> {
+    create<Props extends Record<KeyTypes, AllTypes> | Any>(props: Props): Union<[Object<Props>, Undefined]> {
       return union.create(create(props), undef)
-    },
+    }
   }
 }
 
