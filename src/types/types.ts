@@ -47,18 +47,30 @@ export type Generate<T extends AllTypes> =
   unknown
 
 export namespace Generate {
+  /**
+   * @internal
+   */
   export type UnionDevice<T extends AllTypes[]> = T['length'] extends 0
     ? { result: never }
     : { result: Generate<T[0]> | UnionDevice<TTTuple.Drop<T, '1'>>['result'] }
 
+  /**
+   * @internal
+   */
   export type ObjectDevice<T extends Record<KeyTypes, AllTypes> | undefined> = T extends undefined
     ? { result: Record<KeyTypes, any> }
     : MapProps<Exclude<T, undefined>>
 
+  /**
+   * @internal
+   */
   export type MapProps<T extends Record<KeyTypes, AllTypes>> = {
     result: { [K in keyof T]: Generate<T[K]> }
   }
 
+  /**
+   * @internal
+   */
   export type TupleDevice<T extends AllTypes[]> = T['length'] extends 1
     ? { result: [Generate<T[0]>] }
     : { result: [Generate<T[0]>, ...TupleDevice<TTTuple.Drop<T, '1'>>['result']] }
