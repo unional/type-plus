@@ -13,134 +13,176 @@ test('undefined', () => {
   }
 })
 
-test('null', () => {
-  expect(satisfy(types.null, null)).toBe(true)
-  notSatisfyTypesOtherThan(types.null, null)
+describe('null', () => {
+  test('satisfies only null', () => {
+    expect(satisfy(types.null, null)).toBe(true)
+    notSatisfyTypesOtherThan(types.null, null)
 
-  const value: unknown = null
-  if (satisfy(types.null, value)) {
-    assertType<null>(value)
-  }
+    const value: unknown = null
+    if (satisfy(types.null, value)) {
+      assertType<null>(value)
+    }
+  })
+  test('optional', () => {
+    const t = types.null.optional
+    expect(satisfy(t, undefined)).toBe(true)
+
+    const value: unknown = undefined
+    if (satisfy(t, value)) {
+      assertType<null | undefined>(value)
+    }
+  })
 })
 
-test('boolean', () => {
-  expect(satisfy(types.boolean, true)).toBe(true)
-  expect(satisfy(types.boolean, false)).toBe(true)
-  notSatisfyTypesOtherThan(types.boolean, true, false)
+describe('boolean', () => {
+  test('base type satisfies both true and false', () => {
+    expect(satisfy(types.boolean, true)).toBe(true)
+    expect(satisfy(types.boolean, false)).toBe(true)
+    notSatisfyTypesOtherThan(types.boolean, true, false)
 
-  const value: unknown = undefined
-  if (satisfy(types.boolean, value)) {
-    assertType<boolean>(value)
-  }
+    const value: unknown = undefined
+    if (satisfy(types.boolean, value)) {
+      assertType<boolean>(value)
+    }
+  })
+  test('true', () => {
+    expect(satisfy(types.boolean.true, true)).toBe(true)
+    notSatisfyTypesOtherThan(types.boolean.true, true)
+
+    const value: unknown = true
+    if (satisfy(types.boolean.true, value)) {
+      assertType<true>(value)
+    }
+  })
+  test('false', () => {
+    expect(satisfy(types.boolean.false, false)).toBe(true)
+    notSatisfyTypesOtherThan(types.boolean.false, false)
+
+    const value: unknown = false
+    if (satisfy(types.boolean.false, value)) {
+      assertType<false>(value)
+    }
+  })
+  test('true does not satisfy False', () => {
+    expect(satisfy(types.boolean.false, true)).toBe(false)
+  })
+  test('false does not satisfy True', () => {
+    expect(satisfy(types.boolean.true, false)).toBe(false)
+  })
+  test('optional', () => {
+    const t = types.boolean.optional
+    expect(satisfy(t, undefined)).toBe(true)
+
+    const value: unknown = undefined
+    if (satisfy(t, value)) {
+      assertType<boolean | undefined>(value)
+    }
+  })
+  test('optional create', () => {
+    const t = types.boolean.optional.create(true)
+    const value: unknown = undefined
+    if (satisfy(t, value)) {
+      assertType<true | undefined>(value)
+    }
+  })
 })
 
-test('boolean:true', () => {
-  expect(satisfy(types.boolean.true, true)).toBe(true)
-  notSatisfyTypesOtherThan(types.boolean.true, true)
+describe('number', () => {
+  test('base type satisfy all numbers', () => {
+    expect(satisfy(types.number, 0)).toBe(true)
+    expect(satisfy(types.number, -1)).toBe(true)
+    expect(satisfy(types.number, 1)).toBe(true)
+    notSatisfyTypesOtherThan(types.number, -1, 0, 1)
 
-  const value: unknown = true
-  if (satisfy(types.boolean.true, value)) {
-    assertType<true>(value)
-  }
+    const value: unknown = 0
+    if (satisfy(types.number, value)) {
+      assertType<number>(value)
+      assertType.isFalse(assignability<0>()(value))
+    }
+  })
+  test('0', () => {
+    expect(satisfy(types.number.create(0), 0)).toBe(true)
+    notSatisfyTypesOtherThan(types.number.create(0), 0)
+
+    const value: unknown = 0
+    if (satisfy(types.number.create(0), value)) {
+      assertType<0>(value)
+    }
+  })
+  test('1', () => {
+    expect(satisfy(types.number.create(1), 1)).toBe(true)
+    notSatisfyTypesOtherThan(types.number.create(1), 1)
+
+    const value: unknown = 1
+    if (satisfy(types.number.create(1), value)) {
+      assertType<1>(value)
+    }
+  })
+  test('0 not satisfy 1', () => {
+    expect(satisfy(types.number.create(1), 0)).toBe(false)
+  })
+  test('1 not satisfy 0', () => {
+    expect(satisfy(types.number.create(0), 1)).toBe(false)
+  })
+  test.todo('number list')
+  test.todo('number range')
+  test('optional', () => {
+    const t = types.number.optional
+    expect(satisfy(t, undefined)).toBe(true)
+
+    const value: unknown = undefined
+    if (satisfy(t, value)) {
+      assertType<number | undefined>(value)
+    }
+  })
+  test('optional create', () => {
+    const t = types.number.optional.create(1)
+    const value: unknown = undefined
+    if (satisfy(t, value)) {
+      assertType<1 | undefined>(value)
+    }
+  })
 })
 
-test('boolean:false', () => {
-  expect(satisfy(types.boolean.false, false)).toBe(true)
-  notSatisfyTypesOtherThan(types.boolean.false, false)
+describe('string', () => {
+  test('string', () => {
+    expect(satisfy(types.string, '')).toBe(true)
+    notSatisfyTypesOtherThan(types.string, '', 'a')
 
-  const value: unknown = false
-  if (satisfy(types.boolean.false, value)) {
-    assertType<false>(value)
-  }
-})
+    const value: unknown = ''
+    if (satisfy(types.string, value)) {
+      assertType<string>(value)
+      assertType.isFalse(assignability<''>()(value))
+    }
+  })
 
-test('true not satisfy False', () => {
-  expect(satisfy(types.boolean.false, true)).toBe(false)
-})
+  test(`string:''`, () => {
+    expect(satisfy(types.string, '')).toBe(true)
+    notSatisfyTypesOtherThan(types.string, '')
 
-test('false not satisfy True', () => {
-  expect(satisfy(types.boolean.true, false)).toBe(false)
-})
+    const value: unknown = ''
+    if (satisfy(types.string.create(''), value)) {
+      assertType<''>(value)
+    }
+  })
 
-test('number', () => {
-  expect(satisfy(types.number, 0)).toBe(true)
-  notSatisfyTypesOtherThan(types.number, 0, 1)
+  test(`string:'a'`, () => {
+    expect(satisfy(types.string, 'a')).toBe(true)
+    notSatisfyTypesOtherThan(types.string, '', 'a')
 
-  const value: unknown = 0
-  if (satisfy(types.number, value)) {
-    assertType<number>(value)
-    assertType.isFalse(assignability<0>()(value))
-  }
-})
+    const value: unknown = 'a'
+    if (satisfy(types.string.create('a'), value)) {
+      assertType<'a'>(value)
+    }
+  })
 
-test('number:0', () => {
-  expect(satisfy(types.number.create(0), 0)).toBe(true)
-  notSatisfyTypesOtherThan(types.number.create(0), 0)
+  test(`'' not satisfy 'a'`, () => {
+    expect(satisfy(types.string.create('a'), '')).toBe(false)
+  })
 
-  const value: unknown = 0
-  if (satisfy(types.number.create(0), value)) {
-    assertType<0>(value)
-  }
-})
-
-test('number:1', () => {
-  expect(satisfy(types.number.create(1), 1)).toBe(true)
-  notSatisfyTypesOtherThan(types.number.create(1), 1)
-
-  const value: unknown = 1
-  if (satisfy(types.number.create(1), value)) {
-    assertType<1>(value)
-  }
-})
-
-test('0 not satisfy 1', () => {
-  expect(satisfy(types.number.create(1), 0)).toBe(false)
-})
-
-test('1 not satisfy 0', () => {
-  expect(satisfy(types.number.create(0), 1)).toBe(false)
-})
-
-test.todo('number list')
-test.todo('number range')
-
-test('string', () => {
-  expect(satisfy(types.string, '')).toBe(true)
-  notSatisfyTypesOtherThan(types.string, '', 'a')
-
-  const value: unknown = ''
-  if (satisfy(types.string, value)) {
-    assertType<string>(value)
-    assertType.isFalse(assignability<''>()(value))
-  }
-})
-
-test(`string:''`, () => {
-  expect(satisfy(types.string, '')).toBe(true)
-  notSatisfyTypesOtherThan(types.string, '')
-
-  const value: unknown = ''
-  if (satisfy(types.string.create(''), value)) {
-    assertType<''>(value)
-  }
-})
-
-test(`string:'a'`, () => {
-  expect(satisfy(types.string, 'a')).toBe(true)
-  notSatisfyTypesOtherThan(types.string, '', 'a')
-
-  const value: unknown = 'a'
-  if (satisfy(types.string.create('a'), value)) {
-    assertType<'a'>(value)
-  }
-})
-
-test(`'' not satisfy 'a'`, () => {
-  expect(satisfy(types.string.create('a'), '')).toBe(false)
-})
-
-test(`'a' not satisfy ''`, () => {
-  expect(satisfy(types.string.create(''), 'a')).toBe(false)
+  test(`'a' not satisfy ''`, () => {
+    expect(satisfy(types.string.create(''), 'a')).toBe(false)
+  })
 })
 
 // test('bigint', () => {
@@ -394,6 +436,25 @@ describe('object', () => {
     expect(satisfy(types.keys, 'a')).toBe(true)
     expect(satisfy(types.keys, 0)).toBe(true)
     expect(satisfy(types.keys, Symbol.for('abc'))).toBe(true)
+  })
+  test('optional', () => {
+    const t = types.object.optional
+    const value: unknown = undefined
+    if (satisfy(t, value)) {
+      assertType<Record<KeyTypes, any> | undefined>(value)
+    }
+    else {
+      fail('should not reach')
+    }
+  })
+  test('optional create', () => {
+    const t = types.object.optional.create({
+      a: types.string
+    })
+    const value: unknown = undefined
+    if (satisfy(t, value)) {
+      assertType<{ a: string } | undefined>(value)
+    }
   })
 })
 
