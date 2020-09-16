@@ -13,19 +13,15 @@ import { Undefined } from './Undefined'
 import { Union } from './Union'
 import { Unknown } from './Unknown'
 
-/** @internal */
-export type PrimitiveTypes = Undefined | Null | Boolean | Number | String
-
-/** @internal */
-export type ComplexTypes = Object<any> | Array<any> | Tuple<any>
-
-/**
- * @internal
- * <https://www.rapidtables.com/math/symbols/Set_Symbols.html>
- */
-export type SetTypes = Union // | Intersection | SubSet | SuperSet | Complement | Diff
-
-export type AllTypes = PrimitiveTypes | ComplexTypes | SetTypes | Symbol | Unknown | Any // | BigInt
+export type AllTypes = Undefined | Null | Boolean | Number | String
+  | Object | Array | Tuple
+  /**
+   * @internal
+   * <https://www.rapidtables.com/math/symbols/Set_Symbols.html>
+   */
+  | Union // | Intersection | SubSet | SuperSet | Complement | Diff
+  | Unknown | Any
+  | Symbol // | BigInt
 
 export type Generate<T extends AllTypes> =
   T extends Undefined ? undefined :
