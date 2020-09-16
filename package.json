@@ -33,7 +33,7 @@
     "coverage": "jest --coverage",
     "dc": "yarn dependency-check",
     "depcheck": "yarn dependency-check",
-    "dependency-check": "dependency-check . --unused --no-dev -i typescript && dependency-check . --missing --no-dev",
+    "dependency-check": "dependency-check . --unused --no-dev -i ts-toolbelt -i typescript && dependency-check . --missing --no-dev",
     "lint": "eslint --ext=ts,js .",
     "nuke": "yarn clean && rimraf node_modules",
     "semantic-release": "semantic-release",
