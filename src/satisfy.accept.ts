@@ -38,6 +38,6 @@ baseline('fixtures/eslint', ({ caseName, caseFolder }) => {
     const config = JSON.parse(fs.readFileSync(`${path.join(caseFolder, caseName)}`, 'utf-8'))
 
     if (!satisfy(eslint, config)) fail('should satisfy')
-    config.rules
+    config.parseOptions?.ecmaVersion
   })
 })

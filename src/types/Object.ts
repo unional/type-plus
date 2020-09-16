@@ -13,8 +13,9 @@ import { union, Union } from './Union'
 import { Unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
-  | Object<any> | ObjectRecord<any, any, any> | Array<any> | Tuple<any>
-  | Union<any> | Unknown | Any
+| Object<any> | ObjectRecord<any, any> | ObjectStringRecord<any> | ObjectNumberRecord<any>
+| Array<any> | Tuple<any>
+| Union<any> | Unknown | Any
   | Symbol
 // | BigInt
 
@@ -30,21 +31,26 @@ function create<Props extends Record<KeyTypes, AllTypes>>(props: Props): Object<
   return { name: 'object', props }
 }
 
-export type ObjectRecord<
-  S extends AllTypes = AllTypes,
-  N extends AllTypes = AllTypes,
-  Sym extends AllTypes = AllTypes
-  > = {
-    name: 'record',
-    props: { string?: S, number?: N, symbol?: Sym }
-  }
+export type ObjectStringRecord<S extends AllTypes = any> = {
+  name: 'record:string',
+  string: S
+}
+export type ObjectNumberRecord<N extends AllTypes = any> = {
+  name: 'record:number',
+  number: N
+}
+export type ObjectRecord<S extends AllTypes = any, N extends AllTypes = any> = {
+  name: 'record',
+  string: S,
+  number: N
+}
 
-function record<
-  S extends AllTypes,
-  N extends AllTypes,
-  Sym extends AllTypes
->(props: { string?: S, number?: N, symbol?: Sym }): ObjectRecord<S, N, Sym> {
-  return { name: 'record', props }
+function record<S extends AllTypes>(props: { string: S }): ObjectStringRecord<S>
+function record<N extends AllTypes>(props: { number: N }): ObjectNumberRecord<N>
+function record<S extends AllTypes, N extends AllTypes>(
+  props: { string: S, number: N }): ObjectRecord<S, N>
+function record(props: any) {
+  return { name: 'record', props } as any
 }
 
 export const object = {
