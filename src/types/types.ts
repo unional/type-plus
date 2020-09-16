@@ -52,7 +52,7 @@ export namespace Generate {
   /**
    * @internal
    */
-  export type TupleDevice<T extends AllTypes[]> = T['length'] extends 1
-    ? { result: [Generate<T[0]>] }
+  export type TupleDevice<T extends AllTypes[]> = T['length'] extends 0
+    ? { result: [] }
     : { result: [Generate<T[0]>, ...TupleDevice<TTTuple.Drop<T, '1'>>['result']] }
 }
