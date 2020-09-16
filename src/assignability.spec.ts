@@ -1,5 +1,4 @@
-import { assertType } from '.'
-import { assignability } from '.'
+import { assertType, assignability } from '.'
 
 type Options = {
   name: string,

@@ -1,4 +1,4 @@
-import { typeOverrideIncompatible } from '.';
+import { typeOverrideIncompatible } from '.'
 
 test('same type override has no property', () => {
   type A = { a: 1 }

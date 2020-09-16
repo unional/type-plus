@@ -1,7 +1,7 @@
-import { satisfy, types } from '.'
+import { baseline } from '@unional/fixture'
 import fs from 'fs'
 import path from 'path'
-import { baseline } from '@unional/fixture'
+import { satisfy, types } from '.'
 
 const eslint = types.object.create({
   parseOptions: types.union.create(

@@ -1,4 +1,4 @@
-import { getField } from '.';
+import { getField } from '.'
 
 test('support undefined', () => {
   const sub: { a: number } | undefined = { a: 1 } as any

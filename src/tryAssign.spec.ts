@@ -1,4 +1,4 @@
-import { tryAssign, assertType } from '.';
+import { assertType, tryAssign } from '.'
 
 describe('tryAssign()', () => {
   test('assignable will return the assigned type', () => {

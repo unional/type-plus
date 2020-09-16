@@ -1,4 +1,4 @@
-import { facade } from '.';
+import { facade } from '.'
 
 test('facade on property', () => {
   const subject = { a: 1, b: 2, c: 3 }

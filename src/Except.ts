@@ -1,4 +1,4 @@
-import { Omit } from './Omit';
+import { Omit } from './Omit'
 
 /**
  * @deprecated replaced by `Omit`

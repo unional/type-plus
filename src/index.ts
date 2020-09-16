@@ -1,5 +1,6 @@
 export { required, requiredDeep } from 'unpartial'
 export * from './ANotB'
+export * from './any-types'
 export * from './assertType'
 export * from './assertUnknown'
 export * from './assignability'

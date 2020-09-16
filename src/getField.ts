@@ -1,4 +1,4 @@
-import { UnionKeys } from './UnionKeys';
+import { UnionKeys } from './UnionKeys'
 
 export function getField<
   T,
