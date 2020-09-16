@@ -5,12 +5,8 @@ import { Union, union } from './Union'
 export type Number<Value extends number = number> = { name: 'number', value: Value }
 
 type NumberListDevice<Values extends number[]> = Values['length'] extends 0
-  ? { result: never }
-  : { result: Number<Values[0]> | NumberListDevice<TTTuple.Drop<Values, '1'>>['result'] }
-
-type NumberOptionalListDevice<Values extends number[]> = Values['length'] extends 0
-  ? { result: Undefined }
-  : { result: Number<Values[0]> | NumberOptionalListDevice<TTTuple.Drop<Values, '1'>>['result'] }
+  ? { result: [] }
+  : { result: [Number<Values[0]>, ...NumberListDevice<TTTuple.Drop<Values, '1'>>['result']] }
 
 /**
  * Creates a single number type.
@@ -22,7 +18,7 @@ function create<Value extends number>(value: Value): Number<Value> {
 export const number = {
   ...create(undefined as unknown as number),
   create,
-  list<Values extends number[]>(...values: Values): NumberListDevice<Values>['result'] {
+  list<Values extends number[]>(...values: Values): Union<NumberListDevice<Values>['result']> {
     return union.create(...values.map(create)) as any
   },
   optional: {
@@ -33,7 +29,7 @@ export const number = {
     create<Value extends number>(value: Value): Union<[Number<Value>, Undefined]> {
       return union.create(create(value), undef)
     },
-    list<Values extends number[]>(...values: Values): NumberOptionalListDevice<Values>['result'] {
+    list<Values extends number[]>(...values: Values): Union<[...NumberListDevice<Values>['result'], Undefined]> {
       return union.create(...values.map(create), undef) as any
     }
   }
