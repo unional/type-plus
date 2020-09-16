@@ -5,10 +5,10 @@
  * Create a "branded" version of a type.
  * TypeScript won't allow implicit conversion to this type
  */
-export type Brand<T, BrandT extends string> = T & { _type: BrandT }
+export type Brand<BrandT extends string, T> = T & { _type: BrandT }
 
-export function createBrandCreator<BrandT extends string, T>(): (value: T) => Brand<T, BrandT> {
-  return (value: T): Brand<T, BrandT> => {
+export function createBrandCreator<BrandT extends string, T>(): (value: T) => Brand<BrandT, T> {
+  return (value: T): Brand<BrandT, T> => {
     return value as any
   }
 }
