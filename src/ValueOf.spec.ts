@@ -1,5 +1,5 @@
-import t from 'assert';
-import { ValueOf } from '.';
+import t from 'assert'
+import { ValueOf } from '.'
 
 test('If all values has the same type, the result is of that type', () => {
   const HTTP_METHOD = {
@@ -11,7 +11,6 @@ test('If all values has the same type, the result is of that type', () => {
   const logValue: ValueOf<typeof HTTP_METHOD> = HTTP_METHOD.GET
   t.strictEqual(logValue.substr(0, 1), 'G')
 })
-
 
 test('If value has multiple types, the result is the union of those types', () => {
   const logLevel = {

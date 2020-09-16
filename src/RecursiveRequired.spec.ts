@@ -1,5 +1,5 @@
-import t from 'assert';
-import { RecursiveRequired } from '.';
+import t from 'assert'
+import { RecursiveRequired } from '.'
 
 test('simple optional property becomes required', () => {
   type SimpleOptional = {

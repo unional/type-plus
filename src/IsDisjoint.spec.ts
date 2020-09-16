@@ -1,5 +1,4 @@
-import { assertType } from './assertType';
-import { IsDisjoint } from './IsDisjoint';
+import { assertType, IsDisjoint } from '.'
 
 test('disjoint returns true', () => {
   type A = { a: 1 }

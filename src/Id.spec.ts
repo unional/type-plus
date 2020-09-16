@@ -1,5 +1,5 @@
-import t from 'assert';
-import { createId, createIdCreator, Id } from '.';
+import t from 'assert'
+import { createId, createIdCreator, Id } from '.'
 
 test('createId<T> creates Id<T>', () => {
   const foo = createId('foo', 'sample')

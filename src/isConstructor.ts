@@ -1,4 +1,6 @@
-export function isConstructor(subject: unknown): subject is new (...args: any[]) => void {
+import { AnyConstructor } from './any-types'
+
+export function isConstructor(subject: unknown): subject is AnyConstructor {
   try {
     new (subject as any)()
   }

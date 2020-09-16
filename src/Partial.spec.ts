@@ -1,4 +1,4 @@
-import { PartialExcept, PartialPick, assertType, PartialOmit } from '.';
+import { assertType, PartialExcept, PartialOmit, PartialPick } from '.'
 
 test('make picked properties optional', () => {
   type Foo = {

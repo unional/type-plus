@@ -1,9 +1,9 @@
-import { isConstructor } from './isConstructor'
-import { assertType } from './assertType'
+import { AnyConstructor, assertType, isConstructor } from '.'
+
 test('check constructor', () => {
   const x: unknown = Error
   if (isConstructor(x))
-    assertType<Function>(x)
+    assertType<AnyConstructor>(x)
 })
 
 test('check not constructor', () => {

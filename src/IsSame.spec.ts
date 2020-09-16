@@ -1,4 +1,4 @@
-import { assertType, IsSame } from '.';
+import { assertType, IsSame } from '.'
 
 test('same type is true', () => {
   const y = true as IsSame<{ a: 1 }, { a: 1 }>

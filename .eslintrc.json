@@ -13,6 +13,7 @@
         "*.tsx"
       ],
       "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": "off",
         "no-console": "off",
         "no-use-before-define": "off"
       }

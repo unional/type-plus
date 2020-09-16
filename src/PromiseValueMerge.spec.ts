@@ -1,7 +1,7 @@
-import { PromiseValueMerge, typeAssert } from '.'
+import { assertType, PromiseValueMerge } from '.'
 
 test('merge promise value', async () => {
   const result = {} as PromiseValueMerge<Promise<{ a: string }>, Promise<{ b: string }>>
   const value = await result
-  typeAssert<{ a: string, b: string }>(value)
+  assertType<{ a: string, b: string }>(value)
 })

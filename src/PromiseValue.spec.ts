@@ -1,5 +1,4 @@
-import { PromiseValue } from '.';
-import { assertType } from './assertType';
+import { assertType, PromiseValue } from '.'
 
 test('extract value from Promise', () => {
   const y: PromiseValue<Promise<string>> = '' as any

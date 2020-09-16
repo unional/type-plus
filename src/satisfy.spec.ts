@@ -1,7 +1,5 @@
 import { satisfies } from 'satisfier'
-import { assertType, satisfy, types } from '.'
-import { assignability } from './assignability'
-import { KeyTypes } from './object-key/KeyTypes'
+import { assertType, assignability, KeyTypes, satisfy, types } from '.'
 
 test('undefined', () => {
   expect(satisfy(types.undefined, undefined)).toBe(true)
