@@ -1,13 +1,13 @@
 import { undef, Undefined } from './Undefined'
 import { Union, union } from './Union'
 
-export type Boolean<Value extends true | false = true | false> = {
+export type Boolean<Value extends boolean = boolean> = {
   name: 'boolean', value: Value
 }
 export type True = Boolean<true>
 export type False = Boolean<false>
 
-function create<Value extends true | false>(value: Value): Boolean<Value> {
+function create<Value extends boolean>(value: Value): Boolean<Value> {
   return { name: 'boolean', value }
 }
 
