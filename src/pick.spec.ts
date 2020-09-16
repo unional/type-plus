@@ -39,6 +39,7 @@ test('distributive pick with disjoined keys', () => {
     foo: string,
     bar: string,
   }
+  // eslint-disable-next-line @typescript-eslint/ban-types
   type Id<T> = {} & { [P in keyof T]: T[P] }
   let x: Id<Pick<Union, 'type' | 'bar'>> = { type: 'A' }
   x = { type: 'B', bar: 'bar' }
