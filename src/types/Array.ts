@@ -6,12 +6,15 @@ import { Number } from './Number'
 import { Object } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
+import { Tuple } from './Tuple'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
 import { Unknown, unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
-  | Symbol | Union<any> | Object | Array<any> | Unknown | Any
+  | Object<any> | Array<any> | Tuple<any>
+  | Union<any> | Unknown | Any
+  | Symbol
 // | BigInt
 
 export type Array<Value extends AllTypes = any> = {

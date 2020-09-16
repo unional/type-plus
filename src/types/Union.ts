@@ -12,8 +12,9 @@ import { undef, Undefined } from './Undefined'
 import { Unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
-  | Symbol | Union<any> | Unknown | Any |
-  Object<any> | Array<any> | Tuple<any>
+  | Union<any> | Unknown | Any
+  | Object<any> | Array<any> | Tuple<any>
+  | Symbol
 // | BigInt
 
 export type Union<Values extends AllTypes[] = AllTypes[]> = {
