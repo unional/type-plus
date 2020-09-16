@@ -4,7 +4,7 @@ import { Array } from './Array'
 import { Boolean } from './Boolean'
 import { Null } from './Null'
 import { Number } from './Number'
-import { Object } from './Object'
+import { Object, ObjectRecord } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Tuple } from './Tuple'
@@ -12,7 +12,7 @@ import { undef, Undefined } from './Undefined'
 import { Unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
-  | Object<any> | Array<any> | Tuple<any>
+  | Object<any> | ObjectRecord<any, any, any> | Array<any> | Tuple<any>
   | Union<any> | Unknown | Any
   | Symbol // | BigInt
 
