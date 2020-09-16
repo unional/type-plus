@@ -144,6 +144,33 @@ describe('number', () => {
       assertType<1 | undefined>(value)
     }
   })
+  test('list: empty is never', () => {
+    const t = types.number.list()
+    const value: unknown = undefined
+
+    expect(satisfy(t, value)).toBe(false)
+    if (satisfy(t, value)) {
+      assertType.isNever(value)
+    }
+  })
+  test('list: single', () => {
+    const t = types.number.list(0)
+    const value: unknown = 0
+
+    expect(satisfy(t, value)).toBe(true)
+    if (satisfy(t, value)) {
+      assertType<0>(value)
+    }
+  })
+  test('list: multiple', () => {
+    const t = types.number.list(1, 2, 3)
+    const value: unknown = 1
+
+    expect(satisfy(t, value)).toBe(true)
+    if (satisfy(t, value)) {
+      assertType<1 | 2 | 3>(value)
+    }
+  })
 })
 
 describe('string', () => {
