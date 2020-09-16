@@ -124,8 +124,6 @@ describe('number', () => {
   test('1 does not satisfy 0', () => {
     expect(satisfy(types.number.create(0), 1)).toBe(false)
   })
-  test.todo('number list')
-  test.todo('number range')
   test('optional', () => {
     const t = types.number.optional
     expect(satisfy(t, undefined)).toBe(true)
@@ -169,6 +167,15 @@ describe('number', () => {
     expect(satisfy(t, value)).toBe(true)
     if (satisfy(t, value)) {
       assertType<1 | 2 | 3>(value)
+    }
+  })
+  test('optional.list: multiple', () => {
+    const t = types.number.optional.list(1, 2, 3)
+    const value: unknown = 1
+
+    expect(satisfy(t, value)).toBe(true)
+    if (satisfy(t, value)) {
+      assertType<1 | 2 | 3 | undefined>(value)
     }
   })
 })

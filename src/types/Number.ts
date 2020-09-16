@@ -8,6 +8,10 @@ type NumberListDevice<Values extends number[]> = Values['length'] extends 0
   ? { result: never }
   : { result: Number<Values[0]> | NumberListDevice<TTTuple.Drop<Values, '1'>>['result'] }
 
+type NumberOptionalListDevice<Values extends number[]> = Values['length'] extends 0
+  ? { result: Undefined }
+  : { result: Number<Values[0]> | NumberOptionalListDevice<TTTuple.Drop<Values, '1'>>['result'] }
+
 /**
  * Creates a single number type.
  */
@@ -29,5 +33,8 @@ export const number = {
     create<Value extends number>(value: Value): Union<[Number<Value>, Undefined]> {
       return union.create(create(value), undef)
     },
+    list<Values extends number[]>(...values: Values): NumberOptionalListDevice<Values>['result'] {
+      return union.create(...values.map(create), undef) as any
+    }
   }
 }
