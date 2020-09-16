@@ -234,6 +234,42 @@ describe('string', () => {
       assertType<'a' | undefined>(value)
     }
   })
+  test('list: empty is never', () => {
+    const t = types.string.list()
+    const value: unknown = undefined
+
+    expect(satisfy(t, value)).toBe(false)
+    if (satisfy(t, value)) {
+      assertType.isNever(value)
+    }
+  })
+  test('list: single', () => {
+    const t = types.string.list('a')
+    const value: unknown = 'a'
+
+    expect(satisfy(t, value)).toBe(true)
+    if (satisfy(t, value)) {
+      assertType<'a'>(value)
+    }
+  })
+  test('list: multiple', () => {
+    const t = types.string.list('1', '2', '3')
+    const value: unknown = '1'
+
+    expect(satisfy(t, value)).toBe(true)
+    if (satisfy(t, value)) {
+      assertType<'1' | '2' | '3'>(value)
+    }
+  })
+  test('optional.list: multiple', () => {
+    const t = types.string.optional.list('1', '2', '3')
+    const value: unknown = '1'
+
+    expect(satisfy(t, value)).toBe(true)
+    if (satisfy(t, value)) {
+      assertType<'1' | '2' | '3' | undefined>(value)
+    }
+  })
 })
 
 // test('bigint', () => {
