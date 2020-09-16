@@ -17,7 +17,7 @@ type AllTypes = Undefined | Null | Boolean | Number | String
   | Symbol
 // | BigInt
 
-export type Array<Value extends AllTypes = any> = {
+export type Array<Value extends AllTypes = AllTypes> = {
   name: 'array',
   value: Value
 }

@@ -49,7 +49,7 @@ function satisfyObject<T extends types.Object>(type: T, subject: unknown) {
   if (subject === null) return false // techically wrong...
   if (Array.isArray(subject)) return false
   if (type === types.object as types.Object) return true
-  return everyKey(type.props!, p => satisfy(type.props![p], (subject as any)[p]))
+  return everyKey(type.props!, p => satisfy(type.props![p as any], (subject as any)[p]))
 }
 
 function satisfyTuple<T extends types.Tuple>(type: T, subject: unknown) {

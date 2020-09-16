@@ -18,7 +18,7 @@ type AllTypes = Undefined | Null | Boolean | Number | String
   | Symbol
 // | BigInt
 
-export type Object<Props extends Record<KeyTypes, AllTypes> = any> = {
+export type Object<Props extends Record<KeyTypes, AllTypes> = Record<KeyTypes, AllTypes>> = {
   name: 'object',
   props: Props
 }
