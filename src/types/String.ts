@@ -1,22 +1,21 @@
-import { any, Any } from './Any'
 import { undef, Undefined } from './Undefined'
 import { Union, union } from './Union'
 
-export type String<Value extends string | Any = string | Any> = { name: 'string', value: Value }
+export type String<Value extends string = string> = { name: 'string', value: Value }
 
 /**
  * Creates a constant string type.
  */
-function create<Value extends string | Any>(value: Value): String<Value> {
+function create<Value extends string>(value: Value): String<Value> {
   // Cannot name this function as `const` because it is a reserved keyword.
   return { name: 'string', value }
 }
 
 export const string = {
-  ...create(any),
+  ...create(undefined as unknown as string),
   create,
   optional: {
-    ...union.create(create(any), undef),
+    ...union.create(create(undefined as unknown as string), undef),
     /**
      * Creates an optional constant string type.
      */
