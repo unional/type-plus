@@ -37,7 +37,7 @@ export type Generate<T extends AllTypes> =
   T extends Symbol ? symbol :
   T extends Any ? any :
   T extends Unknown ? unknown :
-  T extends Number ? T['value'] extends Any ? number : T['value'] :
+  T extends Number ? T['value'] :
   T extends String ? T['value'] extends Any ? string : T['value'] :
   T extends Object<any> ? Generate.ObjectDevice<T['props']>['result'] :
   T extends Array ? Generate<T['value']>[] :
