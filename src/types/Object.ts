@@ -13,7 +13,7 @@ import { union, Union } from './Union'
 import { Unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
-  | Object<any> | Array<any> | Tuple<any>
+  | Object<any> | ObjectRecord<any, any, any> | Array<any> | Tuple<any>
   | Union<any> | Unknown | Any
   | Symbol
 // | BigInt
@@ -30,8 +30,27 @@ function create<Props extends Record<KeyTypes, AllTypes>>(props: Props): Object<
   return { name: 'object', props }
 }
 
+export type ObjectRecord<
+  S extends AllTypes = AllTypes,
+  N extends AllTypes = AllTypes,
+  Sym extends AllTypes = AllTypes
+  > = {
+    name: 'record',
+    props: { string?: S, number?: N, symbol?: Sym }
+  }
+
+function record<
+  S extends AllTypes,
+  N extends AllTypes,
+  Sym extends AllTypes
+>(props: { string?: S, number?: N, symbol?: Sym }): ObjectRecord<S, N, Sym> {
+  return { name: 'record', props }
+}
+
 export const object = {
-  ...create(undefined as any), create,
+  ...create(undefined as any),
+  create,
+  record,
   optional: {
     ...union.create(create(undefined as any), undef),
     /**
