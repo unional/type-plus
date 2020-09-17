@@ -14,6 +14,7 @@ export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): su
     // case 'bigint': return satisfyType(types.bigint, type, subject)
     case 'union': return satisfyUnion(type as types.Union, subject)
     case 'object': return satisfyObject(type as types.Object, subject)
+    case 'record': return satisfyRecord(type as types.ObjectRecord, subject)
     case 'array': return satisfyArray(type as types.Array, subject)
     case 'tuple': return satisfyTuple(type as types.Tuple, subject)
   }
@@ -57,4 +58,17 @@ function satisfyTuple<T extends types.Tuple>(type: T, subject: unknown) {
   if (!Array.isArray(subject)) return false
   if (subject.length !== type.values.length) return false
   return subject.every((s, i) => satisfy(type.values[i], s))
+}
+
+function satisfyRecord(type: types.ObjectRecord, subject: any) {
+  if (typeof subject !== 'object') return false
+  return everyKey(
+    subject,
+    k => typeof k === 'string'
+      ? satisfy(type.string, subject[k])
+      : typeof k === 'number'
+        ? satisfy(type.number, subject[k])
+        // let symbol goes through
+        : true
+  )
 }

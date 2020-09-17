@@ -13,7 +13,7 @@ const eslint = types.object.create({
       jsx: types.boolean.optional
     })
   }),
-  rules: types.object.record({
+  rules: types.object.optional.record({
     string: types.string.create('error')
   })
 })
@@ -24,5 +24,6 @@ baseline('fixtures/eslint', ({ caseName, caseFolder }) => {
 
     if (!satisfy(eslint, config)) fail('should satisfy')
     config.parseOptions?.ecmaVersion
+    config.rules
   })
 })
