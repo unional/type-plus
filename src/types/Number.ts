@@ -4,9 +4,10 @@ import { Union, union } from './Union'
 
 export type Number<Value extends number = number> = { name: 'number', value: Value }
 
-type NumberListDevice<Values extends number[]> = Values['length'] extends 0
-  ? { result: [] }
-  : { result: [Number<Values[0]>, ...NumberListDevice<TTTuple.Drop<Values, '1'>>['result']] }
+type NumberListDevice<Values extends number[] = number[]> = Values['length'] extends 0
+  ? { result: [] } : Values['length'] extends 1
+  ? { result: [Number<Values[0]>] }
+  : { result: [Number<Values[0]>, Number<Values[1]>, ...NumberListDevice<TTTuple.Drop<Values, '2'>>['result']] }
 
 /**
  * Creates a single number type.
@@ -18,7 +19,13 @@ function create<Value extends number>(value: Value): Number<Value> {
 export const number = {
   ...create(undefined as unknown as number),
   create,
-  list<Values extends number[]>(...values: Values): Union<NumberListDevice<Values>['result']> {
+
+  // @ts-ignore we know that this can be infinite
+  list<Values extends number[]>(...values: Values): Union<
+    // @ts-ignore this seems to be a bug in TypeScript.
+    // It can recognize `NumberListDevice<[1,2,3]>['result']`
+    NumberListDevice<Values>['result']
+  > {
     return union.create(...values.map(create)) as any
   },
   optional: {
@@ -29,7 +36,11 @@ export const number = {
     create<Value extends number>(value: Value): Union<[Number<Value>, Undefined]> {
       return union.create(create(value), undef)
     },
-    list<Values extends number[]>(...values: Values): Union<[...NumberListDevice<Values>['result'], Undefined]> {
+    // @ts-ignore we know that this can be infinite
+    list<Values extends number[]>(...values: Values): Union<
+      // @ts-ignore this seems to be a bug in TypeScript.
+      [...NumberListDevice<Values>['result'], Undefined]
+    > {
       return union.create(...values.map(create), undef) as any
     }
   }

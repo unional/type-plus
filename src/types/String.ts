@@ -5,8 +5,9 @@ import { Union, union } from './Union'
 export type String<Value extends string = string> = { name: 'string', value: Value }
 
 type StringListDevice<Values extends string[]> = Values['length'] extends 0
-  ? { result: [] }
-  : { result: [String<Values[0]>, ...StringListDevice<TTTuple.Drop<Values, '1'>>['result']] }
+  ? { result: [] } : Values['length'] extends 1
+  ? { result: [String<Values[0]>] }
+  : { result: [String<Values[0]>, String<Values[1]>, ...StringListDevice<TTTuple.Drop<Values, '2'>>['result']] }
 
 /**
 * Creates a constant string type.
@@ -19,7 +20,12 @@ function create<Value extends string>(value: Value): String<Value> {
 export const string = {
   ...create(undefined as unknown as string),
   create,
-  list<Values extends string[]>(...values: Values): Union<StringListDevice<Values>['result']> {
+  // @ts-ignore we know that this can be infinite
+  list<Values extends string[]>(...values: Values): Union<
+    // @ts-ignore this seems to be a bug in TypeScript.
+    // It can recognize `StringListDevice<['a','b','c']>['result']`
+    StringListDevice<Values>['result']
+  > {
     return union.create(...values.map(create)) as any
   },
   optional: {
@@ -30,7 +36,11 @@ export const string = {
     create<Value extends string>(value: Value): Union<[String<Value>, Undefined]> {
       return union.create(create(value), undef)
     },
-    list<Values extends string[]>(...values: Values): Union<[...StringListDevice<Values>['result'], Undefined] {
+    // @ts-ignore we know that this can be infinite
+    list<Values extends string[]>(...values: Values): Union<
+      // @ts-ignore this seems to be a bug in TypeScript.
+      [...StringListDevice<Values>['result'], Undefined]
+    > {
       return union.create(...values.map(create), undef) as any
     }
   }
