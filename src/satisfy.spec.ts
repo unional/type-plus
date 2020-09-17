@@ -572,7 +572,7 @@ describe('object record', () => {
     }
   })
   test('both types', () => {
-    const t = types.object.record({ 'string': types.number, 'number': types.boolean })
+    const t = types.object.record({ string: types.number, number: types.boolean })
     const value: unknown = {}
     expect(satisfy(t, value)).toBe(true)
 

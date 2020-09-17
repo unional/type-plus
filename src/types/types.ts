@@ -6,7 +6,7 @@ import { Array } from './Array'
 import { Boolean, False, True } from './Boolean'
 import { Null } from './Null'
 import { Number } from './Number'
-import { Object, ObjectNumberRecord, ObjectRecord, ObjectStringRecord } from './Object'
+import { Object, ObjectRecord } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Tuple } from './Tuple'
@@ -15,7 +15,7 @@ import { Union } from './Union'
 import { Unknown } from './Unknown'
 
 export type AllTypes = Undefined | Null | Boolean | Number | String
-  | Object<any> | ObjectRecord<any, any> | ObjectStringRecord<any> | ObjectNumberRecord<any>
+  | Object<any> | ObjectRecord<any, any>
   | Array<any> | Tuple<any>
   // <https://www.rapidtables.com/math/symbols/Set_Symbols.html>
   | Union<any> // | Intersection | SubSet | SuperSet | Complement | Diff
@@ -34,9 +34,10 @@ export type Generate<T extends AllTypes> =
   T extends Number ? T['value'] :
   T extends String ? T['value'] :
   T extends Object ? { [K in keyof T['props']]: Generate<T['props'][K]> } :
-  T extends ObjectRecord ? { [K: string]: Generate<T['string']> } & { [K: number]: Generate<T['number']> } :
-  T extends ObjectStringRecord ? { [K: string]: Generate<T['string']> } :
-  T extends ObjectNumberRecord ? { [K: number]: Generate<T['number']> } :
+  T extends ObjectRecord ? T['string'] extends never
+  ? { [K: number]: Generate<T['number']> } : T['number'] extends never
+  ? { [K: string]: Generate<T['string']> }
+  : { [K: string]: Generate<T['string']> } & { [K: number]: Generate<T['number']> } :
   T extends Array ? Generate<T['value']>[] :
   T extends Tuple ? Generate.TupleDevice<T['values']>['result'] :
   T extends Union ? Generate.UnionDevice<T['values']>['result'] :

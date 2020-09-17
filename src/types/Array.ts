@@ -3,7 +3,7 @@ import { any, Any } from './Any'
 import { Boolean } from './Boolean'
 import { Null } from './Null'
 import { Number } from './Number'
-import { Object, ObjectNumberRecord, ObjectRecord, ObjectStringRecord } from './Object'
+import { Object, ObjectRecord } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Tuple } from './Tuple'
@@ -12,7 +12,7 @@ import { union, Union } from './Union'
 import { Unknown, unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
-  | Object<any> | ObjectRecord<any, any> | ObjectStringRecord<any> | ObjectNumberRecord<any>
+  | Object<any> | ObjectRecord<any, any>
   | Array<any> | Tuple<any>
   | Union<any>
   | Unknown | Any
