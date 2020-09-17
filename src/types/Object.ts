@@ -1,5 +1,5 @@
 import { KeyTypes } from '../object-key/KeyTypes'
-import { any, Any } from './Any'
+import { Any } from './Any'
 import { Array } from './Array'
 // import { BigInt } from './BigInt'
 import { Boolean } from './Boolean'
@@ -13,7 +13,7 @@ import { union, Union } from './Union'
 import { Unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
-  | Object<any> | ObjectRecord<any, any>
+  | Object<any> | ObjectRecord<any>
   | Array<any> | Tuple<any>
   | Union<any>
   | Unknown | Any
@@ -32,26 +32,13 @@ function create<Props extends Record<KeyTypes, AllTypes>>(props: Props): Object<
   return { name: 'object', props }
 }
 
-export type ObjectRecord<S extends AllTypes = any, N extends AllTypes = any> = {
+export type ObjectRecord<Value extends AllTypes = any> = {
   name: 'record',
-  string: S,
-  number: N
+  value: Value
 }
 
-function record<S extends AllTypes>(props: { string: S }): ObjectRecord<S, never>
-function record<N extends AllTypes>(props: { number: N }): ObjectRecord<never, N>
-function record<S extends AllTypes, N extends AllTypes>(
-  props: { string: S, number: N }): ObjectRecord<S, N>
-function record({ string = any, number = any }: any) {
-  return { name: 'record', props: { string, number } } as any
-}
-
-function optionalRecord<S extends AllTypes>(props: { string: S }): Union<[ObjectRecord<S, never>, Undefined]>
-function optionalRecord<N extends AllTypes>(props: { number: N }): Union<[ObjectRecord<never, N>, Undefined]>
-function optionalRecord<S extends AllTypes, N extends AllTypes>(
-  props: { string: S, number: N }): Union<[ObjectRecord<S, N>, Undefined]>
-function optionalRecord(props: any) {
-  return union.create(record(props), undef) as any
+function record<Value extends AllTypes>(value: Value): ObjectRecord<Value> {
+  return { name: 'record', value }
 }
 
 export const object = {
@@ -66,7 +53,9 @@ export const object = {
     create<Props extends Record<KeyTypes, AllTypes>>(props: Props): Union<[Object<Props>, Undefined]> {
       return union.create(create(props), undef)
     },
-    record: optionalRecord
+    record<Value extends AllTypes>(value: Value): Union<[ObjectRecord<Value>, Undefined]> {
+      return union.create(record(value), undef) as any
+    }
   }
 }
 

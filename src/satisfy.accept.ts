@@ -13,9 +13,7 @@ const eslint = types.object.create({
       jsx: types.boolean.optional
     })
   }),
-  rules: types.object.optional.record({
-    string: types.string.create('error')
-  })
+  rules: types.object.optional.record(types.string.create('error'))
 })
 
 baseline('fixtures/eslint', ({ caseName, caseFolder }) => {
