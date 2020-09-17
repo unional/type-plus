@@ -553,31 +553,13 @@ describe('object', () => {
 })
 
 describe('object record', () => {
-  test('string record', () => {
-    const t = types.object.record({ string: types.number })
-    const value: unknown = {}
+  test('base case', () => {
+    const t = types.object.record(types.number)
+    const value: any = { 'a': 1 }
     expect(satisfy(t, value)).toBe(true)
 
     if (satisfy(t, value)) {
       assertType<Record<string, number>>(value)
-    }
-  })
-  test('number record', () => {
-    const t = types.object.record({ number: types.string })
-    const value: unknown = {}
-    expect(satisfy(t, value)).toBe(true)
-
-    if (satisfy(t, value)) {
-      assertType<Record<number, string>>(value)
-    }
-  })
-  test('both types', () => {
-    const t = types.object.record({ string: types.number, number: types.boolean })
-    const value: unknown = {}
-    expect(satisfy(t, value)).toBe(true)
-
-    if (satisfy(t, value)) {
-      assertType<Record<string, number> & Record<number, boolean>>(value)
     }
   })
 })

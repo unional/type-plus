@@ -12,7 +12,7 @@ import { union, Union } from './Union'
 import { Unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
-| Object<any> | ObjectRecord<any, any>
+| Object<any> | ObjectRecord<any>
 | Array<any> | Tuple<any>
 | Union<any> | Unknown | Any
   | Symbol // | BigInt

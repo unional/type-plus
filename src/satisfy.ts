@@ -64,11 +64,6 @@ function satisfyRecord(type: types.ObjectRecord, subject: any) {
   if (typeof subject !== 'object') return false
   return everyKey(
     subject,
-    k => typeof k === 'string'
-      ? satisfy(type.string, subject[k])
-      : typeof k === 'number'
-        ? satisfy(type.number, subject[k])
-        // let symbol goes through
-        : true
+    k => satisfy(type.value, subject[k])
   )
 }
