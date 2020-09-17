@@ -18,7 +18,6 @@ export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): su
     case 'array': return satisfyArray(type as types.Array, subject)
     case 'tuple': return satisfyTuple(type as types.Tuple, subject)
   }
-  return false
 }
 
 function satisfyBoolean(type: types.Boolean, subject: unknown) {
