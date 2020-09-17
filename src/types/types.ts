@@ -17,10 +17,7 @@ import { Unknown } from './Unknown'
 export type AllTypes = Undefined | Null | Boolean | Number | String
   | Object<any> | ObjectRecord<any, any> | ObjectStringRecord<any> | ObjectNumberRecord<any>
   | Array<any> | Tuple<any>
-  /**
-     * @internal
-     * <https://www.rapidtables.com/math/symbols/Set_Symbols.html>
-     */
+  // <https://www.rapidtables.com/math/symbols/Set_Symbols.html>
   | Union<any> // | Intersection | SubSet | SuperSet | Complement | Diff
   | Unknown | Any
   | Symbol // | BigInt
@@ -52,6 +49,7 @@ export namespace Generate {
    */
   export type UnionDevice<T extends AllTypes[]> = T['length'] extends 0
     ? { result: never }
+    // @ts-ignore sometimes language service mark this as referencing itself
     : { result: Generate<T[0]> | UnionDevice<TTTuple.Drop<T, '1'>>['result'] }
 
   /**
@@ -59,8 +57,6 @@ export namespace Generate {
    */
   export type TupleDevice<T extends AllTypes[]> = T['length'] extends 0
     ? { result: [] }
+    // @ts-ignore sometimes language service mark this as referencing itself
     : { result: [Generate<T[0]>, ...TupleDevice<TTTuple.Drop<T, '1'>>['result']] }
-
-  export type ObjectRecordDevice<K extends number | string, T extends AllTypes | undefined> = T extends undefined
-    ? never : { [P in K]: Generate<Exclude<T, undefined>> }
 }

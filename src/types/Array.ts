@@ -14,7 +14,8 @@ import { Unknown, unknown } from './Unknown'
 type AllTypes = Undefined | Null | Boolean | Number | String
   | Object<any> | ObjectRecord<any, any> | ObjectStringRecord<any> | ObjectNumberRecord<any>
   | Array<any> | Tuple<any>
-  | Union<any> | Unknown | Any
+  | Union<any>
+  | Unknown | Any
   | Symbol // | BigInt
 
 export type Array<Value extends AllTypes = AllTypes> = {
