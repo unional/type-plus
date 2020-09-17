@@ -1,13 +1,9 @@
+// istanbul ignore file
 import { Boolean } from './Boolean'
 
-export function If<Cond extends Boolean, T, F>(cond: Cond, t: T, f: F): Condition<T, F>[Cond['value'] extends true ? 'true' : 'false'] {
+export function If<Cond extends Boolean, T, F>(cond: Cond, t: T, f: F): If<Cond, T, F> {
   return cond.value ? t : f as any
 }
 
-// export namespace If {
-// }
-
-export type Condition<T, F> = { 'true': T, 'false': F }
-
-export type If<Cond extends Boolean, T, F> = Condition<T, F>[Cond['value'] extends true ? 'true' : 'false']
+export type If<Cond extends Boolean, T, F> = Cond['value'] extends true ? T : F
 
