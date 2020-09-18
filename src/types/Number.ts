@@ -1,8 +1,9 @@
 import { Tuple as TTTuple } from 'ts-toolbelt'
+import { ValueType } from './typesInternal'
 import { undef, Undefined } from './Undefined'
 import { Union, union } from './Union'
 
-export type Number<Value extends number = number> = { _type: 'number', value: Value }
+export type Number<Value extends number = number> = ValueType<'number', Value>
 
 type NumberListDevice<Values extends number[] = number[]> = Values['length'] extends 0
   ? { result: [] } : Values['length'] extends 1
@@ -13,7 +14,7 @@ type NumberListDevice<Values extends number[] = number[]> = Values['length'] ext
  * Creates a single number type.
  */
 function create<Value extends number>(value: Value): Number<Value> {
-  return { _type: 'number', value }
+  return { _type: 'number', _value: value }
 }
 
 export const number = {

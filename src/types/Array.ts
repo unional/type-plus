@@ -7,6 +7,7 @@ import { Object, ObjectRecord } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Tuple } from './Tuple'
+import { ValueType } from './typesInternal'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
 import { Unknown, unknown } from './Unknown'
@@ -18,10 +19,7 @@ type AllTypes = Undefined | Null | Boolean | Number | String
   | Unknown | Any
   | Symbol // | BigInt
 
-export type Array<Value extends AllTypes = AllTypes> = {
-  _type: 'array',
-  value: Value
-}
+export type Array<Value extends AllTypes = AllTypes> = ValueType<'array', Value>
 
 /**
  * Creates an array type.
@@ -29,7 +27,7 @@ export type Array<Value extends AllTypes = AllTypes> = {
 function create<Value extends AllTypes>(value: Value): Array<Value> {
   return {
     _type: 'array',
-    value: value
+    _value: value
   }
 }
 

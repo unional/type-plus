@@ -1,8 +1,9 @@
 import { Tuple as TTTuple } from 'ts-toolbelt'
+import { ValueType } from './typesInternal'
 import { undef, Undefined } from './Undefined'
 import { Union, union } from './Union'
 
-export type String<Value extends string = string> = { _type: 'string', value: Value }
+export type String<Value extends string = string> = ValueType<'string', Value>
 
 type StringListDevice<Values extends string[]> = Values['length'] extends 0
   ? { result: [] } : Values['length'] extends 1
@@ -14,7 +15,7 @@ type StringListDevice<Values extends string[]> = Values['length'] extends 0
 */
 function create<Value extends string>(value: Value): String<Value> {
   // Cannot name this function as `const` because it is a reserved keyword.
-  return { _type: 'string', value }
+  return { _type: 'string', _value: value }
 }
 
 export const string = {
