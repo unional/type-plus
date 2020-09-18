@@ -19,7 +19,7 @@ type AllTypes = Undefined | Null | Boolean | Number | String
   | Symbol // | BigInt
 
 export type Union<Values extends AllTypes[] = AllTypes[]> = {
-  name: 'union',
+  _type: 'union',
   values: Values
 }
 
@@ -28,7 +28,7 @@ export type Union<Values extends AllTypes[] = AllTypes[]> = {
  */
 function create<Values extends AllTypes[]>(...values: Values): Union<Values> {
   return {
-    name: 'union',
+    _type: 'union',
     values
   }
 }

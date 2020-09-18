@@ -6,4 +6,3 @@ export function If<Cond extends Boolean, T, F>(cond: Cond, t: T, f: F): If<Cond,
 }
 
 export type If<Cond extends Boolean, T, F> = Cond['value'] extends true ? T : F
-

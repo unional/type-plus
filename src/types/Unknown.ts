@@ -1,2 +1,2 @@
-export type Unknown = { name: 'unknown' }
-export const unknown: Unknown = { name: 'unknown' }
+export type Unknown = { _type: 'unknown' }
+export const unknown: Unknown = { _type: 'unknown' }

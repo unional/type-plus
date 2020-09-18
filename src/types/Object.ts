@@ -21,7 +21,7 @@ type AllTypes = Undefined | Null | Boolean | Number | String
 // | BigInt
 
 export type Object<Props extends Record<KeyTypes, AllTypes> = Record<KeyTypes, AllTypes>> = {
-  name: 'object',
+  _type: 'object',
   props: Props
 }
 
@@ -29,16 +29,16 @@ export type Object<Props extends Record<KeyTypes, AllTypes> = Record<KeyTypes, A
  * create specific object type.
  */
 function create<Props extends Record<KeyTypes, AllTypes>>(props: Props): Object<Props> {
-  return { name: 'object', props }
+  return { _type: 'object', props }
 }
 
 export type ObjectRecord<Value extends AllTypes = any> = {
-  name: 'record',
+  _type: 'record',
   value: Value
 }
 
 function record<Value extends AllTypes>(value: Value): ObjectRecord<Value> {
-  return { name: 'record', value }
+  return { _type: 'record', value }
 }
 
 export const object = {

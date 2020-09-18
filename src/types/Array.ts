@@ -19,7 +19,7 @@ type AllTypes = Undefined | Null | Boolean | Number | String
   | Symbol // | BigInt
 
 export type Array<Value extends AllTypes = AllTypes> = {
-  name: 'array',
+  _type: 'array',
   value: Value
 }
 
@@ -28,7 +28,7 @@ export type Array<Value extends AllTypes = AllTypes> = {
  */
 function create<Value extends AllTypes>(value: Value): Array<Value> {
   return {
-    name: 'array',
+    _type: 'array',
     value: value
   }
 }
