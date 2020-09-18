@@ -1,2 +1,2 @@
-export type Any = { name: 'any' } & Record<any, any>
-export const any: Any = { name: 'any' }
+export type Any = { _type: 'any' } & Record<any, any>
+export const any: Any = { _type: 'any' }

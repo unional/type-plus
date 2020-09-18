@@ -1,9 +1,8 @@
 import { undef } from './Undefined'
 import { union } from './Union'
 
-export type Null = { name: 'null' }
+export type Null = { _type: 'null' }
 export const nil = {
-  name: 'null' as const,
-  optional: union.create({ name: 'null' as const }, undef)
+  _type: 'null' as const,
+  optional: union.create({ _type: 'null' as const }, undef)
 }
-

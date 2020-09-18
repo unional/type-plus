@@ -2,11 +2,11 @@ import { everyKey } from './object-key'
 import * as types from './types'
 
 export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): subject is types.Generate<T> {
-  switch (type.name) {
+  switch (type._type) {
     case 'unknown':
     case 'any': return true
     case 'undefined':
-    case 'symbol': return typeof subject === type.name
+    case 'symbol': return typeof subject === type._type
     case 'null': return subject === null
     case 'boolean': return satisfyBoolean(type as types.Boolean, subject)
     case 'number': return satisfyType(types.number, type, subject)
@@ -31,7 +31,7 @@ function satisfyType(
   type: types.AllTypes,
   subject: unknown
 ) {
-  if (typeof subject !== baseType.name) return false
+  if (typeof subject !== baseType._type) return false
   if (type === baseType) return true
   return subject === (type as any).value
 }

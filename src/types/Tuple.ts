@@ -18,7 +18,7 @@ type AllTypes = Undefined | Null | Boolean | Number | String
   | Symbol // | BigInt
 
 export type Tuple<Values extends AllTypes[] = AllTypes[]> = {
-  name: 'tuple',
+  _type: 'tuple',
   values: Values
 }
 
@@ -30,7 +30,7 @@ function create<Value extends AllTypes, Values extends AllTypes[]>(
   ...values: Values
 ): Tuple<[Value, ...Values]> {
   return {
-    name: 'tuple',
+    _type: 'tuple',
     values: [value, ...values]
   }
 }
@@ -45,7 +45,7 @@ export const tuple = {
       ...values: Values
     ): Union<[Tuple<[Value, ...Values]>, Undefined]> {
       return union.create({
-        name: 'tuple',
+        _type: 'tuple',
         values: [value, ...values]
       }, undef)
     }
