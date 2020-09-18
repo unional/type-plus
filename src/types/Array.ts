@@ -7,7 +7,7 @@ import { Object, ObjectRecord } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Tuple } from './Tuple'
-import { ValueType } from './typesInternal'
+import { typeSym, valueSym, ValueType } from './typesInternal'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
 import { Unknown, unknown } from './Unknown'
@@ -26,8 +26,8 @@ export type Array<Value extends AllTypes = AllTypes> = ValueType<'array', Value>
  */
 function create<Value extends AllTypes>(value: Value): Array<Value> {
   return {
-    _type: 'array',
-    _value: value
+    [typeSym]: 'array',
+    [valueSym]: value
   }
 }
 

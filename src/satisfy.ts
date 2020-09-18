@@ -1,12 +1,13 @@
 import { everyKey } from './object-key'
 import * as types from './types'
+import { typeSym, valueSym } from './types/typesInternal'
 
 export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): subject is types.Generate<T> {
-  switch (type._type) {
+  switch (type[typeSym]) {
     case 'unknown':
     case 'any': return true
     case 'undefined':
-    case 'symbol': return typeof subject === type._type
+    case 'symbol': return typeof subject === type[typeSym]
     case 'null': return subject === null
     case 'boolean': return satisfyBoolean(type as types.Boolean, subject)
     case 'number': return satisfyType(types.number, type, subject)
@@ -23,7 +24,7 @@ export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): su
 function satisfyBoolean(type: types.Boolean, subject: unknown) {
   if (typeof subject !== 'boolean') return false
   if (type === types.boolean) return true
-  return type._value ? subject : !subject
+  return type[valueSym] ? subject : !subject
 }
 
 function satisfyType(
@@ -31,18 +32,18 @@ function satisfyType(
   type: types.AllTypes,
   subject: unknown
 ) {
-  if (typeof subject !== baseType._type) return false
+  if (typeof subject !== baseType[typeSym]) return false
   if (type === baseType) return true
-  return subject === (type as any)._value
+  return subject === (type as any)[valueSym]
 }
 
 function satisfyUnion<T extends types.Union>(type: T, subject: unknown) {
-  return type._value.some(t => satisfy(t, subject))
+  return type[valueSym].some(t => satisfy(t, subject))
 }
 
 function satisfyArray<T extends types.Array>(type: T, subject: unknown) {
   if (!Array.isArray(subject)) return false
-  return subject.every(s => satisfy(type._value, s))
+  return subject.every(s => satisfy(type[valueSym], s))
 }
 
 function satisfyObject<T extends types.Object>(type: T, subject: unknown) {
@@ -50,19 +51,19 @@ function satisfyObject<T extends types.Object>(type: T, subject: unknown) {
   if (subject === null) return false // techically wrong...
   if (Array.isArray(subject)) return false
   if (type === types.object as types.Object) return true
-  return everyKey(type._value!, p => satisfy(type._value![p as any], (subject as any)[p]))
+  return everyKey(type[valueSym]!, p => satisfy(type[valueSym]![p as any], (subject as any)[p]))
 }
 
 function satisfyTuple<T extends types.Tuple>(type: T, subject: unknown) {
   if (!Array.isArray(subject)) return false
-  if (subject.length !== type._value.length) return false
-  return subject.every((s, i) => satisfy(type._value[i], s))
+  if (subject.length !== type[valueSym].length) return false
+  return subject.every((s, i) => satisfy(type[valueSym][i], s))
 }
 
 function satisfyRecord(type: types.ObjectRecord, subject: any) {
   if (typeof subject !== 'object') return false
   return everyKey(
     subject,
-    k => satisfy(type._value, subject[k])
+    k => satisfy(type[valueSym], subject[k])
   )
 }

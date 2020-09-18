@@ -8,7 +8,7 @@ import { Object, ObjectRecord } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Tuple } from './Tuple'
-import { ValueType } from './typesInternal'
+import { typeSym, valueSym, ValueType } from './typesInternal'
 import { undef, Undefined } from './Undefined'
 import { Unknown } from './Unknown'
 
@@ -26,8 +26,8 @@ export type Union<Values extends AllTypes[] = AllTypes[]> = ValueType<'union', V
  */
 function create<Values extends AllTypes[]>(...values: Values): Union<Values> {
   return {
-    _type: 'union',
-    _value: values
+    [typeSym]: 'union',
+    [valueSym]: values
   }
 }
 

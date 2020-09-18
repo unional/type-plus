@@ -10,6 +10,7 @@ import { Object, ObjectRecord } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Tuple } from './Tuple'
+import { valueSym } from './typesInternal'
 import { Undefined } from './Undefined'
 import { Union } from './Union'
 import { Unknown } from './Unknown'
@@ -31,13 +32,13 @@ export type Generate<T extends AllTypes> =
   T extends Symbol ? symbol :
   T extends Any ? any :
   T extends Unknown ? unknown :
-  T extends Number ? T['_value'] :
-  T extends String ? T['_value'] :
-  T extends Object ? { [K in keyof T['_value']]: Generate<T['_value'][K]> } :
-  T extends ObjectRecord ? { [K: string]: Generate<T['_value']> } :
-  T extends Array ? Generate<T['_value']>[] :
-  T extends Tuple ? Generate.TupleDevice<T['_value']>['result'] :
-  T extends Union ? Generate.UnionDevice<T['_value']>['result'] :
+  T extends Number ? T[typeof valueSym] :
+  T extends String ? T[typeof valueSym] :
+  T extends Object ? { [K in keyof T[typeof valueSym]]: Generate<T[typeof valueSym][K]> } :
+  T extends ObjectRecord ? { [K: string]: Generate<T[typeof valueSym]> } :
+  T extends Array ? Generate<T[typeof valueSym]>[] :
+  T extends Tuple ? Generate.TupleDevice<T[typeof valueSym]>['result'] :
+  T extends Union ? Generate.UnionDevice<T[typeof valueSym]>['result'] :
   // T extends BigInt ? T['value'] :
   unknown
 

@@ -1,4 +1,4 @@
-import { FixedType } from './typesInternal'
+import { FixedType, typeSym } from './typesInternal'
 
 export type Undefined = FixedType<'undefined'>
-export const undef: Undefined = { _type: 'undefined' }
+export const undef: Undefined = { [typeSym]: 'undefined' }
