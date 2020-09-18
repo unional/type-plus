@@ -1,9 +1,9 @@
-import { FixedType } from './typesInternal'
+import { FixedType, typeSym } from './typesInternal'
 import { undef } from './Undefined'
 import { union } from './Union'
 
 export type Null = FixedType<'null'>
 export const nil = {
-  _type: 'null' as const,
-  optional: union.create({ _type: 'null' as const }, undef)
+  [typeSym]: 'null' as const,
+  optional: union.create({ [typeSym]: 'null' as const }, undef)
 }

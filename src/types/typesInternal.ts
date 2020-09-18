@@ -1,9 +1,12 @@
-/**
- * @internal
- */
-export type FixedType<T extends string> = { _type: T }
+export const typeSym: unique symbol = Symbol('type')
+export const valueSym: unique symbol = Symbol('value')
 
 /**
  * @internal
  */
-export type ValueType<T extends string, Value> = { _type: T, _value: Value }
+export type FixedType<T extends string> = { [typeSym]: T }
+
+/**
+ * @internal
+ */
+export type ValueType<T extends string, Value> = { [typeSym]: T, [valueSym]: Value }

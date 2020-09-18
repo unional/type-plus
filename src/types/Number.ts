@@ -1,5 +1,5 @@
 import { Tuple as TTTuple } from 'ts-toolbelt'
-import { ValueType } from './typesInternal'
+import { typeSym, valueSym, ValueType } from './typesInternal'
 import { undef, Undefined } from './Undefined'
 import { Union, union } from './Union'
 
@@ -14,7 +14,7 @@ type NumberListDevice<Values extends number[] = number[]> = Values['length'] ext
  * Creates a single number type.
  */
 function create<Value extends number>(value: Value): Number<Value> {
-  return { _type: 'number', _value: value }
+  return { [typeSym]: 'number', [valueSym]: value }
 }
 
 export const number = {

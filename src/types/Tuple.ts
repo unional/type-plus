@@ -7,7 +7,7 @@ import { Number } from './Number'
 import { Object, ObjectRecord } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
-import { ValueType } from './typesInternal'
+import { typeSym, valueSym, ValueType } from './typesInternal'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
 import { Unknown } from './Unknown'
@@ -28,8 +28,8 @@ function create<Value extends AllTypes, Values extends AllTypes[]>(
   ...values: Values
 ): Tuple<[Value, ...Values]> {
   return {
-    _type: 'tuple',
-    _value: [value, ...values]
+    [typeSym]: 'tuple',
+    [valueSym]: [value, ...values]
   }
 }
 export const tuple = {
@@ -43,8 +43,8 @@ export const tuple = {
       ...values: Values
     ): Union<[Tuple<[Value, ...Values]>, Undefined]> {
       return union.create({
-        _type: 'tuple',
-        _value: [value, ...values]
+        [typeSym]: 'tuple',
+        [valueSym]: [value, ...values]
       }, undef)
     }
   }

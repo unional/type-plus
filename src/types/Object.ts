@@ -8,7 +8,7 @@ import { number, Number } from './Number'
 import { string as str, String } from './String'
 import { symbol as sym, Symbol } from './Symbol'
 import { Tuple } from './Tuple'
-import { ValueType } from './typesInternal'
+import { typeSym, valueSym, ValueType } from './typesInternal'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
 import { Unknown } from './Unknown'
@@ -29,13 +29,13 @@ export type Object<
  * create specific object type.
  */
 function create<Props extends Record<KeyTypes, AllTypes>>(props: Props): Object<Props> {
-  return { _type: 'object', _value: props }
+  return { [typeSym]: 'object', [valueSym]: props }
 }
 
 export type ObjectRecord<Value extends AllTypes = any> = ValueType<'record', Value>
 
 function record<Value extends AllTypes>(value: Value): ObjectRecord<Value> {
-  return { _type: 'record', _value: value }
+  return { [typeSym]: 'record', [valueSym]: value }
 }
 
 export const object = {

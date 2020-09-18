@@ -1,4 +1,4 @@
-import { FixedType } from './typesInternal'
+import { FixedType, typeSym } from './typesInternal'
 
 export type Unknown = FixedType<'unknown'>
-export const unknown: Unknown = { _type: 'unknown' }
+export const unknown: Unknown = { [typeSym]: 'unknown' }

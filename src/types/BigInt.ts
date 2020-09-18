@@ -2,7 +2,7 @@
 // import { undef, Undefined } from './Undefined'
 // import { Union, union } from './Union'
 
-import { ValueType } from './typesInternal'
+import { typeSym, valueSym, ValueType } from './typesInternal'
 
 export type BigInt<Value extends bigint = bigint> = ValueType<'bigint', Value>
 
@@ -11,7 +11,7 @@ export type BigInt<Value extends bigint = bigint> = ValueType<'bigint', Value>
  */
 function create<Value extends bigint>(value: Value): BigInt<Value> {
   // Cannot name this function as `const` because it is a reserved keyword.
-  return { _type: 'bigint', _value: value }
+  return { [typeSym]: 'bigint', [valueSym]: value }
 }
 
 
