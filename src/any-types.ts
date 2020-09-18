@@ -1,6 +1,4 @@
-import { KeyTypes } from './object-key'
-
-export type AnyRecord = Record<KeyTypes, any>
+export type AnyRecord = Record<keyof any, any>
 
 export type AnyFunction = (...args: any[]) => any
 
