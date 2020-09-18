@@ -7,20 +7,18 @@ import { Number } from './Number'
 import { Object, ObjectRecord } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
+import { ValueType } from './typesInternal'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
 import { Unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
-| Object<any> | ObjectRecord<any>
-| Array<any> | Tuple<any>
-| Union<any> | Unknown | Any
+  | Object<any> | ObjectRecord<any>
+  | Array<any> | Tuple<any>
+  | Union<any> | Unknown | Any
   | Symbol // | BigInt
 
-export type Tuple<Values extends AllTypes[] = AllTypes[]> = {
-  _type: 'tuple',
-  values: Values
-}
+export type Tuple<Values extends AllTypes[] = AllTypes[]> = ValueType<'tuple', Values>
 
 /**
  * Creates a tuple type.
@@ -31,7 +29,7 @@ function create<Value extends AllTypes, Values extends AllTypes[]>(
 ): Tuple<[Value, ...Values]> {
   return {
     _type: 'tuple',
-    values: [value, ...values]
+    _value: [value, ...values]
   }
 }
 export const tuple = {
@@ -46,7 +44,7 @@ export const tuple = {
     ): Union<[Tuple<[Value, ...Values]>, Undefined]> {
       return union.create({
         _type: 'tuple',
-        values: [value, ...values]
+        _value: [value, ...values]
       }, undef)
     }
   }

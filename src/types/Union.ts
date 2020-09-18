@@ -8,6 +8,7 @@ import { Object, ObjectRecord } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Tuple } from './Tuple'
+import { ValueType } from './typesInternal'
 import { undef, Undefined } from './Undefined'
 import { Unknown } from './Unknown'
 
@@ -18,10 +19,7 @@ type AllTypes = Undefined | Null | Boolean | Number | String
   | Unknown | Any
   | Symbol // | BigInt
 
-export type Union<Values extends AllTypes[] = AllTypes[]> = {
-  _type: 'union',
-  values: Values
-}
+export type Union<Values extends AllTypes[] = AllTypes[]> = ValueType<'union', Values>
 
 /**
  * Create union type.
@@ -29,7 +27,7 @@ export type Union<Values extends AllTypes[] = AllTypes[]> = {
 function create<Values extends AllTypes[]>(...values: Values): Union<Values> {
   return {
     _type: 'union',
-    values
+    _value: values
   }
 }
 
