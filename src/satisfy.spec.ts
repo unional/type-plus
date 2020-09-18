@@ -311,14 +311,26 @@ describe('string', () => {
 //   expect(satisfy(types.bigint.create(0n), 1n)).toBe(false)
 // })
 
-test('symbol', () => {
-  expect(satisfy(types.symbol, Symbol())).toBe(true)
-  notSatisfyTypesOtherThan(types.symbol, Symbol())
+describe('symbol', () => {
+  test('base type satisfies any symbol', () => {
+    expect(satisfy(types.symbol, Symbol())).toBe(true)
+    notSatisfyTypesOtherThan(types.symbol, Symbol())
 
-  const value: unknown = Symbol()
-  if (satisfy(types.symbol, value)) {
-    assertType<symbol>(value)
-  }
+    const value: unknown = Symbol()
+    if (satisfy(types.symbol, value)) {
+      assertType<symbol>(value)
+    }
+  })
+  test('optional', () => {
+    const t = types.symbol.optional
+    const value: unknown = Symbol()
+
+    expect(satisfy(t, value)).toBe(true)
+
+    if (satisfy(t, value)) {
+      assertType<symbol | undefined>(value)
+    }
+  })
 })
 
 describe('union', () => {
