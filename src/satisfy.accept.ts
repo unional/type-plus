@@ -1,27 +1,27 @@
 import { baseline } from '@unional/fixture'
 import fs from 'fs'
 import path from 'path'
-import { satisfy, types } from '.'
+import { satisfy, types, optional } from '.'
 
-const rules = types.object.optional.record(types.string.create('error'))
+const rules = optional.object.record(optional.string.create('error'))
 const eslint = types.object.create({
-  env: types.object.optional.create({
-    es6: types.boolean.optional
+  env: optional.object.create({
+    es6: optional.boolean
   }),
-  parseOptions: types.object.optional.create({
-    ecmaVersion: types.number.optional.list(3, 5, 6, 7, 8, 9, 10, 11, 12),
-    sourceType: types.string.optional.list('script', 'module'),
-    ecmaFeatures: types.object.optional.create({
-      globalReturn: types.boolean.optional,
-      impliedStrict: types.boolean.optional,
-      jsx: types.boolean.optional
+  parseOptions: optional.object.create({
+    ecmaVersion: optional.number.list(3, 5, 6, 7, 8, 9, 10, 11, 12),
+    sourceType: optional.string.list('script', 'module'),
+    ecmaFeatures: optional.object.create({
+      globalReturn: optional.boolean,
+      impliedStrict: optional.boolean,
+      jsx: optional.boolean
     })
   }),
-  plugins: types.array.optional.create(types.string),
-  overrides: types.array.optional.create(
+  plugins: optional.array.create(optional.string),
+  overrides: optional.array.create(
     types.object.create({
-      files: types.array.optional.create(types.string),
-      processor: types.string.optional,
+      files: optional.array.create(optional.string),
+      processor: optional.string,
       rules
     })
   ),
