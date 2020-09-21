@@ -4,16 +4,16 @@ import { Array } from './Array'
 import { Boolean } from './Boolean'
 import { Null } from './Null'
 import { Number } from './Number'
-import { Object, ObjectRecord } from './Object'
+import { Obj, ObjectRecord } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Tuple } from './Tuple'
-import { typeSym, valueSym, ValueType } from './typesInternal'
+import { typeSym, valueSym, ValueType } from '../utils'
 import { undef, Undefined } from './Undefined'
 import { Unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
-  | Object<any> | ObjectRecord<any>
+  | Obj<any> | ObjectRecord<any>
   | Array<any> | Tuple<any>
   | Union<any>
   | Unknown | Any

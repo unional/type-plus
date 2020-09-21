@@ -1,4 +1,4 @@
-import { object } from './types'
+import { object } from './types/Object'
 import { any } from './types/Any'
 import { array } from './types/Array'
 import { boolean } from './types/Boolean'
@@ -9,7 +9,7 @@ import { symbol } from './types/Symbol'
 import { tuple } from './types/Tuple'
 import { undef } from './types/Undefined'
 import { unknown } from './types/Unknown'
-// import { bigint } from './BigInt'
+// import { bigint } from './types/BigInt'
 
 export const optional = {
   any: any,

@@ -3,17 +3,17 @@ import { any, Any } from './Any'
 import { Boolean } from './Boolean'
 import { Null } from './Null'
 import { Number } from './Number'
-import { Object, ObjectRecord } from './Object'
+import { Obj as Obj, ObjectRecord } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Tuple } from './Tuple'
-import { typeSym, valueSym, ValueType } from './typesInternal'
+import { typeSym, valueSym, ValueType } from '../utils'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
 import { Unknown, unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
-  | Object<any> | ObjectRecord<any>
+  | Obj<any> | ObjectRecord<any>
   | Array<any> | Tuple<any>
   | Union<any>
   | Unknown | Any
@@ -31,17 +31,15 @@ function create<Value extends AllTypes>(value: Value): Array<Value> {
   }
 }
 
-export const array = {
-  ...create(any),
+export const array = Object.assign(create(any), {
   create,
-  optional: {
-    ...union.create(create(any), undef),
+  optional: Object.assign(union.create(create(any), undef), {
     /**
      * Creates an optional array type.
      */
     create<Value extends AllTypes>(value: Value): Union<[Array<Value>, Undefined]> {
       return union.create(create(value), undef)
     }
-  },
+  }),
   unknown: create(unknown)
-}
+})
