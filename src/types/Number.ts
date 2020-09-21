@@ -1,5 +1,5 @@
 import { Tuple as TTTuple } from 'ts-toolbelt'
-import { typeSym, valueSym, ValueType } from './typesInternal'
+import { typeSym, valueSym, ValueType } from '../utils'
 import { undef, Undefined } from './Undefined'
 import { Union, union } from './Union'
 
@@ -17,10 +17,8 @@ function create<Value extends number>(value: Value): Number<Value> {
   return { [typeSym]: 'number', [valueSym]: value }
 }
 
-export const number = {
-  ...create(undefined as unknown as number),
+export const number = Object.assign(create(undefined as unknown as number), {
   create,
-
   // @ts-ignore we know that this can be infinite
   list<Values extends number[]>(...values: Values): Union<
     // @ts-ignore this seems to be a bug in TypeScript.
@@ -29,8 +27,7 @@ export const number = {
   > {
     return union.create(...values.map(create)) as any
   },
-  optional: {
-    ...union.create(create(undefined as unknown as number), undef),
+  optional: Object.assign(union.create(create(undefined as unknown as number), undef), {
     /**
      * Creates an optional number constant type.
      */
@@ -44,5 +41,5 @@ export const number = {
     > {
       return union.create(...values.map(create), undef) as any
     }
-  }
-}
+  })
+})

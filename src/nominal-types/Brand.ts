@@ -2,7 +2,7 @@
 // <https://gist.github.com/dcolthorp/aa21cf87d847ae9942106435bf47565d>
 
 import { AnyRecord } from '../any-types'
-import { typeSym } from '../types/typesInternal'
+import { typeSym } from '../utils'
 
 /**
  * Create a "branded" version of a type.

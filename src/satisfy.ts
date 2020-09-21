@@ -1,6 +1,6 @@
 import { everyKey } from './object-key'
 import * as types from './types'
-import { typeSym, valueSym } from './types/typesInternal'
+import { typeSym, valueSym } from './utils'
 
 export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): subject is types.Generate<T> {
   switch (type[typeSym]) {
@@ -14,7 +14,7 @@ export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): su
     case 'string': return satisfyType(types.string, type, subject)
     // case 'bigint': return satisfyType(types.bigint, type, subject)
     case 'union': return satisfyUnion(type as types.Union, subject)
-    case 'object': return satisfyObject(type as types.Object, subject)
+    case 'object': return satisfyObject(type as types.Obj, subject)
     case 'record': return satisfyRecord(type as types.ObjectRecord, subject)
     case 'array': return satisfyArray(type as types.Array, subject)
     case 'tuple': return satisfyTuple(type as types.Tuple, subject)
@@ -46,11 +46,11 @@ function satisfyArray<T extends types.Array>(type: T, subject: unknown) {
   return subject.every(s => satisfy(type[valueSym], s))
 }
 
-function satisfyObject<T extends types.Object>(type: T, subject: unknown) {
+function satisfyObject<T extends types.Obj>(type: T, subject: unknown) {
   if (typeof subject !== 'object') return false
   if (subject === null) return false // techically wrong...
   if (Array.isArray(subject)) return false
-  if (type === types.object as types.Object) return true
+  if (type === types.object as types.Obj) return true
   return everyKey(type[valueSym], p => satisfy(type[valueSym][p as any], (subject as any)[p]))
 }
 

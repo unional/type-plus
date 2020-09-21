@@ -1,4 +1,4 @@
-import { typeSym, valueSym, ValueType } from './typesInternal'
+import { typeSym, valueSym, ValueType } from '../utils'
 import { undef, Undefined } from './Undefined'
 import { Union, union } from './Union'
 
@@ -11,13 +11,11 @@ function create<Value extends boolean>(value: Value): Boolean<Value> {
   return { [typeSym]: 'boolean', [valueSym]: value }
 }
 
-export const boolean = {
-  ...create(undefined as unknown as boolean),
+export const boolean = Object.assign(create(undefined as unknown as boolean), {
   create,
   true: create(true),
   false: create(false),
-  optional: {
-    ...union.create(create(undefined as unknown as boolean), undef),
+  optional: Object.assign(union.create(create(undefined as unknown as boolean), undef), {
     /**
      * Creates an optional boolean type.
      */
@@ -26,5 +24,5 @@ export const boolean = {
     },
     true: union.create(create(true), undef),
     false: union.create(create(false), undef),
-  }
-}
+  })
+})

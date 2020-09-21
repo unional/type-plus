@@ -1,5 +1,5 @@
 import { Tuple as TTTuple } from 'ts-toolbelt'
-import { typeSym, valueSym, ValueType } from './typesInternal'
+import { typeSym, valueSym, ValueType } from '../utils'
 import { undef, Undefined } from './Undefined'
 import { Union, union } from './Union'
 
@@ -18,8 +18,7 @@ function create<Value extends string>(value: Value): String<Value> {
   return { [typeSym]: 'string', [valueSym]: value }
 }
 
-export const string = {
-  ...create(undefined as unknown as string),
+export const string = Object.assign(create(undefined as unknown as string), {
   create,
   // @ts-ignore we know that this can be infinite
   list<Values extends string[]>(...values: Values): Union<
@@ -29,8 +28,7 @@ export const string = {
   > {
     return union.create(...values.map(create)) as any
   },
-  optional: {
-    ...union.create(create(undefined as unknown as string), undef),
+  optional: Object.assign(union.create(create(undefined as unknown as string), undef), {
     /**
      * Creates an optional constant string type.
      */
@@ -44,5 +42,5 @@ export const string = {
     > {
       return union.create(...values.map(create), undef) as any
     }
-  }
-}
+  })
+})

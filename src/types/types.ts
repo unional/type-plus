@@ -6,17 +6,17 @@ import { Array } from './Array'
 import { Boolean, False, True } from './Boolean'
 import { Null } from './Null'
 import { Number } from './Number'
-import { Object, ObjectRecord } from './Object'
+import { Obj, ObjectRecord } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Tuple } from './Tuple'
-import { valueSym } from './typesInternal'
+import { valueSym } from '../utils'
 import { Undefined } from './Undefined'
 import { Union } from './Union'
 import { Unknown } from './Unknown'
 
 export type AllTypes = Undefined | Null | Boolean | Number | String
-  | Object<any> | ObjectRecord<any>
+  | Obj<any> | ObjectRecord<any>
   | Array<any> | Tuple<any>
   // <https://www.rapidtables.com/math/symbols/Set_Symbols.html>
   | Union<any> // | Intersection | SubSet | SuperSet | Complement | Diff
@@ -34,7 +34,7 @@ export type Generate<T extends AllTypes> =
   T extends Unknown ? unknown :
   T extends Number ? T[typeof valueSym] :
   T extends String ? T[typeof valueSym] :
-  T extends Object ? { [K in keyof T[typeof valueSym]]: Generate<T[typeof valueSym][K]> } :
+  T extends Obj ? { [K in keyof T[typeof valueSym]]: Generate<T[typeof valueSym][K]> } :
   T extends ObjectRecord ? { [K: string]: Generate<T[typeof valueSym]> } :
   T extends Array ? Generate<T[typeof valueSym]>[] :
   T extends Tuple ? Generate.TupleDevice<T[typeof valueSym]>['result'] :
