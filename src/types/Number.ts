@@ -17,7 +17,10 @@ function create<Value extends number>(value: Value): Number<Value> {
   return { [typeSym]: 'number', [valueSym]: value }
 }
 
-export const number = Object.assign(create(undefined as unknown as number), {
+const any = create(undefined as unknown as number)
+
+export const number = Object.assign(any, {
+  any,
   create,
   // @ts-ignore we know that this can be infinite
   list<Values extends number[]>(...values: Values): Union<
@@ -27,7 +30,7 @@ export const number = Object.assign(create(undefined as unknown as number), {
   > {
     return union.create(...values.map(create)) as any
   },
-  optional: Object.assign(union.create(create(undefined as unknown as number), undef), {
+  optional: Object.assign(union.create(any, undef), {
     /**
      * Creates an optional number constant type.
      */

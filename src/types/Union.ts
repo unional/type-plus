@@ -19,7 +19,7 @@ type AllTypes = Undefined | Null | Boolean | Number | String
   | Unknown | Any
   | Symbol // | BigInt
 
-export type Union<Values extends AllTypes[] = AllTypes[]> = ValueType<'union', Values>
+export type Union<Values extends AllTypes[] = any[]> = ValueType<'union', Values>
 
 /**
  * Create union type.

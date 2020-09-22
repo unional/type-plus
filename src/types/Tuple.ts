@@ -42,10 +42,7 @@ export const tuple = {
       value: Value,
       ...values: Values
     ): Union<[Tuple<[Value, ...Values]>, Undefined]> {
-      return union.create({
-        [typeSym]: 'tuple',
-        [valueSym]: [value, ...values]
-      }, undef)
+      return union.create(create(value, ...values), undef)
     }
   }
 }
