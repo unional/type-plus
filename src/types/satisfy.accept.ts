@@ -1,7 +1,7 @@
 import { baseline } from '@unional/fixture'
 import fs from 'fs'
 import path from 'path'
-import { satisfy, types, optional } from '.'
+import { types, optional } from '..'
 
 const rules = optional.object.record(optional.string.create('error'))
 const eslint = types.object.create({
@@ -32,7 +32,7 @@ baseline('fixtures/eslint', ({ caseName, caseFolder }) => {
   test(`eslint ${caseName}`, () => {
     const config = JSON.parse(fs.readFileSync(`${path.join(caseFolder, caseName)}`, 'utf-8'))
 
-    if (!satisfy(eslint, config)) fail('should satisfy')
+    if (!types.satisfy(eslint, config)) fail('should satisfy')
     config.parseOptions?.ecmaVersion
     config.rules
   })

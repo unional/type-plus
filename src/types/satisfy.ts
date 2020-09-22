@@ -1,6 +1,6 @@
-import { everyKey } from './object-key'
-import * as types from './types'
-import { typeSym, valueSym } from './utils'
+import { everyKey } from '../object-key'
+import * as types from '.'
+import { typeSym, valueSym } from '../utils'
 
 export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): subject is types.Generate<T> {
   switch (type[typeSym]) {
