@@ -1,23 +1,10 @@
 // import { BigInt } from './BigInt'
-import { any, Any } from './Any'
-import { Boolean } from './Boolean'
-import { Null } from './Null'
-import { Number } from './Number'
-import { ObjectType, ObjectRecord } from './Object'
-import { String } from './String'
-import { Symbol } from './Symbol'
-import { Tuple } from './Tuple'
 import { typeSym, valueSym, ValueType } from '../utils'
+import { AllTypes } from './AllTypes'
+import { any } from './Any'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
-import { Unknown, unknown } from './Unknown'
-
-type AllTypes = Undefined | Null | Boolean | Number | String
-  | ObjectType<any> | ObjectRecord<any>
-  | Array<any> | Tuple<any>
-  | Union<any>
-  | Unknown | Any
-  | Symbol // | BigInt
+import { unknown } from './Unknown'
 
 export type Array<Value extends AllTypes = any> = ValueType<'array', Value>
 

@@ -1,28 +1,14 @@
 import { KeyTypes } from '../object-key/KeyTypes'
-import { Any } from './Any'
-import { Array } from './Array'
-// import { BigInt } from './BigInt'
-import { Boolean } from './Boolean'
-import { Null } from './Null'
-import { number, Number } from './Number'
-import { string as str, String } from './String'
-import { symbol as sym, Symbol } from './Symbol'
-import { Tuple } from './Tuple'
 import { typeSym, valueSym, ValueType } from '../utils'
+import { AllTypes } from './AllTypes'
+import { number } from './Number'
+import { string as str } from './String'
+import { symbol as sym } from './Symbol'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
-import { Unknown } from './Unknown'
-
-type AllTypes = Undefined | Null | Boolean | Number | String
-  | ObjectType<any> | ObjectRecord<any>
-  | Array<any> | Tuple<any>
-  | Union<any>
-  | Unknown | Any
-  | Symbol
-// | BigInt
 
 export type ObjectType<
-  Props extends Record<KeyTypes, AllTypes> = Record<KeyTypes, AllTypes>
+  Props extends Record<KeyTypes, AllTypes> = Record<KeyTypes, any>
   > = ValueType<'object', Props>
 
 /**
