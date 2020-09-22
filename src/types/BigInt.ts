@@ -2,7 +2,8 @@
 // import { undef, Undefined } from './Undefined'
 // import { Union, union } from './Union'
 
-import { typeSym, valueSym, ValueType } from '../utils'
+import { typeSym, valueSym } from '../utils'
+import { ValueType } from './types'
 
 export type BigInt<Value extends bigint = bigint> = ValueType<'bigint', Value>
 

@@ -1,5 +1,6 @@
 import { KeyTypes } from '../object-key/KeyTypes'
-import { typeSym, valueSym, ValueType } from '../utils'
+import { typeSym, valueSym } from '../utils'
+import { ValueType } from './types'
 import { AllTypes } from './AllTypes'
 import { number } from './Number'
 import { string as str } from './String'

@@ -1,4 +1,5 @@
-import { typeSym, valueSym, ValueType } from '../utils'
+import { typeSym, valueSym } from '../utils'
+import { ValueType } from './types'
 import { AllTypes } from './AllTypes'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'

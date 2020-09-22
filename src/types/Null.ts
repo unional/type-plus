@@ -1,4 +1,5 @@
-import { FixedType, typeSym } from '../utils'
+import { typeSym } from '../utils'
+import { FixedType } from './types'
 import { undef } from './Undefined'
 import { union } from './Union'
 
