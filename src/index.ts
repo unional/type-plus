@@ -42,7 +42,8 @@ export * from './Required'
 export * from './satisfy'
 export * from './tryAssign'
 export * from './typeOverrideIncompatible'
-export * as types from './types'
+import * as types from './types'
 export * from './UnionKeys'
 export * from './ValueOf'
+export { types, types as T }
 
