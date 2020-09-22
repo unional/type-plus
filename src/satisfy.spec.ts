@@ -1,5 +1,5 @@
 import { satisfies } from 'satisfier'
-import { assertType, assignability, KeyTypes, satisfy, types } from '.'
+import { assertType, assignability, satisfy, types } from '.'
 
 test('undefined', () => {
   expect(satisfy(types.undefined, undefined)).toBe(true)
@@ -478,7 +478,7 @@ describe('object', () => {
 
     const value: unknown = { a: 1 }
     if (satisfy(types.object, value)) {
-      assertType<Record<KeyTypes, any>>(value)
+      assertType<Record<string, any>>(value)
     }
   })
   test('base type does not satisfy non-object including array and null', () => {
@@ -548,7 +548,7 @@ describe('object', () => {
 
     const value: unknown = undefined
     if (satisfy(t, value)) {
-      assertType<Record<KeyTypes, any> | undefined>(value)
+      assertType<Record<string, any> | undefined>(value)
     }
   })
   test('optional create', () => {

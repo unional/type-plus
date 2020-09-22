@@ -3,7 +3,7 @@ import { any, Any } from './Any'
 import { Boolean } from './Boolean'
 import { Null } from './Null'
 import { Number } from './Number'
-import { Obj as Obj, ObjectRecord } from './Object'
+import { ObjectType, ObjectRecord } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Tuple } from './Tuple'
@@ -13,13 +13,13 @@ import { union, Union } from './Union'
 import { Unknown, unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
-  | Obj<any> | ObjectRecord<any>
+  | ObjectType<any> | ObjectRecord<any>
   | Array<any> | Tuple<any>
   | Union<any>
   | Unknown | Any
   | Symbol // | BigInt
 
-export type Array<Value extends AllTypes = AllTypes> = ValueType<'array', Value>
+export type Array<Value extends AllTypes = any> = ValueType<'array', Value>
 
 /**
  * Creates an array type.
