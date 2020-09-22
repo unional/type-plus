@@ -14,21 +14,21 @@ import { union, Union } from './Union'
 import { Unknown } from './Unknown'
 
 type AllTypes = Undefined | Null | Boolean | Number | String
-  | Obj<any> | ObjectRecord<any>
+  | ObjectType<any> | ObjectRecord<any>
   | Array<any> | Tuple<any>
   | Union<any>
   | Unknown | Any
   | Symbol
 // | BigInt
 
-export type Obj<
+export type ObjectType<
   Props extends Record<KeyTypes, AllTypes> = Record<KeyTypes, AllTypes>
   > = ValueType<'object', Props>
 
 /**
  * create specific object type.
  */
-function create<Props extends Record<KeyTypes, AllTypes>>(props: Props): Obj<Props> {
+function create<Props extends Record<KeyTypes, AllTypes>>(props: Props): ObjectType<Props> {
   return { [typeSym]: 'object', [valueSym]: props }
 }
 
@@ -48,7 +48,7 @@ export const object = Object.assign(any, {
     /**
      * Creates an optional object type.
      */
-    create<Props extends Record<KeyTypes, AllTypes>>(props: Props): Union<[Obj<Props>, Undefined]> {
+    create<Props extends Record<KeyTypes, AllTypes>>(props: Props): Union<[ObjectType<Props>, Undefined]> {
       return union.create(create(props), undef)
     },
     record<Value extends AllTypes>(value: Value): Union<[ObjectRecord<Value>, Undefined]> {
