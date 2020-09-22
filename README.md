@@ -16,17 +16,21 @@ Provides additional types and type adjusted utilities for `typescript`
 
 ## API
 
-### Identity type
+### Array function
 
-- `Id<T>`: generic Id type
-- `createId<T>(type: T, value: string): Id<T>`: create id
-- `createIdCreator<T>(type: T): (value: string) => Id<T>`: create an id creator
+- `literalArray(...entries)`: return an array those items are restricted to the provided literals.
 
 ### Constant Types
 
 - `JSONTypes`: all JSON compatible types.
 - `KeyTypes`: type of all keys.
 - `PrimitiveTypes`: all primitive types, including `Function`, `symbol`, and `bigint`
+
+### Identity type
+
+- `Id<T>`: generic Id type
+- `createId<T>(type: T, value: string): Id<T>`: create id
+- `createIdCreator<T>(type: T): (value: string) => Id<T>`: create an id creator
 
 ### Object Key functions
 
@@ -40,9 +44,11 @@ Provides additional types and type adjusted utilities for `typescript`
 - `reduceKey()`: type adjusted reduce by key.
 - `someKey()`: type adjusted some by key.
 
-### Array function
+### Nominal Type
 
-- `literalArray(...entries)`: return an array those items are restricted to the provided literals.
+- `Flavor<FlavorT, T>`: a flavored nominal type.
+- `Brand<BrandT, T>`: a branded nominal type.
+- `createBrandCreator<BrandT, T>()`: creates a brand creator to create branded nominal type.
 
 ### Promise function
 
@@ -51,11 +57,22 @@ Provides additional types and type adjusted utilities for `typescript`
 - `PromiseValueMerge<P1, P2, ...P9>`: Merge the values of multiple promises.
 - `mapSeries()`: Similar to `bluebird.mapSeries()` but works with `async`/`await`.
 
-### Nominal Type
+### Type assertion
 
-- `Flavor<FlavorT, T>`: a flavored nominal type.
-- `Brand<BrandT, T>`: a branded nominal type.
-- `createBrandCreator<BrandT, T>()`: creates a brand creator to create branded nominal type.
+- `assignability<T>(handler?: (s: any) => boolean)`: creates a assignability function. To use it, do the following:
+
+```ts
+assertType.isTrue(assignability<YourType>()(subject)) // or
+assertType.isFalse(assignability<YourType>()(subject))
+```
+
+- `assertType<T>(subject: T)`: assert `subject` satisfies type `T`.
+- `assertType.isXXX(value)`: ensure typeof `value` is `XXX`
+- `assertType.noXXX(value)`: ensure typeof `value` does not contain `XXX`. i.e. cannot assign `XXX` to `value`.
+- `assertUnknown<T>(subject: unknown, handler?: (s: T) => boolean)`: assert `unknown` `subject` satisfies type `T`.
+- `checkUnknown<T>(subject: unknown, handler: overloads)`: type guard `unknown` `subject` is a specific type `T`
+- `typeAssert.*` (deprecated) replaced by `assertType`.
+- `typeAssertion<T>()`: (deprecated) use `assertType()` instead.
 
 ### Type manipulation
 
@@ -88,23 +105,6 @@ They can be used to compose complex types.
 - `IsDisjoint<A, B>`: is `A` and `B` is a disjoint set.
 - `IsSame<A, B>`: is `A` and `B` has the same properties and types.
 - `Not<T>`: not operator for type.
-
-### Type assertion
-
-- `assignability<T>(handler?: (s: any) => boolean)`: creates a assignability function. To use it, do the following:
-
-```ts
-assertType.isTrue(assignability<YourType>()(subject)) // or
-assertType.isFalse(assignability<YourType>()(subject))
-```
-
-- `assertType<T>(subject: T)`: assert `subject` satisfies type `T`.
-- `assertType.isXXX(value)`: ensure typeof `value` is `XXX`
-- `assertType.noXXX(value)`: ensure typeof `value` does not contain `XXX`. i.e. cannot assign `XXX` to `value`.
-- `assertUnknown<T>(subject: unknown, handler?: (s: T) => boolean)`: assert `unknown` `subject` satisfies type `T`.
-- `checkUnknown<T>(subject: unknown, handler: overloads)`: type guard `unknown` `subject` is a specific type `T`
-- `typeAssert.*` (deprecated) replaced by `assertType`.
-- `typeAssertion<T>()`: (deprecated) use `assertType()` instead.
 
 ### Utility Functions
 
