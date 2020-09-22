@@ -12,7 +12,7 @@ import { unknown } from './types/Unknown'
 // import { bigint } from './types/BigInt'
 
 export const optional = {
-  any: any,
+  any,
   array: array.optional,
   // bigint: bigint.optional,
   boolean: boolean.optional,
@@ -23,5 +23,5 @@ export const optional = {
   symbol: symbol.optional,
   tuple: tuple.optional,
   undefined: undef,
-  unknown: unknown
+  unknown
 }

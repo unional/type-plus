@@ -11,18 +11,23 @@ function create<Value extends boolean>(value: Value): Boolean<Value> {
   return { [typeSym]: 'boolean', [valueSym]: value }
 }
 
-export const boolean = Object.assign(create(undefined as unknown as boolean), {
+const any = create(undefined as unknown as boolean)
+const t = create(true)
+const f = create(false)
+
+export const boolean = Object.assign(any, {
+  any,
+  true: t,
+  false: f,
   create,
-  true: create(true),
-  false: create(false),
-  optional: Object.assign(union.create(create(undefined as unknown as boolean), undef), {
+  optional: Object.assign(union.create(any, undef), {
     /**
      * Creates an optional boolean type.
      */
     create<Value extends true | false>(value: Value): Union<[Boolean<Value>, Undefined]> {
       return union.create(create(value), undef)
     },
-    true: union.create(create(true), undef),
-    false: union.create(create(false), undef),
+    true: union.create(t, undef),
+    false: union.create(f, undef),
   })
 })

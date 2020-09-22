@@ -38,10 +38,13 @@ function record<Value extends AllTypes>(value: Value): ObjectRecord<Value> {
   return { [typeSym]: 'record', [valueSym]: value }
 }
 
-export const object = Object.assign(create(undefined as any), {
+const any = create(undefined as any)
+
+export const object = Object.assign(any, {
+  any,
   create,
   record,
-  optional: Object.assign(union.create(create(undefined as any), undef), {
+  optional: Object.assign(union.create(any, undef), {
     /**
      * Creates an optional object type.
      */

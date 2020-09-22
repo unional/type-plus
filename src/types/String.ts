@@ -17,8 +17,10 @@ function create<Value extends string>(value: Value): String<Value> {
   // Cannot name this function as `const` because it is a reserved keyword.
   return { [typeSym]: 'string', [valueSym]: value }
 }
+const any = create(undefined as unknown as string)
 
-export const string = Object.assign(create(undefined as unknown as string), {
+export const string = Object.assign(any, {
+  any,
   create,
   // @ts-ignore we know that this can be infinite
   list<Values extends string[]>(...values: Values): Union<
@@ -28,7 +30,7 @@ export const string = Object.assign(create(undefined as unknown as string), {
   > {
     return union.create(...values.map(create)) as any
   },
-  optional: Object.assign(union.create(create(undefined as unknown as string), undef), {
+  optional: Object.assign(union.create(any, undef), {
     /**
      * Creates an optional constant string type.
      */

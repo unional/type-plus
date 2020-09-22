@@ -32,6 +32,7 @@ function create<Value extends AllTypes>(value: Value): Array<Value> {
 }
 
 export const array = Object.assign(create(any), {
+  any,
   create,
   optional: Object.assign(union.create(create(any), undef), {
     /**

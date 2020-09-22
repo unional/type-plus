@@ -14,13 +14,14 @@ function create<Value extends bigint>(value: Value): BigInt<Value> {
   return { [typeSym]: 'bigint', [valueSym]: value }
 }
 
+const any = create(undefined as unknown as bigint)
 
-export const bigint = {
-  ...create(undefined as unknown as bigint),
+export const bigint = Object.assign(any, {
+  any,
   create,
   // Note: adding this requires Union type to include BigInt
   // optional: {
-  //   ...union.create(create(any), undef),
+  //   ...union.create(any, undef),
   //   /**
   //    * Creates an optional bigint constant type.
   //    */
@@ -28,4 +29,4 @@ export const bigint = {
   //     return union.create(create(value), undef)
   //   }
   // }
-}
+})
