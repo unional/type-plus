@@ -1,7 +1,6 @@
 // import { BigInt } from './BigInt'
 import { typeSym, valueSym } from '../utils'
 import { AllTypes } from './AllTypes'
-import { any } from './Any'
 import { ValueType } from './types'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
@@ -19,10 +18,12 @@ function create<Value extends AllTypes>(value: Value): Array<Value> {
   }
 }
 
-export const array = Object.assign(create(any), {
+const any = create(undefined as unknown as any)
+
+export const array = Object.assign({}, any, {
   any,
   create,
-  optional: Object.assign(union.create(create(any), undef), {
+  optional: Object.assign(union.create(any, undef), {
     /**
      * Creates an optional array type.
      */

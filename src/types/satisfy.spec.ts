@@ -1,14 +1,27 @@
+import a from 'assertron'
 import { satisfies } from 'satisfier'
 import { assertType, assignability, T } from '..'
 
-test('undefined', () => {
-  expect(T.satisfy(T.undefined, undefined)).toBe(true)
-  notSatisfyTypesOtherThan(T.undefined, undefined)
+describe('undefined', () => {
+  test('satisfies only undefined', () => {
+    expect(T.satisfy(T.undefined, undefined)).toBe(true)
+    notSatisfyTypesOtherThan(T.undefined, undefined)
 
-  const value: unknown = undefined
-  if (T.satisfy(T.undefined, value)) {
-    assertType<undefined>(value)
-  }
+    const value: unknown = undefined
+    if (T.satisfy(T.undefined, value)) {
+      assertType<undefined>(value)
+    }
+  })
+
+  test('violations', () => {
+    T.satisfy(T.undefined, false)
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [],
+      expected: T.undefined,
+      actual: false
+    }])
+  })
 })
 
 describe('null', () => {
@@ -21,6 +34,17 @@ describe('null', () => {
       assertType<null>(value)
     }
   })
+
+  test('violations', () => {
+    T.satisfy(T.null, false)
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [],
+      expected: { type: 'null' },
+      actual: false
+    }])
+  })
+
   test('optional', () => {
     const t = T.null.optional
     expect(T.satisfy(t, undefined)).toBe(true)
