@@ -11090,7 +11090,7 @@ terser@^4.1.2:
     source-map "~0.6.1"
     source-map-support "~0.5.12"
 
-tersify@^3.0.2, tersify@^3.0.6, tersify@^3.7.0:
+tersify@^3.0.2, tersify@^3.0.6, tersify@^3.7.0, tersify@^3.7.1:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/tersify/-/tersify-3.7.1.tgz#4c31e60f87ea90d91d66ad4083cb2a4bdf5db19e"
   integrity sha512-gtd2S0gIddhhNzu/u2d4WRLXDleBdG8VPJeIpDrQ7GsCvh/KYnylK1TmthzNp6RY5AK6z397mQCZl4AvYqTdwQ==
