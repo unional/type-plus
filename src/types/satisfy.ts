@@ -1,6 +1,7 @@
 import * as types from '.'
 import { typeSym, valueSym } from '../utils'
 import { formatViolations } from './formatViolation'
+import { toViolation } from './toViolations'
 import { Violation } from './Violation'
 
 /**
@@ -8,31 +9,31 @@ import { Violation } from './Violation'
  * @return type guard (boolean). If the subject does not satisfies the type,
  * the details violations is collected in the `satisfy.violations` array.
  */
-export function satisfy<T extends types.AllTypes>(type: T, subject: unknown): subject is types.Generate<T> {
-  satisfy.violations = []
-  const path: string[] = []
-  return satisfyRecur(path, type, subject)
+export function satisfy<T extends Exclude<types.AllTypes, types.Never>>(type: T, subject: unknown): subject is types.Generate<T> {
+  const violation = satisfyRecur([], type, subject)
+  satisfy.violations = violation ? [violation] : []
+  return !violation
 }
-function satisfyRecur<T extends types.AllTypes>(path: Array<string | number>, type: T, subject: unknown): subject is types.Generate<T> {
+function satisfyRecur<T extends types.AllTypes>(path: Array<string | number>, type: T, subject: unknown): Violation | undefined {
   switch (type[typeSym]) {
     case 'unknown':
-    case 'any': return true
+    case 'any': return undefined
     case 'undefined':
     case 'symbol': {
-      const m = typeof subject === type[typeSym]
-      if (!m) satisfy.violations.push({ path, expected: { type: type[typeSym] }, actual: subject })
-      return m
+      return typeof subject === type[typeSym]
+        ? undefined
+        : { path, expected: toViolation(type), actual: subject }
     }
     case 'null': {
-      const m = subject === null
-      if (!m) satisfy.violations.push({ path, expected: { type: type[typeSym] }, actual: subject })
-      return m
+      return subject === null
+        ? undefined
+        : { path, expected: toViolation(type), actual: subject }
     }
     case 'boolean': return satisfyBoolean(path, type as types.Boolean, subject)
-    case 'number': return satisfyType(types.number, type, subject)
-    case 'string': return satisfyType(types.string, type, subject)
-    // case 'bigint': return satisfyType(path, types.bigint, type, subject)
-    case 'union': return satisfyUnion(type as types.Union, subject)
+    case 'number': return satisfyType(path, types.number, type as types.Number, subject)
+    case 'string': return satisfyType(path, types.string, type as types.String, subject)
+    // case 'bigint': return satisfyType(path, types.bigint, type as types.BigInt, subject)
+    case 'union': return satisfyUnion(path, type as types.Union, subject)
     case 'object': return satisfyObject(path, type as types.Object, subject)
     case 'record': return satisfyRecord(path, type as types.Record, subject)
     case 'array': return satisfyArray(path, type as types.Array, subject)
@@ -46,53 +47,58 @@ function satisfyRecur<T extends types.AllTypes>(path: Array<string | number>, ty
 satisfy.violations = [] as Violation[]
 satisfy.formatViolations = () => formatViolations(satisfy.violations)
 
-function satisfyBoolean(path: Array<string | number>, type: types.Boolean, subject: unknown) {
-  const match = typeof subject === 'boolean'
-    && (type === types.boolean || type[valueSym] === subject)
-  if (!match) {
-    const expected = type[valueSym] === undefined
-      ? { type: type[typeSym] }
-      : { type: type[typeSym], value: type[valueSym] }
-    satisfy.violations.push({ path, expected, actual: subject })
-  }
-  return match
+function satisfyBoolean(path: Array<string | number>, type: types.Boolean, actual: unknown) {
+  return typeof actual === 'boolean'
+    && (type === types.boolean || type[valueSym] === actual)
+    ? undefined
+    : { path, expected: toViolation(type), actual }
 }
 
 function satisfyType(
+  path: Array<string | number>,
   baseType: types.Number | types.String, // | types.BigInt,
-  type: types.AllTypes,
-  subject: unknown
+  type: types.ValueType<any, any>,
+  actual: unknown
 ) {
-  if (typeof subject !== baseType[typeSym]) return false
-  if (type === baseType) return true
-  return subject === (type as any)[valueSym]
+  return typeof actual === baseType[typeSym]
+    && (type === baseType || actual === type[valueSym])
+    ? undefined
+    : { path, expected: toViolation(type), actual }
 }
 
-function satisfyUnion<T extends types.Union>(type: T, subject: unknown) {
-  return type[valueSym].some(t => satisfy(t, subject))
+function satisfyUnion<T extends types.Union>(path: Array<string | number>, type: T, actual: unknown) {
+  // console.debug(`satisfyUnion`, type, actual)
+  return type[valueSym].some(t => satisfyRecur(path, t, actual) === undefined)
+    ? undefined
+    : { path, expected: toViolation(type), actual }
 }
 
-function satisfyArray<T extends types.Array>(path: Array<string | number>, type: T, subject: unknown) {
-  if (!Array.isArray(subject)) return false
-  if (type[valueSym] === undefined) return true
-  return subject.every((s, i) => satisfyRecur([...path, i], type[valueSym], s))
+function satisfyArray<T extends types.Array>(path: Array<string | number>, type: T, actual: unknown) {
+  return Array.isArray(actual)
+    && (type[valueSym] === undefined || actual.every((s, i) => satisfyRecur([...path, i], type[valueSym], s) === undefined))
+    ? undefined
+    : { path, expected: toViolation(type), actual }
 }
 
-function satisfyObject<T extends types.Object>(path: Array<string | number>, type: T, subject: unknown) {
-  if (typeof subject !== 'object') return false
-  if (subject === null) return false // techically wrong...
-  if (Array.isArray(subject)) return false
-  if (type === types.object as types.Object) return true
-  return Object.keys(type[valueSym]).every(p => satisfyRecur([...path, p], type[valueSym][p], (subject as any)[p]))
+function satisfyObject<T extends types.Object>(path: Array<string | number>, type: T, actual: unknown) {
+  return typeof actual === 'object' && actual !== null // technically wrong, null IS object
+    && !Array.isArray(actual)
+    && (type === types.object as types.Object
+      || Object.keys(type[valueSym]).every(p => satisfyRecur([...path, p], type[valueSym][p], (actual as any)[p]) === undefined))
+    ? undefined
+    : { path, expected: toViolation(type), actual }
 }
 
-function satisfyTuple<T extends types.Tuple>(path: Array<string | number>, type: T, subject: unknown) {
-  if (!Array.isArray(subject)) return false
-  if (subject.length !== type[valueSym].length) return false
-  return subject.every((s, i) => satisfyRecur([...path, i], type[valueSym][i], s))
+function satisfyTuple<T extends types.Tuple>(path: Array<string | number>, type: T, actual: unknown) {
+  return Array.isArray(actual) && actual.length === type[valueSym].length
+    && actual.every((s, i) => satisfyRecur([...path, i], type[valueSym][i], s) === undefined)
+    ? undefined
+    : { path, expected: toViolation(type), actual }
 }
 
-function satisfyRecord(path: Array<string | number>, type: types.Record, subject: any) {
-  if (typeof subject !== 'object') return false
-  return Object.keys(subject).every(k => satisfyRecur([...path, k], type[valueSym], subject[k]))
+function satisfyRecord(path: Array<string | number>, type: types.Record, actual: any) {
+  return typeof actual === 'object' && actual !== null // technically wrong, null IS object
+    && Object.keys(actual).every(k => satisfyRecur([...path, k], type[valueSym], actual[k]) === undefined)
+    ? undefined
+    : { path, expected: toViolation(type), actual }
 }
