@@ -2,6 +2,7 @@ import { Any } from './Any'
 import { Array } from './Array'
 // import { BigInt } from './BigInt'
 import { Boolean } from './Boolean'
+import { Never } from './Never'
 import { Null } from './Null'
 import { Number } from './Number'
 import { ObjectType, ObjectRecord } from './Object'
@@ -17,5 +18,5 @@ export type AllTypes = Undefined | Null | Boolean | Number | String
   | Array | Tuple
   // <https://www.rapidtables.com/math/symbols/Set_Symbols.html>
   | Union // | Intersection | SubSet | SuperSet | Complement | Diff
-  | Unknown | Any
+  | Unknown | Any | Never
   | Symbol // | BigInt

@@ -6,9 +6,10 @@ import { Any } from './Any'
 import { Array } from './Array'
 // import { BigInt } from './BigInt'
 import { Boolean, False, True } from './Boolean'
+import { Never } from './Never'
 import { Null } from './Null'
 import { Number } from './Number'
-import { ObjectType, ObjectRecord } from './Object'
+import { ObjectRecord, ObjectType } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Tuple } from './Tuple'
@@ -25,6 +26,7 @@ export type Generate<T extends AllTypes> =
   T extends Symbol ? symbol :
   T extends Any ? any :
   T extends Unknown ? unknown :
+  T extends Never ? never :
   T extends Number ? T[typeof valueSym] :
   T extends String ? T[typeof valueSym] :
   T extends ObjectType ? { [K in keyof T[typeof valueSym]]: Generate<T[typeof valueSym][K]> } :
