@@ -19,27 +19,17 @@ function create<Props extends Record<KeyTypes, AllTypes>>(props: Props): ObjectT
   return { [typeSym]: 'object', [valueSym]: props }
 }
 
-export type ObjectRecord<Value extends AllTypes = any> = ValueType<'record', Value>
-
-function record<Value extends AllTypes>(value: Value): ObjectRecord<Value> {
-  return { [typeSym]: 'record', [valueSym]: value }
-}
-
 const any = create(undefined as any)
 
 export const object = Object.assign(any, {
   any,
   create,
-  record,
   optional: Object.assign(union.create(any, undef), {
     /**
      * Creates an optional object type.
      */
     create<Props extends Record<KeyTypes, AllTypes>>(props: Props): Union<[ObjectType<Props>, Undefined]> {
       return union.create(create(props), undef)
-    },
-    record<Value extends AllTypes>(value: Value): Union<[ObjectRecord<Value>, Undefined]> {
-      return union.create(record(value), undef) as any
     }
   })
 })

@@ -9,12 +9,13 @@ import { Boolean, False, True } from './Boolean'
 import { Never } from './Never'
 import { Null } from './Null'
 import { Number } from './Number'
-import { ObjectRecord, ObjectType } from './Object'
+import { ObjectType } from './Object'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Tuple } from './Tuple'
 import { Undefined } from './Undefined'
 import { Union } from './Union'
+import { Record } from './Record'
 import { Unknown } from './Unknown'
 
 export type Generate<T extends AllTypes> =
@@ -30,7 +31,7 @@ export type Generate<T extends AllTypes> =
   T extends Number ? T[typeof valueSym] :
   T extends String ? T[typeof valueSym] :
   T extends ObjectType ? { [K in keyof T[typeof valueSym]]: Generate<T[typeof valueSym][K]> } :
-  T extends ObjectRecord ? { [K: string]: Generate<T[typeof valueSym]> } :
+  T extends Record ? { [K: string]: Generate<T[typeof valueSym]> } :
   T extends Array ? Generate<T[typeof valueSym]>[] :
   T extends Tuple ? Generate.TupleDevice<T[typeof valueSym]>['result'] :
   T extends Union ? Generate.UnionDevice<T[typeof valueSym]>['result'] :
