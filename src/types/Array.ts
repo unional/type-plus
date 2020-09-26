@@ -1,17 +1,20 @@
 // import { BigInt } from './BigInt'
 import { typeSym, valueSym } from '../utils'
-import { AllTypes } from './AllTypes'
+import { AllType } from './AllTypes'
 import { ValueType } from './types'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
 import { unknown } from './Unknown'
 
-export type Array<Value extends AllTypes = any> = ValueType<'array', Value>
+export type Array<Value extends AllType = any> = ValueType<'array', Value>
+export namespace Array {
+  export type Expectation = ValueType.Expectation<'array', AllType.Expectation>
+}
 
 /**
  * Creates an array type.
  */
-function create<Value extends AllTypes>(value: Value): Array<Value> {
+function create<Value extends AllType>(value: Value): Array<Value> {
   return {
     [typeSym]: 'array',
     [valueSym]: value
@@ -27,7 +30,7 @@ export const array = Object.assign({}, any, {
     /**
      * Creates an optional array type.
      */
-    create<Value extends AllTypes>(value: Value): Union<[Array<Value>, Undefined]> {
+    create<Value extends AllType>(value: Value): Union<[Array<Value>, Undefined]> {
       return union.create(create(value), undef)
     }
   }),

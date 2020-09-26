@@ -296,15 +296,6 @@ describe('number', () => {
     }])
   })
 
-  test('list: empty is never', () => {
-    const t = T.number.list()
-    const value: unknown = undefined
-
-    expect(T.satisfy(t, value)).toBe(false)
-    if (T.satisfy(t, value)) {
-      assertType.isNever(value)
-    }
-  })
   test('list: single', () => {
     const t = T.number.list(0)
     const value: unknown = 0
@@ -467,15 +458,6 @@ describe('string', () => {
       actual: 1
     }])
   })
-  test('list: empty is never', () => {
-    const t = T.string.list()
-    const value: unknown = undefined
-
-    expect(T.satisfy(t, value)).toBe(false)
-    if (T.satisfy(t, value)) {
-      assertType.isNever(value)
-    }
-  })
   test('list: single', () => {
     const t = T.string.list('a')
     const value: unknown = 'a'
@@ -623,13 +605,6 @@ describe('symbol', () => {
 })
 
 describe('union', () => {
-  test('zero type gets never', () => {
-    const t = T.union.create()
-    // `t` cannot be used in `satisfy()` because it does not accept `Never`.
-    // This allows a quicker feedback to the user.
-    // T.satisfy(t, undefined)
-    assertType<T.Never>(t)
-  })
   test('single type gets the type back', () => {
     const t = T.union.create(T.boolean)
     assertType<T.Boolean>(t)
@@ -1154,11 +1129,18 @@ describe('tuple', () => {
   })
 })
 
+describe('satisfy.getReport()', () =>{
+  test('empty when no violations', () => {
+    T.satisfy(T.null, null)
+    expect(T.satisfy.getReport()).toBe('')
+  })
+})
+
 // test('if condition', () => {
 //   T.If(T.boolean.false, {}, false as const)
 // })
 
-function notSatisfyTypesOtherThan(type: Exclude<T.AllTypes, T.Never>, ...excepts: any[]) {
+function notSatisfyTypesOtherThan(type: T.AllType, ...excepts: any[]) {
   const values = [undefined, null, true, false, 0, 1, 0n, 1n, '', 'a', [], ['a'], {}, { a: 1 }, Symbol(), Symbol.for('a')]
   values.forEach(v => {
     if (!excepts.some(e => satisfies(v, e))) {

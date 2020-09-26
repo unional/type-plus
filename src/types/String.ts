@@ -24,12 +24,12 @@ export const string = Object.assign(any, {
   any,
   create,
   // @ts-ignore we know that this can be infinite
-  list<Values extends string[]>(...values: Values): Union<
+  list<Value extends string, Values extends string[]>(value: Value, ...values: Values): Union<
     // @ts-ignore this seems to be a bug in TypeScript.
     // It can recognize `StringListDevice<['a','b','c']>['result']`
-    StringListDevice<Values>['result']
+    StringListDevice<[Value, ...Values]>['result']
   > {
-    return union.create(...values.map(create)) as any
+    return union.create(create(value), ...values.map(create)) as any
   },
   optional: Object.assign(union.create(any, undef), {
     /**
@@ -39,11 +39,11 @@ export const string = Object.assign(any, {
       return union.create(create(value), undef)
     },
     // @ts-ignore we know that this can be infinite
-    list<Values extends string[]>(...values: Values): Union<
+    list<Value extends string, Values extends string[]>(value: Value, ...values: Values): Union<
       // @ts-ignore this seems to be a bug in TypeScript.
-      [...StringListDevice<Values>['result'], Undefined]
+      [...StringListDevice<[Value, ...Values]>['result'], Undefined]
     > {
-      return union.create(...values.map(create), undef) as any
+      return union.create(create(value), ...values.map(create), undef) as any
     }
   })
 })

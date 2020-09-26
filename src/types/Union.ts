@@ -1,20 +1,21 @@
 import { typeSym, valueSym } from '../utils'
+import { AllType } from './AllTypes'
 import { ValueType } from './types'
-import { AllTypes } from './AllTypes'
-import { undef, Undefined } from './Undefined'
-import { Never } from './Never'
+import { undef } from './Undefined'
 
 
-export type Union<Values extends AllTypes[] = any[]> = ValueType<'union', Values>
+export type Union<Values extends AllType[] = any[]> = ValueType<'union', Values>
 
 /**
  * Create union type.
  */
-function create<Values extends AllTypes[]>(...values: Values): Values['length'] extends 0
-  ? Never : Values['length'] extends 1
-  ? Values[0] : Union<Values> {
+function create<
+  Value extends AllType, Values extends AllType[]
+>(value: Value, ...values: Values): Values['length'] extends 0
+  ? Value : Union<[Value, ...Values]> {
+  values.unshift(value)
   if (values.length === 1) return values[0] as any
-  const v = values.reduce<AllTypes[]>((p, v) => {
+  const v = values.reduce<AllType[]>((p, v) => {
     if (v[typeSym] === 'union') {
       p.push(...(v as any)[valueSym])
     }
@@ -32,9 +33,9 @@ export const union = {
     /**
      * Creates an optional unional type.
      */
-    create<Values extends AllTypes[]>(...values: Values): Union<[...Values, Undefined]> {
+    create<Value extends AllType, Values extends AllType[]>(value: Value, ...values: Values) {
       values.push(undef)
-      return create(...values as any)
+      return create(value, ...values)
     }
   }
 }
