@@ -5,7 +5,8 @@ import { Boolean } from './Boolean'
 import { Never } from './Never'
 import { Null } from './Null'
 import { Number } from './Number'
-import { ObjectType, ObjectRecord } from './Object'
+import { ObjectType } from './Object'
+import { Record } from './Record'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Tuple } from './Tuple'
@@ -14,7 +15,7 @@ import { Union } from './Union'
 import { Unknown } from './Unknown'
 
 export type AllTypes = Undefined | Null | Boolean | Number | String
-  | ObjectType | ObjectRecord
+  | ObjectType | Record
   | Array | Tuple
   // <https://www.rapidtables.com/math/symbols/Set_Symbols.html>
   | Union // | Intersection | SubSet | SuperSet | Complement | Diff

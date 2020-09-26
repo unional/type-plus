@@ -896,6 +896,15 @@ describe('object', () => {
   test('base type does not satisfy non-object including array and null', () => {
     notSatisfyTypesOtherThan(T.object, {}, { a: 1 })
   })
+  test('base type violation', () => {
+    T.satisfy(T.object, true)
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [],
+      expected: { type: 'object' },
+      actual: true
+    }])
+  })
   test('single prop', () => {
     const t = T.object.create({ a: T.number })
     expect(T.satisfy(t, { a: 0 })).toBe(true)
@@ -905,6 +914,15 @@ describe('object', () => {
     if (T.satisfy(t, value)) {
       assertType<{ a: number }>(value)
     }
+  })
+  test('single prop violation', () => {
+    T.satisfy(T.object.create({ a: T.number }), true)
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [],
+      expected: { type: 'object', value: { a: { type: 'number' } } },
+      actual: true
+    }])
   })
   test('two props', () => {
     const t = T.object.create({
@@ -918,6 +936,20 @@ describe('object', () => {
     if (T.satisfy(t, value)) {
       assertType<{ a: 1, b: string }>(value)
     }
+  })
+  test('two props violation', () => {
+    T.satisfy(T.object.create({ a: T.number.create(1), b: T.string }), true)
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [],
+      expected: {
+        type: 'object', value: {
+          a: { type: 'number', value: 1 },
+          b: { type: 'string' }
+        }
+      },
+      actual: true
+    }])
   })
   test('props with union', () => {
     const t = T.object.create({
@@ -946,6 +978,27 @@ describe('object', () => {
       assertType<{ a: { b: number } }>(value)
     }
   })
+  test('nested object violation', () => {
+    T.satisfy(T.object.create({
+      a: T.object.create({
+        b: T.number
+      })
+    }), true)
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [],
+      expected: {
+        type: 'object', value: {
+          a: {
+            type: 'object', value: {
+              b: { type: 'number' }
+            }
+          }
+        }
+      },
+      actual: true
+    }])
+  })
   test('keys is string + number + symbol', () => {
     // technically empty string is not a valid key.
     // maybe we can do a disjoint or something
@@ -963,6 +1016,20 @@ describe('object', () => {
       assertType<Record<string, any> | undefined>(value)
     }
   })
+  test('optional object violation', () => {
+    T.satisfy(T.object.optional, true)
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [],
+      expected: {
+        type: 'union', value: [
+          { type: 'object' },
+          { type: 'undefined' }
+        ]
+      },
+      actual: true
+    }])
+  })
   test('optional create', () => {
     const t = T.object.optional.create({
       a: T.string
@@ -974,17 +1041,42 @@ describe('object', () => {
       assertType<{ a: string } | undefined>(value)
     }
   })
+  test('optional object violation', () => {
+    T.satisfy(T.object.optional.create({ a: T.string }), true)
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [],
+      expected: {
+        type: 'union', value: [
+          { type: 'object', value: { a: { type: 'string' } } },
+          { type: 'undefined' }
+        ]
+      },
+      actual: true
+    }])
+  })
 })
 
-describe('object record', () => {
+describe('record', () => {
   test('base case', () => {
-    const t = T.object.record(T.number)
+    const t = T.record.create(T.number)
     const value: any = { 'a': 1 }
     expect(T.satisfy(t, value)).toBe(true)
 
     if (T.satisfy(t, value)) {
       assertType<Record<string, number>>(value)
     }
+  })
+  test('record violation', () => {
+    T.satisfy(T.record.create(T.number), true)
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [],
+      expected: {
+        type: 'record', value: { type: 'number' }
+      },
+      actual: true
+    }])
   })
 })
 
@@ -1000,6 +1092,17 @@ describe('tuple', () => {
       assertType<[number]>(value)
     }
   })
+  test('single value violation', () => {
+    T.satisfy(T.tuple.create(T.number), true)
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [],
+      expected: {
+        type: 'tuple', value: [{ type: 'number' }]
+      },
+      actual: true
+    }])
+  })
   test('two values', () => {
     const t = T.tuple.create(T.number, T.string)
     expect(T.satisfy(t, [0, ''])).toBe(true)
@@ -1011,6 +1114,20 @@ describe('tuple', () => {
       assertType<[number, string]>(value)
     }
   })
+  test('two values violation', () => {
+    T.satisfy(T.tuple.create(T.number, T.string), true)
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [],
+      expected: {
+        type: 'tuple', value: [
+          { type: 'number' },
+          { type: 'string' }
+        ]
+      },
+      actual: true
+    }])
+  })
   test('optional', () => {
     const t = T.tuple.optional.create(T.boolean)
     expect(T.satisfy(t, undefined)).toBe(true)
@@ -1020,14 +1137,20 @@ describe('tuple', () => {
       assertType<[boolean] | undefined>(value)
     }
   })
-  test('optional create', () => {
-    const t = T.tuple.optional.create(T.boolean)
-    expect(T.satisfy(t, undefined)).toBe(true)
+  test('optional single value violation', () => {
+    T.satisfy(T.tuple.optional.create(T.number), true)
 
-    const value: unknown = undefined
-    if (T.satisfy(t, value)) {
-      assertType<[boolean] | undefined>(value)
-    }
+    a.satisfies(T.satisfy.violations, [{
+      path: [],
+      expected: {
+        type: 'union',
+        value: [
+          { type: 'tuple', value: [{ type: 'number' }] },
+          { type: 'undefined' }
+        ]
+      },
+      actual: true
+    }])
   })
 })
 
