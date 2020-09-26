@@ -1,15 +1,15 @@
 import { typeSym, valueSym } from '../utils'
 import { ValueType } from './types'
-import { AllTypes } from './AllTypes'
+import { AllType } from './AllTypes'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
 
-export type Tuple<Values extends AllTypes[] = any[]> = ValueType<'tuple', Values>
+export type Tuple<Values extends AllType[] = any[]> = ValueType<'tuple', Values>
 
 /**
  * Creates a tuple type.
  */
-function create<Value extends AllTypes, Values extends AllTypes[]>(
+function create<Value extends AllType, Values extends AllType[]>(
   value: Value,
   ...values: Values
 ): Tuple<[Value, ...Values]> {
@@ -24,7 +24,7 @@ export const tuple = {
     /**
      * Creates an optional tuple type.
      */
-    create<Value extends AllTypes, Values extends AllTypes[]>(
+    create<Value extends AllType, Values extends AllType[]>(
       value: Value,
       ...values: Values
     ): Union<[Tuple<[Value, ...Values]>, Undefined]> {

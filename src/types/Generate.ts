@@ -1,12 +1,11 @@
 import { Tuple as TTTuple } from 'ts-toolbelt'
 import { valueSym } from '../utils'
-import { AllTypes } from './AllTypes'
+import { AllType } from './AllTypes'
 // import { KeyTypes } from '../object-key'
 import { Any } from './Any'
 import { Array } from './Array'
 // import { BigInt } from './BigInt'
 import { Boolean, False, True } from './Boolean'
-import { Never } from './Never'
 import { Null } from './Null'
 import { Number } from './Number'
 import { ObjectType } from './Object'
@@ -18,7 +17,7 @@ import { Union } from './Union'
 import { Record } from './Record'
 import { Unknown } from './Unknown'
 
-export type Generate<T extends AllTypes> =
+export type Generate<T extends AllType> =
   T extends Undefined ? undefined :
   T extends Null ? null :
   T extends True ? true :
@@ -27,7 +26,6 @@ export type Generate<T extends AllTypes> =
   T extends Symbol ? symbol :
   T extends Any ? any :
   T extends Unknown ? unknown :
-  T extends Never ? never :
   T extends Number ? T[typeof valueSym] :
   T extends String ? T[typeof valueSym] :
   T extends ObjectType ? { [K in keyof T[typeof valueSym]]: Generate<T[typeof valueSym][K]> } :
@@ -42,7 +40,7 @@ export namespace Generate {
   /**
    * @internal
    */
-  export type UnionDevice<T extends AllTypes[]> = T['length'] extends 0
+  export type UnionDevice<T extends AllType[]> = T['length'] extends 0
     ? { result: never }
     // @ts-ignore sometimes language service mark this as referencing itself
     : { result: Generate<T[0]> | UnionDevice<TTTuple.Drop<T, '1'>>['result'] }
@@ -50,7 +48,7 @@ export namespace Generate {
   /**
    * @internal
    */
-  export type TupleDevice<T extends AllTypes[]> = T['length'] extends 0
+  export type TupleDevice<T extends AllType[]> = T['length'] extends 0
     ? { result: [] }
     // @ts-ignore sometimes language service mark this as referencing itself
     : { result: [Generate<T[0]>, ...TupleDevice<TTTuple.Drop<T, '1'>>['result']] }
