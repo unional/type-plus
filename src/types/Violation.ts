@@ -12,19 +12,21 @@ export type Violation = {
 export namespace Violation {
   export type Expectation = {
     type: string,
-    value?: Expectation | Expectation[] | Record<string, Expectation>
+    value?: number | string | boolean
+    // | bigint
+    | Expectation | Expectation[] | Record<string, Expectation>
   }
 }
 
-export function toViolation(type: AllType): Violation.Expectation {
+export function toExpectation(type: AllType): Violation.Expectation {
   const value = (type as any)[valueSym]
   if (value === undefined) return { type: type[typeSym] }
-  if (Array.isArray(value)) return { type: type[typeSym], value: value.map(toViolation) }
+  if (Array.isArray(value)) return { type: type[typeSym], value: value.map(toExpectation) }
   if (typeof value !== 'object') return { type: type[typeSym], value }
-  if (value[typeSym]) return { type: type[typeSym], value: toViolation(value) }
+  if (value[typeSym]) return { type: type[typeSym], value: toExpectation(value) }
   return {
     type: type[typeSym], value: reduceByKey(value as Record<string, any>, (p, k) => {
-      p[k] = toViolation(value[k])
+      p[k] = toExpectation(value[k])
       return p
     }, {} as Record<string, any>)
   }
@@ -37,7 +39,7 @@ export function getPlainViolationsReport(violations: Violation[]) {
 function formatViolation(v: Violation) {
   const path = formatPath(v.path)
   const expected = formatExpectation(v.expected)
-  return `${path} expects to be ${expected} but is actually '${tersify(v.actual)}'`
+  return `${path} expects to be ${expected} but is actually ${tersify(v.actual)}`
 }
 
 function formatPath(path: Array<string | number>) {
@@ -45,11 +47,42 @@ function formatPath(path: Array<string | number>) {
   return ''
 }
 
-function formatExpectation(e: Violation.Expectation) {
-  if (e.type === 'undefined') return 'undefined'
-  if (!e.value) {
-    return ['a', 'o', 'u'].indexOf(e.type[0]) >= 0
-      ? `an ${e.type}` : `a ${e.type}`
+function formatExpectation(e: Violation.Expectation): string {
+  switch (e.type) {
+    case 'undefined':
+    case 'null':
+    case 'symbol':
+      return e.type
+    case 'boolean':
+    case 'number':
+    case 'bigint':
+      return e.value === undefined ? e.type : String(e.value)
+    case 'string':
+      return e.value === undefined ? e.type : `'${e.value}'`
+    case 'array':
+      return e.value === undefined ? 'Array<any>' : `Array<${formatExpectation(e.value as any)}>`
+    case 'tuple':
+      return `[${formatExpectations(e.value as Violation.Expectation[])}]`
+    case 'object':
+      return e.value === undefined ? e.type
+        : `{ ${reduceByKey(
+          e.value as Record<string, any>,
+          (p, k) => {
+            p.push(`${k}: ${formatExpectation((e.value as any)[k] as any)}`)
+            return p
+          },
+          [] as string[]
+        ).join(',')} }`
+    case 'record':
+      return `Record<string, ${formatExpectation(e.value as any)}>`
+    case 'union':
+      return `(${formatExpectations(e.value as Violation.Expectation[], ' | ')})`
+    // istanbul ignore next
+    default:
+      return `report not expected: ${e.value}`
   }
-  return e
+}
+
+function formatExpectations(es: Violation.Expectation[], sep = ',') {
+  return es.map(formatExpectation).join(sep)
 }
