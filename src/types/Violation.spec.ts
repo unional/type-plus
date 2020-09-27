@@ -223,3 +223,5 @@ describe('record', () => {
     }])).toEqual(`subject expects to be (Record<string, Record<string, string>> | undefined) but is actually false`)
   })
 })
+
+test.todo('`actual` formatting')

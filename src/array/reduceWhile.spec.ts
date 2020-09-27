@@ -5,10 +5,7 @@ describe('reduceWhile()', () => {
     const array = ['a', 'b', 'c']
     const params: any[] = []
 
-    array.reduce((p, v, i, a) => {
-      params.push([p, v, i, a])
-      return p += v
-    }, '')
+    array.reduce((p, v, i, a) => (params.push([p, v, i, a]), p += v), '')
     expect(reduceWhile(
       () => true,
       (p, v, i, a) => {
@@ -17,7 +14,7 @@ describe('reduceWhile()', () => {
       },
       '',
       array
-    )).toEqual('abc')
+    )).toEqual('abc');
   })
   test('terminate early with predicate', () => {
     expect(reduceWhile(
