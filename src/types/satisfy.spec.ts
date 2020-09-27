@@ -643,6 +643,35 @@ describe('union', () => {
       actual: 'a'
     }])
   })
+  test('nested type simple violation', () => {
+    T.satisfy(T.union.create(T.boolean, T.object.create({ a: T.string })), 'a')
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [],
+      expected: {
+        type: 'union', value: [
+          { type: 'boolean' },
+          { type: 'object', value: { a: { type: 'string' } } }
+        ],
+      },
+      actual: 'a'
+    }])
+  })
+  test.skip('nested type deep violation', () => {
+    T.satisfy(T.union.create(T.boolean, T.object.create({ a: T.string })), { a: 1 })
+
+    console.info(JSON.stringify(T.satisfy.violations, undefined, 2))
+    a.satisfies(T.satisfy.violations, [{
+      path: ['a'],
+      expected: {
+        type: 'union', value: [
+          { type: 'boolean' },
+          { type: 'object', value: { a: { type: 'string', violated: true } } }
+        ],
+      },
+      actual: 1
+    }])
+  })
   test('nested union is flatten', () => {
     // TODO: flatten union type at `create()`
     // currently it is not, but the recursion work at `T.satisfy()`
@@ -855,6 +884,107 @@ describe('array', () => {
       actual: { a: 1 }
     }])
   })
+  test('multiple violations', () => {
+    T.satisfy(T.array.create(T.number), [true, 1, 'a'])
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [0],
+      expected: { type: 'number' },
+      actual: true
+    }, {
+      path: [2],
+      expected: { type: 'number' },
+      actual: 'a'
+    }])
+  })
+})
+
+describe('tuple', () => {
+  test('single value', () => {
+    const t = T.tuple.create(T.number)
+    expect(T.satisfy(t, [0])).toBe(true)
+    expect(T.satisfy(t, [''])).toBe(false)
+
+    const value: unknown = [1]
+    if (T.satisfy(t, value)) {
+      assertType<[number]>(value)
+    }
+  })
+  test('single value violation', () => {
+    T.satisfy(T.tuple.create(T.number), true)
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [],
+      expected: {
+        type: 'tuple', value: [{ type: 'number' }]
+      },
+      actual: true
+    }])
+  })
+  test('two values', () => {
+    const t = T.tuple.create(T.number, T.string)
+    expect(T.satisfy(t, [0, ''])).toBe(true)
+    expect(T.satisfy(t, [0])).toBe(false)
+
+    const value: unknown = [1, 'a']
+    if (T.satisfy(t, value)) {
+      assertType<[number, string]>(value)
+    }
+  })
+  test('two values violation', () => {
+    T.satisfy(T.tuple.create(T.number, T.string), true)
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [],
+      expected: {
+        type: 'tuple', value: [
+          { type: 'number' },
+          { type: 'string' }
+        ]
+      },
+      actual: true
+    }])
+  })
+  test('pass with more values than what specified in the type', () => {
+    expect(T.satisfy(T.tuple.create(T.number), [1, 'a'])).toBe(true)
+  })
+  test('optional', () => {
+    const t = T.tuple.optional.create(T.boolean)
+    expect(T.satisfy(t, undefined)).toBe(true)
+
+    const value: unknown = undefined
+    if (T.satisfy(t, value)) {
+      assertType<[boolean] | undefined>(value)
+    }
+  })
+  test('optional single value violation', () => {
+    T.satisfy(T.tuple.optional.create(T.number), true)
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [],
+      expected: {
+        type: 'union',
+        value: [
+          { type: 'tuple', value: [{ type: 'number' }] },
+          { type: 'undefined' }
+        ]
+      },
+      actual: true
+    }])
+  })
+  test('multiple violations', () => {
+    T.satisfy(T.tuple.create(T.number, T.string, T.boolean), [1, true, 'a'])
+
+    a.satisfies(T.satisfy.violations, [{
+      path: [1],
+      expected: { type: 'string' },
+      actual: true
+    }, {
+      path: [2],
+      expected: { type: 'boolean' },
+      actual: 'a'
+    }])
+  })
 })
 
 describe('object', () => {
@@ -1030,6 +1160,19 @@ describe('object', () => {
       actual: true
     }])
   })
+  test('multiple violations', () => {
+    T.satisfy(T.object.create({ a: T.number, b: T.string }), { a: 'a', b: false })
+
+    a.satisfies(T.satisfy.violations, [{
+      path: ['a'],
+      expected: { type: 'number' },
+      actual: 'a'
+    }, {
+      path: ['b'],
+      expected: { type: 'string' },
+      actual: false
+    }])
+  })
 })
 
 describe('record', () => {
@@ -1042,6 +1185,9 @@ describe('record', () => {
       assertType<Record<string, number>>(value)
     }
   })
+  test('base type does not satisfy non-object including array and null', () => {
+    notSatisfyTypesOtherThan(T.record.create(T.null), {}, { a: 1 })
+  })
   test('record violation', () => {
     T.satisfy(T.record.create(T.number), true)
 
@@ -1053,83 +1199,49 @@ describe('record', () => {
       actual: true
     }])
   })
-})
-
-describe('tuple', () => {
-  test('single value', () => {
-    const t = T.tuple.create(T.number)
-    expect(T.satisfy(t, [0])).toBe(true)
-    expect(T.satisfy(t, [''])).toBe(false)
-    expect(T.satisfy(t, [0, 1])).toBe(false)
-
-    const value: unknown = [1]
-    if (T.satisfy(t, value)) {
-      assertType<[number]>(value)
-    }
-  })
-  test('single value violation', () => {
-    T.satisfy(T.tuple.create(T.number), true)
+  test('multiple violations', () => {
+    T.satisfy(T.record.create(T.number), { a: 1, b: true, c: 'c' })
 
     a.satisfies(T.satisfy.violations, [{
-      path: [],
-      expected: {
-        type: 'tuple', value: [{ type: 'number' }]
-      },
+      path: ['b'],
+      expected: { type: 'number' },
       actual: true
-    }])
-  })
-  test('two values', () => {
-    const t = T.tuple.create(T.number, T.string)
-    expect(T.satisfy(t, [0, ''])).toBe(true)
-    expect(T.satisfy(t, [0])).toBe(false)
-    expect(T.satisfy(t, [0, '', true])).toBe(false)
-
-    const value: unknown = [1, 'a']
-    if (T.satisfy(t, value)) {
-      assertType<[number, string]>(value)
-    }
-  })
-  test('two values violation', () => {
-    T.satisfy(T.tuple.create(T.number, T.string), true)
-
-    a.satisfies(T.satisfy.violations, [{
-      path: [],
-      expected: {
-        type: 'tuple', value: [
-          { type: 'number' },
-          { type: 'string' }
-        ]
-      },
-      actual: true
-    }])
-  })
-  test('optional', () => {
-    const t = T.tuple.optional.create(T.boolean)
-    expect(T.satisfy(t, undefined)).toBe(true)
-
-    const value: unknown = undefined
-    if (T.satisfy(t, value)) {
-      assertType<[boolean] | undefined>(value)
-    }
-  })
-  test('optional single value violation', () => {
-    T.satisfy(T.tuple.optional.create(T.number), true)
-
-    a.satisfies(T.satisfy.violations, [{
-      path: [],
-      expected: {
-        type: 'union',
-        value: [
-          { type: 'tuple', value: [{ type: 'number' }] },
-          { type: 'undefined' }
-        ]
-      },
-      actual: true
+    }, {
+      path: ['c'],
+      expected: { type: 'number' },
+      actual: 'c'
     }])
   })
 })
 
-describe('satisfy.getReport()', () =>{
+describe('satisfy.violations complex cases', () => {
+  test('nested', () => {
+    const type = T.object.create({
+      num: T.array.create(T.number),
+      str: T.record.create(T.string)
+    })
+    T.satisfy(type, { num: [1, 2, 'a', true], str: { a: 'a', b: 1, c: true } })
+
+    expect(T.satisfy.violations).toEqual([{
+      path: ['num', 2],
+      expected: { type: 'number' },
+      actual: 'a'
+    }, {
+      path: ['num', 3],
+      expected: { type: 'number' },
+      actual: true
+    }, {
+      path: ['str', 'b'],
+      expected: { type: 'string' },
+      actual: 1
+    }, {
+      path: ['str', 'c'],
+      expected: { type: 'string' },
+      actual: true
+    }])
+  })
+})
+describe('satisfy.getReport()', () => {
   test('empty when no violations', () => {
     T.satisfy(T.null, null)
     expect(T.satisfy.getReport()).toBe('')

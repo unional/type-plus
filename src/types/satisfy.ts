@@ -1,3 +1,4 @@
+import { reduceWhile } from '../array'
 import { typeSym, valueSym } from '../utils'
 import { AllType } from './AllTypes'
 import { Array as ArrayType } from './Array'
@@ -19,24 +20,23 @@ import { getPlainViolationsReport, toExpectation, Violation } from './Violation'
  * the details violations is collected in the `satisfy.violations` array.
  */
 export function satisfy<T extends AllType>(type: T, subject: unknown): subject is Generate<T> {
-  const violation = satisfyRecur([], type, subject)
-  satisfy.violations = violation ? [violation] : []
-  return !violation
+  satisfy.violations = satisfyRecur([], type, subject)
+  return satisfy.violations.length === 0
 }
-function satisfyRecur<T extends AllType>(path: Array<string | number>, type: T, subject: unknown): Violation | undefined {
+function satisfyRecur<T extends AllType>(path: Array<string | number>, type: T, subject: unknown): Violation[] {
   switch (type[typeSym]) {
     case 'unknown':
-    case 'any': return undefined
+    case 'any': return []
     case 'undefined':
     case 'symbol': {
       return typeof subject === type[typeSym]
-        ? undefined
-        : { path, expected: toExpectation(type), actual: subject }
+        ? []
+        : [{ path, expected: toExpectation(type), actual: subject }]
     }
     case 'null': {
       return subject === null
-        ? undefined
-        : { path, expected: toExpectation(type), actual: subject }
+        ? []
+        : [{ path, expected: toExpectation(type), actual: subject }]
     }
     case 'boolean': return satisfyBoolean(path, type as Boolean, subject)
     case 'number': return satisfyType(path, number, type as Number, subject)
@@ -59,8 +59,8 @@ satisfy.getReport = () => getPlainViolationsReport(satisfy.violations)
 function satisfyBoolean(path: Array<string | number>, type: Boolean, actual: unknown) {
   return typeof actual === 'boolean'
     && (type === boolean || type[valueSym] === actual)
-    ? undefined
-    : { path, expected: toExpectation(type), actual }
+    ? []
+    : [{ path, expected: toExpectation(type), actual }]
 }
 
 function satisfyType(
@@ -71,43 +71,81 @@ function satisfyType(
 ) {
   return typeof actual === baseType[typeSym]
     && (type === baseType || actual === type[valueSym])
-    ? undefined
-    : { path, expected: toExpectation(type), actual }
+    ? []
+    : [{ path, expected: toExpectation(type), actual }]
 }
 
 function satisfyUnion<T extends Union>(path: Array<string | number>, type: T, actual: unknown) {
   // console.debug(`satisfyUnion`, type, actual)
-  return type[valueSym].some(t => satisfyRecur(path, t, actual) === undefined)
-    ? undefined
-    : { path, expected: toExpectation(type), actual }
+  return type[valueSym].some(t => satisfyRecur(path, t, actual).length === 0)
+    ? []
+    : [{ path, expected: toExpectation(type), actual }]
 }
 
 function satisfyArray<T extends ArrayType>(path: Array<string | number>, type: T, actual: unknown) {
-  return Array.isArray(actual)
-    && (type[valueSym] === undefined || actual.every((s, i) => satisfyRecur([...path, i], type[valueSym], s) === undefined))
-    ? undefined
-    : { path, expected: toExpectation(type), actual }
-}
+  if (!Array.isArray(actual)) return [{ path, expected: toExpectation(type), actual }]
+  if (type[valueSym] === undefined) return []
 
-function satisfyObject<T extends ObjectType>(path: Array<string | number>, type: T, actual: unknown) {
-  return typeof actual === 'object' && actual !== null // technically wrong, null IS object
-    && !Array.isArray(actual)
-    && (type === object as ObjectType
-      || Object.keys(type[valueSym]).every(p => satisfyRecur([...path, p], type[valueSym][p], (actual as any)[p]) === undefined))
-    ? undefined
-    : { path, expected: toExpectation(type), actual }
+  return reduceWhile(
+    (p) => p.length < 5,
+    (p, s, i) => {
+      const violations = satisfyRecur([...path, i], type[valueSym], s)
+      return violations ? p.concat(violations) : p
+    },
+    [] as Violation[],
+    actual
+  )
 }
 
 function satisfyTuple<T extends Tuple>(path: Array<string | number>, type: T, actual: unknown) {
-  return Array.isArray(actual) && actual.length === type[valueSym].length
-    && actual.every((s, i) => satisfyRecur([...path, i], type[valueSym][i], s) === undefined)
-    ? undefined
-    : { path, expected: toExpectation(type), actual }
+  if (!Array.isArray(actual)) return [{ path, expected: toExpectation(type), actual }]
+
+  return reduceWhile(
+    (p) => p.length < 5,
+    (p, type, i) => {
+      const violations = satisfyRecur([...path, i], type, actual[i])
+      return violations ? p.concat(violations) : p
+    },
+    [] as Violation[],
+    type[valueSym]
+  )
+}
+function satisfyObject<T extends ObjectType>(path: Array<string | number>, type: T, actual: unknown) {
+  if (!isOnlyObject(actual)) return [{ path, expected: toExpectation(type), actual }]
+
+  if (type === object as ObjectType) return []
+
+  return reduceWhile(
+    (p) => p.length < 5,
+    (p, key) => {
+      const violations = satisfyRecur([...path, key], type[valueSym][key], (actual as any)[key])
+      return violations ? p.concat(violations) : p
+    },
+    [] as Violation[],
+    Object.keys(actual)
+  )
+  // .map(v => ({
+  //   path: v.path,
+  //   expected: { type: 'object', value: { [v.path[path.length]]: v.expected.value } },
+  //   actual: v.actual
+  // }))
 }
 
 function satisfyRecord(path: Array<string | number>, type: Record, actual: any) {
-  return typeof actual === 'object' && actual !== null // technically wrong, null IS object
-    && Object.keys(actual).every(k => satisfyRecur([...path, k], type[valueSym], actual[k]) === undefined)
-    ? undefined
-    : { path, expected: toExpectation(type), actual }
+  if (!isOnlyObject(actual)) return [{ path, expected: toExpectation(type), actual }]
+
+  const valueType = type[valueSym]
+  return reduceWhile(
+    (p) => p.length < 5,
+    (p, key) => {
+      const violations = satisfyRecur([...path, key], valueType, (actual as any)[key])
+      return violations ? p.concat(violations) : p
+    },
+    [] as Violation[],
+    Object.keys(actual)
+  )
+}
+
+function isOnlyObject(actual: unknown): actual is Object {
+  return typeof actual === 'object' && actual !== null && !Array.isArray(actual)
 }
