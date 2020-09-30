@@ -27,10 +27,7 @@ export namespace analyze {
       | Analysis | Analysis[] | Record<string, Analysis>
   }
 }
-export function analyze<T extends AllType>(options: analyze.Options, typeDef: T, actual: unknown): analyze.Analysis {
-  return analyzeInternal(options, typeDef, actual)
-}
-function analyzeInternal<T extends AllType>(options: analyze.Options, type: T, actual: unknown): analyze.Analysis {
+export function analyze(options: analyze.Options, type: AllType, actual: unknown): analyze.Analysis {
   const t = type[typeSym]
   switch (t) {
     case 'unknown':
@@ -38,13 +35,9 @@ function analyzeInternal<T extends AllType>(options: analyze.Options, type: T, a
       return ok(type)
     case 'undefined':
     case 'symbol':
-      return typeof actual === t ?
-        ok(type) :
-        fail(t, undefined, actual)
+      return typeof actual === t ? ok(type) : fail(t, undefined, actual)
     case 'null':
-      return actual === null ?
-        ok(type) :
-        fail(t, undefined, actual)
+      return actual === null ? ok(type) : fail(t, undefined, actual)
     case 'boolean': return analyzeBoolean(type as Boolean, actual)
     case 'number': return analyzeType(number, type as Number, actual)
     case 'string': return analyzeType(string, type as String, actual)
@@ -73,27 +66,24 @@ function analyzeType(
   actual: unknown
 ) {
   const value = type[valueSym]
-  return typeof actual === baseType[typeSym]
-    && (type === baseType || actual === value)
+  return typeof actual === baseType[typeSym] && (type === baseType || actual === value)
     ? ok(type)
     : fail(type[typeSym], type[valueSym], actual)
 }
 
-function analyzeUnion<T extends Union>(options: analyze.Options, type: T, actual: unknown) {
+function analyzeUnion(options: analyze.Options, type: Union, actual: unknown) {
   const subTypes = type[valueSym]
-  const r = subTypes.map(t => analyzeInternal(options, t, actual))
-  return r.some(r => !r.fail) ?
-    ok(type) :
-    fail('union', subTypes.map(ok), actual)
+  const r = subTypes.map(t => analyze(options, t, actual))
+  return r.some(r => !r.fail) ? ok(type) : fail('union', subTypes.map(ok), actual)
 }
 
-function analyzeArray<T extends ArrayType<AllType>>(options: analyze.Options, type: T, actual: unknown) {
+function analyzeArray(options: analyze.Options, type: ArrayType<AllType>, actual: unknown) {
   const subType = type[valueSym]
   if (!Array.isArray(actual)) return fail('array', subType ? ok(subType) : undefined, actual)
   if (subType === undefined) return ok(type)
 
   const r = actual.reduce((p, a, i) => {
-    const r = analyzeInternal(options, subType, a)
+    const r = analyze(options, subType, a)
     if (r.fail) {
       p.value = r.value
       p.keys.push(i)
@@ -106,7 +96,7 @@ function analyzeArray<T extends ArrayType<AllType>>(options: analyze.Options, ty
     fail('array', { ...fail(subType[typeSym], r.value, r.actual), keys: r.keys }, actual)
 }
 
-function analyzeTuple<T extends Tuple>(options: analyze.Options, type: T, actual: unknown) {
+function analyzeTuple(options: analyze.Options, type: Tuple, actual: unknown) {
   const value = type[valueSym]
   if (!Array.isArray(actual)) return fail('tuple', value.map(ok), actual)
   const results = value.map((v, i) => analyze(options, v, actual[i]))
@@ -114,12 +104,10 @@ function analyzeTuple<T extends Tuple>(options: analyze.Options, type: T, actual
     results.push(fail('never', undefined, actual.slice(results.length), range(results.length, actual.length)))
     return fail('tuple', results, actual)
   }
-  return results.every(r => !r.fail) ?
-    ok(type) :
-    fail('tuple', results, actual)
+  return results.every(r => !r.fail) ? ok(type) : fail('tuple', results, actual)
 }
 
-function analyzeObject<T extends ObjectType>(options: analyze.Options, type: T, actual: any) {
+function analyzeObject(options: analyze.Options, type: ObjectType, actual: any) {
   const value = type[valueSym]
   if (!isOnlyObject(actual)) return fail('object', value, actual)
 
@@ -128,7 +116,7 @@ function analyzeObject<T extends ObjectType>(options: analyze.Options, type: T, 
   let allPass = true
   const results = Object.keys(value).reduce(
     (p, k) => {
-      const r = p[k] = analyzeInternal(options, value[k], actual[k])
+      const r = p[k] = analyze(options, value[k], actual[k])
       allPass &&= !r.fail
       return p
     },
@@ -141,9 +129,8 @@ function analyzeRecord(options: analyze.Options, type: RecordType, actual: unkno
   const subType = type[valueSym]
   if (!isOnlyObject(actual)) return fail('record', ok(subType), actual)
 
-
   const r = reduceByKey(actual, (p, k) => {
-    const r = analyzeInternal(options, subType, actual[k])
+    const r = analyze(options, subType, actual[k])
     if (r.fail) {
       p.value = r.value
       p.keys.push(k)
