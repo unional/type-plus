@@ -110,6 +110,7 @@ function satisfyTuple<T extends Tuple>(path: Array<string | number>, type: T, ac
     type[valueSym]
   )
 }
+
 function satisfyObject<T extends ObjectType>(path: Array<string | number>, type: T, actual: unknown) {
   if (!isOnlyObject(actual)) return [{ path, expected: toExpectation(type), actual }]
 
