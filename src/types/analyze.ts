@@ -10,6 +10,7 @@ import { string, String } from './String'
 import { Tuple } from './Tuple'
 import { ValueType } from './types'
 import { Union } from './Union'
+import { formatViolation, Violation } from './Violation'
 
 export namespace analyze {
   export type Options = { strict: boolean }
@@ -181,4 +182,19 @@ function range(start: number, end: number) {
   const r: number[] = []
   while (start < end) r.push(start++)
   return r
+}
+
+export function getPlainAnalysisReport(analysis: analyze.Analysis) {
+  const violations = toViolations([], analysis)
+  return violations.map(formatViolation).join('\n')
+}
+
+function toViolations(path: Array<string | number>, analysis: analyze.Analysis): Violation[] {
+  if (!analysis.fail) return []
+  if (analysis.keys) return [] // TODO
+  return [{
+    path,
+    expected: { type: analysis.type, value: analysis.value },
+    actual: analysis.actual
+  }]
 }
