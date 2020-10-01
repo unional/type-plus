@@ -1,7 +1,6 @@
-import a from 'assertron'
-import { analyze } from './analyze'
-import * as T from '.'
 import { satisfies } from 'satisfier'
+import * as T from '.'
+import { analyze } from './analyze'
 
 describe('non-strict', () => {
   const options = { strict: false }
@@ -727,15 +726,6 @@ describe('non-strict', () => {
         fail: true,
         actual: []
       })
-      assert(analyze(options, t, [1, 2, 3, 4]), {
-        type: 'tuple',
-        value: [
-          { type: 'number' },
-          { type: 'never', fail: true, keys: [1, 2, 3], actual: [2, 3, 4] }
-        ],
-        fail: true,
-        actual: [1, 2, 3, 4]
-      })
       assert(analyze(options, t, ['a']), {
         type: 'tuple',
         value: [{ type: 'number', fail: true, actual: 'a' }],
@@ -945,15 +935,37 @@ describe('non-strict', () => {
 })
 
 describe('strict', () => {
-  // test('good subject returns pass === true', () => {
-  //   a.satisfies(analyze({ strict: true }, T.number, 1), { pass: true })
-  // })
+  const options = { strict: true }
+  describe('tuple', () => {
+    test('have more elements then specified will fail', () => {
+      const t = T.tuple.create(T.number)
+      assert(analyze(options, t, [1, 2, 3, 4]), {
+        type: 'tuple',
+        value: [
+          { type: 'number' },
+          { type: 'never', fail: true, keys: [1, 2, 3], actual: [2, 3, 4] }
+        ],
+        fail: true,
+        actual: [1, 2, 3, 4]
+      })
+    })
+  })
+  describe('object', () => {
+    test('have extra properties then specified will fail', () => {
+      const t = T.object.create({ a: T.number })
+      assert(analyze(options, t, { a: 1, b: 2, c: 'c' }), {
+        type: 'object',
+        value: {
+          a: { type: 'number' },
+          b: { type: 'never', fail: true, actual: 2 },
+          c: { type: 'never', fail: true, actual: 'c' }
+        },
+        fail: true,
+        actual: { a: 1, b: 2, c: 'c' }
+      })
+    })
+  })
 })
-
-// const testValues = [
-//   [undefined, (actual: any) => ({ type: 'undefined', pass: false, actual })],
-//   [null, (actual: any) => ({ type: 'null', pass: false, actual }),
-//     [true, (actual: ), false, 0, 1, 0n, 1n, '', 'a', [], ['a'], {}, { a: 1 }, Symbol(), Symbol.for('a')]
 
 function assert(result: analyze.Analysis, analysis: analyze.Analysis) {
   expect(result).toEqual(analysis)
@@ -963,7 +975,7 @@ function analyzeFailsOtherThan(options: analyze.Options, type: T.AllType, ...exc
   const values = [undefined, null, true, false, -1, 0, 1, -1n, 0n, 1n, '', 'a', [], ['a'], {}, { a: 1 }, Symbol.for('a')]
   values.forEach(v => {
     if (!excepts.some(e => satisfies(v, e))) {
-      a.satisfies(analyze(options, type, v), { fail: true })
+      expect(analyze(options, type, v).fail).toBe(true)
     }
   })
 }

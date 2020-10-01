@@ -15,7 +15,7 @@ export namespace analyze {
   export type Options = { strict: boolean }
   export type Analysis = {
     type: string,
-    value?: Analysis.Value
+    value?: Analysis.Value,
     fail?: boolean,
     keys?: Array<number | string>,
     actual?: any
@@ -100,7 +100,7 @@ function analyzeTuple(options: analyze.Options, type: Tuple, actual: unknown) {
   const value = type[valueSym]
   if (!Array.isArray(actual)) return fail('tuple', value.map(ok), actual)
   const results = value.map((v, i) => analyze(options, v, actual[i]))
-  if (results.length < actual.length) {
+  if (options.strict && results.length < actual.length) {
     results.push(fail('never', undefined, actual.slice(results.length), range(results.length, actual.length)))
     return fail('tuple', results, actual)
   }
@@ -108,21 +108,30 @@ function analyzeTuple(options: analyze.Options, type: Tuple, actual: unknown) {
 }
 
 function analyzeObject(options: analyze.Options, type: ObjectType, actual: any) {
-  const value = type[valueSym]
-  if (!isOnlyObject(actual)) return fail('object', value, actual)
-
+  const typeMap = type[valueSym]
+  if (!isOnlyObject(actual)) return fail('object', typeMap ? object.map(v => ok(v), typeMap) : undefined, actual)
   if (type === object as ObjectType) return ok(type)
 
-  let allPass = true
-  const results = Object.keys(value).reduce(
+  const typeKeys = Object.keys(typeMap)
+  const s = { ...actual }
+  const results = typeKeys.reduce(
     (p, k) => {
-      const r = p[k] = analyze(options, value[k], actual[k])
-      allPass &&= !r.fail
+      const r = p.value[k] = analyze(options, typeMap[k], actual[k])
+      p.fail ||= !!r.fail
+      s[k] = undefined
       return p
     },
-    {} as Record<string, analyze.Analysis>
+    { fail: false, value: {} } as { fail: boolean, value: Record<string, analyze.Analysis> }
   )
-  return allPass ? ok(type) : fail('object', results, actual)
+  const skeys = Object.keys(s)
+  if (options.strict && skeys.length > typeKeys.length) {
+    skeys.forEach(k => {
+      if (s[k] !== undefined) results.value[k] = { type: 'never', fail: true, actual: s[k] }
+    })
+    results.fail = true
+  }
+
+  return !results.fail ? ok(type) : fail('object', results.value, actual)
 }
 
 function analyzeRecord(options: analyze.Options, type: RecordType, actual: unknown) {
