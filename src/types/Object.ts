@@ -1,3 +1,4 @@
+import { KeyTypes, reduceByKey } from '../object-key'
 import { typeSym, valueSym } from '../utils'
 import { AllType } from './AllTypes'
 import { number } from './Number'
@@ -24,9 +25,16 @@ function create<Props extends Record<string, AllType>>(props: Props): ObjectType
 
 const any = create(undefined as any)
 
+export function map<
+  T extends Record<KeyTypes, any>
+>(callback: (value: any, key: keyof T, obj: Record<KeyTypes, any>) => any, subject: T) {
+  return reduceByKey(subject, (p, k) => (p[k] = callback(subject[k], k, p), p), {} as Record<any, any>)
+}
+
 export const object = Object.assign(any, {
   any,
   create,
+  map,
   optional: Object.assign(union.create(any, undef), {
     /**
      * Creates an optional object type.
