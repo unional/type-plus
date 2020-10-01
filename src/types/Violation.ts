@@ -36,7 +36,7 @@ export function getPlainViolationsReport(violations: Violation[]) {
   return violations.map(formatViolation).join('\n')
 }
 
-function formatViolation(v: Violation) {
+export function formatViolation(v: Violation) {
   const path = formatPath(v.path)
   const expected = formatExpectation(v.expected)
   return `${path} expects to be ${expected} but is actually ${tersify(v.actual)}`
