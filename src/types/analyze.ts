@@ -13,7 +13,15 @@ import { Union } from './Union'
 import { formatViolation, Violation } from './Violation'
 
 export namespace analyze {
-  export type Options = { strict: boolean }
+  export type Options = {
+    strict: boolean,
+    debug: boolean
+  }
+  export type Result = {
+    options: Options,
+    analysis: Analysis,
+    actual: any
+  }
   export type Analysis = {
     type: string,
     value?: Analysis.Value,
@@ -28,7 +36,15 @@ export namespace analyze {
       | Analysis | Analysis[] | Record<string, Analysis>
   }
 }
-export function analyze(options: analyze.Options, type: AllType, actual: unknown): analyze.Analysis {
+export function analyze(options: analyze.Options, type: AllType, actual: unknown): analyze.Result {
+  const analysis = analyzeInternal(options, type, actual)
+  return {
+    options,
+    analysis,
+    actual
+  }
+}
+export function analyzeInternal(options: analyze.Options, type: AllType, actual: unknown): analyze.Analysis {
   const t = type[typeSym]
   switch (t) {
     case 'unknown':
@@ -74,7 +90,7 @@ function analyzeType(
 
 function analyzeUnion(options: analyze.Options, type: Union, actual: unknown) {
   const subTypes = type[valueSym]
-  const r = subTypes.map(t => analyze(options, t, actual))
+  const r = subTypes.map(t => analyzeInternal(options, t, actual))
   return r.some(r => !r.fail) ? ok(type) : fail('union', subTypes.map(ok), actual)
 }
 
@@ -84,7 +100,7 @@ function analyzeArray(options: analyze.Options, type: ArrayType<AllType>, actual
   if (subType === undefined) return ok(type)
 
   const r = actual.reduce((p, a, i) => {
-    const r = analyze(options, subType, a)
+    const r = analyzeInternal(options, subType, a)
     if (r.fail) {
       p.value = r.value
       p.keys.push(i)
@@ -100,10 +116,9 @@ function analyzeArray(options: analyze.Options, type: ArrayType<AllType>, actual
 function analyzeTuple(options: analyze.Options, type: Tuple, actual: unknown) {
   const value = type[valueSym]
   if (!Array.isArray(actual)) return fail('tuple', value.map(ok), actual)
-  const results = value.map((v, i) => analyze(options, v, actual[i]))
+  const results = value.map((v, i) => analyzeInternal(options, v, actual[i]))
   if (options.strict && results.length < actual.length) {
-    results.push(fail('never', undefined, actual.slice(results.length), range(results.length, actual.length)))
-    return fail('tuple', results, actual)
+    return fail('tuple', results, actual, range(results.length, actual.length))
   }
   return results.every(r => !r.fail) ? ok(type) : fail('tuple', results, actual)
 }
@@ -117,7 +132,7 @@ function analyzeObject(options: analyze.Options, type: ObjectType, actual: any) 
   const s = { ...actual }
   const results = typeKeys.reduce(
     (p, k) => {
-      const r = p.value[k] = analyze(options, typeMap[k], actual[k])
+      const r = p.value[k] = analyzeInternal(options, typeMap[k], actual[k])
       p.fail ||= !!r.fail
       s[k] = undefined
       return p
@@ -126,10 +141,7 @@ function analyzeObject(options: analyze.Options, type: ObjectType, actual: any) 
   )
   const skeys = Object.keys(s)
   if (options.strict && skeys.length > typeKeys.length) {
-    skeys.forEach(k => {
-      if (s[k] !== undefined) results.value[k] = { type: 'never', fail: true, actual: s[k] }
-    })
-    results.fail = true
+    return fail('object', results.value, actual, skeys.filter(k => s[k]))
   }
 
   return !results.fail ? ok(type) : fail('object', results.value, actual)
@@ -140,7 +152,7 @@ function analyzeRecord(options: analyze.Options, type: RecordType, actual: unkno
   if (!isOnlyObject(actual)) return fail('record', ok(subType), actual)
 
   const r = reduceByKey(actual, (p, k) => {
-    const r = analyze(options, subType, actual[k])
+    const r = analyzeInternal(options, subType, actual[k])
     if (r.fail) {
       p.value = r.value
       p.keys.push(k)
@@ -184,17 +196,25 @@ function range(start: number, end: number) {
   return r
 }
 
-export function getPlainAnalysisReport(analysis: analyze.Analysis) {
-  const violations = toViolations([], analysis)
+export function getPlainAnalysisReport(analysisResult: analyze.Result) {
+  // console.log(analysisResult.analysis)
+  const violations = toViolations(analysisResult.options, [], analysisResult.analysis)
+  // console.log(violations)
   return violations.map(formatViolation).join('\n')
 }
 
-function toViolations(path: Array<string | number>, analysis: analyze.Analysis): Violation[] {
-  if (!analysis.fail) return []
-  if (analysis.keys) return [] // TODO
-  return [{
-    path,
-    expected: { type: analysis.type, value: analysis.value },
-    actual: analysis.actual
-  }]
+function toViolations(options: analyze.Options, path: Array<string | number>, { type, value, fail, keys, actual }: analyze.Analysis): Violation[] {
+  // console.log({ type, value, fail, keys, actual })
+  const violations: Violation[] = []
+  if (!fail) return violations
+
+  violations.push({ path, expected: { type, value, strict: options.strict, keys }, actual })
+  if (Array.isArray(value)) {
+    const v2 = value.reduce((p, a, i) => {
+      if (a.fail) p.push(...toViolations(options, [...path, i], a))
+      return p
+    }, [] as Violation[])
+    if (v2.length > 0) violations.push(...v2)
+  }
+  return violations
 }

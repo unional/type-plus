@@ -1,3 +1,4 @@
+import { Expectation } from 'satisfier'
 import { tersify } from 'tersify'
 import { reduceByKey } from '../object-key'
 import { typeSym, valueSym } from '../utils'
@@ -14,7 +15,9 @@ export namespace Violation {
     type: string,
     value?: number | string | boolean
     // | bigint
-    | Expectation | Expectation[] | Record<string, Expectation>
+    | Expectation | Expectation[] | Record<string, Expectation>,
+    strict?: boolean,
+    keys?: Array<string | number>
   }
 }
 
@@ -39,12 +42,29 @@ export function getPlainViolationsReport(violations: Violation[]) {
 export function formatViolation(v: Violation) {
   const path = formatPath(v.path)
   const expected = formatExpectation(v.expected)
+  if (v.expected.strict) {
+    const result = [`${path} expects to be strictly ${expected} but is actually ${tersify(v.actual)}`]
+    const keyType = formatKeyType(v.expected)
+    result.push(`${keyType} ${v.expected.keys?.join(',')} should not contain any value`)
+    return result.join('\n')
+  }
   return `${path} expects to be ${expected} but is actually ${tersify(v.actual)}`
 }
 
-function formatPath(path: Array<string | number>) {
-  if (path.length === 0) return 'subject'
+function formatKeyType(e: Violation.Expectation) {
+  if (!e.keys || e.keys.length === 0) return ''
+  if (e.keys.length === 1) {
+    if (e.type === 'object') return 'property'
+    if (e.type === 'tuple') return 'index'
+  } else {
+    if (e.type === 'object') return 'properties'
+    if (e.type === 'tuple') return 'indices'
+  }
   return ''
+}
+
+function formatPath(path: Array<string | number>) {
+  return path.length === 0 ? 'subject' : `subject${path.map(p => typeof p === 'number' ? `[${p}]` : p).join('.')}`
 }
 
 function formatExpectation(e: Violation.Expectation): string {
@@ -52,6 +72,7 @@ function formatExpectation(e: Violation.Expectation): string {
     case 'undefined':
     case 'null':
     case 'symbol':
+    case 'never':
       return e.type
     case 'boolean':
     case 'number':
