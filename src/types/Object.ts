@@ -1,6 +1,6 @@
 import { KeyTypes, reduceByKey } from '../object-key'
 import { typeSym, valueSym } from '../utils'
-import { AllType } from './AllTypes'
+import { AllType } from './AllType'
 import { number } from './Number'
 import { string as str } from './String'
 import { symbol as sym } from './Symbol'

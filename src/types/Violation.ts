@@ -2,7 +2,7 @@ import { Expectation } from 'satisfier'
 import { tersify } from 'tersify'
 import { reduceByKey } from '../object-key'
 import { typeSym, valueSym } from '../utils'
-import { AllType } from './AllTypes'
+import { AllType } from './AllType'
 
 export type Violation = {
   path: Array<string | number>,

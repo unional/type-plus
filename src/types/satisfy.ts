@@ -1,6 +1,6 @@
 import { reduceWhile } from '../array'
 import { typeSym, valueSym } from '../utils'
-import { AllType } from './AllTypes'
+import { AllType } from './AllType'
 import { Array as ArrayType } from './Array'
 // import { BigInt } from './BigInt'
 import { boolean, Boolean } from './Boolean'

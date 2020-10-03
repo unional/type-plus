@@ -1,6 +1,6 @@
 // import { BigInt } from './BigInt'
 import { typeSym, valueSym } from '../utils'
-import { AllType } from './AllTypes'
+import { AllType } from './AllType'
 import { ValueType } from './types'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
@@ -11,7 +11,7 @@ export namespace Array {
   export type Expectation = ValueType.Expectation<'array', AllType.Expectation>
   export type Analysis = {
     type: 'array',
-    value: AllType.Analysis
+    value: AllType.PrimitiveValues | AllType.Analysis
     fail?: boolean
   }
 }

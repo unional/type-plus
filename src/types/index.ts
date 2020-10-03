@@ -7,7 +7,7 @@
  */
 
 // export * from './BigInt'
-export * from './AllTypes'
+export * from './AllType'
 export * from './Any'
 export * from './Array'
 export * from './Boolean'

@@ -1,6 +1,6 @@
 import { satisfies } from 'satisfier'
 import * as T from '.'
-import { AllType } from './AllTypes'
+import { AllType } from './AllType'
 import { analyze, getPlainAnalysisReport } from './analyze'
 
 describe('non-strict', () => {

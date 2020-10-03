@@ -23,5 +23,6 @@ export type AllType = Undefined | Null | Boolean | Number | String
 
 export namespace AllType {
   export type Expectation = boolean | number | string | ObjectType.Expectation
-  export type Analysis = boolean | number | string | Array.Analysis
+  export type PrimitiveValues = boolean | number | string
+  export type Analysis = Any.Analysis | Array.Analysis
 }
