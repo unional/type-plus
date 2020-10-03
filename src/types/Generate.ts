@@ -1,6 +1,6 @@
 import { Tuple as TTTuple } from 'ts-toolbelt'
 import { valueSym } from '../utils'
-import { AllType } from './AllTypes'
+import { AllType } from './AllType'
 // import { KeyTypes } from '../object-key'
 import { Any } from './Any'
 import { Array } from './Array'

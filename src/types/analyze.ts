@@ -1,6 +1,6 @@
 import { reduceByKey } from '../object-key'
 import { typeSym, valueSym } from '../utils'
-import { AllType } from './AllTypes'
+import { AllType } from './AllType'
 import { Array as ArrayType } from './Array'
 import { Boolean } from './Boolean'
 import { number, Number } from './Number'

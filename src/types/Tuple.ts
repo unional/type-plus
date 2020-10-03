@@ -1,6 +1,6 @@
 import { typeSym, valueSym } from '../utils'
 import { ValueType } from './types'
-import { AllType } from './AllTypes'
+import { AllType } from './AllType'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
 
