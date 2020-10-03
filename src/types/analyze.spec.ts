@@ -4,7 +4,7 @@ import { AllType } from './AllTypes'
 import { analyze, getPlainAnalysisReport } from './analyze'
 
 describe('non-strict', () => {
-  const options = { strict: false }
+  const options = { strict: false, debug: false }
   describe('undefined', () => {
     test('only undefined passes', () => {
       const t = T.undefined
@@ -932,6 +932,39 @@ describe('non-strict', () => {
         actual: { a: 'b' }
       })
     })
+    test('nested', () => {
+      const t = T.record.optional.create(T.record.create(T.string))
+      const pass = {
+        type: 'union',
+        value: [{
+          type: 'record', value: {
+            type: 'record', value: { type: 'string' }
+          }
+        },
+        { type: 'undefined' }
+        ]
+      }
+
+      assert(analyze(options, t, undefined), pass)
+      assert(analyze(options, t, { a: { b: 'b' } }), pass)
+      assert(analyze(options, t, { a: { b: true } }), {
+        type: 'union',
+        value: [{
+          type: 'record',
+          value: {
+            type: 'record',
+            value: { type: 'string' },
+            // fail: true,
+            // keys: [['b']],
+            // actual: [[true]]
+          }
+        }, {
+          type: 'undefined'
+        }],
+        fail: true,
+        actual: { a: { b: true } }
+      })
+    })
   })
   describe('getPlainAnalysisReport()', () => {
     test.each([
@@ -943,8 +976,8 @@ describe('non-strict', () => {
       'symbol'
     ])('valueless %s violation', (type) => {
       expect(getPlainAnalysisReport({
-        type,
-        fail: true,
+        options,
+        analysis: { type, fail: true, actual: undefined },
         actual: undefined
       })).toEqual(`subject expects to be ${type} but is actually undefined`)
     })
@@ -1062,6 +1095,17 @@ describe('non-strict', () => {
           false,
           `subject expects to be ([number] | undefined) but is actually false`)
       })
+      test('missing entry', () => {
+        assertReportEquals(
+          options,
+          T.tuple.create(T.null),
+          [],
+          [
+            `subject expects to be [null] but is actually []`,
+            `subject[0] expects to be null but is actually undefined`
+          ].join('\n')
+        )
+      })
     })
     describe('object', () => {
       test('specific object violation', () => {
@@ -1094,23 +1138,28 @@ describe('non-strict', () => {
           false,
           `subject expects to be (Record<string, Record<string, string>> | undefined) but is actually false`)
       })
+      test(`nested violation`, () => {
+        assertReportEquals(
+          options,
+          T.record.optional.create(T.record.create(T.string)),
+          { a: { b: 1 } },
+          `subject expects to be (Record<string, Record<string, string>> | undefined) but is actually { a: { b: 1 } }`)
+      })
     })
   })
 })
 
 describe('strict', () => {
-  const options = { strict: true }
+  const options = { strict: true, debug: false }
   describe('tuple', () => {
     test('have more elements then specified will fail', () => {
-      const t = T.tuple.create(T.number)
-      assert(analyze(options, t, [1, 2, 3, 4]), {
+      const t = T.tuple.create(T.string)
+      assert(analyze(options, t, ['a', 'b', 'c', 'd']), {
         type: 'tuple',
-        value: [
-          { type: 'number' },
-          { type: 'never', fail: true, keys: [1, 2, 3], actual: [2, 3, 4] }
-        ],
+        value: [{ type: 'string' }],
         fail: true,
-        actual: [1, 2, 3, 4]
+        actual: ['a', 'b', 'c', 'd'],
+        keys: [1, 2, 3]
       })
     })
   })
@@ -1119,27 +1168,74 @@ describe('strict', () => {
       const t = T.object.create({ a: T.number })
       assert(analyze(options, t, { a: 1, b: 2, c: 'c' }), {
         type: 'object',
-        value: {
-          a: { type: 'number' },
-          b: { type: 'never', fail: true, actual: 2 },
-          c: { type: 'never', fail: true, actual: 'c' }
-        },
+        value: { a: { type: 'number' } },
         fail: true,
-        actual: { a: 1, b: 2, c: 'c' }
+        actual: { a: 1, b: 2, c: 'c' },
+        keys: ['b', 'c']
+      })
+    })
+  })
+  describe('getPlainAnalysisReport()', () => {
+    describe('tuple', () => {
+      test('extra entry', () => {
+        assertReportEquals(
+          options,
+          T.tuple.create(T.null),
+          [null, 1],
+          [
+            `subject expects to be strictly [null] but is actually [null, 1]`,
+            `index 1 should not contain any value`
+          ].join('\n')
+        )
+      })
+      test('extra entries', () => {
+        assertReportEquals(
+          options,
+          T.tuple.create(T.null, T.number),
+          [null, 1, 'a', false],
+          [
+            `subject expects to be strictly [null,number] but is actually [null, 1, 'a', false]`,
+            `indices 2,3 should not contain any value`
+          ].join('\n')
+        )
+      })
+    })
+    describe('object', () => {
+      test('extra property', () => {
+        assertReportEquals(
+          options,
+          T.object.create({ a: T.number }),
+          { a: 1, b: 2 },
+          [
+            `subject expects to be strictly { a: number } but is actually { a: 1, b: 2 }`,
+            `property b should not contain any value`
+          ].join('\n')
+        )
+      })
+      test('extra properties', () => {
+        assertReportEquals(
+          options,
+          T.object.create({ a: T.number }),
+          { a: 1, b: 2, c: 'c' },
+          [
+            `subject expects to be strictly { a: number } but is actually { a: 1, b: 2, c: 'c' }`,
+            `properties b,c should not contain any value`
+          ].join('\n')
+        )
       })
     })
   })
 })
 
-function assert(result: analyze.Analysis, analysis: analyze.Analysis) {
-  expect(result).toEqual(analysis)
+function assert(result: analyze.Result, analysis: analyze.Analysis) {
+  expect(result.analysis).toEqual(analysis)
 }
 
 function analyzeFailsOtherThan(options: analyze.Options, type: T.AllType, ...excepts: any[]) {
   const values = [undefined, null, true, false, -1, 0, 1, -1n, 0n, 1n, '', 'a', [], ['a'], {}, { a: 1 }, Symbol.for('a')]
   values.forEach(v => {
     if (!excepts.some(e => satisfies(v, e))) {
-      expect(analyze(options, type, v).fail).toBe(true)
+      expect(analyze(options, type, v).analysis.fail).toBe(true)
     }
   })
 }

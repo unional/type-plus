@@ -22,5 +22,6 @@ export type AllType = Undefined | Null | Boolean | Number | String
   | Symbol // | BigInt
 
 export namespace AllType {
-  export type Expectation = ObjectType.Expectation
+  export type Expectation = boolean | number | string | ObjectType.Expectation
+  export type Analysis = boolean | number | string | Array.Analysis
 }
