@@ -1,10 +1,16 @@
 import { typeSym, valueSym } from '../utils'
-import { ValueType } from './types'
+import { AnalysisType, ValueType } from './types'
 import { AllType } from './AllType'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
 
 export type Tuple<Values extends AllType[] = any[]> = ValueType<'tuple', Values>
+
+export namespace Tuple {
+  export type Analysis<
+    Value extends AllType.PrimitiveValues | AllType.Analysis = any
+    > = AnalysisType<'tuple', Value[]>
+}
 
 /**
  * Creates a tuple type.

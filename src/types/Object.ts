@@ -14,6 +14,13 @@ export type ObjectType<
 
 export namespace ObjectType {
   export type Expectation = { type: 'object', value: Record<string, AllType.Expectation> }
+  export type Analysis<
+    Value extends AllType.PrimitiveValues | AllType.Analysis = any
+    > = {
+      type: 'object',
+      value?: Record<string, Value>,
+      fail?: true
+    }
 }
 
 /**

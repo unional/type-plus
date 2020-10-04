@@ -3,9 +3,13 @@
 // import { Union, union } from './Union'
 
 import { typeSym, valueSym } from '../utils'
-import { ValueType } from './types'
+import { AnalysisType, ValueType } from './types'
 
 export type BigInt<Value extends bigint = bigint> = ValueType<'bigint', Value>
+
+export namespace BigInt {
+  export type Analysis = AnalysisType<'bigint', bigint>
+}
 
 /**
  * Creates a single value type.

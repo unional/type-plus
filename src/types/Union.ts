@@ -1,10 +1,16 @@
 import { typeSym, valueSym } from '../utils'
 import { AllType } from './AllType'
-import { ValueType } from './types'
+import { AnalysisType, ValueType } from './types'
 import { undef } from './Undefined'
 
 
 export type Union<Values extends AllType[] = any[]> = ValueType<'union', Values>
+
+export namespace Union {
+  export type Analysis<
+    Value extends AllType.PrimitiveValues | AllType.Analysis = any
+    > = AnalysisType<'union', Value[]>
+}
 
 /**
  * Create union type.

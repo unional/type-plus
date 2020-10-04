@@ -6,6 +6,14 @@ import { Union, union } from './Union'
 
 export type String<Value extends string = string> = ValueType<'string', Value>
 
+export namespace String {
+  export type Analysis = {
+    type: 'string'
+    value?: string
+    fail?: true
+  }
+}
+
 type StringListDevice<Values extends string[]> = Values['length'] extends 0
   ? { result: [] } : Values['length'] extends 1
   ? { result: [String<Values[0]>] }

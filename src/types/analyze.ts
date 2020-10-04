@@ -10,7 +10,6 @@ import { string, String } from './String'
 import { Tuple } from './Tuple'
 import { ValueType } from './types'
 import { Union } from './Union'
-import { formatViolation, Violation } from './Violation'
 
 export namespace analyze {
   export type Options = {
@@ -19,32 +18,31 @@ export namespace analyze {
   }
   export type Result = {
     options: Options,
-    analysis: Analysis,
+    analysis: AllType.Analysis,
     actual: any
   }
-  export type Analysis = {
-    type: string,
-    value?: Analysis.Value,
-    fail?: boolean,
-    keys?: Array<number | string>,
-    actual?: any
-  }
+  // export type Analysis = {
+  //   type: string,
+  //   value?: Analysis.Value,
+  //   fail?: boolean,
+  //   keys?: Array<number | string>,
+  //   actual?: any
+  // }
 
-  export namespace Analysis {
-    export type Value = number | string | boolean
-      // | bigint
-      | Analysis | Analysis[] | Record<string, Analysis>
-  }
+  // export namespace Analysis {
+  //   export type Value = number | string | boolean
+  //     // | bigint
+  //     | Analysis | Analysis[] | Record<string, Analysis>
+  // }
 }
 export function analyze(options: analyze.Options, type: AllType, actual: unknown): analyze.Result {
-  const analysis = analyzeInternal(options, type, actual)
   return {
     options,
-    analysis,
+    analysis: analyzeInternal(options, type, actual),
     actual
   }
 }
-export function analyzeInternal(options: analyze.Options, type: AllType, actual: unknown): analyze.Analysis {
+export function analyzeInternal(options: analyze.Options, type: AllType, actual: unknown): AllType.Analysis {
   const t = type[typeSym]
   switch (t) {
     case 'unknown':
@@ -52,9 +50,9 @@ export function analyzeInternal(options: analyze.Options, type: AllType, actual:
       return ok(type)
     case 'undefined':
     case 'symbol':
-      return typeof actual === t ? ok(type) : fail(t, undefined, actual)
+      return typeof actual === t ? ok(type) : fail(t)
     case 'null':
-      return actual === null ? ok(type) : fail(t, undefined, actual)
+      return actual === null ? ok(type) : fail(t)
     case 'boolean': return analyzeBoolean(type as Boolean, actual)
     case 'number': return analyzeType(number, type as Number, actual)
     case 'string': return analyzeType(string, type as String, actual)
@@ -70,10 +68,10 @@ export function analyzeInternal(options: analyze.Options, type: AllType, actual:
 function analyzeBoolean(type: Boolean, actual: unknown) {
   const value = type[valueSym]
   if (value === undefined) {
-    return typeof actual === 'boolean' ? ok(type) : fail('boolean', value, actual)
+    return typeof actual === 'boolean' ? ok(type) : fail('boolean', value)
   }
   else {
-    return value === actual ? ok(type) : fail('boolean', value, actual)
+    return value === actual ? ok(type) : fail('boolean', value)
   }
 }
 
@@ -85,18 +83,18 @@ function analyzeType(
   const value = type[valueSym]
   return typeof actual === baseType[typeSym] && (type === baseType || actual === value)
     ? ok(type)
-    : fail(type[typeSym], type[valueSym], actual)
+    : fail(type[typeSym], type[valueSym])
 }
 
 function analyzeUnion(options: analyze.Options, type: Union, actual: unknown) {
   const subTypes = type[valueSym]
   const r = subTypes.map(t => analyzeInternal(options, t, actual))
-  return r.some(r => !r.fail) ? ok(type) : fail('union', subTypes.map(ok), actual)
+  return r.some(r => !r.fail) ? ok(type) : fail('union', r)
 }
 
 function analyzeArray(options: analyze.Options, type: ArrayType<AllType>, actual: unknown) {
   const subType = type[valueSym]
-  if (!Array.isArray(actual)) return fail('array', subType ? ok(subType) : undefined, actual)
+  if (!Array.isArray(actual)) return fail('array', subType ? ok(subType) : undefined)
   if (subType === undefined) return ok(type)
 
   const r = actual.reduce((p, a, i) => {
@@ -110,22 +108,22 @@ function analyzeArray(options: analyze.Options, type: ArrayType<AllType>, actual
   }, { keys: [], actual: [] })
   return r.keys.length === 0 ?
     ok(type) :
-    fail('array', { ...fail(subType[typeSym], r.value, r.actual), keys: r.keys }, actual)
+    fail('array', { ...fail(subType[typeSym], r.value) })
 }
 
 function analyzeTuple(options: analyze.Options, type: Tuple, actual: unknown) {
   const value = type[valueSym]
-  if (!Array.isArray(actual)) return fail('tuple', value.map(ok), actual)
+  if (!Array.isArray(actual)) return fail('tuple', value.map(ok))
   const results = value.map((v, i) => analyzeInternal(options, v, actual[i]))
   if (options.strict && results.length < actual.length) {
-    return fail('tuple', results, actual, range(results.length, actual.length))
+    return fail('tuple', results)
   }
-  return results.every(r => !r.fail) ? ok(type) : fail('tuple', results, actual)
+  return results.every(r => !r.fail) ? ok(type) : fail('tuple', results)
 }
 
 function analyzeObject(options: analyze.Options, type: ObjectType, actual: any) {
   const typeMap = type[valueSym]
-  if (!isOnlyObject(actual)) return fail('object', typeMap ? object.map(v => ok(v), typeMap) : undefined, actual)
+  if (!isOnlyObject(actual)) return fail('object', typeMap ? object.map(v => ok(v), typeMap) : undefined)
   if (type === object as ObjectType) return ok(type)
 
   const typeKeys = Object.keys(typeMap)
@@ -137,19 +135,19 @@ function analyzeObject(options: analyze.Options, type: ObjectType, actual: any) 
       s[k] = undefined
       return p
     },
-    { fail: false, value: {} } as { fail: boolean, value: Record<string, analyze.Analysis> }
+    { fail: false, value: {} } as { fail: boolean, value: Record<string, AllType.Analysis> }
   )
   const skeys = Object.keys(s)
   if (options.strict && skeys.length > typeKeys.length) {
-    return fail('object', results.value, actual, skeys.filter(k => s[k]))
+    return fail('object', results.value)
   }
 
-  return !results.fail ? ok(type) : fail('object', results.value, actual)
+  return !results.fail ? ok(type) : fail('object', results.value)
 }
 
 function analyzeRecord(options: analyze.Options, type: RecordType, actual: unknown) {
   const subType = type[valueSym]
-  if (!isOnlyObject(actual)) return fail('record', ok(subType), actual)
+  if (!isOnlyObject(actual)) return fail('record', ok(subType))
 
   const r = reduceByKey(actual, (p, k) => {
     const r = analyzeInternal(options, subType, actual[k])
@@ -162,59 +160,28 @@ function analyzeRecord(options: analyze.Options, type: RecordType, actual: unkno
   }, { keys: [] as string[], actual: [] as any[], value: undefined as any })
   return r.keys.length === 0 ?
     ok(type) :
-    fail('record', { ...fail(subType[typeSym], r.value, r.actual), keys: r.keys }, actual)
+    fail('record', { ...fail(subType[typeSym], r.value) })
 }
 
-function ok(t: { [typeSym]: string, [valueSym]?: any }): analyze.Analysis {
+function ok(t: { [typeSym]: AllType.Analysis['type'], [valueSym]?: AllType.Analysis['value'] }): AllType.Analysis {
   const type = t[typeSym]
   const value = t[valueSym]
-  if (value === undefined) return { type }
+  if (value === undefined) return { type, value }
   if (typeof value !== 'object' || value === null) return { type, value }
-  if (Array.isArray(value)) return { type, value: value.map(ok) }
-  if (value[typeSym]) return { type, value: ok(value) }
+  if (Array.isArray(value)) return { type, value: value.map(ok) } as any
+  if (value[typeSym]) return { type, value: ok(value) } as any
   return {
     type, value: reduceByKey(
       value as Record<string, any>,
       (p, k) => (p[k] = ok(value[k]), p),
       {} as Record<string, any>)
-  }
+  } as any
 }
 
-function fail(type: string, value: analyze.Analysis.Value | undefined, actual: any, keys?: Array<number | string>) {
-  return value === undefined ?
-    keys ? { type, fail: true, keys, actual } : { type, fail: true, actual } :
-    keys ? { type, value, fail: true, keys, actual } : { type, value, fail: true, actual }
+function fail(type: AllType.Analysis['type'], value?: AllType.Analysis['value']): AllType.Analysis {
+  return value === undefined ? { type, fail: true } : { type, value, fail: true }
 }
 
 function isOnlyObject(actual: unknown): actual is Object {
   return typeof actual === 'object' && actual !== null && !Array.isArray(actual)
-}
-
-function range(start: number, end: number) {
-  const r: number[] = []
-  while (start < end) r.push(start++)
-  return r
-}
-
-export function getPlainAnalysisReport(analysisResult: analyze.Result) {
-  // console.log(analysisResult.analysis)
-  const violations = toViolations(analysisResult.options, [], analysisResult.analysis)
-  // console.log(violations)
-  return violations.map(formatViolation).join('\n')
-}
-
-function toViolations(options: analyze.Options, path: Array<string | number>, { type, value, fail, keys, actual }: analyze.Analysis): Violation[] {
-  // console.log({ type, value, fail, keys, actual })
-  const violations: Violation[] = []
-  if (!fail) return violations
-
-  violations.push({ path, expected: { type, value, strict: options.strict, keys }, actual })
-  if (Array.isArray(value)) {
-    const v2 = value.reduce((p, a, i) => {
-      if (a.fail) p.push(...toViolations(options, [...path, i], a))
-      return p
-    }, [] as Violation[])
-    if (v2.length > 0) violations.push(...v2)
-  }
-  return violations
 }

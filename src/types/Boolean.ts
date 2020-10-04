@@ -4,6 +4,13 @@ import { undef, Undefined } from './Undefined'
 import { Union, union } from './Union'
 
 export type Boolean<Value extends boolean = boolean> = ValueType<'boolean', Value>
+export namespace Boolean {
+  export type Analysis = {
+    type: 'boolean'
+    value?: boolean
+    fail?: true
+  }
+}
 
 export type True = Boolean<true>
 export type False = Boolean<false>
