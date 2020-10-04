@@ -23,6 +23,10 @@ export type AllType = Undefined | Null | Boolean | Number | String
 
 export namespace AllType {
   export type Expectation = boolean | number | string | ObjectType.Expectation
-  export type PrimitiveValues = boolean | number | string
-  export type Analysis = Any.Analysis | Array.Analysis
+  export type PrimitiveValues = boolean | number | string // | bigint
+  export type Analysis = Any.Analysis | Unknown.Analysis |
+    Undefined.Analysis | Null.Analysis | Boolean.Analysis | Number.Analysis | String.Analysis |
+    Symbol.Analysis |
+    ObjectType.Analysis | Record.Analysis | Array.Analysis | Tuple.Analysis |
+    Union.Analysis
 }

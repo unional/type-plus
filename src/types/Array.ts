@@ -9,11 +9,13 @@ import { unknown } from './Unknown'
 export type Array<Value extends AllType = any> = ValueType<'array', Value>
 export namespace Array {
   export type Expectation = ValueType.Expectation<'array', AllType.Expectation>
-  export type Analysis = {
-    type: 'array',
-    value: AllType.PrimitiveValues | AllType.Analysis
-    fail?: boolean
-  }
+  export type Analysis<
+    Value extends AllType.PrimitiveValues | AllType.Analysis = any
+    > = {
+      type: 'array',
+      value?: Value,
+      fail?: true
+    }
 }
 
 /**

@@ -1,7 +1,7 @@
 import { satisfies } from 'satisfier'
 import * as T from '.'
 import { AllType } from './AllType'
-import { analyze, getPlainAnalysisReport } from './analyze'
+import { analyze } from './analyze'
 
 describe('non-strict', () => {
   const options = { strict: false, debug: false }
@@ -10,7 +10,7 @@ describe('non-strict', () => {
       const t = T.undefined
       assert(analyze(options, t, undefined), { type: 'undefined' })
       analyzeFailsOtherThan(options, t, undefined)
-      assert(analyze(options, t, true), { type: 'undefined', fail: true, actual: true })
+      assert(analyze(options, t, true), { type: 'undefined', fail: true })
     })
   })
   describe('null', () => {
@@ -18,12 +18,12 @@ describe('non-strict', () => {
       const t = T.null
       assert(analyze(options, t, null), { type: 'null' })
       analyzeFailsOtherThan(options, t, null)
-      assert(analyze(options, t, true), { type: 'null', fail: true, actual: true })
+      assert(analyze(options, t, true), { type: 'null', fail: true })
     })
     test('optional', () => {
       const t = T.null.optional
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'null' },
           { type: 'undefined' }
@@ -32,39 +32,38 @@ describe('non-strict', () => {
       assert(analyze(options, t, null), pass)
       assert(analyze(options, t, undefined), pass)
       assert(analyze(options, t, true), {
-        type: 'union',
+        type: 'union' as const,
         value: [
-          { type: 'null' },
-          { type: 'undefined' }
+          { type: 'null', fail: true },
+          { type: 'undefined', fail: true }
         ],
-        fail: true,
-        actual: true
+        fail: true
       })
     })
   })
   describe('boolean', () => {
     test('only true | false passes', () => {
       const t = T.boolean
-      const pass = { type: 'boolean' }
+      const pass = { type: 'boolean' as const }
       assert(analyze(options, t, true), pass)
       assert(analyze(options, t, false), pass)
       analyzeFailsOtherThan(options, t, true, false)
-      assert(analyze(options, t, null), { type: 'boolean', fail: true, actual: null })
+      assert(analyze(options, t, null), { type: 'boolean', fail: true })
     })
     test('true', () => {
       const t = T.boolean.true
       assert(analyze(options, t, true), { type: 'boolean', value: true })
-      assert(analyze(options, t, null), { type: 'boolean', value: true, fail: true, actual: null })
+      assert(analyze(options, t, null), { type: 'boolean', value: true, fail: true })
     })
     test('false', () => {
       const t = T.boolean.false
       assert(analyze(options, t, false), { type: 'boolean', value: false })
-      assert(analyze(options, t, null), { type: 'boolean', value: false, fail: true, actual: null })
+      assert(analyze(options, t, null), { type: 'boolean', value: false, fail: true })
     })
     test('optional', () => {
       const t = T.boolean.optional
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'boolean' },
           { type: 'undefined' }
@@ -75,19 +74,18 @@ describe('non-strict', () => {
       assert(analyze(options, t, false), pass)
       analyzeFailsOtherThan(options, t, true, false, undefined)
       assert(analyze(options, t, null), {
-        type: 'union',
+        type: 'union' as const,
         value: [
-          { type: 'boolean' },
-          { type: 'undefined' }
+          { type: 'boolean', fail: true },
+          { type: 'undefined', fail: true }
         ],
-        fail: true,
-        actual: null
+        fail: true
       })
     })
     test('optional create', () => {
       const t = T.boolean.optional.create(true)
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'boolean', value: true },
           { type: 'undefined' }
@@ -96,19 +94,18 @@ describe('non-strict', () => {
       assert(analyze(options, t, undefined), pass)
       assert(analyze(options, t, true), pass)
       assert(analyze(options, t, false), {
-        type: 'union',
+        type: 'union' as const,
         value: [
-          { type: 'boolean', value: true },
-          { type: 'undefined' }
+          { type: 'boolean', value: true, fail: true },
+          { type: 'undefined', fail: true }
         ],
-        fail: true,
-        actual: false
+        fail: true
       })
     })
     test('optional true', () => {
       const t = T.boolean.optional.true
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'boolean', value: true },
           { type: 'undefined' }
@@ -117,19 +114,18 @@ describe('non-strict', () => {
       assert(analyze(options, t, undefined), pass)
       assert(analyze(options, t, true), pass)
       assert(analyze(options, t, false), {
-        type: 'union',
+        type: 'union' as const,
         value: [
-          { type: 'boolean', value: true },
-          { type: 'undefined' }
+          { type: 'boolean', value: true, fail: true },
+          { type: 'undefined', fail: true }
         ],
-        fail: true,
-        actual: false
+        fail: true
       })
     })
     test('optional false', () => {
       const t = T.boolean.optional.false
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'boolean', value: false },
           { type: 'undefined' }
@@ -138,44 +134,43 @@ describe('non-strict', () => {
       assert(analyze(options, t, undefined), pass)
       assert(analyze(options, t, false), pass)
       assert(analyze(options, t, true), {
-        type: 'union',
+        type: 'union' as const,
         value: [
-          { type: 'boolean', value: false },
-          { type: 'undefined' }
+          { type: 'boolean', value: false, fail: true },
+          { type: 'undefined', fail: true }
         ],
-        fail: true,
-        actual: true
+        fail: true
       })
     })
   })
   describe('number', () => {
     test('only number passes', () => {
       const t = T.number
-      const pass = { type: 'number' }
+      const pass = { type: 'number' as const }
       assert(analyze(options, t, 0), pass)
       assert(analyze(options, t, 1), pass)
       assert(analyze(options, t, -1), pass)
       analyzeFailsOtherThan(options, t, -1, 0, 1)
-      assert(analyze(options, t, null), { type: 'number', fail: true, actual: null })
+      assert(analyze(options, t, null), { type: 'number', fail: true })
     })
     test('0', () => {
       const t = T.number.create(0)
-      const pass = { type: 'number', value: 0 }
+      const pass = { type: 'number' as const, value: 0 }
       assert(analyze(options, t, 0), pass)
       analyzeFailsOtherThan(options, t, 0)
-      assert(analyze(options, t, 1), { type: 'number', value: 0, fail: true, actual: 1 })
+      assert(analyze(options, t, 1), { type: 'number', value: 0, fail: true })
     })
     test('1', () => {
       const t = T.number.create(1)
-      const pass = { type: 'number', value: 1 }
+      const pass = { type: 'number' as const, value: 1 }
       assert(analyze(options, t, 1), pass)
       analyzeFailsOtherThan(options, t, 1)
-      assert(analyze(options, t, 0), { type: 'number', value: 1, fail: true, actual: 0 })
+      assert(analyze(options, t, 0), { type: 'number', value: 1, fail: true })
     })
     test('optional', () => {
       const t = T.number.optional
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'number' },
           { type: 'undefined' }
@@ -187,19 +182,18 @@ describe('non-strict', () => {
       assert(analyze(options, t, -1), pass)
       analyzeFailsOtherThan(options, t, -1, 0, 1, undefined)
       assert(analyze(options, t, null), {
-        type: 'union',
+        type: 'union' as const,
         value: [
-          { type: 'number' },
-          { type: 'undefined' }
+          { type: 'number', fail: true },
+          { type: 'undefined', fail: true }
         ],
-        fail: true,
-        actual: null
+        fail: true
       })
     })
     test('optional create', () => {
       const t = T.number.optional.create(1)
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'number', value: 1 },
           { type: 'undefined' }
@@ -208,30 +202,28 @@ describe('non-strict', () => {
       assert(analyze(options, t, undefined), pass)
       assert(analyze(options, t, 1), pass)
       assert(analyze(options, t, 0), {
-        type: 'union',
+        type: 'union' as const,
         value: [
-          { type: 'number', value: 1 },
-          { type: 'undefined' }
+          { type: 'number', value: 1, fail: true },
+          { type: 'undefined', fail: true }
         ],
-        fail: true,
-        actual: 0
+        fail: true
       })
     })
     test('list: single', () => {
       const t = T.number.list(1)
-      const pass = { type: 'number', value: 1 }
+      const pass = { type: 'number' as const, value: 1 }
       assert(analyze(options, t, 1), pass)
       assert(analyze(options, t, 0), {
         type: 'number',
         value: 1,
-        fail: true,
-        actual: 0
+        fail: true
       })
     })
     test('list: multiple', () => {
       const t = T.number.list(1, 2, 3)
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'number', value: 1 },
           { type: 'number', value: 2 },
@@ -242,20 +234,19 @@ describe('non-strict', () => {
       assert(analyze(options, t, 2), pass)
       assert(analyze(options, t, 3), pass)
       assert(analyze(options, t, 0), {
-        type: 'union',
+        type: 'union' as const,
         value: [
-          { type: 'number', value: 1 },
-          { type: 'number', value: 2 },
-          { type: 'number', value: 3 }
+          { type: 'number', value: 1, fail: true },
+          { type: 'number', value: 2, fail: true },
+          { type: 'number', value: 3, fail: true }
         ],
-        fail: true,
-        actual: 0
+        fail: true
       })
     })
     test('optional.list: multiple', () => {
       const t = T.number.optional.list(1, 2, 3)
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'number', value: 1 },
           { type: 'number', value: 2 },
@@ -268,45 +259,44 @@ describe('non-strict', () => {
       assert(analyze(options, t, 2), pass)
       assert(analyze(options, t, 3), pass)
       assert(analyze(options, t, 0), {
-        type: 'union',
+        type: 'union' as const,
         value: [
-          { type: 'number', value: 1 },
-          { type: 'number', value: 2 },
-          { type: 'number', value: 3 },
-          { type: 'undefined' }
+          { type: 'number', value: 1, fail: true },
+          { type: 'number', value: 2, fail: true },
+          { type: 'number', value: 3, fail: true },
+          { type: 'undefined', fail: true }
         ],
-        fail: true,
-        actual: 0
+        fail: true
       })
     })
   })
   describe('string', () => {
     test('only string passes', () => {
       const t = T.string
-      const pass = { type: 'string' }
+      const pass = { type: 'string' as const }
       assert(analyze(options, t, ''), pass)
       assert(analyze(options, t, 'a'), pass)
       analyzeFailsOtherThan(options, t, '', 'a')
-      assert(analyze(options, t, null), { type: 'string', fail: true, actual: null })
+      assert(analyze(options, t, null), { type: 'string', fail: true })
     })
     test("''", () => {
       const t = T.string.create('')
-      const pass = { type: 'string', value: '' }
+      const pass = { type: 'string' as const, value: '' }
       assert(analyze(options, t, ''), pass)
       analyzeFailsOtherThan(options, t, '')
-      assert(analyze(options, t, 'a'), { type: 'string', value: '', fail: true, actual: 'a' })
+      assert(analyze(options, t, 'a'), { type: 'string', value: '', fail: true })
     })
     test(`'a'`, () => {
       const t = T.string.create('a')
-      const pass = { type: 'string', value: 'a' }
+      const pass = { type: 'string' as const, value: 'a' }
       assert(analyze(options, t, 'a'), pass)
       analyzeFailsOtherThan(options, t, 'a')
-      assert(analyze(options, t, ''), { type: 'string', value: 'a', fail: true, actual: '' })
+      assert(analyze(options, t, ''), { type: 'string', value: 'a', fail: true })
     })
     test('optional', () => {
       const t = T.string.optional
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'string' },
           { type: 'undefined' }
@@ -317,19 +307,18 @@ describe('non-strict', () => {
       assert(analyze(options, t, 'a'), pass)
       analyzeFailsOtherThan(options, t, '', 'a', undefined)
       assert(analyze(options, t, null), {
-        type: 'union',
+        type: 'union' as const,
         value: [
-          { type: 'string' },
-          { type: 'undefined' }
+          { type: 'string', fail: true },
+          { type: 'undefined', fail: true }
         ],
-        fail: true,
-        actual: null
+        fail: true
       })
     })
     test('optional create', () => {
       const t = T.string.optional.create('a')
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'string', value: 'a' },
           { type: 'undefined' }
@@ -338,13 +327,12 @@ describe('non-strict', () => {
       assert(analyze(options, t, undefined), pass)
       assert(analyze(options, t, 'a'), pass)
       assert(analyze(options, t, ''), {
-        type: 'union',
+        type: 'union' as const,
         value: [
-          { type: 'string', value: 'a' },
-          { type: 'undefined' }
+          { type: 'string', value: 'a', fail: true },
+          { type: 'undefined', fail: true }
         ],
-        fail: true,
-        actual: ''
+        fail: true
       })
     })
     test('list: single', () => {
@@ -353,14 +341,13 @@ describe('non-strict', () => {
       assert(analyze(options, t, ''), {
         type: 'string',
         value: 'a',
-        fail: true,
-        actual: ''
+        fail: true
       })
     })
     test('list: multiple', () => {
       const t = T.string.list('1', '2', '3')
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'string', value: '1' },
           { type: 'string', value: '2' },
@@ -371,20 +358,19 @@ describe('non-strict', () => {
       assert(analyze(options, t, '2'), pass)
       assert(analyze(options, t, '3'), pass)
       assert(analyze(options, t, 1), {
-        type: 'union',
+        type: 'union' as const,
         value: [
-          { type: 'string', value: '1' },
-          { type: 'string', value: '2' },
-          { type: 'string', value: '3' },
+          { type: 'string', value: '1', fail: true },
+          { type: 'string', value: '2', fail: true },
+          { type: 'string', value: '3', fail: true },
         ],
-        fail: true,
-        actual: 1
+        fail: true
       })
     })
     test('optional.list: multiple', () => {
       const t = T.string.optional.list('1', '2', '3')
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'string', value: '1' },
           { type: 'string', value: '2' },
@@ -397,15 +383,14 @@ describe('non-strict', () => {
       assert(analyze(options, t, '2'), pass)
       assert(analyze(options, t, '3'), pass)
       assert(analyze(options, t, 1), {
-        type: 'union',
+        type: 'union' as const,
         value: [
-          { type: 'string', value: '1' },
-          { type: 'string', value: '2' },
-          { type: 'string', value: '3' },
-          { type: 'undefined' }
+          { type: 'string', value: '1', fail: true },
+          { type: 'string', value: '2', fail: true },
+          { type: 'string', value: '3', fail: true },
+          { type: 'undefined', fail: true }
         ],
-        fail: true,
-        actual: 1
+        fail: true
       })
     })
   })
@@ -417,7 +402,7 @@ describe('non-strict', () => {
     //   assert(analyze(options, t, 1), pass)
     //   assert(analyze(options, t, -1), pass)
     //   analyzeFailsOtherThan(options, t, -1, 0, 1)
-    //   assert(analyze(options, t, null), { pass: false, type: 'number', actual: null })
+    //   assert(analyze(options, t, null), { pass: false, type: 'number' })
     // })
     // test('0', () => {
     //   const t = T.number.create(0)
@@ -452,8 +437,8 @@ describe('non-strict', () => {
     //     pass: false,
     //     type: 'union',
     //     value: [
-    //       { pass: false, type: 'number', actual: null },
-    //       { pass: false, type: 'undefined', actual: null }
+    //       { pass: false, type: 'number' },
+    //       { pass: false, type: 'undefined' }
     //     ],
     //     actual: null
     //   })
@@ -548,17 +533,17 @@ describe('non-strict', () => {
   describe('symbol', () => {
     test('only symbol passes', () => {
       const t = T.symbol
-      const pass = { type: 'symbol' }
+      const pass = { type: 'symbol' } as const
       assert(analyze(options, t, Symbol()), pass)
       assert(analyze(options, t, Symbol('abc')), pass)
       assert(analyze(options, t, Symbol.for('def')), pass)
       analyzeFailsOtherThan(options, t, Symbol.for('a'))
-      assert(analyze(options, t, true), { type: 'symbol', fail: true, actual: true })
+      assert(analyze(options, t, true), { type: 'symbol', fail: true })
     })
     test('optional', () => {
       const t = T.symbol.optional
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'symbol' },
           { type: 'undefined' }
@@ -569,27 +554,26 @@ describe('non-strict', () => {
       assert(analyze(options, t, Symbol.for('def')), pass)
       assert(analyze(options, t, undefined), pass)
       assert(analyze(options, t, true), {
-        type: 'union',
+        type: 'union' as const,
         value: [
-          { type: 'symbol' },
-          { type: 'undefined' }
+          { type: 'symbol', fail: true },
+          { type: 'undefined', fail: true }
         ],
-        fail: true,
-        actual: true
+        fail: true
       })
     })
   })
   describe('union', () => {
     test('on two types', () => {
       const t = T.union.create(T.boolean, T.number)
-      const pass = { type: 'union', value: [{ type: 'boolean' }, { type: 'number' }] }
+      const pass = { type: 'union' as const, value: [{ type: 'boolean' }, { type: 'number' }] }
       assert(analyze(options, t, 0), pass)
       assert(analyze(options, t, false), pass)
     })
     test('on multiple primitive types', () => {
       const t = T.union.create(T.boolean, T.null, T.number)
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'boolean' },
           { type: 'null' },
@@ -604,61 +588,56 @@ describe('non-strict', () => {
   describe('array', () => {
     test('only array of any kind passes', () => {
       const t = T.array
-      const pass = { type: 'array' }
+      const pass = { type: 'array' as const }
       assert(analyze(options, t, []), pass)
       assert(analyze(options, t, ['a']), pass)
       analyzeFailsOtherThan(options, t, [], ['a'])
-      assert(analyze(options, t, null), { type: 'array', fail: true, actual: null })
+      assert(analyze(options, t, null), { type: 'array', fail: true })
     })
     test('array.unknown accepts only array of any kind', () => {
       const t = T.array.unknown
-      const pass = { type: 'array', value: { type: 'unknown' } }
+      const pass = { type: 'array', value: { type: 'unknown' } } as const
       assert(analyze(options, t, []), pass)
       assert(analyze(options, t, ['a']), pass)
       analyzeFailsOtherThan(options, t, [], ['a'])
       assert(analyze(options, t, null), {
         type: 'array',
         value: { type: 'unknown' },
-        fail: true,
-        actual: null
+        fail: true
       })
     })
     test('specific type', () => {
       const t = T.array.create(T.number)
-      const pass = { type: 'array', value: { type: 'number' } }
+      const pass = { type: 'array', value: { type: 'number' } } as const
       assert(analyze(options, t, []), pass)
       assert(analyze(options, t, [0]), pass)
       assert(analyze(options, t, [1, 2]), pass)
       assert(analyze(options, t, ['a']), {
         type: 'array',
-        value: { type: 'number', fail: true, keys: [0], actual: ['a'] },
-        fail: true,
-        actual: ['a']
+        value: { type: 'number', fail: true },
+        fail: true
       })
       assert(analyze(options, t, [1, 'a']), {
         type: 'array',
         // value: { type: 'number' },
-        value: { type: 'number', fail: true, keys: [1], actual: ['a'] },
-        fail: true,
-        actual: [1, 'a']
+        value: { type: 'number', fail: true },
+        fail: true
       })
       assert(analyze(options, t, ['a', 1]), {
         type: 'array',
-        value: { type: 'number', fail: true, keys: [0], actual: ['a'] },
-        fail: true,
-        actual: ['a', 1]
+        value: { type: 'number', fail: true },
+        fail: true
       })
     })
     test('specific const type', () => {
       const t = T.array.create(T.number.create(2))
-      const pass = { type: 'array', value: { type: 'number', value: 2 } }
+      const pass = { type: 'array', value: { type: 'number', value: 2 } } as const
       assert(analyze(options, t, []), pass)
       assert(analyze(options, t, [2]), pass)
       assert(analyze(options, t, [0]), {
         type: 'array',
-        value: { type: 'number', value: 2, fail: true, keys: [0], actual: [0] },
-        fail: true,
-        actual: [0]
+        value: { type: 'number', value: 2, fail: true },
+        fail: true
       })
     })
     test(`array's value type can be union type`, () => {
@@ -669,7 +648,7 @@ describe('non-strict', () => {
           type: 'union',
           value: [{ type: 'number' }, { type: 'boolean' }]
         }
-      }
+      } as const
       assert(analyze(options, t, []), pass)
       assert(analyze(options, t, [0]), pass)
       assert(analyze(options, t, [false]), pass)
@@ -678,18 +657,18 @@ describe('non-strict', () => {
         type: 'array',
         value: {
           type: 'union',
-          value: [{ type: 'number' }, { type: 'boolean' }],
-          fail: true,
-          keys: [2],
-          actual: ['']
+          value: [
+            { type: 'number', fail: true },
+            { type: 'boolean', fail: true }
+          ],
+          fail: true
         },
-        fail: true,
-        actual: [0, false, '']
+        fail: true
       })
     })
     test('optional', () => {
       const t = T.array.optional
-      const pass = { type: 'union', value: [{ type: 'array' }, { type: 'undefined' }] }
+      const pass = { type: 'union' as const, value: [{ type: 'array' }, { type: 'undefined' }] }
       assert(analyze(options, t, []), pass)
       assert(analyze(options, t, [1]), pass)
       assert(analyze(options, t, ['a']), pass)
@@ -698,7 +677,7 @@ describe('non-strict', () => {
     test('optional create', () => {
       const t = T.array.optional.create(T.string)
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'array', value: { type: 'string' } },
           { type: 'undefined' }
@@ -712,31 +691,28 @@ describe('non-strict', () => {
   describe('tuple', () => {
     test('single value', () => {
       const t = T.tuple.create(T.number)
-      const pass = { type: 'tuple', value: [{ type: 'number' }] }
+      const pass = { type: 'tuple' as const, value: [{ type: 'number' as const }] }
       assert(analyze(options, t, [0]), pass)
       assert(analyze(options, t, [1]), pass)
       assert(analyze(options, t, true), {
         type: 'tuple',
         value: [{ type: 'number' }],
-        fail: true,
-        actual: true
+        fail: true
       })
       assert(analyze(options, t, []), {
         type: 'tuple',
-        value: [{ type: 'number', fail: true, actual: undefined }],
-        fail: true,
-        actual: []
+        value: [{ type: 'number', fail: true }],
+        fail: true
       })
       assert(analyze(options, t, ['a']), {
         type: 'tuple',
-        value: [{ type: 'number', fail: true, actual: 'a' }],
-        fail: true,
-        actual: ['a']
+        value: [{ type: 'number', fail: true }],
+        fail: true
       })
     })
     test('two values', () => {
       const t = T.tuple.create(T.number, T.string)
-      const pass = { type: 'tuple', value: [{ type: 'number' }, { type: 'string' }] }
+      const pass = { type: 'tuple' as const, value: [{ type: 'number' }, { type: 'string' }] }
 
       expect(T.satisfy(t, [0, ''])).toBe(true)
       expect(T.satisfy(t, [0])).toBe(false)
@@ -746,73 +722,69 @@ describe('non-strict', () => {
         type: 'tuple',
         value: [
           { type: 'number' },
-          { type: 'string', fail: true, actual: undefined }
+          { type: 'string', fail: true }
         ],
-        fail: true,
-        actual: [1]
+        fail: true
       })
       assert(analyze(options, t, [1, 2]), {
         type: 'tuple',
         value: [
           { type: 'number' },
-          { type: 'string', fail: true, actual: 2 }
+          { type: 'string', fail: true }
         ],
-        fail: true,
-        actual: [1, 2]
+        fail: true
       })
       assert(analyze(options, t, ['a']), {
         type: 'tuple',
         value: [
-          { type: 'number', fail: true, actual: 'a' },
-          { type: 'string', fail: true, actual: undefined }
+          { type: 'number', fail: true },
+          { type: 'string', fail: true }
         ],
-        fail: true,
-        actual: ['a']
+        fail: true
       })
     })
   })
   describe('object', () => {
     test('only object of any kind passes', () => {
       const t = T.object
-      const pass = { type: 'object' }
+      const pass = { type: 'object' as const }
       assert(analyze(options, t, {}), pass)
       assert(analyze(options, t, { a: 1 }), pass)
       assert(analyze(options, t, { 0: 0 }), pass)
       assert(analyze(options, t, []), {
         type: 'object',
-        fail: true,
-        actual: []
+        fail: true
       })
       assert(analyze(options, t, null), {
         type: 'object',
-        fail: true,
-        actual: null
+        fail: true
       })
       analyzeFailsOtherThan(options, t, {}, { a: 1 })
     })
     test('single prop', () => {
       const t = T.object.create({ a: T.number })
-      const pass = { type: 'object', value: { a: { type: 'number' } } }
+      const pass = { type: 'object' as const, value: { a: { type: 'number' } } }
       assert(analyze(options, t, { a: 0 }), pass)
       assert(analyze(options, t, { a: 1 }), pass)
       assert(analyze(options, t, { a: 'a' }), {
         type: 'object',
-        value: { a: { type: 'number', fail: true, actual: 'a' } },
-        fail: true,
-        actual: { a: 'a' }
+        value: { a: { type: 'number', fail: true } },
+        fail: true
       })
       assert(analyze(options, t, { a: { b: 'b' } }), {
         type: 'object',
-        value: { a: { type: 'number', fail: true, actual: { b: 'b' } } },
-        fail: true,
-        actual: { a: { b: 'b' } }
+        value: { a: { type: 'number', fail: true } },
+        fail: true
       })
     })
     test('two props', () => {
       const t = T.object.create({ a: T.number.create(1), b: T.string })
       const pass = {
-        type: 'object',
-        value: { a: { type: 'number', value: 1 }, b: { type: 'string' } }
+        type: 'object' as const,
+        value: {
+          a: { type: 'number', value: 1 },
+          b: { type: 'string' }
+        }
       }
       assert(analyze(options, t, { a: 1, b: '' }), pass)
       assert(analyze(options, t, { a: 1, b: 'b' }), pass)
@@ -821,11 +793,10 @@ describe('non-strict', () => {
       assert(analyze(options, t, { a: 2, b: '' }), {
         type: 'object',
         value: {
-          a: { type: 'number', value: 1, fail: true, actual: 2 },
+          a: { type: 'number', value: 1, fail: true },
           b: { type: 'string' }
         },
-        fail: true,
-        actual: { a: 2, b: '' }
+        fail: true
       })
     })
     test('props with union', () => {
@@ -834,10 +805,10 @@ describe('non-strict', () => {
         b: T.string
       })
       const pass = {
-        type: 'object',
+        type: 'object' as const,
         value: {
           a: {
-            type: 'union',
+            type: 'union' as const,
             value: [{ type: 'number', value: 1 }, { type: 'boolean', value: true }]
           },
           b: { type: 'string' }
@@ -852,22 +823,20 @@ describe('non-strict', () => {
           a: {
             type: 'union',
             value: [
-              { type: 'number', value: 1 },
-              { type: 'boolean', value: true }
+              { type: 'number', value: 1, fail: true },
+              { type: 'boolean', value: true, fail: true }
             ],
-            fail: true,
-            actual: false
+            fail: true
           },
           b: { type: 'string' }
         },
-        fail: true,
-        actual: { a: false, b: '' }
+        fail: true
       })
     })
     test('nested object', () => {
       const t = T.object.create({ a: T.object.create({ b: T.number }) })
       const pass = {
-        type: 'object',
+        type: 'object' as const,
         value: {
           a: { type: 'object', value: { b: { type: 'number' } } }
         }
@@ -878,18 +847,16 @@ describe('non-strict', () => {
         value: {
           a: {
             type: 'object',
-            value: { b: { type: 'number', fail: true, actual: 'b' } },
-            fail: true,
-            actual: { b: 'b' }
+            value: { b: { type: 'number', fail: true } },
+            fail: true
           }
         },
-        fail: true,
-        actual: { a: { b: 'b' } }
+        fail: true
       })
     })
     test('optional', () => {
       const t = T.object.optional
-      const pass = { type: 'union', value: [{ type: 'object' }, { type: 'undefined' }] }
+      const pass = { type: 'union' as const, value: [{ type: 'object' }, { type: 'undefined' }] }
 
       assert(analyze(options, t, undefined), pass)
       assert(analyze(options, t, {}), pass)
@@ -898,7 +865,7 @@ describe('non-strict', () => {
     test('optional create', () => {
       const t = T.object.optional.create({ a: T.string })
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [
           { type: 'object', value: { a: { type: 'string' } } },
           { type: 'undefined' }
@@ -908,34 +875,41 @@ describe('non-strict', () => {
       assert(analyze(options, t, undefined), pass)
       assert(analyze(options, t, { a: '' }), pass)
       assert(analyze(options, t, {}), {
-        type: 'union',
+        type: 'union' as const,
         value: [
-          { type: 'object', value: { a: { type: 'string' } } },
-          { type: 'undefined' }
+          {
+            type: 'object',
+            value: {
+              a: {
+                type: 'string',
+                fail: true
+              }
+            },
+            fail: true
+          },
+          { type: 'undefined', fail: true }
         ],
-        fail: true,
-        actual: {}
+        fail: true
       })
     })
   })
   describe('record', () => {
     test('base type', () => {
       const t = T.record.create(T.number)
-      const pass = { type: 'record', value: { type: 'number' } }
+      const pass = { type: 'record' as const, value: { type: 'number' } }
 
       analyzeFailsOtherThan(options, T.record.create(T.null), {}, { a: 1 })
       assert(analyze(options, t, { a: 1 }), pass)
       assert(analyze(options, t, { a: 'b' }), {
         type: 'record',
-        value: { type: 'number', fail: true, keys: ['a'], actual: ['b'] },
-        fail: true,
-        actual: { a: 'b' }
+        value: { type: 'number', fail: true },
+        fail: true
       })
     })
     test('nested', () => {
       const t = T.record.optional.create(T.record.create(T.string))
       const pass = {
-        type: 'union',
+        type: 'union' as const,
         value: [{
           type: 'record', value: {
             type: 'record', value: { type: 'string' }
@@ -948,202 +922,20 @@ describe('non-strict', () => {
       assert(analyze(options, t, undefined), pass)
       assert(analyze(options, t, { a: { b: 'b' } }), pass)
       assert(analyze(options, t, { a: { b: true } }), {
-        type: 'union',
+        type: 'union' as const,
         value: [{
           type: 'record',
           value: {
             type: 'record',
-            value: { type: 'string' },
-            // fail: true,
-            // keys: [['b']],
-            // actual: [[true]]
-          }
+            value: { type: 'string', fail: true },
+            fail: true
+          },
+          fail: true
         }, {
-          type: 'undefined'
+          type: 'undefined',
+          fail: true
         }],
-        fail: true,
-        actual: { a: { b: true } }
-      })
-    })
-  })
-  describe('getPlainAnalysisReport()', () => {
-    test.each([
-      'bigint',
-      'boolean',
-      'number',
-      'object',
-      'string',
-      'symbol'
-    ])('valueless %s violation', (type) => {
-      expect(getPlainAnalysisReport({
-        options,
-        analysis: { type, fail: true, actual: undefined },
-        actual: undefined
-      })).toEqual(`subject expects to be ${type} but is actually undefined`)
-    })
-
-    test('undefined violation (when explicitly require to be undefined)', () => {
-      assertReportEquals(options, T.undefined, false,
-        `subject expects to be undefined but is actually false`)
-    })
-
-    test('null violation', () => {
-      assertReportEquals(options, T.null, false,
-        `subject expects to be null but is actually false`)
-    })
-
-    describe('boolean', () => {
-      test('specific boolean violation', () => {
-        assertReportEquals(options, T.boolean.true, false,
-          `subject expects to be true but is actually false`)
-      })
-
-      test('optional boolean violation', () => {
-        assertReportEquals(options, T.boolean.optional, null,
-          `subject expects to be (boolean | undefined) but is actually null`)
-      })
-
-      test('optional specific boolean violation', () => {
-        assertReportEquals(options, T.boolean.optional.false, true,
-          `subject expects to be (false | undefined) but is actually true`)
-      })
-    })
-
-    describe('number', () => {
-      test('specific number violation', () => {
-        assertReportEquals(options, T.number.create(1), false,
-          `subject expects to be 1 but is actually false`)
-      })
-
-      test('optional number violation', () => {
-        assertReportEquals(options, T.number.optional, false,
-          `subject expects to be (number | undefined) but is actually false`)
-      })
-
-      test('optional specific number violation', () => {
-        assertReportEquals(options, T.number.optional.create(2), false,
-          `subject expects to be (2 | undefined) but is actually false`)
-      })
-
-      test('number list violation', () => {
-        assertReportEquals(options, T.number.list(1, 2, 3), false,
-          `subject expects to be (1 | 2 | 3) but is actually false`)
-      })
-
-      test('optional number list violation', () => {
-        assertReportEquals(options, T.number.optional.list(1, 2, 3), false,
-          `subject expects to be (1 | 2 | 3 | undefined) but is actually false`)
-      })
-    })
-
-    describe('string', () => {
-      test('specific string violation', () => {
-        assertReportEquals(options, T.string.create('a'), false,
-          `subject expects to be 'a' but is actually false`)
-      })
-
-      test('optional string violation', () => {
-        assertReportEquals(options, T.string.optional, false,
-          `subject expects to be (string | undefined) but is actually false`)
-      })
-
-      test('optional specific string violation', () => {
-        assertReportEquals(options, T.string.optional.create('b'), false,
-          `subject expects to be ('b' | undefined) but is actually false`)
-      })
-
-      test('string list violation', () => {
-        assertReportEquals(options, T.string.list('a', 'b', 'c'), false,
-          `subject expects to be ('a' | 'b' | 'c') but is actually false`)
-      })
-
-      test('optional string list violation', () => {
-        assertReportEquals(options, T.string.optional.list('a', 'b', 'c'), false,
-          `subject expects to be ('a' | 'b' | 'c' | undefined) but is actually false`)
-      })
-    })
-    describe('array', () => {
-      test('base violation', () => {
-        assertReportEquals(options, T.array, undefined,
-          `subject expects to be Array<any> but is actually undefined`)
-      })
-      test('specific array violation', () => {
-        assertReportEquals(options, T.array.create(T.number), false,
-          `subject expects to be Array<number> but is actually false`)
-      })
-      test('optional array violation', () => {
-        assertReportEquals(options, T.array.optional, false,
-          `subject expects to be (Array<any> | undefined) but is actually false`)
-      })
-      test('optional specific array violation', () => {
-        assertReportEquals(options, T.array.optional.create(T.number), false,
-          `subject expects to be (Array<number> | undefined) but is actually false`)
-      })
-    })
-    describe('tuple', () => {
-      test('specific tuple violation', () => {
-        assertReportEquals(
-          options,
-          T.tuple.create(T.number.create(1), T.string.create('a')),
-          false,
-          `subject expects to be [1,'a'] but is actually false`)
-      })
-      test('optional specific tuple violation', () => {
-        assertReportEquals(
-          options,
-          T.tuple.optional.create(T.number),
-          false,
-          `subject expects to be ([number] | undefined) but is actually false`)
-      })
-      test('missing entry', () => {
-        assertReportEquals(
-          options,
-          T.tuple.create(T.null),
-          [],
-          [
-            `subject expects to be [null] but is actually []`,
-            `subject[0] expects to be null but is actually undefined`
-          ].join('\n')
-        )
-      })
-    })
-    describe('object', () => {
-      test('specific object violation', () => {
-        assertReportEquals(
-          options,
-          T.object.create({ a: T.null }),
-          false,
-          `subject expects to be { a: null } but is actually false`)
-      })
-      test('optional specific object violation', () => {
-        assertReportEquals(
-          options,
-          T.object.optional.create({ a: T.object.create({ b: T.string }) }),
-          false,
-          `subject expects to be ({ a: { b: string } } | undefined) but is actually false`)
-      })
-    })
-    describe('record', () => {
-      test('specific record violation', () => {
-        assertReportEquals(
-          options,
-          T.record.create(T.null),
-          false,
-          `subject expects to be Record<string, null> but is actually false`)
-      })
-      test('optional specific record violation', () => {
-        assertReportEquals(
-          options,
-          T.record.optional.create(T.record.create(T.string)),
-          false,
-          `subject expects to be (Record<string, Record<string, string>> | undefined) but is actually false`)
-      })
-      test(`nested violation`, () => {
-        assertReportEquals(
-          options,
-          T.record.optional.create(T.record.create(T.string)),
-          { a: { b: 1 } },
-          `subject expects to be (Record<string, Record<string, string>> | undefined) but is actually { a: { b: 1 } }`)
+        fail: true
       })
     })
   })
@@ -1157,9 +949,7 @@ describe('strict', () => {
       assert(analyze(options, t, ['a', 'b', 'c', 'd']), {
         type: 'tuple',
         value: [{ type: 'string' }],
-        fail: true,
-        actual: ['a', 'b', 'c', 'd'],
-        keys: [1, 2, 3]
+        fail: true
       })
     })
   })
@@ -1169,65 +959,13 @@ describe('strict', () => {
       assert(analyze(options, t, { a: 1, b: 2, c: 'c' }), {
         type: 'object',
         value: { a: { type: 'number' } },
-        fail: true,
-        actual: { a: 1, b: 2, c: 'c' },
-        keys: ['b', 'c']
-      })
-    })
-  })
-  describe('getPlainAnalysisReport()', () => {
-    describe('tuple', () => {
-      test('extra entry', () => {
-        assertReportEquals(
-          options,
-          T.tuple.create(T.null),
-          [null, 1],
-          [
-            `subject expects to be strictly [null] but is actually [null, 1]`,
-            `index 1 should not contain any value`
-          ].join('\n')
-        )
-      })
-      test('extra entries', () => {
-        assertReportEquals(
-          options,
-          T.tuple.create(T.null, T.number),
-          [null, 1, 'a', false],
-          [
-            `subject expects to be strictly [null,number] but is actually [null, 1, 'a', false]`,
-            `indices 2,3 should not contain any value`
-          ].join('\n')
-        )
-      })
-    })
-    describe('object', () => {
-      test('extra property', () => {
-        assertReportEquals(
-          options,
-          T.object.create({ a: T.number }),
-          { a: 1, b: 2 },
-          [
-            `subject expects to be strictly { a: number } but is actually { a: 1, b: 2 }`,
-            `property b should not contain any value`
-          ].join('\n')
-        )
-      })
-      test('extra properties', () => {
-        assertReportEquals(
-          options,
-          T.object.create({ a: T.number }),
-          { a: 1, b: 2, c: 'c' },
-          [
-            `subject expects to be strictly { a: number } but is actually { a: 1, b: 2, c: 'c' }`,
-            `properties b,c should not contain any value`
-          ].join('\n')
-        )
+        fail: true
       })
     })
   })
 })
 
-function assert(result: analyze.Result, analysis: analyze.Analysis) {
+function assert(result: analyze.Result, analysis: AllType.Analysis) {
   expect(result.analysis).toEqual(analysis)
 }
 
@@ -1238,8 +976,4 @@ function analyzeFailsOtherThan(options: analyze.Options, type: T.AllType, ...exc
       expect(analyze(options, type, v).analysis.fail).toBe(true)
     }
   })
-}
-
-function assertReportEquals(options: analyze.Options, type: AllType, subject: unknown, report: string) {
-  expect(getPlainAnalysisReport(analyze(options, type, subject))).toEqual(report)
 }

@@ -1,9 +1,13 @@
 import { typeSym, valueSym } from '../utils'
-import { ValueType } from './types'
+import { AnalysisType, ValueType } from './types'
 import { undef } from './Undefined'
 import { union } from './Union'
 
 export type Symbol<Value extends string = string> = ValueType<'symbol', Value>
+
+export namespace Symbol {
+  export type Analysis = AnalysisType<'symbol'>
+}
 
 function create<Value extends string>(value: Value): Symbol<Value> {
   return { [typeSym]: 'symbol', [valueSym]: value }

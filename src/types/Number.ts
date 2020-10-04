@@ -6,6 +6,14 @@ import { Union, union } from './Union'
 
 export type Number<Value extends number = number> = ValueType<'number', Value>
 
+export namespace Number {
+  export type Analysis = {
+    type: 'number'
+    value?: number
+    fail?: true
+  }
+}
+
 type NumberListDevice<Values extends number[] = number[]> = Values['length'] extends 0
   ? { result: [] } : Values['length'] extends 1
   ? { result: [Number<Values[0]>] }
