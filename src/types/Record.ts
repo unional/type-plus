@@ -24,9 +24,3 @@ export const record = {
     }
   }
 }
-
-// function range(start: number, end: number) {
-//   const r: number[] = []
-//   while (start < end) r.push(start++)
-//   return r
-// }

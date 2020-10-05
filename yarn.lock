@@ -2043,6 +2043,11 @@ acorn@^7.0.0, acorn@^7.1.1, acorn@^7.4.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.4.0.tgz#e1ad486e6c54501634c6c397c5c121daa383607c"
   integrity sha512-+G7P8jJmCHr+S+cLfQxygbWhXy+8YTVGzAkpEbcLo2mLoL7tij/VG41QSHACSf5QgYRhMZYHuNc6drJaO0Da+w==
 
+acorn@^8.0.3:
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.0.3.tgz#68e78e53da020414420282428f1a4afd2075c2dc"
+  integrity sha512-uRMbCU3bM1L697KISxvkd9TA2zASoGFDODzFFdQR4qNpPffj6ZMdp5J4ffXUXR9G0PVPsN0enEkCrvssCkoPsw==
+
 agent-base@4, agent-base@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-4.3.0.tgz#8165f01c436009bccad0b1d122f05ed770efc6ee"
@@ -11090,12 +11095,21 @@ terser@^4.1.2:
     source-map "~0.6.1"
     source-map-support "~0.5.12"
 
-tersify@^3.0.2, tersify@^3.0.6, tersify@^3.7.0, tersify@^3.7.1:
+tersify@^3.0.2, tersify@^3.0.6, tersify@^3.7.0:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/tersify/-/tersify-3.7.1.tgz#4c31e60f87ea90d91d66ad4083cb2a4bdf5db19e"
   integrity sha512-gtd2S0gIddhhNzu/u2d4WRLXDleBdG8VPJeIpDrQ7GsCvh/KYnylK1TmthzNp6RY5AK6z397mQCZl4AvYqTdwQ==
   dependencies:
     acorn "^7.1.1"
+    is-buffer "^2.0.4"
+    unpartial "^0.6.3"
+
+tersify@^3.7.1:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/tersify/-/tersify-3.7.2.tgz#d9c2ca3259c8f8bc62e3c4f8ca7b136f4c9d3f48"
+  integrity sha512-YiSLVbN3GwpzDMzOkJeGpUDEnRpqiGL6rWvEslxtkutaOM1dT9cJp4lIQzNgduAtyAG+cJ8UeqpRbQKzY5K1zQ==
+  dependencies:
+    acorn "^8.0.3"
     is-buffer "^2.0.4"
     unpartial "^0.6.3"
 
