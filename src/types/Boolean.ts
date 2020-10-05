@@ -6,8 +6,8 @@ import { Union, union } from './Union'
 export type Boolean<Value extends boolean = boolean> = ValueType<'boolean', Value>
 export namespace Boolean {
   export type Analysis = {
-    type: 'boolean'
-    value?: boolean
+    type: 'boolean',
+    value?: boolean,
     fail?: true
   }
 }
