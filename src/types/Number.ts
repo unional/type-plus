@@ -8,8 +8,8 @@ export type Number<Value extends number = number> = ValueType<'number', Value>
 
 export namespace Number {
   export type Analysis = {
-    type: 'number'
-    value?: number
+    type: 'number',
+    value?: number,
     fail?: true
   }
 }

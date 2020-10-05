@@ -21,7 +21,7 @@ function toViolations(options: analyze.Options, path: Array<string | number>, ac
   const violations = [`${formatPath(path)} ${clause} ${formatType(analysis)} but is actually ${tersify(actual)}`]
 
   switch (analysis.type) {
-    case 'tuple':
+    case 'tuple': {
       if (options.strict && analysis.value!.length < actual.length) {
         const index = actual.length - analysis.value!.length === 1 ? 'index' : 'indices'
         violations.push(`${index} ${range(analysis.value!.length, actual.length)} should not contain any value`)
@@ -32,6 +32,7 @@ function toViolations(options: analyze.Options, path: Array<string | number>, ac
       }, [] as string[])
       if (v2.length > 0) violations.push(...v2)
       break
+    }
     case 'object':
       if (analysis.value) {
         const typeKeys = Object.keys(analysis.value)
@@ -41,7 +42,7 @@ function toViolations(options: analyze.Options, path: Array<string | number>, ac
           const index = extraKeys.length === 1 ? 'property' : 'properties'
           violations.push(`${index} ${extraKeys.join(',')} should not contain any value`)
         }
-        const propViolations = typeKeys.reduce((p, k, i) => {
+        const propViolations = typeKeys.reduce((p, k) => {
           const a = analysis.value![k]
           if (a.fail) p.push(...toViolations(options, [...path, k], actual[k], a))
           return p
@@ -64,7 +65,7 @@ function toAccessor(p: string | number) {
 }
 
 function toProp(p: string) {
-  return p.indexOf('-') >=0 ? `'${p}'` : p
+  return p.indexOf('-') >= 0 ? `'${p}'` : p
 }
 
 function formatType(e: AllType.Analysis): string {

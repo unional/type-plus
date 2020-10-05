@@ -8,8 +8,8 @@ export type String<Value extends string = string> = ValueType<'string', Value>
 
 export namespace String {
   export type Analysis = {
-    type: 'string'
-    value?: string
+    type: 'string',
+    value?: string,
     fail?: true
   }
 }
