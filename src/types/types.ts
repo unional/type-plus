@@ -11,3 +11,8 @@ export namespace ValueType {
 }
 
 export type AnalysisType<T extends string, V = never> = { type: T, value?: V, fail?: true }
+
+export type ExtractType<V extends ValueType<any,any>> = {
+  [typeSym]: V[typeof typeSym],
+  [valueSym]: V[typeof valueSym]
+}
