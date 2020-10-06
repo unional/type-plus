@@ -1,5 +1,5 @@
-import { Tuple as TTTuple } from 'ts-toolbelt'
 import { typeSym, valueSym } from '../utils'
+import { Tuple } from './Tuple'
 import { ValueType } from './types'
 import { undef, Undefined } from './Undefined'
 import { Union, union } from './Union'
@@ -17,7 +17,7 @@ export namespace String {
 type StringListDevice<Values extends string[]> = Values['length'] extends 0
   ? { result: [] } : Values['length'] extends 1
   ? { result: [String<Values[0]>] }
-  : { result: [String<Values[0]>, String<Values[1]>, ...StringListDevice<TTTuple.Drop<Values, '2'>>['result']] }
+  : { result: [String<Values[0]>, String<Values[1]>, ...StringListDevice<Tuple.Tail<Tuple.Tail<Values>>>['result']] }
 
 /**
 * Creates a constant string type.

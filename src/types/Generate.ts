@@ -1,4 +1,3 @@
-import { Tuple as TTTuple } from 'ts-toolbelt'
 import { valueSym } from '../utils'
 import { AllType } from './AllType'
 // import { KeyTypes } from '../object-key'
@@ -43,7 +42,7 @@ export namespace Generate {
   export type UnionDevice<T extends AllType[]> = T['length'] extends 0
     ? { result: never }
     // @ts-ignore sometimes language service mark this as referencing itself
-    : { result: Generate<T[0]> | UnionDevice<TTTuple.Drop<T, '1'>>['result'] }
+    : { result: Generate<T[0]> | UnionDevice<Tuple.Tail<T>>['result'] }
 
   /**
    * @internal
@@ -51,5 +50,5 @@ export namespace Generate {
   export type TupleDevice<T extends AllType[]> = T['length'] extends 0
     ? { result: [] }
     // @ts-ignore sometimes language service mark this as referencing itself
-    : { result: [Generate<T[0]>, ...TupleDevice<TTTuple.Drop<T, '1'>>['result']] }
+    : { result: [Generate<T[0]>, ...TupleDevice<Tuple.Tail<T>>['result']] }
 }
