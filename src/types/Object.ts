@@ -1,5 +1,4 @@
 import { KeyTypes, reduceByKey } from '../object-key'
-import { typeSym, valueSym } from '../utils'
 import { AllType } from './AllType'
 import { number } from './Number'
 import { string as str } from './String'
@@ -27,7 +26,7 @@ export namespace ObjectType {
  * create specific object type.
  */
 function create<Props extends Record<string, AllType>>(props: Props): ObjectType<Props> {
-  return { [typeSym]: 'object', [valueSym]: props }
+  return { type: 'object', value: props }
 }
 
 const any = create(undefined as any)

@@ -43,6 +43,5 @@ export * from './typeOverrideIncompatible'
 export * from './types/optional'
 export * from './types/required'
 export * from './UnionKeys'
-export * as utils from './utils'
 export * from './ValueOf'
 export { types, types as T }

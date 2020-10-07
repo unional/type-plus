@@ -1,4 +1,3 @@
-import { typeSym, valueSym } from '../utils'
 import { AllType } from './AllType'
 import { AnalysisType, ValueType } from './types'
 import { undef, Undefined } from './Undefined'
@@ -13,7 +12,7 @@ export namespace Record {
 }
 
 function create<Value extends AllType>(value: Value): Record<Value> {
-  return { [typeSym]: 'record', [valueSym]: value }
+  return { type: 'record', value }
 }
 
 export const record = {

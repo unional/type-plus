@@ -1,4 +1,3 @@
-import { typeSym, valueSym } from '../utils'
 import { Tuple } from './Tuple'
 import { ValueType } from './types'
 import { undef, Undefined } from './Undefined'
@@ -24,7 +23,7 @@ type StringListDevice<Values extends string[]> = Values['length'] extends 0
 */
 function create<Value extends string>(value: Value): String<Value> {
   // Cannot name this function as `const` because it is a reserved keyword.
-  return { [typeSym]: 'string', [valueSym]: value }
+  return { type: 'string', value: value }
 }
 const any = create(undefined as unknown as string)
 

@@ -2,7 +2,6 @@
 // import { undef, Undefined } from './Undefined'
 // import { Union, union } from './Union'
 
-import { typeSym, valueSym } from '../utils'
 import { AnalysisType, ValueType } from './types'
 
 export type BigInt<Value extends bigint = bigint> = ValueType<'bigint', Value>
@@ -16,7 +15,7 @@ export namespace BigInt {
  */
 function create<Value extends bigint>(value: Value): BigInt<Value> {
   // Cannot name this function as `const` because it is a reserved keyword.
-  return { [typeSym]: 'bigint', [valueSym]: value }
+  return { type: 'bigint', value }
 }
 
 const any = create(undefined as unknown as bigint)

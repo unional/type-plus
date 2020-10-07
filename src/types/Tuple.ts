@@ -1,4 +1,3 @@
-import { typeSym, valueSym } from '../utils'
 import { AnalysisType, ValueType } from './types'
 import { AllType } from './AllType'
 import { undef, Undefined } from './Undefined'
@@ -24,8 +23,8 @@ function create<Value extends AllType, Values extends AllType[]>(
   ...values: Values
 ): Tuple<[Value, ...Values]> {
   return {
-    [typeSym]: 'tuple',
-    [valueSym]: [value, ...values]
+    type: 'tuple',
+    value: [value, ...values]
   }
 }
 export const tuple = {

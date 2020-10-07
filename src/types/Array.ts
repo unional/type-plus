@@ -1,5 +1,4 @@
 // import { BigInt } from './BigInt'
-import { typeSym, valueSym } from '../utils'
 import { AllType } from './AllType'
 import { ValueType } from './types'
 import { undef, Undefined } from './Undefined'
@@ -23,8 +22,8 @@ export namespace Array {
  */
 function create<Value extends AllType>(value: Value): Array<Value> {
   return {
-    [typeSym]: 'array',
-    [valueSym]: value
+    type: 'array',
+    value
   }
 }
 
