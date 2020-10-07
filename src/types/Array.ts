@@ -1,11 +1,11 @@
 // import { BigInt } from './BigInt'
 import { AllType } from './AllType'
-import { TypeSpec } from './types'
+import { Type } from './types'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
 import { unknown } from './Unknown'
 
-export type Array<Value extends AllType = any> = TypeSpec<'array', Value>
+export type Array<Value extends AllType = any> = Type<'array', Value>
 export namespace Array {
   export type Analysis<
     Value extends AllType.PrimitiveValues | AllType.Analysis = any

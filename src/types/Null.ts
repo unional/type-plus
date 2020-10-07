@@ -1,8 +1,8 @@
-import { TypeAnalysis, TypeSpec } from './types'
+import { TypeAnalysis, Type } from './types'
 import { undef } from './Undefined'
 import { union } from './Union'
 
-export type Null = TypeSpec<'null', undefined>
+export type Null = Type<'null', undefined>
 export namespace Null {
   export type Analysis = TypeAnalysis<'null'>
 }

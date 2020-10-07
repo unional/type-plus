@@ -3,13 +3,13 @@ import { AllType } from './AllType'
 import { number } from './Number'
 import { string as str } from './String'
 import { symbol as sym } from './Symbol'
-import { TypeSpec } from './types'
+import { Type } from './types'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
 
 export type ObjectType<
   Props extends Record<string, AllType> = Record<string, any>
-  > = TypeSpec<'object', Props>
+  > = Type<'object', Props>
 
 export namespace ObjectType {
   export type Analysis<

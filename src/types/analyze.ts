@@ -7,7 +7,7 @@ import { object, ObjectType } from './Object'
 import { Record as RecordType } from './Record'
 import { string, String } from './String'
 import { Tuple } from './Tuple'
-import { TypeSpec } from './types'
+import { Type } from './types'
 import { Union } from './Union'
 
 export namespace analyze {
@@ -76,7 +76,7 @@ function analyzeBoolean(type: Boolean, actual: unknown) {
 
 function analyzeType(
   baseType: Number | String, // | BigInt,
-  type: TypeSpec<any, any>,
+  type: Type<any, any>,
   actual: unknown
 ) {
   const value = type['value']
