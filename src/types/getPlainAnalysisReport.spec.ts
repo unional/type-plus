@@ -313,6 +313,17 @@ describe('object', () => {
       ].join('\n')
     )
   })
+  test('object with array', () => {
+    assertReportEquals(
+      nonStrict,
+      T.object.create({ a: T.array, b: T.string }),
+      { a: [], b: 1 },
+      [
+        `subject expects to be { a: Array<any>, b: string } but is actually { a: [], b: 1 }`,
+        `subject.b expects to be string but is actually 1`
+      ].join('\n')
+    )
+  })
 })
 describe('record', () => {
   test('specific record violation', () => {
