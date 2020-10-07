@@ -22,7 +22,6 @@ export type AllType = Undefined | Null | Boolean | Number | String
   | Symbol // | BigInt
 
 export namespace AllType {
-  export type Expectation = boolean | number | string | ObjectType.Expectation
   export type PrimitiveValues = boolean | number | string // | bigint
   export type Analysis = Any.Analysis | Unknown.Analysis |
     Undefined.Analysis | Null.Analysis | Boolean.Analysis | Number.Analysis | String.Analysis |
