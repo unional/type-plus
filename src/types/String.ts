@@ -1,9 +1,9 @@
 import { Tuple } from './Tuple'
-import { ValueType } from './types'
+import { TypeSpec } from './types'
 import { undef, Undefined } from './Undefined'
 import { Union, union } from './Union'
 
-export type String<Value extends string = string> = ValueType<'string', Value>
+export type String<Value extends string = string> = TypeSpec<'string', Value>
 
 export namespace String {
   export type Analysis = {

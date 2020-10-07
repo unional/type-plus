@@ -1,9 +1,9 @@
-import { AnalysisType, ValueType } from './types'
+import { AnalysisType, TypeSpec } from './types'
 import { AllType } from './AllType'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
 
-export type Tuple<Values extends AllType[] = any[]> = ValueType<'tuple', Values>
+export type Tuple<Values extends AllType[] = any[]> = TypeSpec<'tuple', Values>
 
 export namespace Tuple {
   export type Analysis<

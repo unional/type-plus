@@ -1,9 +1,9 @@
 import { AllType } from './AllType'
-import { AnalysisType, ValueType } from './types'
+import { AnalysisType, TypeSpec } from './types'
 import { undef } from './Undefined'
 
 
-export type Union<Values extends AllType[] = any[]> = ValueType<'union', Values>
+export type Union<Values extends AllType[] = any[]> = TypeSpec<'union', Values>
 
 export namespace Union {
   export type Analysis<
