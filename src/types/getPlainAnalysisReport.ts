@@ -16,7 +16,6 @@ function formatAnalysis(a: AllType.Analysis) {
 }
 
 function toViolations(options: analyze.Options, path: Array<string | number>, actual: any, analysis: AllType.Analysis): string[] {
-  if (!analysis.fail) return []
   const clause = options.strict ? `expects to be strictly` : `expects to be`
   const violations = [`${formatPath(path)} ${clause} ${formatType(analysis)} but is actually ${tersify(actual)}`]
 
@@ -94,7 +93,7 @@ function formatType(e: AllType.Analysis): string {
             return p
           },
           [] as string[]
-        ).join(',')} }`
+        ).join(', ')} }`
     case 'record':
       return `Record<string, ${formatType(e.value as any)}>`
     case 'union':
