@@ -1,9 +1,9 @@
-import { typeSym } from '../utils'
-import { AnalysisType, FixedType } from './types'
+import { typeSym, valueSym } from '../utils'
+import { AnalysisType, ValueType } from './types'
 
-export type Any = FixedType<'any'> & Record<any, any>
+export type Any = ValueType<'any', undefined> & Record<any, any>
 export namespace Any {
-  export type Expectation = FixedType.Expectation<'any'>
+  export type Expectation = ValueType.Expectation<'any', undefined>
   export type Analysis = AnalysisType<'any'>
 }
-export const any: Any = { [typeSym]: 'any' }
+export const any: Any = { [typeSym]: 'any', [valueSym]: undefined }
