@@ -12,7 +12,6 @@ export type ObjectType<
   > = ValueType<'object', Props>
 
 export namespace ObjectType {
-  export type Expectation = { type: 'object', value: Record<string, AllType.Expectation> }
   export type Analysis<
     Value extends AllType.PrimitiveValues | AllType.Analysis = any
     > = {
