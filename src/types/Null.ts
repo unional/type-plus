@@ -1,4 +1,3 @@
-import { typeSym, valueSym } from '../utils'
 import { AnalysisType, ValueType } from './types'
 import { undef } from './Undefined'
 import { union } from './Union'
@@ -8,7 +7,7 @@ export namespace Null {
   export type Analysis = AnalysisType<'null'>
 }
 
-const any: Null = { [typeSym]: 'null', [valueSym]: undefined }
+const any: Null = { type: 'null', value: undefined }
 
 export const nil = Object.assign({}, any, {
   optional: union.create(any, undef)

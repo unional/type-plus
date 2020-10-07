@@ -1,4 +1,3 @@
-import { valueSym } from '../utils'
 import { AllType } from './AllType'
 // import { KeyTypes } from '../object-key'
 import { Any } from './Any'
@@ -25,13 +24,13 @@ export type Generate<T extends AllType> =
   T extends Symbol ? symbol :
   T extends Any ? any :
   T extends Unknown ? unknown :
-  T extends Number ? T[typeof valueSym] :
-  T extends String ? T[typeof valueSym] :
-  T extends ObjectType ? { [K in keyof T[typeof valueSym]]: Generate<T[typeof valueSym][K]> } :
-  T extends Record ? { [K: string]: Generate<T[typeof valueSym]> } :
-  T extends Array ? Generate<T[typeof valueSym]>[] :
-  T extends Tuple ? Generate.TupleDevice<T[typeof valueSym]>['result'] :
-  T extends Union ? Generate.UnionDevice<T[typeof valueSym]>['result'] :
+  T extends Number ? T['value'] :
+  T extends String ? T['value'] :
+  T extends ObjectType ? { [K in keyof T['value']]: Generate<T['value'][K]> } :
+  T extends Record ? { [K: string]: Generate<T['value']> } :
+  T extends Array ? Generate<T['value']>[] :
+  T extends Tuple ? Generate.TupleDevice<T['value']>['result'] :
+  T extends Union ? Generate.UnionDevice<T['value']>['result'] :
   // T extends BigInt ? T['value'] :
   unknown
 

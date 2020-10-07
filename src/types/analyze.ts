@@ -1,5 +1,4 @@
 import { reduceByKey } from '../object-key'
-import { typeSym, valueSym } from '../utils'
 import { AllType } from './AllType'
 import { Array as ArrayType } from './Array'
 import { Boolean } from './Boolean'
@@ -43,7 +42,7 @@ export function analyze(options: analyze.Options, type: AllType, actual: unknown
   }
 }
 export function analyzeInternal(options: analyze.Options, type: AllType, actual: unknown): AllType.Analysis {
-  const t = type[typeSym]
+  const t = type['type']
   switch (t) {
     case 'unknown':
     case 'any':
@@ -66,7 +65,7 @@ export function analyzeInternal(options: analyze.Options, type: AllType, actual:
 }
 
 function analyzeBoolean(type: Boolean, actual: unknown) {
-  const value = type[valueSym]
+  const value = type['value']
   if (value === undefined) {
     return typeof actual === 'boolean' ? ok(type) : fail('boolean', value)
   }
@@ -80,20 +79,20 @@ function analyzeType(
   type: ValueType<any, any>,
   actual: unknown
 ) {
-  const value = type[valueSym]
-  return typeof actual === baseType[typeSym] && (type === baseType || actual === value)
+  const value = type['value']
+  return typeof actual === baseType['type'] && (type === baseType || actual === value)
     ? ok(type)
-    : fail(type[typeSym], type[valueSym])
+    : fail(type['type'], type['value'])
 }
 
 function analyzeUnion(options: analyze.Options, type: Union, actual: unknown) {
-  const subTypes = type[valueSym]
+  const subTypes = type['value']
   const r = subTypes.map(t => analyzeInternal(options, t, actual))
   return r.some(r => !r.fail) ? ok(type) : fail('union', r)
 }
 
 function analyzeArray(options: analyze.Options, type: ArrayType<AllType>, actual: unknown) {
-  const subType = type[valueSym]
+  const subType = type['value']
   if (!Array.isArray(actual)) return fail('array', subType ? ok(subType) : undefined)
   if (subType === undefined) return ok(type)
 
@@ -108,11 +107,11 @@ function analyzeArray(options: analyze.Options, type: ArrayType<AllType>, actual
   }, { keys: [], actual: [] })
   return r.keys.length === 0 ?
     ok(type) :
-    fail('array', { ...fail(subType[typeSym], r.value) })
+    fail('array', { ...fail(subType['type'], r.value) })
 }
 
 function analyzeTuple(options: analyze.Options, type: Tuple, actual: unknown) {
-  const value = type[valueSym]
+  const value = type['value']
   if (!Array.isArray(actual)) return fail('tuple', value.map(ok))
   const results = value.map((v, i) => analyzeInternal(options, v, actual[i]))
   if (options.strict && results.length < actual.length) {
@@ -122,7 +121,7 @@ function analyzeTuple(options: analyze.Options, type: Tuple, actual: unknown) {
 }
 
 function analyzeObject(options: analyze.Options, type: ObjectType, actual: any) {
-  const typeMap = type[valueSym]
+  const typeMap = type['value']
   if (!isOnlyObject(actual)) return fail('object', typeMap ? object.map(v => ok(v), typeMap) : undefined)
   if (type === object as ObjectType) return ok(type)
 
@@ -146,7 +145,7 @@ function analyzeObject(options: analyze.Options, type: ObjectType, actual: any) 
 }
 
 function analyzeRecord(options: analyze.Options, type: RecordType, actual: unknown) {
-  const subType = type[valueSym]
+  const subType = type['value']
   if (!isOnlyObject(actual)) return fail('record', ok(subType))
 
   const r = reduceByKey(actual, (p, k) => {
@@ -160,16 +159,16 @@ function analyzeRecord(options: analyze.Options, type: RecordType, actual: unkno
   }, { keys: [] as string[], actual: [] as any[], value: undefined as any })
   return r.keys.length === 0 ?
     ok(type) :
-    fail('record', { ...fail(subType[typeSym], r.value) })
+    fail('record', { ...fail(subType['type'], r.value) })
 }
 
-function ok(t: { [typeSym]: AllType.Analysis['type'], [valueSym]?: AllType.Analysis['value'] }): AllType.Analysis {
-  const type = t[typeSym]
-  const value = t[valueSym]
+function ok(t: { type: AllType.Analysis['type'], ['value']?: AllType.Analysis['value'] }): AllType.Analysis {
+  const type = t['type']
+  const value = t['value']
   if (value === undefined) return { type, value }
   if (typeof value !== 'object' || value === null) return { type, value }
   if (Array.isArray(value)) return { type, value: value.map(ok) } as any
-  if (value[typeSym]) return { type, value: ok(value) } as any
+  if (value['type']) return { type, value: ok(value) } as any
   return {
     type, value: reduceByKey(
       value as Record<string, any>,

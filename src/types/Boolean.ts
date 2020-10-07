@@ -1,4 +1,3 @@
-import { typeSym, valueSym } from '../utils'
 import { ValueType } from './types'
 import { undef, Undefined } from './Undefined'
 import { Union, union } from './Union'
@@ -16,7 +15,7 @@ export type True = Boolean<true>
 export type False = Boolean<false>
 
 function create<Value extends boolean>(value: Value): Boolean<Value> {
-  return { [typeSym]: 'boolean', [valueSym]: value }
+  return { type: 'boolean', value }
 }
 
 const any = create(undefined as unknown as boolean)

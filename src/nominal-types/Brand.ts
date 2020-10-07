@@ -2,16 +2,20 @@
 // <https://gist.github.com/dcolthorp/aa21cf87d847ae9942106435bf47565d>
 
 import { AnyRecord } from '../any-types'
-import { typeSym } from '../utils'
 
 /**
  * Create a "branded" version of a type.
  * TypeScript won't allow implicit conversion to this type
  */
-export type Brand<BrandT extends string, T extends AnyRecord> = T & { [typeSym]: BrandT }
+export type Brand<BrandT extends string, T extends AnyRecord> = T & {
+  /**
+   * @internal
+   */
+  type: BrandT
+}
 
 export function brand<B extends string, T extends AnyRecord>(type: B, subject: T = {} as any): Brand<B, T> {
-  (subject as any)[typeSym] = type
+  (subject as any).type = type
   return subject as any
 }
 

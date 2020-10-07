@@ -1,4 +1,3 @@
-import { typeSym, valueSym } from '../utils'
 import { Tuple } from './Tuple'
 import { ValueType } from './types'
 import { undef, Undefined } from './Undefined'
@@ -23,7 +22,7 @@ type NumberListDevice<Values extends number[] = number[]> = Values['length'] ext
  * Creates a single number type.
  */
 function create<Value extends number>(value: Value): Number<Value> {
-  return { [typeSym]: 'number', [valueSym]: value }
+  return { type: 'number', value }
 }
 
 const any = create(undefined as unknown as number)

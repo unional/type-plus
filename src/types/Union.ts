@@ -1,4 +1,3 @@
-import { typeSym, valueSym } from '../utils'
 import { AllType } from './AllType'
 import { AnalysisType, ValueType } from './types'
 import { undef } from './Undefined'
@@ -22,15 +21,15 @@ function create<
   values.unshift(value)
   if (values.length === 1) return values[0] as any
   const v = values.reduce<AllType[]>((p, v) => {
-    if (v[typeSym] === 'union') {
-      p.push(...(v as any)[valueSym])
+    if (v.type === 'union') {
+      p.push(...(v as any).value)
     }
     else {
       p.push(v)
     }
     return p
   }, [])
-  return { [typeSym]: 'union', [valueSym]: v } as any
+  return { type: 'union', value: v } as any
 }
 
 export const union = {
