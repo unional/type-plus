@@ -1,9 +1,9 @@
 import { AllType } from './AllType'
-import { TypeAnalysis, TypeSpec } from './types'
+import { TypeAnalysis, Type } from './types'
 import { undef, Undefined } from './Undefined'
 import { union, Union } from './Union'
 
-export type Record<Value extends AllType = any> = TypeSpec<'record', Value>
+export type Record<Value extends AllType = any> = Type<'record', Value>
 
 export namespace Record {
   export type Analysis<

@@ -1,8 +1,8 @@
-import { TypeSpec } from './types'
+import { Type } from './types'
 import { undef, Undefined } from './Undefined'
 import { Union, union } from './Union'
 
-export type Boolean<Value extends boolean = boolean> = TypeSpec<'boolean', Value>
+export type Boolean<Value extends boolean = boolean> = Type<'boolean', Value>
 export namespace Boolean {
   export type Analysis = {
     type: 'boolean',

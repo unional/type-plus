@@ -1,6 +1,6 @@
-import { TypeAnalysis, TypeSpec } from './types'
+import { TypeAnalysis, Type } from './types'
 
-export type Any = TypeSpec<'any', undefined>
+export type Any = Type<'any', undefined>
 export namespace Any {
   export type Analysis = TypeAnalysis<'any'>
 }

@@ -1,9 +1,9 @@
 import { Tuple } from './Tuple'
-import { TypeSpec } from './types'
+import { Type } from './types'
 import { undef, Undefined } from './Undefined'
 import { Union, union } from './Union'
 
-export type Number<Value extends number = number> = TypeSpec<'number', Value>
+export type Number<Value extends number = number> = Type<'number', Value>
 
 export namespace Number {
   export type Analysis = {

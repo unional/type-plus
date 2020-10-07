@@ -1,8 +1,8 @@
-import { TypeAnalysis, TypeSpec } from './types'
+import { TypeAnalysis, Type } from './types'
 import { undef } from './Undefined'
 import { union } from './Union'
 
-export type Symbol<Value extends string = string> = TypeSpec<'symbol', Value>
+export type Symbol<Value extends string = string> = Type<'symbol', Value>
 
 export namespace Symbol {
   export type Analysis = TypeAnalysis<'symbol'>
