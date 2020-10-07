@@ -1,2 +1,2 @@
-export const typeSym: unique symbol = Symbol('type')
-export const valueSym: unique symbol = Symbol('value')
+export const typeSym = '_type'
+export const valueSym = '_value'
