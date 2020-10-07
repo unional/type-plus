@@ -1,6 +1,6 @@
-import { AnalysisType, ValueType } from './types'
+import { AnalysisType, TypeSpec } from './types'
 
-export type Undefined = ValueType<'undefined', undefined>
+export type Undefined = TypeSpec<'undefined', undefined>
 export namespace Undefined {
   export type Analysis = AnalysisType<'undefined'>
 }
