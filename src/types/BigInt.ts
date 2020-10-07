@@ -2,12 +2,12 @@
 // import { undef, Undefined } from './Undefined'
 // import { Union, union } from './Union'
 
-import { AnalysisType, TypeSpec } from './types'
+import { TypeAnalysis, TypeSpec } from './types'
 
 export type BigInt<Value extends bigint = bigint> = TypeSpec<'bigint', Value>
 
 export namespace BigInt {
-  export type Analysis = AnalysisType<'bigint', bigint>
+  export type Analysis = TypeAnalysis<'bigint', bigint>
 }
 
 /**
