@@ -19,20 +19,20 @@ Provides additional types and type adjusted utilities for `typescript`
 ### Array function
 
 - `literalArray(...entries)`: return an array those items are restricted to the provided literals.
-- `reduceWhile()`: `reduce()` with predicate for early termination.
+- `reduceWhile()`: `reduce()` with predicate for early termination. \
   A simple version of the same function in the `ramda` package.
 
 ### Constant Types
 
 - `JSONTypes`: all JSON compatible types.
 - `KeyTypes`: type of all keys.
-- `PrimitiveTypes`: all primitive types, including `Function`, `symbol`, and `bigint`
+- `PrimitiveTypes`: all primitive types, including `Function`, `symbol`, and `bigint`.
 
 ### Identity type
 
-- `Id<T>`: generic Id type
-- `createId<T>(type: T, value: string): Id<T>`: create id
-- `createIdCreator<T>(type: T): (value: string) => Id<T>`: create an id creator
+- `Id<T>`: generic Id type.
+- `createId<T>(type: T, value: string): Id<T>`: create id.
+- `createIdCreator<T>(type: T): (value: string) => Id<T>`: create an id creator.
 
 ### Object Key functions
 
