@@ -1,4 +1,4 @@
-import { assertType, checkUnknown } from '.'
+import { assertType, checkUnknown } from '..'
 
 test('check unknown type is instance of class', () => {
   const s: unknown = new ReferenceError()
