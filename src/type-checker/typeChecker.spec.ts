@@ -1,12 +1,13 @@
-import { assertType } from '../assertType'
+import { assertType, T } from '..'
 import { createTypeChecker } from './typeChecker'
-import { T } from '..'
 
 describe('check()', () => {
-  const checker = createTypeChecker()
+  test('bool', () => {
+    const checker = createTypeChecker()
 
-  const s: unknown = false
-  if (checker.check({ strict: false, debug: false }, T.boolean, s)) {
-    assertType<boolean>(s)
-  }
+    const s: unknown = false
+    if (checker.check({ strict: false, debug: false }, T.boolean, s)) {
+      assertType<boolean>(s)
+    }
+  })
 })

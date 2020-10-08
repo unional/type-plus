@@ -1,4 +1,4 @@
-import { KeyTypes, reduceByKey } from '../object-key'
+import { KeyTypes, reduceByKey } from '../record'
 import { AllType } from './AllType'
 import { number } from './Number'
 import { string as str } from './String'

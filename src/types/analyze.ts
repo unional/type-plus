@@ -1,4 +1,4 @@
-import { reduceByKey } from '../object-key'
+import { reduceByKey } from '../record'
 import { AllType } from './AllType'
 import { Array as ArrayType } from './Array'
 import { Boolean } from './Boolean'

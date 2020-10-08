@@ -1,4 +1,4 @@
-import { AnyRecord } from './any-types'
+import { AnyRecord } from './AnyRecord'
 
 export type HasKey<T, K> = K extends keyof T ? true : false
 

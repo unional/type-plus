@@ -1,4 +1,4 @@
-import { AnyRecord } from './any-types'
+import { AnyRecord } from './record'
 
 /**
  * Intersect type recursively.
