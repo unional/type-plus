@@ -18,7 +18,6 @@ export function facade<T extends AnyRecord, P1 extends keyof T, P2 extends keyof
 export function facade<T extends AnyRecord>(subject: T, ...props: (keyof T)[]) {
   return props.reduce((p, k) => {
     const prop = subject[k]
-    // tslint:disable-next-line: strict-type-predicates
     if (typeof prop === 'function') {
       p[k] = prop.bind(subject)
     }
