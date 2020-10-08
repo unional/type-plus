@@ -1,5 +1,5 @@
 import a from 'assertron'
-import { assertType, assertUnknown } from '.'
+import { assertType, assertUnknown } from '..'
 
 test('assert subject satisfies specified type', () => {
   const subject: unknown = { a: 1, b: 2, c: 3 }
