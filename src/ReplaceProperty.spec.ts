@@ -10,7 +10,11 @@ test('replace', async () => {
     T2: string
   }
 
-  const replaced = { getConfig: () => Promise.resolve({}) } as ReplaceProperty<T1 & T2, 'getConfig', () => PromiseValueMerge<ReturnType<T1['getConfig']>, ReturnType<T2['getConfig']>>>
+  const replaced = { getConfig: () => Promise.resolve({}) } as ReplaceProperty<
+    T1 & T2,
+    'getConfig',
+    () => PromiseValueMerge<ReturnType<T1['getConfig']>, ReturnType<T2['getConfig']>>
+  >
 
   const result = replaced.getConfig()
   const value = await result

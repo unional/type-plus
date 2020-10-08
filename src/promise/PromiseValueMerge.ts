@@ -1,5 +1,8 @@
 import { PromiseValue } from './PromiseValue'
 
+/**
+ * Merging value types from multiple promises.
+ */
 export type PromiseValueMerge<
   P1 extends Promise<any>,
   P2 extends Promise<any>,
