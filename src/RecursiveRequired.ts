@@ -1,4 +1,4 @@
-import { AnyRecord } from './any-types'
+import { AnyRecord } from './record'
 
 export type RecursiveRequired<T> = {
   [P in keyof T]-?:

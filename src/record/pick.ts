@@ -1,6 +1,6 @@
-import { AnyRecord } from './any-types'
-import { reduceByKey } from './object-key/reduceKey'
-import { UnionKeys } from './UnionKeys'
+import { UnionKeys } from '../UnionKeys'
+import { AnyRecord } from './AnyRecord'
+import { reduceByKey } from './reduceKey'
 
 export function pick<T extends AnyRecord, P1 extends UnionKeys<T>>(subject: T, prop1: P1): Pick<T, P1>
 export function pick<T extends AnyRecord, P1 extends UnionKeys<T>, P2 extends UnionKeys<T>>(subject: T, prop1: P1, prop2: P2): Pick<T, P1 | P2>

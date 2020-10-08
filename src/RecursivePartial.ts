@@ -1,4 +1,4 @@
-import { AnyRecord } from './any-types'
+import { AnyRecord } from './record'
 
 // Source: https://stackoverflow.com/questions/41980195/recursive-partialt-in-typescript-2-1
 export type RecursivePartial<T> = {

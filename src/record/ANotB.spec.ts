@@ -1,4 +1,4 @@
-import { ANotB, assertType, BNotA, IsDisjoint, LeftJoin } from '.'
+import { ANotB, assertType, BNotA, IsDisjoint, LeftJoin } from '..'
 
 describe('ANotB<A, B>', () => {
   test('same type returns never', () => {

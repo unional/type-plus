@@ -1,5 +1,5 @@
 import { Omit } from './Omit'
-import { Pick } from './pick'
+import { Pick } from './record'
 import { UnionKeys } from './UnionKeys'
 
 /**

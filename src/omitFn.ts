@@ -1,6 +1,5 @@
-import { AnyRecord } from './any-types'
-import { reduceByKey } from './object-key/reduceKey'
 import { Omit } from './Omit'
+import { AnyRecord, reduceByKey } from './record'
 import { UnionKeys } from './UnionKeys'
 
 export function omit<T extends AnyRecord, P1 extends UnionKeys<T>>(subject: T, prop1: P1): Omit<T, P1>

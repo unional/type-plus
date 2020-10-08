@@ -1,4 +1,4 @@
-import { assertType, Pick, pick } from '.'
+import { assertType, Pick, pick } from '..'
 // import { typeAssert } from './assertType'
 // import { assignability } from './assignability'
 

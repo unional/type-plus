@@ -4,3 +4,8 @@ import { UnionKeys } from './UnionKeys'
 // https://github.com/microsoft/TypeScript/issues/28339#issuecomment-463577347
 // type-zoo
 export type Omit<T, K extends UnionKeys<T>> = T extends T ? Pick<T, Exclude<keyof T, K>> : never;
+
+/**
+ * @deprecated replaced by `Omit`
+ */
+export type Except<T, K extends keyof T> = Omit<T, K>

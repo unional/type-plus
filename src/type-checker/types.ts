@@ -3,6 +3,7 @@ export type TypeSpec<T extends string, Native> = {
   toAnalysis(type: Type<T, Native>): TypeAnalysis<T, Native>,
   toNative(type: Type<T, Native>): Native
 }
+
 export type Type<T extends string, V> = {
   /**
    * @internal
