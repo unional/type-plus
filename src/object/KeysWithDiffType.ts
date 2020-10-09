@@ -1,4 +1,4 @@
-import { ValueOf } from '../ValueOf'
+import { ValueOf } from './ValueOf'
 import { IsDisjoint } from './IsDisjoint'
 import { AnyRecord } from './AnyRecord'
 
