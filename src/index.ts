@@ -10,11 +10,8 @@ export * from './nominal-types'
 export * from './object'
 export * from './PrimitiveTypes'
 export * from './promise'
-export * from './typeOverrideIncompatible'
 export * from './types/optional'
 export * from './types/required'
 export * from './UnionKeys'
 export * from './unknown'
-export * from './ValueOf'
 export { types, types as T }
-

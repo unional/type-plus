@@ -1,5 +1,12 @@
 import t from 'assert'
-import { ValueOf } from '.'
+import { ValueOf } from '..'
+
+test('work with primitive type', () => {
+  const x: ValueOf<string> = 'abc' as any
+
+  // `toLocaleString`, `toString`, and `valueOf` are available
+  expect(x.toString()).toEqual('abc')
+})
 
 test('If all values has the same type, the result is of that type', () => {
   const HTTP_METHOD = {
