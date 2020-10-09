@@ -1,5 +1,5 @@
 import { tersify } from 'tersify'
-import { reduceByKey } from '../record'
+import { reduceByKey } from '../object'
 import { AllType } from './AllType'
 import { analyze } from './analyze'
 

@@ -1,5 +1,5 @@
+import { isConstructor } from '../class'
 import { AnyFunction } from '../function'
-import { isConstructor } from '../isConstructor'
 import { assertUnknown } from './assertUnknown'
 
 export function checkUnknown<T extends new (...args: any) => any>(subject: unknown, constructor: T): subject is InstanceType<T>

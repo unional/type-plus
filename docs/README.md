@@ -1,0 +1,2 @@
+# `type-plus` documentation
+
