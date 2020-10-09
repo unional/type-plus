@@ -1,4 +1,4 @@
-import { assertType } from './assertType'
+import { assertType } from './assertion'
 import { JSONTypes } from './JSONTypes'
 
 test('empty object', () => {
