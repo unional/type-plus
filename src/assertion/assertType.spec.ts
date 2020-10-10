@@ -364,7 +364,7 @@ describe('noFunction()', () => {
     // assertType.noFunction(() => {})
     // assertType.noFunction((() => {}) as AnyFunction | undefined)
   })
-  test('funciton throws TypeError', () => {
+  test('function throws TypeError', () => {
     a.throws(() => assertType.noFunction((() => { }) as any), TypeError)
   })
 })
@@ -391,9 +391,30 @@ describe('isError()', () => {
     // assertType.isError(new Error() as unknown)
   })
 
-  // test('ensure the input type is E', () => {
-  //   const ee = new EvalError() as unknown
-  //   assertUnknown.isError<EvalError>(ee)
-  //   assertType<EvalError>(ee)
-  // })
+  test('not error throws TypeError', () => {
+    a.throws(() => assertType.isError(undefined as any), TypeError)
+  })
+  test('narrow any to Error', () => {
+    const x: any = new Error('hello')
+    assertType.isError(x)
+    assertType<false>(assignability<undefined>()(x))
+  })
+})
+
+describe('noError()', () => {
+  test('ensure the input type does not contain Error', () => {
+    assertType.noError(undefined)
+    assertType.noError(null)
+    assertType.noError(1)
+    assertType.noError('a')
+    assertType.noError([])
+    assertType.noError({})
+
+    // These fails
+    // assertType.noError(new Error('a'))
+    // assertType.noError(new Error('a') as Error | undefined)
+  })
+  test('error instance throws TypeError', () => {
+    a.throws(() => assertType.noError(new Error('a') as any), TypeError)
+  })
 })
