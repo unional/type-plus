@@ -1,5 +1,5 @@
 import a from 'assertron'
-import { assertType, typeAssertion } from '..'
+import { assertType, assignability, typeAssertion } from '..'
 
 describe('assertType()', () => {
   test('input satisfies specified type', () => {
@@ -24,12 +24,6 @@ describe('isUndefined()', () => {
   test('ensure the input type is undefined and nothing else', () => {
     assertType.isUndefined(undefined)
 
-    a.throws(() => assertType.isUndefined(1 as any), TypeError)
-    const x: any = undefined
-    assertType.isUndefined(x)
-    // `x` is narrowed to `undefined` here
-    assertType.isUndefined(x)
-
     // These fails
     // assertType.isUndefined(null)
     // assertType.isUndefined(1)
@@ -39,6 +33,14 @@ describe('isUndefined()', () => {
     // assertType.isUndefined({})
     // assertType.isUndefined(undefined as undefined | number)
     // assertType.isUndefined(undefined as unknown)
+  })
+  test('not undefined throws TypeError', () => {
+    a.throws(() => assertType.isUndefined(1 as any), TypeError)
+  })
+  test('narrow any to undefined', () => {
+    const x: any = undefined
+    assertType.isUndefined(x)
+    assertType<false>(assignability<null>()(x))
   })
 })
 
@@ -54,6 +56,9 @@ describe('noUndefined()', () => {
     // These fails
     // assertType.noUndefined(undefined)
     // assertType.noUndefined(1 as undefined | number)
+  })
+  test('undefined throws TypeError', () => {
+    a.throws(() => assertType.noUndefined(undefined as any), TypeError)
   })
 })
 
@@ -77,6 +82,14 @@ describe('isNull()', () => {
     // assertType.isNull(null as null | undefined)
     // assertType.isNull(null as unknown)
   })
+  test('not null throws TypeError', () => {
+    a.throws(() => assertType.isNull(1 as any), TypeError)
+  })
+  test('narrow any to null', () => {
+    const x: any = null
+    assertType.isNull(x)
+    assertType<false>(assignability<undefined>()(x))
+  })
 })
 
 describe('noNull()', () => {
@@ -92,17 +105,14 @@ describe('noNull()', () => {
     // assertType.noNull(null)
     // assertType.noNull(undefined as undefined | null)
   })
+  test('null throws TypeError', () => {
+    a.throws(() => assertType.noNull(null as any), TypeError)
+  })
 })
 
 describe('isNumber()', () => {
   test('ensure the input type is number and nothing else', () => {
     assertType.isNumber(0)
-
-    a.throws(() => assertType.isNumber(undefined as any), TypeError)
-    const x: any = 1
-    assertType.isNumber(x)
-    // `x` is narrowed to `number` here
-    assertType.isNumber(x)
 
     // These fails
     // assertType.isNumber(undefined)
@@ -113,6 +123,14 @@ describe('isNumber()', () => {
     // assertType.isNumber({})
     // assertType.isNumber(1 as number | undefined)
     // assertType.isNumber(1 as unknown)
+  })
+  test('not number throws TypeError', () => {
+    a.throws(() => assertType.isNumber(undefined as any), TypeError)
+  })
+  test('narrow any to number', () => {
+    const x: any = 1
+    assertType.isNumber(x)
+    assertType<false>(assignability<undefined>()(x))
   })
 })
 
@@ -129,17 +147,15 @@ describe('noNumber()', () => {
     // assertType.noNumber(1)
     // assertType.noNumber(1 as number | undefined)
   })
+  test('number throws TypeError', () => {
+    a.throws(() => assertType.noNumber(1 as any), TypeError)
+  })
 })
 
 describe('isBoolean()', () => {
   test('ensure the input type is boolean and nothing else', () => {
+    assertType.isBoolean(true)
     assertType.isBoolean(false)
-
-    a.throws(() => assertType.isBoolean(1 as any), TypeError)
-    const x: any = false
-    assertType.isBoolean(x)
-    // `x` is narrowed to `boolean` here
-    assertType.isBoolean(x)
 
     // These fails
     // assertType.isBoolean(undefined)
@@ -149,6 +165,14 @@ describe('isBoolean()', () => {
     // assertType.isBoolean([])
     // assertType.isBoolean({})
     // assertType.isBoolean(true as boolean | undefined)
+  })
+  test('not boolean throws TypeError', () => {
+    a.throws(() => assertType.isBoolean(undefined as any), TypeError)
+  })
+  test('narrow any to boolean', () => {
+    const x: any = true
+    assertType.isBoolean(x)
+    assertType<false>(assignability<undefined>()(x))
   })
 })
 
@@ -165,17 +189,14 @@ describe('noBoolean()', () => {
     // assertType.noBoolean(true)
     // assertType.noBoolean(true as boolean | undefined)
   })
+  test('boolean throws TypeError', () => {
+    a.throws(() => assertType.noBoolean(true as any), TypeError)
+  })
 })
 
 describe('isTrue()', () => {
   test('ensure the input type is true and nothing else', () => {
     assertType.isTrue(true)
-
-    a.throws(() => assertType.isTrue(false as any), TypeError)
-    const x: any = true
-    assertType.isTrue(x)
-    // `x` is narrowed to `true` here
-    assertType.isTrue(x)
 
     // These fails
     // assertType.isTrue(undefined)
@@ -187,6 +208,34 @@ describe('isTrue()', () => {
     // assertType.isTrue({})
     // assertType.isTrue(true as true | undefined)
     // assertType.isTrue(true as unknown)
+  })
+  test('not true throws TypeError', () => {
+    a.throws(() => assertType.isTrue(undefined as any), TypeError)
+  })
+  test('narrow any to true', () => {
+    const x: any = true
+    assertType.isTrue(x)
+    assertType<false>(assignability<undefined>()(x))
+  })
+})
+
+describe('noTrue()', () => {
+  test('ensure the input type does not contain boolean', () => {
+    assertType.noTrue(false)
+    assertType.noTrue(undefined)
+    assertType.noTrue(null)
+    assertType.noTrue(1)
+    assertType.noTrue('a')
+    assertType.noTrue([])
+    assertType.noTrue({})
+
+    // These fails
+    // assertType.noTrue(true)
+    // assertType.noTrue(true as true | undefined)
+    // assertType.noTrue(true as boolean | undefined)
+  })
+  test('true throws TypeError', () => {
+    a.throws(() => assertType.noTrue(true as any), TypeError)
   })
 })
 
@@ -211,17 +260,34 @@ describe('isFalse()', () => {
     // assertType.isFalse(false as false | undefined)
     // assertType.isFalse(false as unknown)
   })
+  test('boolean throws TypeError', () => {
+    a.throws(() => assertType.noBoolean(true as any), TypeError)
+  })
+})
+
+describe('noFalse()', () => {
+  test('ensure the input type does not contain boolean', () => {
+    assertType.noFalse(true)
+    assertType.noFalse(undefined)
+    assertType.noFalse(null)
+    assertType.noFalse(1)
+    assertType.noFalse('a')
+    assertType.noFalse([])
+    assertType.noFalse({})
+
+    // These fails
+    // assertType.noFalse(false)
+    // assertType.noFalse(false as false | undefined)
+    // assertType.noFalse(false as boolean | undefined)
+  })
+  test('false throws TypeError', () => {
+    a.throws(() => assertType.noFalse(false as any), TypeError)
+  })
 })
 
 describe('isString()', () => {
   test('ensure the input type is string and nothing else', () => {
     assertType.isString('a')
-
-    a.throws(() => assertType.isString(false as any), TypeError)
-    const x: any = ''
-    assertType.isString(x)
-    // `x` is narrowed to `true` here
-    assertType.isString(x)
 
     // These fails
     // assertType.isString(undefined)
@@ -232,6 +298,14 @@ describe('isString()', () => {
     // assertType.isString({})
     // assertType.isString('a' as string | undefined)
     // assertType.isString('a' as unknown)
+  })
+  test('not string throws TypeError', () => {
+    a.throws(() => assertType.isString(undefined as any), TypeError)
+  })
+  test('narrow any to string', () => {
+    const x: any = ''
+    assertType.isString(x)
+    assertType<false>(assignability<undefined>()(x))
   })
 })
 
@@ -248,25 +322,55 @@ describe('noString()', () => {
     // assertType.noString('a')
     // assertType.noString('a' as string | undefined)
   })
+  test('string throws TypeError', () => {
+    a.throws(() => assertType.noString('' as any), TypeError)
+  })
 })
 
-describe('isNever()', () => {
-  test('ensure the input type is never and nothing else', () => {
-    assertType.isNever(true as never)
+describe('isFunction()', () => {
+  test('ensure the input type is function and nothing else', () => {
+    assertType.isFunction(() => { })
+    assertType.isFunction(function () { })
 
     // These fails
-    // assertType.isNever(undefined)
-    // assertType.isNever(null)
-    // assertType.isNever(1)
-    // assertType.isNever(true)
-    // assertType.isNever([])
-    // assertType.isNever({})
-    // assertType.isNever('a' as unknown)
+    // assertType.isFunction(undefined)
+    // assertType.isFunction(null)
+    // assertType.isFunction(1)
+    // assertType.isFunction('a')
+    // assertType.isFunction([])
+    // assertType.isFunction({})
+    // assertType.isFunction((() => { }) as AnyFunction | undefined)
+  })
+  test('not function throws TypeError', () => {
+    a.throws(() => assertType.isFunction(undefined as any), TypeError)
+  })
+  test('narrow any to function', () => {
+    const x: any = () => { }
+    assertType.isFunction(x)
+    assertType<false>(assignability<undefined>()(x))
+  })
+})
+
+describe('noFunction()', () => {
+  test('ensure the input type does not contain function', () => {
+    assertType.noFunction(undefined)
+    assertType.noFunction(null)
+    assertType.noFunction(1)
+    assertType.noFunction('a')
+    assertType.noFunction([])
+    assertType.noFunction({})
+
+    // These fails
+    // assertType.noFunction(() => {})
+    // assertType.noFunction((() => {}) as AnyFunction | undefined)
+  })
+  test('funciton throws TypeError', () => {
+    a.throws(() => assertType.noFunction((() => { }) as any), TypeError)
   })
 })
 
 describe('isError()', () => {
-  test('ensure the input type is instance of Error and nother else', () => {
+  test('ensure the input type is instance of Error and nothing else', () => {
     assertType.isError(new Error('x'))
 
     a.throws(() => assertType.isError(false as any), TypeError)
@@ -290,6 +394,6 @@ describe('isError()', () => {
   // test('ensure the input type is E', () => {
   //   const ee = new EvalError() as unknown
   //   assertUnknown.isError<EvalError>(ee)
-  //   typeAssertion<EvalError>()(ee)
+  //   assertType<EvalError>(ee)
   // })
 })

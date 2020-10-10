@@ -13,6 +13,6 @@ test('underlying type can be assigned to Flavor', () => {
   const blogId: BlogId = 1
 
 
-  assertType.isNever(tryAssign(blogId, personId))
-  assertType.isNever(tryAssign(personId, blogId))
+  assertType<never>(tryAssign(blogId, personId))
+  assertType<never>(tryAssign(personId, blogId))
 })

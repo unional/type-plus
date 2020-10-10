@@ -68,7 +68,7 @@ test('assert string literal', () => {
 test('assert never', () => {
   const x: unknown = undefined
   assertUnknown<never>(x)
-  assertType.isNever(x)
+  assertType<never>(x)
 })
 
 test('assert error', () => {

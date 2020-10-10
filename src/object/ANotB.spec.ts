@@ -3,7 +3,7 @@ import { ANotB, assertType, BNotA, IsDisjoint, LeftJoin } from '..'
 describe('ANotB<A, B>', () => {
   test('same type returns never', () => {
     const actual = { a: 1 } as ANotB<{ a: 1 }, { a: 1 }>
-    assertType.isNever(actual)
+    assertType<never>(actual)
   })
 
   test('disjoint returns A', () => {
@@ -32,7 +32,7 @@ describe('ANotB<A, B>', () => {
 describe('BNotA<A, B>', () => {
   test('same type returns never', () => {
     const actual = { a: 1 } as BNotA<{ a: 1 }, { a: 1 }>
-    assertType.isNever(actual)
+    assertType<never>(actual)
   })
 
   test('disjoint returns B', () => {

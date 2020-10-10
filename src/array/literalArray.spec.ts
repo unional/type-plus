@@ -6,5 +6,5 @@ test('entries in array are restricted to the input literals', () => {
   // the cast is just for assignment. Does not affect type.
   const x: (typeof actual[number]) & 'c' = 'c' as never
 
-  assertType.isNever(x)
+  assertType<never>(x)
 })
