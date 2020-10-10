@@ -18,7 +18,7 @@ describe('Tail', () => {
   })
 
   test('tuple returns tail elements', () => {
-    assertType.isNever('' as Tuple.Tail<[]>)
+    assertType<never>('' as Tuple.Tail<[]>)
     assertType<Tuple.Tail<[string]>>([])
     assertType<Tuple.Tail<[string, number]>>([1])
   })

@@ -13,7 +13,7 @@ test('make picked properties optional', () => {
     c: number,
   }
 
-  const y: PartialPick<Foo, 'a'> = {} as any
+  const y: PartialPick<Foo, 'a'> = { b: 1, c: 2 } as any
 
   y.a = undefined
   assertType.noUndefined(y.b)
@@ -27,8 +27,7 @@ test('make not specified properties optional', () => {
     c: number,
   }
 
-  // tslint:disable-next-line: deprecation
-  const y: PartialExcept<Foo, 'a'> = {} as any
+  const y: PartialExcept<Foo, 'a'> = { a: 1 } as any
 
   assertType.noUndefined(y.a)
   y.b = undefined
@@ -43,7 +42,7 @@ test('make not specified properties optional', () => {
     c: number,
   }
 
-  const y: PartialOmit<Foo, 'a'> = {} as any
+  const y: PartialOmit<Foo, 'a'> = { a: 1 } as any
 
   assertType.noUndefined(y.a)
   y.b = undefined

@@ -13,14 +13,14 @@ test('pick out only known keys', () => {
 })
 
 test('primitive type yields never', () => {
-  assertType.isNever(getKnownKeys(undefined))
-  assertType.isNever(getKnownKeys(true))
-  assertType.isNever(getKnownKeys(false))
-  assertType.isNever(getKnownKeys(null))
-  assertType.isNever(getKnownKeys('str'))
-  assertType.isNever(getKnownKeys(1))
-  assertType.isNever(getKnownKeys({}))
-  assertType.isNever(getKnownKeys([]))
+  assertType<never>(getKnownKeys(undefined))
+  assertType<never>(getKnownKeys(true))
+  assertType<never>(getKnownKeys(false))
+  assertType<never>(getKnownKeys(null))
+  assertType<never>(getKnownKeys('str'))
+  assertType<never>(getKnownKeys(1))
+  assertType<never>(getKnownKeys({}))
+  assertType<never>(getKnownKeys([]))
 })
 
 test('literal gets keys', () => {
@@ -30,7 +30,7 @@ test('literal gets keys', () => {
 test('empty record yields never', () => {
   const x: Record<any, any> = {}
   const actual = getKnownKeys(x)
-  assertType.isNever(actual)
+  assertType<never>(actual)
 })
 
 
