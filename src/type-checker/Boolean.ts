@@ -14,8 +14,21 @@ function create<Value extends boolean>(value: Value): Boolean<Value> {
 
 const any = create(undefined as unknown as boolean)
 
-export const booleanSpec: TypeSpec<'boolean', boolean> = {
+// export const booleanSpec: TypeSpec<'boolean', boolean, boolean> = {
+//   type: any,
+//   toAnalysis: <Type extends Boolean>({ type, value }: Type) => ({ type, value }),
+//   toNative: <Value extends boolean>(value: Value) => value
+// }
+
+export const BooleanSpec: TypeSpec<Type<'boolean', boolean>> = {
   type: any,
-  toAnalysis: ({ type, value }) => ({ type, value }),
-  toNative: (value) => value as any
+  toAnalysis(_options, value, actual) {
+    if (value === undefined) {
+      return typeof actual === 'boolean' ? { type: 'boolean', value } : { type: 'boolean', value, fail: true }
+    }
+    else {
+      return value === actual ? { type: 'boolean', value } : { type: 'boolean', value, fail: true }
+    }
+  },
+  toNative(value: any): true { return value as any }
 }

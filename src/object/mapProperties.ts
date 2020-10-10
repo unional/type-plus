@@ -1,4 +1,6 @@
 import { AnyRecord } from './AnyRecord'
+import { reduceByKey } from './reduceKey'
+import { ValueOf } from './ValueOf'
 
 /**
  * An Object-specific version of `map`.
@@ -10,18 +12,12 @@ import { AnyRecord } from './AnyRecord'
  */
 export function mapProperties<
   Subject extends AnyRecord,
-  ResultProp,
-  Key extends keyof Subject = keyof Subject
+  ResultProp
 >(
-  obj: Subject,
-  callbackfn: (value: Subject[Key], key: Key, obj: Subject) => ResultProp,
-): { [K in Key]: ResultProp } {
-  const result = {} as { [K in Key]: ResultProp }
-  for (const key in obj) {
-    const k = key as any as Key
-    if (Object.hasOwnProperty.call(obj, key)) {
-      result[k] = callbackfn(obj[k], k, obj)
-    }
-  }
-  return result
+  subject: Subject,
+  callbackfn: (value: ValueOf<Subject>, key: keyof Subject, obj: Subject) => ResultProp,
+): { [K in keyof Subject]: ResultProp } {
+  return reduceByKey(subject, (p, key) => (
+    p[key] = callbackfn(subject[key], key, subject),
+    p), {} as { [K in keyof Subject]: ResultProp })
 }

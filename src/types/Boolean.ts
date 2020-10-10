@@ -1,4 +1,4 @@
-import { Type, TypeSpec } from './types'
+import { Type } from './types'
 import { undef, Undefined } from './Undefined'
 import { Union, union } from './Union'
 
@@ -34,9 +34,3 @@ export const boolean = Object.assign(any, {
     false: union.create(f, undef),
   })
 })
-
-export const booleanSpec: TypeSpec<'boolean', boolean> = {
-  type: any,
-  toAnalysis: ({ type, value }) => ({ type, value }),
-  toNative: (value) => value as any
-}

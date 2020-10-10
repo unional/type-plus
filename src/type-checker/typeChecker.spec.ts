@@ -6,8 +6,8 @@ describe('check()', () => {
     const checker = createTypeChecker()
 
     const s: unknown = false
-    if (checker.check({ strict: false, debug: false }, T.boolean, s)) {
-      assertType<boolean>(s)
+    if (checker.check({ strict: false, debug: false }, T.boolean.true, s)) {
+      assertType<true>(s)
     }
   })
 })

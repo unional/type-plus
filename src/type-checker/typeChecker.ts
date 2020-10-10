@@ -1,8 +1,7 @@
 import { AllType } from '../types'
 import { analyze } from '../types/analyze'
 import { satisfy } from '../types/satisfy'
-import { anySpec } from './AnyType'
-import { booleanSpec } from './Boolean'
+import { BooleanSpec } from './Boolean'
 import { Tuple } from './Tuple'
 import { Type, TypeSpec } from './types'
 
@@ -24,9 +23,22 @@ export namespace TypeChecker {
     debug: boolean
   }
 
-  export type Generate<Specs extends Array<TypeSpec<string, any>>, T extends Type<string, any>> =
-    Tuple.FindByProp<Specs, 'type', T> extends never ? never :
-    ReturnType<(typeof booleanSpec)['toNative']>
+  export type Generate<Specs extends Array<any>, T> = Specs extends Array<TypeSpec<AllType>>
+    ? _Generate<Specs, T>['result'] : never
+
+  /**
+   * @internal
+   */
+  export type _Generate<Specs extends Array<TypeSpec<AllType>>, T> = T extends AllType
+    ? {
+      result: Generate<Specs, _ToNative<Tuple.FindByProp<Specs, 'type', T>, T>>
+    }
+    : { result: T }
+
+  /**
+   * @internal
+   */
+  export type _ToNative<R, T> = R extends TypeSpec<any> ? ReturnType<R['toNative']> : T
 }
 
 export function createTypeChecker<
@@ -36,8 +48,8 @@ export function createTypeChecker<
     check<T extends AllType>(
       _options: TypeChecker.CheckOptions,
       type: T,
-      subject: unknown): subject is TypeChecker.Generate<[typeof anySpec, typeof booleanSpec], T> {
-      const result = satisfy.result = analyze({ strict: false, debug: false }, type, subject)
+      subject: unknown): subject is TypeChecker.Generate<[typeof BooleanSpec], T> {
+      const result = satisfy.result = analyze({ strict: false }, type, subject)
       return !result.analysis.fail
     }
   }

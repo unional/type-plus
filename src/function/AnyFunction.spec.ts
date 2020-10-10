@@ -1,4 +1,4 @@
-import { assertType } from '../assertType'
+import { assertType } from '../assertion'
 import { AnyFunction } from './AnyFunction'
 
 test('basic', () => {
