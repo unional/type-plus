@@ -3,6 +3,7 @@ module.exports = isCI ? {
   'collectCoverageFrom': [
     '<rootDir>/src/**/*.[jt]s',
     '!<rootDir>/src/bin.[jt]s',
+    '!<rootDir>/src/type-checker/*'
   ],
   'roots': [
     '<rootDir>/src',
@@ -22,6 +23,7 @@ module.exports = isCI ? {
     'collectCoverageFrom': [
       '<rootDir>/src/**/*.[jt]s',
       '!<rootDir>/src/bin.[jt]s',
+      '!<rootDir>/src/type-checker/*'
     ],
     'reporters': [
       'default',

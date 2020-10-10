@@ -11,28 +11,12 @@ import { Type } from './types'
 import { Union } from './Union'
 
 export namespace analyze {
-  export type Options = {
-    strict: boolean,
-    debug: boolean
-  }
+  export type Options = { strict: boolean }
   export type Result = {
     options: Options,
     analysis: AllType.Analysis,
     actual: any
   }
-  // export type Analysis = {
-  //   type: string,
-  //   value?: Analysis.Value,
-  //   fail?: boolean,
-  //   keys?: Array<number | string>,
-  //   actual?: any
-  // }
-
-  // export namespace Analysis {
-  //   export type Value = number | string | boolean
-  //     // | bigint
-  //     | Analysis | Analysis[] | Record<string, Analysis>
-  // }
 }
 export function analyze(options: analyze.Options, type: AllType, actual: unknown): analyze.Result {
   return {
