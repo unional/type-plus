@@ -1,13 +1,12 @@
 
 import { tersify } from 'tersify'
-import { isConstructor } from '../class'
+import { AnyConstructor, isConstructor } from '../class'
 import { AnyFunction } from '../function'
 
 /**
  * assert the subject satisfies the specified type T
  * @type T the type to check against.
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function assertType<T>(subject: T): asserts subject is T
 export function assertType<T>(subject: unknown, validator: (s: T) => boolean): asserts subject is T
 export function assertType<T extends new (...args: any) => any>(subject: unknown, constructor: T): asserts subject is InstanceType<T>
@@ -18,8 +17,6 @@ export function assertType(subject: any, validator?: (s: any) => boolean) {
   }
   return
 }
-// this does not work at the moment (TypeScript 4.0.2)
-// export function assertType2<T, S extends T = T>(subject: S): asserts subject is T { return }
 
 assertType.isUndefined = function (subject: undefined): asserts subject is undefined {
   if (typeof subject !== 'undefined') throw TypeError(`subject is not undefined`)
@@ -79,6 +76,10 @@ assertType.noFunction = function <S>(subject: Exclude<S, AnyFunction>): void {
   if (typeof subject === 'function') throw TypeError(`subject is function`)
 }
 
+assertType.isConstructor = function (subject: AnyConstructor): asserts subject is AnyConstructor {
+  if (!isConstructor(subject)) throw TypeError(`subject is not a constructor`)
+}
+
 assertType.isError = function (subject: Error): asserts subject is Error {
   if (!(subject instanceof Error)) throw TypeError(`subject is not an Error`)
 }
@@ -88,6 +89,9 @@ assertType.noError = function <S>(subject: Exclude<S, Error>): void {
 
 /**
  * creates a custom assertion function with standard TypeError.
+ * Currently this requires explicity type annotation,
+ * thus making it hard to use:
+ * https://github.com/microsoft/TypeScript/issues/41047
  */
 assertType.custom = function <T>(
   validator: (s: T) => boolean
