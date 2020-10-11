@@ -387,6 +387,32 @@ describe('noFunction()', () => {
   })
 })
 
+describe('isConstructor()', () => {
+  test('ensure the input type is function and nothing else', () => {
+    class Foo { }
+    assertType.isConstructor(Foo)
+
+    // These fails
+    // assertType.isConstructor(function () { })
+    // assertType.isConstructor(undefined)
+    // assertType.isConstructor(null)
+    // assertType.isConstructor(1)
+    // assertType.isConstructor('a')
+    // assertType.isConstructor([])
+    // assertType.isConstructor({})
+    // assertType.isConstructor((() => { }) as AnyFunction | undefined)
+  })
+  test('not constructor throws TypeError', () => {
+    a.throws(() => assertType.isConstructor(undefined as any), TypeError)
+  })
+  test('narrow any to constructor', () => {
+    class Foo { }
+    const x: any = Foo
+    assertType.isConstructor(x)
+    assertType<false>(assignability<undefined>()(x))
+  })
+})
+
 describe('isError()', () => {
   test('ensure the input type is instance of Error and nothing else', () => {
     assertType.isError(new Error('x'))
