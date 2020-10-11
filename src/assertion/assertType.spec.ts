@@ -1,22 +1,39 @@
 import a from 'assertron'
-import { assertType, assignability, typeAssertion } from '..'
+import { assertType, assignability } from '..'
 
 describe('assertType()', () => {
   test('input satisfies specified type', () => {
     const subject = { a: 1, b: 2 } as const
     assertType<{ a: 1 }>(subject)
   })
-})
-
-describe('typeAssertion()', () => {
-  test('create a type assertion function', () => {
-    const subject = { a: 1, b: 2 } as const
-    typeAssertion<{ a: 1 }>()(subject)
+  test('Specify T in the validate function', () => {
+    const s: unknown = false
+    assertType(s, (s: boolean) => typeof s === 'boolean')
+    assertType<boolean>(s)
   })
-  test('return the actual type, not the assert type', () => {
-    const subject = { a: 1, b: 2 } as const
-    const actual = typeAssertion<{ a: 1 }>()(subject)
-    expect(actual.b).toBe(2)
+  test('Specify T at type declaration', () => {
+    const s: unknown = false
+    assertType<boolean>(s, s => typeof s === 'boolean')
+    assertType<boolean>(s)
+  })
+  test('error messge contains info from validator', () => {
+    const s: unknown = 1
+    a.throws(() => assertType(s, s => typeof s === 'boolean'), e => /subject fails to satisfy s => typeof s === 'boolean'/.test(e))
+  })
+  test('Class as validator', () => {
+    const s: unknown = new Error()
+    assertType(s, Error)
+    assertType<Error>(s)
+  })
+  test('Class as validator fails', () => {
+    class Foo { }
+    const s: unknown = 1
+    a.throws(() => assertType(s, Foo), e => /subject fails to satisfy class Foo{}/.test(e.message))
+  })
+  test('subject can be type any', () => {
+    const s: any = false
+    assertType<boolean>(s, s => typeof s === 'boolean')
+    assertType<boolean>(s)
   })
 })
 
@@ -56,6 +73,7 @@ describe('noUndefined()', () => {
     // These fails
     // assertType.noUndefined(undefined)
     // assertType.noUndefined(1 as undefined | number)
+    assertType.noUndefined(1 as unknown)
   })
   test('undefined throws TypeError', () => {
     a.throws(() => assertType.noUndefined(undefined as any), TypeError)
@@ -416,5 +434,18 @@ describe('noError()', () => {
   })
   test('error instance throws TypeError', () => {
     a.throws(() => assertType.noError(new Error('a') as any), TypeError)
+  })
+})
+
+describe('custom', () => {
+  test('specify T in the validator', () => {
+    const isBool = assertType.custom((s: boolean) => typeof s === 'boolean')
+    const s: unknown = false
+    expect(isBool(s)).toBe(undefined)
+  })
+  test('specify T at type declaration', () => {
+    const isBool = assertType.custom<boolean>(s => typeof s === 'boolean')
+    const s: unknown = false
+    expect(isBool(s)).toBe(undefined)
   })
 })
