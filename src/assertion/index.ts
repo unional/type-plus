@@ -1,5 +1,4 @@
 export * from './assertType'
-export * from './assertUnknown'
 export * from './assignability'
-export * from './checkUnknown'
+export * from './isType'
 export * from './tryAssign'
