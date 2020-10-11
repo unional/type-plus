@@ -1,4 +1,5 @@
-import { assertType, createBrandCreator, tryAssign } from '..'
+import { assertType, createBrandCreator } from '..'
+import { TypeEquals } from '../assertion'
 import { brand } from './Brand'
 
 describe('brand()', () => {
@@ -6,15 +7,13 @@ describe('brand()', () => {
     const a = brand('a')
     const b = brand('b')
 
-    assertType<never>(tryAssign(a, b))
-    assertType<never>(tryAssign(b, a))
+    assertType.isFalse(false as TypeEquals<typeof a, typeof b>)
   })
   test('with subject', () => {
     const a = brand('a', { a: 1 as const })
     const b = brand('b', { b: 'b' })
 
-    assertType<never>(tryAssign(a, b))
-    assertType<never>(tryAssign(b, a))
+    assertType.isFalse(false as TypeEquals<typeof a, typeof b>)
 
     assertType<1>(a.a)
     assertType<string>(b.b)
@@ -33,7 +32,6 @@ describe('createBrandCreator()', () => {
     personId = personId2
     personId2 = personId
 
-    assertType<never>(tryAssign(blogPostId, personId))
-    assertType<never>(tryAssign(personId, blogPostId))
+    assertType.isFalse(false as TypeEquals<typeof blogPostId, typeof personId>)
   })
 })

@@ -1,4 +1,4 @@
-import { assertType, Flavor, tryAssign } from '..'
+import { assertType, Flavor, TypeEquals } from '..'
 
 test('underlying type can be assigned to Flavor', () => {
   type PersonId = Flavor<'Person', number>
@@ -13,6 +13,5 @@ test('underlying type can be assigned to Flavor', () => {
   const blogId: BlogId = 1
 
 
-  assertType<never>(tryAssign(blogId, personId))
-  assertType<never>(tryAssign(personId, blogId))
+  assertType.isFalse(false as TypeEquals<typeof blogId, typeof personId>)
 })
