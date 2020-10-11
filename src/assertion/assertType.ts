@@ -1,11 +1,6 @@
 
 import { AnyFunction } from '../function'
 
-export namespace assertType {
-  export type Has<T> = (subject: T) => void
-  export type Without<T> = <S>(subject: Exclude<S, T>) => void
-}
-
 /**
  * assert the subject satisfies the specified type T
  * @type T the type to check against.
@@ -66,7 +61,6 @@ assertType.noString = function <S>(value: Exclude<S, string>): void {
   if (typeof value === 'string') throw TypeError(`value is string`)
 }
 
-
 assertType.isFunction = function (value: AnyFunction): asserts value is AnyFunction {
   if (typeof value !== 'function') throw TypeError(`value is not function`)
 }
@@ -88,8 +82,3 @@ assertType.noError = function <S>(value: Exclude<S, Error>): void {
 export function typeAssertion<T>(): <R extends T>(subject: R) => R {
   return (subject) => subject as any
 }
-
-/**
- * @deprecated renamed to `assertType`.
- */
-export const typeAssert = assertType
