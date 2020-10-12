@@ -10,10 +10,11 @@ describe('And<A,B>', () => {
     assertType.isFalse(false as And<false, false>)
   })
   test('boolean special handling', () => {
-    assertType.isFalse(false as And<boolean, true>)
+    assertType.isTrue(true as Equal<And<boolean, true>, boolean>)
     assertType.isFalse(false as And<boolean, false>)
-    assertType.isFalse(false as And<true, boolean>)
+    assertType.isTrue(true as Equal<And<true, boolean>, boolean>)
     assertType.isFalse(false as And<false, boolean>)
+    assertType.isTrue(true as Equal<And<boolean, boolean>, boolean>)
   })
 })
 
@@ -26,9 +27,10 @@ describe('Or<A,B>', () => {
   })
   test('boolean special handling', () => {
     assertType.isTrue(true as Or<boolean, true>)
-    assertType.isFalse(false as Or<boolean, false>)
+    assertType.isTrue(true as Equal<Or<boolean, false>, boolean>)
     assertType.isTrue(true as Or<true, boolean>)
-    assertType.isFalse(false as Or<false, boolean>)
+    assertType.isTrue(true as Equal<Or<false, boolean>, boolean>)
+    assertType.isTrue(true as Equal<Or<boolean, boolean>, boolean>)
   })
 })
 
@@ -44,6 +46,7 @@ describe('Xor<A,B>', () => {
     assertType.isTrue(true as Equal<Xor<boolean, false>, boolean>)
     assertType.isTrue(true as Equal<Xor<true, boolean>, boolean>)
     assertType.isTrue(true as Equal<Xor<false, boolean>, boolean>)
+    assertType.isTrue(true as Equal<Xor<boolean, boolean>, boolean>)
   })
 })
 

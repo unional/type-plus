@@ -3,23 +3,29 @@ import { If } from './If'
 
 export type And<A extends boolean, B extends boolean> = If<
   Equal<A, true>,
-  If<Equal<B, true>, true, false>,
-  false
+  B,
+  If<
+    Equal<B, true>,
+    A,
+    If<
+      Equal<A, boolean>,
+      If<Equal<B, boolean>, boolean, false>,
+      false
+    >
+  >
 >
 
 export type Or<A extends boolean, B extends boolean> = If<
   Equal<A, true>,
   true,
-  If<Equal<B, true>, true, false>
->
-
-export type Xor<A extends boolean, B extends boolean> = If<
-  Or<Equal<A, boolean>, Equal<B, boolean>>,
-  boolean,
   If<
-    Equal<A, true>,
-    If<Equal<B, true>, false, true>,
-    If<Equal<B, true>, true, false>
+    Equal<B, true>,
+    true,
+    If<
+      Equal<A, false>,
+      If<Equal<B, false>, false, boolean>,
+      boolean
+    >
   >
 >
 
@@ -31,4 +37,14 @@ export type Not<X extends boolean> = If<
   Equal<X, true>,
   false,
   If<Equal<X, false>, true, boolean>
+>
+
+export type Xor<A extends boolean, B extends boolean> = If<
+  Equal<A, true>,
+  Not<B>,
+  If<
+    Equal<B, true>,
+    Not<A>,
+    If<Equal<A, false>, B, boolean>
+  >
 >
