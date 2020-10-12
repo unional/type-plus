@@ -36,14 +36,3 @@ export function brand(type: string, subject?: any) {
   }
   return subject
 }
-
-export function brandMatches<
-  A extends string,
-  B extends A
->(a: Brand<A, unknown>, b: Brand<B, unknown>) {
-  if (typeof a === 'object' && a !== null && typeof b === 'object' && b !== null)
-    return a[typeSym] === b[typeSym]
-  else {
-    return true
-  }
-}
