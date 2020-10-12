@@ -1,4 +1,4 @@
-import { assertType, brand, CanAssign, TypeEquals } from '..'
+import { assertType, brand, CanAssign, Equal } from '..'
 import { flavor } from './Flavor'
 
 describe('brand()', () => {
@@ -38,6 +38,6 @@ describe('brand()', () => {
     person1 = person2
     person2 = person1
 
-    assertType.isFalse(false as TypeEquals<typeof blogPost, typeof person1>)
+    assertType.isFalse(false as Equal<typeof blogPost, typeof person1>)
   })
 })

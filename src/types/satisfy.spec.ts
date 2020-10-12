@@ -1,5 +1,5 @@
 import { satisfies } from 'satisfier'
-import { assertType, T, TypeEquals } from '..'
+import { assertType, T, Equal } from '..'
 
 describe('undefined', () => {
   test('satisfies only undefined', () => {
@@ -99,8 +99,8 @@ describe('number', () => {
     const value: unknown = 0
     if (T.satisfy(T.number, value)) {
       assertType<number>(value)
-      assertType.isTrue(true as TypeEquals<number, typeof value>)
-      assertType.isFalse(false as TypeEquals<0, typeof value>)
+      assertType.isTrue(true as Equal<number, typeof value>)
+      assertType.isFalse(false as Equal<0, typeof value>)
     }
   })
   test('0', () => {
@@ -183,8 +183,8 @@ describe('string', () => {
     const value: unknown = ''
     if (T.satisfy(T.string, value)) {
       assertType<string>(value)
-      assertType.isTrue(true as TypeEquals<string, typeof value>)
-      assertType.isFalse(false as TypeEquals<'', typeof value>)
+      assertType.isTrue(true as Equal<string, typeof value>)
+      assertType.isFalse(false as Equal<'', typeof value>)
     }
   })
   test(`''`, () => {
