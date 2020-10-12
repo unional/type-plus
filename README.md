@@ -367,7 +367,7 @@ They can be used to compose complex types.
 Note that these types work correctly with `boolean` type.
 e.g.:
 
-- `Xor<boolean, true> -> boolean`
+- `And<boolean, true> -> boolean`
 - `Not<boolean> -> boolean`
 
 ### Utility Functions
