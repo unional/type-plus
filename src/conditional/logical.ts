@@ -23,9 +23,5 @@ export type Xor<A extends boolean, B extends boolean> = If<
 export type Not<X extends boolean> = If<
   Equal<X, boolean>,
   boolean,
-  If<
-    Equal<X, true>,
-    false,
-    true
-  >
+  If<Equal<X, true>, false, true>
 >
