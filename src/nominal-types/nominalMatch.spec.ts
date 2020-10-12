@@ -1,20 +1,20 @@
-import { brand, flavor, nominalMatches } from '..'
+import { brand, flavor, nominalMatch } from '..'
 
 describe('nominalMatches()', () => {
   describe('Brand', () => {
     test('value of same brand matches', () => {
       const a = brand('x', 1)
       const b = brand('x', 2)
-      expect(nominalMatches(a, b)).toBe(true)
+      expect(nominalMatch(a, b)).toBe(true)
 
       const c = brand('x', { c: 3 })
       const d = brand('x', { d: 4 })
-      expect(nominalMatches(c, d)).toBe(true)
+      expect(nominalMatch(c, d)).toBe(true)
     })
     test('work with null and undefined', () => {
       const a = brand('x', undefined)
       const b = brand('x', null)
-      expect(nominalMatches(a, b)).toBe(true)
+      expect(nominalMatch(a, b)).toBe(true)
     })
     test('different brand will not compile with nominalMatches()', () => {
       // const a = brand('x', 1)
@@ -30,16 +30,16 @@ describe('nominalMatches()', () => {
     test('value of same flavor matches', () => {
       const a = flavor('x', 1)
       const b = flavor('x', 2)
-      expect(nominalMatches(a, b)).toBe(true)
+      expect(nominalMatch(a, b)).toBe(true)
 
       const c = flavor('x', { c: 3 })
       const d = flavor('x', { d: 4 })
-      expect(nominalMatches(c, d)).toBe(true)
+      expect(nominalMatch(c, d)).toBe(true)
     })
     test('work with null and undefined', () => {
       const a = flavor('x', undefined)
       const b = flavor('x', null)
-      expect(nominalMatches(a, b)).toBe(true)
+      expect(nominalMatch(a, b)).toBe(true)
     })
     test('different flavor will not compile with nominalMatches()', () => {
       // const a = flavor('x', 1)
