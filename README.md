@@ -59,7 +59,12 @@ config.parseOptions?.ecmaVersion // 3 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 ```
 
 All type checker functionalities are exposed as `types` (alias to `T`).
-In addition, `O` and `R` are exposed for optional types and required types.
+In addition, `O` and `R` are exposed to make it easier to access optional types and required types respectively.
+
+Types supported: `any`, `array`, `boolean`, `null`, `number`, `object`, `record`, `string`, `symbol`, `tuple`, `undefined`, `union`, `unknown`.
+
+i.e., most of the basic types are supported except `bigint`.
+It is left out for backward compatibility reasons.
 
 You can use one of the three functions to perform type check:
 
@@ -70,31 +75,31 @@ A loose type check that permits extra elements in `Tuple` and properties in `Obj
 A strick type check that does not allow extra elements in `Tuple` and properties in `Object`.
 
 `check(options, type, subject)`:
-A general form of `satisfy()` and `conform()`
+A general form of `satisfy()` and `conform()`.
 
 ## Type Assertion
 
-Besides the type checker `T`/`types`,
-`type-plus` provides a few other ways to do type assertions.
+Besides the [runtime type checker](#runtime-type-checker),
+`type-plus` also provides a few other ways to do type assertions.
 
 There are actually at least 5 kinds of type assertions:
 
-- `runtime`: provides validation during runtime.
-- `immediate`: validation fails at compiler level.
+- `runtime`: validates during runtime.
+- `immediate`: validates at compile time.
 - `type guard`: [User-defined type guard functions](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards) (`if (isBool(s))`) introduced in TypeScript 1.6.
 - `assertion function`: [assertion functions](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions) (`assertIsBool(a)`) introduced in TypeScript 3.7.
 - `logical`: functions or generic types that returns `true` or `false` type to be used in type level programming.
 
 Here are the type assertions provided in `type-plus`.
-Use the one that fit your specific needs.
+Use the one that fits your specific needs.
 
-`assertType<T>(subject: T)`:
+`assertType<T>(subject)`:
 
 ✔️ `immediate`
 
 It ensures `subject` satisfies `T`.
 It is similar to `const x: T = subject` without introducing unused variable.
-You need to specify `T`.
+You need to specify `T` for it to work.
 
 `assertType<T>(subject, validator)`:
 
@@ -105,7 +110,7 @@ You need to specify `T`.
 These overloads of `assertType` allows you to specify a `validator`.
 With these overloads, `subject` can be `unknown` or `any`.
 
-If `subject` fails assertion,
+If `subject` fails the assertion,
 a standard `TypeError` will be thrown and provide better error info.
 For example:
 
@@ -115,6 +120,8 @@ const s: any = 1
 // TypeError: subject fails to satisfy s => typeof s === 'boolean'
 assertType<boolean>(s, s => typeof s === 'boolean')
 ```
+
+The message beautification is provided by [`tersify`](https://github.com/unional/tersify).
 
 `assertType.isUndefiend(subject)`:
 
@@ -217,11 +224,7 @@ Check if `A` and `B` are the same.
 
 ✔️ `logical`
 
-Check if `A` and `B` are the same.
-
-## Type Manipluation
-
-## Utility Types and Functions
+Check if `A` and `B` are not the same.
 
 ## Nominal Type
 
