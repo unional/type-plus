@@ -1,4 +1,4 @@
-import { assertType, brand, createBrandCreator, TypeEquals } from '..'
+import { assertType, brand, TypeEquals } from '..'
 
 describe('brand()', () => {
   test('without subject', () => {
@@ -20,11 +20,11 @@ describe('brand()', () => {
 
 describe('createBrandCreator()', () => {
   test('creates a typed brand creator', () => {
-    const createPersonId = createBrandCreator<'Person', number>()
+    const createPersonId = brand('person')
     let personId = createPersonId(1)
     let personId2 = createPersonId(2)
 
-    const createBlogPostId = createBrandCreator<'Blog', number>()
+    const createBlogPostId = brand('Blog')
     const blogPostId = createBlogPostId(1)
 
     personId = personId2
