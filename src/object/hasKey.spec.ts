@@ -3,14 +3,12 @@ import { assertType, HasKey, hasKey } from '..'
 describe('HasKey<T, K>', () => {
   test('true if has key', () => {
     type Foo = { a: 1, b: 2 }
-    const actual = true as HasKey<Foo, 'a'>
-    assertType.isTrue(actual)
+    assertType.isTrue(true as HasKey<Foo, 'a'>)
   })
 
   test('false if do not have key', () => {
     type Foo = { a: 1, b: 2 }
-    const actual = false as HasKey<Foo, 'c'>
-    assertType.isFalse(actual)
+    assertType.isFalse(false as HasKey<Foo, 'c'>)
   })
 });
 
