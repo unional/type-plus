@@ -364,6 +364,12 @@ They can be used to compose complex types.
 - `Xor<A, B>`: logical `XOR`.
 - `Not<X>`: logical `NOT`.
 
+Note that these types work correctly with `boolean` type.
+e.g.:
+
+- `Xor<boolean, true> -> boolean`
+- `Not<boolean> -> boolean`
+
 ### Utility Functions
 
 - `facade(subject, ...props)`: create a facade of `subject`.
