@@ -27,7 +27,7 @@ export const boolean = Object.assign(any, {
     /**
      * Creates an optional boolean type.
      */
-    create<Value extends true | false>(value: Value): Union<[Boolean<Value>, Undefined]> {
+    create<Value extends boolean>(value: Value): Union<[Boolean<Value>, Undefined]> {
       return union.create(create(value), undef)
     },
     true: union.create(t, undef),
