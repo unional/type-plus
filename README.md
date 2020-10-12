@@ -214,13 +214,13 @@ With these overloads, `subject` can be `unknown` or `any`.
 Note that the `Class` overload does not work correctly with `unions`.
 For more details, please check out: <https://github.com/microsoft/TypeScript/issues/41050>
 
-`TypeEquals<A, B>`:
+`Equal<A, B>`:
 
 ✔️ `logical`
 
 Check if `A` and `B` are the same.
 
-`TypeNotEquals<A, B>`:
+`NotEqual<A, B>`:
 
 ✔️ `logical`
 
