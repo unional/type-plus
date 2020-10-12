@@ -5,21 +5,291 @@
 
 [![Github NodeJS][github-nodejs]][github-action-url]
 [![Codecov][codecov-image]][codecov-url]
-[![Coveralls Status][coveralls-image]][coveralls-url]
 
 [![Semantic Release][semantic-release-image]][semantic-release-url]
 
 [![Visual Studio Code][vscode-image]][vscode-url]
 [![Wallaby.js][wallaby-image]][wallaby-url]
 
-Provides additional types and type adjusted utilities for `typescript`
+Provides additional types and type adjusted utilities for [TypeScript](https://www.typescriptlang.org/).
 
-## API
+## Feature Highlights
+
+- [Runtime type checker](#runtime-type-checker)
+- [Type assertion](#type-assertion)
+- [Nominal Types](#nominal-type)
+- [Type Utilities](#type-utilities)
+
+## Installation
+
+```sh
+npm install type-plus
+// or
+yarn add type-plus
+```
+
+## Runtime type checker
+
+Bringing the power of TypeScript to JavaScript runtime.
+
+```ts
+const eslintConfig = T.object.create({
+  env: O.object.create({
+    es6: O.boolean
+  }),
+  parseOptions: O.object.create({
+    ecmaVersion: O.number.list(3, 5, 6, 7, 8, 9, 10, 11, 12),
+    sourceType: O.string.list('script', 'module'),
+    ecmaFeatures: O.object.create({
+      globalReturn: O.boolean,
+      impliedStrict: O.boolean,
+      jsx: O.boolean
+    })
+  }),
+  ...
+})
+
+const config: unknown = require('.eslintrc.json')
+if (!T.satisfy(eslintConfig, config)) {
+  console.error(T.satify.getReport())
+}
+
+// `config` is typed here
+config.parseOptions?.ecmaVersion // 3 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+```
+
+All type checker functionalities are exposed as `types` (alias to `T`).
+In addition, `O` and `R` are exposed for optional types and required types.
+
+You can use one of the three functions to perform type check:
+
+`satisfy(type, subject)`:
+A loose type check that permits extra elements in `Tuple` and properties in `Object`.
+
+`conform(type, subject)`:
+A strick type check that does not allow extra elements in `Tuple` and properties in `Object`.
+
+`check(options, type, subject)`:
+A general form of `satisfy()` and `conform()`
+
+## Type Assertion
+
+Besides the type checker `T`/`types`,
+`type-plus` provides a few other ways to do type assertions.
+
+There are actually at least 5 kinds of type assertions:
+
+- `runtime`: provides validation during runtime.
+- `immediate`: validation fails at compiler level.
+- `type guard`: [User-defined type guard functions](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards) (`if (isBool(s))`) introduced in TypeScript 1.6.
+- `assertion function`: [assertion functions](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions) (`assertIsBool(a)`) introduced in TypeScript 3.7.
+- `logical`: functions or generic types that returns `true` or `false` type to be used in type level programming.
+
+Here are the type assertions provided in `type-plus`.
+Use the one that fit your specific needs.
+
+`assertType<T>(subject: T)`:
+
+✔️ `immediate`
+
+It ensures `subject` satisfies `T`.
+It is similar to `const x: T = subject` without introducing unused variable.
+You need to specify `T`.
+
+`assertType<T>(subject, validator)`:
+
+`assertType<T>(subject, Class)`:
+
+✔️ `assertion function`, `runtime`
+
+These overloads of `assertType` allows you to specify a `validator`.
+With these overloads, `subject` can be `unknown` or `any`.
+
+If `subject` fails assertion,
+a standard `TypeError` will be thrown and provide better error info.
+For example:
+
+```ts
+const s: any = 1
+
+// TypeError: subject fails to satisfy s => typeof s === 'boolean'
+assertType<boolean>(s, s => typeof s === 'boolean')
+```
+
+`assertType.isUndefiend(subject)`:
+
+`assertType.isNull(subject)`:
+
+`assertType.isNumber(subject)`:
+
+`assertType.isBoolean(subject)`:
+
+`assertType.isTrue(subject)`:
+
+`assertType.isFalse(subject)`:
+
+`assertType.isString(subject)`:
+
+`assertType.isFunction(subject)`:
+
+`assertType.isConstructor(subject)`:
+
+`assertType.isError(subject)`:
+
+✔️ `immediate`, `assertion function`, `runtime`
+
+Compiler and runtime assertion with type narrowing from `any`.
+They assert the type of `subject` is that specific type.
+i.e. union type will fail at type level:
+
+```ts
+const s: number | undefined = undefined
+assertType.isUndefined(s) // TypeScript complains
+```
+
+They accepts `any` and will be narrowed to the specific type.
+
+```ts
+const s: any = undefined
+assertType.isUndefined(s)
+s // type is undefined
+```
+
+`assertType.noUndefiend(subject)`:
+
+`assertType.noNull(subject)`:
+
+`assertType.noNumber(subject)`:
+
+`assertType.noBoolean(subject)`:
+
+`assertType.noTrue(subject)`:
+
+`assertType.noFalse(subject)`:
+
+`assertType.noString(subject)`:
+
+`assertType.noFunction(subject)`:
+
+`assertType.noError(subject)`:
+
+✔️ `immediate`, `runtime`
+
+Compiler and runtime assertion.
+Assert `subject` type does not contain the specific type.
+Work againsts unions.
+
+```ts
+const s: number | undefined = 1
+assertType.noUndefined(s) // TypeScript complains
+```
+
+They accepts `subject` with type `any` or `unknown`,
+assertion will happens in runtime to ensure `subject` is the specific type.
+
+`isType<T>(subject: T)`:
+
+✔️ `immediate`
+
+It ensures `subject` satisfies `T`.
+It is identical to `assertType<T>(subject: T)`.
+You need to specify `T`.
+
+`isType<T>(subject, validator)`:
+
+`isType<T>(subject, Class)`:
+
+✔️ `type guard`, `runtime`
+
+These overloads of `isType` allows you to specify a `validator`.
+With these overloads, `subject` can be `unknown` or `any`.
+
+Note that the `Class` overload does not work correctly with `unions`.
+For more details, please check out: <https://github.com/microsoft/TypeScript/issues/41050>
+
+`TypeEquals<A, B>`:
+
+✔️ `logical`
+
+Check if `A` and `B` are the same.
+
+`TypeNotEquals<A, B>`:
+
+✔️ `logical`
+
+Check if `A` and `B` are the same.
+
+## Type Manipluation
+
+## Utility Types and Functions
+
+## Nominal Type
+
+TypeScript type system is structural.
+
+In some cases, we want to express a type with nominal behavior.
+`type-plus` provides two kinds of nominal types: `Brand` and `Flavor`.
+
+`Brand<B, T>`:
+
+`brand(type, subject?)`:
+
+Branded nominal type is the stronger nominal type of the two.
+It disallows unbranded type assigned to it:
+
+```ts
+const a = brand('a', { a: 1 })
+const b = { a: 1 }
+a = b // error
+```
+
+`subject` can be any type, from primitive to strings to objects.
+
+`brand(type)`:
+
+If you do not provide `subject`, `brand(type)` will return a brand creator,
+so that you can use it to create multiple branded values:
+
+```ts
+const nike = brand('nike')
+const shirt = nike('shirt')
+const socks = nike('socks')
+```
+
+`Flavor<F, T>`:
+
+`flavor(type, subject?)`:
+
+The key difference between `Flavor` and `Brand` is that
+unflavored type can be assigned to `Flavor`:
+
+```ts
+let f = flavor('orange', 'soda')
+f = 'mist' // ok
+```
+
+Also, `Brand` of the same name can be assigned to `Flavor`,
+but `Flavor` of the same naem cannot be assigned to `Brand`.
+
+`nominalMatch(a, b)`:
+
+`nominalMatch()` can be used to compare `Brand` or `Flavor`.
+
+```ts
+const b1 = brand('x', 1)
+const b2 = brand('y', 1)
+
+nominalMatch(b1, b2) // false
+```
+
+## Type Utilities
+
+`type-plus` also provides additional type utilities.
+These utilities includes utiltiy types and type adjusted functions.
 
 ### Array function
 
 - `literalArray(...entries)`: return an array those items are restricted to the provided literals.
-
 - `reduceWhile()`: `reduce()` with predicate for early termination. \
   A simple version of the same function in the `ramda` package.
 
@@ -28,12 +298,6 @@ Provides additional types and type adjusted utilities for `typescript`
 - `JSONTypes`: all JSON compatible types.
 - `KeyTypes`: type of all keys.
 - `PrimitiveTypes`: all primitive types, including `Function`, `symbol`, and `bigint`.
-
-### Identity type
-
-- `Id<T>`: generic Id type.
-- `createId<T>(type: T, value: string): Id<T>`: create id.
-- `createIdCreator<T>(type: T): (value: string) => Id<T>`: create an id creator.
 
 ### Object Key functions
 
@@ -47,35 +311,12 @@ Provides additional types and type adjusted utilities for `typescript`
 - `reduceKey()`: type adjusted reduce by key.
 - `someKey()`: type adjusted some by key.
 
-### Nominal Type
-
-- `Flavor<FlavorT, T>`: a flavored nominal type.
-- `Brand<BrandT, T>`: a branded nominal type.
-- `createBrandCreator<BrandT, T>()`: creates a brand creator to create branded nominal type.
-
 ### Promise function
 
 - `isPromise<R>(subject: any)`: `isPromise()` type guard.
 - `PromiseValue<P>`: Gets the type within the Promise.
 - `PromiseValueMerge<P1, P2, ...P9>`: Merge the values of multiple promises.
 - `mapSeries()`: Similar to `bluebird.mapSeries()` but works with `async`/`await`.
-
-### Type assertion
-
-- `assignability<T>(handler?: (s: any) => boolean)`: creates a assignability function. To use it, do the following:
-
-```ts
-assertType.isTrue(assignability<YourType>()(subject)) // or
-assertType.isFalse(assignability<YourType>()(subject))
-```
-
-- `assertType<T>(subject: T)`: assert `subject` satisfies type `T`.
-- `assertType.isXXX(value)`: ensure typeof `value` is `XXX`
-- `assertType.noXXX(value)`: ensure typeof `value` does not contain `XXX`. i.e. cannot assign `XXX` to `value`.
-- `assertUnknown<T>(subject: unknown, handler?: (s: T) => boolean)`: assert `unknown` `subject` satisfies type `T`.
-- `checkUnknown<T>(subject: unknown, handler: overloads)`: type guard `unknown` `subject` is a specific type `T`
-- `typeAssert.*` (deprecated) replaced by `assertType`.
-- `typeAssertion<T>()`: (deprecated) use `assertType()` instead.
 
 ### Type manipulation
 
@@ -120,7 +361,6 @@ They can be used to compose complex types.
 - `omit(obj, ...props)`: omit properties from `obj`.
 - `required(...)`: merge options and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
 - `requiredDeep(...)`: merge options deeply and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
-- `tryAssign<S, T>(from: S, to: T)`: try assign `from` to `to`. Return type `never` if not possible.
 - `typeOverrideIncompatible<T>()`: override only the incompatiable portion between two types.
 
 ```ts
@@ -164,12 +404,8 @@ git push
 # create PR
 ```
 
-[circleci-image]: https://circleci.com/gh/unional/type-plus/tree/master.svg?style=shield
-[circleci-url]: https://circleci.com/gh/unional/type-plus/tree/master
 [codecov-image]: https://codecov.io/gh/unional/type-plus/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/type-plus
-[coveralls-image]: https://coveralls.io/repos/github/unional/type-plus/badge.svg
-[coveralls-url]: https://coveralls.io/github/unional/type-plus
 [downloads-image]: https://img.shields.io/npm/dm/type-plus.svg?style=flat
 [downloads-url]: https://npmjs.org/package/type-plus
 [github-nodejs]: https://github.com/unional/type-plus/workflows/nodejs/badge.svg
@@ -178,8 +414,6 @@ git push
 [npm-url]: https://npmjs.org/package/type-plus
 [semantic-release-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
-[travis-image]: https://img.shields.io/travis/unional/type-plus/master.svg?style=flat
-[travis-url]: https://travis-ci.org/unional/type-plus?branch=master
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
 [wallaby-image]: https://img.shields.io/badge/wallaby.js-configured-green.svg
