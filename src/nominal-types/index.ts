@@ -1,3 +1,3 @@
 export * from './Brand'
 export * from './Flavor'
-export * from './nominalMatches'
+export * from './nominalMatch'

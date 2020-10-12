@@ -10,21 +10,21 @@ import { typeSym } from './types'
  * but will allow unflavored values of that type to be passed in where a flavored version is expected.
  * This is a less restrictive form of branding.
  */
-export type Flavor<FlavorT extends string, T> = T & {
+export type Flavor<F extends string, T> = T & {
   /**
    * @internal
    */
-  [typeSym]?: FlavorT
+  [typeSym]?: F
 }
 
 /**
  * Creates a brand creator with the specified type.
  */
-export function flavor<B extends string>(type: B): <T>(subject: T) => Flavor<B, Widen<T>>
+export function flavor<F extends string>(type: F): <T>(subject: T) => Flavor<F, Widen<T>>
 /**
  * Creates a branded value of specified type.
  */
-export function flavor<B extends string, T>(type: B, subject: T): Flavor<B, Widen<T>>
+export function flavor<F extends string, T>(type: F, subject: T): Flavor<F, Widen<T>>
 export function flavor(type: string, subject?: any) {
   if (subject === undefined) {
     return function (subject: any) { return flavor(type, subject) }
