@@ -1,12 +1,12 @@
 import { KeysWithDiffType } from '.'
-import { TypeEquals } from '../assertion'
+import { Equal } from '../assertion'
 import { If } from '../conditional'
 import { AnyRecord } from './AnyRecord'
 import { IsDisjoint } from './IsDisjoint'
 
 export type ANotB<A extends AnyRecord, B extends AnyRecord> =
   If<
-    TypeEquals<A, B>,
+    Equal<A, B>,
     never,
     If<
       IsDisjoint<A, B>,
@@ -19,7 +19,7 @@ export type BNotA<A extends AnyRecord, B extends AnyRecord> = ANotB<B, A>
 
 export type LeftJoin<A extends AnyRecord, B extends AnyRecord> =
   If<
-    TypeEquals<A, B>,
+    Equal<A, B>,
     A,
     If<
       IsDisjoint<A, B>,

@@ -1,5 +1,5 @@
 import a from 'assertron'
-import { assertType, TypeEquals } from '..'
+import { assertType, Equal } from '..'
 import { AnyConstructor } from '../class'
 import { AnyFunction } from '../function'
 
@@ -59,7 +59,7 @@ describe('isUndefined()', () => {
   test('narrow any to undefined', () => {
     const x: any = undefined
     assertType.isUndefined(x)
-    assertType.isTrue(true as TypeEquals<undefined, typeof x>)
+    assertType.isTrue(true as Equal<undefined, typeof x>)
   })
 })
 
@@ -108,7 +108,7 @@ describe('isNull()', () => {
   test('narrow any to null', () => {
     const x: any = null
     assertType.isNull(x)
-    assertType.isTrue(true as TypeEquals<null, typeof x>)
+    assertType.isTrue(true as Equal<null, typeof x>)
   })
 })
 
@@ -150,7 +150,7 @@ describe('isNumber()', () => {
   test('narrow any to number', () => {
     const x: any = 1
     assertType.isNumber(x)
-    assertType.isTrue(true as TypeEquals<number, typeof x>)
+    assertType.isTrue(true as Equal<number, typeof x>)
   })
 })
 
@@ -192,7 +192,7 @@ describe('isBoolean()', () => {
   test('narrow any to boolean', () => {
     const x: any = true
     assertType.isBoolean(x)
-    assertType.isTrue(true as TypeEquals<boolean, typeof x>)
+    assertType.isTrue(true as Equal<boolean, typeof x>)
   })
 })
 
@@ -235,7 +235,7 @@ describe('isTrue()', () => {
   test('narrow any to true', () => {
     const x: any = true
     assertType.isTrue(x)
-    assertType.isTrue(true as TypeEquals<true, typeof x>)
+    assertType.isTrue(true as Equal<true, typeof x>)
   })
 })
 
@@ -325,7 +325,7 @@ describe('isString()', () => {
   test('narrow any to string', () => {
     const x: any = ''
     assertType.isString(x)
-    assertType.isTrue(true as TypeEquals<string, typeof x>)
+    assertType.isTrue(true as Equal<string, typeof x>)
   })
 })
 
@@ -367,7 +367,7 @@ describe('isFunction()', () => {
   test('narrow any to function', () => {
     const x: any = () => { }
     assertType.isFunction(x)
-    assertType.isTrue(true as TypeEquals<AnyFunction, typeof x>)
+    assertType.isTrue(true as Equal<AnyFunction, typeof x>)
   })
 })
 
@@ -411,7 +411,7 @@ describe('isConstructor()', () => {
     class Foo { }
     const x: any = Foo
     assertType.isConstructor(x)
-    assertType.isTrue(true as TypeEquals<AnyConstructor, typeof x>)
+    assertType.isTrue(true as Equal<AnyConstructor, typeof x>)
   })
 })
 
@@ -443,7 +443,7 @@ describe('isError()', () => {
   test('narrow any to Error', () => {
     const x: any = new Error('hello')
     assertType.isError(x)
-    assertType.isTrue(true as TypeEquals<Error, typeof x>)
+    assertType.isTrue(true as Equal<Error, typeof x>)
   })
 })
 
