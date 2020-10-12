@@ -2,6 +2,7 @@
 // <https://gist.github.com/dcolthorp/aa21cf87d847ae9942106435bf47565d>
 
 import { AnyRecord } from '../object'
+import { typeSym } from './types'
 
 /**
  * Create a "branded" version of a type.
@@ -11,11 +12,11 @@ export type Brand<BrandT extends string, T extends AnyRecord> = T & {
   /**
    * @internal
    */
-  type: BrandT
+  [typeSym]: BrandT
 }
 
 export function brand<B extends string, T extends AnyRecord>(type: B, subject: T = {} as any): Brand<B, T> {
-  (subject as any).type = type
+  (subject as any)[typeSym] = type
   return subject as any
 }
 

@@ -1,6 +1,4 @@
-import { assertType, createBrandCreator } from '..'
-import { TypeEquals } from '../assertion'
-import { brand } from './Brand'
+import { assertType, brand, createBrandCreator, TypeEquals } from '..'
 
 describe('brand()', () => {
   test('without subject', () => {

@@ -1,6 +1,8 @@
 // By Drew Colthorp, <https://spin.atomicobject.com/2018/01/15/typescript-flexible-nominal-typing/#comment-604580>
 // <https://gist.github.com/dcolthorp/aa21cf87d847ae9942106435bf47565d>
 
+import { typeSym } from './types'
+
 /**
  * Create a "flavored" version of a type.
  * TypeScript will disallow mixing flavors,
@@ -11,5 +13,5 @@ export type Flavor<FlavorT extends string, T> = T & {
   /**
    * @internal
    */
-  type?: FlavorT
+  [typeSym]?: FlavorT
 }
