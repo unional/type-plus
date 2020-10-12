@@ -42,10 +42,8 @@ describe('isType()', () => {
       if (isType(s, Error))
         assertType<Error>(s)
     })
-    // this is currently not working
-    // https://github.com/microsoft/TypeScript/issues/41050
-    test.skip('Class as validator fails', () => {
-      class Foo { }
+    test('Class as validator fails', () => {
+      class Foo { a() { } }
       const s: Foo | number = 1 as any
       if (isType(s, Foo)) {
         assertType<Foo>(s)
