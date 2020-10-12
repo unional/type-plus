@@ -370,6 +370,9 @@ e.g.:
 - `And<boolean, true> -> boolean`
 - `Not<boolean> -> boolean`
 
+There is a problem with generic distribution: <https://github.com/microsoft/TypeScript/issues/41053>
+So you may encounter some weird behavior if your logic is complex.
+
 ### Utility Functions
 
 - `facade(subject, ...props)`: create a facade of `subject`.
