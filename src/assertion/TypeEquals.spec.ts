@@ -31,6 +31,30 @@ describe('TypeEquals', () => {
     assertType.isFalse(false as TypeEquals<false, true>)
     assertType.isFalse(false as TypeEquals<true, false>)
   })
+
+  test('same type is true', () => {
+    assertType.isTrue(true as TypeEquals<{ a: 1 }, { a: 1 }>)
+  })
+
+  test('different type is false', () => {
+    assertType.isFalse(false as TypeEquals<{ a: 1 }, { b: 1 }>)
+  })
+
+  test('A subset of B is false', () => {
+    assertType.isFalse(false as TypeEquals<{ a: 1 }, { a: 1, b: 1 }>)
+  })
+
+  test('B subset of A is false', () => {
+    assertType.isFalse(false as TypeEquals<{ a: 1, b: 1 }, { a: 1 }>)
+  })
+
+  test('disjoin is false', () => {
+    assertType.isFalse(false as TypeEquals<{ b: 1 }, { a: 1 }>)
+  })
+
+  test('overlap is false', () => {
+    assertType.isFalse(false as TypeEquals<{ a: 1, b: 1 }, { a: 1, c: 2 }>)
+  })
 })
 
 describe('TypeNotEquals', () => {

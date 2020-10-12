@@ -226,6 +226,12 @@ Check if `A` and `B` are the same.
 
 Check if `A` and `B` are not the same.
 
+`CanAssign<A, B>`:
+
+✔️ `logical`
+
+Check if `A` can be assigned to `B`.
+
 ## Nominal Type
 
 TypeScript type system is structural.
@@ -350,7 +356,6 @@ They can be used to compose complex types.
 
 - `HasKey<T, K>`: predicate type checking `T` has key `K`.
 - `IsDisjoint<A, B>`: is `A` and `B` is a disjoint set.
-- `IsSame<A, B>`: is `A` and `B` has the same properties and types.
 
 ### Logical
 
