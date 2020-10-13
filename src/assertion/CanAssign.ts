@@ -1,5 +1,5 @@
-import { If, Or } from '../conditional'
-import { Equal, NotEqual } from './Equal'
+import { If } from '../conditional'
+import { Equal } from './Equal'
 
 /**
  * Can `A` assign to `B`
@@ -10,11 +10,7 @@ export type CanAssign<A, B> = If<
   // as it is a finite set.
   // so special handling is needed.
   Equal<A, boolean>,
-  If<
-    Or<Or<Equal<B, true>, Equal<B, false>>, NotEqual<B, boolean>>,
-    false,
-    true
-  >,
+  If<Equal<B, boolean>, true, false>,
   A extends B ? true : false
 >
 

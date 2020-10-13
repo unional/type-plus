@@ -3,13 +3,20 @@ import { assertType, CanAssign } from '..'
 describe('CanAssign<A, B>', () => {
   test('literal type to widen', () => {
     assertType.isTrue(true as CanAssign<1, number>)
+    assertType.isTrue(true as CanAssign<1, 1>)
+    assertType.isTrue(true as CanAssign<number, number>)
     assertType.isTrue(true as CanAssign<'a', string>)
+    assertType.isTrue(true as CanAssign<'a', 'a'>)
+    assertType.isTrue(true as CanAssign<string, string>)
     assertType.isTrue(true as CanAssign<false, boolean>)
     assertType.isTrue(true as CanAssign<true, boolean>)
+    assertType.isTrue(true as CanAssign<boolean, boolean>)
   })
   test('base type to literal type fails', () => {
     assertType.isFalse(false as CanAssign<number, 1>)
     assertType.isFalse(false as CanAssign<string, 'a'>)
+    assertType.isFalse(false as CanAssign<true, false>)
+    assertType.isFalse(false as CanAssign<false, true>)
     assertType.isFalse(false as CanAssign<boolean, false>)
     assertType.isFalse(false as CanAssign<boolean, true>)
   })
