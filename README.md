@@ -50,12 +50,14 @@ const eslintConfig = T.object.create({
 })
 
 const config: unknown = require('.eslintrc.json')
-if (!T.satisfy(eslintConfig, config)) {
+if (T.satisfy(eslintConfig, config)) {
+  // `config` is typed here
+  config.parseOptions?.ecmaVersion // 3 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+}
+else {
   console.error(T.satify.getReport())
 }
 
-// `config` is typed here
-config.parseOptions?.ecmaVersion // 3 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 ```
 
 All type checker functionalities are exposed as `types` (alias to `T`).
