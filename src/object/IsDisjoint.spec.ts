@@ -1,10 +1,9 @@
 import { assertType, IsDisjoint } from '..'
 
-// <https://github.com/microsoft/TypeScript/issues/41053>
-test.skip('disjoint returns true', () => {
-  // type A = { a: 1 }
-  // type B = { b: 1 }
-  // assertType.isTrue(true as IsDisjoint<A, B>)
+test('disjoint returns true', () => {
+  type A = { a: 1 }
+  type B = { b: 1 }
+  assertType.isTrue(true as IsDisjoint<A, B>)
 })
 
 test('same type returns false', () => {

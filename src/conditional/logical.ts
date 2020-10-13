@@ -48,3 +48,7 @@ export type Xor<A extends boolean, B extends boolean> = If<
     If<Equal<A, false>, B, boolean>
   >
 >
+
+export type AndS<A extends boolean, B extends boolean> = A extends true ? B extends true ? true : false : false
+export type OrS<A extends boolean, B extends boolean> = A extends true ? true : B extends true ? true : false
+export type NotS<X extends boolean> = X extends true ? false : true
