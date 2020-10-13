@@ -275,7 +275,7 @@ f = 'mist' // ok
 ```
 
 Also, `Brand` of the same name can be assigned to `Flavor`,
-but `Flavor` of the same naem cannot be assigned to `Brand`.
+but `Flavor` of the same name cannot be assigned to `Brand`.
 
 `nominalMatch(a, b)`:
 
