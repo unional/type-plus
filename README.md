@@ -211,9 +211,6 @@ You need to specify `T`.
 These overloads of `isType` allows you to specify a `validator`.
 With these overloads, `subject` can be `unknown` or `any`.
 
-Note that the `Class` overload does not work correctly with `unions`.
-For more details, please check out: <https://github.com/microsoft/TypeScript/issues/41050>
-
 `Equal<A, B>`:
 
 ✔️ `logical`
