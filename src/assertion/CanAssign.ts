@@ -14,3 +14,11 @@ export type CanAssign<A, B> = If<
   A extends B ? true : false
 >
 
+const notSpecified = Symbol('not specified')
+
+export function canAssign<T>(): <S extends T>(subject: S) => true
+export function canAssign<T>(subject: T): true
+export function canAssign(subject = notSpecified as any): any {
+  if (subject === notSpecified) return () => true
+  return true
+}
