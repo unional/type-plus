@@ -244,7 +244,7 @@ assertType.isTrue(true as CanAssign<{ a:string, b:number }, { a: string }>)
 Returns a compile time validating function to ensure `subject` is assignable to `T`.
 
 ```ts
-const isConfig = canAssign<{ a: string }>
+const isConfig = canAssign<{ a: string }>()
 assertType.isTrue(isConfig({ a: 'a' }))
 ```
 

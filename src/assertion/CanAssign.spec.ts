@@ -38,18 +38,12 @@ describe('canAssign()', () => {
       // fails at compile time
       // canAssign<{ a: string }>()({ a: 1 })
     })
-  })
-  describe('with subject', () => {
-    test('subject type is checked at compile time', () => {
-      const subject = { a: 1, b: 2 } as const
-      assertType.isTrue(canAssign<{ a: 1 }>(subject))
-    })
     test('work with falsy value such as empty string', () => {
       const s = ''
-      assertType.isTrue(canAssign<''>(s))
+      assertType.isTrue(canAssign<''>()(s))
     })
     test('work with undefined', () => {
-      assertType.isTrue(canAssign<number | undefined>(undefined))
+      assertType.isTrue(canAssign<number | undefined>()(undefined))
     })
   })
 })
