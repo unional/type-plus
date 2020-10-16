@@ -14,3 +14,6 @@ export type CanAssign<A, B> = If<
   A extends B ? true : false
 >
 
+export function canAssign<T>(): <S extends T>(subject: S) => true {
+  return () => true
+}

@@ -230,6 +230,23 @@ Check if `A` and `B` are not the same.
 ✔️ `logical`
 
 Check if `A` can be assigned to `B`.
+A typical usage is using it with `assertType`:
+
+```ts
+assertType.isFalse(false as CanAssign<boolean, { a: string }>)
+assertType.isTrue(true as CanAssign<{ a:string, b:number }, { a: string }>)
+```
+
+`canAssign<T>(): <S extends T>(subject: S) => true`:
+
+✔️ `immediate`, `logical`
+
+Returns a compile time validating function to ensure `subject` is assignable to `T`.
+
+```ts
+const isConfig = canAssign<{ a: string }>()
+assertType.isTrue(isConfig({ a: 'a' }))
+```
 
 ## Nominal Type
 

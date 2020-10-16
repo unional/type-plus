@@ -1,4 +1,5 @@
 import { assertType, CanAssign } from '..'
+import { canAssign } from './CanAssign'
 
 describe('CanAssign<A, B>', () => {
   test('literal type to widen', () => {
@@ -25,5 +26,24 @@ describe('CanAssign<A, B>', () => {
   })
   test('sub set to super set fail', () => {
     assertType.isFalse(false as CanAssign<{ a: string }, { a: string, b: number }>)
+  })
+})
+
+describe('canAssign()', () => {
+  describe('without subject', () => {
+    test('returns a function that check type at compile time', () => {
+      assertType.isTrue(canAssign<{ a: string }>()({ a: 'a' }))
+      assertType.isTrue(canAssign<{ a: string }>()({ a: 'a', b: 'b' }))
+
+      // fails at compile time
+      // canAssign<{ a: string }>()({ a: 1 })
+    })
+    test('work with falsy value such as empty string', () => {
+      const s = ''
+      assertType.isTrue(canAssign<''>()(s))
+    })
+    test('work with undefined', () => {
+      assertType.isTrue(canAssign<number | undefined>()(undefined))
+    })
   })
 })
