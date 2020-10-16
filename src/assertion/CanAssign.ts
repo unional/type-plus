@@ -1,5 +1,6 @@
 import { If } from '../conditional'
 import { Equal } from './Equal'
+import { NotExtendable } from './Extends'
 
 /**
  * Can `A` assign to `B`
@@ -14,6 +15,10 @@ export type CanAssign<A, B> = If<
   A extends B ? true : false
 >
 
-export function canAssign<T>(): <S extends T>(subject: S) => true {
+export type IsAssign<A, B> = CanAssign<A, B>
+
+export function canAssign<T>(canAssign: false): <S>(subject: NotExtendable<S, T>) => true
+export function canAssign<T>(): <S extends T>(subject: S) => true
+export function canAssign<T>(): <S extends T>(subject: S) => any {
   return () => true
 }
