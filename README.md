@@ -91,6 +91,7 @@ There are actually at least 5 kinds of type assertions:
 - `type guard`: [User-defined type guard functions](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards) (`if (isBool(s))`) introduced in TypeScript 1.6.
 - `assertion function`: [assertion functions](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions) (`assertIsBool(a)`) introduced in TypeScript 3.7.
 - `logical`: functions or generic types that returns `true` or `false` type to be used in type level programming.
+- `filter`: generic types that returns `never` if the test fails.
 
 Here are the type assertions provided in `type-plus`.
 Use the one that fits your specific needs.
@@ -214,17 +215,34 @@ These overloads of `isType` allows you to specify a `validator`.
 With these overloads, `subject` can be `unknown` or `any`.
 
 `Equal<A, B>`:
+`IsEqual<A, B>`:
 
 ✔️ `logical`
 
 Check if `A` and `B` are the same.
 
 `NotEqual<A, B>`:
+`IsNotEqual<A, B>`:
 
 ✔️ `logical`
 
 Check if `A` and `B` are not the same.
 
+`IsExtend<A, B>`:
+`IsNotExtend<A, B>`:
+
+✔️ `logical`
+
+Check if `A` extends or not extends `B`.
+
+`Extendable<A, B>`:
+`NotExtendable<A, B>`:
+
+✔️ `filter`
+
+Check if `A` extends or not extends `B`.
+
+`IsAssign<A, B>`:
 `CanAssign<A, B>`:
 
 ✔️ `logical`
@@ -237,7 +255,7 @@ assertType.isFalse(false as CanAssign<boolean, { a: string }>)
 assertType.isTrue(true as CanAssign<{ a:string, b:number }, { a: string }>)
 ```
 
-`canAssign<T>(): <S extends T>(subject: S) => true`:
+`canAssign<T>(): (subject) => true`:
 
 ✔️ `immediate`, `logical`
 
@@ -246,6 +264,19 @@ Returns a compile time validating function to ensure `subject` is assignable to 
 ```ts
 const isConfig = canAssign<{ a: string }>()
 assertType.isTrue(isConfig({ a: 'a' }))
+```
+
+`canAssign<T>(false): (subject) => false`:
+
+✔️ `immediate`, `logical`
+
+Returns a compile time validating function to ensure `subject` is not assignable to `T`.
+
+```ts
+const notA = canAssign<{ a: string }>(false)
+assertType.isTrue(notA({ a: 1 }))
+
+notA({ a: '' }) // TypeScript complains
 ```
 
 ## Nominal Type

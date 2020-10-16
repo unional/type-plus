@@ -45,5 +45,14 @@ describe('canAssign()', () => {
     test('work with undefined', () => {
       assertType.isTrue(canAssign<number | undefined>()(undefined))
     })
+    test('canAssign false', () => {
+      const t = canAssign<{ a: string }>(false)
+      assertType.isTrue(t(undefined))
+      assertType.isTrue(t({ a: 1 }))
+
+      // these fails
+      // t({ a: '' })
+      // t({ a: '', b: '' })
+    })
   })
 })
