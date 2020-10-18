@@ -29,25 +29,19 @@ export type Generate<T extends AllType> =
   T extends ObjectType ? { [K in keyof T['value']]: Generate<T['value'][K]> } :
   T extends Record ? { [K: string]: Generate<T['value']> } :
   T extends Array ? Generate<T['value']>[] :
-  T extends Tuple ? Generate.TupleDevice<T['value']>['result'] :
-  T extends Union ? Generate.UnionDevice<T['value']>['result'] :
+  T extends Tuple ? Generate._TupleDevice<T['value']>['result'] :
+  T extends Union ? Generate._UnionDevice<T['value']>['result'] :
   // T extends BigInt ? T['value'] :
   unknown
 
 export namespace Generate {
-  /**
-   * @internal
-   */
-  export type UnionDevice<T extends AllType[]> = T['length'] extends 0
+  export type _UnionDevice<T extends AllType[]> = T['length'] extends 0
     ? { result: never }
     // @ts-ignore sometimes language service mark this as referencing itself
-    : { result: Generate<T[0]> | UnionDevice<Tuple.Tail<T>>['result'] }
+    : { result: Generate<T[0]> | _UnionDevice<Tuple.Tail<T>>['result'] }
 
-  /**
-   * @internal
-   */
-  export type TupleDevice<T extends AllType[]> = T['length'] extends 0
+  export type _TupleDevice<T extends AllType[]> = T['length'] extends 0
     ? { result: [] }
     // @ts-ignore sometimes language service mark this as referencing itself
-    : { result: [Generate<T[0]>, ...TupleDevice<Tuple.Tail<T>>['result']] }
+    : { result: [Generate<T[0]>, ..._TupleDevice<Tuple.Tail<T>>['result']] }
 }

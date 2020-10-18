@@ -24,21 +24,17 @@ export namespace TypeChecker {
   }
 
   export type Generate<Specs extends Array<any>, T> = Specs extends Array<TypeSpec<AllType>>
-    ? _Generate<Specs, T>['result'] : never
+    ? Generate._<Specs, T>['result'] : never
 
-  /**
-   * @internal
-   */
-  export type _Generate<Specs extends Array<TypeSpec<AllType>>, T> = T extends AllType
+  export namespace Generate {
+    export type _<Specs extends Array<TypeSpec<AllType>>, T> = T extends AllType
     ? {
       result: Generate<Specs, _ToNative<Tuple.FindByProp<Specs, 'type', T>, T>>
     }
     : { result: T }
 
-  /**
-   * @internal
-   */
-  export type _ToNative<R, T> = R extends TypeSpec<any> ? ReturnType<R['toNative']> : T
+    export type _ToNative<R, T> = R extends TypeSpec<any> ? ReturnType<R['toNative']> : T
+  }
 }
 
 export function createTypeChecker<

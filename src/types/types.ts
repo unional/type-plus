@@ -1,11 +1,5 @@
 export type Type<T extends string, Value> = {
-  /**
-   * @internal
-   */
   type: T,
-  /**
-   * @internal
-   */
   value: Value
 }
 

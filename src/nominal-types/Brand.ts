@@ -13,9 +13,6 @@ export type Brand<B extends string, T> =
     [typeSym]: B,
     [valueSym]: T
   } : T & {
-    /**
-     * @internal
-     */
     [typeSym]: B
   }
 
