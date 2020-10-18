@@ -1,4 +1,5 @@
 import { assertType, Pick, pick } from '..'
+import { canAssign } from '../assertion'
 // import { typeAssert } from './assertType'
 // import { assignability } from './assignability'
 
@@ -39,8 +40,7 @@ test('distributive pick with disjoined keys', () => {
     foo: string,
     bar: string,
   }
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  type Id<T> = {} & { [P in keyof T]: T[P] }
+  type Id<T> = { [P in keyof T]: T[P] }
   let x: Id<Pick<Union, 'type' | 'bar'>> = { type: 'A' }
   x = { type: 'B', bar: 'bar' }
 
@@ -55,7 +55,8 @@ test('intersection types with generic', () => {
   foo({ a: '1' })
 })
 
-// test('optional property remains optional', () => {
-//   type Foo = { a?: string, b: string }
-//   typeAssert.isTrue(assignability<Pick<Foo, 'a'>>()({}))
-// })
+test('optional property remains optional', () => {
+  type Foo = { a?: string, b: string }
+  type A = Pick<Foo, 'a'>
+  assertType.isTrue(canAssign<A>()({}))
+})
