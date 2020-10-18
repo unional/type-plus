@@ -11,9 +11,6 @@ import { typeSym } from './types'
  * This is a less restrictive form of branding.
  */
 export type Flavor<F extends string, T> = T & {
-  /**
-   * @internal
-   */
   [typeSym]?: F
 }
 

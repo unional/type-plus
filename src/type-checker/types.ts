@@ -7,13 +7,7 @@ export type TypeSpec<T extends Type<string, any> = Type<string, any>, R = any> =
 export type AnalysisOptions = { strict: boolean, debug: boolean }
 
 export type Type<T extends string, V> = {
-  /**
-   * @internal
-   */
   type: T,
-  /**
-   * @internal
-   */
   value: V
 }
 
