@@ -11,6 +11,7 @@
     "removeComments": false,
     "sourceMap": true,
     "strict": true,
+    "stripInternal": true,
     "useDefineForClassFields": true
   },
   "include": [

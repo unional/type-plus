@@ -1,11 +1,9 @@
-import { assertType, KeyofOptional } from '..'
+import { assertType, KeysOfOptional } from '..'
+import { IsEqual } from '../assertion'
 
-test('get key from optional (X | undefined)', () => {
-  const record = { a: 1, b: 'b' }
-  function foo<T>(input?: T): KeyofOptional<typeof input> {
-    return {} as any
-  }
+test('get keys from optional type', () => {
+  type X = { o?: { a: string, b: string } }
+  type A = KeysOfOptional<X['o']>
 
-  const actual = foo(record)
-  assertType<'a' | 'b'>(actual)
+  assertType.isTrue(true as IsEqual<'a' | 'b', A>)
 })

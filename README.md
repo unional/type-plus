@@ -384,12 +384,15 @@ These utilities includes utiltiy types and type adjusted functions.
 - `KnownKeys<T>`: extract known (defined) keys from type `T`.
 - `LeftJoin<A, B>`: left join `A` with `B`
 - `Omit<T, K>`: From `T`, pick a set of properties whose keys are not in the union `K`. This is the opposite of `Pick<T, K>`.
+- `OptionalKeys<T>`: gets keys of optional properties in `T`.
 - `PartialExcept<T, U>`: Deprecated. Same as `PartialOmit<T, U>`.
 - `PartialOmit<T, U>`: makes the properties not specified in `U` becomes optional.
 - `PartialPick<T, U>`: makes the properties specified in `U` becomes optional.
+- `Pick<T, K>`: pick properties `K` from `T`. Works with union.
 - `RecursivePartial<T>`: make type `T` optional recursively.
 - `RecursiveRequired<T>`: make type `T` required recursively.
 - `ReplaceProperty<T, K, V>`: replace property `K` in `T` with `V`.
+- `RequiredKeys<T>`: gets keys of required properties in `T`.
 - `RequiredPick<T, U>`: makes the properties specified in `U` becomes required.
 - `RequiredExcept<T, U>`: makes the properties not specified in `U` becomes required.
 - `RecursiveIntersect<T, U>`: intersect type `U` onto `T` recursively.
