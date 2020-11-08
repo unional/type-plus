@@ -1,3 +1,7 @@
+export type Checker = {
+  type: Record<string, any>
+}
+
 export type TypeSpec<T extends Type<string, any> = Type<string, any>, R = any> = {
   type: T,
   toAnalysis(options: AnalysisOptions, value: T['value'], subject: unknown): TypeAnalysis<T['type'], T['value']>,

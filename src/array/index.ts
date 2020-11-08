@@ -1,2 +1,7 @@
+export * from './CommonKeys'
+export * from './Head'
+export * from './IsArray'
 export * from './literalArray'
+export * from './MapToProp'
 export * from './reduceWhile'
+export * from './Tail'

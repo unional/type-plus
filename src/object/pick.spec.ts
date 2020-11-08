@@ -1,5 +1,5 @@
 import { assertType, Pick, pick } from '..'
-import { canAssign } from '../assertion'
+import { canAssign, Equal } from '../assertion'
 // import { typeAssert } from './assertType'
 // import { assignability } from './assignability'
 
@@ -59,4 +59,11 @@ test('optional property remains optional', () => {
   type Foo = { a?: string, b: string }
   type A = Pick<Foo, 'a'>
   assertType.isTrue(canAssign<A>()({}))
+})
+
+test('pick never gets empty object', () => {
+  type A = { a: number }
+  type S = Pick<A, never>
+  type K = keyof S
+  assertType.isTrue(true as Equal<K, never>)
 })

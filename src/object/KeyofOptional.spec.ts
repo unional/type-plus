@@ -1,5 +1,4 @@
-import { assertType, KeysOfOptional } from '..'
-import { IsEqual } from '../assertion'
+import { assertType, IsEqual, KeysOfOptional } from '..'
 
 test('get keys from optional type', () => {
   type X = { o?: { a: string, b: string } }

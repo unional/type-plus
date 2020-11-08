@@ -465,6 +465,28 @@ describe('noError()', () => {
   })
 })
 
+describe('isNever()', () => {
+  test('ensure the input type is never and nothing else', () => {
+    const s: never = 0 as never
+    assertType.isNever(s)
+
+    // these fails
+    // assertType.isNever(undefined)
+    // assertType.isNever(null)
+    // assertType.isNever(1)
+    // assertType.isNever('a')
+    // assertType.isNever(false)
+    // assertType.isNever([])
+    // assertType.isNever({})
+    // assertType.isNever(x as any)
+    // assertType.isNever(false as never | undefined)
+    // assertType.isNever(false as unknown)
+  })
+  test('boolean throws TypeError', () => {
+    a.throws(() => assertType.noBoolean(true as any), TypeError)
+  })
+})
+
 describe('custom', () => {
   test('specify T in the validator', () => {
     const isBool = assertType.custom((s: boolean) => typeof s === 'boolean')
