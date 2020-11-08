@@ -1,4 +1,4 @@
-import { Tuple } from './Tuple'
+import { Tail } from '../array'
 import { Type } from './types'
 import { undef, Undefined } from './Undefined'
 import { Union, union } from './Union'
@@ -16,7 +16,7 @@ export namespace Number {
 type NumberListDevice<Values extends number[] = number[]> = Values['length'] extends 0
   ? { result: [] } : Values['length'] extends 1
   ? { result: [Number<Values[0]>] }
-  : { result: [Number<Values[0]>, Number<Values[1]>, ...NumberListDevice<Tuple.Tail<Tuple.Tail<Values>>>['result']] }
+  : { result: [Number<Values[0]>, Number<Values[1]>, ...NumberListDevice<Tail<Tail<Values>>>['result']] }
 
 /**
  * Creates a single number type.
