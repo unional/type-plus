@@ -13,4 +13,5 @@ export * from './promise'
 export * from './types/optional'
 export * from './types/required'
 export * from './UnionKeys'
+export * from './utils'
 export { types, types as T }

@@ -165,6 +165,20 @@ assertType.isUndefined(s)
 s // type is undefined
 ```
 
+`assertType.isNever(subject)`:
+
+✔️ `immediate`
+
+Check if the subject type is `never`.
+This function is not very useful in actual code as TypeScript will indicate the error.
+But it can be useful when writing tests for type.
+
+This is useful for variable. For type level only check, do the following:
+
+```ts
+assertType.isTrue(true as Equal<YourType, never>)
+```
+
 `assertType.noUndefiend(subject)`:
 
 `assertType.noNull(subject)`:
@@ -345,9 +359,14 @@ These utilities includes utiltiy types and type adjusted functions.
 
 ### Array function
 
+- `CommonKeys<A>`: gets common keys inside the records in the array `A`.
+- `Head<A>`: gets the first entry in the array.
+- `IsArray<T>`: `logical` predicate for `Array`.
 - `literalArray(...entries)`: return an array those items are restricted to the provided literals.
+- `MapToProp<A, K>`: Map `A: Array<E>` to `Array<E[K]>`.
 - `reduceWhile()`: `reduce()` with predicate for early termination. \
   A simple version of the same function in the `ramda` package.
+- `Tail<A>`: gets the remaining entries in the array except the first.
 
 ### Constant Types
 
@@ -362,10 +381,13 @@ These utilities includes utiltiy types and type adjusted functions.
 - `forEachKey()`: type adjusted for each by key.
 - `HasKey<T, K>`: predicate type checking `T` has key `K`.
 - `hasKey()`: function of `HasKey`.
+- `IsRecord<T>`: `logical` predicate for `Record`.
 - `KeysWithDiffTypes<A, B>`: gets the keys common in `A` and `B` but with differnt value type.
 - `mapKey()`: type adjusted map by key.
 - `reduceKey()`: type adjusted reduce by key.
 - `someKey()`: type adjusted some by key.
+- `SpreadRecord<A, B>`: type for `{...a, ...b}` when both `a` and `b` are `Record`. \
+  for array, just do `[...A, ...B]`.
 
 ### Promise function
 
@@ -397,6 +419,7 @@ These utilities includes utiltiy types and type adjusted functions.
 - `RequiredExcept<T, U>`: makes the properties not specified in `U` becomes required.
 - `RecursiveIntersect<T, U>`: intersect type `U` onto `T` recursively.
 - `ValueOf<T>`: type of the value of the properties of `T`.
+- `Widen<T>`: widen literal types.
 - PropType: ...no helper type for this. Just do `YourType['propName']`.
 
 ### Type Predicates

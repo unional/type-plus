@@ -1,9 +1,9 @@
-import { assertType, Except, Omit, omit } from '..'
+import { assertType, Equal, Except, Omit, omit } from '..'
 
 describe('Omit', () => {
   test('work with primitive types', () => {
     type N = Omit<number, 'toFixed'>
-    assertType.isFunction((() => ({ })) as N['toExponential'])
+    assertType.isFunction((() => ({})) as N['toExponential'])
   })
 
   test('Remove properties', () => {
@@ -73,6 +73,13 @@ describe('Omit', () => {
     const actual = omit({ a: 1, b: 2 }, 'a')
 
     expect(actual).toEqual({ b: 2 })
+  })
+
+  test('omit all', () => {
+    const actual = omit({ a: 1 }, 'a')
+
+    expect(actual).toEqual({})
+    assertType.isTrue(true as Equal<keyof typeof actual, never>)
   })
 })
 

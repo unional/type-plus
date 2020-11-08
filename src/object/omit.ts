@@ -1,10 +1,15 @@
 import { AnyRecord, reduceByKey } from '../object'
 import { UnionKeys } from '../UnionKeys'
+import { Pick } from './pick'
 
 // by Titian Cernicova-Dragomir
 // https://github.com/microsoft/TypeScript/issues/28339#issuecomment-463577347
 // type-zoo
-export type Omit<T, K extends UnionKeys<T>> = T extends T ? Pick<T, Exclude<keyof T, K>> : never;
+export type Omit<T, K extends UnionKeys<T>> = T extends T
+  ? keyof T extends K
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  ? {}
+  : Pick<T, Exclude<keyof T, K>> : never
 
 /**
  * @deprecated replaced by `Omit`

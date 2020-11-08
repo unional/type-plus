@@ -84,7 +84,7 @@
     "semantic-release": "^17.1.1",
     "size-limit": "^4.6.0",
     "ts-toolbelt": "^8.0.7",
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.5"
   },
   "peerDependencies": {
     "typescript": ">=4"
