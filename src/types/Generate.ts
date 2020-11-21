@@ -1,3 +1,4 @@
+import { Tail } from '../array'
 import { AllType } from './AllType'
 // import { KeyTypes } from '../object-key'
 import { Any } from './Any'
@@ -7,12 +8,12 @@ import { Boolean, False, True } from './Boolean'
 import { Null } from './Null'
 import { Number } from './Number'
 import { ObjectType } from './Object'
+import { Record } from './Record'
 import { String } from './String'
 import { Symbol } from './Symbol'
 import { Tuple } from './Tuple'
 import { Undefined } from './Undefined'
 import { Union } from './Union'
-import { Record } from './Record'
 import { Unknown } from './Unknown'
 
 export type Generate<T extends AllType> =
@@ -38,10 +39,10 @@ export namespace Generate {
   export type _UnionDevice<T extends AllType[]> = T['length'] extends 0
     ? { result: never }
     // @ts-ignore sometimes language service mark this as referencing itself
-    : { result: Generate<T[0]> | _UnionDevice<Tuple.Tail<T>>['result'] }
+    : { result: Generate<T[0]> | _UnionDevice<Tail<T>>['result'] }
 
   export type _TupleDevice<T extends AllType[]> = T['length'] extends 0
     ? { result: [] }
     // @ts-ignore sometimes language service mark this as referencing itself
-    : { result: [Generate<T[0]>, ..._TupleDevice<Tuple.Tail<T>>['result']] }
+    : { result: [Generate<T[0]>, ..._TupleDevice<Tail<T>>['result']] }
 }
