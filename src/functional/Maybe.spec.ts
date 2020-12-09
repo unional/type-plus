@@ -1,14 +1,22 @@
-import { Just, Maybe, None } from '.'
-import { assertType, CanAssign, canAssign, Equal } from '../assertion'
+import { Just, just, Maybe, none } from '.'
+import { assertType, CanAssign, canAssign } from '../assertion'
+import { None } from './Maybe'
 
-test('Just(T) is Maybe<T>', () => {
-  const maybe = Just(1)
-
-  assertType.isTrue(true as Equal<Maybe<number>, typeof maybe>)
+test('just(value) returns Maybe<T>', () => {
+  assertType<Maybe<number>>(just(1))
 })
 
-test('unwrap Just returns value', () => {
-  const maybe = Just('abc')
+test('just(undefined) returns Maybe<T>', () => {
+  const b: boolean | undefined = undefined as any
+  assertType<Maybe<boolean>>(just(b))
+})
+
+test('none<T>() returns Maybe<T>', () => {
+  assertType<Maybe<boolean>>(none<boolean>())
+})
+
+test('unwrap Maybe<T> returns value', () => {
+  const maybe = just('abc')
   const actual = maybe.unwrap()
 
   assertType<string>(actual)
@@ -16,15 +24,16 @@ test('unwrap Just returns value', () => {
 })
 
 test('None can assign to Maybe<T>', () => {
-  const none = None<number>()
+  const actual = none<number>()
 
-  assertType.isTrue(true as CanAssign<typeof none, Maybe<number>>)
-  assertType.isTrue(canAssign<Maybe<number>>()(None<number>()))
+  assertType.isTrue(true as CanAssign<typeof actual, Maybe<number>>)
+  assertType.isTrue(true as CanAssign<None<number>, Maybe<number>>)
+  assertType.isTrue(canAssign<Maybe<number>>()(none<number>()))
 })
 
 test('Just<number can assign to Maybe<number>', () => {
   assertType.isTrue(true as CanAssign<Just<number>, Maybe<number>>)
-  assertType.isTrue(canAssign<Maybe<number>>()(Just(1)))
+  assertType.isTrue(canAssign<Maybe<number>>()(just(1)))
 })
 
 test('Just<string> is not assignable to Maybe<number>', () => {
