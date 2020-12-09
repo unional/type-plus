@@ -5,6 +5,7 @@ export * from './assertion'
 export * from './class'
 export * from './conditional'
 export * from './function'
+export * from './functional'
 export * from './JSONTypes'
 export * from './nominal-types'
 export * from './object'
@@ -15,3 +16,4 @@ export * from './types/required'
 export * from './UnionKeys'
 export * from './utils'
 export { types, types as T }
+
