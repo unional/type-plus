@@ -352,6 +352,10 @@ const b2 = brand('y', 1)
 nominalMatch(b1, b2) // false
 ```
 
+## Functional Types
+
+- `ChainFn<T>: T`: chain function that return the input type.
+
 ## Type Utilities
 
 `type-plus` also provides additional type utilities.
