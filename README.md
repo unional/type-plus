@@ -31,6 +31,8 @@ yarn add type-plus
 ## Runtime type checker
 
 Bringing the power of TypeScript to JavaScript runtime.
+This version of type checker has some limitation due to recursion.
+For the time being, please use another excellent type checking library such as [zod](https://github.com/colinhacks/zod).
 
 ```ts
 const eslintConfig = T.object.create({
@@ -363,6 +365,7 @@ These utilities includes utility types and type adjusted functions.
 
 ### Array function
 
+- `ArrayValue<A>`: gets the value type of the array `A`.
 - `CommonKeys<A>`: gets common keys inside the records in the array `A`.
 - `First<A, Criteria>`: gets first entry satisfying `Criteria`.
 - `Head<A>`: gets the first entry in the array.
