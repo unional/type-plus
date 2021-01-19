@@ -55,7 +55,7 @@ if (T.satisfy(eslintConfig, config)) {
   config.parseOptions?.ecmaVersion // 3 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 }
 else {
-  console.error(T.satify.getReport())
+  console.error(T.satisfy.getReport())
 }
 
 ```
@@ -126,7 +126,7 @@ assertType<boolean>(s, s => typeof s === 'boolean')
 
 The message beautification is provided by [`tersify`](https://github.com/unional/tersify).
 
-`assertType.isUndefiend(subject)`:
+`assertType.isUndefined(subject)`:
 
 `assertType.isNull(subject)`:
 
@@ -179,7 +179,7 @@ This is useful for variable. For type level only check, do the following:
 assertType.isTrue(true as Equal<YourType, never>)
 ```
 
-`assertType.noUndefiend(subject)`:
+`assertType.noUndefined(subject)`:
 
 `assertType.noNull(subject)`:
 
@@ -201,7 +201,7 @@ assertType.isTrue(true as Equal<YourType, never>)
 
 Compiler and runtime assertion.
 Assert `subject` type does not contain the specific type.
-Work againsts unions.
+Work against unions.
 
 ```ts
 const s: number | undefined = 1
@@ -359,11 +359,12 @@ nominalMatch(b1, b2) // false
 ## Type Utilities
 
 `type-plus` also provides additional type utilities.
-These utilities includes utiltiy types and type adjusted functions.
+These utilities includes utility types and type adjusted functions.
 
 ### Array function
 
 - `CommonKeys<A>`: gets common keys inside the records in the array `A`.
+- `First<A, Criteria>`: gets first entry satisfying `Criteria`.
 - `Head<A>`: gets the first entry in the array.
 - `IsArray<T>`: `logical` predicate for `Array`.
 - `literalArray(...entries)`: return an array those items are restricted to the provided literals.
@@ -386,7 +387,7 @@ These utilities includes utiltiy types and type adjusted functions.
 - `HasKey<T, K>`: predicate type checking `T` has key `K`.
 - `hasKey()`: function of `HasKey`.
 - `IsRecord<T>`: `logical` predicate for `Record`.
-- `KeysWithDiffTypes<A, B>`: gets the keys common in `A` and `B` but with differnt value type.
+- `KeysWithDiffTypes<A, B>`: gets the keys common in `A` and `B` but with different value type.
 - `mapKey()`: type adjusted map by key.
 - `reduceKey()`: type adjusted reduce by key.
 - `someKey()`: type adjusted some by key.
@@ -402,7 +403,7 @@ These utilities includes utiltiy types and type adjusted functions.
 
 ### Type manipulation
 
-- `ANotB<A, B>`: get object with properties in `A` and not in `B`, including properties with differnt value type.
+- `ANotB<A, B>`: get object with properties in `A` and not in `B`, including properties with different value type.
 - `BNotA<A, B>`: flip of `ANotB`
 - `Except<T, K>`: Deprecated. Same as `Omit<T, K>`.
 - `ExcludePropType<T, U>`: excludes type `U` from properties in `T`.
@@ -461,7 +462,7 @@ So you may encounter some weird behavior if your logic is complex.
 - `omit(obj, ...props)`: omit properties from `obj`.
 - `required(...)`: merge options and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
 - `requiredDeep(...)`: merge options deeply and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
-- `typeOverrideIncompatible<T>()`: override only the incompatiable portion between two types.
+- `typeOverrideIncompatible<T>()`: override only the incompatible portion between two types.
 
 ```ts
 type A =  {
