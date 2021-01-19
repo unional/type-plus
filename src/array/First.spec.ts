@@ -18,3 +18,9 @@ test('pick object', () => {
     { name: 'c', type: 3 }], { name: 'b' }>['type']
   assertType.isTrue(true as Equal<2, Actual>)
 })
+
+test('generic', () => {
+  const s: string[] = ['a', 'b', 'c']
+  type Actual = First<typeof s, string>
+  assertType.isTrue(true as Equal<string, Actual>)
+})
