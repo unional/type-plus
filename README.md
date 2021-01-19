@@ -371,7 +371,8 @@ These utilities includes utility types and type adjusted functions.
 - `Head<A>`: gets the first entry in the array.
 - `IsArray<T>`: `logical` predicate for `Array`.
 - `literalArray(...entries)`: return an array those items are restricted to the provided literals.
-- `MapToProp<A, K>`: Map `A: Array<E>` to `Array<E[K]>`.
+- `MapToProp<A, K>`: Map `A: Array<E>` to `E[0][K] & E[1][K] ... & E[n][K]`.
+- `PropUnion<A, K>`: Map `A: Array<E>` to `E[0][K] | E[1][K] ... | E[n][K]`.
 - `reduceWhile()`: `reduce()` with predicate for early termination. \
   A simple version of the same function in the `ramda` package.
 - `Tail<A>`: gets the remaining entries in the array except the first.
