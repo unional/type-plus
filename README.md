@@ -365,17 +365,21 @@ These utilities includes utility types and type adjusted functions.
 
 ### Array function
 
-- `ArrayValue<A>`: gets the value type of the array `A`.
 - `CommonKeys<A>`: gets common keys inside the records in the array `A`.
-- `First<A, Criteria>`: gets first entry satisfying `Criteria`.
+- `DropFirst<A>`: drops the first value type of `A`.
+- `DropLast<A>`: drops the last value type of `A`.
+- `Filter<A, Criteria>`: gets array of types satisfying `Criteria` in `A`.
+- `FindFirst<A, Criteria>`: gets first type satisfying `Criteria`.
+- `FindLast<A, Criteria>`: gets last type satisfying `Criteria`.
 - `Head<A>`: gets the first entry in the array.
+- `IntersectOfProps<A, K>`: gets the intersect of `A[K]` types
 - `IsArray<T>`: `logical` predicate for `Array`.
 - `literalArray(...entries)`: return an array those items are restricted to the provided literals.
-- `MapToProp<A, K>`: Map `A: Array<E>` to `E[0][K] & E[1][K] ... & E[n][K]`.
-- `PropUnion<A, K>`: Map `A: Array<E>` to `E[0][K] | E[1][K] ... | E[n][K]`.
 - `reduceWhile()`: `reduce()` with predicate for early termination. \
   A simple version of the same function in the `ramda` package.
 - `Tail<A>`: gets the remaining entries in the array except the first.
+- `UnionOfProps<A, K>`: gets the union of `A[K]` types
+- `UnionOfValues<A>`: gets the union of value types in `A`.
 
 ### Constant Types
 

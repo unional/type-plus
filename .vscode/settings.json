@@ -16,6 +16,7 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "eslint.enable": true,
   "cSpell.words": [
-    "overrider"
+    "overrider",
+    "typepark"
   ]
 }
