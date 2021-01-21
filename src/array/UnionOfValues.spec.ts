@@ -1,11 +1,11 @@
-import { ArrayValue, assertType, Equal } from '..'
+import { UnionOfValues, assertType, Equal } from '..'
 
 test('get value of generic array', () => {
-  type Actual = ArrayValue<string[]>
+  type Actual = UnionOfValues<string[]>
   assertType.isTrue(true as Equal<string, Actual>)
 })
 
 test('tuple get union type of values', () => {
-  type Actual = ArrayValue<[string, boolean]>
+  type Actual = UnionOfValues<[string, boolean]>
   assertType.isTrue(true as Equal<string | boolean, Actual>)
 })
