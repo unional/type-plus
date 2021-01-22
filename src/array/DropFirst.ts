@@ -4,8 +4,7 @@ export type DropFirst<A extends any[]> = number extends A['length']
     ? never[]
     : (A['length'] extends 1
       ? never[]
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      : (A extends [infer _, ...infer Tail]
+      : (A extends [any, ...infer Tail]
         ? Tail
         : never
       ))
