@@ -39,7 +39,7 @@ describe('assertType()', () => {
   })
 })
 
-describe('isUndefined()', () => {
+describe('assertType.isUndefined()', () => {
   test('ensure the input type is undefined and nothing else', () => {
     assertType.isUndefined(undefined)
 
@@ -63,7 +63,7 @@ describe('isUndefined()', () => {
   })
 })
 
-describe('noUndefined()', () => {
+describe('assertType.noUndefined()', () => {
   test('ensure the input type does not contain undefined', () => {
     assertType.noUndefined(null)
     assertType.noUndefined(1)
@@ -82,7 +82,7 @@ describe('noUndefined()', () => {
   })
 })
 
-describe('isNull()', () => {
+describe('assertType.isNull()', () => {
   test('ensure the input type is null and nothing else', () => {
     assertType.isNull(null)
 
@@ -112,7 +112,7 @@ describe('isNull()', () => {
   })
 })
 
-describe('noNull()', () => {
+describe('assertType.noNull()', () => {
   test('ensure the input type does not contain null', () => {
     assertType.noNull(undefined)
     assertType.noNull(1)
@@ -130,7 +130,7 @@ describe('noNull()', () => {
   })
 })
 
-describe('isNumber()', () => {
+describe('assertType.isNumber()', () => {
   test('ensure the input type is number and nothing else', () => {
     assertType.isNumber(0)
 
@@ -154,7 +154,7 @@ describe('isNumber()', () => {
   })
 })
 
-describe('noNumber()', () => {
+describe('assertType.noNumber()', () => {
   test('ensure the input type does not contain number', () => {
     assertType.noNumber(undefined)
     assertType.noNumber(null)
@@ -172,7 +172,7 @@ describe('noNumber()', () => {
   })
 })
 
-describe('isBoolean()', () => {
+describe('assertType.isBoolean()', () => {
   test('ensure the input type is boolean and nothing else', () => {
     assertType.isBoolean(true)
     assertType.isBoolean(false)
@@ -196,7 +196,7 @@ describe('isBoolean()', () => {
   })
 })
 
-describe('noBoolean()', () => {
+describe('assertType.noBoolean()', () => {
   test('ensure the input type does not contain boolean', () => {
     assertType.noBoolean(undefined)
     assertType.noBoolean(null)
@@ -214,7 +214,7 @@ describe('noBoolean()', () => {
   })
 })
 
-describe('isTrue()', () => {
+describe('assertType.isTrue()', () => {
   test('ensure the input type is true and nothing else', () => {
     assertType.isTrue(true)
 
@@ -239,7 +239,7 @@ describe('isTrue()', () => {
   })
 })
 
-describe('noTrue()', () => {
+describe('assertType.noTrue()', () => {
   test('ensure the input type does not contain boolean', () => {
     assertType.noTrue(false)
     assertType.noTrue(undefined)
@@ -259,7 +259,7 @@ describe('noTrue()', () => {
   })
 })
 
-describe('isFalse()', () => {
+describe('assertType.isFalse()', () => {
   test('ensure the input type is false and nothing else', () => {
     assertType.isFalse(false)
 
@@ -285,7 +285,7 @@ describe('isFalse()', () => {
   })
 })
 
-describe('noFalse()', () => {
+describe('assertType.noFalse()', () => {
   test('ensure the input type does not contain boolean', () => {
     assertType.noFalse(true)
     assertType.noFalse(undefined)
@@ -305,7 +305,7 @@ describe('noFalse()', () => {
   })
 })
 
-describe('isString()', () => {
+describe('assertType.isString()', () => {
   test('ensure the input type is string and nothing else', () => {
     assertType.isString('a')
 
@@ -329,7 +329,7 @@ describe('isString()', () => {
   })
 })
 
-describe('noString()', () => {
+describe('assertType.noString()', () => {
   test('ensure the input type does not contain boolean', () => {
     assertType.noString(undefined)
     assertType.noString(null)
@@ -347,7 +347,7 @@ describe('noString()', () => {
   })
 })
 
-describe('isFunction()', () => {
+describe('assertType.isFunction()', () => {
   test('ensure the input type is function and nothing else', () => {
     assertType.isFunction(() => { })
     assertType.isFunction(function () { })
@@ -371,7 +371,7 @@ describe('isFunction()', () => {
   })
 })
 
-describe('noFunction()', () => {
+describe('assertType.noFunction()', () => {
   test('ensure the input type does not contain function', () => {
     assertType.noFunction(undefined)
     assertType.noFunction(null)
@@ -389,7 +389,7 @@ describe('noFunction()', () => {
   })
 })
 
-describe('isConstructor()', () => {
+describe('assertType.isConstructor()', () => {
   test('ensure the input type is constructor and nothing else', () => {
     class Foo { }
     assertType.isConstructor(Foo)
@@ -415,7 +415,7 @@ describe('isConstructor()', () => {
   })
 })
 
-describe('isError()', () => {
+describe('assertType.isError()', () => {
   test('ensure the input type is instance of Error and nothing else', () => {
     assertType.isError(new Error('x'))
 
@@ -447,7 +447,7 @@ describe('isError()', () => {
   })
 })
 
-describe('noError()', () => {
+describe('assertType.noError()', () => {
   test('ensure the input type does not contain Error', () => {
     assertType.noError(undefined)
     assertType.noError(null)
@@ -465,7 +465,7 @@ describe('noError()', () => {
   })
 })
 
-describe('isNever()', () => {
+describe('assertType.isNever()', () => {
   test('ensure the input type is never and nothing else', () => {
     const s: never = 0 as never
     assertType.isNever(s)
@@ -487,7 +487,7 @@ describe('isNever()', () => {
   })
 })
 
-describe('custom', () => {
+describe('assertType.custom', () => {
   test('specify T in the validator', () => {
     const isBool = assertType.custom((s: boolean) => typeof s === 'boolean')
     const s: unknown = false

@@ -12,3 +12,12 @@ export function isType(subject: any, validator?: any) {
   }
   return true
 }
+
+const sym = Symbol()
+
+isType.true = function <S extends true>(subject: S = sym as any) {
+  return (subject as any) === sym || subject === true
+}
+isType.false = function <S extends false>(subject: S = sym as any) {
+  return (subject as any) === sym || subject === false
+}
