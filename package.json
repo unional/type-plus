@@ -52,6 +52,7 @@
     "unpartial": "^0.6.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.12.1",
@@ -78,13 +79,13 @@
     "jest-watch-suspend": "^1.1.2",
     "jest-watch-toggle-config": "^2.0.1",
     "jest-watch-typeahead": "^0.6.1",
-    "npm-check-updates": "^11.0.0",
+    "npm-check-updates": "^11.0.2",
     "rimraf": "^3.0.2",
     "satisfier": "^5.1.0",
     "semantic-release": "^17.3.6",
     "size-limit": "^4.9.1",
     "ts-toolbelt": "^8.0.7",
-    "typescript": "^4.0.5"
+    "typescript": "^4.1.3"
   },
   "peerDependencies": {
     "typescript": ">=4.1"

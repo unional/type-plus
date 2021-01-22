@@ -478,6 +478,11 @@ e.g.:
 There is a problem with generic distribution: <https://github.com/microsoft/TypeScript/issues/41053>
 So you may encounter some weird behavior if your logic is complex.
 
+### Math
+
+- `IsPositive<N>`: test `N` is positive number literal. `number` type is not considered as positive.
+- `IsWhole<N>`: test `N` is whole number literal. `number` type is not considered as whole.
+
 ### Utility Functions
 
 - `facade(subject, ...props)`: create a facade of `subject`.
