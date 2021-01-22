@@ -445,6 +445,7 @@ They can be used to compose complex types.
 
 ### Logical
 
+- `If<Condition, Then = true, Else = false>`: if statement.
 - `And<A, B>`: logical `AND`.
 - `Or<A, B>`: logical `OR`.
 - `Xor<A, B>`: logical `XOR`.
