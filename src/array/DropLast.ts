@@ -4,8 +4,7 @@ export type DropLast<A extends any[]> = number extends A['length']
     ? never[]
     : (A['length'] extends 1
       ? never[]
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      : (A extends [...infer Heads, infer Last]
+      : (A extends [...infer Heads, any]
         ? Heads
         : never
       ))
