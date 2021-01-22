@@ -225,6 +225,24 @@ You need to specify `T`.
 
 `isType<T>(subject, Class)`:
 
+`isType.true<T>(subject?: T)`:
+
+✔️ `immediate`
+✔️ `runtime`
+
+It can used as type check: `isType.true<Equal<A, B>>()`,
+or value type check: `isType.true(valueTypeIsTrue)`.
+It returns `true` when passes (which is the only case when used in TypeScript).
+
+`isType.false<T>(subject?: T)`:
+
+✔️ `immediate`
+✔️ `runtime`
+
+It can used as type check: `isType.false<Equal<A, B>>()`,
+or value type check: `isType.false(valueTypeIsFalse)`.
+It returns `true` when passes (which is the only case when used in TypeScript).
+
 ✔️ `type guard`, `runtime`
 
 These overloads of `isType` allows you to specify a `validator`.

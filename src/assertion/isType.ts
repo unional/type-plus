@@ -15,9 +15,9 @@ export function isType(subject: any, validator?: any) {
 
 const sym = Symbol()
 
-isType.true = function <S extends true>(subject: S = sym as any) {
+isType.true = function <T extends true>(subject: T = sym as any) {
   return (subject as any) === sym || subject === true
 }
-isType.false = function <S extends false>(subject: S = sym as any) {
+isType.false = function <T extends false>(subject: T = sym as any) {
   return (subject as any) === sym || subject === false
 }
