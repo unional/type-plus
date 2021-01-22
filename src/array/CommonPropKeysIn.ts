@@ -7,7 +7,9 @@ export type CommonPropKeysIn<A extends Record<string, unknown>[]> = A['length'] 
   ? never
   : (A['length'] extends 1
     ? keyof A[0]
-    : keyof A[0] & CommonPropKeysIn<Tail<A>>)
+    : (A['length'] extends 2
+      ? keyof A[0] & keyof A[1]
+      : keyof A[0] & keyof A[1] & CommonPropKeysIn<Tail<Tail<A>>>))
 
 /**
  * @deprecated renamed to CommonPropKeysIn
