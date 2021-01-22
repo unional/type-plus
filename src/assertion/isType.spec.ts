@@ -1,4 +1,4 @@
-import { assertType, isType } from '..'
+import { assertType, Equal, isType } from '..'
 
 describe('isType()', () => {
   describe('without validator', () => {
@@ -57,5 +57,41 @@ describe('isType()', () => {
       if (isType<boolean>(s, s => typeof s === 'boolean'))
         assertType<boolean>(s)
     })
+  })
+})
+
+describe('isType.true()', () => {
+  test('accept true type but not false or boolean', () => {
+    expect(isType.true<true>()).toBe(true)
+    expect(isType.true<Equal<1, 1>>()).toBe(true)
+
+    // these fails
+    // isType.true<false>()
+    // isType.true<boolean>()
+  })
+  test('accept value with type true but not false or boolean', () => {
+    expect(isType.true(true)).toBe(true)
+
+    // these fails
+    // isType.true(false)
+    // isType.true(1 === 1)
+  })
+})
+
+describe('isType.false()', () => {
+  test('accept false type but not true or boolean', () => {
+    expect(isType.false<false>()).toBe(true)
+    expect(isType.false<Equal<1, 2>>()).toBe(true)
+
+    // these fails
+    // isType.false<true>()
+    // isType.false<boolean>()
+  })
+  test('accept value with type true but not false or boolean', () => {
+    expect(isType.false(false)).toBe(true)
+
+    // these fails
+    // isType.false(true)
+    // isType.false(1 !== 1)
   })
 })
