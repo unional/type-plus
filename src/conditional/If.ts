@@ -1,1 +1,5 @@
-export type If<Cond extends boolean, Then, Else> = Cond extends true ? Then : Else
+export type If<
+  Condition extends boolean,
+  Then = true,
+  Else = false
+  > = Condition extends true ? Then : Else
