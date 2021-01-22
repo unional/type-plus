@@ -7,6 +7,7 @@ export * from './conditional'
 export * from './function'
 export * from './functional'
 export * from './JSONTypes'
+export * from './math'
 export * from './nominal-types'
 export * from './object'
 export * from './PrimitiveTypes'
@@ -16,4 +17,3 @@ export * from './types/required'
 export * from './UnionKeys'
 export * from './utils'
 export { types, types as T }
-
