@@ -384,6 +384,7 @@ These utilities includes utility types and type adjusted functions.
 ### Array function
 
 - `CommonKeys<A>`: gets common keys inside the records in the array `A`.
+- `Concat<A, B>`: concats `A` and `B`.
 - `DropFirst<A>`: drops the first value type of `A`.
 - `DropLast<A>`: drops the last value type of `A`.
 - `Filter<A, Criteria>`: gets array of types satisfying `Criteria` in `A`.

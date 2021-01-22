@@ -1,4 +1,5 @@
 export * from './CommonPropKeysIn'
+export * from './Concat'
 export * from './DropFirst'
 export * from './DropLast'
 export * from './Filter'
