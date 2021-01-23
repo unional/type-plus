@@ -243,6 +243,13 @@ It can used as type check: `isType.false<Equal<A, B>>()`,
 or value type check: `isType.false(valueTypeIsFalse)`.
 It returns `true` when passes (which is the only case when used in TypeScript).
 
+`isType.equal<true|false, A, B>()`:
+
+✔️ `immediate`
+
+Slightly easier to use then `isType.true<>()` and `isType.false<>()`,
+when doing type level only equality comparison as you don't have to import `Equal<>`.
+
 ✔️ `type guard`, `runtime`
 
 These overloads of `isType` allows you to specify a `validator`.
