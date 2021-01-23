@@ -489,6 +489,7 @@ So you may encounter some weird behavior if your logic is complex.
 
 ### Math
 
+- `Add<A, B>`: add two number literals.
 - `IsPositive<N>`: test `N` is positive number literal. `number` type is not considered as positive.
 - `IsWhole<N>`: test `N` is whole number literal. `number` type is not considered as whole.
 
