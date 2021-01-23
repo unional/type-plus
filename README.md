@@ -497,6 +497,7 @@ So you may encounter some weird behavior if your logic is complex.
 - `Increment<A>`: alias of `Add<A, 1>`.
 - `IsPositive<N>`: test `N` is positive number literal. `number` type is not considered as positive.
 - `IsWhole<N>`: test `N` is whole number literal. `number` type is not considered as whole.
+- `Max<A, B, Fail=never>`: max of `A` and `B`. Only support positive and whole number or `Fail` otherwise.
 
 ### Utility Functions
 
