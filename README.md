@@ -471,8 +471,9 @@ They can be used to compose complex types.
 - `HasKey<T, K>`: predicate type checking `T` has key `K`.
 - `IsAny<T>`: `T === any`.
 - `IsDisjoint<A, B>`: is `A` and `B` is a disjoint set.
+- `IsLiteral<T>`: is `T` a literal type (literal string or number).
 
-### Logical
+#### Logical
 
 - `If<Condition, Then = true, Else = false>`: if statement.
 - `And<A, B>`: logical `AND`.
