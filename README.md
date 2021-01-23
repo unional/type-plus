@@ -403,6 +403,7 @@ These utilities includes utility types and type adjusted functions.
 - `literalArray(...entries)`: return an array those items are restricted to the provided literals.
 - `reduceWhile()`: `reduce()` with predicate for early termination. \
   A simple version of the same function in the `ramda` package.
+- `Reverse<A>()`: reverses the order or `A`.
 - `Tail<A>`: gets the remaining entries in the array except the first.
 - `UnionOfProps<A, K>`: gets the union of `A[K]` types
 - `UnionOfValues<A>`: gets the union of value types in `A`.
