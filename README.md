@@ -468,6 +468,7 @@ Type predicates are type alias that returns `true` or `false`.
 They can be used to compose complex types.
 
 - `HasKey<T, K>`: predicate type checking `T` has key `K`.
+- `IsAny<T>`: `T === any`.
 - `IsDisjoint<A, B>`: is `A` and `B` is a disjoint set.
 
 ### Logical
@@ -489,7 +490,7 @@ So you may encounter some weird behavior if your logic is complex.
 
 ### Math
 
-- `Add<A, B>`: add two number literals.
+- `Add<A, B>`: add two number literals, currently designed to only work with positive number.
 - `Increment<A>`: alias of `Add<A, 1>`.
 - `IsPositive<N>`: test `N` is positive number literal. `number` type is not considered as positive.
 - `IsWhole<N>`: test `N` is whole number literal. `number` type is not considered as whole.
