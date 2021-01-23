@@ -95,3 +95,12 @@ describe('isType.false()', () => {
     // isType.false(1 !== 1)
   })
 })
+
+describe('isType.equal()', () => {
+  test('true case', () => {
+    isType.equal<true, 1, 1>()
+  })
+  test('false case', () => {
+    isType.equal<false, '1', 1>()
+  })
+})
