@@ -23,11 +23,13 @@ test('same number', () => {
 test('same number of digits', () => {
   isType.equal<true, 124, Max<123, 124>>()
   isType.equal<true, 126, Max<126, 124>>()
+  isType.equal<true, 224, Max<126, 224>>()
+  isType.equal<true, 726, Max<726, 224>>()
 })
 
 test('more digits win', () => {
-  isType.equal<true, 123, Max<123, 12>>()
-  isType.equal<true, 123, Max<12, 123>>()
+  isType.equal<true, 123, Max<123, 22>>()
+  isType.equal<true, 223, Max<12, 223>>()
   isType.equal<true, 1234567891011, Max<1234567891011, 123>>()
   isType.equal<true, 1234567891011, Max<123, 1234567891011>>()
 })
