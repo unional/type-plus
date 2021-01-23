@@ -1,5 +1,4 @@
-import { assertType, Equal, Tail } from '..'
-import { isType } from '../assertion'
+import { isType, Tail } from '..'
 
 test('get tail types', () => {
   type S = [1, 'a', 'b']
