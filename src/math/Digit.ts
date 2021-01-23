@@ -1,3 +1,7 @@
+import { And } from '../conditional'
+import { IsPositive } from './IsPositive'
+import { IsWhole } from './IsWhole'
+
 export namespace Digit {
   export type ToTuple = {
     [k in number]: any[]
@@ -25,18 +29,16 @@ export namespace Digit {
 }
 
 export namespace DigitArray {
+  export type ToNumber<C extends number[]> = ToTuple<[], C>['length']
 
-
-  export type ToNumber<C extends number[]> = ToState<[], C>['length']
-
-  type ToState<R extends any[], S extends number[]> = (
+  type ToTuple<R extends any[], S extends number[]> = (
     S['length'] extends 0
     ? R
     : (S['length'] extends 1
       ? [...R, ...Digit.ToTuple[S[0]]]
       : (S extends [any, ...infer T]
         ? (T extends any[]
-          ? ToState<Multi10<[...R, ...Digit.ToTuple[S[0]]]>, T>
+          ? ToTuple<Multi10<[...R, ...Digit.ToTuple[S[0]]]>, T>
           : never)
         : never
       )
@@ -62,7 +64,3 @@ export namespace DigitArray {
     : S extends `0${infer L}` ? [0, ...StringToDigitArray<L>]
     : []
 }
-
-import { And } from '../conditional'
-import { IsPositive } from './IsPositive'
-import { IsWhole } from './IsWhole'
