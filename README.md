@@ -402,6 +402,7 @@ These utilities includes utility types and type adjusted functions.
 - `IntersectOfProps<A, K>`: gets the intersect of `A[K]` types
 - `IsArray<T>`: `logical` predicate for `Array`.
 - `literalArray(...entries)`: return an array those items are restricted to the provided literals.
+- `PadLeft<A, Total, PadWith>`: pads `A` with `PadWith` if the length of `A` is less than `L`.
 - `reduceWhile()`: `reduce()` with predicate for early termination. \
   A simple version of the same function in the `ramda` package.
 - `Reverse<A>()`: reverses the order or `A`.
