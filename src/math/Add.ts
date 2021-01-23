@@ -4,7 +4,6 @@ import { Digit, DigitArray } from './Digit'
 import { IsPositive } from './IsPositive'
 import { IsWhole } from './IsWhole'
 
-
 /**
  * Add two number literals.
  */
@@ -37,3 +36,8 @@ type AddDigitArray<A extends number[], B extends number[]> = (
 )
 
 type AddDigit<A extends number, B extends number> = [...Digit.ToTuple[A], ...Digit.ToTuple[B]]['length']
+
+/**
+ * Increment `A` by 1.
+ */
+export type Increment<A extends number> = Add<A, 1>
