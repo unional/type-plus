@@ -495,12 +495,18 @@ So you may encounter some weird behavior if your logic is complex.
 
 ### Math
 
-- `Add<A, B>`: add two number literals, currently designed to only work with positive number.
-- `GreaterThan<A, B, Fail=never>`: `A > B` for positive and whole number, `Fail` otherwise.
-- `Increment<A>`: alias of `Add<A, 1>`.
 - `IsPositive<N>`: test `N` is positive number literal. `number` type is not considered as positive.
 - `IsWhole<N>`: test `N` is whole number literal. `number` type is not considered as whole.
 - `Max<A, B, Fail=never>`: `max(A, B)`, for positive and whole number, `Fail` otherwise.
+- `GreaterThan<A, B, Fail=never>`: `A > B` for positive and whole numbers, `Fail` otherwise.
+
+#### Arithmetics
+
+- `Add<A, B, Fail=never>`: `A + B` for positive and whole numbers, `Fail` otherwise.
+- `Subtract<A, B, Fail=never>`: `A - B` for positive and whole numbers, `Fail` otherwise.\
+  Negative result also returns `Fail`.
+- `Increment<A>`: alias of `Add<A, 1>`.
+- `Decrement<A>`: alias of `Subtract<A, 1>`.
 
 ### Utility Functions
 
