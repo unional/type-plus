@@ -552,6 +552,16 @@ Some of the code in this library are created by other people in the TypeScript c
 I merely adding them in and may be making some adjustments.
 When ever possible, I add attribution to the person who created those code in the file.
 
+### Similar projects
+
+- [`ts-essentials`](https://github.com/krzkaczor/ts-essentials), all essential TypeScript types in one place.
+- [`ts-toolbelt`](https://github.com/pirix-gh/ts-toolbelt), a more mature type lib.
+- [`type-fest](https://github.com/sindresorhus/type-fest), a collection of essential TypeScript types.
+- [`type-zoo`](https://github.com/pelotom/type-zoo), a modest type lib usable today.
+- [`typepark`](https://github.com/kgtkr/typepark), a new type collection offering tuple manipulation and `Pipe`.
+- [`typelevel-ts`](https://github.com/gcanti/typelevel-ts), a type lib by [@gcanti](https://github.com/gcanti), author of several FP libs in TS.
+- [`typical`](https://github.com/KiaraGrouwstra/typical), a playground of type-level operations for TypeScript.
+
 ## Contribute
 
 ```sh
