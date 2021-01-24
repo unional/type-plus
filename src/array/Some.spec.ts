@@ -51,6 +51,10 @@ test('string', () => {
 })
 
 test('strict mode ensure number boolean string does not match literals', () => {
+  isType.equal<true, true, Some<[boolean], boolean, 'strict'>>()
+  isType.equal<true, true, Some<[number], number, 'strict'>>()
+  isType.equal<true, true, Some<[string], string, 'strict'>>()
+
   isType.equal<true, false, Some<['a', true], boolean, 'strict'>>()
   isType.equal<true, false, Some<['a', 1], number, 'strict'>>()
   isType.equal<true, false, Some<[1, 2, 3, 'a'], string, 'strict'>>()
