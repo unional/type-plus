@@ -556,7 +556,7 @@ When ever possible, I add attribution to the person who created those code in th
 
 - [`ts-essentials`](https://github.com/krzkaczor/ts-essentials), all essential TypeScript types in one place.
 - [`ts-toolbelt`](https://github.com/millsp/ts-toolbelt), a more mature type lib.
-- [`type-fest](https://github.com/sindresorhus/type-fest), a collection of essential TypeScript types.
+- [`type-fest`](https://github.com/sindresorhus/type-fest), a collection of essential TypeScript types.
 - [`type-zoo`](https://github.com/pelotom/type-zoo), a modest type lib usable today.
 - [`typepark`](https://github.com/kgtkr/typepark), a new type collection offering tuple manipulation and `Pipe`.
 - [`typelevel-ts`](https://github.com/gcanti/typelevel-ts), a type lib by [@gcanti](https://github.com/gcanti), author of several FP libs in TS.
