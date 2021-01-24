@@ -399,8 +399,8 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 
 ### Array function
 
-- `CommonKeys<A>`: gets common keys inside the records in the array `A`.
-- `Concat<A, B>`: concats `A` and `B`.
+- `CommonPropKeys<A>`: gets common keys inside the records in the array `A` (deprecate `CommonKeys`).
+- `Concat<A, B>`: `[...A, ...B]`.
 - `CreateTuple<L, T>`: creates `Tuple<T>` with `L` number of elements.
 - `DropFirst<A>`: drops the first value type of `A`.
 - `DropLast<A>`: drops the last value type of `A`.
@@ -408,17 +408,17 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 - `FindFirst<A, Criteria>`: gets first type satisfying `Criteria`.
 - `FindLast<A, Criteria>`: gets last type satisfying `Criteria`.
 - `Head<A>`: gets the first entry in the array.
-- `IntersectOfProps<A, K>`: gets the intersect of `A[K]` types
+- `IntersectOfProps<A, K>`: gets the intersect of `A[K]` types (deprecate `MapToProp`)
 - `IsArray<T>`: `logical` predicate for `Array`.
 - `literalArray(...entries)`: return an array those items are restricted to the provided literals.
 - `PadLeft<A, Total, PadWith>`: pads `A` with `PadWith` if the length of `A` is less than `L`.
 - `reduceWhile()`: `reduce()` with predicate for early termination. \
   A simple version of the same function in the `ramda` package.
-- `Reverse<A>`: reverses the order or `A`.
+- `Reverse<A>`: reverses the order of `A`.
 - `Some<A, Criteria>`: true if some elements in `A` matches `Criteria`.
 - `Tail<A>`: gets the remaining entries in the array except the first.
-- `UnionOfProps<A, K>`: gets the union of `A[K]` types
-- `UnionOfValues<A>`: gets the union of value types in `A`.
+- `UnionOfProps<A, K>`: gets the union of `A[K]` types (deprecate `PropUnion`).
+- `UnionOfValues<A>`: gets the union of value types in `A` (deprecate `ArrayValue`).
 
 ### Constant Types
 
@@ -505,7 +505,7 @@ So you may encounter some weird behavior if your logic is complex.
 ### Math
 
 - `IsPositive<N>`: test `N` is positive number literal. `number` type is not considered as positive.
-- `IsWhole<N>`: test `N` is whole number literal. `number` type is not considered as whole.
+- `IsWhole<N>`: test `N` is whole number literal. `number` type is not considered as whole number.
 - `Max<A, B, Fail=never>`: `max(A, B)`, for positive and whole number, `Fail` otherwise.
 - `GreaterThan<A, B, Fail=never>`: `A > B` for positive and whole numbers, `Fail` otherwise.
 
