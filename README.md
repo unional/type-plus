@@ -505,8 +505,8 @@ So you may encounter some weird behavior if your logic is complex.
 - `Add<A, B, Fail=never>`: `A + B` for positive and whole numbers, `Fail` otherwise.
 - `Subtract<A, B, Fail=never>`: `A - B` for positive and whole numbers, `Fail` otherwise.\
   Negative result also returns `Fail`.
-- `Increment<A>`: alias of `Add<A, 1>`.
-- `Decrement<A>`: alias of `Subtract<A, 1>`.
+- `Increment<A, Fail=never>`: alias of `Add<A, 1, Fail>`.
+- `Decrement<A, Fail=never>`: alias of `Subtract<A, 1, Fail>`.
 
 ### Utility Functions
 

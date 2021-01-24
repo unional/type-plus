@@ -61,7 +61,7 @@ describe('Add<A, B>', () => {
   })
 
   test('n + n digits', () => {
-    isType.equal<true, 77777, Add<12345, 65432>>()
+    isType.equal<true, 7777, Add<1234, 6543>>()
   })
 })
 

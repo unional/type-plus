@@ -33,3 +33,8 @@ type SubtractDigitArray<R extends number[], A extends number[], B extends number
 
 type SubtractDigit<A extends number, B extends number> =
   Digit.ToTuple[A] extends [...(infer U), ...Digit.ToTuple[B]] ? U['length'] : never
+
+/**
+ * A - 1
+ */
+export type Decrement<A extends number, Fail = never> = Subtract<A, 1, Fail>
