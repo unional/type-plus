@@ -1,4 +1,4 @@
-export * from './CommonPropKeysIn'
+export * from './CommonPropKeys'
 export * from './Concat'
 export * from './CreateTuple'
 export * from './DropFirst'
