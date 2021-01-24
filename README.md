@@ -405,7 +405,8 @@ These utilities includes utility types and type adjusted functions.
 - `PadLeft<A, Total, PadWith>`: pads `A` with `PadWith` if the length of `A` is less than `L`.
 - `reduceWhile()`: `reduce()` with predicate for early termination. \
   A simple version of the same function in the `ramda` package.
-- `Reverse<A>()`: reverses the order or `A`.
+- `Reverse<A>`: reverses the order or `A`.
+- `Some<A, Criteria>`: true if some elements in `A` matches `Criteria`.
 - `Tail<A>`: gets the remaining entries in the array except the first.
 - `UnionOfProps<A, K>`: gets the union of `A[K]` types
 - `UnionOfValues<A>`: gets the union of value types in `A`.
@@ -471,7 +472,7 @@ They can be used to compose complex types.
 
 - `HasKey<T, K>`: predicate type checking `T` has key `K`.
 - `IsAny<T>`: `T === any`.
-- `IsBoolean<T>`: true for `boolean`, but not `true` or `false`.
+- `IsBoolean<T>`: true for `boolean`, but not for `true` nor `false`.
 - `IsDisjoint<A, B>`: is `A` and `B` is a disjoint set.
 - `IsLiteral<T>`: is `T` a literal type (literal string or number).
 
