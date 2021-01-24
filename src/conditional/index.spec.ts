@@ -1,3 +1,4 @@
+import { IsBoolean } from '.'
 import { IsLiteral, isType } from '..'
 
 describe('IsLiteral<T>', () => {
@@ -18,4 +19,10 @@ describe('IsLiteral<T>', () => {
     isType.equal<true, true, IsLiteral<'1'>>()
     isType.equal<true, true, IsLiteral<'abc'>>()
   })
+})
+
+test('IsBoolean<T>', () => {
+  isType.equal<true, true, IsBoolean<boolean>>()
+  isType.equal<true, false, IsBoolean<false>>()
+  isType.equal<true, false, IsBoolean<true>>()
 })
