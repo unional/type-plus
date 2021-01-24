@@ -388,6 +388,15 @@ nominalMatch(b1, b2) // false
 `type-plus` also provides additional type utilities.
 These utilities includes utility types and type adjusted functions.
 
+Note that most `predicate` types (such as `IsAny<>`) have a `Then` and `Else` that you can override.
+
+e.g.:
+
+```ts
+type Yes = IsAny<any, 'yes', 'no'> // 'yes'
+type No = IsAny<1, 'yes', 'no'> // 'no'
+```
+
 ### Array function
 
 - `CommonKeys<A>`: gets common keys inside the records in the array `A`.
@@ -472,9 +481,9 @@ They can be used to compose complex types.
 
 - `HasKey<T, K>`: predicate type checking `T` has key `K`.
 - `IsAny<T>`: `T === any`.
-- `IsBoolean<T, Then=true, Else=false>`: check for `boolean`, but not for `true` nor `false`.
+- `IsBoolean<T>`: check for `boolean`, but not for `true` nor `false`.
 - `IsDisjoint<A, B>`: is `A` and `B` is a disjoint set.
-- `IsLiteral<T, Then=true, Else=false>`: is `T` a literal type (literal string or number).
+- `IsLiteral<T>`: is `T` a literal type (literal string or number).
 
 #### Logical
 

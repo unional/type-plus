@@ -1,1 +1,1 @@
-export type IsArray<T> = T extends any[] ? true : false
+export type IsArray<T, Then = true, Else = false> = T extends any[] ? Then : Else
