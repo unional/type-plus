@@ -7,8 +7,10 @@ import { IsWhole } from './IsWhole'
 import { Max } from './Max'
 
 export type GreaterThan<A extends number, B extends number, Fail = never> =
-  And<IsPositive<A>, IsWhole<A>> extends false ? Fail :
-  And<IsPositive<B>, IsWhole<B>> extends false ? Fail :
+  And<
+    And<IsPositive<A>, IsWhole<A>>,
+    And<IsPositive<B>, IsWhole<B>>
+  > extends false ? Fail :
   number extends A ? Fail :
   number extends B ? Fail :
   Equal<A, B> extends true ? false :
@@ -29,9 +31,7 @@ type GreaterThanOnPositiveWhole<A extends number, B extends number> = (
 )
 
 type GreaterThanOnDigitArray<DA extends number[], DB extends number[]> = (
-  Equal<DA['length'], DB['length']> extends true ?
   Equal<Head<DA>, Head<DB>> extends true ?
   GreaterThanOnDigitArray<Tail<DA>, Tail<DB>> extends Tail<DA> ? true : false :
-  Digit.GreaterThan<Head<DA>, Head<DB>> extends true ? true : false :
-  GreaterThanOnPositiveWhole<DA['length'], DB['length']> extends DA['length'] ? true : false
+  Digit.GreaterThan<Head<DA>, Head<DB>> extends true ? true : false
 )
