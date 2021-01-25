@@ -1,8 +1,9 @@
-import { Reverse } from '../array'
+import { PadLeft } from '../array'
 import { And } from '../conditional'
 import { Digit, DigitArray } from './Digit'
 import { IsPositive } from './IsPositive'
 import { IsWhole } from './IsWhole'
+import { Max } from './Max'
 
 /**
  * Add two number literals.
@@ -12,12 +13,17 @@ export type Add<A extends number, B extends number, Fail = never> =
     And<IsPositive<A>, IsWhole<A>>,
     And<IsPositive<B>, IsWhole<B>>
   > extends false ? Fail :
-  DigitArray.ToNumber<
-    Reverse<AddDigitArray<
-      Reverse<DigitArray.FromNumber<A>>,
-      Reverse<DigitArray.FromNumber<B>>
-    >>
-  >
+  DigitArray.FromNumber<A> extends infer DA ? DA extends number[] ?
+  DigitArray.FromNumber<B> extends infer DB ? DB extends number[] ?
+  Max<DA['length'], DB['length']> extends infer M ? M extends number ?
+  PadLeft<DA, M, 0> extends infer PDA ? PDA extends number[] ?
+  PadLeft<DB, M, 0> extends infer PDB ? PDB extends number[] ?
+  DigitArray.ToNumber<AddDigitArray<PDA, PDB>>
+  : Fail : Fail
+  : Fail : Fail
+  : Fail : Fail
+  : Fail : Fail
+  : Fail : Fail
 
 type AddDigitArray<A extends number[], B extends number[]> = (
   A extends [any, ...infer ATail] ?
