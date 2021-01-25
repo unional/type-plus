@@ -4,6 +4,12 @@ test('empty array', () => {
   isType.equal<true, false, Some<[], any>>()
 })
 
+test('typed array', () => {
+  isType.equal<true, true, Some<string[], any>>()
+  isType.equal<true, true, Some<string[], string>>()
+  isType.equal<true, false, Some<string[], number>>()
+})
+
 test('contain single returns true', () => {
   isType.equal<true, true, Some<['a', 1], 1>>()
 })
@@ -50,12 +56,24 @@ test('string', () => {
   isType.equal<true, false, Some<[1, 2, 3, 'a'], 'ab'>>()
 })
 
-test('strict mode ensure number boolean string does not match literals', () => {
-  isType.equal<true, true, Some<[boolean], boolean, 'strict'>>()
-  isType.equal<true, true, Some<[number], number, 'strict'>>()
-  isType.equal<true, true, Some<[string], string, 'strict'>>()
+describe('strict mode', () => {
+  test('ensure number boolean string does not match literals', () => {
+    isType.equal<true, true, Some<[boolean], boolean, 'strict'>>()
+    isType.equal<true, true, Some<[number], number, 'strict'>>()
+    isType.equal<true, true, Some<[string], string, 'strict'>>()
 
-  isType.equal<true, false, Some<['a', true], boolean, 'strict'>>()
-  isType.equal<true, false, Some<['a', 1], number, 'strict'>>()
-  isType.equal<true, false, Some<[1, 2, 3, 'a'], string, 'strict'>>()
+    isType.equal<true, false, Some<['a', true], boolean, 'strict'>>()
+    isType.equal<true, false, Some<['a', 1], number, 'strict'>>()
+    isType.equal<true, false, Some<[1, 2, 3, 'a'], string, 'strict'>>()
+  })
+
+  test('typed array', () => {
+    isType.equal<true, true, Some<boolean[], boolean, 'strict'>>()
+    isType.equal<true, true, Some<number[], number, 'strict'>>()
+    isType.equal<true, true, Some<string[], string, 'strict'>>()
+
+    isType.equal<true, false, Some<true[], boolean, 'strict'>>()
+    isType.equal<true, false, Some<1[], number, 'strict'>>()
+    isType.equal<true, false, Some<'a'[], string, 'strict'>>()
+  })
 })
