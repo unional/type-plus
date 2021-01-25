@@ -1,4 +1,4 @@
-import { mapProperties } from './mapProperties'
+import { mapProperties } from '..'
 
 test('basic usage', () => {
   const actual = mapProperties({ a: 1, b: 2 }, (v, k) => k + (v * 2))

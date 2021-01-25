@@ -1,4 +1,4 @@
-import { AnyConstructor } from './AnyConstructor'
+import { AnyConstructor } from '..'
 
 test('basic', () => {
   const a: AnyConstructor = function () { } as any

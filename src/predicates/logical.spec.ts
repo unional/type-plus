@@ -1,6 +1,4 @@
-import { And, assertType, Not, Or } from '..'
-import { Equal } from '../assertion'
-import { Xor } from './logical'
+import { And, assertType, Equal, Not, Or, Xor } from '..'
 
 describe('And<A,B>', () => {
   test('basic', () => {

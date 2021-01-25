@@ -1,5 +1,4 @@
-import { assertType } from '../assertion'
-import { KeysWithDiffType } from './KeysWithDiffType'
+import { assertType, KeysWithDiffType } from '..'
 
 test('disjoint type gets never', () => {
   type A = { a: 1 }

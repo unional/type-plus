@@ -1,10 +1,9 @@
-import { assertType } from '..'
-import { If } from './If'
+import { If, isType } from '..'
 
 test('true gets Then', () => {
-  assertType<If<true, 2, 3>>(2)
+  isType.equal<true, 2, If<true, 2, 3>>()
 })
 
 test('false gets Else', () => {
-  assertType<If<false, 2, 3>>(3)
+  isType.equal<true, 3, If<false, 2, 3>>()
 })
