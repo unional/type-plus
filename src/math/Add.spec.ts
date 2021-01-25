@@ -69,4 +69,7 @@ describe('Increment<A>', () => {
   test('add 1', () => {
     isType.equal<true, 1, Increment<0>>()
   })
+  test('work with large number', () => {
+    isType.equal<true, 7777, Increment<7776>>()
+  })
 })

@@ -3,7 +3,6 @@ import fs from 'fs'
 import path from 'path'
 import { T, O } from '..'
 
-const rules = O.record.create(O.string.create('error'))
 const eslint = T.object.create({
   env: O.object.create({
     es6: O.boolean
@@ -22,10 +21,10 @@ const eslint = T.object.create({
     T.object.create({
       files: O.array.create(O.string),
       processor: O.string,
-      rules
+      rules: O.record.create(O.string.create('error'))
     })
   ),
-  rules
+  rules: O.record.create(O.string.create('error'))
 })
 
 baseline('fixtures/eslint', ({ caseName, caseFolder }) => {
@@ -33,7 +32,5 @@ baseline('fixtures/eslint', ({ caseName, caseFolder }) => {
     const config = JSON.parse(fs.readFileSync(`${path.join(caseFolder, caseName)}`, 'utf-8'))
 
     if (!T.satisfy(eslint, config)) fail('should satisfy')
-    config.parseOptions?.ecmaVersion
-    config.rules
   })
 })
