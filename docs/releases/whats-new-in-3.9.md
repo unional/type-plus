@@ -17,7 +17,7 @@ Let's dig in!
 ## Positive Number Arithmetics
 
 TypeScript does not support type-level arithmetics out of the box.
-But arithmetics is a very fundamental tools to enable efficient type computation.
+But arithmetics is a very fundamental tool to enable efficient type computation.
 
 Because of that, there were several implementations out there for this.
 The typical mechanisms are string-based literals, lookup table, and/or recursion.
@@ -38,37 +38,36 @@ So creating numeric literal `77777` requires a tuple of size `77777` to be creat
 On my laptop, `Add<1234, 6543>` takes 1 second,
 `Add<12345, 65432>` takes 5 seconds, and `Add<500000, 1>` takes 120 seconds.
 
-Also, this calculation need to take place every time you change code in your project.
+Also, this calculation needs to take place every time you change code in your project.
 So limiting the calculation to 3-4 digits is preferred.
 
-In practice, 3-4 digits should be sufficient in most use cases.
+In practice, 3-4 digits should be sufficient in most cases.
 If you need more digits, I can add a string based version in the future.
 
 Other math related feature added:
 
-- `IsPositive<N>`: test `N` is positive number literal. `number` type is not considered as positive.
-- `IsWhole<N>`: test `N` is whole number literal. `number` type is not considered as whole number.
+- `IsPositive<N>`: is `N` a positive number literal. `IsPositive<number>` returns `false`.
+- `IsWhole<N>`: is `N` a whole number literal. `IsWhole<number>` returns `false`.
 - `Max<A, B, Fail=never>`: `max(A, B)`, for positive and whole number, `Fail` otherwise.
 - `GreaterThan<A, B, Fail=never>`: `A > B` for positive and whole numbers, `Fail` otherwise.
 - `Increment<A, Fail=never>`: alias of `Add<A, 1, Fail>`.
 - `Decrement<A, Fail=never>`: alias of `Subtract<A, 1, Fail>`.
 
-One note to `Subtract<>` and `Decrement<>`:
+One note to `Subtract<A, B>` and `Decrement<A>`:
 If the result is negative, you will get the `Fail` value, which defaults to `never`.
 
 ## `isType` Enhancements
 
-when writing type-level tests, I found myself do the following most of the time:
+Before 3.9, when writing type-level tests you can do this:
 
 ```ts
 assertType.isTrue(true as Equal<A, B>)
 assertType.isFalse(false as SomePredicate<A>)
 ```
 
-This is quite verbose and not using the assertion capability of `assertType` anyway.
+This is quite verbose and not using the assertion capability of `assertType`.
 
-Because of that, I have added `isType.true()`, `isType.false()`, and `isType.equal()`,
-so now you can do:
+In 3.9, I have added `isType.true()`, `isType.false()`, and `isType.equal()` so now you can do:
 
 ```ts
 isType.true<SomePredicate<A>>()
@@ -80,9 +79,9 @@ isType.equal<false, A, B>()
 ## Array Manipulations
 
 In order to add [positive number arithmetics](#positive-number-arithmetics),
-Many common array manipulation types are added.
+many common array manipulation types are added.
 
-They pretty much behave as what you expected. Hurray to abstractions! 👏👏
+They pretty much behave like what you expected. Hurray to abstractions! 👏👏
 
 - `CreateTuple<L, T>`: creates `Tuple<T>` with `L` number of elements.
 - `Concat<A, B>`: `[...A, ...B]`.
@@ -106,13 +105,16 @@ Beside that, most type predicates in `type-plus` have added the optional `Then` 
 That means now you can override the result and/or chain operations:
 
 ```ts
-type R = HasKey<A, 'a', 1, 2> // returns 1 if A has key 'a' and 2 otherwise
-type C = HasKey<A, 'a', Equal<A['a'], 123>> // chaining
+// returns A if A has key 'a' or never otherwise, making it like a `filter`.
+type R = HasKey<A, 'a', A, never>
+
+// chaining operations like an if statement
+type C = HasKey<A, 'a', Equal<A['a'], 123>>
 ```
 
 ## Renaming Types
 
-A few types gets a new name which better describe what they do.
+A few types get a new name which better describe what they do.
 The old names will be deprecated in 4.0 and subsequently removed.
 
 - `UnionOfProps<A, K>`: gets the union of `A[K]` types (deprecate `PropUnion`).
