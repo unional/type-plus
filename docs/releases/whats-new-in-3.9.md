@@ -102,14 +102,29 @@ Three new types `IsAny<T>`, `IsBoolean<T>`, `IsLiteral<T>` are added to do what 
 
 Beside that, most type predicates in `type-plus` have added the optional `Then` and `Else` clause so that you can override its behavior as needed.
 
-That means now you can override the result and/or chain operations:
+That means now you can override the result and/or use them like an if statement:
 
 ```ts
 // returns A if A has key 'a' or never otherwise, making it like a `filter`.
 type R = HasKey<A, 'a', A, never>
 
-// chaining operations like an if statement
+// like an if statement
 type C = HasKey<A, 'a', Equal<A['a'], 123>>
+```
+
+Note that overriding `Then` and `Else` will effectively execute the type regardless of the criteria,
+so there is a performance hit and you may not get what you wanted.
+In that case, fall back to the normal way:
+
+```ts
+type L = -1
+
+// Assume `CreateTuple<L>` did not check for L to be positive.
+// gets "Type instantiation is excessively deep and possibly infinite"
+IsPositive<L, CreateTuple<L>>
+
+// do this instead
+IsPositive<L> extends true ? CreateTuple<L> : never
 ```
 
 ## Renaming Types
