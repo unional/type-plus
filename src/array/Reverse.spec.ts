@@ -1,8 +1,11 @@
-import { Reverse } from '..'
-import { isType } from '../assertion'
+import { isType, Reverse } from '..'
 
 test('empty array gets itself', () => {
   isType.equal<true, [], Reverse<[]>>()
+})
+
+test('array type gets itself', () => {
+  isType.equal<true, string[], Reverse<string[]>>()
 })
 
 test('single element array gets itself', () => {
