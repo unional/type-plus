@@ -1,8 +1,7 @@
-import { KeysWithDiffType } from '.'
-import { Equal } from '../assertion'
-import { If } from '../conditional'
+import { Equal, If } from '../predicates'
 import { AnyRecord } from './AnyRecord'
 import { IsDisjoint } from './IsDisjoint'
+import { KeysWithDiffType } from './KeysWithDiffType'
 
 export type ANotB<A extends AnyRecord, B extends AnyRecord> =
   If<

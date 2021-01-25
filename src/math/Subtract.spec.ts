@@ -1,5 +1,4 @@
-import { isType } from '..'
-import { Subtract } from './Subtract'
+import { isType, Subtract } from '..'
 
 test('only support positive and whole number', () => {
   isType.equal<true, never, Subtract<0.1, 1>>()

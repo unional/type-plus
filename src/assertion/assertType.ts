@@ -1,4 +1,3 @@
-
 import { tersify } from 'tersify'
 import { AnyConstructor, isConstructor } from '../class'
 import { AnyFunction } from '../function'

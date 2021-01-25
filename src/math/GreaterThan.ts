@@ -1,6 +1,5 @@
 import { Head, PadLeft, Tail } from '../array'
-import { Equal } from '../assertion'
-import { And } from '../conditional'
+import { And, Equal } from '../predicates'
 import { Digit, DigitArray } from './Digit'
 import { IsPositive } from './IsPositive'
 import { IsWhole } from './IsWhole'

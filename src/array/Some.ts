@@ -1,5 +1,4 @@
-import { Equal } from '../assertion'
-import { If } from '../conditional'
+import { Equal, If } from '../predicates'
 import { Tail } from './Tail'
 import { UnionOfValues } from './UnionOfValues'
 

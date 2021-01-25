@@ -1,5 +1,4 @@
-import { isType } from '../assertion'
-import { GreaterThan } from './GreaterThan'
+import { GreaterThan, isType } from '..'
 
 test('only support positive and whole number', () => {
   isType.equal<true, never, GreaterThan<0.1, 1>>()

@@ -1,5 +1,4 @@
-import { Equal } from '../assertion'
-import { IsAny } from '../type-predicates'
+import { Equal, IsAny } from '../predicates'
 import { CreateTuple } from './CreateTuple'
 import { UnionOfValues } from './UnionOfValues'
 

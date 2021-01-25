@@ -1,6 +1,5 @@
-import { Equal } from '../assertion'
-import { If } from '../conditional'
 import { Brand } from '../nominal-types'
+import { Equal, If } from '../predicates'
 import { Widen } from '../utils'
 
 export type Maybe<T> = Just<T> | None<T>

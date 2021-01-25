@@ -1,7 +1,4 @@
-import { assertType, Pick, pick } from '..'
-import { canAssign, Equal } from '../assertion'
-// import { typeAssert } from './assertType'
-// import { assignability } from './assignability'
+import { assertType, canAssign, Equal, Pick, pick } from '..'
 
 test('pick properties from object', () => {
   const actual = pick({ a: 1, b: 2 }, 'a')
