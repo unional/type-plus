@@ -15,3 +15,7 @@ test('multiple elements', () => {
 test('override element type', () => {
   isType.equal<true, [1, 1, 1, 1, 1], CreateTuple<5, 1>>()
 })
+
+test('negative length gets never', () => {
+  isType.equal<true, never, CreateTuple<-1>>()
+})
