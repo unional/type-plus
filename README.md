@@ -506,8 +506,9 @@ So you may encounter some weird behavior if your logic is complex.
 
 ### Math
 
-- `IsPositive<N>`: test `N` is positive number literal. `number` type is not considered as positive.
-- `IsWhole<N>`: test `N` is whole number literal. `number` type is not considered as whole number.
+- `Abs<N, Fail=never>`: `Abs(N)`, `Abs<number>` returns `Fail`.
+- `IsPositive<N>`: is `N` a positive number literal. `IsPositive<number>` returns `false`.
+- `IsWhole<N>`: is `N` a whole number literal. `IsWhole<number>` returns `false`.
 - `Max<A, B, Fail=never>`: `max(A, B)`, for positive and whole number, `Fail` otherwise.
 - `GreaterThan<A, B, Fail=never>`: `A > B` for positive and whole numbers, `Fail` otherwise.
 
