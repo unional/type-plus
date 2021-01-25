@@ -1,7 +1,7 @@
 import { Tail } from './Tail'
 
 /**
- * Gets the common property keys of an array of records.
+ * Gets the common property keys of the elements in `A`.
  */
 export type CommonPropKeys<A extends Record<string, unknown>[]> = A['length'] extends 0
   ? never
@@ -12,6 +12,7 @@ export type CommonPropKeys<A extends Record<string, unknown>[]> = A['length'] ex
       : keyof A[0] & keyof A[1] & CommonPropKeys<Tail<Tail<A>>>))
 
 /**
- * @deprecated renamed to CommonPropKeys
+ * Gets the common property keys of the elements in `A`.
+ * This will be deprecated in 4.0. Please use CommonPropKeys instead.
  */
 export type CommonKeys<A extends Record<string, any>[]> = CommonPropKeys<A>
