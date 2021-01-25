@@ -1,0 +1,133 @@
+# What's new in 3.9 <!-- omit in toc -->
+
+[type-plus][type-plus] 3.9 is released! 🎉🎉
+
+This is the biggest release since 3.0. I have added 24 new features.
+
+Highlight of show is *unrestricted* positive number arithmetics.
+Let's dig in!
+
+- [Positive Number Arithmetics](#positive-number-arithmetics)
+- [`isType` Enhancements](#istype-enhancements)
+- [Array Manipulations](#array-manipulations)
+- [Type Predicates Enhancements](#type-predicates-enhancements)
+- [Renaming Types](#renaming-types)
+- [Closing](#closing)
+
+## Positive Number Arithmetics
+
+TypeScript does not support type-level arithmetics out of the box.
+But arithmetics is a very fundamental tools to enable efficient type computation.
+
+Because of that, there were several implementations out there for this.
+The typical mechanisms are string-based literals, lookup table, and/or recursion.
+They each have their limitations especially for recursion,
+as there is a 64 depth-limit in TypeScript.
+
+[type-plus][type-plus] implementation allows you to do add and subtract up to 5 digits**.
+
+```ts
+const x: Add<12345, 65432> // 77777
+const y: Subtract<77777, 65432> // 12345
+```
+
+while the implementation supports more than 5 digits,
+it is a computation and memory intensive process as the only way to dynamically generate numeric literals today is through `someTuple['length']`.
+So creating numeric literal `77777` requires a tuple of size `77777` to be created.
+
+On my laptop, `Add<1234, 6543>` takes 1 second,
+`Add<12345, 65432>` takes 5 seconds, and `Add<500000, 1>` takes 120 seconds.
+
+Also, this calculation need to take place every time you change code in your project.
+So limiting the calculation to 3-4 digits is preferred.
+
+In practice, 3-4 digits should be sufficient in most use cases.
+If you need more digits, I can add a string based version in the future.
+
+Other math related feature added:
+
+- `IsPositive<N>`: test `N` is positive number literal. `number` type is not considered as positive.
+- `IsWhole<N>`: test `N` is whole number literal. `number` type is not considered as whole number.
+- `Max<A, B, Fail=never>`: `max(A, B)`, for positive and whole number, `Fail` otherwise.
+- `GreaterThan<A, B, Fail=never>`: `A > B` for positive and whole numbers, `Fail` otherwise.
+- `Increment<A, Fail=never>`: alias of `Add<A, 1, Fail>`.
+- `Decrement<A, Fail=never>`: alias of `Subtract<A, 1, Fail>`.
+
+One note to `Subtract<>` and `Decrement<>`:
+If the result is negative, you will get the `Fail` value, which defaults to `never`.
+
+## `isType` Enhancements
+
+when writing type-level tests, I found myself do the following most of the time:
+
+```ts
+assertType.isTrue(true as Equal<A, B>)
+assertType.isFalse(false as SomePredicate<A>)
+```
+
+This is quite verbose and not using the assertion capability of `assertType` anyway.
+
+Because of that, I have added `isType.true()`, `isType.false()`, and `isType.equal()`,
+so now you can do:
+
+```ts
+isType.true<SomePredicate<A>>()
+isType.false<SomePredicate<B>>()
+isType.equal<true, A, B>()
+isType.equal<false, A, B>()
+```
+
+## Array Manipulations
+
+In order to add [positive number arithmetics](#positive-number-arithmetics),
+Many common array manipulation types are added.
+
+They pretty much behave as what you expected. Hurray to abstractions! 👏👏
+
+- `CreateTuple<L, T>`: creates `Tuple<T>` with `L` number of elements.
+- `Concat<A, B>`: `[...A, ...B]`.
+- `DropFirst<A>`: drops the first value type of `A`.
+- `DropLast<A>`: drops the last value type of `A`.
+- `Filter<A, Criteria>`: gets array of types satisfying `Criteria` in `A`.
+- `FindFirst<A, Criteria>`: gets first type satisfying `Criteria`.
+- `FindLast<A, Criteria>`: gets last type satisfying `Criteria`.
+- `PadLeft<A, Total, PadWith>`: pads `A` with `PadWith` if the length of `A` is less than `L`.
+- `Reverse<A>`: reverses the order of `A`.
+- `Some<A, Criteria>`: true if some elements in `A` matches `Criteria`.
+
+## Type Predicates Enhancements
+
+Type predicates are types that returns `true` or `false` so you can use that in your type-level programming.
+
+Three new types `IsAny<T>`, `IsBoolean<T>`, `IsLiteral<T>` are added to do what you expected them to do.
+
+Beside that, most type predicates in `type-plus` have added the optional `Then` and `Else` clause so that you can override its behavior as needed.
+
+That means now you can override the result and/or chain operations:
+
+```ts
+type R = HasKey<A, 'a', 1, 2> // returns 1 if A has key 'a' and 2 otherwise
+type C = HasKey<A, 'a', Equal<A['a'], 123>> // chaining
+```
+
+## Renaming Types
+
+A few types gets a new name which better describe what they do.
+The old names will be deprecated in 4.0 and subsequently removed.
+
+- `UnionOfProps<A, K>`: gets the union of `A[K]` types (deprecate `PropUnion`).
+- `UnionOfValues<A>`: gets the union of value types in `A` (deprecate `ArrayValue`).
+- `IntersectOfProps<A, K>`: gets the intersect of `A[K]` types (deprecate `MapToProp`)
+- `CommonPropKeys<A>`: gets common keys inside the records in the array `A` (deprecate `CommonKeys`).
+
+## Closing
+
+That's pretty much it for [type-plus][type-plus] 3.9!
+Hope you will enjoy it.
+
+If you found any issue or want other types,
+feel free to [open an issue](https://github.com/unional/type-plus/issues).
+
+Happy Coding! 🌷
+
+[type-plus]: https://github.com/unional/type-plus
