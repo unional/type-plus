@@ -1,19 +1,14 @@
-import { If } from '.'
 import { Equal } from './Equal'
 import { NotExtendable } from './Extends'
 
 /**
  * Can `A` assign to `B`
  */
-export type CanAssign<A, B, Then = true, Else = false> = If<
-  // boolean extends true (or false) -> boolean because
-  // boolean === true | false.
-  // as it is a finite set.
-  // so special handling is needed.
-  Equal<A, boolean>,
-  If<Equal<B, boolean>, Then, Else>,
+export type CanAssign<A, B, Then = true, Else = false> =
+  Equal<A, boolean> extends true ?
+  Equal<B, boolean> extends true ? Then : Else :
   A extends B ? Then : Else
->
+
 
 export type IsAssign<A, B, Then = true, Else = false> = CanAssign<A, B, Then, Else>
 

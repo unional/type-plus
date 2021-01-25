@@ -1,6 +1,4 @@
-import { assertType, brand, Flavor } from '..'
-import { CanAssign } from '../assertion'
-import { flavor } from './Flavor'
+import { assertType, brand, CanAssign, Flavor, flavor } from '..'
 
 test('underlying type can be assigned to Flavor', () => {
   type PersonId = Flavor<'Person', number>

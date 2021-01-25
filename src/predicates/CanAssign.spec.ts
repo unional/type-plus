@@ -1,5 +1,4 @@
-import { assertType, CanAssign } from '..'
-import { canAssign } from './CanAssign'
+import { assertType, CanAssign, canAssign } from '..'
 
 describe('CanAssign<A, B>', () => {
   test('literal type to widen', () => {

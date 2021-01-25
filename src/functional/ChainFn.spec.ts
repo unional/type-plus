@@ -1,5 +1,4 @@
-import { ChainFn } from '.'
-import { assertType, Equal } from '../assertion'
+import { assertType, ChainFn, Equal } from '..'
 
 test('return type is the same as input type', () => {
   type A = ChainFn<number>

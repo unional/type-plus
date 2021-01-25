@@ -1,4 +1,4 @@
-import { Equal, isType } from '../predicates'
+import { Equal, isType } from '..'
 import { Digit, DigitArray } from './Digit'
 
 describe('DigitArray.ToNumber<DA>', () => {

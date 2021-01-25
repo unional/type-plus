@@ -1,5 +1,4 @@
-import { assertType, brand, CanAssign, Equal } from '..'
-import { flavor } from './Flavor'
+import { assertType, brand, CanAssign, Equal, flavor } from '..'
 
 describe('brand()', () => {
   test('unbranded type cannot assign to branded type', () => {

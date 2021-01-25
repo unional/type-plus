@@ -1,7 +1,5 @@
 import a from 'assertron'
-import { assertType, Equal } from '..'
-import { AnyConstructor } from '../class'
-import { AnyFunction } from '../function'
+import { AnyConstructor, AnyFunction, assertType, Equal } from '..'
 
 describe('assertType()', () => {
   test('input satisfies specified type', () => {

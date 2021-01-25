@@ -1,5 +1,4 @@
-import { assertType } from '../assertion'
-import { AnyFunction } from './AnyFunction'
+import { AnyFunction, assertType } from '..'
 
 test('basic', () => {
   const foo: AnyFunction = x => x
