@@ -18,6 +18,14 @@ describe('Add<A, B>', () => {
     isType.equal<true, never, Add<1, -1>>()
   })
 
+  test('number gets Fail', () => {
+    isType.equal<true, never, Add<number, 1>>()
+    isType.equal<true, never, Add<1, number>>()
+
+    isType.equal<true, number, Add<number, 1, number>>()
+    isType.equal<true, number, Add<1, number, number>>()
+  })
+
   describe('single digit', () => {
     test('0 + n = n', () => {
       isType.equal<true, 0, Add<0, 0>>()

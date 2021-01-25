@@ -8,7 +8,7 @@ test('only support positive and whole number', () => {
   isType.equal<true, never, Subtract<1, -1>>()
 })
 
-test('number gets never', () => {
+test('number gets Fail', () => {
   isType.equal<true, never, Subtract<number, 1>>()
   isType.equal<true, never, Subtract<1, number>>()
 })
