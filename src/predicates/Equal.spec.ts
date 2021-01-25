@@ -1,4 +1,4 @@
-import { assertType } from './assertType'
+import { assertType } from '../assertion/assertType'
 import { Equal, NotEqual } from './Equal'
 
 describe('TypeEquals', () => {

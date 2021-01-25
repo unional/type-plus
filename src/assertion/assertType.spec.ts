@@ -18,7 +18,7 @@ describe('assertType()', () => {
     assertType<boolean>(s, s => typeof s === 'boolean')
     assertType<boolean>(s)
   })
-  test('error messge contains info from validator', () => {
+  test('error message contains info from validator', () => {
     const s: unknown = 1
     a.throws(() => assertType(s, s => typeof s === 'boolean'), e => /subject fails to satisfy s => typeof s === 'boolean'/.test(e))
   })
@@ -498,7 +498,7 @@ describe('assertType.custom', () => {
     const s: unknown = false
     expect(isBool(s)).toBe(undefined)
   })
-  test('error messge contains info from validator', () => {
+  test('error message contains info from validator', () => {
     const isBool = assertType.custom<boolean>(s => typeof s === 'boolean')
     const s: unknown = 1
     a.throws(() => isBool(s), e => /subject fails to satisfy s => typeof s === 'boolean'/.test(e))

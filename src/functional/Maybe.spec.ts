@@ -1,4 +1,4 @@
-import { assertType, CanAssign, canAssign } from '../assertion'
+import { assertType, CanAssign, canAssign } from '..'
 import { Just, just, Maybe, none, None } from './Maybe'
 
 test('just(value) returns Maybe<T>', () => {

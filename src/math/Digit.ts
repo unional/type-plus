@@ -1,5 +1,5 @@
 import { Tail } from '../array'
-import { And } from '../conditional'
+import { And } from '../predicates'
 import { IsPositive } from './IsPositive'
 import { IsWhole } from './IsWhole'
 

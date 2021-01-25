@@ -1,4 +1,4 @@
-import { AndS, NotS } from '../conditional'
+import { AndS, NotS } from '../predicates'
 import { AnyRecord } from './AnyRecord'
 import { HasKey } from './hasKey'
 

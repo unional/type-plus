@@ -1,4 +1,3 @@
-
 export type FindLast<A extends Array<any>, Criteria> =
   number extends A['length']
   ? (A[0] extends Criteria ? A[0] : never)

@@ -1,5 +1,4 @@
-import { Concat } from '..'
-import { Equal, isType } from '../assertion'
+import { Concat, Equal, isType } from '..'
 
 test('concat array', () => {
   type A = Concat<string[], boolean[]>

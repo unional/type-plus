@@ -1,5 +1,4 @@
-import { isType } from '../assertion'
-import { Add, Increment } from './Add'
+import { Add, Increment, isType } from '..'
 
 describe('Add<A, B>', () => {
   test('fractional A gets never', () => {

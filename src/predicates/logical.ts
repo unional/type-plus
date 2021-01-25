@@ -1,4 +1,4 @@
-import { Equal } from '../assertion'
+import { Equal } from './Equal'
 import { If } from './If'
 
 export type And<A extends boolean, B extends boolean> = If<

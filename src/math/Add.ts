@@ -1,5 +1,5 @@
 import { PadLeft } from '../array'
-import { And } from '../conditional'
+import { And } from '../predicates'
 import { Digit, DigitArray } from './Digit'
 import { IsPositive } from './IsPositive'
 import { IsWhole } from './IsWhole'

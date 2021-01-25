@@ -1,4 +1,4 @@
-import { If } from '../conditional'
+import { If } from '.'
 import { Equal } from './Equal'
 import { NotExtendable } from './Extends'
 
