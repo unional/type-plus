@@ -17,7 +17,9 @@
   "eslint.enable": true,
   "cSpell.words": [
     "Constantiner",
+    "istype",
     "overrider",
+    "typelevel",
     "typepark"
   ]
 }
