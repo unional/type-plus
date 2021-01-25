@@ -13,6 +13,10 @@
 
 Provides additional types and type adjusted utilities for [TypeScript](https://www.typescriptlang.org/).
 
+## What's new
+
+Please check out the [release note](./docs/releases/whats-new-in-3.9.md) to see what's new in 3.9!
+
 ## Feature Highlights
 
 - [Runtime type checker](#runtime-type-checker)
