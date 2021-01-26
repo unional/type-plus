@@ -26,19 +26,19 @@ export type Add<A extends number, B extends number, Fail = never> =
   : Fail : Fail
 
 type AddDigitArray<A extends number[], B extends number[]> = (
-  A extends [any, ...infer ATail] ?
-  (ATail extends number[] ?
-    (B extends [any, ...infer BTail] ?
-      (BTail extends number[] ?
-        [AddDigit<A[0], B[0]>, ...AddDigitArray<ATail, BTail>] :
-        []) :
-      [A[0], ...AddDigitArray<[], ATail>]) :
-    []) :
-  (B extends [any, ...infer BTail] ?
-    (BTail extends number[] ?
-      [B[0], ...AddDigitArray<[], BTail>] :
-      []) :
-    [])
+  A extends [any, ...infer ATail]
+  ? (ATail extends number[]
+    ? (B extends [any, ...infer BTail]
+      ? (BTail extends number[]
+        ? [AddDigit<A[0], B[0]>, ...AddDigitArray<ATail, BTail>]
+        : [])
+      : [A[0], ...AddDigitArray<[], ATail>])
+    : [])
+  : (B extends [any, ...infer BTail]
+    ? (BTail extends number[]
+      ? [B[0], ...AddDigitArray<[], BTail>]
+      : [])
+    : [])
 )
 
 type AddDigit<A extends number, B extends number> = [...Digit.ToTuple[A], ...Digit.ToTuple[B]]['length']

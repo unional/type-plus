@@ -20,10 +20,12 @@ type MaxOnPositiveWhole<A extends number, B extends number> = (
   : never : never
 )
 
-type MaxOnDigitArray<DA extends number[], DB extends number[]> = (
-  Equal<DA['length'], DB['length']> extends true ?
-  Equal<Head<DA>, Head<DB>> extends true ?
-  MaxOnDigitArray<Tail<DA>, Tail<DB>> extends Tail<DA> ? DA : DB :
-  Digit.GreaterThan<Head<DA>, Head<DB>> extends true ? DA : DB :
-  MaxOnPositiveWhole<DA['length'], DB['length']> extends DA['length'] ? DA : DB
-)
+type MaxOnDigitArray<DA extends number[], DB extends number[]> =
+  Equal<DA['length'], DB['length']> extends true
+  ? (Equal<Head<DA>, Head<DB>> extends true
+    ? (Tail<DA> extends infer TDA ? TDA extends number[] ?
+      MaxOnDigitArray<TDA, Tail<DB>> extends TDA ? DA : DB
+      : never : never)
+    : Digit.GreaterThan<Head<DA>, Head<DB>> extends true ? DA : DB)
+  : MaxOnPositiveWhole<DA['length'], DB['length']> extends DA['length'] ? DA : DB
+

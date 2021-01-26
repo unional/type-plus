@@ -6,6 +6,4 @@ export type DropLast<A extends any[]> = number extends A['length']
       ? never[]
       : (A extends [...infer Heads, any]
         ? Heads
-        : never
-      ))
-  )
+        : never)))

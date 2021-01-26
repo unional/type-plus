@@ -51,7 +51,7 @@ export namespace Digit {
 export namespace DigitArray {
   export type ToNumber<C extends number[]> = ToTuple<[], C>['length']
 
-  export type ToTuple<R extends any[], S extends number[]> = (
+  export type ToTuple<R extends any[], S extends number[]> =
     S['length'] extends 0
     ? R
     : (S['length'] extends 1
@@ -60,10 +60,7 @@ export namespace DigitArray {
         ? (T extends any[]
           ? ToTuple<Multi10<[...R, ...Digit.ToTuple[S[0]]]>, T>
           : never)
-        : never
-      )
-    )
-  )
+        : never))
 
   type Multi10<C extends any[]> = [...C, ...C, ...C, ...C, ...C, ...C, ...C, ...C, ...C, ...C]
 
@@ -103,7 +100,8 @@ export namespace DigitArray {
         : [])
     )
 
-  type TrimLeadingZero<A extends number[]> = A['length'] extends 0
+  type TrimLeadingZero<A extends number[]> =
+    A['length'] extends 0
     ? A
     : A[0] extends 0 ? TrimLeadingZero<Tail<A>> : A
 

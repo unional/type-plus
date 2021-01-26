@@ -9,5 +9,4 @@ export type Filter<A extends Array<any>, Criteria> =
         : (Head extends Criteria
           ? [Head, ...Filter<Tail, Criteria>]
           : Filter<Tail, Criteria>))
-      : never)
-  )
+      : never))
