@@ -12,7 +12,9 @@ Let's dig in!
 - [Array Manipulations](#array-manipulations)
 - [Type Predicates Enhancements](#type-predicates-enhancements)
 - [Renaming Types](#renaming-types)
-- [Closing](#closing)
+- [What's Next](#whats-next)
+
+📺 You can also check out the [release video here](https://youtu.be/vmaSFx3T3vY).
 
 ## Positive Number Arithmetics
 
@@ -137,7 +139,7 @@ The old names will be deprecated in 4.0 and subsequently removed.
 - `IntersectOfProps<A, K>`: gets the intersect of `A[K]` types (deprecate `MapToProp`)
 - `CommonPropKeys<A>`: gets common keys inside the records in the array `A` (deprecate `CommonKeys`).
 
-## Closing
+## What's Next
 
 That's pretty much it for [type-plus][type-plus] 3.9!
 Hope you will enjoy it.
@@ -145,6 +147,12 @@ Hope you will enjoy it.
 If you found any issue or want other types,
 feel free to [open an issue](https://github.com/unional/type-plus/issues).
 
-Happy Coding! 🌷
+There are a more things I need to do for [type-plus][type-plus]:
+
+- fixing the recursive problem of `T`
+- improving performance
+- adding custom validations
+
+Until then, Happy Coding! 🌷
 
 [type-plus]: https://github.com/unional/type-plus
