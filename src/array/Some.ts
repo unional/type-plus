@@ -1,4 +1,4 @@
-import { Equal, If } from '../predicates'
+import { Equal } from '../predicates'
 import { Tail } from './Tail'
 import { UnionOfValues } from './UnionOfValues'
 
