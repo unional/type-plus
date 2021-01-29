@@ -1,11 +1,8 @@
-import t from 'assert'
-import { ValueOf } from '..'
+import { isType, ValueOf } from '..'
 
 test('work with primitive type', () => {
-  const x: ValueOf<string> = 'abc' as any
-
-  // `toLocaleString`, `toString`, and `valueOf` are available
-  expect(x.toString()).toEqual('abc')
+  type A = ValueOf<string>
+  isType.equal<false, never, A>()
 })
 
 test('If all values has the same type, the result is of that type', () => {
@@ -15,8 +12,8 @@ test('If all values has the same type, the result is of that type', () => {
     DELETE: 'DELETE',
     PUT: 'PUT',
   }
-  const logValue: ValueOf<typeof HTTP_METHOD> = HTTP_METHOD.GET
-  t.strictEqual(logValue.substr(0, 1), 'G')
+  type A = ValueOf<typeof HTTP_METHOD>
+  isType.equal<true, string, A>()
 })
 
 test('If value has multiple types, the result is the union of those types', () => {
@@ -27,10 +24,7 @@ test('If value has multiple types, the result is the union of those types', () =
     info: 3,
     debug: 4,
   }
-  const str: ValueOf<typeof logLevel> = logLevel.none
-  t.strictEqual(str.length, 1)
-
-  const num: ValueOf<typeof logLevel> = logLevel.warn
-  t.strictEqual(num * 1, 2)
+  type A = ValueOf<typeof logLevel>
+  isType.equal<true, string | number, A>()
 })
 
