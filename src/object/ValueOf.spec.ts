@@ -28,3 +28,9 @@ test('If value has multiple types, the result is the union of those types', () =
   isType.equal<true, string | number, A>()
 })
 
+test('literal types are preserved', () => {
+  type L = { a: 1, b: 2, c: 'a', d: 'b' }
+  type A = ValueOf<L>
+  isType.equal<true, 1 | 2 | 'a' | 'b', A>()
+})
+
