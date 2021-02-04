@@ -35,8 +35,8 @@ yarn add type-plus
 ## Runtime type checker
 
 Bringing the power of TypeScript to JavaScript runtime.
-This version of type checker has some limitation due to recursion.
-For the time being, please use another excellent type checking library such as [zod](https://github.com/colinhacks/zod).
+At the moment, this provide some basic functionalities.
+If you need more feature, I would recommend other excellent type checking library such as [zod](https://github.com/colinhacks/zod).
 
 ```ts
 const eslintConfig = T.object.create({
