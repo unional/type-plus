@@ -1,14 +1,12 @@
-import { AndS, NotS } from '../predicates'
+import { And, Not } from '../predicates'
 import { AnyRecord } from './AnyRecord'
 import { HasKey } from './hasKey'
 
 /**
- * Is the two record disjoint form each other.
+ * Are the two records disjoint from each other.
  * Disjoint means no common property.
- * Note: using `AndS` and `NotS` due to:
- * <https://github.com/microsoft/TypeScript/issues/41053>
  */
 export type IsDisjoint<
   A extends AnyRecord,
   B extends AnyRecord
-  > = AndS<NotS<HasKey<A, keyof B>>, NotS<HasKey<B, keyof A>>>
+  > = And<Not<HasKey<A, keyof B>>, Not<HasKey<B, keyof A>>>
