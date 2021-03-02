@@ -1,4 +1,4 @@
-import { assertType, brand, CanAssign, Flavor, flavor } from '..'
+import { assertType, brand, CanAssign, Flavor, flavor, isType } from '..'
 
 test('underlying type can be assigned to Flavor', () => {
   type PersonId = Flavor<'Person', number>
@@ -12,7 +12,7 @@ test('underlying type can be assigned to Flavor', () => {
 
   const blogId: BlogId = 1
 
-  assertType.isFalse(false as CanAssign<typeof blogId, typeof personId>)
+  isType.false<CanAssign<typeof blogId, typeof personId>>()
 })
 
 describe('flavor()', () => {
@@ -20,7 +20,7 @@ describe('flavor()', () => {
     const a = flavor('a', { a: 1 as const })
     const b = flavor('b', { b: 'b' })
 
-    assertType.isFalse(false as CanAssign<typeof a, typeof b>)
+    isType.false<CanAssign<typeof a, typeof b>>()
     assertType<1>(a.a)
     assertType<string>(b.b)
   })
@@ -33,7 +33,7 @@ describe('flavor()', () => {
   test('brand with the same name can be assigned to flavor', () => {
     const b = brand('x', { a: 1 })
     const f = flavor('x', { a: 1 })
-    assertType.isTrue(true as CanAssign<typeof b, typeof f>)
+    isType.true<CanAssign<typeof b, typeof f>>()
   })
   test('without subject creates a typed flavor creator', () => {
     const createPerson = flavor('person')
@@ -46,6 +46,6 @@ describe('flavor()', () => {
     person1 = person2
     person2 = person1
 
-    assertType.isFalse(false as CanAssign<typeof blogPost, typeof person1>)
+    isType.false<CanAssign<typeof blogPost, typeof person1>>()
   })
 })
