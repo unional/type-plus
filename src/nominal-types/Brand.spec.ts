@@ -5,13 +5,13 @@ describe('brand()', () => {
   test('unbranded type cannot assign to branded type', () => {
     const a = brand('a', { a: 1 })
     const b = { a: 1 }
-    isType.false<CanAssign<typeof b, typeof a>>()
+    isType.f<CanAssign<typeof b, typeof a>>()
   })
   test('basic use case', () => {
     const a = brand('a', { a: 1 as const })
     const b = brand('b', { b: 'b' })
 
-    isType.false<CanAssign<typeof a, typeof b>>()
+    isType.f<CanAssign<typeof a, typeof b>>()
     assertType<1>(a.a)
     assertType<string>(b.b)
   })
@@ -25,7 +25,7 @@ describe('brand()', () => {
   test('flavor with the same name cannot be assigned to brand', () => {
     const b = brand('x', { a: 1 })
     const f = flavor('x', { a: 1 })
-    isType.false<CanAssign<typeof f, typeof b>>()
+    isType.f<CanAssign<typeof f, typeof b>>()
   })
   test('without subject creates a typed brand creator', () => {
     const createPerson = brand('person')
@@ -38,6 +38,6 @@ describe('brand()', () => {
     person1 = person2
     person2 = person1
 
-    isType.false<Equal<typeof blogPost, typeof person1>>()
+    isType.f<Equal<typeof blogPost, typeof person1>>()
   })
 })

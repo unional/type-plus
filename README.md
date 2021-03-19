@@ -229,27 +229,27 @@ You need to specify `T`.
 
 `isType<T>(subject, Class)`:
 
-`isType.true<T>(subject?: T)`:
+`isType.t<T>(subject?: T)`:
 
 ✔️ `immediate`, `runtime`
 
-It can used as type check: `isType.true<Equal<A, B>>()`,
-or value type check: `isType.true(valueTypeIsTrue)`.
+It can used as type check: `isType.t<Equal<A, B>>()`,
+or value type check: `isType.t(valueTypeIsTrue)`.
 It returns `true` when passes (which is the only case when used in TypeScript).
 
-`isType.false<T>(subject?: T)`:
+`isType.f<T>(subject?: T)`:
 
 ✔️ `immediate`, `runtime`
 
-It can used as type check: `isType.false<Equal<A, B>>()`,
-or value type check: `isType.false(valueTypeIsFalse)`.
+It can used as type check: `isType.f<Equal<A, B>>()`,
+or value type check: `isType.f(valueTypeIsFalse)`.
 It returns `true` when passes (which is the only case when used in TypeScript).
 
 `isType.equal<true|false, A, B>()`:
 
 ✔️ `immediate`
 
-Slightly easier to use then `isType.true<>()` and `isType.false<>()`,
+Slightly easier to use then `isType.t<>()` and `isType.f<>()`,
 when doing type level only equality comparison as you don't have to import `Equal<>`.
 
 ✔️ `type guard`, `runtime`
