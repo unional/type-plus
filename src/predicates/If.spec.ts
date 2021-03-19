@@ -9,6 +9,6 @@ test('false gets Else', () => {
 })
 
 test('Then defaults to true and Else defaults to false', () => {
-  isType.true<If<true>>()
-  isType.false<If<false>>()
+  isType.t<If<true>>()
+  isType.f<If<false>>()
 })

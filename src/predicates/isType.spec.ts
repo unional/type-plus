@@ -60,39 +60,39 @@ describe('isType()', () => {
   })
 })
 
-describe('isType.true()', () => {
+describe('isType.t()', () => {
   test('accept true type but not false or boolean', () => {
-    expect(isType.true<true>()).toBe(true)
-    expect(isType.true<Equal<1, 1>>()).toBe(true)
+    expect(isType.t<true>()).toBe(true)
+    expect(isType.t<Equal<1, 1>>()).toBe(true)
 
     // these fails
-    // isType.true<false>()
-    // isType.true<boolean>()
+    // isType.t<false>()
+    // isType.t<boolean>()
   })
   test('accept value with type true but not false or boolean', () => {
-    expect(isType.true(true)).toBe(true)
+    expect(isType.t(true)).toBe(true)
 
     // these fails
-    // isType.true(false)
-    // isType.true(1 === 1)
+    // isType.t(false)
+    // isType.t(1 === 1)
   })
 })
 
-describe('isType.false()', () => {
+describe('isType.f()', () => {
   test('accept false type but not true or boolean', () => {
-    expect(isType.false<false>()).toBe(true)
-    expect(isType.false<Equal<1, 2>>()).toBe(true)
+    expect(isType.f<false>()).toBe(true)
+    expect(isType.f<Equal<1, 2>>()).toBe(true)
 
     // these fails
-    // isType.false<true>()
-    // isType.false<boolean>()
+    // isType.f<true>()
+    // isType.f<boolean>()
   })
   test('accept value with type true but not false or boolean', () => {
-    expect(isType.false(false)).toBe(true)
+    expect(isType.f(false)).toBe(true)
 
     // these fails
-    // isType.false(true)
-    // isType.false(1 !== 1)
+    // isType.f(true)
+    // isType.f(1 !== 1)
   })
 })
 
