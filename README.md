@@ -424,9 +424,24 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 
 ### Constant Types
 
-- `JSONTypes`: all JSON compatible types.
 - `KeyTypes`: type of all keys.
 - `PrimitiveTypes`: all primitive types, including `Function`, `symbol`, and `bigint`.
+
+### JSON Support
+
+- `JSONPrimitive`: primitive types valid in JSON
+- `JSONObject`: JSON object
+- `JSONArray`: JSON array
+- `JSONTypes`: all JSON compatible types.
+- `JSONTypes.get<T>(obj, ...props)`: get a cast value in json
+
+```ts
+import { JSONTypes } from 'type-plus'
+
+const someJson: JSONTypes = { a: { b: ['z', { c: 'miku' }]}}
+
+JSONTypes.get<string>(someJson, 'a', 'b', 1, 'c') // miku
+```
 
 ### Object Key functions
 
