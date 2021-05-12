@@ -469,6 +469,8 @@ JSONTypes.get<string>(someJson, 'a', 'b', 1, 'c') // miku
 
 - `ANotB<A, B>`: get object with properties in `A` and not in `B`, including properties with different value type.
 - `BNotA<A, B>`: flip of `ANotB`
+- `as<T>(subject)`: assert `subject` as `T`. Avoid ASI issue such as `;(x as any).abc`
+- `asAny(subject)`: assert `subject` as `any`. Avoid ASI issue such as `;(x as any).abc`
 - `Except<T, K>`: Deprecated. Same as `Omit<T, K>`.
 - `ExcludePropType<T, U>`: excludes type `U` from properties in `T`.
 - `KeyofOptional<T>`: `keyof` that works with `Record<any, any> | undefined`.
