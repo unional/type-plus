@@ -1,5 +1,4 @@
-import { IsBoolean } from '.'
-import { IsLiteral, isType } from '..'
+import { IsAny, IsBoolean, IsLiteral, isType, PrimitiveTypes } from '..'
 
 describe('IsLiteral<T>', () => {
   test('`number` is not literal', () => {
@@ -37,7 +36,6 @@ describe('IsBoolean<T>', () => {
     isType.equal<true, 'no', IsBoolean<1, 'yes', 'no'>>()
   })
 })
-import { IsAny, PrimitiveTypes } from '..'
 
 describe('IsAny<T>', () => {
   test('any is true', () => {
