@@ -502,6 +502,7 @@ They can be used to compose complex types.
 - `IsAny<T>`: `T === any`.
 - `IsBoolean<T>`: check for `boolean`, but not for `true` nor `false`.
 - `IsDisjoint<A, B>`: is `A` and `B` is a disjoint set.
+- `IsEmptyObject<T>`: is `T === {}`.
 - `IsLiteral<T>`: is `T` a literal type (literal string or number).
 
 #### Logical
