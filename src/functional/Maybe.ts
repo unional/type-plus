@@ -10,6 +10,7 @@ export function just<T>(value: T):
   Equal<T, undefined | null> extends true ?
   None<T> :
   Just<Widen<NonNullable<T>>> {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return { unwrap() { return value } } as any
 }
 

@@ -9,5 +9,5 @@ export const any: Any = { type: 'any', value: undefined }
 export const anySpec: TypeSpec<Any> = {
   type: any,
   toAnalysis: (options, value, _subject) => ({ type: 'any', value }),
-  toNative: (value) => value as any
+  toNative: (value) => value
 }

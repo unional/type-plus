@@ -8,6 +8,6 @@ test('exclude type R from properties of T', () => {
 
   type CustomerAgeNotNull = ExcludePropType<Customer, null>
 
-  const x: CustomerAgeNotNull = { age: 0 } as any
+  const x: CustomerAgeNotNull = { name: '', age: 0 }
   assertType.isNumber(x.age)
 })

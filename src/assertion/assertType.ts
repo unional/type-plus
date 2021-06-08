@@ -9,9 +9,9 @@ import { AnyFunction } from '../function'
 export function assertType<T>(subject: T): asserts subject is T
 export function assertType<T>(subject: unknown, validator: (s: T) => boolean): asserts subject is T
 export function assertType<T extends new (...args: any) => any>(subject: unknown, constructor: T): asserts subject is InstanceType<T>
-export function assertType(subject: any, validator?: (s: any) => boolean) {
+export function assertType(subject: unknown, validator?: (s: any) => boolean) {
   if (validator) {
-    if ((isConstructor(validator) && !(subject instanceof validator)) || !validator(subject as any))
+    if ((isConstructor(validator) && !(subject instanceof validator)) || !validator(subject))
       throw new TypeError(`subject fails to satisfy ${tersify(validator)}`)
   }
   return

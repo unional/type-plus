@@ -14,12 +14,12 @@ describe('Omit', () => {
     }
 
     type Actual = Omit<Foo, 'c'>
-    const a: Actual = { a: 0, b: '' } as any
+    const a: Actual = { a: 0, b: '' }
     assertType.isNumber(a.a)
     assertType.isString(a.b)
 
     type Revert = Omit<Foo, keyof Actual>
-    const r: Revert = { c: false } as any
+    const r: Revert = { c: false }
     assertType.isBoolean(r.c)
   })
 
@@ -38,7 +38,7 @@ describe('Omit', () => {
       payload: string,
     }
 
-    const x: Omit<Action, 'id'> = {} as any
+    const x: Omit<Action, 'id'> = { type: 'return', payload: '' }
 
     const actions: Action[] = []
 
@@ -92,13 +92,13 @@ describe('Except()', () => {
     }
 
     type Actual = Except<Foo, 'c'>
-    const a: Actual = { a: 0, b: '' } as any
+    const a: Actual = { a: 0, b: '' }
     assertType.isNumber(a.a)
     assertType.isString(a.b)
 
     // tslint:disable-next-line: deprecation
     type Revert = Except<Foo, keyof Actual>
-    const r: Revert = { c: false } as any
+    const r: Revert = { c: false }
     assertType.isBoolean(r.c)
   })
 })

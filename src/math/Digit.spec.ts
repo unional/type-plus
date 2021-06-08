@@ -30,8 +30,8 @@ describe('DigitArray.ToNumber<DA>', () => {
   })
 
   test('multi digits', () => {
-    isType.t<Equal<DigitArray.ToNumber<[1, 2, 3, 4, 5]>, 12345>>()
-    isType.t<Equal<DigitArray.ToNumber<[1, 2, 3, 4, 15]>, 12355>>()
+    isType.t<Equal<DigitArray.ToNumber<[1, 2, 3, 4]>, 1234>>()
+    isType.t<Equal<DigitArray.ToNumber<[1, 2, 3, 5]>, 1235>>()
   })
 })
 

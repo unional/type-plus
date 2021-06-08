@@ -27,7 +27,7 @@ describe('isType()', () => {
         assertType<boolean>(s)
     })
     test('exclude type if type guard fails', () => {
-      const s: string | number = 1 as any
+      const s: string | number = 1
       if (isType<string>(s, s => typeof s === 'string')) {
         assertType<string>(s)
       }
@@ -44,7 +44,7 @@ describe('isType()', () => {
     })
     test('Class as validator fails', () => {
       class Foo { a() { } }
-      const s: Foo | number = 1 as any
+      const s: Foo | number = 1
       if (isType(s, Foo)) {
         assertType<Foo>(s)
       }

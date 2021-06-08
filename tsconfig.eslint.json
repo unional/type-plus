@@ -5,10 +5,11 @@
       "es2015",
       "esnext.bigint"
     ],
-    "noEmit": true
+    "target": "ES2020"
   },
   "include": [
     "src",
-    "typings"
+    "typings",
+    "lib"
   ]
 }

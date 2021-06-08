@@ -1,10 +1,10 @@
-import { isConstructor } from '../class'
+import { AnyConstructor, isConstructor } from '../class'
 import { Equal } from './Equal'
 
 export function isType<T>(subject: T): subject is T
 export function isType<T>(subject: unknown, validator: (s: T) => boolean): subject is T
-export function isType<T extends new (...args: any) => any>(subject: unknown, constructor: T): subject is InstanceType<T>
-export function isType(subject: any, validator?: any) {
+export function isType<T extends AnyConstructor>(subject: unknown, constructor: T): subject is InstanceType<T>
+export function isType(subject: unknown, validator?: AnyConstructor | ((s: unknown) => boolean)) {
   if (validator) {
     if (isConstructor(validator))
       return subject instanceof validator
@@ -14,13 +14,11 @@ export function isType(subject: any, validator?: any) {
   return true
 }
 
-const sym = Symbol()
-
-isType.t = function <T extends true>(subject: T = sym as any) {
-  return (subject as any) === sym || subject === true
+isType.t = function <T extends true>(subject?: T) {
+  return subject === undefined || subject === true
 }
-isType.f = function <T extends false>(subject: T = sym as any) {
-  return (subject as any) === sym || subject === false
+isType.f = function <T extends false>(subject?: T) {
+  return subject === undefined || subject === false
 }
 
 /**

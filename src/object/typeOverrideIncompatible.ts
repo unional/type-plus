@@ -5,6 +5,6 @@ export function typeOverrideIncompatible<A extends AnyRecord>() {
     return {
       ...source,
       ...override,
-    } as any
+    }
   }
 }

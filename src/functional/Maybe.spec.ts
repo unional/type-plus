@@ -6,7 +6,7 @@ test('just(value) returns Maybe<T>', () => {
 })
 
 test('just(undefined) returns Maybe<T>', () => {
-  const b: boolean | undefined = undefined as any
+  const b: boolean | undefined = undefined
   assertType<Maybe<boolean>>(just(b))
 })
 
