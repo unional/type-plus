@@ -1,21 +1,21 @@
 import { AnyFunction, assertType } from '..'
 
 test('basic', () => {
-  const foo: AnyFunction = x => x
+  function doCallback(cb: AnyFunction) {
+    cb()
+  }
 
-  foo()
-  const result = foo(false)
-
-  // only any can be boolean here
-  assertType.isBoolean(result)
+  doCallback(() => { })
+  doCallback(_ => { })
+  doCallback((a: number, b: number) => a + b)
 })
 
-test('define param as tuple', () =>{
-  const foo: AnyFunction<[number,string]> = x => x
+test('define param as tuple', () => {
+  const foo: AnyFunction<[number, string]> = x => x
   foo(1, 'a')
 })
 
 test('define result type', () => {
-  const foo: AnyFunction<any[], string> = x => x
+  const foo: AnyFunction<string[], string> = x => x
   assertType.isString(foo('a'))
 })

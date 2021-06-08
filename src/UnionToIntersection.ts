@@ -3,5 +3,5 @@
 export type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends ((k: infer I) => void) ? I : never
 
 export function toIntersection<U>(union: U): UnionToIntersection<U> {
-  return union as any
+  return union as any as UnionToIntersection<U>
 }

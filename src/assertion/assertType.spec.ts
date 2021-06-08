@@ -28,7 +28,10 @@ describe('assertType()', () => {
   test('Class as validator fails', () => {
     class Foo { }
     const s: unknown = 1
-    a.throws(() => assertType(s, Foo), e => /subject fails to satisfy class Foo{}/.test(e.message))
+    a.throws(
+      () => assertType(s, Foo),
+      (e: Error) => /subject fails to satisfy class Foo{}/.test(e.message)
+    )
   })
   test('subject can be type any', () => {
     const s: any = false

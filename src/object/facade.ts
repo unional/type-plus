@@ -19,14 +19,17 @@ export function facade<T extends AnyRecord>(subject: T, ...props: (keyof T)[]) {
   return props.reduce((p, k) => {
     const prop = subject[k]
     if (typeof prop === 'function') {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
       p[k] = prop.bind(subject)
     }
     else {
       Object.defineProperty(p, k, {
         get() {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-return
           return subject[k]
         },
         set(value: any) {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-assignment
           return subject[k] = value
         },
       })

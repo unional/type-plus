@@ -12,6 +12,9 @@
         "*.ts",
         "*.tsx"
       ],
+      "parserOptions": {
+        "project": "tsconfig.eslint.json"
+      },
       "rules": {
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "no-console": "off",

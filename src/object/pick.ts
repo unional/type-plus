@@ -18,7 +18,7 @@ export function pick<T extends AnyRecord>(subject: T, ...props: Array<UnionKeys<
   return reduceByKey(subject, (p, k) => {
     if (props.indexOf(k) >= 0) p[k] = subject[k]
     return p
-  }, {} as any)
+  }, {} as T)
 }
 
 /**

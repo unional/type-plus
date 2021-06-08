@@ -1,12 +1,12 @@
 import { mapProperties } from '..'
 
 test('basic usage', () => {
-  const actual = mapProperties({ a: 1, b: 2 }, (v, k) => k + (v * 2))
+  const actual = mapProperties({ a: 1, b: 2 }, (v, k) => k + String((v * 2)))
   expect(actual).toEqual({ a: 'a2', b: 'b4' })
 })
 
 test('mixed type', () => {
-  const actual = mapProperties({ a: 1, b: 'b' }, (v, k) => k + v)
+  const actual = mapProperties({ a: 1, b: 'b' }, (v, k) => k + String(v))
   expect(actual).toEqual({ a: 'a1', b: 'bb' })
 })
 

@@ -1,7 +1,7 @@
 import { RecursiveIntersect } from '..'
 
 test('add object type to types', () => {
-  type U = { u: number };
+  type U = { u: number }
 
   acceptU(addU('a'))
   acceptU(addU(1))
@@ -29,8 +29,8 @@ test('add object type to types', () => {
   // acceptU(comArr[0])
   // acceptU(comArr[0].x)
 
-  function addU<T>(x: T): RecursiveIntersect<typeof x, U> {
-    return x as any
+  function addU<T>(x: T): RecursiveIntersect<T, U> {
+    return x as any as RecursiveIntersect<T, U>
   }
 
   function acceptU(x: U) {

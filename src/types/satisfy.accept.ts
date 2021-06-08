@@ -29,7 +29,9 @@ const eslint = T.object.create({
 
 baseline('fixtures/eslint', ({ caseName, caseFolder }) => {
   test(`eslint ${caseName}`, () => {
-    const config = JSON.parse(fs.readFileSync(`${path.join(caseFolder, caseName)}`, 'utf-8'))
+    const config: unknown = JSON.parse(
+      fs.readFileSync(`${path.join(caseFolder, caseName)}`, 'utf-8')
+    )
 
     if (!T.satisfy(eslint, config)) fail('should satisfy')
   })

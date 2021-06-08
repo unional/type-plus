@@ -1,12 +1,12 @@
 import { getField } from '..'
 
 test('support undefined', () => {
-  const sub: { a: number } | undefined = { a: 1 } as any
+  const sub: { a: number } | undefined = { a: 1 }
   expect(getField(sub, 'a')).toBe(1)
 })
 
 test('support null', () => {
-  const sub: { a: number } | null = { a: 1 } as any
+  const sub: { a: number } | null = { a: 1 }
   expect(getField(sub, 'a')).toBe(1)
 })
 
@@ -16,6 +16,6 @@ test('can specify default value', () => {
 })
 
 test('get from union keys', () => {
-  const sub: { a: number, b: string } | { a: number, c: string } = { a: 1, b: 'b' } as any
+  const sub: { a: number, b: string } | { a: number, c: string } = { a: 1, b: 'b' }
   expect(getField(sub, 'b')).toBe('b')
 })

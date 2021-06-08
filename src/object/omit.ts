@@ -32,5 +32,5 @@ export function omit<T extends AnyRecord>(subject: T, ...props: Array<UnionKeys<
   return reduceByKey(subject, (p, k) => {
     if (props.indexOf(k) === -1) p[k] = subject[k]
     return p
-  }, {} as any)
+  }, {} as AnyRecord)
 }

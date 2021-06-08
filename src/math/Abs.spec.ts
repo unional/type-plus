@@ -5,7 +5,7 @@ test('positive returns itself', () => {
 })
 
 test('negative returns positive', () => {
-  isType.equal<true, 12345, Abs<-12345>>()
+  isType.equal<true, 1234, Abs<-1234>>()
 })
 
 test('number returns Fail', () => {

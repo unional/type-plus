@@ -21,7 +21,7 @@ test('distributive pick', () => {
     payload: string,
   }
 
-  const x: Pick<Action, 'type' | 'payload'> = {} as any
+  const x: Pick<Action, 'type' | 'payload'> = { type: 'invoke', payload: [] }
 
   const actions: Action[] = []
 
