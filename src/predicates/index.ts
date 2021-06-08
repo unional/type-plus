@@ -4,6 +4,7 @@ export * from './Extends'
 export * from './If'
 export * from './isType'
 export * from './logical'
+export * from './isEmptyObject'
 
 import { IsExtend } from './Extends'
 
