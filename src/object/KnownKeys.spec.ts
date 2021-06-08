@@ -35,5 +35,5 @@ test('empty record yields never', () => {
 
 
 function getKnownKeys<T>(_value: T): KnownKeys<T> {
-  return {} as any
+  return {} as unknown as KnownKeys<T>
 }
