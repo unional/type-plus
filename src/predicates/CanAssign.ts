@@ -1,12 +1,15 @@
 import { NotExtendable } from './Extends'
+import { IsEmptyObject } from './isEmptyObject'
 
 /**
  * Can `A` assign to `B`
  */
 export type CanAssign<A, B, Then = true, Else = false> =
-  boolean extends A ?
-  boolean extends B ? Then : Else :
-  A extends B ? Then : Else
+  IsEmptyObject<A> extends true
+  ? Record<string, unknown> extends B ? Then : Else
+  : boolean extends A
+  ? (boolean extends B ? Then : Else)
+  : A extends B ? Then : Else
 
 
 export type IsAssign<A, B, Then = true, Else = false> = CanAssign<A, B, Then, Else>
