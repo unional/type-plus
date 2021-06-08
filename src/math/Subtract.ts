@@ -16,7 +16,7 @@ export type Subtract<A extends number, B extends number, Fail = never> =
     PadLeft<DA, M, 0> extends infer PDA ? PDA extends number[] ?
     PadLeft<DB, M, 0> extends infer PDB ? PDB extends number[] ?
     SubtractDigitArray<[], PDA, PDB> extends infer Result ? Result extends number[] ?
-    Some<Result, number, 'strict'> extends true ? Fail :
+    Some<Result, never, 'strict'> extends true ? Fail :
     DigitArray.ToNumber<Result>
     : Fail : Fail
     : Fail : Fail

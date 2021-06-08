@@ -36,5 +36,5 @@ test('multi digits', () => {
 
 test('negative results gets Fail', () => {
   isType.equal<true, 'no~~', Subtract<1, 2, 'no~~'>>()
-  isType.equal<true, never, Subtract<12345, 12346>>()
+  isType.equal<true, never, Subtract<1233, 1234>>()
 })
