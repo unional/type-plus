@@ -31,3 +31,4 @@ export function flavor(type: string, subject?: unknown) {
   return subject
 }
 console.log('hello')
+console.log('hello2')
