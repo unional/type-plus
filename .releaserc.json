@@ -1,9 +1,7 @@
 {
-  "release": {
-    "branches": [
-      "main",
-      "next",
-      "beta"
-    ]
-  }
+  "branches": [
+    "main",
+    "next",
+    "beta"
+  ]
 }
