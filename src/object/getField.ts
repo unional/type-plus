@@ -17,5 +17,5 @@ export function getField<
   K extends UnionKeys<TX>,
   DV extends Exclude<TX[K], undefined>
 >(subject: T, key: K, defaultValue?: DV) {
-  return subject && (subject as { [k in K]: TX[K] | DV })[key] || defaultValue
+  return subject && (subject as unknown as { [k in K]: TX[K] | DV })[key] || defaultValue
 }
