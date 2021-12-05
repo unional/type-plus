@@ -16,18 +16,20 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "eslint.enable": true,
   "cSpell.words": [
+    "ajafff",
     "Birkeland",
     "Cernicova",
     "Colthorp",
     "Constantiner",
     "Dragomir",
-    "Meinhardt",
-    "ajafff",
     "gcanti",
     "istype",
     "jcalz",
+    "Meinhardt",
     "overrider",
+    "tersify",
     "typelevel",
-    "typepark"
+    "typepark",
+    "unpartial"
   ]
 }
