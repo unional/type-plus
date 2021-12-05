@@ -2,7 +2,7 @@ name: nodejs
 on:
   push:
     branches:
-      - master
+      - main
       - "greenkeeper/*"
   pull_request:
     types: [opened, synchronize]
@@ -92,7 +92,7 @@ jobs:
   release:
     name: release
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     needs:
       - build
       - test
