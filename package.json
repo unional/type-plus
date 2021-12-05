@@ -82,7 +82,6 @@
     "npm-check-updates": "^12.0.2",
     "rimraf": "^3.0.2",
     "satisfier": "^5.1.0",
-    "semantic-release": "^18.0.1",
     "size-limit": "^7.0.3",
     "ts-toolbelt": "^9.6.0",
     "typescript": "^4.5.2"
