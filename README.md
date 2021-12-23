@@ -35,8 +35,8 @@ yarn add type-plus
 ## Runtime type checker
 
 Bringing the power of TypeScript to JavaScript runtime.
-At the moment, this provide some basic functionalities.
-If you need more feature, I would recommend other excellent type checking library such as [zod](https://github.com/colinhacks/zod).
+At the moment, this provides some basic functionalities.
+If you need more features, I would recommend other excellent type checking libraries such as [zod](https://github.com/colinhacks/zod).
 
 ```ts
 const eslintConfig = T.object.create({
@@ -74,13 +74,13 @@ Types supported: `any`, `array`, `boolean`, `null`, `number`, `object`, `record`
 i.e., most of the basic types are supported except `bigint`.
 It is left out for backward compatibility reasons.
 
-You can use one of the three functions to perform type check:
+You can use one of the three functions to perform type-check:
 
 `satisfy(type, subject)`:
 A loose type check that permits extra elements in `Tuple` and properties in `Object`.
 
 `conform(type, subject)`:
-A strick type check that does not allow extra elements in `Tuple` and properties in `Object`.
+A strict type check that does not allow extra elements in `Tuple` and properties in `Object`.
 
 `check(options, type, subject)`:
 A general form of `satisfy()` and `conform()`.
@@ -107,7 +107,7 @@ Use the one that fits your specific needs.
 ✔️ `immediate`
 
 It ensures `subject` satisfies `T`.
-It is similar to `const x: T = subject` without introducing unused variable.
+It is similar to `const x: T = subject` without introducing an unused variable.
 You need to specify `T` for it to work.
 
 `assertType<T>(subject, validator)`:
@@ -116,7 +116,7 @@ You need to specify `T` for it to work.
 
 ✔️ `assertion function`, `runtime`
 
-These overloads of `assertType` allows you to specify a `validator`.
+These overloads of `assertType` allow you to specify a `validator`.
 With these overloads, `subject` can be `unknown` or `any`.
 
 If `subject` fails the assertion,
@@ -163,7 +163,7 @@ const s: number | undefined = undefined
 assertType.isUndefined(s) // TypeScript complains
 ```
 
-They accepts `any` and will be narrowed to the specific type.
+They accept `any` and will be narrowed to the specific type.
 
 ```ts
 const s: any = undefined
@@ -177,9 +177,9 @@ s // type is undefined
 
 Check if the subject type is `never`.
 This function is not very useful in actual code as TypeScript will indicate the error.
-But it can be useful when writing tests for type.
+But it can be useful when writing tests for types.
 
-This is useful for variable. For type level only check, do the following:
+This is useful for variables. For type level only check, do the following:
 
 ```ts
 assertType.isTrue(true as Equal<YourType, never>)
@@ -214,8 +214,8 @@ const s: number | undefined = 1
 assertType.noUndefined(s) // TypeScript complains
 ```
 
-They accepts `subject` with type `any` or `unknown`,
-assertion will happens in runtime to ensure `subject` is the specific type.
+They accept `subject` with type `any` or `unknown`,
+the assertion will happen in runtime to ensure `subject` is the specific type.
 
 `isType<T>(subject: T)`:
 
@@ -250,11 +250,11 @@ It returns `true` when passes (which is the only case when used in TypeScript).
 ✔️ `immediate`
 
 Slightly easier to use then `isType.t<>()` and `isType.f<>()`,
-when doing type level only equality comparison as you don't have to import `Equal<>`.
+when doing type-level only equality comparison as you don't have to import `Equal<>`.
 
 ✔️ `type guard`, `runtime`
 
-These overloads of `isType` allows you to specify a `validator`.
+These overloads of `isType` allow you to specify a `validator`.
 With these overloads, `subject` can be `unknown` or `any`.
 
 `Equal<A, B>`:
@@ -302,7 +302,7 @@ assertType.isTrue(true as CanAssign<{ a:string, b:number }, { a: string }>)
 
 ✔️ `immediate`, `logical`
 
-Returns a compile time validating function to ensure `subject` is assignable to `T`.
+Returns a compile-time validating function to ensure `subject` is assignable to `T`.
 
 ```ts
 const isConfig = canAssign<{ a: string }>()
@@ -313,7 +313,7 @@ assertType.isTrue(isConfig({ a: 'a' }))
 
 ✔️ `immediate`, `logical`
 
-Returns a compile time validating function to ensure `subject` is not assignable to `T`.
+Returns a compile-time validating function to ensure `subject` is not assignable to `T`.
 
 ```ts
 const notA = canAssign<{ a: string }>(false)
@@ -324,7 +324,7 @@ notA({ a: '' }) // TypeScript complains
 
 ## Nominal Type
 
-TypeScript type system is structural.
+The TypeScript type system is structural.
 
 In some cases, we want to express a type with nominal behavior.
 `type-plus` provides two kinds of nominal types: `Brand` and `Flavor`.
@@ -383,12 +383,12 @@ nominalMatch(b1, b2) // false
 
 ## Functional Types
 
-- `ChainFn<T>: T`: chain function that return the input type.
+- `ChainFn<T>: T`: chain function that returns the input type.
 
 ## Type Utilities
 
 `type-plus` also provides additional type utilities.
-These utilities includes utility types and type adjusted functions.
+These utilities include utility types and type-adjusted functions.
 
 Note that most `predicate` types (such as `IsAny<>`) have a `Then` and `Else` that you can override.
 
@@ -406,13 +406,13 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 - `CreateTuple<L, T>`: creates `Tuple<T>` with `L` number of elements.
 - `DropFirst<A>`: drops the first value type of `A`.
 - `DropLast<A>`: drops the last value type of `A`.
-- `Filter<A, Criteria>`: gets array of types satisfying `Criteria` in `A`.
-- `FindFirst<A, Criteria>`: gets first type satisfying `Criteria`.
-- `FindLast<A, Criteria>`: gets last type satisfying `Criteria`.
+- `Filter<A, Criteria>`: gets the array of types satisfying `Criteria` in `A`.
+- `FindFirst<A, Criteria>`: gets the first type satisfying `Criteria`.
+- `FindLast<A, Criteria>`: gets the last type satisfying `Criteria`.
 - `Head<A>`: gets the first entry in the array.
 - `IntersectOfProps<A, K>`: gets the intersect of `A[K]` types (deprecate `MapToProp`)
 - `IsArray<T>`: `logical` predicate for `Array`.
-- `literalArray(...entries)`: return an array those items are restricted to the provided literals.
+- `literalArray(...entries)`: return an array whose items are restricted to the provided literals.
 - `PadLeft<A, Total, PadWith>`: pads `A` with `PadWith` if the length of `A` is less than `L`.
 - `reduceWhile()`: `reduce()` with predicate for early termination. \
   A simple version of the same function in the `ramda` package.
@@ -467,9 +467,9 @@ JSONTypes.get<string>(someJson, 'a', 'b', 1, 'c') // miku
 
 ### Type manipulation
 
-- `ANotB<A, B>`: get object with properties in `A` and not in `B`, including properties with different value type.
+- `ANotB<A, B>`: get object with properties in `A` and not in `B`, including properties with a different value type.
 - `BNotA<A, B>`: flip of `ANotB`
-- `as<T>(subject)`: assert `subject` as `T`. Avoid ASI issue such as `;(x as any).abc`
+- `as<T>(subject)`: assert `subject` as `T`. Avoid ASI issues such as `;(x as any).abc`
 - `asAny(subject)`: assert `subject` as `any`. Avoid ASI issue such as `;(x as any).abc`
 - `Except<T, K>`: Deprecated. Same as `Omit<T, K>`.
 - `ExcludePropType<T, U>`: excludes type `U` from properties in `T`.
@@ -481,13 +481,13 @@ JSONTypes.get<string>(someJson, 'a', 'b', 1, 'c') // miku
 - `PartialExcept<T, U>`: Deprecated. Same as `PartialOmit<T, U>`.
 - `PartialOmit<T, U>`: makes the properties not specified in `U` becomes optional.
 - `PartialPick<T, U>`: makes the properties specified in `U` becomes optional.
-- `Pick<T, K>`: pick properties `K` from `T`. Works with union.
+- `Pick<T, K>`: pick properties `K` from `T`. Works with unions.
 - `RecursivePartial<T>`: make type `T` optional recursively.
 - `RecursiveRequired<T>`: make type `T` required recursively.
 - `ReplaceProperty<T, K, V>`: replace property `K` in `T` with `V`.
 - `RequiredKeys<T>`: gets keys of required properties in `T`.
-- `RequiredPick<T, U>`: makes the properties specified in `U` becomes required.
-- `RequiredExcept<T, U>`: makes the properties not specified in `U` becomes required.
+- `RequiredPick<T, U>`: makes the properties specified in `U` become required.
+- `RequiredExcept<T, U>`: makes the properties not specified in `U` become required.
 - `RecursiveIntersect<T, U>`: intersect type `U` onto `T` recursively.
 - `ValueOf<T>`: type of the value of the properties of `T`.
 - `Widen<T>`: widen literal types.
@@ -513,7 +513,7 @@ They can be used to compose complex types.
 - `Xor<A, B>`: logical `XOR`.
 - `Not<X>`: logical `NOT`.
 
-Note that these types work correctly with `boolean` type.
+Note that these types work correctly with the `boolean` type.
 e.g.:
 
 - `And<boolean, true> -> boolean`
@@ -533,8 +533,7 @@ So you may encounter some weird behavior if your logic is complex.
 #### Arithmetics
 
 - `Add<A, B, Fail=never>`: `A + B` for positive and whole numbers, `Fail` otherwise.
-- `Subtract<A, B, Fail=never>`: `A - B` for positive and whole numbers, `Fail` otherwise.\
-  Negative result also returns `Fail`.
+- `Subtract<A, B, Fail=never>`: `A - B` for positive and whole numbers, `Fail` otherwise.
 - `Increment<A, Fail=never>`: alias of `Add<A, 1, Fail>`.
 - `Decrement<A, Fail=never>`: alias of `Subtract<A, 1, Fail>`.
 
@@ -571,9 +570,9 @@ overrider(source, { foo: !!source.foo })
 
 ## Attribution
 
-Some of the code in this library are created by other people in the TypeScript community.
-I merely adding them in and may be making some adjustments.
-When ever possible, I add attribution to the person who created those code in the file.
+Some of the code in this library is created by other people in the TypeScript community.
+I merely adding them in and maybe making some adjustments.
+Whenever possible, I add attribution to the person who created those **codes** in the file.
 
 ## Similar projects
 
