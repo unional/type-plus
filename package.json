@@ -36,7 +36,6 @@
     "dependency-check": "dependency-check . --unused --no-dev -i ts-toolbelt -i typescript && dependency-check . --missing --no-dev",
     "lint": "eslint --ext=ts,js .",
     "nuke": "yarn clean && rimraf node_modules",
-    "semantic-release": "semantic-release",
     "test": "tsc -p tsconfig.json && jest",
     "verify": "yarn lint && yarn build && yarn dc && npx size-limit && yarn coverage",
     "verify:ci": "yarn lint && yarn build && yarn dc && npx size-limit && yarn coverage --maxWorkers=2",
