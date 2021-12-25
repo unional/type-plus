@@ -1,4 +1,4 @@
-import { assertType, canAssign, ComposableTypes, isType, NonComposableTypes } from '.'
+import { assertType, canAssign, ComposableTypes, NonComposableTypes } from '.'
 
 test('ComposableTypes includes object, array, and function', () => {
   assertType<ComposableTypes>({})
