@@ -38,6 +38,5 @@ test('Just<number can assign to Maybe<number>', () => {
 test('Just<string> is not assignable to Maybe<number>', () => {
   assertType.isFalse(false as CanAssign<Just<'abc'>, Maybe<number>>)
 
-  // this is failing, which is wrong
-  // assertType.isFalse(canAssign<Maybe<number>>()(just('abc')))
+  assertType.isTrue(canAssign<Maybe<number>>(false)(just('abc')))
 })
