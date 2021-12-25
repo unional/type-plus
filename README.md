@@ -426,6 +426,8 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 
 - `KeyTypes`: type of all keys.
 - `PrimitiveTypes`: all primitive types, including `Function`, `symbol`, and `bigint`.
+- `ComposableTypes`: Types that can contain custom properties. i.e. `object`, `array`, `function`.
+- `NonComposableTypes`: Types that cannot contain custom properties. i.e. not composable.
 
 ### JSON Support
 
