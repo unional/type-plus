@@ -1740,6 +1740,11 @@ acorn@^8.0.5, acorn@^8.2.4:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.6.0.tgz#e3692ba0eb1a0c83eaa4f37f5fa7368dd7142895"
   integrity sha512-U1riIR+lBSNi3IbxtaHOIKdH8sLFv3NYfNv8sg7ZsNhcfl4HF2++BfqqrNAxoCLQW1iiylOj76ecnaUxz+z9yw==
 
+acorn@^8.6.0:
+  version "8.7.0"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.7.0.tgz#90951fde0f8f09df93549481e5fc141445b791cf"
+  integrity sha512-V/LGr1APy+PXIwKebEWrkZPwoeoF+w1jiOBUmuxuiUIaOHtob8Qc9BTrYo7VuI5fR8tqsy+buA2WFooR5olqvQ==
+
 agent-base@6, agent-base@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-6.0.2.tgz#49fff58577cfee3f37176feab4c22e00f86d7f77"
@@ -6847,7 +6852,7 @@ terminal-link@^2.0.0:
     ansi-escapes "^4.2.1"
     supports-hyperlinks "^2.0.0"
 
-tersify@^3.0.2, tersify@^3.0.6, tersify@^3.7.0, tersify@^3.7.8:
+tersify@^3.0.2, tersify@^3.0.6, tersify@^3.7.0:
   version "3.7.8"
   resolved "https://registry.yarnpkg.com/tersify/-/tersify-3.7.8.tgz#4ea998262b4c1a701d23a73b01fa8a3bb276fc86"
   integrity sha512-fa5WwVR5HDOLb/j1KIl/bw1OijyWTiOPotWLdlzn0HUCDey28Og8i7+e90gM68I167bKIhCkpjHL2+l3j4J7Pg==
@@ -6855,6 +6860,15 @@ tersify@^3.0.2, tersify@^3.0.6, tersify@^3.7.0, tersify@^3.7.8:
     acorn "^8.0.5"
     is-buffer "^2.0.5"
     unpartial "^0.6.3"
+
+tersify@^3.7.9:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/tersify/-/tersify-3.8.0.tgz#a0a0af2dc99c1fde2656781875ad12a4b3da5861"
+  integrity sha512-qJjdWiS9tx72w5vXMYeqc3kpy6RswkbTEXuGr0AATba0w0gh3M5mnwXsBq4y3Mb5ZLsyBedq1qhi2MING4ZinQ==
+  dependencies:
+    acorn "^8.6.0"
+    is-buffer "^2.0.5"
+    unpartial "^0.6.4"
 
 test-exclude@^6.0.0:
   version "6.0.0"
@@ -7156,6 +7170,11 @@ unpartial@^0.6.1, unpartial@^0.6.3:
   version "0.6.3"
   resolved "https://registry.yarnpkg.com/unpartial/-/unpartial-0.6.3.tgz#75557ac68fce3e9fcc983cd76e3d505b3a5ce4a3"
   integrity sha512-U4pMxDxAyV7n5Hp6q9OMjCHLkTU6JwTxzignyXv60u44HlhUmaT+u18AAKM87+EtPkdkOlsSRmzJL4OoHROxbw==
+
+unpartial@^0.6.4:
+  version "0.6.4"
+  resolved "https://registry.yarnpkg.com/unpartial/-/unpartial-0.6.4.tgz#9cf878d3c8335919b250cfb3393751ca12cc26a4"
+  integrity sha512-t/aGg/x8vW0KCjPB8A6TBB1hd0wnWMze8WD83uUpqSDm99jmhY2ZcHpivlvvSGmPCJ/S5ASZzxeQHga4JTW/4A==
 
 unset-value@^1.0.0:
   version "1.0.0"
