@@ -13,10 +13,6 @@
 
 Provides additional types and type adjusted utilities for [TypeScript](https://www.typescriptlang.org/).
 
-## What's new
-
-Please check out the [release note](./docs/releases/whats-new-in-3.9.md) to see what's new in 3.9!
-
 ## Feature Highlights
 
 - [Runtime type checker](#runtime-type-checker)
@@ -546,6 +542,7 @@ So you may encounter some weird behavior if your logic is complex.
 - `hasKey()`: function of `HasKey`.
 - `hasProperty(value, prop)`: assert `value` has property `prop`. This will pick the correct union type.
 - `isConstructor(subject)`: type guard `subject` is a constructor.
+- `isSystemError(code, err)`: type guard `err` with Nodejs error code.
 - `pick(obj, ...props)`: pick properties from `obj`.
 - `omit(obj, ...props)`: omit properties from `obj`.
 - `required(...)`: merge options and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
