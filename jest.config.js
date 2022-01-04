@@ -2,6 +2,7 @@ module.exports = {
   'collectCoverageFrom': [
     '<rootDir>/ts/**/*.[jt]s',
     '!<rootDir>/ts/bin.[jt]s',
+    '!<rootDir>/ts/type-checker/*'
   ],
   'reporters': [
     'default',
