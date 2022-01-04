@@ -1,49 +1,28 @@
-const isCI = require('is-ci')
-module.exports = isCI ? {
+module.exports = {
   'collectCoverageFrom': [
-    '<rootDir>/src/**/*.[jt]s',
-    '!<rootDir>/src/bin.[jt]s',
-    '!<rootDir>/src/type-checker/*'
-  ],
-  'roots': [
-    '<rootDir>/src',
+    '<rootDir>/ts/**/*.[jt]s',
+    '!<rootDir>/ts/bin.[jt]s',
+    '!<rootDir>/ts/type-checker/*'
   ],
   'reporters': [
     'default',
-    [
-      'jest-junit',
-      {
-        'output': '.reports/junit/js-test-results.xml',
-      },
-    ],
+    'jest-progress-tracker'
+  ],
+  'roots': [
+    '<rootDir>/ts',
   ],
   'testEnvironment': 'node',
   'testMatch': ['**/?(*.)+(spec|test|integrate|accept|system|unit).[jt]s?(x)'],
-} : {
-    'collectCoverageFrom': [
-      '<rootDir>/src/**/*.[jt]s',
-      '!<rootDir>/src/bin.[jt]s',
-      '!<rootDir>/src/type-checker/*'
+  'watchPlugins': [
+    'jest-watch-suspend',
+    'jest-watch-repeat',
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname',
+    [
+      'jest-watch-toggle-config', { 'setting': 'verbose' },
     ],
-    'reporters': [
-      'default',
-      'jest-progress-tracker',
-      // ['jest-audio-reporter', { volume: 0.3 }],
+    [
+      'jest-watch-toggle-config', { 'setting': 'collectCoverage' },
     ],
-    'roots': [
-      '<rootDir>/src',
-    ],
-    'testEnvironment': 'node',
-    'testMatch': ['**/?(*.)+(spec|test|integrate|accept|system|unit).[jt]s?(x)'],
-    'watchPlugins': [
-      'jest-watch-suspend',
-      'jest-watch-typeahead/filename',
-      'jest-watch-typeahead/testname',
-      [
-        'jest-watch-toggle-config', { 'setting': 'verbose' },
-      ],
-      [
-        'jest-watch-toggle-config', { 'setting': 'collectCoverage' },
-      ],
-    ],
-  }
+  ],
+}

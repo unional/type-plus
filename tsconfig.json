@@ -1,5 +1,5 @@
 {
-  "extends": "./tsconfig.esnext.json",
+  "extends": "./tsconfig.esm.json",
   "compilerOptions": {
     "lib": [
       "es2015",
@@ -8,7 +8,7 @@
     "noEmit": true
   },
   "include": [
-    "src",
+    "ts",
     "typings"
   ]
 }
