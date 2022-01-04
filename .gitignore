@@ -42,6 +42,8 @@ node_modules
 .idea
 
 # project folders
+cjs
 dist*
+esm
 lib*
 out*
