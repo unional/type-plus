@@ -1,4 +1,4 @@
-import * as types from './types'
+// import * as types from './types'
 export { required, requiredDeep } from 'unpartial'
 export * from './array'
 export * from './assertion'
@@ -14,8 +14,8 @@ export * from './object'
 export * from './predicates'
 export * from './PrimitiveTypes'
 export * from './promise'
-export * from './types/optional'
-export * from './types/required'
+// export * from './types/optional'
+// export * from './types/required'
 export * from './UnionKeys'
 export * from './utils'
-export { types, types as T }
+// export { types, types as T }

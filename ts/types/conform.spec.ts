@@ -1,4 +1,4 @@
-import { T } from '..'
+import * as T from '.'
 import { conform } from './conform'
 
 test('conform is strict', () => {

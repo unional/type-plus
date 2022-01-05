@@ -15,7 +15,6 @@ Provides additional types and type adjusted utilities for [TypeScript](https://w
 
 ## Feature Highlights
 
-- [Runtime type checker](#runtime-type-checker)
 - [Type assertion](#type-assertion)
 - [Nominal Types](#nominal-type)
 - [Type Utilities](#type-utilities)
@@ -27,59 +26,6 @@ npm install type-plus
 // or
 yarn add type-plus
 ```
-
-## Runtime type checker
-
-Bringing the power of TypeScript to JavaScript runtime.
-At the moment, this provides some basic functionalities.
-If you need more features, I would recommend other excellent type checking libraries such as [zod](https://github.com/colinhacks/zod).
-
-```ts
-const eslintConfig = T.object.create({
-  env: O.object.create({
-    es6: O.boolean
-  }),
-  parseOptions: O.object.create({
-    ecmaVersion: O.number.list(3, 5, 6, 7, 8, 9, 10, 11, 12),
-    sourceType: O.string.list('script', 'module'),
-    ecmaFeatures: O.object.create({
-      globalReturn: O.boolean,
-      impliedStrict: O.boolean,
-      jsx: O.boolean
-    })
-  }),
-  ...
-})
-
-const config: unknown = require('.eslintrc.json')
-if (T.satisfy(eslintConfig, config)) {
-  // `config` is typed here
-  config.parseOptions?.ecmaVersion // 3 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-}
-else {
-  console.error(T.satisfy.getReport())
-}
-
-```
-
-All type checker functionalities are exposed as `types` (alias to `T`).
-In addition, `O` and `R` are exposed to make it easier to access optional types and required types respectively.
-
-Types supported: `any`, `array`, `boolean`, `null`, `number`, `object`, `record`, `string`, `symbol`, `tuple`, `undefined`, `union`, `unknown`.
-
-i.e., most of the basic types are supported except `bigint`.
-It is left out for backward compatibility reasons.
-
-You can use one of the three functions to perform type-check:
-
-`satisfy(type, subject)`:
-A loose type check that permits extra elements in `Tuple` and properties in `Object`.
-
-`conform(type, subject)`:
-A strict type check that does not allow extra elements in `Tuple` and properties in `Object`.
-
-`check(options, type, subject)`:
-A general form of `satisfy()` and `conform()`.
 
 ## Type Assertion
 
@@ -120,7 +66,7 @@ a standard `TypeError` will be thrown and provide better error info.
 For example:
 
 ```ts
-const s: any = 1
+const s: unknown = 1
 
 // TypeError: subject fails to satisfy s => typeof s === 'boolean'
 assertType<boolean>(s, s => typeof s === 'boolean')
