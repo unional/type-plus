@@ -1,7 +1,8 @@
 import { baseline } from '@unional/fixture'
 import fs from 'fs'
 import path from 'path'
-import { T, O } from '..'
+import * as T from '.'
+import { O } from './optional'
 
 const eslint = T.object.create({
   env: O.object.create({

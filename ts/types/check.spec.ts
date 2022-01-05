@@ -1,4 +1,4 @@
-import { T } from '..'
+import * as T from '.'
 import { check } from './check'
 
 test('check without strict', () => {

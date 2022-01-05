@@ -1,5 +1,6 @@
 import { satisfies } from 'satisfier'
-import { assertType, T, Equal } from '..'
+import { assertType, Equal } from '..'
+import * as T from '.'
 
 describe('undefined', () => {
   test('satisfies only undefined', () => {

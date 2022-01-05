@@ -1,4 +1,5 @@
-import { assertType, T } from '..'
+import { assertType } from '..'
+import * as T from '../types'
 import { createTypeChecker } from './typeChecker'
 
 describe('check()', () => {
