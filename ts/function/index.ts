@@ -1,1 +1,1 @@
-export * from './AnyFunction'
+export type { AnyFunction } from './AnyFunction'

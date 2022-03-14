@@ -1,10 +1,10 @@
 export * from './CanAssign'
-export * from './Equal'
-export * from './Extends'
-export * from './If'
+export type { Equal, IsEqual, IsNotEqual, NotEqual } from './Equal'
+export type { Extendable, IsExtend, IsNotExtend, NotExtendable } from './Extends'
+export type { If } from './If'
 export * from './isType'
-export * from './logical'
-export * from './isEmptyObject'
+export type { And, Not, Or, Xor } from './logical'
+export type { IsEmptyObject } from './IsEmptyObject'
 
 import { IsExtend } from './Extends'
 

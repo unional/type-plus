@@ -1,2 +1,2 @@
 // export * from './Maybe'
-export * from './ChainFn'
+export type { ChainFn, EndoFn } from './ChainFn'

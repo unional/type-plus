@@ -1,2 +1,2 @@
 export * from './as'
-export * from './Widen'
+export type { Widen } from './Widen'
