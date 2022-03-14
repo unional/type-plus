@@ -1,5 +1,5 @@
 import { NotExtendable } from './Extends'
-import { IsEmptyObject } from './isEmptyObject'
+import { IsEmptyObject } from './IsEmptyObject'
 
 /**
  * Can `A` assign to `B`

@@ -7,13 +7,13 @@
  */
 
 // export * from './BigInt'
-export * from './AllType'
+export type { AllType } from './AllType'
 export * from './Any'
 export * from './Array'
 export * from './Boolean'
 export * from './check'
 export * from './conform'
-export * from './Generate'
+export type { Generate } from './Generate'
 export { nil as null, Null } from './Null'
 export * from './Number'
 export { keys, object, ObjectType as Object } from './Object'

@@ -1,4 +1,4 @@
 export * from './isPromise'
-export * from './PromiseValue'
-export * from './PromiseValueMerge'
+export type { PromiseValue } from './PromiseValue'
+export type { PromiseValueMerge } from './PromiseValueMerge'
 export * from './mapSeries'
