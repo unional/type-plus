@@ -397,7 +397,7 @@ JSONTypes.get<string>(someJson, 'a', 'b', 1, 'c') // miku
 - `IsRecord<T>`: `logical` predicate for `Record`.
 - `KeysWithDiffTypes<A, B>`: gets the keys common in `A` and `B` but with different value type.
 - `mapKey()`: type adjusted map by key.
-- `reduceKey()`: type adjusted reduce by key.
+- `reduceByKey()`: type adjusted reduce by key.
 - `someKey()`: type adjusted some by key.
 - `SpreadRecord<A, B>`: type for `{...a, ...b}` when both `a` and `b` are `Record`. \
   for array, just do `[...A, ...B]`.
@@ -489,10 +489,11 @@ So you may encounter some weird behavior if your logic is complex.
 - `hasProperty(value, prop)`: assert `value` has property `prop`. This will pick the correct union type.
 - `isConstructor(subject)`: type guard `subject` is a constructor.
 - `isSystemError(code, err)`: type guard `err` with Nodejs error code.
-- `pick(obj, ...props)`: pick properties from `obj`.
 - `omit(obj, ...props)`: omit properties from `obj`.
+- `pick(obj, ...props)`: pick properties from `obj`.
 - `required(...)`: merge options and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
 - `requiredDeep(...)`: merge options deeply and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
+- `split(target, ...splitters)`: split one object into multiple objects.
 - `typeOverrideIncompatible<T>()`: override only the incompatible portion between two types.
 
 ```ts

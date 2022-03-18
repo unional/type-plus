@@ -1,20 +1,4 @@
 {
-  "json.schemas": [
-    {
-      "fileMatch": [
-        "tslint.json"
-      ],
-      "url": "http://json.schemastore.org/tslint"
-    },
-    {
-      "fileMatch": [
-        "tsconfig.*.json"
-      ],
-      "url": "http://json.schemastore.org/tsconfig"
-    }
-  ],
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "eslint.enable": true,
   "cSpell.words": [
     "ajafff",
     "Birkeland",
@@ -37,5 +21,33 @@
     "typelevel",
     "typepark",
     "unpartial"
-  ]
+  ],
+  "eslint.enable": true,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/.hg/store/**": true,
+    "**/.progress/**": true,
+    "**/node_modules/*/**": true,
+    ".github": true,
+    "cjs": true,
+    "coverage": true,
+    "esm": true,
+    "scripts": true
+  },
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "tslint.json"
+      ],
+      "url": "http://json.schemastore.org/tslint"
+    },
+    {
+      "fileMatch": [
+        "tsconfig.*.json"
+      ],
+      "url": "http://json.schemastore.org/tsconfig"
+    }
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
