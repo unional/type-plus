@@ -1,5 +1,8 @@
 import { IsPositive } from '../math'
 
+/**
+ * Creates `Tuple<T>` with `L` number of elements.
+ */
 export type CreateTuple<L extends number, T = any> =
   IsPositive<L> extends true ? Device<[], L, T> : never
 
