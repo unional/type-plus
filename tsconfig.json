@@ -10,5 +10,11 @@
   "include": [
     "ts",
     "typings"
-  ]
+  ],
+  "typedocOptions": {
+    "entryPoints": [
+      "ts/index.ts"
+    ],
+    "out": "docs"
+  }
 }

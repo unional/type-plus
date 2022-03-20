@@ -1,7 +1,7 @@
 {
   "name": "type-plus",
   "version": "0.0.0-development",
-  "description": "Provides additional types for `typescript`.",
+  "description": "Provides additional types for TypeScript.",
   "homepage": "https://github.com/unional/type-plus",
   "bugs": {
     "url": "https://github.com/unional/type-plus/issues"
@@ -26,9 +26,10 @@
     "ts"
   ],
   "scripts": {
-    "build": "run-p build:cjs build:esm",
+    "build": "run-p build:cjs build:esm build:doc",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build:esm": "tsc -p tsconfig.esm.json",
+    "build:doc": "typedoc",
     "clean": "rimraf cjs esm coverage lib libm",
     "coverage": "jest --coverage",
     "depcheck": "yarn dependency-check",
@@ -82,6 +83,7 @@
     "rimraf": "^3.0.2",
     "satisfier": "^5.1.2",
     "size-limit": "^7.0.8",
+    "typedoc": "^0.22.13",
     "typescript": "^4.6.2"
   },
   "size-limit": [

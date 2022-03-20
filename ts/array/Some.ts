@@ -1,6 +1,6 @@
-import { Equal } from '../predicates'
-import { Tail } from './Tail'
-import { UnionOfValues } from './UnionOfValues'
+import type { Equal } from '../predicates'
+import type { Tail } from './Tail'
+import type { UnionOfValues } from './UnionOfValues'
 
 export type Some<
   A extends any[],
@@ -9,16 +9,18 @@ export type Some<
   Then = true,
   Else = false
   > =
-  Mode extends 'strict' ? SomeStrict<A, Criteria, Then, Else> :
+  Mode extends 'strict' ? Some.Strict<A, Criteria, Then, Else> :
   number extends A['length'] ? UnionOfValues<A> extends Criteria ? Then : Else :
   A['length'] extends 0 ? Else :
   A[0] extends Criteria ? Then : Some<Tail<A>, Criteria, 'loose', Then, Else>
 
-type SomeStrict<A extends any[], Criteria, Then, Else> =
-  number extends A['length']
-  ? (Equal<UnionOfValues<A>, Criteria> extends true ? Then : Else)
-  : (A['length'] extends 0
-    ? Else
-    : (Equal<A[0], Criteria> extends true
-      ? Then
-      : SomeStrict<Tail<A>, Criteria, Then, Else>))
+export namespace Some {
+  export type Strict<A extends any[], Criteria, Then, Else> =
+    number extends A['length']
+    ? (Equal<UnionOfValues<A>, Criteria> extends true ? Then : Else)
+    : (A['length'] extends 0
+      ? Else
+      : (Equal<A[0], Criteria> extends true
+        ? Then
+        : Strict<Tail<A>, Criteria, Then, Else>))
+}
