@@ -44,6 +44,7 @@ node_modules
 # project folders
 cjs
 dist*
+docs
 esm
 lib*
 out*
