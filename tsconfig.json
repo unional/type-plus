@@ -12,6 +12,8 @@
     "typings"
   ],
   "typedocOptions": {
+    "customTitle": "Additional types and utils for TypeScript",
+    "customTitleLink": "https://github.com/unional/type-plus",
     "entryPoints": [
       "ts/index.ts"
     ],

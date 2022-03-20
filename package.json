@@ -84,6 +84,7 @@
     "satisfier": "^5.1.2",
     "size-limit": "^7.0.8",
     "typedoc": "^0.22.13",
+    "typedoc-plugin-extras": "^2.2.3",
     "typescript": "^4.6.2"
   },
   "size-limit": [

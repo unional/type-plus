@@ -13,13 +13,13 @@ jobs:
   test:
     uses: unional/.github/.github/workflows/typescript-test.yml@main
     needs: build
-  docgen:
-    if: github.ref == 'refs/heads/main'
-    uses: unional/.github/.github/workflows/build-docs.yml@main
-    needs: test
   release:
     if: github.ref == 'refs/heads/main'
     uses: unional/.github/.github/workflows/npm-release.yml@main
     needs: test
     secrets:
       npm-token: ${{ secrets.NPM_TOKEN }}
+  docgen:
+    if: github.ref == 'refs/heads/main'
+    uses: unional/.github/.github/workflows/build-docs.yml@main
+    needs: release
