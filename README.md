@@ -326,6 +326,7 @@ nominalMatch(b1, b2) // false
 ## Functional Types
 
 - `ChainFn<T>: T`: chain function that returns the input type.
+- `compose(...fns): F`: compose functions
 
 ## Type Utilities
 
