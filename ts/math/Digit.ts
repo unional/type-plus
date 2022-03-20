@@ -34,7 +34,7 @@ export namespace Digit {
    */
   export type GreaterThan<A extends number, B extends number> = B extends GreaterThanMap[A] ? true : false
 
-  type GreaterThanMap = { [k in number]: number } & {
+  export type GreaterThanMap = { [k in number]: number } & {
     0: never,
     1: 0,
     2: 0 | 1,
@@ -62,12 +62,12 @@ export namespace DigitArray {
           : never)
         : never))
 
-  type Multi10<C extends any[]> = [...C, ...C, ...C, ...C, ...C, ...C, ...C, ...C, ...C, ...C]
+  export type Multi10<C extends any[]> = [...C, ...C, ...C, ...C, ...C, ...C, ...C, ...C, ...C, ...C]
 
 
   export type FromNumber<N extends number> = FromString<NumberToString<N>>
 
-  type NumberToString<N extends number> = (And<IsPositive<N>, IsWhole<N>>) extends true ? `${N}` : never
+  export type NumberToString<N extends number> = (And<IsPositive<N>, IsWhole<N>>) extends true ? `${N}` : never
 
   export type FromString<S extends string> = S extends `1${infer L}` ? [1, ...FromString<L>]
     : S extends `2${infer L}` ? [2, ...FromString<L>]
@@ -82,7 +82,7 @@ export namespace DigitArray {
     : []
 
   export type Shift10<DA extends number[]> = TrimLeadingZero<Shift10State<[], DA>>
-  type Shift10State<R extends number[], DA extends number[]> =
+  export type Shift10State<R extends number[], DA extends number[]> =
     DA['length'] extends 0
     ? R
     : (DA['length'] extends 1
@@ -100,16 +100,16 @@ export namespace DigitArray {
         : [])
     )
 
-  type TrimLeadingZero<A extends number[]> =
+  export type TrimLeadingZero<A extends number[]> =
     A['length'] extends 0
     ? A
     : A[0] extends 0 ? TrimLeadingZero<Tail<A>> : A
 
-  type MinusOne = { [k in number]: number } & {
+  export type MinusOne = { [k in number]: number } & {
     0: 0, 1: 0, 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 7, 9: 8,
     10: 9, 11: 10, 12: 11, 13: 12, 14: 13, 15: 14, 16: 15, 17: 16, 18: 17, 19: 18
   }
 
-  type Plus10 = { [k in number]: number } &
+  export type Plus10 = { [k in number]: number } &
   { 0: 10, 1: 11, 2: 12, 3: 13, 4: 14, 5: 15, 6: 16, 7: 17, 8: 18, 9: 19 }
 }

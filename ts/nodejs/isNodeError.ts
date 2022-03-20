@@ -1,5 +1,4 @@
-
-type SystemErrors = {
+export type SystemErrors = {
   'EACCES': Error & { code: 'EACCES' },
   'EADDRINUSE': Error & { code: 'EADDRINUSE' },
   'ECONNREFUSED': Error,

@@ -1,7 +1,7 @@
 import { AnyRecord, Omit, reduceByKey } from '..'
 
 type Splitter<T extends AnyRecord> = Partial<{ [k in keyof T]: T[k] | undefined }>
-type Split<T extends AnyRecord, S extends AnyRecord> = { [k in keyof S]: NonNullable<T[k]> | S[k] }
+export type Split<T extends AnyRecord, S extends AnyRecord> = { [k in keyof S]: NonNullable<T[k]> | S[k] }
 
 /**
  * Split an object into multiple objects.
