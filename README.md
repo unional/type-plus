@@ -15,9 +15,10 @@ Provides additional types and type adjusted utilities for [TypeScript](https://w
 
 ## Feature Highlights
 
-- [Type assertion](#type-assertion)
-- [Nominal Types](#nominal-type)
+- [Type assertions](#type-assertions)
 - [Type Utilities](#type-utilities)
+- [Nominal Types](#nominal-types)
+- [Functional Types](#functional-types)
 
 ## Installation
 
@@ -27,12 +28,11 @@ npm install type-plus
 yarn add type-plus
 ```
 
-## Type Assertion
+## Type Assertions
 
-Besides the [runtime type checker](#runtime-type-checker),
-`type-plus` also provides a few other ways to do type assertions.
+Type assertion is one of the main features of `type-plus`.
 
-There are actually at least 5 kinds of type assertions:
+There are 5 kinds of type assertions:
 
 - `runtime`: validates during runtime.
 - `immediate`: validates at compile time.
@@ -264,70 +264,6 @@ assertType.isTrue(notA({ a: 1 }))
 notA({ a: '' }) // TypeScript complains
 ```
 
-## Nominal Type
-
-The TypeScript type system is structural.
-
-In some cases, we want to express a type with nominal behavior.
-`type-plus` provides two kinds of nominal types: `Brand` and `Flavor`.
-
-`Brand<B, T>`:
-
-`brand(type, subject?)`:
-
-Branded nominal type is the stronger nominal type of the two.
-It disallows unbranded type assigned to it:
-
-```ts
-const a = brand('a', { a: 1 })
-const b = { a: 1 }
-a = b // error
-```
-
-`subject` can be any type, from primitive to strings to objects.
-
-`brand(type)`:
-
-If you do not provide `subject`, `brand(type)` will return a brand creator,
-so that you can use it to create multiple branded values:
-
-```ts
-const nike = brand('nike')
-const shirt = nike('shirt')
-const socks = nike('socks')
-```
-
-`Flavor<F, T>`:
-
-`flavor(type, subject?)`:
-
-The key difference between `Flavor` and `Brand` is that
-unflavored type can be assigned to `Flavor`:
-
-```ts
-let f = flavor('orange', 'soda')
-f = 'mist' // ok
-```
-
-Also, `Brand` of the same name can be assigned to `Flavor`,
-but `Flavor` of the same name cannot be assigned to `Brand`.
-
-`nominalMatch(a, b)`:
-
-`nominalMatch()` can be used to compare `Brand` or `Flavor`.
-
-```ts
-const b1 = brand('x', 1)
-const b2 = brand('y', 1)
-
-nominalMatch(b1, b2) // false
-```
-
-## Functional Types
-
-- `ChainFn<T>: T`: chain function that returns the input type.
-- `compose(...fns): F`: compose functions
-
 ## Type Utilities
 
 `type-plus` also provides additional type utilities.
@@ -515,6 +451,70 @@ const source = {
 // only the `foo` property is available to override.
 overrider(source, { foo: !!source.foo })
 ```
+
+## Nominal Types
+
+The TypeScript type system is structural.
+
+In some cases, we want to express a type with nominal behavior.
+`type-plus` provides two kinds of nominal types: `Brand` and `Flavor`.
+
+`Brand<B, T>`:
+
+`brand(type, subject?)`:
+
+Branded nominal type is the stronger nominal type of the two.
+It disallows unbranded type assigned to it:
+
+```ts
+const a = brand('a', { a: 1 })
+const b = { a: 1 }
+a = b // error
+```
+
+`subject` can be any type, from primitive to strings to objects.
+
+`brand(type)`:
+
+If you do not provide `subject`, `brand(type)` will return a brand creator,
+so that you can use it to create multiple branded values:
+
+```ts
+const nike = brand('nike')
+const shirt = nike('shirt')
+const socks = nike('socks')
+```
+
+`Flavor<F, T>`:
+
+`flavor(type, subject?)`:
+
+The key difference between `Flavor` and `Brand` is that
+unflavored type can be assigned to `Flavor`:
+
+```ts
+let f = flavor('orange', 'soda')
+f = 'mist' // ok
+```
+
+Also, `Brand` of the same name can be assigned to `Flavor`,
+but `Flavor` of the same name cannot be assigned to `Brand`.
+
+`nominalMatch(a, b)`:
+
+`nominalMatch()` can be used to compare `Brand` or `Flavor`.
+
+```ts
+const b1 = brand('x', 1)
+const b2 = brand('y', 1)
+
+nominalMatch(b1, b2) // false
+```
+
+## Functional Types
+
+- `ChainFn<T>: T`: chain function that returns the input type.
+- `compose(...fns): F`: compose functions
 
 ## Attribution
 
