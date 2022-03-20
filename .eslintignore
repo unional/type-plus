@@ -1,5 +1,6 @@
 cjs
 dist*
+docs
 esm
 lib*
 node_modules

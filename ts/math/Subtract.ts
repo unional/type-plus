@@ -1,5 +1,6 @@
 import type { PadLeft, Some, Tail } from '../array'
 import type { And } from '../predicates'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { Digit, DigitArray } from './Digit'
 import type { IsPositive } from './IsPositive'
 import type { IsWhole } from './IsWhole'
