@@ -44,12 +44,8 @@
     "test:types": "tsc",
     "verify": "run-p verify:build lint test:types coverage",
     "verify:build": "npm-run-all clean build --parallel dependency-check size-limit",
-    "watch": "jest --watch"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
+    "watch": "jest --watch",
+    "prepare": "husky install"
   },
   "dependencies": {
     "tersify": "^3.8.2",
@@ -71,7 +67,7 @@
     "dependency-check": "^4.1.0",
     "eslint": "^8.11.0",
     "eslint-plugin-harmony": "^6.0.0",
-    "husky": "^7.0.4",
+    "husky": "^7.0.0",
     "jest": "^27.5.1",
     "jest-progress-tracker": "^3.0.3",
     "jest-validate": "^27.5.1",
