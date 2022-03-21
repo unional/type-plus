@@ -1,7 +1,7 @@
-export function as<T>(subject: unknown): subject is T {
-  return true
+export function as<T>(subject: unknown): T {
+  return subject as T
 }
 
-export function asAny(subject: unknown): subject is any {
-  return true
+export function asAny(subject: unknown): any {
+  return subject
 }
