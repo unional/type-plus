@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>type-plus</title><meta name="description" content="Documentation for type-plus"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="https://github.com/unional/type-plus" class="title">Additional types and utils for TypeScript</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>type-plus</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>type-plus</title><meta name="description" content="Documentation for type-plus"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">type-plus</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>type-plus</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
 <a href="#type-plus" id="type-plus" style="color: inherit; text-decoration: none;">
   <h1>type-plus</h1>
 </a>
@@ -15,10 +15,9 @@
   <h2>Feature Highlights</h2>
 </a>
 <ul>
-<li><a href="#type-assertions">Type assertions</a></li>
+<li><a href="#type-assertion">Type assertion</a></li>
+<li><a href="#nominal-type">Nominal Types</a></li>
 <li><a href="#type-utilities">Type Utilities</a></li>
-<li><a href="#nominal-types">Nominal Types</a></li>
-<li><a href="#functional-types">Functional Types</a></li>
 </ul>
 
 <a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
@@ -27,11 +26,12 @@
 <pre><code class="language-sh"><span class="hl-0">npm install type-plus</span><br/><span class="hl-0">// or</span><br/><span class="hl-0">yarn add type-plus</span>
 </code></pre>
 
-<a href="#type-assertions" id="type-assertions" style="color: inherit; text-decoration: none;">
-  <h2>Type Assertions</h2>
+<a href="#type-assertion" id="type-assertion" style="color: inherit; text-decoration: none;">
+  <h2>Type Assertion</h2>
 </a>
-<p>Type assertion is one of the main features of <code>type-plus</code>.</p>
-<p>There are 5 kinds of type assertions:</p>
+<p>Besides the <a href="#runtime-type-checker">runtime type checker</a>,
+<code>type-plus</code> also provides a few other ways to do type assertions.</p>
+<p>There are actually at least 5 kinds of type assertions:</p>
 <ul>
 <li><code>runtime</code>: validates during runtime.</li>
 <li><code>immediate</code>: validates at compile time.</li>
@@ -159,6 +159,45 @@ A typical usage is using it with <code>assertType</code>:</p>
 <p>Returns a compile-time validating function to ensure <code>subject</code> is not assignable to <code>T</code>.</p>
 <pre><code class="language-ts"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">notA</span><span class="hl-0"> = </span><span class="hl-6">canAssign</span><span class="hl-0">&lt;{ </span><span class="hl-7">a</span><span class="hl-0">: </span><span class="hl-3">string</span><span class="hl-0"> }&gt;(</span><span class="hl-1">false</span><span class="hl-0">)</span><br/><span class="hl-7">assertType</span><span class="hl-0">.</span><span class="hl-6">isTrue</span><span class="hl-0">(</span><span class="hl-6">notA</span><span class="hl-0">({ </span><span class="hl-7">a:</span><span class="hl-0"> </span><span class="hl-4">1</span><span class="hl-0"> }))</span><br/><br/><span class="hl-6">notA</span><span class="hl-0">({ </span><span class="hl-7">a:</span><span class="hl-0"> </span><span class="hl-8">&#39;&#39;</span><span class="hl-0"> }) </span><span class="hl-5">// TypeScript complains</span>
 </code></pre>
+
+<a href="#nominal-type" id="nominal-type" style="color: inherit; text-decoration: none;">
+  <h2>Nominal Type</h2>
+</a>
+<p>The TypeScript type system is structural.</p>
+<p>In some cases, we want to express a type with nominal behavior.
+<code>type-plus</code> provides two kinds of nominal types: <code>Brand</code> and <code>Flavor</code>.</p>
+<p><code>Brand&lt;B, T&gt;</code>:</p>
+<p><code>brand(type, subject?)</code>:</p>
+<p>Branded nominal type is the stronger nominal type of the two.
+It disallows unbranded type assigned to it:</p>
+<pre><code class="language-ts"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">a</span><span class="hl-0"> = </span><span class="hl-6">brand</span><span class="hl-0">(</span><span class="hl-8">&#39;a&#39;</span><span class="hl-0">, { </span><span class="hl-7">a:</span><span class="hl-0"> </span><span class="hl-4">1</span><span class="hl-0"> })</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">b</span><span class="hl-0"> = { </span><span class="hl-7">a:</span><span class="hl-0"> </span><span class="hl-4">1</span><span class="hl-0"> }</span><br/><span class="hl-7">a</span><span class="hl-0"> = </span><span class="hl-7">b</span><span class="hl-0"> </span><span class="hl-5">// error</span>
+</code></pre>
+<p><code>subject</code> can be any type, from primitive to strings to objects.</p>
+<p><code>brand(type)</code>:</p>
+<p>If you do not provide <code>subject</code>, <code>brand(type)</code> will return a brand creator,
+so that you can use it to create multiple branded values:</p>
+<pre><code class="language-ts"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">nike</span><span class="hl-0"> = </span><span class="hl-6">brand</span><span class="hl-0">(</span><span class="hl-8">&#39;nike&#39;</span><span class="hl-0">)</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">shirt</span><span class="hl-0"> = </span><span class="hl-6">nike</span><span class="hl-0">(</span><span class="hl-8">&#39;shirt&#39;</span><span class="hl-0">)</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">socks</span><span class="hl-0"> = </span><span class="hl-6">nike</span><span class="hl-0">(</span><span class="hl-8">&#39;socks&#39;</span><span class="hl-0">)</span>
+</code></pre>
+<p><code>Flavor&lt;F, T&gt;</code>:</p>
+<p><code>flavor(type, subject?)</code>:</p>
+<p>The key difference between <code>Flavor</code> and <code>Brand</code> is that
+unflavored type can be assigned to <code>Flavor</code>:</p>
+<pre><code class="language-ts"><span class="hl-1">let</span><span class="hl-0"> </span><span class="hl-7">f</span><span class="hl-0"> = </span><span class="hl-6">flavor</span><span class="hl-0">(</span><span class="hl-8">&#39;orange&#39;</span><span class="hl-0">, </span><span class="hl-8">&#39;soda&#39;</span><span class="hl-0">)</span><br/><span class="hl-7">f</span><span class="hl-0"> = </span><span class="hl-8">&#39;mist&#39;</span><span class="hl-0"> </span><span class="hl-5">// ok</span>
+</code></pre>
+<p>Also, <code>Brand</code> of the same name can be assigned to <code>Flavor</code>,
+but <code>Flavor</code> of the same name cannot be assigned to <code>Brand</code>.</p>
+<p><code>nominalMatch(a, b)</code>:</p>
+<p><code>nominalMatch()</code> can be used to compare <code>Brand</code> or <code>Flavor</code>.</p>
+<pre><code class="language-ts"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">b1</span><span class="hl-0"> = </span><span class="hl-6">brand</span><span class="hl-0">(</span><span class="hl-8">&#39;x&#39;</span><span class="hl-0">, </span><span class="hl-4">1</span><span class="hl-0">)</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">b2</span><span class="hl-0"> = </span><span class="hl-6">brand</span><span class="hl-0">(</span><span class="hl-8">&#39;y&#39;</span><span class="hl-0">, </span><span class="hl-4">1</span><span class="hl-0">)</span><br/><br/><span class="hl-6">nominalMatch</span><span class="hl-0">(</span><span class="hl-7">b1</span><span class="hl-0">, </span><span class="hl-7">b2</span><span class="hl-0">) </span><span class="hl-5">// false</span>
+</code></pre>
+
+<a href="#functional-types" id="functional-types" style="color: inherit; text-decoration: none;">
+  <h2>Functional Types</h2>
+</a>
+<ul>
+<li><code>ChainFn&lt;T&gt;: T</code>: chain function that returns the input type.</li>
+<li><code>compose(...fns): F</code>: compose functions</li>
+</ul>
 
 <a href="#type-utilities" id="type-utilities" style="color: inherit; text-decoration: none;">
   <h2>Type Utilities</h2>
@@ -350,45 +389,6 @@ So you may encounter some weird behavior if your logic is complex.</p>
 </ul>
 <pre><code class="language-ts"><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-3">A</span><span class="hl-0"> =  {</span><br/><span class="hl-0">  </span><span class="hl-7">foo</span><span class="hl-0">: </span><span class="hl-3">boolean</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-7">bar</span><span class="hl-0">: </span><span class="hl-3">string</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-7">baz</span><span class="hl-0">: </span><span class="hl-3">string</span><br/><span class="hl-0">}</span><br/><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">overrider</span><span class="hl-0"> = </span><span class="hl-6">typeOverrideIncompatible</span><span class="hl-0">&lt;</span><span class="hl-3">A</span><span class="hl-0">&gt;()</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">source</span><span class="hl-0"> = {</span><br/><span class="hl-0">  </span><span class="hl-7">foo:</span><span class="hl-0"> </span><span class="hl-4">1</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-7">bar:</span><span class="hl-0"> </span><span class="hl-8">&#39;bar&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-7">baz:</span><span class="hl-0"> </span><span class="hl-8">&#39;baz&#39;</span><br/><span class="hl-0">}</span><br/><br/><span class="hl-5">// only the `foo` property is available to override.</span><br/><span class="hl-6">overrider</span><span class="hl-0">(</span><span class="hl-7">source</span><span class="hl-0">, { </span><span class="hl-7">foo:</span><span class="hl-0"> !!</span><span class="hl-7">source</span><span class="hl-0">.</span><span class="hl-7">foo</span><span class="hl-0"> })</span>
 </code></pre>
-
-<a href="#nominal-types" id="nominal-types" style="color: inherit; text-decoration: none;">
-  <h2>Nominal Types</h2>
-</a>
-<p>The TypeScript type system is structural.</p>
-<p>In some cases, we want to express a type with nominal behavior.
-<code>type-plus</code> provides two kinds of nominal types: <code>Brand</code> and <code>Flavor</code>.</p>
-<p><code>Brand&lt;B, T&gt;</code>:</p>
-<p><code>brand(type, subject?)</code>:</p>
-<p>Branded nominal type is the stronger nominal type of the two.
-It disallows unbranded type assigned to it:</p>
-<pre><code class="language-ts"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">a</span><span class="hl-0"> = </span><span class="hl-6">brand</span><span class="hl-0">(</span><span class="hl-8">&#39;a&#39;</span><span class="hl-0">, { </span><span class="hl-7">a:</span><span class="hl-0"> </span><span class="hl-4">1</span><span class="hl-0"> })</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">b</span><span class="hl-0"> = { </span><span class="hl-7">a:</span><span class="hl-0"> </span><span class="hl-4">1</span><span class="hl-0"> }</span><br/><span class="hl-7">a</span><span class="hl-0"> = </span><span class="hl-7">b</span><span class="hl-0"> </span><span class="hl-5">// error</span>
-</code></pre>
-<p><code>subject</code> can be any type, from primitive to strings to objects.</p>
-<p><code>brand(type)</code>:</p>
-<p>If you do not provide <code>subject</code>, <code>brand(type)</code> will return a brand creator,
-so that you can use it to create multiple branded values:</p>
-<pre><code class="language-ts"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">nike</span><span class="hl-0"> = </span><span class="hl-6">brand</span><span class="hl-0">(</span><span class="hl-8">&#39;nike&#39;</span><span class="hl-0">)</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">shirt</span><span class="hl-0"> = </span><span class="hl-6">nike</span><span class="hl-0">(</span><span class="hl-8">&#39;shirt&#39;</span><span class="hl-0">)</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">socks</span><span class="hl-0"> = </span><span class="hl-6">nike</span><span class="hl-0">(</span><span class="hl-8">&#39;socks&#39;</span><span class="hl-0">)</span>
-</code></pre>
-<p><code>Flavor&lt;F, T&gt;</code>:</p>
-<p><code>flavor(type, subject?)</code>:</p>
-<p>The key difference between <code>Flavor</code> and <code>Brand</code> is that
-unflavored type can be assigned to <code>Flavor</code>:</p>
-<pre><code class="language-ts"><span class="hl-1">let</span><span class="hl-0"> </span><span class="hl-7">f</span><span class="hl-0"> = </span><span class="hl-6">flavor</span><span class="hl-0">(</span><span class="hl-8">&#39;orange&#39;</span><span class="hl-0">, </span><span class="hl-8">&#39;soda&#39;</span><span class="hl-0">)</span><br/><span class="hl-7">f</span><span class="hl-0"> = </span><span class="hl-8">&#39;mist&#39;</span><span class="hl-0"> </span><span class="hl-5">// ok</span>
-</code></pre>
-<p>Also, <code>Brand</code> of the same name can be assigned to <code>Flavor</code>,
-but <code>Flavor</code> of the same name cannot be assigned to <code>Brand</code>.</p>
-<p><code>nominalMatch(a, b)</code>:</p>
-<p><code>nominalMatch()</code> can be used to compare <code>Brand</code> or <code>Flavor</code>.</p>
-<pre><code class="language-ts"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">b1</span><span class="hl-0"> = </span><span class="hl-6">brand</span><span class="hl-0">(</span><span class="hl-8">&#39;x&#39;</span><span class="hl-0">, </span><span class="hl-4">1</span><span class="hl-0">)</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">b2</span><span class="hl-0"> = </span><span class="hl-6">brand</span><span class="hl-0">(</span><span class="hl-8">&#39;y&#39;</span><span class="hl-0">, </span><span class="hl-4">1</span><span class="hl-0">)</span><br/><br/><span class="hl-6">nominalMatch</span><span class="hl-0">(</span><span class="hl-7">b1</span><span class="hl-0">, </span><span class="hl-7">b2</span><span class="hl-0">) </span><span class="hl-5">// false</span>
-</code></pre>
-
-<a href="#functional-types" id="functional-types" style="color: inherit; text-decoration: none;">
-  <h2>Functional Types</h2>
-</a>
-<ul>
-<li><code>ChainFn&lt;T&gt;: T</code>: chain function that returns the input type.</li>
-<li><code>compose(...fns): F</code>: compose functions</li>
-</ul>
 
 <a href="#attribution" id="attribution" style="color: inherit; text-decoration: none;">
   <h2>Attribution</h2>
