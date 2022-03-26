@@ -29,3 +29,10 @@ test('stub function params can be omitted', () => {
   expect(a('1', 1)).toBe(false)
   isType.equal<true, typeof a, typeof real>()
 })
+
+test('stub input can be omitted', () => {
+  const real = { a: 1, b: { c: 2 }, d: 3 }
+
+  const a = stub<typeof real>()
+  isType.equal<true, typeof a, typeof real>()
+})
