@@ -1,8 +1,10 @@
 import { AnyFunction } from '../function'
 import { RecursivePartial } from '../object'
 
-export type Stub<T> = T extends AnyFunction ? T : RecursivePartial<T>
+export namespace stub {
+  export type Param<T> = T extends AnyFunction ? T : RecursivePartial<T>
+}
 
-export function stub<T>(stub?: Stub<T>) {
+export function stub<T>(stub?: stub.Param<T>) {
   return stub as T
 }
