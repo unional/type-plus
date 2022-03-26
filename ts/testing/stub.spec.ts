@@ -1,5 +1,4 @@
-import { isType } from 'type-plus'
-import { stub } from '..'
+import { isType, stub } from '..'
 
 test('stub is a partial of the actual object', () => {
   const real = { a: 1, b: { c: 2 }, d: 3 }
