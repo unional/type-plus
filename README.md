@@ -429,6 +429,7 @@ So you may encounter some weird behavior if your logic is complex.
 - `isSystemError(code, err)`: type guard `err` with Nodejs error code.
 - `omit(obj, ...props)`: omit properties from `obj`.
 - `pick(obj, ...props)`: pick properties from `obj`.
+- `record<K, V>(value?)`:  create a `Record<K, V>` without extra object prototype.
 - `required(...)`: merge options and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
 - `requiredDeep(...)`: merge options deeply and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
 - `split(target, ...splitters)`: split one object into multiple objects.
