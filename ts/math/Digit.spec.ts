@@ -57,7 +57,6 @@ describe('DigitArray.Shift10<DA>', () => {
   })
 })
 
-
 describe('Digit.GreaterThan<A, B>', () => {
   test('n > n is false', () => {
     isType.equal<true, false, Digit.GreaterThan<0, 0>>()
