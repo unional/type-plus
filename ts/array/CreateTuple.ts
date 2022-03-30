@@ -1,4 +1,12 @@
-import { IsPositive } from '../math'
+import {
+  // Digit,
+  IsPositive
+} from '../math'
+
+// export type CreateTuple<L extends number, T = any> =
+//   number extends L ? T[] : IsPositive<L> extends true
+//   ? [...Digit.ToTuple<T>[L]]
+//   : never
 
 type BuildPowersOf2LengthArrays<N extends number, R extends never[][]> =
   R[0][N] extends never ? R : BuildPowersOf2LengthArrays<N, [[...R[0], ...R[0]], ...R]>

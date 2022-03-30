@@ -1,3 +1,7 @@
+/**
+ * filter the array or tuple `A`, keeping entries satisfying `Criteria`.
+ * @deprecated renaming to `KeepMatch`
+ */
 export type Filter<A extends Array<any>, Criteria> =
   number extends A['length']
   // array
@@ -15,3 +19,8 @@ export type Filter<A extends Array<any>, Criteria> =
           ? [Head, ...Filter<Tail, Criteria>]
           : Filter<Tail, Criteria>))
       : never))
+
+/**
+ * keeps entries satisfying `Criteria` in array or tuple `A`.
+ */
+export type KeepMatch<A extends Array<any>, Criteria> = Filter<A, Criteria>

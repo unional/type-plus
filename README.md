@@ -285,12 +285,14 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 - `CreateTuple<L, T>`: Creates `Tuple<T>` with `L` number of elements.
 - `DropFirst<A>`: drops the first value type of `A`.
 - `DropLast<A>`: drops the last value type of `A`.
-- `Filter<A, Criteria>`: gets the array of types satisfying `Criteria` in `A`.
+- `DropMatch<A, Criteria>`: drops entries matching `Criteria` in array or tuple `A`.
+- `Filter<A, Criteria>`: filter the array or tuple `A`, keeping entries satisfying `Criteria`. **deprecated. Renaming to `KeepMatch`**
 - `FindFirst<A, Criteria>`: gets the first type satisfying `Criteria`.
 - `FindLast<A, Criteria>`: gets the last type satisfying `Criteria`.
 - `Head<A>`: gets the first entry in the array.
 - `IntersectOfProps<A, K>`: gets the intersect of `A[K]` types (deprecate `MapToProp`)
 - `IsArray<T>`: `logical` predicate for `Array`.
+- `KeepMatch<A, Criteria>`: keeps entries satisfying `Criteria` in array or tuple `A`.
 - `Last<A>`: gets the last type of an array or tuple.
 - `literalArray(...entries)`: return an array whose items are restricted to the provided literals.
 - `PadLeft<A, Total, PadWith>`: pads `A` with `PadWith` if the length of `A` is less than `L`.
