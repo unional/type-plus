@@ -8,8 +8,6 @@ on:
 jobs:
   build:
     uses: unional/.github/.github/workflows/typescript-build.yml@main
-    secrets:
-      codacy-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
   test:
     uses: unional/.github/.github/workflows/typescript-test.yml@main
     needs: build
