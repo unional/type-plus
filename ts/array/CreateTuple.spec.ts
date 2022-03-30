@@ -19,3 +19,14 @@ test('override element type', () => {
 test('negative length gets never', () => {
   isType.equal<true, never, CreateTuple<-1>>()
 })
+
+test('Can create tuple up to 7000', () => {
+  type A = CreateTuple<7000>['length']
+
+  isType.equal<true, 7000, A>()
+})
+
+test('L = number gets array', () => {
+  type A = CreateTuple<number, 1>
+  isType.equal<true, 1[], A>()
+})
