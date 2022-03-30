@@ -1,21 +1,54 @@
-import { assertType, Equal, Filter } from '..'
+import { Filter, isType } from '..'
 
-test('array matching criteria gets itself', () => {
-  type Actual = Filter<string[], string>
-  assertType.isTrue(true as Equal<string[], Actual>)
-})
+describe('Filter<A, C>', () => {
+  describe('A is array', () => {
+    test('array matching criteria gets itself', () => {
+      type Actual = Filter<string[], string>
+      isType.equal<true, string[], Actual>()
+    })
 
-test('array not matching criteria gets never[]', () => {
-  type Actual = Filter<string[], number>
-  assertType.isTrue(true as Equal<never[], Actual>)
-})
+    test('array not matching criteria gets never[]', () => {
+      type Actual = Filter<string[], number>
+      isType.equal<true, never[], Actual>()
+    })
 
-test('tuple filters to those matching criteria', () => {
-  type Actual = Filter<[1, 2, 3, 4], 2 | 4>
-  assertType.isTrue(true as Equal<[2, 4], Actual>)
-})
+    test('remove unmatched type form array', () => {
+      type Actual = Filter<Array<string | number>, string>
 
-test('tuple not value match criteria gets never[]', () => {
-  type Actual = Filter<[1, 2, 3, 4], 5>
-  assertType.isTrue(true as Equal<never[], Actual>)
+      isType.equal<true, string[], Actual>()
+    })
+
+    test('remove undefined and null', () => {
+      type Actual = Filter<Array<string | undefined | null>, string>
+      isType.equal<true, string[], Actual>()
+    })
+
+    test('can filter with undefined and null', () => {
+      type Actual = Filter<Array<string | undefined | null>, undefined | null>
+      // Array<undefined | null> is destructured to undefined[] | null[] by TypeScript
+      isType.equal<true, undefined[] | null[], Actual>()
+    })
+
+    test('work with never[]', () => {
+      type Actual = Filter<never[], undefined>
+      isType.equal<true, never[], Actual>()
+    })
+  })
+
+  describe(`A is Tuple`, () => {
+    test('matching criteria', () => {
+      type Actual = Filter<[1, 2, 3, 4], 2 | 4>
+      isType.equal<true, [2, 4], Actual>()
+    })
+
+    test('no match gets never[]', () => {
+      type Actual = Filter<[1, 2, 3, 4], 5>
+      isType.equal<true, never[], Actual>()
+    })
+
+    test('matching undefined and null', () => {
+      type Actual = Filter<[1, undefined, 3, null], undefined | null>
+      isType.equal<true, [undefined, null], Actual>()
+    })
+  })
 })
