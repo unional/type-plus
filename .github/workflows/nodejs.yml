@@ -9,6 +9,7 @@ jobs:
   build:
     uses: unional/.github/.github/workflows/typescript-build.yml@main
     secrets:
+      codacy-api-token: ${{ secrets.CODACY_API_TOKEN }}
       codacy-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
   test:
     uses: unional/.github/.github/workflows/typescript-test.yml@main
