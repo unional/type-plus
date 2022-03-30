@@ -1,6 +1,11 @@
 export type Filter<A extends Array<any>, Criteria> =
   number extends A['length']
-  ? (A[0] extends Criteria ? A : never[])
+  // array
+  ? (A[0] extends Criteria
+    ? A
+    : (Criteria extends A[0] ? Array<Criteria> : never[])
+  )
+  // tuple
   : (A['length'] extends 0
     ? never
     : (A extends [infer Head, ...infer Tail]
