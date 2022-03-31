@@ -1,10 +1,7 @@
-import { assertType, literalArray } from '..'
+import { isType, literalArray } from '..'
 
 test('entries in array are restricted to the input literals', () => {
   const actual = literalArray('a', 'b')
 
-  // the cast is just for assignment. Does not affect type.
-  const x: (typeof actual[number]) & 'c' = 'c' as never
-
-  assertType<never>(x)
+  isType.equal<true, Array<'a' | 'b'>, typeof actual>()
 })
