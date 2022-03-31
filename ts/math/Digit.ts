@@ -51,14 +51,14 @@ export namespace Digit {
 export namespace DigitArray {
   export type ToNumber<C extends number[]> = ToTuple<[], C>['length']
 
-  export type ToTuple<R extends any[], S extends number[]> =
+  export type ToTuple<R extends any[], S extends number[], X = any> =
     S['length'] extends 0
     ? R
     : (S['length'] extends 1
-      ? [...R, ...Digit.ToTuple[S[0]]]
+      ? [...R, ...Digit.ToTuple<X>[S[0]]]
       : (S extends [any, ...infer T]
         ? (T extends any[]
-          ? ToTuple<Multi10<[...R, ...Digit.ToTuple[S[0]]]>, T>
+          ? ToTuple<Multi10<[...R, ...Digit.ToTuple<X>[S[0]]]>, T>
           : never)
         : never))
 
