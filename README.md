@@ -283,6 +283,7 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 - `CommonPropKeys<A>`: gets common keys inside the records in the array `A` (deprecate `CommonKeys`).
 - `Concat<A, B>`: `[...A, ...B]`.
 - `CreateTuple<L, T>`: Creates `Tuple<T>` with `L` number of elements.
+- `drop(array, value)`: drop a particular value from an array.
 - `DropFirst<A>`: drops the first value type of `A`.
 - `DropLast<A>`: drops the last value type of `A`.
 - `DropMatch<A, Criteria>`: drops entries matching `Criteria` in array or tuple `A`.

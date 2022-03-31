@@ -26,7 +26,7 @@ type ExcludeUnionOfEmptyTuple<A> = Equal<A, []> extends true ? A : Exclude<A, []
 /**
  * drops entries matching `Criteria` in array or tuple `A`.
  */
-export type DropMatch<A extends Array<any>, Criteria> = number extends A['length']
+export type DropMatch<A extends Readonly<Array<any>>, Criteria> = number extends A['length']
   // array
   ? (A[0] extends Criteria
     // criteria matches: DropAll<string[], string>
@@ -42,10 +42,10 @@ export type DropMatch<A extends Array<any>, Criteria> = number extends A['length
           : (A[0] extends Criteria ? A : Array<Exclude<A[0], Criteria>>)))))
   : DropMatchTuple<A, Criteria>
 
-type DropMatchTuple<A extends Array<any>, Criteria> = A['length'] extends 0
+type DropMatchTuple<A extends Readonly<Array<any>>, Criteria> = A['length'] extends 0
   // empty tuple
   ? A
-  : (A extends [infer Head, ...infer Tail]
+  : (A extends readonly [infer Head, ...infer Tail]
     ? (Tail['length'] extends 0
       // single element tuple
       ? (undefined extends Criteria
@@ -57,8 +57,16 @@ type DropMatchTuple<A extends Array<any>, Criteria> = A['length'] extends 0
         ? DropMatch<Tail, Criteria>
         : [Exclude<Head, Criteria>, ...DropMatch<Tail, Criteria>]
       ))
-    : never[])
+    : never[]
+  )
 
 export type DropNull<A extends Array<any>> = DropMatch<A, null>
 export type DropNullable<A extends Array<any>> = DropMatch<A, null | undefined>
 export type DropUndefined<A extends Array<any>> = DropMatch<A, undefined>
+
+/**
+ * drop a particular value from an array
+ */
+export function drop<A extends Readonly<Array<any>>, C>(array: A, value: C): DropMatch<A, C> {
+  return array.filter(v => v !== value) as any
+}
