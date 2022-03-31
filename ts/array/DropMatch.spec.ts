@@ -34,6 +34,30 @@ describe('DropMatch<A, C>', () => {
 
       isType.equal<true, Array<string | undefined>, Actual>()
     })
+
+    test('drop all narrow types', () => {
+      type A = DropMatch<Array<1 | 2 | 3>, number>
+      isType.equal<true, never[], A>()
+
+      type B = DropMatch<Array<1 | 2 | 3 | string>, number>
+      isType.equal<true, string[], B>()
+    })
+
+
+    test('will not drop widen type', () => {
+      type A = DropMatch<Array<number>, 1>
+      isType.equal<true, number[], A>()
+
+      type B = DropMatch<Array<string | 'foo'>, 'foo'>
+      isType.equal<true, string[], B>()
+
+      // C is currently `string[] | string[]` (TypeScript 4.6.2)
+      // It does not collapse to `string[]`
+      // type C = DropMatch<Array<string | 'foo'>, 'foo' | 'boo'>
+      // Here `string[] | string[]` literal collapses to `string[]`
+      // commenting this out as it will likely be improved in future versions of TypeScript
+      // isType.equal<true, string[] | string[], C>()
+    })
   })
 
   describe('A is Tuple', () => {

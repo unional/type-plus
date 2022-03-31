@@ -33,8 +33,9 @@ export type DropMatch<A extends Array<any>, Criteria> =
     ? never[]
     : (undefined extends Criteria
       ? Array<NonNullable<A[0]>>
-      // TODO: A[0] extends Criteria?
-      : (Criteria extends A[0] ? Array<Exclude<A[0], Criteria>> : A))
+      : (Criteria extends A[0]
+        ? Array<Exclude<A[0], Criteria>>
+        : (A[0] extends Criteria ? A : Array<Exclude<A[0], Criteria>>)))
   )
   : DropMatchTuple<A, Criteria>
 
