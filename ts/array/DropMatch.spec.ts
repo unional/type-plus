@@ -1,4 +1,5 @@
 import { DropMatch, isType } from '..'
+import { DropUndefined } from './drop'
 
 describe('DropMatch<A, C>', () => {
   describe('A is array', () => {
@@ -89,6 +90,24 @@ describe('DropMatch<A, C>', () => {
       isType.equal<true, [1, string, 3], D>()
     })
 
+    test('drop undefined keep null', () => {
+      type A = DropMatch<[undefined | null], undefined>
+      isType.equal<true, [null], A>()
+    })
+
+    test('drop null keep undefined', () => {
+      type A = DropMatch<[undefined | null], null>
+      isType.equal<true, [undefined], A>()
+    })
+
+    test('drop both null and undefined', () => {
+      type A = DropMatch<[undefined | null], null | undefined>
+      isType.equal<true, [], A>()
+
+      type B = DropMatch<[undefined | null | string], null | undefined>
+      isType.equal<true, [string], B>()
+    })
+
     test('get original if not matched', () => {
       type A = DropMatch<[1], undefined>
       isType.equal<true, [1], A>()
@@ -133,5 +152,18 @@ describe('DropMatch<A, C>', () => {
       type Actual = DropMatch<[1, undefined, 3, null], undefined | null>
       isType.equal<true, [1, 3], Actual>()
     })
+  })
+})
+
+describe('DropUndefined<A>', () => {
+  test('drop from array type', () => {
+    type A = DropUndefined<Array<string | undefined>>
+    isType.equal<true, string[], A>()
+
+    type B = DropUndefined<Array<string | number>>
+    isType.equal<true, Array<string | number>, B>()
+
+    type C = DropUndefined<Array<string | number | undefined | null>>
+    isType.equal<true, Array<string | number | null>, C>()
   })
 })

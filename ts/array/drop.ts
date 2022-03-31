@@ -1,4 +1,5 @@
 import { Equal } from '../predicates'
+import { NonNull, NonUndefined } from '../utils'
 
 export type DropFirst<A extends any[]> = number extends A['length']
   ? A
@@ -32,10 +33,14 @@ export type DropMatch<A extends Array<any>, Criteria> =
     // criteria matches: DropAll<string[], string>
     ? never[]
     : (undefined extends Criteria
-      ? Array<NonNullable<A[0]>>
-      : (Criteria extends A[0]
-        ? Array<Exclude<A[0], Criteria>>
-        : (A[0] extends Criteria ? A : Array<Exclude<A[0], Criteria>>)))
+      ? (null extends Criteria
+        ? Array<NonNullable<A[0]>>
+        : Array<NonUndefined<A[0]>>)
+      : (null extends Criteria
+        ? Array<NonNull<A[0]>>
+        : (Criteria extends A[0]
+          ? Array<Exclude<A[0], Criteria>>
+          : (A[0] extends Criteria ? A : Array<Exclude<A[0], Criteria>>))))
   )
   : DropMatchTuple<A, Criteria>
 
@@ -47,10 +52,8 @@ type DropMatchTuple<A extends Array<any>, Criteria> =
       ? (Tail['length'] extends 0
         // single element tuple
         ? (undefined extends Criteria
-          ? (Head extends Criteria
-            ? []
-            : [Head])
-          : ExcludeUnionOfEmptyTuple<(Head extends Criteria ? [] : [Head])>
+          ? ExcludeUnionOfEmptyTuple<Head extends Criteria ? [] : [Head]>
+          : ExcludeUnionOfEmptyTuple<Head extends Criteria ? [] : [Head]>
         )
         // multiple elements
         : (Exclude<Head, Criteria> extends never
@@ -58,3 +61,5 @@ type DropMatchTuple<A extends Array<any>, Criteria> =
           : [Exclude<Head, Criteria>, ...DropMatch<Tail, Criteria>]
         ))
       : never[]))
+
+export type DropUndefined<A extends Array<any>> = DropMatch<A, undefined>

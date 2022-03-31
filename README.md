@@ -286,6 +286,7 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 - `DropFirst<A>`: drops the first value type of `A`.
 - `DropLast<A>`: drops the last value type of `A`.
 - `DropMatch<A, Criteria>`: drops entries matching `Criteria` in array or tuple `A`.
+- `DropUndefined<A>`: drop undefined entries from array of tuple `A`.
 - `Filter<A, Criteria>`: filter the array or tuple `A`, keeping entries satisfying `Criteria`. **deprecated. Renaming to `KeepMatch`**
 - `FindFirst<A, Criteria>`: gets the first type satisfying `Criteria`.
 - `FindLast<A, Criteria>`: gets the last type satisfying `Criteria`.
@@ -360,6 +361,8 @@ JSONTypes.get<string>(someJson, 'a', 'b', 1, 'c') // miku
 - `KeyofOptional<T>`: `keyof` that works with `Record<any, any> | undefined`.
 - `KnownKeys<T>`: extract known (defined) keys from type `T`.
 - `LeftJoin<A, B>`: left join `A` with `B`
+- `NonNull<T>`: remove `null`
+- `NonUndefined<T>`: remove `undefined`
 - `Omit<T, K>`: From `T`, pick a set of properties whose keys are not in the union `K`. This is the opposite of `Pick<T, K>`.
 - `OptionalKeys<T>`: gets keys of optional properties in `T`.
 - `PartialExcept<T, U>`: Deprecated. Same as `PartialOmit<T, U>`.
