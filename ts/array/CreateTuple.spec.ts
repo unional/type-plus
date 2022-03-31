@@ -32,3 +32,15 @@ test('L = number gets array', () => {
   type A = CreateTuple<number, 1>
   isType.equal<true, 1[], A>()
 })
+
+test('Non whole number gets never', () => {
+  type A = CreateTuple<1.2>
+
+  isType.equal<true, never, A>()
+})
+
+test('can specify fail type', () => {
+  type A = CreateTuple<1.2, 1, null>
+
+  isType.equal<true, null, A>()
+})
