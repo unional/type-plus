@@ -9,11 +9,13 @@ test('single element', () => {
 })
 
 test('multiple elements', () => {
-  isType.equal<true, [any, any, any], CreateTuple<3>>()
+  type A = CreateTuple<3>
+  isType.equal<true, [any, any, any], A>()
 })
 
 test('override element type', () => {
-  isType.equal<true, [1, 1, 1, 1, 1], CreateTuple<5, 1>>()
+  type A = CreateTuple<5, 1>
+  isType.equal<true, [1, 1, 1, 1, 1], A>()
 })
 
 test('negative length gets never', () => {
