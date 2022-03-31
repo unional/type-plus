@@ -1,5 +1,4 @@
-import { AnyFunction, isType } from '..'
-import { Last } from './Last'
+import { AnyFunction, isType, Last } from '..'
 
 test('any array', () => {
   type A = Last<any[]>
