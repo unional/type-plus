@@ -1,5 +1,25 @@
 import { Equal } from '../predicates'
 
+export type DropFirst<A extends any[]> = number extends A['length']
+  ? A
+  : (A['length'] extends 0
+    ? never[]
+    : (A['length'] extends 1
+      ? never[]
+      : (A extends [any, ...infer Tail]
+        ? Tail
+        : never)))
+
+export type DropLast<A extends any[]> = number extends A['length']
+  ? A
+  : (A['length'] extends 0
+    ? never[]
+    : (A['length'] extends 1
+      ? never[]
+      : (A extends [...infer Heads, any]
+        ? Heads
+        : never)))
+
 type ExcludeUnionOfEmptyTuple<A> = Equal<A, []> extends true ? A : Exclude<A, []>
 
 /**
@@ -37,17 +57,3 @@ type DropMatchTuple<A extends Array<any>, Criteria> =
           : [Exclude<Head, Criteria>, ...DropMatch<Tail, Criteria>]
         ))
       : never[]))
-  // : (undefined extends Criteria
-  //   ? (Head extends undefined
-  //     ? DropAll<Tail, Criteria>
-  //     : [NonNullable<Head>, ...DropAll<Tail, Criteria>])
-  //   : []
-  // ))
-  // : (Head extends Criteria
-  //   ? (undefined extends Criteria
-  //     ? [1, 2, 3]// [NonNullable<Head>, ...Filter<Tail, Criteria>]
-  //     : [2, 3]// [Head, ...Filter<Tail, Criteria>]
-  //   )
-  //   : [2]//Filter<Tail, Criteria>
-  // ))
-  // : 2[]))
