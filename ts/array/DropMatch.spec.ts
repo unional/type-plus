@@ -1,4 +1,4 @@
-import { DropMatch, isType } from '..'
+import { drop, DropMatch, DropNull, DropNullable, DropUndefined, isType } from '..'
 
 describe('DropMatch<A, C>', () => {
   describe('A is array', () => {
@@ -34,21 +34,36 @@ describe('DropMatch<A, C>', () => {
 
       isType.equal<true, Array<string | undefined>, Actual>()
     })
+
+    test('drop all narrow types', () => {
+      type A = DropMatch<Array<1 | 2 | 3>, number>
+      isType.equal<true, never[], A>()
+
+      type B = DropMatch<Array<1 | 2 | 3 | string>, number>
+      isType.equal<true, string[], B>()
+    })
+
+
+    test('will not drop widen type', () => {
+      type A = DropMatch<Array<number>, 1>
+      isType.equal<true, number[], A>()
+
+      type B = DropMatch<Array<string | 'foo'>, 'foo'>
+      isType.equal<true, string[], B>()
+
+      // C is currently `string[] | string[]` (TypeScript 4.6.2)
+      // It does not collapse to `string[]`
+      // type C = DropMatch<Array<string | 'foo'>, 'foo' | 'boo'>
+      // Here `string[] | string[]` literal collapses to `string[]`
+      // commenting this out as it will likely be improved in future versions of TypeScript
+      // isType.equal<true, string[] | string[], C>()
+    })
   })
 
   describe('A is Tuple', () => {
     test('empty tuple', () => {
       type A = DropMatch<[], undefined>
       isType.equal<true, [], A>()
-
-      type B = DropMatch<[1, undefined], undefined>
-      isType.equal<true, [1], B>()
-
-      type C = DropMatch<[1, undefined, 3], undefined>
-      isType.equal<true, [1, 3], C>()
-
-      type D = DropMatch<[1, string | undefined, 3], undefined>
-      isType.equal<true, [1, string, 3], D>()
     })
 
     test('drop undefined from tuple', () => {
@@ -63,6 +78,38 @@ describe('DropMatch<A, C>', () => {
 
       type D = DropMatch<[1, string | undefined, 3], undefined>
       isType.equal<true, [1, string, 3], D>()
+    })
+
+    test('drop undefined from readonly tuple', () => {
+      type A = DropMatch<readonly [undefined], undefined>
+      isType.equal<true, [], A>()
+
+      type B = DropMatch<[1, undefined], undefined>
+      isType.equal<true, [1], B>()
+
+      type C = DropMatch<[1, undefined, 3], undefined>
+      isType.equal<true, [1, 3], C>()
+
+      type D = DropMatch<[1, string | undefined, 3], undefined>
+      isType.equal<true, [1, string, 3], D>()
+    })
+
+    test('drop undefined keep null', () => {
+      type A = DropMatch<[undefined | null], undefined>
+      isType.equal<true, [null], A>()
+    })
+
+    test('drop null keep undefined', () => {
+      type A = DropMatch<[undefined | null], null>
+      isType.equal<true, [undefined], A>()
+    })
+
+    test('drop both null and undefined', () => {
+      type A = DropMatch<[undefined | null], null | undefined>
+      isType.equal<true, [], A>()
+
+      type B = DropMatch<[undefined | null | string], null | undefined>
+      isType.equal<true, [string], B>()
     })
 
     test('get original if not matched', () => {
@@ -109,5 +156,79 @@ describe('DropMatch<A, C>', () => {
       type Actual = DropMatch<[1, undefined, 3, null], undefined | null>
       isType.equal<true, [1, 3], Actual>()
     })
+  })
+})
+
+describe('DropUndefined<A>', () => {
+  test('drop from array type', () => {
+    type A = DropUndefined<Array<string | undefined>>
+    isType.equal<true, string[], A>()
+
+    type B = DropUndefined<Array<string | number>>
+    isType.equal<true, Array<string | number>, B>()
+
+    type C = DropUndefined<Array<string | number | undefined | null>>
+    isType.equal<true, Array<string | number | null>, C>()
+  })
+
+  test('drop from tuple type', () => {
+    type A = DropUndefined<[string, undefined, number, null]>
+    isType.equal<true, [string, number, null], A>()
+  })
+})
+
+describe('DropNull<A>', () => {
+  test('drop from array type', () => {
+    type A = DropNull<Array<string | null>>
+    isType.equal<true, string[], A>()
+
+    type B = DropNull<Array<string | number>>
+    isType.equal<true, Array<string | number>, B>()
+
+    type C = DropNull<Array<string | number | undefined | null>>
+    isType.equal<true, Array<string | number | undefined>, C>()
+  })
+
+  test('drop from tuple type', () => {
+    type A = DropNull<[string, undefined, number, null]>
+    isType.equal<true, [string, undefined, number], A>()
+  })
+})
+
+describe('DropNullable<A>', () => {
+  test('drop from array type', () => {
+    type A = DropNullable<Array<string | null>>
+    isType.equal<true, string[], A>()
+
+    type B = DropNullable<Array<string | number>>
+    isType.equal<true, Array<string | number>, B>()
+
+    type C = DropNullable<Array<string | number | undefined | null>>
+    isType.equal<true, Array<string | number>, C>()
+  })
+
+  test('drop from tuple type', () => {
+    type A = DropNullable<[string, undefined, number, null]>
+    isType.equal<true, [string, number], A>()
+  })
+})
+
+
+describe('drop()', () => {
+  test('array', () => {
+    const a = drop([1, 'a', 3, 4], 'a')
+    expect(a).toEqual([1, 3, 4])
+    isType.equal<true, number[], typeof a>()
+  })
+  test('tuple', () => {
+    const a = drop([1, 2, 3, 4] as const, 1 as const)
+    expect(a).toEqual([2, 3, 4])
+    isType.equal<true, [2, 3, 4], typeof a>()
+  })
+
+  test('drop undefined from tuple', () => {
+    const a = drop([1, undefined, 3, undefined, 4] as const, undefined)
+    expect(a).toEqual([1, 3, 4])
+    isType.equal<true, [1, 3, 4], typeof a>()
   })
 })
