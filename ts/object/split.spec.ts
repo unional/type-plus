@@ -1,10 +1,11 @@
 import { isType, split } from '..'
 
 const target = { a: 0, b: '', c: false }
+
 test('can use undefined as default', () => {
   const [{ a }] = split(target, { a: undefined })
 
-  isType.equal<true, typeof a, number | undefined>()
+  isType.equal<true, number, typeof a>()
   expect(a).toBe(0)
 })
 
@@ -13,6 +14,52 @@ test('can specify default with the same type', () => {
 
   isType.equal<true, typeof a, number>()
   expect(a).toBe(0)
+})
+
+test('specifying default removes undefined and null from the type', () => {
+  type S = { a?: number | null, b: number }
+  const s: S = { b: 2 }
+
+  const [{ a }] = split(s, { a: 1 })
+  expect(a).toBe(1)
+
+  isType.equal<true, number, typeof a>()
+})
+
+test('can default with null', () => {
+  const s: { a?: number | null } = {}
+  const [{ a }] = split(s, { a: null })
+
+  expect(a).toBe(null)
+
+  isType.equal<true, number | null, typeof a>()
+})
+
+
+test('can default with false', () => {
+  const s: { a?: number | boolean } = {}
+  const [{ a }] = split(s, { a: false })
+
+  expect(a).toBe(false)
+
+  isType.equal<true, number | boolean, typeof a>()
+})
+
+test('can default with empty string', () => {
+  const s: { a?: number | null | string } = {}
+  const [{ a }] = split(s, { a: '' })
+
+  expect(a).toBe('')
+
+  isType.equal<true, number | string, typeof a>()
+})
+
+test('keep falsy value other than undefined and null', () => {
+  expect(split({ a: '' }, { a: 'a' })[0].a).toBe('')
+  expect(split({ a: false }, { a: true })[0].a).toBe(false)
+
+  expect(split({ a: null as string | null }, { a: 'a' })[0].a).toBe('a')
+  expect(split({ a: undefined as string | undefined }, { a: 'a' })[0].a).toBe('a')
 })
 
 test('can specify default as one of the intersect types', () => {
