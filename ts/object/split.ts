@@ -1,7 +1,11 @@
-import { AnyRecord, Omit, reduceByKey } from '..'
+import { AnyRecord } from './AnyRecord'
+import { Omit } from './omit'
+import { reduceByKey } from './reduceKey'
 
 type Splitter<T extends AnyRecord> = Partial<{ [k in keyof T]: T[k] | undefined }>
-export type Split<T extends AnyRecord, S extends AnyRecord> = { [k in keyof S]: NonNullable<T[k]> | S[k] }
+export type Split<T extends AnyRecord, S extends AnyRecord> = {
+  [k in keyof S]: S[k] extends undefined ? T[k] : NonNullable<T[k]> | S[k]
+}
 
 /**
  * Split an object into multiple objects.
@@ -189,7 +193,10 @@ export function split<
   ]
 export function split(target: AnyRecord, ...splitters: AnyRecord[]): AnyRecord[] {
   const keyMap: AnyRecord = {}
-  const s = splitters.map(s => reduceByKey(s, (p, k) => (keyMap[k] = true, p[k] = target[k] ?? s[k], p), {} as AnyRecord))
+  const s = splitters.map(s => reduceByKey(
+    s,
+    (p, k) => (keyMap[k] = true, p[k] = target[k]  ?? s[k], p),
+    {} as AnyRecord))
   const r = reduceByKey(target, (p, k) => keyMap[k] ? p : (p[k] = target[k], p), {} as AnyRecord)
   return [...s, r]
 }
