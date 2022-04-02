@@ -440,6 +440,7 @@ So you may encounter some weird behavior if your logic is complex.
 - `requiredDeep(...)`: merge options deeply and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
 - `split(target, ...splitters)`: split one object into multiple objects.
 - `stub<T>(value)`: stub a particular type `T`.
+- `stub.build<T>(init?)`: build a stub for particular type `T`.
 - `typeOverrideIncompatible<T>()`: override only the incompatible portion between two types.
 
 ```ts
