@@ -427,6 +427,7 @@ So you may encounter some weird behavior if your logic is complex.
 
 ### Utility Functions
 
+- `amend(subject)...`: amend subject as union or intersect of `T`.
 - `facade(subject, ...props)`: create a facade of `subject`.
 - `getField(subject, key, defaultValue)`: get a field from a subject. Works against nullable and optional subject.
 - `hasKey()`: function of `HasKey`.
