@@ -1,4 +1,4 @@
-import { as, asAny, isType } from '..'
+import { amend, as, asAny, isType } from '..'
 
 describe('as<T>()', () => {
   test('defaults subject type to unknown', () => {
@@ -31,3 +31,15 @@ describe('asAny()', () => {
   })
 })
 
+describe('amend<T>()', () => {
+  test('assert subject as (subject & T)', () => {
+    const s = { a: 1 }
+    const a = amend(s).union<{ b: string }>()
+    isType.equal<true, { a: number } & { b: string }, typeof a>()
+  })
+  test('assert subject as (subject | T)', () => {
+    const s = { a: 1 }
+    const a = amend(s).intersect<{ b: string }>()
+    isType.equal<true, { a: number } | { b: string }, typeof a>()
+  })
+})
