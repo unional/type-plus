@@ -4,7 +4,7 @@ import { reduceByKey } from './reduceKey'
 
 type Splitter<T extends AnyRecord> = Partial<{ [k in keyof T]: T[k] | undefined }>
 export type Split<T extends AnyRecord, S extends AnyRecord> = {
-  [k in keyof S]: S[k] extends undefined ? T[k] : NonNullable<T[k]> | S[k]
+  [k in keyof S]-?: S[k] extends undefined ? T[k] : NonNullable<T[k]> | S[k]
 }
 
 /**

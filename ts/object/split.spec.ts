@@ -35,6 +35,24 @@ test('can default with null', () => {
   isType.equal<true, number | null, typeof a>()
 })
 
+test('remove optional/undefined when default is provided', () => {
+  interface S {
+    variant?: 'abc' | 'def'
+  }
+  const s: S = {}
+  const [a] = split(s, { variant: 'def' })
+  isType.equal<true, 'abc' | 'def', typeof a.variant>()
+})
+
+test('keep undefined when default is undefined', () => {
+  interface S {
+    variant?: 'abc' | 'def'
+  }
+  const s: S = {}
+  const [a] = split(s, { variant: undefined })
+  isType.equal<true, 'abc' | 'def' | undefined, typeof a.variant>()
+})
+
 
 test('can default with false', () => {
   const s: { a?: number | boolean } = {}
