@@ -1,18 +1,18 @@
 import type { Head, PadLeft, Tail } from '../array'
-import type { And, Equal } from '../predicates'
+import type { And, Equal, Or, Xor } from '../predicates'
+import { Abs } from './Abs'
 import type { Digit, DigitArray } from './Digit'
 import type { IsPositive } from './IsPositive'
 import type { IsWhole } from './IsWhole'
 import type { Max } from './Max'
 
 export type GreaterThan<A extends number, B extends number, Fail = never> =
-  And<
-    And<IsPositive<A>, IsWhole<A>>,
-    And<IsPositive<B>, IsWhole<B>>
-  > extends false ? Fail :
+  And<IsWhole<A>, IsWhole<B>> extends false ? Fail :
   number extends A ? Fail :
   number extends B ? Fail :
   Equal<A, B> extends true ? false :
+  Xor<IsPositive<A>, IsPositive<B>> extends true ? IsPositive<A> :
+  Or<IsPositive<B>, IsPositive<B>> extends false ? GreaterThan<Abs<B>, Abs<A>> :
   GreaterThan.OnPositiveWhole<A, B>
 
 export namespace GreaterThan {

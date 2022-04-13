@@ -1,10 +1,8 @@
 import { GreaterThan, isType } from '..'
 
-test('only support positive and whole number', () => {
+test('only support whole number', () => {
   isType.equal<true, never, GreaterThan<0.1, 1>>()
-  isType.equal<true, never, GreaterThan<-1, 1>>()
   isType.equal<true, never, GreaterThan<1, 0.1>>()
-  isType.equal<true, never, GreaterThan<1, -1>>()
 })
 
 test('number gets never', () => {
@@ -40,4 +38,30 @@ test('with different number of digits', () => {
   isType.t<GreaterThan<10, 1>>()
   isType.t<GreaterThan<123, 32>>()
   isType.t<GreaterThan<123, 13>>()
+})
+
+test('-0 > 0 and 0 > -0 are false', () => {
+  isType.equal<true, false, GreaterThan<-0, 0>>()
+  isType.equal<true, false, GreaterThan<0, -0>>()
+})
+
+test('works with negative numbers', () => {
+  isType.equal<true, true, GreaterThan<0, -1>>()
+  isType.equal<true, true, GreaterThan<1, -1>>()
+  isType.equal<true, true, GreaterThan<2, -1>>()
+
+  isType.equal<true, false, GreaterThan<-1, 0>>()
+  isType.equal<true, false, GreaterThan<-1, 1>>()
+  isType.equal<true, false, GreaterThan<-1, 2>>()
+
+  isType.equal<true, false, GreaterThan<-0, -0>>()
+  isType.equal<true, false, GreaterThan<-1, -1>>()
+
+  isType.equal<true, true, GreaterThan<-0, -1>>()
+  isType.equal<true, false, GreaterThan<-1, -1>>()
+  isType.equal<true, false, GreaterThan<-2, -1>>()
+
+  isType.equal<true, false, GreaterThan<-1, -0>>()
+  isType.equal<true, false, GreaterThan<-1, -1>>()
+  isType.equal<true, true, GreaterThan<-1, -2>>()
 })
