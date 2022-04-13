@@ -32,7 +32,7 @@ export namespace Digit {
   /**
    * A > B for [1-9]
    */
-  export type GreaterThan<A extends number, B extends number> = B extends GreaterThanMap[A] ? true : false
+  export type GreaterThan<A extends number, B extends number, True = true, False = false> = B extends GreaterThanMap[A] ? True : False
 
   export type GreaterThanMap = { [k in number]: number } & {
     0: never,
