@@ -16,8 +16,8 @@ export type GreaterThan<A extends number, B extends number, Fail = never> =
 
 export namespace GreaterThan {
   export type ForWholeNumber<A extends number, B extends number> = (
-    ToAbsDigitArray<A> extends infer DA ? DA extends number[] ?
-    ToAbsDigitArray<B> extends infer DB ? DB extends number[] ?
+    DigitArray.FromNumberAbs<A> extends infer DA ? DA extends number[] ?
+    DigitArray.FromNumberAbs<B> extends infer DB ? DB extends number[] ?
     Max<DA['length'], DB['length']> extends infer M ? M extends number ?
     PadLeft<DA, M, 0> extends infer PDA ? PDA extends number[] ?
     PadLeft<DB, M, 0> extends infer PDB ? PDB extends number[] ?
@@ -34,8 +34,4 @@ export namespace GreaterThan {
     ? ForDigitArray<Tail<DA>, Tail<DB>>
     : Digit.GreaterThan<Head<DA>, Head<DB>>
   )
-
-  export type TrimMinusSign<N extends string> = N extends `-${infer rest}` ? rest : N
-
-  export type ToAbsDigitArray<N extends number> = DigitArray.FromString<TrimMinusSign<`${N}`>>
 }

@@ -66,6 +66,8 @@ export namespace DigitArray {
 
 
   export type FromNumber<N extends number> = FromString<NumberToString<N>>
+  export type FromNumberAbs<N extends number> = FromString<TrimMinusSign<`${N}`>>
+  export type TrimMinusSign<N extends string> = N extends `-${infer rest}` ? rest : N
 
   export type NumberToString<N extends number> = (And<IsPositive<N>, IsWhole<N>>) extends true ? `${N}` : never
 
