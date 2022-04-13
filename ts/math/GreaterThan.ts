@@ -11,7 +11,7 @@ export type GreaterThan<A extends number, B extends number, Fail = never> =
   number extends B ? Fail :
   Equal<A, B> extends true ? false :
   Xor<IsPositive<A>, IsPositive<B>> extends true ? IsPositive<A> :
-  Or<IsPositive<B>, IsPositive<B>> extends false ? GreaterThan.ForWholeNumber<B, A> :
+  Or<IsPositive<A>, IsPositive<B>> extends false ? GreaterThan.ForWholeNumber<B, A> :
   GreaterThan.ForWholeNumber<A, B>
 
 export namespace GreaterThan {

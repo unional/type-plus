@@ -66,7 +66,7 @@ test('works with negative numbers', () => {
   isType.equal<true, true, GreaterThan<-1, -2>>()
 })
 
-test('with large numbers', () => {
+test('work with large numbers', () => {
   isType.equal<true, true, GreaterThan<1000000, 0>>()
   isType.equal<true, false, GreaterThan<0, 1000000>>()
 

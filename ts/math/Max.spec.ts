@@ -1,10 +1,8 @@
 import { isType, Max } from '..'
 
-test('only support positive and whole number', () => {
+test('only support whole number', () => {
   isType.equal<true, never, Max<0.1, 1>>()
-  isType.equal<true, never, Max<-1, 1>>()
   isType.equal<true, never, Max<1, 0.1>>()
-  isType.equal<true, never, Max<1, -1>>()
 })
 
 test('number gets never', () => {
@@ -32,4 +30,30 @@ test('more digits win', () => {
   isType.equal<true, 223, Max<12, 223>>()
   isType.equal<true, 1234567891011, Max<1234567891011, 123>>()
   isType.equal<true, 1234567891011, Max<123, 1234567891011>>()
+})
+
+test('work with negative numbers', () => {
+  isType.equal<true, 0, Max<0, -0>>()
+  isType.equal<true, 0, Max<-0, 0>>()
+  isType.equal<true, 0, Max<-0, -0>>()
+
+  isType.equal<true, 0, Max<0, -1>>()
+  isType.equal<true, 1, Max<1, -1>>()
+  isType.equal<true, 2, Max<2, -1>>()
+
+  isType.equal<true, 0, Max<-1, 0>>()
+  isType.equal<true, 1, Max<-1, 1>>()
+  isType.equal<true, 2, Max<-1, 2>>()
+
+  isType.equal<true, -1, Max<-1, -2>>()
+  isType.equal<true, -2, Max<-2, -2>>()
+  isType.equal<true, -2, Max<-3, -2>>()
+})
+
+test('work with large numbers', () => {
+  isType.equal<true, 1000000, Max<1000000, 0>>()
+  isType.equal<true, 1000000, Max<0, 1000000>>()
+
+  isType.equal<true, 0, Max<-1000000, 0>>()
+  isType.equal<true, 0, Max<0, -1000000>>()
 })
