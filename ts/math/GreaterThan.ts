@@ -31,8 +31,8 @@ export namespace GreaterThan {
   )
 
   export type OnDigitArray<DA extends number[], DB extends number[]> = (
-    Equal<Head<DA>, Head<DB>> extends true ?
-    OnDigitArray<Tail<DA>, Tail<DB>> extends Tail<DA> ? true : false :
-    Digit.GreaterThan<Head<DA>, Head<DB>> extends true ? true : false
+    Equal<Head<DA>, Head<DB>> extends true
+    ? OnDigitArray<Tail<DA>, Tail<DB>>
+    : Digit.GreaterThan<Head<DA>, Head<DB>>
   )
 }
