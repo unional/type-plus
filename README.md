@@ -416,7 +416,7 @@ So you may encounter some weird behavior if your logic is complex.
 - `IsPositive<N>`: is `N` a positive number literal. `IsPositive<number>` returns `false`.
 - `IsWhole<N>`: is `N` a whole number literal. `IsWhole<number>` returns `false`.
 - `Max<A, B, Fail=never>`: `max(A, B)`, for positive and whole number, `Fail` otherwise.
-- `GreaterThan<A, B, Fail=never>`: `A > B` for positive and whole numbers, `Fail` otherwise.
+- `GreaterThan<A, B, Fail=never>`: `A > B` for whole numbers, `Fail` otherwise.
 
 #### Arithmetics
 

@@ -1,17 +1,17 @@
 import { GreaterThan, isType } from '..'
 
 test('only support whole number', () => {
-  isType.equal<true, false, GreaterThan<0.1, 1>>()
-  isType.equal<true, false, GreaterThan<1, 0.1>>()
+  isType.equal<true, never, GreaterThan<0.1, 1>>()
+  isType.equal<true, never, GreaterThan<1, 0.1>>()
 })
 
 test('number gets never', () => {
-  isType.equal<true, false, GreaterThan<number, 1>>()
-  isType.equal<true, false, GreaterThan<1, number>>()
+  isType.equal<true, never, GreaterThan<number, 1>>()
+  isType.equal<true, never, GreaterThan<1, number>>()
 })
 
 test('override Fail case', () => {
-  isType.equal<true, number, GreaterThan<number, 1, true, number>>()
+  isType.equal<true, number, GreaterThan<number, 2, number>>()
 })
 
 test('n > n is false', () => {
