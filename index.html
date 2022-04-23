@@ -4,12 +4,12 @@
 </a>
 <p><a href="https://npmjs.org/package/type-plus"><img src="https://img.shields.io/npm/v/type-plus.svg?style=flat" alt="NPM version"></a>
 <a href="https://npmjs.org/package/type-plus"><img src="https://img.shields.io/npm/dm/type-plus.svg?style=flat" alt="NPM downloads"></a></p>
-<p><a href="https://github.com/unional/type-plus/actions"><img src="https://github.com/unional/type-plus/workflows/nodejs/badge.svg" alt="Github NodeJS"></a>
+<p><a href="https://github.com/unional/type-plus/actions"><img src="https://github.com/unional/type-plus/workflows/nodejs/badge.svg" alt="GitHub NodeJS"></a>
 <a href="https://codecov.io/gh/unional/type-plus"><img src="https://codecov.io/gh/unional/type-plus/branch/master/graph/badge.svg" alt="Codecov"></a></p>
 <p><a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="Semantic Release"></a></p>
 <p><a href="https://code.visualstudio.com/"><img src="https://img.shields.io/badge/vscode-ready-green.svg" alt="Visual Studio Code"></a>
 <a href="https://wallabyjs.com"><img src="https://img.shields.io/badge/wallaby.js-configured-green.svg" alt="Wallaby.js"></a></p>
-<p>Provides additional types and type adjusted utilities for <a href="https://www.typescriptlang.org/">TypeScript</a>.</p>
+<p>Provides additional types and type adjusted utilities for <a href="https://www.typescriptlang.org">TypeScript</a>.</p>
 
 <a href="#feature-highlights" id="feature-highlights" style="color: inherit; text-decoration: none;">
   <h2>Feature Highlights</h2>
@@ -38,7 +38,7 @@
 <li><code>type guard</code>: <a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards">User-defined type guard functions</a> (<code>if (isBool(s))</code>) introduced in TypeScript 1.6.</li>
 <li><code>assertion function</code>: <a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions">assertion functions</a> (<code>assertIsBool(a)</code>) introduced in TypeScript 3.7.</li>
 <li><code>logical</code>: functions or generic types that returns <code>true</code> or <code>false</code> type to be used in type level programming.</li>
-<li><code>filter</code>: generic types that returns <code>never</code> if the test fails.</li>
+<li><code>filter</code>: generic type that returns <code>never</code> if the test fails.</li>
 </ul>
 <p>Here are the type assertions provided in <code>type-plus</code>.
 Use the one that fits your specific needs.</p>
@@ -111,12 +111,12 @@ You need to specify <code>T</code>.</p>
 <p><code>isType&lt;T&gt;(subject, Class)</code>:</p>
 <p><code>isType.t&lt;T&gt;(subject?: T)</code>:</p>
 <p>✔️ <code>immediate</code>, <code>runtime</code></p>
-<p>It can used as type check: <code>isType.t&lt;Equal&lt;A, B&gt;&gt;()</code>,
+<p>It can be used as type check: <code>isType.t&lt;Equal&lt;A, B&gt;&gt;()</code>,
 or value type check: <code>isType.t(valueTypeIsTrue)</code>.
 It returns <code>true</code> when passes (which is the only case when used in TypeScript).</p>
 <p><code>isType.f&lt;T&gt;(subject?: T)</code>:</p>
 <p>✔️ <code>immediate</code>, <code>runtime</code></p>
-<p>It can used as type check: <code>isType.f&lt;Equal&lt;A, B&gt;&gt;()</code>,
+<p>It can be used as type check: <code>isType.f&lt;Equal&lt;A, B&gt;&gt;()</code>,
 or value type check: <code>isType.f(valueTypeIsFalse)</code>.
 It returns <code>true</code> when passes (which is the only case when used in TypeScript).</p>
 <p><code>isType.equal&lt;true|false, A, B&gt;()</code>:</p>
@@ -182,14 +182,14 @@ These utilities include utility types and type-adjusted functions.</p>
 <li><code>DropLast&lt;A&gt;</code>: drops the last value type of <code>A</code>.</li>
 <li><code>DropMatch&lt;A, Criteria&gt;</code>: drops entries matching <code>Criteria</code> in array or tuple <code>A</code>.</li>
 <li><code>DropUndefined&lt;A&gt;</code>: drop undefined entries from array of tuple <code>A</code>.</li>
-<li><code>Filter&lt;A, Criteria&gt;</code>: filter the array or tuple <code>A</code>, keeping entries satisfying <code>Criteria</code>. <strong>deprecated. Renaming to <code>KeepMatch</code></strong></li>
+<li><code>Filter&lt;A, Criteria&gt;</code>: filter the array or tuple <code>A</code>, keeping entries satisfying <code>Criteria</code>. <strong>Deprecated. Renaming to <code>KeepMatch</code></strong></li>
 <li><code>FindFirst&lt;A, Criteria&gt;</code>: gets the first type satisfying <code>Criteria</code>.</li>
 <li><code>FindLast&lt;A, Criteria&gt;</code>: gets the last type satisfying <code>Criteria</code>.</li>
 <li><code>Head&lt;A&gt;</code>: gets the first entry in the array.</li>
 <li><code>IntersectOfProps&lt;A, K&gt;</code>: gets the intersect of <code>A[K]</code> types (deprecate <code>MapToProp</code>)</li>
 <li><code>IsArray&lt;T&gt;</code>: <code>logical</code> predicate for <code>Array</code>.</li>
 <li><code>KeepMatch&lt;A, Criteria&gt;</code>: keeps entries satisfying <code>Criteria</code> in array or tuple <code>A</code>.</li>
-<li><code>Last&lt;A&gt;</code>: gets the last type of an array or tuple.</li>
+<li><code>Last&lt;A&gt;</code>: gets the last type of array or tuple.</li>
 <li><code>literalArray(...entries)</code>: return an array whose items are restricted to the provided literals.</li>
 <li><code>PadLeft&lt;A, Total, PadWith&gt;</code>: pads <code>A</code> with <code>PadWith</code> if the length of <code>A</code> is less than <code>L</code>.</li>
 <li><code>reduceWhile()</code>: <code>reduce()</code> with predicate for early termination. <br>A simple version of the same function in the <code>ramda</code> package.</li>
@@ -218,7 +218,7 @@ These utilities include utility types and type-adjusted functions.</p>
 <li><code>JSONObject</code>: JSON object</li>
 <li><code>JSONArray</code>: JSON array</li>
 <li><code>JSONTypes</code>: all JSON compatible types.</li>
-<li><code>JSONTypes.get&lt;T&gt;(obj, ...props)</code>: get a cast value in json</li>
+<li><code>JSONTypes.get&lt;T&gt;(obj, ...props)</code>: get a cast value in JSON</li>
 </ul>
 <pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-0"> { </span><span class="hl-7">JSONTypes</span><span class="hl-0"> } </span><span class="hl-9">from</span><span class="hl-0"> </span><span class="hl-8">&#39;type-plus&#39;</span><br/><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">someJson</span><span class="hl-0">: </span><span class="hl-3">JSONTypes</span><span class="hl-0"> = { </span><span class="hl-7">a:</span><span class="hl-0"> { </span><span class="hl-7">b:</span><span class="hl-0"> [</span><span class="hl-8">&#39;z&#39;</span><span class="hl-0">, { </span><span class="hl-7">c:</span><span class="hl-0"> </span><span class="hl-8">&#39;miku&#39;</span><span class="hl-0"> }]}}</span><br/><br/><span class="hl-7">JSONTypes</span><span class="hl-0">.</span><span class="hl-6">get</span><span class="hl-0">&lt;</span><span class="hl-3">string</span><span class="hl-0">&gt;(</span><span class="hl-7">someJson</span><span class="hl-0">, </span><span class="hl-8">&#39;a&#39;</span><span class="hl-0">, </span><span class="hl-8">&#39;b&#39;</span><span class="hl-0">, </span><span class="hl-4">1</span><span class="hl-0">, </span><span class="hl-8">&#39;c&#39;</span><span class="hl-0">) </span><span class="hl-5">// miku</span>
 </code></pre>
@@ -237,7 +237,7 @@ These utilities include utility types and type-adjusted functions.</p>
 <li><code>mapKey()</code>: type adjusted map by key.</li>
 <li><code>reduceByKey()</code>: type adjusted reduce by key.</li>
 <li><code>someKey()</code>: type adjusted some by key.</li>
-<li><code>SpreadRecord&lt;A, B&gt;</code>: type for <code>{...a, ...b}</code> when both <code>a</code> and <code>b</code> are <code>Record</code>. <br>for array, just do <code>[...A, ...B]</code>.</li>
+<li><code>SpreadRecord&lt;A, B&gt;</code>: type for <code>{...a, ...b}</code> when both <code>a</code> and <code>b</code> are <code>Record</code><br>for array, just do <code>[...A, ...B]</code>.</li>
 </ul>
 
 <a href="#promise-function" id="promise-function" style="color: inherit; text-decoration: none;">
@@ -327,8 +327,8 @@ So you may encounter some weird behavior if your logic is complex.</p>
 <li><code>GreaterThan&lt;A, B, Fail=never&gt;</code>: <code>A &gt; B</code> for whole numbers, <code>Fail</code> otherwise.</li>
 </ul>
 
-<a href="#arithmetics" id="arithmetics" style="color: inherit; text-decoration: none;">
-  <h4>Arithmetics</h4>
+<a href="#arithmetic" id="arithmetic" style="color: inherit; text-decoration: none;">
+  <h4>Arithmetic</h4>
 </a>
 <ul>
 <li><code>Add&lt;A, B, Fail=never&gt;</code>: <code>A + B</code> for positive and whole numbers, <code>Fail</code> otherwise.</li>
@@ -347,10 +347,10 @@ So you may encounter some weird behavior if your logic is complex.</p>
 <li><code>hasKey()</code>: function of <code>HasKey</code>.</li>
 <li><code>hasProperty(value, prop)</code>: assert <code>value</code> has property <code>prop</code>. This will pick the correct union type.</li>
 <li><code>isConstructor(subject)</code>: type guard <code>subject</code> is a constructor.</li>
-<li><code>isSystemError(code, err)</code>: type guard <code>err</code> with Nodejs error code.</li>
+<li><code>isSystemError(code, err)</code>: type guard <code>err</code> with NodeJS error code.</li>
 <li><code>omit(obj, ...props)</code>: omit properties from <code>obj</code>.</li>
 <li><code>pick(obj, ...props)</code>: pick properties from <code>obj</code>.</li>
-<li><code>record&lt;K, V&gt;(value?)</code>:  create a <code>Record&lt;K, V&gt;</code> without extra object prototype.</li>
+<li><code>record&lt;K, V&gt;(value?)</code>: create a <code>Record&lt;K, V&gt;</code> without extra object prototype.</li>
 <li><code>required(...)</code>: merge options and removing <code>Partial&lt;T&gt;</code>. From <a href="https://github.com/unional/unpartial"><code>unpartial</code></a></li>
 <li><code>requiredDeep(...)</code>: merge options deeply and removing <code>Partial&lt;T&gt;</code>. From <a href="https://github.com/unional/unpartial"><code>unpartial</code></a></li>
 <li><code>split(target, ...splitters)</code>: split one object into multiple objects.</li>
@@ -403,8 +403,8 @@ but <code>Flavor</code> of the same name cannot be assigned to <code>Brand</code
 <a href="#attribution" id="attribution" style="color: inherit; text-decoration: none;">
   <h2>Attribution</h2>
 </a>
-<p>Some of the code in this library is created by other people in the TypeScript community.
-I merely adding them in and maybe making some adjustments.
+<p>Some code in this library is created by other people in the TypeScript community.
+I&#39;m merely adding them in and maybe making some adjustments.
 Whenever possible, I add attribution to the person who created those <strong>codes</strong> in the file.</p>
 
 <a href="#similar-projects" id="similar-projects" style="color: inherit; text-decoration: none;">
@@ -416,7 +416,7 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li><a href="https://github.com/sindresorhus/type-fest"><code>type-fest</code></a>, a collection of essential TypeScript types.</li>
 <li><a href="https://github.com/pelotom/type-zoo"><code>type-zoo</code></a>, a modest type lib usable today.</li>
 <li><a href="https://github.com/kgtkr/typepark"><code>typepark</code></a>, a new type collection offering tuple manipulation and <code>Pipe</code>.</li>
-<li><a href="https://github.com/gcanti/typelevel-ts"><code>typelevel-ts</code></a>, a type lib by <a href="https://github.com/gcanti">@gcanti</a>, author of several FP libs in TS.</li>
+<li><a href="https://github.com/gcanti/typelevel-ts"><code>typelevel-ts</code></a>, a type lib by <a href="https://github.com/gcanti">@gcanti</a>, author of several FP libraries in TS.</li>
 <li><a href="https://github.com/KiaraGrouwstra/typical"><code>typical</code></a>, a playground of type-level operations for TypeScript.</li>
 </ul>
 
