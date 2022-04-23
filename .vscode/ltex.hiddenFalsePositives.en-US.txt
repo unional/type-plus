@@ -1,0 +1,6 @@
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qtype-plus\\E$"}
+{"rule":"A_INFINITIVE","sentence":"^\\Q\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q: gets the intersect of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q types (deprecate \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q)\n\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q: \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q predicate for \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[GitHub NodeJS]github-action-url [Codecov]codecov-url\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[NPM version]npm-url [NPM downloads]downloads-url\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[Semantic Release]semantic-release-url\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[Visual Studio Code]vscode-url [Wallaby.js]wallaby-url\\E$"}

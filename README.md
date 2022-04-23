@@ -3,7 +3,7 @@
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
 
-[![Github NodeJS][github-nodejs]][github-action-url]
+[![GitHub NodeJS][github-nodejs]][github-action-url]
 [![Codecov][codecov-image]][codecov-url]
 
 [![Semantic Release][semantic-release-image]][semantic-release-url]
@@ -11,7 +11,7 @@
 [![Visual Studio Code][vscode-image]][vscode-url]
 [![Wallaby.js][wallaby-image]][wallaby-url]
 
-Provides additional types and type adjusted utilities for [TypeScript](https://www.typescriptlang.org/).
+Provides additional types and type adjusted utilities for [TypeScript].
 
 ## Feature Highlights
 
@@ -39,7 +39,7 @@ There are 5 kinds of type assertions:
 - `type guard`: [User-defined type guard functions](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards) (`if (isBool(s))`) introduced in TypeScript 1.6.
 - `assertion function`: [assertion functions](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions) (`assertIsBool(a)`) introduced in TypeScript 3.7.
 - `logical`: functions or generic types that returns `true` or `false` type to be used in type level programming.
-- `filter`: generic types that returns `never` if the test fails.
+- `filter`: generic type that returns `never` if the test fails.
 
 Here are the type assertions provided in `type-plus`.
 Use the one that fits your specific needs.
@@ -175,7 +175,7 @@ You need to specify `T`.
 
 ✔️ `immediate`, `runtime`
 
-It can used as type check: `isType.t<Equal<A, B>>()`,
+It can be used as type check: `isType.t<Equal<A, B>>()`,
 or value type check: `isType.t(valueTypeIsTrue)`.
 It returns `true` when passes (which is the only case when used in TypeScript).
 
@@ -183,7 +183,7 @@ It returns `true` when passes (which is the only case when used in TypeScript).
 
 ✔️ `immediate`, `runtime`
 
-It can used as type check: `isType.f<Equal<A, B>>()`,
+It can be used as type check: `isType.f<Equal<A, B>>()`,
 or value type check: `isType.f(valueTypeIsFalse)`.
 It returns `true` when passes (which is the only case when used in TypeScript).
 
@@ -288,14 +288,14 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 - `DropLast<A>`: drops the last value type of `A`.
 - `DropMatch<A, Criteria>`: drops entries matching `Criteria` in array or tuple `A`.
 - `DropUndefined<A>`: drop undefined entries from array of tuple `A`.
-- `Filter<A, Criteria>`: filter the array or tuple `A`, keeping entries satisfying `Criteria`. **deprecated. Renaming to `KeepMatch`**
+- `Filter<A, Criteria>`: filter the array or tuple `A`, keeping entries satisfying `Criteria`. **Deprecated. Renaming to `KeepMatch`**
 - `FindFirst<A, Criteria>`: gets the first type satisfying `Criteria`.
 - `FindLast<A, Criteria>`: gets the last type satisfying `Criteria`.
 - `Head<A>`: gets the first entry in the array.
 - `IntersectOfProps<A, K>`: gets the intersect of `A[K]` types (deprecate `MapToProp`)
 - `IsArray<T>`: `logical` predicate for `Array`.
 - `KeepMatch<A, Criteria>`: keeps entries satisfying `Criteria` in array or tuple `A`.
-- `Last<A>`: gets the last type of an array or tuple.
+- `Last<A>`: gets the last type of array or tuple.
 - `literalArray(...entries)`: return an array whose items are restricted to the provided literals.
 - `PadLeft<A, Total, PadWith>`: pads `A` with `PadWith` if the length of `A` is less than `L`.
 - `reduceWhile()`: `reduce()` with predicate for early termination. \
@@ -319,7 +319,7 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 - `JSONObject`: JSON object
 - `JSONArray`: JSON array
 - `JSONTypes`: all JSON compatible types.
-- `JSONTypes.get<T>(obj, ...props)`: get a cast value in json
+- `JSONTypes.get<T>(obj, ...props)`: get a cast value in JSON
 
 ```ts
 import { JSONTypes } from 'type-plus'
@@ -341,7 +341,7 @@ JSONTypes.get<string>(someJson, 'a', 'b', 1, 'c') // miku
 - `mapKey()`: type adjusted map by key.
 - `reduceByKey()`: type adjusted reduce by key.
 - `someKey()`: type adjusted some by key.
-- `SpreadRecord<A, B>`: type for `{...a, ...b}` when both `a` and `b` are `Record`. \
+- `SpreadRecord<A, B>`: type for `{...a, ...b}` when both `a` and `b` are `Record`\
   for array, just do `[...A, ...B]`.
 
 ### Promise function
@@ -418,7 +418,7 @@ So you may encounter some weird behavior if your logic is complex.
 - `Max<A, B, Fail=never>`: `max(A, B)`, for whole number, `Fail` otherwise.
 - `GreaterThan<A, B, Fail=never>`: `A > B` for whole numbers, `Fail` otherwise.
 
-#### Arithmetics
+#### Arithmetic
 
 - `Add<A, B, Fail=never>`: `A + B` for positive and whole numbers, `Fail` otherwise.
 - `Subtract<A, B, Fail=never>`: `A - B` for positive and whole numbers, `Fail` otherwise.
@@ -433,10 +433,10 @@ So you may encounter some weird behavior if your logic is complex.
 - `hasKey()`: function of `HasKey`.
 - `hasProperty(value, prop)`: assert `value` has property `prop`. This will pick the correct union type.
 - `isConstructor(subject)`: type guard `subject` is a constructor.
-- `isSystemError(code, err)`: type guard `err` with Nodejs error code.
+- `isSystemError(code, err)`: type guard `err` with NodeJS error code.
 - `omit(obj, ...props)`: omit properties from `obj`.
 - `pick(obj, ...props)`: pick properties from `obj`.
-- `record<K, V>(value?)`:  create a `Record<K, V>` without extra object prototype.
+- `record<K, V>(value?)`: create a `Record<K, V>` without extra object prototype.
 - `required(...)`: merge options and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
 - `requiredDeep(...)`: merge options deeply and removing `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
 - `split(target, ...splitters)`: split one object into multiple objects.
@@ -528,8 +528,8 @@ nominalMatch(b1, b2) // false
 
 ## Attribution
 
-Some of the code in this library is created by other people in the TypeScript community.
-I merely adding them in and maybe making some adjustments.
+Some code in this library is created by other people in the TypeScript community.
+I'm merely adding them in and maybe making some adjustments.
 Whenever possible, I add attribution to the person who created those **codes** in the file.
 
 ## Similar projects
@@ -539,7 +539,7 @@ Whenever possible, I add attribution to the person who created those **codes** i
 - [`type-fest`](https://github.com/sindresorhus/type-fest), a collection of essential TypeScript types.
 - [`type-zoo`](https://github.com/pelotom/type-zoo), a modest type lib usable today.
 - [`typepark`](https://github.com/kgtkr/typepark), a new type collection offering tuple manipulation and `Pipe`.
-- [`typelevel-ts`](https://github.com/gcanti/typelevel-ts), a type lib by [@gcanti](https://github.com/gcanti), author of several FP libs in TS.
+- [`typelevel-ts`](https://github.com/gcanti/typelevel-ts), a type lib by [@gcanti](https://github.com/gcanti), author of several FP libraries in TS.
 - [`typical`](https://github.com/KiaraGrouwstra/typical), a playground of type-level operations for TypeScript.
 
 ## Contribute
@@ -563,12 +563,13 @@ git push
 [codecov-url]: https://codecov.io/gh/unional/type-plus
 [downloads-image]: https://img.shields.io/npm/dm/type-plus.svg?style=flat
 [downloads-url]: https://npmjs.org/package/type-plus
-[github-nodejs]: https://github.com/unional/type-plus/workflows/nodejs/badge.svg
 [github-action-url]: https://github.com/unional/type-plus/actions
+[github-nodejs]: https://github.com/unional/type-plus/workflows/nodejs/badge.svg
 [npm-image]: https://img.shields.io/npm/v/type-plus.svg?style=flat
 [npm-url]: https://npmjs.org/package/type-plus
 [semantic-release-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
+[TypeScript]: https://www.typescriptlang.org
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
 [wallaby-image]: https://img.shields.io/badge/wallaby.js-configured-green.svg
