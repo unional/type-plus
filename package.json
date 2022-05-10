@@ -48,7 +48,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "tersify": "^3.8.2",
+    "tersify": "^3.8.3",
     "unpartial": "^0.6.4"
   },
   "devDependencies": {

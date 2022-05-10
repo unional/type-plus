@@ -5857,6 +5857,15 @@ tersify@^3.7.11, tersify@^3.8.0, tersify@^3.8.2:
     is-buffer "^2.0.5"
     unpartial "^0.6.4"
 
+tersify@^3.8.3:
+  version "3.8.3"
+  resolved "https://registry.yarnpkg.com/tersify/-/tersify-3.8.3.tgz#8f49ffb24c83d92525e2c483f64273fd640cef19"
+  integrity sha512-PX0+OE4CNak6lqDnao/wJNH72CXGgz5OKMsfFx+OYRcDjZmz/quXD+TirM2/kEUrm4WC0q6B/ww5Ig2rccyjbg==
+  dependencies:
+    acorn "^8.7.0"
+    is-buffer "^2.0.5"
+    unpartial "^0.6.4"
+
 test-exclude@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/test-exclude/-/test-exclude-6.0.0.tgz#04a8698661d805ea6fa293b6cb9e63ac044ef15e"
