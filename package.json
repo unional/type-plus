@@ -62,6 +62,8 @@
     "@commitlint/config-conventional": "^16.2.1",
     "@size-limit/preset-small-lib": "^7.0.8",
     "@types/jest": "^27.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
     "@unional/fixture": "^1.8.0",
     "assertron": "^9.0.4",
     "dependency-check": "^4.1.0",
