@@ -17,6 +17,7 @@
       },
       "rules": {
         "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/indent": "off",
         "no-console": "off",
         "no-use-before-define": "off"
       }
