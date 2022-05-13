@@ -108,6 +108,8 @@ function formatExpectations(es: AllType.Analysis[], sep = ',') {
 }
 
 function range(start: number, end: number) {
-  if (start === end) return `index ${start}`
-  return `indices [${start}...${end}]`
+  const diff = end - start
+  if (diff === 1) return `index ${start}`
+  if (diff === 2) return `indices ${start},${end - 1}`
+  return `indices ${start}..${end - 1}`
 }
