@@ -36,15 +36,15 @@ export function analyzeInternal(options: analyze.Options, type: AllType, actual:
       return typeof actual === t ? ok(type) : fail(t)
     case 'null':
       return actual === null ? ok(type) : fail(t)
-    case 'boolean': return analyzeBoolean(type as Boolean, actual)
-    case 'number': return analyzeType(number, type as Number, actual)
-    case 'string': return analyzeType(string, type as String, actual)
+    case 'boolean': return analyzeBoolean(type, actual)
+    case 'number': return analyzeType(number, type, actual)
+    case 'string': return analyzeType(string, type, actual)
     // case 'bigint': return analyzeType(bigint, type as BigInt, actual)
-    case 'object': return analyzeObject(options, type as ObjectType, actual)
-    case 'record': return analyzeRecord(options, type as RecordType, actual)
-    case 'array': return analyzeArray(options, type as ArrayType, actual)
-    case 'tuple': return analyzeTuple(options, type as Tuple, actual)
-    case 'union': return analyzeUnion(options, type as Union, actual)
+    case 'object': return analyzeObject(options, type, actual)
+    case 'record': return analyzeRecord(options, type, actual)
+    case 'array': return analyzeArray(options, type, actual)
+    case 'tuple': return analyzeTuple(options, type, actual)
+    case 'union': return analyzeUnion(options, type, actual)
   }
 }
 
@@ -63,7 +63,7 @@ function analyzeType(
   type: Type<any, any>,
   actual: unknown
 ) {
-  const value = type['value']
+  const value = type.value
   return typeof actual === baseType['type'] && (type === baseType || actual === value)
     ? ok(type)
     : fail(type['type'], type['value'])
@@ -80,7 +80,7 @@ function analyzeArray(options: analyze.Options, type: ArrayType<AllType>, actual
   if (!Array.isArray(actual)) return fail('array', subType ? ok(subType) : undefined)
   if (subType === undefined) return ok(type)
 
-  const r = actual.reduce((p, a, i) => {
+  const r = actual.reduce((p: { keys: number[], actual: any[], value: any }, a, i) => {
     const r = analyzeInternal(options, subType, a)
     if (r.fail) {
       p.value = r.value

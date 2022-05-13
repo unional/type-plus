@@ -2910,10 +2910,10 @@ escape-string-regexp@^4.0.0:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz#14ba83a5d373e3d311e5afca29cf5bfad965bf34"
   integrity sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==
 
-eslint-plugin-harmony@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-harmony/-/eslint-plugin-harmony-7.0.0.tgz#41f2eb2aa00b0ab0d0bf35b5bdd376172f0da266"
-  integrity sha512-bE/5GgbhNKCkpXdodi8EwaNMCy9c1zX7xSZJ2pdDcVUl43RbJQaC/lgp8mNRBlM7pgPAdyBP7LQcDzE8ASF9ug==
+eslint-plugin-harmony@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-harmony/-/eslint-plugin-harmony-7.0.1.tgz#4aa043be555248afb77ce0a3ff07a6e122dcc317"
+  integrity sha512-/DuoYZRqz/tlN+SevS0wx8+sP2kkuOVA8Q87Qx1ggvvV15HGmSIE0quD0GfhKpFwXxMKjcUNmznR5430mJe/rA==
   dependencies:
     "@typescript-eslint/experimental-utils" "^5.23.0"
 

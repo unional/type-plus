@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { AnyRecord } from './AnyRecord'
 import { Omit } from './omit'
 import { reduceByKey } from './reduceKey'
@@ -195,7 +196,7 @@ export function split(target: AnyRecord, ...splitters: AnyRecord[]): AnyRecord[]
   const keyMap: AnyRecord = {}
   const s = splitters.map(s => reduceByKey(
     s,
-    (p, k) => (keyMap[k] = true, p[k] = target[k]  ?? s[k], p),
+    (p, k) => (keyMap[k] = true, p[k] = target[k] ?? s[k], p),
     {} as AnyRecord))
   const r = reduceByKey(target, (p, k) => keyMap[k] ? p : (p[k] = target[k], p), {} as AnyRecord)
   return [...s, r]

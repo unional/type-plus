@@ -7,7 +7,7 @@
   "extends": "plugin:harmony/latest",
   "overrides": [
     {
-      "extends": "plugin:harmony/ts-recommended",
+      "extends": "plugin:harmony/ts-recommended-type-check",
       "files": [
         "*.ts",
         "*.tsx"
@@ -16,9 +16,6 @@
         "project": "tsconfig.eslint.json"
       },
       "rules": {
-        "@typescript-eslint/explicit-module-boundary-types": "off",
-        "@typescript-eslint/indent": "off",
-        "no-console": "off",
         "no-use-before-define": "off"
       }
     }

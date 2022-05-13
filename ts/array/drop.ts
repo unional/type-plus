@@ -68,5 +68,5 @@ export type DropUndefined<A extends Array<any>> = DropMatch<A, undefined>
  * drop a particular value from an array
  */
 export function drop<A extends Readonly<Array<any>>, C>(array: A, value: C): DropMatch<A, C> {
-  return array.filter(v => v !== value) as any
+  return array.filter(v => v !== value) as DropMatch<A, C>
 }
