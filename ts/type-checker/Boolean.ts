@@ -30,5 +30,5 @@ export const BooleanSpec: TypeSpec<Type<'boolean', boolean>> = {
       return value === actual ? { type: 'boolean', value } : { type: 'boolean', value, fail: true }
     }
   },
-  toNative(value: any): true { return value as any }
+  toNative(value: any): true { return value }
 }

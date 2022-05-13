@@ -11,7 +11,7 @@ test('works with endofunctors: +2 *3', () => {
 })
 
 test('cross types', () => {
-  const n2s = (n: number) => '' + n
+  const n2s = (n: number) => String(n)
   const len1 = (s: string) => s.length === 1
 
   const isSingleDigit = compose(n2s, len1)

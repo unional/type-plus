@@ -22,13 +22,12 @@ function toViolations(options: analyze.Options, path: Array<string | number>, ac
   switch (analysis.type) {
     case 'tuple': {
       if (options.strict && analysis.value!.length < actual.length) {
-        const index = actual.length - analysis.value!.length === 1 ? 'index' : 'indices'
-        violations.push(`${index} ${range(analysis.value!.length, actual.length)} should not contain any value`)
+        violations.push(`${range(analysis.value!.length, actual.length)} should not contain any value`)
       }
-      const v2 = analysis.value!.reduce((p, a, i) => {
+      const v2 = analysis.value!.reduce((p: string[], a, i) => {
         if (a.fail) p.push(...toViolations(options, [...path, i], actual[i], a))
         return p
-      }, [] as string[])
+      }, [])
       if (v2.length > 0) violations.push(...v2)
       break
     }
@@ -81,26 +80,26 @@ function formatType(e: AllType.Analysis): string {
     case 'string':
       return e.value === undefined ? e.type : `'${e.value}'`
     case 'array':
-      return e.value === undefined ? 'Array<any>' : `Array<${formatType(e.value as any)}>`
+      return e.value === undefined ? 'Array<any>' : `Array<${formatType(e.value)}>`
     case 'tuple':
       return `[${formatExpectations(e.value as AllType.Analysis[])}]`
     case 'object':
       return e.value === undefined ? e.type
         : `{ ${reduceByKey(
-          e.value as Record<string, any>,
+          e.value,
           (p, k) => {
-            p.push(`${toProp(k)}: ${formatType((e.value as any)[k] as any)}`)
+            p.push(`${toProp(k)}: ${formatType((e.value as any)[k])}`)
             return p
           },
           [] as string[]
         ).join(', ')} }`
     case 'record':
-      return `Record<string, ${formatType(e.value as any)}>`
+      return `Record<string, ${formatType(e.value)}>`
     case 'union':
       return `(${formatExpectations(e.value as AllType.Analysis[], ' | ')})`
     // istanbul ignore next
     default:
-      return `report not expected: ${e.value}`
+      return `report not expected: ${e.type}`
   }
 }
 
@@ -109,7 +108,8 @@ function formatExpectations(es: AllType.Analysis[], sep = ',') {
 }
 
 function range(start: number, end: number) {
-  const r: number[] = []
-  while (start < end) r.push(start++)
-  return r
+  const diff = end - start
+  if (diff === 1) return `index ${start}`
+  if (diff === 2) return `indices ${start},${end - 1}`
+  return `indices ${start}..${end - 1}`
 }

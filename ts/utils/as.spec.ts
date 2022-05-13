@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { amend, as, asAny, isType } from '..'
 
 describe('as<T>()', () => {

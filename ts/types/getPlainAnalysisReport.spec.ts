@@ -237,6 +237,17 @@ describe('tuple', () => {
       ].join('\n')
     )
   })
+  test('strict with more than 2 extra', () => {
+    assertReportEquals(
+      strict,
+      T.tuple.create(T.null, T.number),
+      [null, 1, 'a', false, true],
+      [
+        `subject expects to be strictly [null,number] but is actually [null, 1, 'a', false, true]`,
+        `indices 2..4 should not contain any value`
+      ].join('\n')
+    )
+  })
 })
 describe('object', () => {
   test('not object', () => {

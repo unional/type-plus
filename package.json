@@ -68,7 +68,7 @@
     "assertron": "^9.0.4",
     "dependency-check": "^4.1.0",
     "eslint": "^8.11.0",
-    "eslint-plugin-harmony": "^7.0.0",
+    "eslint-plugin-harmony": "^7.0.1",
     "husky": "^8.0.0",
     "jest": "^28.0.0",
     "jest-progress-tracker": "^3.0.3",
