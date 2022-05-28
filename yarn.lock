@@ -6114,6 +6114,11 @@ unpartial@^0.6.1, unpartial@^0.6.3, unpartial@^0.6.4:
   resolved "https://registry.yarnpkg.com/unpartial/-/unpartial-0.6.4.tgz#9cf878d3c8335919b250cfb3393751ca12cc26a4"
   integrity sha512-t/aGg/x8vW0KCjPB8A6TBB1hd0wnWMze8WD83uUpqSDm99jmhY2ZcHpivlvvSGmPCJ/S5ASZzxeQHga4JTW/4A==
 
+unpartial@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/unpartial/-/unpartial-0.7.0.tgz#53ee0d919087145824435d083ac7e3aa28ad9b94"
+  integrity sha512-DmUb7LSaIyJSnLPaGEojUkxsur7quCTZI6TXobnaB7OTSxgVh9fAdEk/5g+OPUCZjJhu/QVcNlDWNuWPd/Z7Og==
+
 unset-value@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/unset-value/-/unset-value-1.0.0.tgz#8376873f7d2335179ffb1e6fc3a8ed0dfc8ab559"

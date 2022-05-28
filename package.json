@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "tersify": "^3.8.2",
-    "unpartial": "^0.6.4"
+    "unpartial": "^0.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.7",
