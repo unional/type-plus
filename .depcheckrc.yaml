@@ -1,0 +1,10 @@
+ignores:
+  - "@commitlint/*"
+  - "@size-limit/preset-small-lib"
+  - '@types/node'
+  - "@types/jest"
+  - babel-jest
+  - jest-*
+  - ts-jest
+  - typedoc
+  - typedoc-plugin-extras

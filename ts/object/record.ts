@@ -1,6 +1,6 @@
-import { KeyTypes } from 'type-plus'
 import { Widen } from '../utils'
 import { AnyRecord } from './AnyRecord'
+import { KeyTypes } from './KeyTypes'
 
 /**
  * Creates a `Record<Key, Value>`
