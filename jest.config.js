@@ -16,10 +16,6 @@ module.exports = {
     '^(\\.{1,2}/.*)\\.js$': '$1',
     '#(.*)': '<rootDir>/node_modules/$1'
   },
-  'reporters': [
-    'default',
-    'jest-progress-tracker'
-  ],
   'roots': [
     '<rootDir>/ts',
   ],
