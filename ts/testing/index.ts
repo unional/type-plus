@@ -1,1 +1,1 @@
-export * from './stub'
+export * from './stub.js'

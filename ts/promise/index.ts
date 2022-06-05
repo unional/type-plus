@@ -1,4 +1,4 @@
-export * from './isPromise'
-export type { PromiseValue } from './PromiseValue'
-export type { PromiseValueMerge } from './PromiseValueMerge'
-export * from './mapSeries'
+export * from './isPromise.js'
+export type { PromiseValue } from './PromiseValue.js'
+export type { PromiseValueMerge } from './PromiseValueMerge.js'
+export * from './mapSeries.js'

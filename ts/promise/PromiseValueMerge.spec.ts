@@ -1,4 +1,4 @@
-import { assertType, PromiseValueMerge } from '..'
+import { assertType, PromiseValueMerge } from '../index.js'
 
 test('merge promise value', async () => {
   const result = {} as PromiseValueMerge<Promise<{ a: string }>, Promise<{ b: string }>>

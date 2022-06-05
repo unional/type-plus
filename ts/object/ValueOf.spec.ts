@@ -1,4 +1,4 @@
-import { isType, ValueOf } from '..'
+import { isType, ValueOf } from '../index.js'
 
 test('work with primitive type', () => {
   type A = ValueOf<string>

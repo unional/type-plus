@@ -1,5 +1,5 @@
 import t from 'assert'
-import { isPromise } from '..'
+import { isPromise } from '../index.js'
 
 test('false if subject is falsy value or non-object', () => {
   t.strictEqual(isPromise(undefined), false)

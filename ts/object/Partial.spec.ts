@@ -1,4 +1,4 @@
-import { assertType, PartialExcept, PartialOmit, PartialPick } from '..'
+import { assertType, PartialExcept, PartialOmit, PartialPick } from '../index.js'
 
 test('work on primitive type', () => {
   type Foo = PartialPick<number, 'toFixed'>

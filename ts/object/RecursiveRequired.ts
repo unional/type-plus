@@ -1,4 +1,4 @@
-import { AnyRecord } from './AnyRecord'
+import { AnyRecord } from './AnyRecord.js'
 
 export type RecursiveRequired<T> = {
   [P in keyof T]-?:

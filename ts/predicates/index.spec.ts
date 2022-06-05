@@ -1,4 +1,4 @@
-import { IsAny, IsBoolean, IsLiteral, isType, PrimitiveTypes } from '..'
+import { IsAny, IsBoolean, IsLiteral, isType, PrimitiveTypes } from '../index.js'
 
 describe('IsLiteral<T>', () => {
   test('`number` is not literal', () => {

@@ -6,12 +6,10 @@
     "lib": [
       "ES2021.Promise"
     ],
-    "moduleResolution": "node",
     "newLine": "LF",
     "noUnusedLocals": true,
     "noUnusedParameters": false,
     "removeComments": true,
-    "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "stripInternal": true,

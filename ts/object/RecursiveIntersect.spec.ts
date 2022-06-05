@@ -1,4 +1,4 @@
-import { RecursiveIntersect } from '..'
+import { RecursiveIntersect } from '../index.js'
 
 test('add object type to types', () => {
   type U = { u: number }

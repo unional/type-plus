@@ -1,4 +1,4 @@
-import { assertType, RequiredExcept, RequiredPick } from '..'
+import { assertType, RequiredExcept, RequiredPick } from '../index.js'
 
 test('make picked properties required', () => {
   type Foo = {

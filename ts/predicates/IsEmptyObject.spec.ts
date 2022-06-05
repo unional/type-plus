@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { IsEmptyObject } from '..'
-import { isType } from './isType'
+import { IsEmptyObject, isType } from '../index.js'
 
 test('true for {}', () => {
   isType.t<IsEmptyObject<{}>>()

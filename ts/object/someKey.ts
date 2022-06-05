@@ -1,4 +1,4 @@
-import { KeyTypes } from './KeyTypes'
+import { KeyTypes } from './KeyTypes.js'
 
 export function someKey<S extends Record<KeyTypes, any>, T = any>(
   subject: S,

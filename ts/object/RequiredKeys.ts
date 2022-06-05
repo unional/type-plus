@@ -1,5 +1,5 @@
-import { KeyTypes } from './KeyTypes'
-import { OptionalKeys } from './OptionalKeys'
+import { KeyTypes } from './KeyTypes.js'
+import { OptionalKeys } from './OptionalKeys.js'
 
 export type RequiredKeys<T extends Record<KeyTypes, any>> = T extends unknown
 ? RequiredKeys._<T> : never

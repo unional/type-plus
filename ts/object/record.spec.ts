@@ -1,4 +1,4 @@
-import { isType, KeyTypes, record } from '..'
+import { isType, KeyTypes, record } from '../index.js'
 
 test('create an empty record with value default to unknown', () => {
   const a = record()

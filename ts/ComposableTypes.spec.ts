@@ -1,4 +1,4 @@
-import { assertType, canAssign, ComposableTypes, NonComposableTypes } from '.'
+import { assertType, canAssign, ComposableTypes, NonComposableTypes } from './index.js'
 
 test('ComposableTypes includes object, array, and function', () => {
   assertType<ComposableTypes>({})
