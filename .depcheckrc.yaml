@@ -1,10 +1,12 @@
 ignores:
   - "@commitlint/*"
+  - "@semantic-release/*"
   - "@size-limit/preset-small-lib"
   - '@types/node'
   - "@types/jest"
   - babel-jest
   - jest-*
+  - semantic-release
   - ts-jest
   - typedoc
   - typedoc-plugin-extras
