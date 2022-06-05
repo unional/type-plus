@@ -1,4 +1,4 @@
-import { someKey } from '..'
+import { someKey } from '../index.js'
 
 test('predicate key can be used as indexer of the subject', () => {
   const subject = { a: 1, b: 2, c: 3 }

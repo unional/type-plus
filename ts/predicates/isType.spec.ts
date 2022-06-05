@@ -1,4 +1,4 @@
-import { assertType, Equal, isType } from '..'
+import { assertType, Equal, isType } from '../index.js'
 
 describe('isType()', () => {
   describe('without validator', () => {

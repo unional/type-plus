@@ -1,5 +1,5 @@
-import { Equal } from '../predicates'
-import { NonNull, NonUndefined } from '../utils'
+import { Equal } from '../predicates/index.js'
+import { NonNull, NonUndefined } from '../utils/index.js'
 
 export type DropFirst<A extends any[]> = number extends A['length']
   ? A

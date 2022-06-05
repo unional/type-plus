@@ -1,4 +1,4 @@
-import { drop, DropMatch, DropNull, DropNullable, DropUndefined, isType } from '..'
+import { drop, DropMatch, DropNull, DropNullable, DropUndefined, isType } from '../index.js'
 
 describe('DropMatch<A, C>', () => {
   describe('A is array', () => {

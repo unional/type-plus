@@ -1,4 +1,4 @@
-import { assertType, IsEqual, KeysOfOptional } from '..'
+import { assertType, IsEqual, KeysOfOptional } from '../index.js'
 
 test('get keys from optional type', () => {
   type X = { o?: { a: string, b: string } }

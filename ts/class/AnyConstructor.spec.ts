@@ -1,4 +1,4 @@
-import { AnyConstructor } from '..'
+import { AnyConstructor } from '../index.js'
 
 test('basic', () => {
   const a = function () { } as any as AnyConstructor

@@ -1,8 +1,8 @@
 // istanbul ignore file
 // import { undef, Undefined } from './Undefined'
-// import { Union, union } from './Union'
+// import { Union, union } from './Union.js'
 
-import { TypeAnalysis, Type } from './types'
+import { TypeAnalysis, Type } from './types.js'
 
 export type BigInt<Value extends bigint = bigint> = Type<'bigint', Value>
 

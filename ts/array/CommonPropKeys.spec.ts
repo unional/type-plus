@@ -1,4 +1,4 @@
-import { assertType, CommonPropKeys, Equal } from '..'
+import { assertType, CommonPropKeys, Equal } from '../index.js'
 
 test('no common key returns never', () => {
   type S = [{ a: number }, { b: number }]

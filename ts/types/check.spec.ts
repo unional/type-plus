@@ -1,5 +1,5 @@
-import * as T from '.'
-import { check } from './check'
+import * as T from './index.js'
+import { check } from './check.js'
 
 test('check without strict', () => {
   const t = T.tuple.create(T.string)

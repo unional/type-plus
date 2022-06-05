@@ -1,5 +1,5 @@
-import { assertType } from '../assertion'
-import { Tuple } from './Tuple'
+import { assertType } from '../assertion/index.js'
+import { Tuple } from './Tuple.js'
 
 describe('Find<T,S>', () => {
   test('[] returns never', () => {

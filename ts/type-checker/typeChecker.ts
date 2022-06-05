@@ -1,9 +1,9 @@
-import { AllType } from '../types'
-import { analyze } from '../types/analyze'
-import { satisfy } from '../types/satisfy'
-import { BooleanSpec } from './Boolean'
-import { Tuple } from './Tuple'
-import { Type, TypeSpec } from './types'
+import { AllType } from '../types/index.js'
+import { analyze } from '../types/analyze.js'
+import { satisfy } from '../types/satisfy.js'
+import { BooleanSpec } from './Boolean.js'
+import { Tuple } from './Tuple.js'
+import { Type, TypeSpec } from './types.js'
 
 // export type TypeChecker<Types extends Type<string, any>[]> = {
 

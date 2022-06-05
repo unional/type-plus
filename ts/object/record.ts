@@ -1,6 +1,6 @@
-import { Widen } from '../utils'
+import { Widen } from '../utils/index.js'
 import { AnyRecord } from './AnyRecord'
-import { KeyTypes } from './KeyTypes'
+import { KeyTypes } from './KeyTypes.js'
 
 /**
  * Creates a `Record<Key, Value>`

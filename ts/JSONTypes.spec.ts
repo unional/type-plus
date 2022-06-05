@@ -1,6 +1,6 @@
-import { assertType } from './assertion'
-import { JSONObject, JSONTypes } from './JSONTypes'
-import { isType } from './predicates'
+import { assertType } from './assertion/index.js'
+import { JSONObject, JSONTypes } from './JSONTypes.js'
+import { isType } from './predicates/index.js'
 
 test('empty object', () => {
   assertType<JSONTypes>({})

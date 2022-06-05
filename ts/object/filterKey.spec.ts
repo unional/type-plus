@@ -1,5 +1,5 @@
 import t from 'assert'
-import { filterKey } from '..'
+import { filterKey } from '../index.js'
 
 test(`return type is 'keyof subject'`, () => {
   const subject = { a: 1, b: 2, c: 3 }

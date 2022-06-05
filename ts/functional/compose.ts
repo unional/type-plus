@@ -1,5 +1,5 @@
-import { Head, Last } from '../array'
-import { AnyFunction } from '../function/AnyFunction'
+import { Head, Last } from '../array/index.js'
+import { AnyFunction } from '../function/AnyFunction.js'
 
 /**
  * compose functions

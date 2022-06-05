@@ -1,4 +1,4 @@
-import { Abs, isType } from '..'
+import { Abs, isType } from '../index.js'
 
 test('positive returns itself', () => {
   isType.equal<true, 1, Abs<1>>()

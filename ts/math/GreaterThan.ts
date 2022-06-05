@@ -1,9 +1,9 @@
-import type { Head, PadLeft, Tail } from '../array'
-import type { And, Equal, Or, Xor } from '../predicates'
-import type { Digit, DigitArray } from './Digit'
-import type { IsPositive } from './IsPositive'
-import type { IsWhole } from './IsWhole'
-import type { Max } from './Max'
+import type { Head, PadLeft, Tail } from '../array/index.js'
+import type { And, Equal, Or, Xor } from '../predicates/index.js'
+import type { Digit, DigitArray } from './Digit.js'
+import type { IsPositive } from './IsPositive.js'
+import type { IsWhole } from './IsWhole.js'
+import type { Max } from './Max.js'
 
 export type GreaterThan<A extends number, B extends number, Fail = never> =
   And<IsWhole<A>, IsWhole<B>> extends false ? Fail :

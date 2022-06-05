@@ -1,4 +1,4 @@
-import { assertType, canAssign, Equal, Pick, pick } from '..'
+import { assertType, canAssign, Equal, Pick, pick } from '../index.js'
 
 test('pick properties from object', () => {
   const actual = pick({ a: 1, b: 2 }, 'a')

@@ -1,4 +1,4 @@
-import { mapSeries } from '..'
+import { mapSeries } from '../index.js'
 
 test('map over values', () => {
   const values = [3, 2, 1]

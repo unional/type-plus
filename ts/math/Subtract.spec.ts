@@ -1,4 +1,4 @@
-import { isType, Subtract } from '..'
+import { isType, Subtract } from '../index.js'
 
 test('only support positive and whole number', () => {
   isType.equal<true, never, Subtract<0.1, 1>>()

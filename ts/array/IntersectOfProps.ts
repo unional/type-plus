@@ -1,5 +1,5 @@
-import { KeyTypes } from '../object'
-import { Tail } from './Tail'
+import { KeyTypes } from '../object/index.js'
+import { Tail } from './Tail.js'
 
 /**
  * Gets the intersect of properties of the elements in `A`

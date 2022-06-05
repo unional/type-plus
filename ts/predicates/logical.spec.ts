@@ -1,4 +1,4 @@
-import { And, assertType, Equal, Not, Or, Xor } from '..'
+import { And, assertType, Equal, Not, Or, Xor } from '../index.js'
 
 describe('And<A,B>', () => {
   test('basic', () => {

@@ -1,4 +1,4 @@
-import { Concat, Equal, isType } from '..'
+import { Concat, Equal, isType } from '../index.js'
 
 test('concat array', () => {
   type A = Concat<string[], boolean[]>

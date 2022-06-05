@@ -1,5 +1,5 @@
-import { AllType } from './AllType'
-import { TypeAnalysis, Type } from './types'
+import { AllType } from './AllType.js'
+import { TypeAnalysis, Type } from './types.js'
 import { undef } from './Undefined'
 
 

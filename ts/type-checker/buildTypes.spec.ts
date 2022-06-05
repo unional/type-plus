@@ -1,7 +1,7 @@
-// import { MapToProp } from '../array'
-// import { assertType } from '../assertion'
-// import * as T from '../types'
-// import { Checker } from './types'
+// import { MapToProp } from '../array/index.js'
+// import { assertType } from '../assertion/index.js'
+// import * as T from '../types/index.js'
+// import { Checker } from './types.js'
 
 // export function buildTypes<Checkers extends Checker[]>(...checkers: Checkers) {
 //   const types = checkers.map(c => c.type).reduce((p, t) => ({ ...p, ...t }), {})

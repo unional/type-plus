@@ -1,4 +1,4 @@
-import { assertType, IsRecord } from '..'
+import { assertType, IsRecord } from '../index.js'
 
 test('boolean, number, string, null, undefined, symbol are not record', () => {
   assertType.isFalse(false as IsRecord<undefined>)

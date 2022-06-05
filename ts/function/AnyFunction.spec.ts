@@ -1,4 +1,4 @@
-import { AnyFunction, assertType } from '..'
+import { AnyFunction, assertType } from '../index.js'
 
 test('basic', () => {
   function doCallback(cb: AnyFunction) {

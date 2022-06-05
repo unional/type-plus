@@ -1,4 +1,4 @@
-import { AnyConstructor, assertType, isConstructor } from '..'
+import { AnyConstructor, assertType, isConstructor } from '../index.js'
 
 test('check constructor', () => {
   const x: unknown = Error

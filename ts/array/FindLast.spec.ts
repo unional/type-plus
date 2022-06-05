@@ -1,4 +1,4 @@
-import { assertType, Equal, FindLast } from '..'
+import { assertType, Equal, FindLast } from '../index.js'
 
 test('pick last type matching criteria', () => {
   type Actual = FindLast<[true, 1, 'x', 3], number>

@@ -16,6 +16,11 @@
     "email": "homawong@gmail.com"
   },
   "sideEffects": false,
+  "type": "module",
+  "exports": {
+    "import": "./esm/index.js",
+    "require": "./cjs/index.js"
+  },
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "jsnext:main": "esm/index.js",
@@ -73,6 +78,7 @@
     "satisfier": "^5.2.0",
     "size-limit": "^7.0.8",
     "ts-jest": "^28.0.4",
+    "tsc-esm-fix": "^2.17.0",
     "typedoc": "^0.22.17",
     "typedoc-plugin-extras": "^2.2.3",
     "typescript": "^4.7.3"

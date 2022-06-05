@@ -1,8 +1,8 @@
-import { TypeAnalysis, Type } from './types'
-import { AllType } from './AllType'
+import { TypeAnalysis, Type } from './types.js'
+import { AllType } from './AllType.js'
 import { undef, Undefined } from './Undefined'
-import { union, Union } from './Union'
-import { Tail } from '../array'
+import { union, Union } from './Union.js'
+import { Tail } from '../array/index.js'
 
 export type Tuple<Values extends AllType[] = any[]> = Type<'tuple', Values>
 

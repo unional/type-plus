@@ -1,7 +1,7 @@
 import { satisfies } from 'satisfier'
-import * as T from '.'
-import { AllType } from './AllType'
-import { analyze } from './analyze'
+import * as T from './index.js'
+import { AllType } from './AllType.js'
+import { analyze } from './analyze.js'
 
 describe('non-strict', () => {
   const options = { strict: false, debug: false }

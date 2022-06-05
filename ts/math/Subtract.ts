@@ -1,10 +1,10 @@
-import type { PadLeft, Some, Tail } from '../array'
-import type { And } from '../predicates'
+import type { PadLeft, Some, Tail } from '../array/index.js'
+import type { And } from '../predicates/index.js'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { Digit, DigitArray } from './Digit'
-import type { IsPositive } from './IsPositive'
-import type { IsWhole } from './IsWhole'
-import type { Max } from './Max'
+import type { Digit, DigitArray } from './Digit.js'
+import type { IsPositive } from './IsPositive.js'
+import type { IsWhole } from './IsWhole.js'
+import type { Max } from './Max.js'
 
 export type Subtract<A extends number, B extends number, Fail = never> =
   And<

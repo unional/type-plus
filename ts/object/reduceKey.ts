@@ -1,4 +1,4 @@
-import { KeyTypes } from './KeyTypes'
+import { KeyTypes } from './KeyTypes.js'
 
 export function reduceByKey<S extends Record<KeyTypes, any>, T>(
   subject: S,

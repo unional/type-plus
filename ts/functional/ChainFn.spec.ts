@@ -1,4 +1,4 @@
-import { assertType, ChainFn, Equal } from '..'
+import { assertType, ChainFn, Equal } from '../index.js'
 
 test('return type is the same as input type', () => {
   type A = ChainFn<number>

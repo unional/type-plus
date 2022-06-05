@@ -1,4 +1,4 @@
-import { assertType, Equal, NotEqual } from '..'
+import { assertType, Equal, NotEqual } from '../index.js'
 
 describe('TypeEquals', () => {
   test('match', () => {

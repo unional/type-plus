@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { amend, as, asAny, isType } from '..'
+import { amend, as, asAny, isType } from '../index.js'
 
 describe('as<T>()', () => {
   test('defaults subject type to unknown', () => {

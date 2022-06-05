@@ -1,4 +1,4 @@
-import { Add, Increment, isType } from '..'
+import { Add, Increment, isType } from '../index.js'
 
 describe('Add<A, B>', () => {
   test('fractional A gets never', () => {

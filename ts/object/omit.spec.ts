@@ -1,4 +1,4 @@
-import { assertType, Equal, Except, Omit, omit } from '..'
+import { assertType, Equal, Except, Omit, omit } from '../index.js'
 
 describe('Omit', () => {
   test('work with primitive types', () => {

@@ -1,5 +1,5 @@
-import { ValueOf } from './ValueOf'
-import { IsDisjoint } from './IsDisjoint'
+import { ValueOf } from './ValueOf.js'
+import { IsDisjoint } from './IsDisjoint.js'
 import { AnyRecord } from './AnyRecord'
 
 export type KeysWithDiffType<A extends AnyRecord, B extends AnyRecord> =

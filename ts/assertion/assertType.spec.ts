@@ -1,5 +1,5 @@
 import a from 'assertron'
-import { AnyConstructor, AnyFunction, assertType, Equal } from '..'
+import { AnyConstructor, AnyFunction, assertType, Equal } from '../index.js'
 
 describe('assertType()', () => {
   test('input satisfies specified type', () => {

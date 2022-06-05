@@ -1,4 +1,4 @@
-import { isType, PadLeft } from '..'
+import { isType, PadLeft } from '../index.js'
 
 test('zero length returns the same', () => {
   isType.equal<true, [], PadLeft<[], 0>>()

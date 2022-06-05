@@ -1,4 +1,4 @@
-import { DropLast, isType } from '..'
+import { DropLast, isType } from '../index.js'
 
 test('drop from empty gets itself', () => {
   isType.equal<true, string[], DropLast<string[]>>()

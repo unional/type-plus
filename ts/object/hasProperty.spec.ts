@@ -1,4 +1,4 @@
-import { hasProperty } from '..'
+import { hasProperty } from '../index.js'
 
 test('hasProperty', () => {
   type X = { name: string } & ({ a: 1 } | { b: 2 })

@@ -1,4 +1,4 @@
-import { assertType, HasKey, hasKey } from '..'
+import { assertType, HasKey, hasKey } from '../index.js'
 
 describe('HasKey<T, K>', () => {
   test('true if has key', () => {

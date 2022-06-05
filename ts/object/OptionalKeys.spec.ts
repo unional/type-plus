@@ -1,4 +1,4 @@
-import { assertType, IsEqual, OptionalKeys } from '..'
+import { assertType, IsEqual, OptionalKeys } from '../index.js'
 
 test('extract optional keys from object', () => {
   type X = { a?: string, b: string }

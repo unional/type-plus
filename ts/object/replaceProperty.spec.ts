@@ -1,4 +1,4 @@
-import { assertType, replaceProperty, ReplaceProperty } from '..'
+import { assertType, replaceProperty, ReplaceProperty } from '../index.js'
 
 test('replaceProperty()', () => {
   const subject = { a: 1, b: 2 } as const

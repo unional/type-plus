@@ -1,6 +1,6 @@
-import { Brand } from '../nominal-types'
-import { Equal } from '../predicates'
-import { Widen } from '../utils'
+import { Brand } from '../nominal-types/index.js'
+import { Equal } from '../predicates/index.js'
+import { Widen } from '../utils/index.js'
 
 export type Maybe<T> = Just<T> | None<T>
 export type Just<T> = Brand<'maybe', T> & { unwrap(): T }

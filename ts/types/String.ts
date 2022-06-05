@@ -1,7 +1,7 @@
-import { Tail } from '../array'
-import { Type } from './types'
+import { Tail } from '../array/index.js'
+import { Type } from './types.js'
 import { undef, Undefined } from './Undefined'
-import { Union, union } from './Union'
+import { Union, union } from './Union.js'
 
 export type String<Value extends string = string> = Type<'string', Value>
 

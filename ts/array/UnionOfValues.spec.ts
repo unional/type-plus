@@ -1,4 +1,4 @@
-import { UnionOfValues, assertType, Equal } from '..'
+import { UnionOfValues, assertType, Equal } from '../index.js'
 
 test('get value of generic array', () => {
   type Actual = UnionOfValues<string[]>
