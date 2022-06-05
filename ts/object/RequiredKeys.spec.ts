@@ -1,4 +1,4 @@
-import { assertType, IsEqual, RequiredKeys } from '..'
+import { assertType, IsEqual, RequiredKeys } from '../index.js'
 
 test('extract required keys from object', () => {
   type X = { a?: string, b: string }

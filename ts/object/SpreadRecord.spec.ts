@@ -1,4 +1,4 @@
-import { assertType, Equal, SpreadRecord } from '..'
+import { assertType, Equal, SpreadRecord } from '../index.js'
 
 test('records are combined as intersection', () => {
   type S = SpreadRecord<{ a: number }, { b: string }>

@@ -1,4 +1,4 @@
-import { assertType, CanAssign, canAssign } from '..'
+import { assertType, CanAssign, canAssign } from '../index.js'
 
 describe('CanAssign<A, B>', () => {
   test('literal type to widen', () => {

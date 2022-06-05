@@ -1,5 +1,5 @@
-import { AnyConstructor, isConstructor } from '../class'
-import { Equal } from './Equal'
+import { AnyConstructor, isConstructor } from '../class/index.js'
+import { Equal } from './Equal.js'
 
 export function isType<T>(subject: T): subject is T
 export function isType<T>(subject: unknown, validator: (s: T) => boolean): subject is T

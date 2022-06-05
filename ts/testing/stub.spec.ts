@@ -1,4 +1,4 @@
-import { isType, stub } from '..'
+import { isType, stub } from '../index.js'
 
 describe('stub()', () => {
   test('stub is a partial of the actual object', () => {

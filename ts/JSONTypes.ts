@@ -1,4 +1,3 @@
-
 export type JSONTypes = JSONPrimitive | JSONObject | JSONArray
 
 export type JSONPrimitive = boolean | number | string | null

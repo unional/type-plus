@@ -1,4 +1,4 @@
-export * from './as'
-export type { NonNull } from './NonNull'
-export type { NonUndefined } from './NonUndefined'
-export type { Widen } from './Widen'
+export * from './as.js'
+export type { NonNull } from './NonNull.js'
+export type { NonUndefined } from './NonUndefined.js'
+export type { Widen } from './Widen.js'
