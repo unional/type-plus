@@ -1,5 +1,5 @@
 import { UnionKeys } from '../UnionKeys.js'
-import { AnyRecord } from './AnyRecord.js'
+import type { AnyRecord } from './AnyRecord.js'
 import { reduceByKey } from './reduceKey.js'
 
 export function pick<T extends AnyRecord, P1 extends UnionKeys<T>>(subject: T, prop1: P1): Pick<T, P1>

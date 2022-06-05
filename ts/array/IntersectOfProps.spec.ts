@@ -1,4 +1,4 @@
-import { assertType, Equal, IntersectOfProps } from '..'
+import { assertType, Equal, IntersectOfProps } from '../index.js'
 
 test('get property from single value tuple', () => {
   type S = [{ a: number }]

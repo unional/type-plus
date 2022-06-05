@@ -1,4 +1,4 @@
-import { Filter, isType, KeepMatch } from '..'
+import { Filter, isType, KeepMatch } from '../index.js'
 
 describe('Filter<A, C>', () => {
   describe('A is array', () => {

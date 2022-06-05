@@ -1,6 +1,6 @@
-import { ValueOf } from './ValueOf'
-import { IsDisjoint } from './IsDisjoint'
-import { AnyRecord } from './AnyRecord'
+import { ValueOf } from './ValueOf.js'
+import type { IsDisjoint } from './IsDisjoint.js'
+import type { AnyRecord } from './AnyRecord.js'
 
 export type KeysWithDiffType<A extends AnyRecord, B extends AnyRecord> =
   IsDisjoint<A, B> extends true ? never :

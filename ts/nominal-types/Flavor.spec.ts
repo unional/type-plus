@@ -1,4 +1,4 @@
-import { assertType, brand, CanAssign, Flavor, flavor, isType } from '..'
+import { assertType, brand, CanAssign, Flavor, flavor, isType } from '../index.js'
 
 test('underlying type can be assigned to Flavor', () => {
   type PersonId = Flavor<'Person', number>

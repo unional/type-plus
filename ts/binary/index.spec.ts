@@ -1,5 +1,5 @@
-import { assertType, Equal } from '..'
-import { B } from '.'
+import { assertType, Equal } from '../index.js'
+import type { B } from './index.js'
 
 test('B.BitNot<T>', () => {
   assertType.isTrue(true as Equal<B.BitNot<1>, 0>)

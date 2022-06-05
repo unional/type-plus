@@ -1,5 +1,5 @@
-import { assertType, brand, CanAssign, Equal, flavor } from '..'
-import { isType } from '../predicates'
+import { assertType, brand, CanAssign, Equal, flavor } from '../index.js'
+import { isType } from '../predicates/index.js'
 
 describe('brand()', () => {
   test('unbranded type cannot assign to branded type', () => {

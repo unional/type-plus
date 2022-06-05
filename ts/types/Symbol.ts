@@ -1,6 +1,6 @@
-import { TypeAnalysis, Type } from './types'
+import type { TypeAnalysis, Type } from './types.js'
 import { undef } from './Undefined'
-import { union } from './Union'
+import { union } from './Union.js'
 
 export type Symbol<Value extends string = string> = Type<'symbol', Value>
 

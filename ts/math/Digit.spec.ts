@@ -1,5 +1,5 @@
-import { Equal, isType } from '..'
-import { Digit, DigitArray } from './Digit'
+import { Equal, isType } from '../predicates/index.js'
+import type { Digit, DigitArray } from './Digit.js'
 
 describe('DigitArray.ToNumber<DA>', () => {
   test('no digit gets 0', () => {

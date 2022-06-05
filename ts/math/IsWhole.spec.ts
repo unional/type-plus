@@ -1,4 +1,4 @@
-import { isType, IsWhole } from '..'
+import { isType, IsWhole } from '../index.js'
 
 test('whole number is true', () => {
   isType.t<IsWhole<1>>()

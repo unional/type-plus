@@ -1,4 +1,4 @@
-import { compose, isType } from '..'
+import { compose, isType } from '../index.js'
 
 test('works with endofunctors: +2 *3', () => {
   const plus2 = (x: number) => x + 2

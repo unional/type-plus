@@ -1,7 +1,7 @@
-import { Equal } from '../predicates'
-import { AnyRecord } from './AnyRecord'
-import { IsDisjoint } from './IsDisjoint'
-import { KeysWithDiffType } from './KeysWithDiffType'
+import type { Equal } from '../predicates/index.js'
+import type { AnyRecord } from './AnyRecord.js'
+import type { IsDisjoint } from './IsDisjoint.js'
+import type { KeysWithDiffType } from './KeysWithDiffType.js'
 
 export type ANotB<A extends AnyRecord, B extends AnyRecord> =
   Equal<A, B> extends true

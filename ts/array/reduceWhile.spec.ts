@@ -1,4 +1,4 @@
-import { reduceWhile } from '..'
+import { reduceWhile } from '../index.js'
 
 describe('reduceWhile()', () => {
   test('with true predicate act like normal reduce', () => {

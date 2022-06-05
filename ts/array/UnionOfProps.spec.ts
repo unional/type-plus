@@ -1,4 +1,4 @@
-import { assertType, Equal, UnionOfProps } from '..'
+import { assertType, Equal, UnionOfProps } from '../index.js'
 
 test('get property from single value tuple', () => {
   type S = [{ a: number }]

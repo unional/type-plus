@@ -1,4 +1,4 @@
-import { DigitArray, IsPositive, IsWhole } from '../math'
+import type { DigitArray, IsPositive, IsWhole } from '../math/index.js'
 
 /**
  * Creates `Tuple<T>` with `L` number of elements.

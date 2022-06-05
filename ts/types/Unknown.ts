@@ -1,4 +1,4 @@
-import { TypeAnalysis, Type } from './types'
+import type { TypeAnalysis, Type } from './types.js'
 
 export type Unknown = Type<'unknown', undefined>
 

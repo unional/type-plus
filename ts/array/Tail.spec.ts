@@ -1,4 +1,4 @@
-import { isType, Tail } from '..'
+import { isType, Tail } from '../index.js'
 
 test('get tail types', () => {
   type S = [1, 'a', 'b']

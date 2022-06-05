@@ -1,4 +1,4 @@
-import { GreaterThan, isType } from '..'
+import { GreaterThan, isType } from '../index.js'
 
 test('only support whole number', () => {
   isType.equal<true, never, GreaterThan<0.1, 1>>()

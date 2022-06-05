@@ -1,6 +1,6 @@
-import { assertType } from '..'
-import * as T from '../types'
-import { createTypeChecker } from './typeChecker'
+import { assertType } from '../index.js'
+import * as T from '../types/index.js'
+import { createTypeChecker } from './typeChecker.js'
 
 describe('check()', () => {
   test('bool', () => {

@@ -1,5 +1,5 @@
-import { KeyTypes } from '../object'
-import { Tail } from './Tail'
+import type { KeyTypes } from '../object/index.js'
+import type { Tail } from './Tail.js'
 
 /**
  * Gets the union of properties of the elements in `A`

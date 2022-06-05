@@ -1,4 +1,4 @@
-import { assertType, isSystemError } from '..'
+import { assertType, isSystemError } from '../index.js'
 
 describe('isSystemError()', () => {
   test('ENOENT', () => {

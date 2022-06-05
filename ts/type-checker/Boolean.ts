@@ -1,4 +1,4 @@
-import { Type, TypeSpec } from './types'
+import type { Type, TypeSpec } from './types.js'
 
 export type Boolean<Value extends boolean = boolean> = Type<'boolean', Value>
 export namespace Boolean {

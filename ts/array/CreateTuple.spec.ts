@@ -1,4 +1,4 @@
-import { CreateTuple, isType } from '..'
+import { CreateTuple, isType } from '../index.js'
 
 test('create empty tuple', () => {
   isType.equal<true, [], CreateTuple<0>>()

@@ -1,4 +1,4 @@
-import { Omit } from '../object/index.js'
+import type { Omit } from '../object/index.js'
 
 export type SpreadRecord<
 A extends Record<any, any>,

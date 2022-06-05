@@ -1,11 +1,11 @@
-import { KeyTypes, reduceByKey } from '../object'
-import { AllType } from './AllType'
-import { number } from './Number'
-import { string as str } from './String'
-import { symbol as sym } from './Symbol'
-import { Type } from './types'
+import { KeyTypes, reduceByKey } from '../object/index.js'
+import type { AllType } from './AllType.js'
+import { number } from './Number.js'
+import { string as str } from './String.js'
+import { symbol as sym } from './Symbol.js'
+import type { Type } from './types.js'
 import { undef, Undefined } from './Undefined'
-import { union, Union } from './Union'
+import { union, Union } from './Union.js'
 
 export type ObjectType<
   Props extends Record<string, AllType> = Record<string, any>

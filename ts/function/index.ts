@@ -1,1 +1,1 @@
-export type { AnyFunction } from './AnyFunction'
+export type { AnyFunction } from './AnyFunction.js'

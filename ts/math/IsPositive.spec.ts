@@ -1,4 +1,4 @@
-import { IsPositive, isType } from '..'
+import { IsPositive, isType } from '../index.js'
 
 test('positive is true', () => {
   isType.t<IsPositive<0>>()

@@ -1,5 +1,5 @@
-import { AnyFunction, isType } from '..'
-import { Last } from './Last'
+import { AnyFunction, isType } from '../index.js'
+import type { Last } from './Last.js'
 
 test('any array', () => {
   type A = Last<any[]>

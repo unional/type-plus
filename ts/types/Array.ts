@@ -1,9 +1,9 @@
-// import { BigInt } from './BigInt'
-import { AllType } from './AllType'
-import { Type } from './types'
+// import { BigInt } from './BigInt.js'
+import type { AllType } from './AllType.js'
+import type { Type } from './types.js'
 import { undef, Undefined } from './Undefined'
-import { union, Union } from './Union'
-import { unknown } from './Unknown'
+import { union, Union } from './Union.js'
+import { unknown } from './Unknown.js'
 
 export type Array<Value extends AllType = any> = Type<'array', Value>
 export namespace Array {
