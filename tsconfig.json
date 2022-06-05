@@ -7,6 +7,10 @@
     ],
     "noEmit": true
   },
+  "exclude": [
+    "ts/type-checker",
+    "ts/types"
+  ],
   "include": [
     "ts",
     "typings"
