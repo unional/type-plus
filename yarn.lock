@@ -1840,27 +1840,27 @@
     "@typescript-eslint/types" "5.23.0"
     eslint-visitor-keys "^3.0.0"
 
-"@unional/fixture@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@unional/fixture/-/fixture-1.8.0.tgz#c534bdf5c9dc0aacf2426d298fc13727719e74c4"
-  integrity sha512-MF4po1pjf6u3rDGrOS6y38qY23vqD2T8uF1TPNw0wFfqn1vbBZ0K+eBCnUNrYQlBoaP+i3Z4H07z5F/UlPNAjA==
+"@unional/fixture@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@unional/fixture/-/fixture-2.0.0.tgz#532220c915f0dd5306b6f9ef8431be530b592538"
+  integrity sha512-xTBNUDOH0sfLuQnJq0OCL2cgxwMfPPBWTrm2Qst9d1QAzCsnfIKcI23HFR+j3s0cO5vQT2LlhTCfV+41MnZtsg==
   dependencies:
     "@types/diff-match-patch" "^1.0.32"
-    chalk "^4.0.0"
+    chalk "^5.0.1"
     cp-file "^9.1.0"
-    diff-match-patch "^1.0.4"
+    diff-match-patch "^1.0.5"
     diff-match-patch-line-and-word "^0.1.3"
     dir-compare "^4.0.0"
-    glob "^7.2.0"
-    minimatch "^3.0.4"
+    glob "^8.0.3"
+    minimatch "^5.1.0"
     mkdirp "^1.0.4"
     pad-left "^2.1.0"
-    rimraf "^3.0.0"
-    standard-log "^6.2.5"
-    standard-log-color "^3.2.4"
-    tersify "^3.8.0"
-    type-plus "^4.0.0"
-    unpartial "^0.6.4"
+    rimraf "^3.0.2"
+    standard-log "^7.1.0"
+    standard-log-color "^4.0.0"
+    tersify "^3.10.0"
+    type-plus "^4.9.1"
+    unpartial "^0.7.4"
 
 JSONStream@^1.0.4:
   version "1.3.5"
@@ -2306,6 +2306,11 @@ chalk@^4.0.0, chalk@^4.1.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+chalk@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-5.0.1.tgz#ca57d71e82bb534a296df63bbacc4a1c22b2a4b6"
+  integrity sha512-Fo07WOYGqMfCWHOzSXOt2CxDbC6skS/jO9ynEcmpANMoPrD+W1r1K6Vx7iNm+AQmETU1Xr2t+n8nzkV9t6xh3w==
+
 char-regex@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/char-regex/-/char-regex-1.0.2.tgz#d744358226217f981ed58f479b1d6bcc29545dcf"
@@ -2658,7 +2663,7 @@ diff-match-patch-line-and-word@^0.1.3:
   resolved "https://registry.yarnpkg.com/diff-match-patch-line-and-word/-/diff-match-patch-line-and-word-0.1.3.tgz#0f267c26ab7840785667cccd8c9dc1fb8b288964"
   integrity sha512-CR+842NECOQO9qOvlyOf/9IAXMEW8km1Em9YrH8J4wVaeICXtEVJ8H9AZ5Xa0QBTSZUe4DFijGM5dZD5Dl3bEg==
 
-diff-match-patch@^1.0.4:
+diff-match-patch@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/diff-match-patch/-/diff-match-patch-1.0.5.tgz#abb584d5f10cd1196dfc55aa03701592ae3f7b37"
   integrity sha512-IayShXAgj/QMXgB0IWmKx+rOPuGMhqm5w6jvFxmVenXKIzRqTAAsbBPT3kWQeGANj3jGgvcvv4yK6SxqYmikgw==
@@ -3325,6 +3330,17 @@ glob@^7.1.1, glob@^7.1.3, glob@^7.1.4, glob@^7.2.0:
     minimatch "^3.0.4"
     once "^1.3.0"
     path-is-absolute "^1.0.0"
+
+glob@^8.0.3:
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-8.0.3.tgz#415c6eb2deed9e502c68fa44a272e6da6eeca42e"
+  integrity sha512-ull455NHSHI/Y1FqGaaYFaLGkNMMJbavMrEGFXG/PGrg6y7sutWHUHrz6gy6WEBH6akM1M414dWKCNs+IhKdiQ==
+  dependencies:
+    fs.realpath "^1.0.0"
+    inflight "^1.0.4"
+    inherits "2"
+    minimatch "^5.0.1"
+    once "^1.3.0"
 
 global-dirs@^0.1.1:
   version "0.1.1"
@@ -4712,6 +4728,13 @@ minimatch@^5.0.1:
   dependencies:
     brace-expansion "^2.0.1"
 
+minimatch@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-5.1.0.tgz#1717b464f4971b144f6aabe8f2d0b8e4511e09c7"
+  integrity sha512-9TPBGGak4nHfGZsPBohm9AWg6NoT7QTCehS3BIJABslyZbzxfV78QM2Y6+i741OPZIafFAaiiEMh5OyIrJPgtg==
+  dependencies:
+    brace-expansion "^2.0.1"
+
 minimist-options@4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/minimist-options/-/minimist-options-4.1.0.tgz#c0655713c53a8a2ebd77ffa247d342c40f010619"
@@ -5662,19 +5685,19 @@ stack-utils@^2.0.3:
   dependencies:
     escape-string-regexp "^2.0.0"
 
-standard-log-color@^3.2.4:
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/standard-log-color/-/standard-log-color-3.2.4.tgz#82ac4e3de6da92970bf9c3bf0b056cd6a479568b"
-  integrity sha512-xMxncKisTTiNfK+MoqaWT8BzNZvelXpva2GpO5nO6WBYIXukwk3EgWGma1tzGiCIzeD9Dr3RTa3L3MdyFfjGpA==
+standard-log-color@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/standard-log-color/-/standard-log-color-4.0.0.tgz#b45f5d2f93b222338dee3240755c0785845eab59"
+  integrity sha512-qJiVTqjlPEEG102HC+soTXur/opfTM6UUGewbQFFXQOpelEAMpN3m7wiE9JNlSdyKMtKN8hgvUTkxWR/EbtrJA==
   dependencies:
     color-map "^1.1.0"
     tslib "^2.2.0"
     unpartial "^0.6.3"
 
-standard-log@^6.2.5:
-  version "6.2.6"
-  resolved "https://registry.yarnpkg.com/standard-log/-/standard-log-6.2.6.tgz#aa962e93434264b3511609c43588e31c4762e82d"
-  integrity sha512-hsBL+vhZrYtlxdIPD68OxDm0ogG2nWSvwoXSFPuvwhhuGEcodtWV0btsJhej3NUkukEYmMcCdNUkcCUaVI5h1Q==
+standard-log@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/standard-log/-/standard-log-7.1.0.tgz#5270c2b2e55b96df714fb5a72f831bc43beb46ca"
+  integrity sha512-xBId4SwJAUgGRIg/RCFIwMKWfv2CJx3zfrT50CH/o34EzisL+AlmywG/RfcLs8UOHyAYDRJmQKRXXoK/czG7rQ==
   dependencies:
     global-store "1.0.0-beta.19"
     is-node "^1.0.2"
@@ -5846,6 +5869,15 @@ terminal-link@^2.0.0:
   dependencies:
     ansi-escapes "^4.2.1"
     supports-hyperlinks "^2.0.0"
+
+tersify@^3.10.0:
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/tersify/-/tersify-3.10.0.tgz#08465dd50d1589bf16073ed1bd346ee55292dfff"
+  integrity sha512-rZbwithVyzj3255pY4JUL/bCRsxjRvskUmYwL+tYefJvm/bxwo6oPFX/4eo2wcnSMO6y3INTMvZB2uCmN6s3jQ==
+  dependencies:
+    acorn "^8.7.0"
+    is-buffer "^2.0.5"
+    unpartial "^0.7.3"
 
 tersify@^3.7.11, tersify@^3.8.0, tersify@^3.8.2:
   version "3.8.2"
@@ -6030,6 +6062,14 @@ type-plus@^4.0.0, type-plus@^4.0.1:
     tersify "^3.8.0"
     unpartial "^0.6.4"
 
+type-plus@^4.9.1:
+  version "4.9.1"
+  resolved "https://registry.yarnpkg.com/type-plus/-/type-plus-4.9.1.tgz#1cc14226916ee7e217f0f05e82ba4eaceeae49c8"
+  integrity sha512-fzDcbdbQj+SLhJWbNZl7uy1sqcPOEo8Glm5ijoeRn7wbY/dwahakHpXG66mmNv3pIJrgor6tF10GuornuJwSsg==
+  dependencies:
+    tersify "^3.8.2"
+    unpartial "^0.6.4"
+
 typedoc-plugin-extras@^2.2.3:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/typedoc-plugin-extras/-/typedoc-plugin-extras-2.2.3.tgz#fb292b66f68e450d049251036d6528e4c5badfd4"
@@ -6113,6 +6153,11 @@ unpartial@^0.6.1, unpartial@^0.6.3, unpartial@^0.6.4:
   version "0.6.4"
   resolved "https://registry.yarnpkg.com/unpartial/-/unpartial-0.6.4.tgz#9cf878d3c8335919b250cfb3393751ca12cc26a4"
   integrity sha512-t/aGg/x8vW0KCjPB8A6TBB1hd0wnWMze8WD83uUpqSDm99jmhY2ZcHpivlvvSGmPCJ/S5ASZzxeQHga4JTW/4A==
+
+unpartial@^0.7.3, unpartial@^0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/unpartial/-/unpartial-0.7.4.tgz#29513b01a4dad7f6f37480d98b77c033234ae1ae"
+  integrity sha512-RhNSiNC9esDoWqPAMeqqAMCSe82JU31MnEAFQJ8XAZiYpCGSJvIueLKLYDna6v6L+T4bdZ2WFrFXThW1k9vIAg==
 
 unset-value@^1.0.0:
   version "1.0.0"
