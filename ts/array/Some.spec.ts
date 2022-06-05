@@ -1,4 +1,4 @@
-import { isType, Some } from '..'
+import { isType, Some } from '../index.js'
 
 test('empty array', () => {
   isType.equal<true, false, Some<[], any>>()

@@ -1,6 +1,6 @@
-import { Equal, IsAny } from '../predicates'
-import { CreateTuple } from './CreateTuple'
-import { UnionOfValues } from './UnionOfValues'
+import { Equal, IsAny } from '../predicates/index.js'
+import { CreateTuple } from './CreateTuple.js'
+import { UnionOfValues } from './UnionOfValues.js'
 
 export type PadLeft<A extends any[], Total extends number, PadWith = any> =
   number extends A['length']

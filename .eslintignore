@@ -5,3 +5,4 @@ esm
 lib*
 node_modules
 out*
+ts/types

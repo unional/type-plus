@@ -1,4 +1,4 @@
-import { assertType, KeysWithDiffType } from '..'
+import { assertType, KeysWithDiffType } from '../index.js'
 
 test('disjoint type gets never', () => {
   type A = { a: 1 }

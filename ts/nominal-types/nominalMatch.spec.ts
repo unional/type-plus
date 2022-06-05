@@ -1,4 +1,4 @@
-import { brand, flavor, nominalMatch } from '..'
+import { brand, flavor, nominalMatch } from '../index.js'
 
 describe('nominalMatches()', () => {
   describe('Brand', () => {

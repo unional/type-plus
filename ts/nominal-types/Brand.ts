@@ -1,8 +1,8 @@
 // By Drew Colthorp, <https://spin.atomicobject.com/2018/01/15/typescript-flexible-nominal-typing/#comment-604580>
 // <https://gist.github.com/dcolthorp/aa21cf87d847ae9942106435bf47565d>
 
-import { Widen } from '../utils'
-import { typeSym, valueSym } from './types'
+import { Widen } from '../utils/index.js'
+import { typeSym, valueSym } from './types.js'
 
 /**
  * Create a "branded" version of a type.

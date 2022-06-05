@@ -1,7 +1,7 @@
-import { Tail } from '../array'
-import { And } from '../predicates'
-import { IsPositive } from './IsPositive'
-import { IsWhole } from './IsWhole'
+import type { Tail } from '../array/index.js'
+import type { And } from '../predicates/index.js'
+import type { IsPositive } from './IsPositive.js'
+import type { IsWhole } from './IsWhole.js'
 
 export namespace Digit {
   export type ToTuple<T = 1> = {

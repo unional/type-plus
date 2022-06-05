@@ -1,6 +1,6 @@
-import { Type } from './types'
+import { Type } from './types.js'
 import { undef, Undefined } from './Undefined'
-import { Union, union } from './Union'
+import { Union, union } from './Union.js'
 
 export type Boolean<Value extends boolean = boolean> = Type<'boolean', Value>
 export namespace Boolean {

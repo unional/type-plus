@@ -1,5 +1,5 @@
-import { NotExtendable } from './Extends.js'
-import { IsEmptyObject } from './IsEmptyObject.js'
+import type { NotExtendable } from './Extends.js'
+import type { IsEmptyObject } from './IsEmptyObject.js'
 
 /**
  * Can `A` assign to `B`

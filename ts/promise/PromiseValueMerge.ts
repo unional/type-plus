@@ -1,4 +1,4 @@
-import { PromiseValue } from './PromiseValue.js'
+import type { PromiseValue } from './PromiseValue.js'
 
 /**
  * Merging value types from multiple promises.

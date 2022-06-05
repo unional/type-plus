@@ -1,4 +1,4 @@
-import { isType, IsDisjoint } from '..'
+import { isType, IsDisjoint } from '../index.js'
 
 test('disjoint returns true', () => {
   type A = { a: 1 }

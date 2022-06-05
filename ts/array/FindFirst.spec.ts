@@ -1,4 +1,4 @@
-import { assertType, Equal, FindFirst } from '..'
+import { assertType, Equal, FindFirst } from '../index.js'
 
 test('pick first type matching criteria', () => {
   type Actual = FindFirst<[true, 1, 'x', 3], number>

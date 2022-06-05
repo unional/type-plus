@@ -1,5 +1,5 @@
 import { Widen } from '../utils/index.js'
-import { AnyRecord } from './AnyRecord.js'
+import type { AnyRecord } from './AnyRecord.js'
 import { KeyTypes } from './KeyTypes.js'
 
 /**

@@ -1,4 +1,4 @@
-import { assertType, Equal, Head } from '..'
+import { assertType, Equal, Head } from '../index.js'
 
 test('get first type', () => {
   type S = [1, 'a', 'b']

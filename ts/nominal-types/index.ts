@@ -1,3 +1,3 @@
-export * from './Brand'
-export * from './Flavor'
-export * from './nominalMatch'
+export * from './Brand.js'
+export * from './Flavor.js'
+export * from './nominalMatch.js'

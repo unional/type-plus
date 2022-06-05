@@ -1,4 +1,4 @@
-import { assertType, KnownKeys } from '..'
+import { assertType, KnownKeys } from '../index.js'
 
 test('pick out only known keys', () => {
   type A = {

@@ -1,7 +1,7 @@
 import { tersify } from 'tersify'
-import { reduceByKey } from '../object'
-import { AllType } from './AllType'
-import { analyze } from './analyze'
+import { reduceByKey } from '../object/index.js'
+import type { AllType } from './AllType.js'
+import { analyze } from './analyze.js'
 
 export function getPlainAnalysisReport(analysisResult: analyze.Result) {
   if (!analysisResult.analysis.fail) {

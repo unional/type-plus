@@ -1,7 +1,7 @@
-import * as T from '.'
-import { AllType } from './AllType'
-import { analyze } from './analyze'
-import { getPlainAnalysisReport } from './getPlainAnalysisReport'
+import * as T from './index.js'
+import type { AllType } from './AllType.js'
+import { analyze } from './analyze.js'
+import { getPlainAnalysisReport } from './getPlainAnalysisReport.js'
 
 const nonStrict = { strict: false, debug: false }
 const strict = { strict: true, debug: false }

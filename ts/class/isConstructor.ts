@@ -1,4 +1,4 @@
-import { AnyConstructor } from './AnyConstructor'
+import type { AnyConstructor } from './AnyConstructor.js'
 
 export function isConstructor(subject: unknown): subject is AnyConstructor {
   try {

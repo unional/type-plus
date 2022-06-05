@@ -1,4 +1,4 @@
-import { KeyTypes } from '..'
+import { KeyTypes } from '../index.js'
 
 test('contains type of all keys', () => {
   acceptKeys('a')

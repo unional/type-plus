@@ -1,4 +1,5 @@
-import { Add, Increment, isType } from '..'
+import { isType } from '../predicates/index.js'
+import type { Add, Increment } from './Add.js'
 
 describe('Add<A, B>', () => {
   test('fractional A gets never', () => {

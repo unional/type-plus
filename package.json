@@ -18,8 +18,10 @@
   "sideEffects": false,
   "type": "module",
   "exports": {
-    "import": "./esm/index.js"
+    "import": "./esm/index.js",
+    "require": "./cjs/index.js"
   },
+  "main": "./cjs/index.js",
   "typings": "./cjs/index.d.ts",
   "files": [
     "cjs",
@@ -59,8 +61,6 @@
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
     "@size-limit/preset-small-lib": "^7.0.8",
-    "@types/find": "^0",
-    "@types/gulp": "^4",
     "@types/jest": "^28.1.1",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@unional/fixture": "^2.0.0",
@@ -68,8 +68,6 @@
     "depcheck": "^1.4.3",
     "eslint": "^8.17.0",
     "eslint-plugin-harmony": "^7.1.0",
-    "find": "^0.3.0",
-    "gulp": "^4.0.2",
     "husky": "^8.0.1",
     "jest": "^28.1.0",
     "jest-watch-suspend": "^1.1.2",

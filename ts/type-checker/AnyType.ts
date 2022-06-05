@@ -1,4 +1,4 @@
-import { TypeAnalysis, Type, TypeSpec } from './types'
+import { TypeAnalysis, Type, TypeSpec } from './types.js'
 
 export type Any = Type<'any', undefined>
 export namespace Any {

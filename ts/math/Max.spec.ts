@@ -1,4 +1,4 @@
-import { isType, Max } from '..'
+import { isType, Max } from '../index.js'
 
 test('only support whole number', () => {
   isType.equal<true, never, Max<0.1, 1>>()

@@ -1,4 +1,4 @@
-import { isType, Reverse } from '..'
+import { isType, Reverse } from '../index.js'
 
 test('empty array gets itself', () => {
   isType.equal<true, [], Reverse<[]>>()

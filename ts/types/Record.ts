@@ -1,7 +1,7 @@
-import { AllType } from './AllType'
-import { TypeAnalysis, Type } from './types'
+import type { AllType } from './AllType.js'
+import type { TypeAnalysis, Type } from './types.js'
 import { undef, Undefined } from './Undefined'
-import { union, Union } from './Union'
+import { union, Union } from './Union.js'
 
 export type Record<Value extends AllType = any> = Type<'record', Value>
 

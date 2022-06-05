@@ -1,1 +1,1 @@
-export * from './assertType'
+export * from './assertType.js'
