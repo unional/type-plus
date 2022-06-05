@@ -57,3 +57,4 @@ node_modules
 /esm
 /lib*
 /out*
+/tslib

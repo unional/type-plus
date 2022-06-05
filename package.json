@@ -32,9 +32,10 @@
     "!ts/type-checker"
   ],
   "scripts": {
-    "build": "run-p build:cjs build:esm",
+    "build": "run-p build:cjs build:esm build:tslib",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build:esm": "tsc -p tsconfig.esm.json",
+    "build:tslib": "tsc -p tsconfig.tslib.json",
     "build:doc": "typedoc",
     "clean": "rimraf cjs esm coverage lib libm || true",
     "coverage": "jest --coverage",
@@ -55,9 +56,6 @@
     "unpartial": "^0.7.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.2",
-    "@babel/plugin-transform-modules-commonjs": "^7.18.2",
-    "@babel/preset-env": "^7.18.2",
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
     "@semantic-release/changelog": "^6.0.1",
@@ -84,6 +82,7 @@
     "semantic-release": "^19.0.2",
     "size-limit": "^7.0.8",
     "ts-jest": "^28.0.4",
+    "tslib": "^2.4.0",
     "typedoc": "^0.22.17",
     "typedoc-plugin-extras": "^2.2.3",
     "typescript": "4.7.3"
@@ -91,6 +90,15 @@
   "packageManager": "yarn@3.2.1",
   "size-limit": [
     {
+      "path": "./cjs/index.js",
+      "limit": "15 kb"
+    },
+    {
+      "path": "./esm/index.js",
+      "limit": "15 kb"
+    },
+    {
+      "path": "./tslib/index.js",
       "limit": "15 kb"
     }
   ]
