@@ -8,5 +8,6 @@ ignores:
   - jest-*
   - semantic-release
   - ts-jest
+  - tslib
   - typedoc
   - typedoc-plugin-extras
