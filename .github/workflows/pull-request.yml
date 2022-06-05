@@ -1,0 +1,8 @@
+name: pull-request
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  code:
+    uses: unional/.github/.github/workflows/yarn-verify-linux.yml@main
