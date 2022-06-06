@@ -47,7 +47,6 @@
     "postpack": "pinst --enable",
     "size": "size-limit",
     "test": "jest",
-    "test:types": "tsc",
     "verify": "npm-run-all clean -p build depcheck lint coverage -p size",
     "watch": "yarn test --watch"
   },
