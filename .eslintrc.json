@@ -13,7 +13,7 @@
         "*.tsx"
       ],
       "parserOptions": {
-        "project": "tsconfig.eslint.json"
+        "project": "tsconfig.esm.json"
       },
       "rules": {
         "no-use-before-define": "off"

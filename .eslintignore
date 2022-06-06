@@ -5,4 +5,6 @@ esm
 lib*
 node_modules
 out*
+ts/type-checker
 ts/types
+tslib

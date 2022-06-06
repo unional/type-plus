@@ -4,7 +4,7 @@ import { number } from './Number.js'
 import { string as str } from './String.js'
 import { symbol as sym } from './Symbol.js'
 import type { Type } from './types.js'
-import { undef, Undefined } from './Undefined'
+import { undef, Undefined } from './Undefined.js'
 import { union, Union } from './Union.js'
 
 export type ObjectType<

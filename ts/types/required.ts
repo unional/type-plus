@@ -7,9 +7,9 @@ import { number } from './Number.js'
 import { string } from './String.js'
 import { symbol } from './Symbol.js'
 import { tuple } from './Tuple.js'
-import { undef } from './Undefined'
+import { undef } from './Undefined.js'
 import { unknown } from './Unknown.js'
-import { record } from './Record'
+import { record } from './Record.js'
 // import { bigint } from './types/BigInt'
 
 export const required = {

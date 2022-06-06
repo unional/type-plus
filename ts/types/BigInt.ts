@@ -1,5 +1,5 @@
 // istanbul ignore file
-// import { undef, Undefined } from './Undefined'
+// import { undef, Undefined } from './Undefined.js'
 // import { Union, union } from './Union.js'
 
 import type { TypeAnalysis, Type } from './types.js'

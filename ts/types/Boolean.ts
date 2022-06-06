@@ -1,5 +1,5 @@
 import { Type } from './types.js'
-import { undef, Undefined } from './Undefined'
+import { undef, Undefined } from './Undefined.js'
 import { Union, union } from './Union.js'
 
 export type Boolean<Value extends boolean = boolean> = Type<'boolean', Value>

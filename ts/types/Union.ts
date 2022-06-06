@@ -1,6 +1,6 @@
 import type { AllType } from './AllType.js'
 import type { TypeAnalysis, Type } from './types.js'
-import { undef } from './Undefined'
+import { undef } from './Undefined.js'
 
 
 export type Union<Values extends AllType[] = any[]> = Type<'union', Values>

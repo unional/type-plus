@@ -1,20 +1,8 @@
 {
   "extends": "./tsconfig.esm.json",
   "compilerOptions": {
-    "lib": [
-      "es2015",
-      "esnext.bigint"
-    ],
     "noEmit": true
   },
-  "exclude": [
-    "ts/type-checker",
-    "ts/types"
-  ],
-  "include": [
-    "ts",
-    "typings"
-  ],
   "typedocOptions": {
     "customTitle": "Additional types and utils for TypeScript",
     "customTitleLink": "https://github.com/unional/type-plus",
