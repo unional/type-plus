@@ -1,7 +1,7 @@
 // import { BigInt } from './BigInt.js'
 import type { AllType } from './AllType.js'
 import type { Type } from './types.js'
-import { undef, Undefined } from './Undefined'
+import { undef, Undefined } from './Undefined.js'
 import { union, Union } from './Union.js'
 import { unknown } from './Unknown.js'
 

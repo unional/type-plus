@@ -15,10 +15,12 @@
     "stripInternal": true,
     "useDefineForClassFields": true
   },
-  "include": [
-    "typings"
+  "exclude": [
+    "ts/type-checker",
+    "ts/types"
   ],
-  "files": [
-    "ts/index.ts"
+  "include": [
+    "ts",
+    "typings"
   ]
 }

@@ -1,5 +1,5 @@
 import type { TypeAnalysis, Type } from './types.js'
-import { undef } from './Undefined'
+import { undef } from './Undefined.js'
 import { union } from './Union.js'
 
 export type Null = Type<'null', undefined>

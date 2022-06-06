@@ -16,7 +16,7 @@ export type { PrimitiveTypes } from './PrimitiveTypes.js'
 export * from './promise/index.js'
 export * from './testing/index.js'
 // export * from './types/optional.js'
-// export * from './types/required'
+// export * from './types/required.js'
 export type { UnionKeys } from './UnionKeys.js'
 export * from './utils/index.js'
 // export { types, types as T }

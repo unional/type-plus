@@ -1,6 +1,6 @@
 import type { TypeAnalysis, Type } from './types.js'
 import type { AllType } from './AllType.js'
-import { undef, Undefined } from './Undefined'
+import { undef, Undefined } from './Undefined.js'
 import { union, Union } from './Union.js'
 import type { Tail } from '../array/index.js'
 
