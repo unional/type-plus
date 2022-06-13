@@ -37,7 +37,7 @@
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:tslib": "tsc -p tsconfig.tslib.json",
     "build:doc": "typedoc",
-    "clean": "rimraf cjs esm coverage lib libm && mkdir cjs && echo '{\"type\":\"commonjs\"}' > cjs/package.json || true",
+    "clean": "rimraf cjs coverage esm lib libm && mkdir cjs && echo '{\"type\":\"commonjs\"}' > cjs/package.json || true",
     "coverage": "jest --coverage",
     "depcheck": "depcheck",
     "lint": "eslint --ext=ts,js .",
