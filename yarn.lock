@@ -8746,6 +8746,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tersify@npm:^3.10.2":
+  version: 3.10.2
+  resolution: "tersify@npm:3.10.2"
+  dependencies:
+    acorn: ^8.7.1
+    is-buffer: ^2.0.5
+    unpartial: ^0.7.4
+  checksum: 979ddea534a8b5c72549104b7651a9a3cf0f8b8f2b077090a8f7ae545c7d95ca350d43be820e640f27170d56ff2eed778c3c8b64b5556f5c9c15fd707cab5c5e
+  languageName: node
+  linkType: hard
+
 "tersify@npm:^3.8.0, tersify@npm:^3.8.2":
   version: 3.8.2
   resolution: "tersify@npm:3.8.2"
@@ -9087,13 +9098,13 @@ __metadata:
     satisfier: ^5.2.0
     semantic-release: ^19.0.2
     size-limit: ^7.0.8
-    tersify: ^3.10.0
+    tersify: ^3.10.2
     ts-jest: ^28.0.4
     tslib: ^2.4.0
     typedoc: ^0.22.17
     typedoc-plugin-extras: ^2.2.3
     typescript: 4.7.3
-    unpartial: ^0.7.4
+    unpartial: ^0.7.5
   languageName: unknown
   linkType: soft
 
@@ -9236,6 +9247,13 @@ __metadata:
   version: 0.7.4
   resolution: "unpartial@npm:0.7.4"
   checksum: 28c57b77b7d64135a22a50b57ef5388da7eece85efab0f117d323000866df6ab4fde1c1fdef55f2a56f52f566d711e86b0b4dc28e375debfb7288924efc86f57
+  languageName: node
+  linkType: hard
+
+"unpartial@npm:^0.7.5":
+  version: 0.7.5
+  resolution: "unpartial@npm:0.7.5"
+  checksum: d38b2ba134ad94c7cd2148001865948541da93b51560aa63056940924c3f4cc9eb52da196e7f45df369aa414e5202ddc9483352e663245b4c3b28503573e0ec9
   languageName: node
   linkType: hard
 

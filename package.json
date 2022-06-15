@@ -51,8 +51,8 @@
     "watch": "yarn test --watch"
   },
   "dependencies": {
-    "tersify": "^3.10.0",
-    "unpartial": "^0.7.4"
+    "tersify": "^3.10.2",
+    "unpartial": "^0.7.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
