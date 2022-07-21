@@ -114,6 +114,12 @@ Work against unions.</p>
 </code></pre>
 <p>They accept <code>subject</code> with type <code>any</code> or <code>unknown</code>,
 the assertion will happen in runtime to ensure <code>subject</code> is the specific type.</p>
+<p><code>assertType.as&lt;T&gt;(subject)</code>:</p>
+<p>✔️ <code>immediate</code></p>
+<p>Assert <code>subject</code> as <code>T</code> inline.
+This is useful to help TypeScript to adjust the type on the fly.</p>
+<pre><code class="language-ts"><span class="hl-1">let</span><span class="hl-0"> </span><span class="hl-7">s</span><span class="hl-0">: </span><span class="hl-3">number</span><span class="hl-0"> | </span><span class="hl-3">undefined</span><span class="hl-0"> = </span><span class="hl-4">1</span><br/><span class="hl-7">assertType</span><span class="hl-0">.</span><span class="hl-7">as</span><span class="hl-0">&lt;</span><span class="hl-4">1</span><span class="hl-0">&gt;(</span><span class="hl-7">s</span><span class="hl-0">) </span><span class="hl-5">// `s` type is now `1`</span>
+</code></pre>
 <p><code>isType&lt;T&gt;(subject: T)</code>:</p>
 <p>✔️ <code>immediate</code></p>
 <p>It ensures <code>subject</code> satisfies <code>T</code>.
