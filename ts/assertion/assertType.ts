@@ -103,3 +103,5 @@ assertType.custom = function <T>(
     return
   }
 }
+
+assertType.as = function <T>(subject: unknown): asserts subject is T {}

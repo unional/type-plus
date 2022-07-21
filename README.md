@@ -159,6 +159,18 @@ assertType.noUndefined(s) // TypeScript complains
 They accept `subject` with type `any` or `unknown`,
 the assertion will happen in runtime to ensure `subject` is the specific type.
 
+`assertType.as<T>(subject)`:
+
+✔️ `immediate`
+
+Assert `subject` as `T` inline.
+This is useful to help TypeScript to adjust the type on the fly.
+
+```ts
+let s: number | undefined = 1
+assertType.as<1>(s) // `s` type is now `1`
+```
+
 `isType<T>(subject: T)`:
 
 ✔️ `immediate`
