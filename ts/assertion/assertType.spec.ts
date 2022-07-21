@@ -1,5 +1,5 @@
 import a from 'assertron'
-import { AnyConstructor, AnyFunction, assertType, Equal } from '../index.js'
+import { AnyConstructor, AnyFunction, assertType, Equal, isType } from '../index.js'
 
 describe('assertType()', () => {
   test('input satisfies specified type', () => {
@@ -503,5 +503,19 @@ describe('assertType.custom', () => {
     const isBool = assertType.custom<boolean>(s => typeof s === 'boolean')
     const s: unknown = 1
     a.throws(() => isBool(s), e => /subject fails to satisfy s => typeof s === 'boolean'/.test(e))
+  })
+})
+
+describe('assertType.as<T>()', () => {
+  it('assert the subject as T', () => {
+    let s: string | undefined
+    assertType.as<string>(s)
+    isType.equal<true, string, typeof s>()
+  })
+
+  it('narrows to literal', () => {
+    const s: number | undefined = 1
+    assertType.as<1>(s)
+    isType.equal<true, 1, typeof s>()
   })
 })
