@@ -79,7 +79,7 @@
     "rimraf": "^3.0.2",
     "satisfier": "^5.2.2",
     "semantic-release": "^19.0.3",
-    "size-limit": "^7.0.8",
+    "size-limit": "^8.0.0",
     "ts-jest": "^28.0.5",
     "tslib": "^2.4.0",
     "typedoc": "^0.23.0",
