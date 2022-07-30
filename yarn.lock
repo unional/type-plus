@@ -6246,10 +6246,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lilconfig@npm:^2.0.4":
-  version: 2.0.4
-  resolution: "lilconfig@npm:2.0.4"
-  checksum: 02ae530aa49218d782eb79e92c600ea5220828987f85aa3403fa512cadc7efe38c0ac7d0cd2edf600ad3fae1f6c1752f5b4bb78c0d9950435b044d53d507c9e1
+"lilconfig@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "lilconfig@npm:2.0.6"
+  checksum: 40a3cd72f103b1be5975f2ac1850810b61d4053e20ab09be8d3aeddfe042187e1ba70b4651a7e70f95efa1642e7dc8b2ae395b317b7d7753b241b43cef7c0f7d
   languageName: node
   linkType: hard
 
@@ -6827,12 +6827,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanospinner@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "nanospinner@npm:1.0.0"
+"nanospinner@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "nanospinner@npm:1.1.0"
   dependencies:
     picocolors: ^1.0.0
-  checksum: 25ea14db154f1284d76b59f74822b46a28b0358d2d59f0b61c6b39e7c890b0870a543826d3166fd4f22023e300dff043c389621a0ad0514808e73c86e71a5881
+  checksum: 797f0a7c8b053d6fb5188d73e63bab44dec97ff0e7b67ac3d55e9356c6fe002f5af691a9d1232ca086e1fb19301d11c979dc5b0c56e6700004a96c19dfded8f0
   languageName: node
   linkType: hard
 
@@ -8404,21 +8404,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"size-limit@npm:^7.0.8":
-  version: 7.0.8
-  resolution: "size-limit@npm:7.0.8"
+"size-limit@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "size-limit@npm:8.0.0"
   dependencies:
     bytes-iec: ^3.1.1
     chokidar: ^3.5.3
     ci-job-number: ^1.2.2
     globby: ^11.1.0
-    lilconfig: ^2.0.4
+    lilconfig: ^2.0.6
     mkdirp: ^1.0.4
-    nanospinner: ^1.0.0
+    nanospinner: ^1.1.0
     picocolors: ^1.0.0
   bin:
     size-limit: bin.js
-  checksum: 679a1f58a29aa27460072a1237a19ff7dcdaa5060fc02d8a5b17871c8edb27e2ddc87f754f425116ff30be6507313eec6344ed0f5876caa16ca5d10973d30847
+  checksum: 727b65e3c3717c1b8f67b31d285e325416062ad83f9b0d976554388344a7c2d73be64b8a5ed02846d4d8bb3bd5033e23c981dedf91684f54873b85c6c21e78a4
   languageName: node
   linkType: hard
 
@@ -9249,7 +9249,7 @@ __metadata:
     rimraf: ^3.0.2
     satisfier: ^5.2.2
     semantic-release: ^19.0.3
-    size-limit: ^7.0.8
+    size-limit: ^8.0.0
     tersify: ^3.10.2
     ts-jest: ^28.0.5
     tslib: ^2.4.0
