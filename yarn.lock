@@ -2641,18 +2641,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"assertron@npm:^9.2.5":
-  version: 9.2.5
-  resolution: "assertron@npm:9.2.5"
+"assertron@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "assertron@npm:10.0.0"
   dependencies:
-    is-node: ^1.0.2
     is-promise: ^4.0.0
     iso-error: ^4.3.5
     path-equal: ^1.2.2
     satisfier: ^5.2.2
     tersify: ^3.10.2
     type-plus: ^4.10.1
-  checksum: 32468c21a681a9bd7791cc4048fcf7881162dd1fc6b4061970dc45fc523b8b5d80a9047fd31688ea15a3b85aa6f8214f0446cc72d339d53eab81f63e38d71f9a
+  checksum: 55b108ffb05a3616b7bf01d42b89205ba2644129eb0e97903c2c954ee56ade985304965883c7de14c7ce6fe7beb84f07250e956f154be14e6c783d5979fe4a8d
   languageName: node
   linkType: hard
 
@@ -9226,7 +9225,7 @@ __metadata:
     "@types/jest": ^28.1.1
     "@typescript-eslint/eslint-plugin": ^5.28.0
     "@unional/fixture": ^2.0.1
-    assertron: ^9.2.5
+    assertron: ^10.0.0
     depcheck: ^1.4.3
     eslint: ^8.17.0
     eslint-plugin-harmony: ^7.1.0
