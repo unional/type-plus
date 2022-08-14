@@ -65,7 +65,7 @@
     "@types/jest": "^28.1.1",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@unional/fixture": "^2.0.1",
-    "assertron": "^9.2.5",
+    "assertron": "^10.0.0",
     "depcheck": "^1.4.3",
     "eslint": "^8.17.0",
     "eslint-plugin-harmony": "^7.1.0",
