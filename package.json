@@ -64,7 +64,7 @@
     "@size-limit/preset-small-lib": "^8.0.0",
     "@types/jest": "^28.1.1",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
-    "@unional/fixture": "^2.0.1",
+    "@unional/fixture": "^3.0.0",
     "assertron": "^10.0.0",
     "depcheck": "^1.4.3",
     "eslint": "^8.17.0",
