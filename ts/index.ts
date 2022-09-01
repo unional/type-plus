@@ -1,5 +1,5 @@
 // import * as types from './types/index.js'
-export { required, requiredDeep } from 'unpartial'
+export { required, requiredDeep, unpartial } from 'unpartial'
 export * from './array/index.js'
 export * from './assertion/index.js'
 export * from './class/index.js'

@@ -9166,7 +9166,7 @@ __metadata:
     typedoc: ^0.23.0
     typedoc-plugin-extras: ^2.2.3
     typescript: 4.8.2
-    unpartial: ^0.7.5
+    unpartial: ^1.0.1
   languageName: unknown
   linkType: soft
 
@@ -9315,6 +9315,13 @@ __metadata:
   version: 0.7.5
   resolution: "unpartial@npm:0.7.5"
   checksum: d38b2ba134ad94c7cd2148001865948541da93b51560aa63056940924c3f4cc9eb52da196e7f45df369aa414e5202ddc9483352e663245b4c3b28503573e0ec9
+  languageName: node
+  linkType: hard
+
+"unpartial@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "unpartial@npm:1.0.1"
+  checksum: 3a1b71a868c76f0d840e1e89f641be5cf7b744828913194ac6afa21f52a4a56ee43392b8a1ac880ec24369c9b4d53e70bef9456f8910670dd61999d9a1003f27
   languageName: node
   linkType: hard
 
