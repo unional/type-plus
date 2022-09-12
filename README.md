@@ -276,6 +276,17 @@ assertType.isTrue(notA({ a: 1 }))
 notA({ a: '' }) // TypeScript complains
 ```
 
+`IsNever<T>`:
+
+✔️ `logical`
+
+Check if `A` is `never`.
+
+```ts
+IsNever<never> // true
+IsNever<1>     // false
+```
+
 ## Type Utilities
 
 `type-plus` also provides additional type utilities.
