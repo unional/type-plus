@@ -1,6 +1,6 @@
 import { assertType, Equal, NotEqual } from '../index.js'
 
-describe('TypeEquals', () => {
+describe('Equal<A, B>', () => {
   test('match', () => {
     assertType.isTrue(true as Equal<false, false>)
   })
@@ -54,9 +54,14 @@ describe('TypeEquals', () => {
   test('overlap is false', () => {
     assertType.isFalse(false as Equal<{ a: 1, b: 1 }, { a: 1, c: 2 }>)
   })
+
+  it('works with union types', () => {
+    assertType.isTrue(true as Equal<{ a: number, b: string }, { a: number } & { b: string }>)
+    assertType.isTrue(true as Equal<{ a: number, b?: string }, { a: number } & { b?: string }>)
+  })
 })
 
-describe('TypeNotEquals', () => {
+describe('NotEqual<A, B>', () => {
   test('boolean', () => {
     assertType.isFalse(false as NotEqual<boolean, boolean>)
     assertType.isFalse(false as NotEqual<true, true>)
@@ -67,5 +72,9 @@ describe('TypeNotEquals', () => {
     assertType.isTrue(true as NotEqual<false, boolean>)
     assertType.isTrue(true as NotEqual<false, true>)
     assertType.isTrue(true as NotEqual<true, false>)
+  })
+  it('works with union types', () => {
+    assertType.isFalse(false as NotEqual<{ a: number, b: string }, { a: number } & { b: string }>)
+    assertType.isTrue(true as NotEqual<{ a: number, b: string }, { a: number } & { b?: string }>)
   })
 })
