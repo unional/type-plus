@@ -177,6 +177,11 @@ A typical usage is using it with <code>assertType</code>:</p>
 <p>Returns a compile-time validating function to ensure <code>subject</code> is not assignable to <code>T</code>.</p>
 <pre><code class="language-ts"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">notA</span><span class="hl-0"> = </span><span class="hl-6">canAssign</span><span class="hl-0">&lt;{ </span><span class="hl-7">a</span><span class="hl-0">: </span><span class="hl-3">string</span><span class="hl-0"> }&gt;(</span><span class="hl-1">false</span><span class="hl-0">)</span><br/><span class="hl-7">assertType</span><span class="hl-0">.</span><span class="hl-6">isTrue</span><span class="hl-0">(</span><span class="hl-6">notA</span><span class="hl-0">({ </span><span class="hl-7">a:</span><span class="hl-0"> </span><span class="hl-4">1</span><span class="hl-0"> }))</span><br/><br/><span class="hl-6">notA</span><span class="hl-0">({ </span><span class="hl-7">a:</span><span class="hl-0"> </span><span class="hl-8">&#39;&#39;</span><span class="hl-0"> }) </span><span class="hl-5">// TypeScript complains</span>
 </code></pre>
+<p><code>IsNever&lt;T&gt;</code>:</p>
+<p>✔️ <code>logical</code></p>
+<p>Check if <code>A</code> is <code>never</code>.</p>
+<pre><code class="language-ts"><span class="hl-7">IsNever</span><span class="hl-0">&lt;</span><span class="hl-7">never</span><span class="hl-0">&gt; </span><span class="hl-5">// true</span><br/><span class="hl-7">IsNever</span><span class="hl-0">&lt;</span><span class="hl-4">1</span><span class="hl-0">&gt;     </span><span class="hl-5">// false</span>
+</code></pre>
 
 <a href="#type-utilities" id="type-utilities" style="color: inherit; text-decoration: none;">
   <h2>Type Utilities</h2>
@@ -529,6 +534,7 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li class="tsd-kind-type-alias"><a href="types/IsEqual.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Equal</a></li>
 <li class="tsd-kind-type-alias"><a href="types/IsExtend.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Extend</a></li>
 <li class="tsd-kind-type-alias"><a href="types/IsLiteral.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Literal</a></li>
+<li class="tsd-kind-type-alias"><a href="types/IsNever.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Never</a></li>
 <li class="tsd-kind-type-alias"><a href="types/IsNotEqual.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Not<wbr/>Equal</a></li>
 <li class="tsd-kind-type-alias"><a href="types/IsNotExtend.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Not<wbr/>Extend</a></li>
 <li class="tsd-kind-type-alias"><a href="types/IsPositive.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Positive</a></li>
