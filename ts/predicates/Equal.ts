@@ -7,21 +7,23 @@
  * as they supports literal types.
  */
 
+import { IsNever } from '../PrimitiveTypes.js'
+
 /**
  * Checks if two types are equal.
  */
 export type Equal<A, B, Then = true, Else = false> =
   [A, B] extends [boolean | string | number, boolean | string | number]
   ? (<T>() => T extends A ? 1 : 2) extends (<T>() => T extends B ? 1 : 2) ? Then : Else
-  : ([A] extends [never]
-    ? ([B] extends [never] ? Then : Else)
+  : (IsNever<A> extends true
+    ? (IsNever<B> extends true ? Then : Else)
     : (A extends B ? B extends A ? Then : Else : Else))
 export type IsEqual<A, B> = Equal<A, B>
 
 export type NotEqual<A, B, Then = true, Else = false> =
   [A, B] extends [boolean | string | number, boolean | string | number]
   ? (<T>() => T extends A ? 1 : 2) extends (<T>() => T extends B ? 1 : 2) ? Else : Then
-  : ([A] extends [never]
-    ? ([B] extends [never] ? Then : Else)
+  : (IsNever<A> extends true
+    ? (IsNever<B> extends true ? Then : Else)
     : (A extends B ? B extends A ? Else : Then : Then))
 export type IsNotEqual<A, B> = NotEqual<A, B>
