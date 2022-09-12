@@ -12,7 +12,7 @@ test('concat tuples', () => {
 
 test('concat array to tuple', () => {
   type A = Concat<string[], [1, 2, 3]>
-  isType.t<Equal<Array<string | 1 | 2 | 3>, A>>()
+  isType.t<Equal<[...string[], 1, 2, 3], A>>()
 })
 
 test('concat tuple to array', () => {
