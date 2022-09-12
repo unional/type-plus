@@ -1,4 +1,4 @@
-import { assertType, Equal, NotEqual } from '../index.js'
+import { assertType, Equal, NotEqual, ValueOf } from '../index.js'
 
 describe('Equal<A, B>', () => {
   test('match', () => {
@@ -59,6 +59,12 @@ describe('Equal<A, B>', () => {
     assertType.isTrue(true as Equal<{ a: number, b: string }, { a: number } & { b: string }>)
     assertType.isTrue(true as Equal<{ a: number, b?: string }, { a: number } & { b?: string }>)
   })
+
+  it('works with never type', () => {
+    assertType.isTrue(true as Equal<never, never>)
+    assertType.isFalse(false as Equal<never, 1>)
+    assertType.isFalse(false as Equal<1, never>)
+  })
 })
 
 describe('NotEqual<A, B>', () => {
@@ -76,5 +82,10 @@ describe('NotEqual<A, B>', () => {
   it('works with union types', () => {
     assertType.isFalse(false as NotEqual<{ a: number, b: string }, { a: number } & { b: string }>)
     assertType.isTrue(true as NotEqual<{ a: number, b: string }, { a: number } & { b?: string }>)
+  })
+  it('works with never type', () => {
+    assertType.isFalse(false as NotEqual<never, never>)
+    assertType.isTrue(true as NotEqual<never, 1>)
+    assertType.isFalse(false as Equal<never, NotEqual<never, ValueOf<string>>>)
   })
 })
