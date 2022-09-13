@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "tersify": "^3.10.2",
-    "unpartial": "^1.0.1"
+    "unpartial": "^1.0.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
