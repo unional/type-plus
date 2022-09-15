@@ -134,4 +134,17 @@ describe('Either<A, B>', () => {
     isType.equal<true, ABCD, AB_CD>()
     isType.equal<true, ABCD, ABC_D>()
   })
+
+  it('can be assigned as in-generics as function/promise return type', () => {
+    function config(_: EitherOrBoth<A, B, C, D>) { }
+
+    config({ a: 1 })
+
+    function configF(_: () => EitherOrBoth<A, B, C, D>) { }
+    configF(() => ({ a: 1 }))
+
+    function configP(_: () => Promise<EitherOrBoth<A, B, C, D>>) { }
+
+    configP(() => Promise.resolve({ a: 1 }))
+  })
 })
