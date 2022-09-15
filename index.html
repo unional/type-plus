@@ -281,6 +281,7 @@ These utilities include utility types and type-adjusted functions.</p>
 <li><code>BNotA&lt;A, B&gt;</code>: flip of <code>ANotB</code></li>
 <li><code>as&lt;T&gt;(subject)</code>: assert <code>subject</code> as <code>T</code>. Avoid ASI issues such as <code>;(x as T).abc</code></li>
 <li><code>asAny(subject)</code>: assert <code>subject</code> as <code>any</code>. Avoid ASI issue such as <code>;(x as any).abc</code></li>
+<li><code>EitherAnd&lt;A, B, [C, D]&gt;</code>: combines 2 to 4 types as <code>A | B | (A &amp; B)</code>. This is useful for combining options.</li>
 <li><code>Except&lt;T, K&gt;</code>: Deprecated. Same as <code>Omit&lt;T, K&gt;</code>.</li>
 <li><code>ExcludePropType&lt;T, U&gt;</code>: excludes type <code>U</code> from properties in <code>T</code>.</li>
 <li><code>KeyofOptional&lt;T&gt;</code>: <code>keyof</code> that works with <code>Record&lt;any, any&gt; | undefined</code>.</li>
@@ -509,6 +510,7 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li class="tsd-kind-type-alias"><a href="types/DropNull.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Drop<wbr/>Null</a></li>
 <li class="tsd-kind-type-alias"><a href="types/DropNullable.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Drop<wbr/>Nullable</a></li>
 <li class="tsd-kind-type-alias"><a href="types/DropUndefined.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Drop<wbr/>Undefined</a></li>
+<li class="tsd-kind-type-alias"><a href="types/EitherAnd.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Either<wbr/>And</a></li>
 <li class="tsd-kind-type-alias"><a href="types/EndoFn.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Endo<wbr/>Fn</a></li>
 <li class="tsd-kind-type-alias"><a href="types/Equal.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Equal</a></li>
 <li class="deprecated tsd-kind-type-alias"><a href="types/Except.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Except</a></li>
