@@ -35,6 +35,16 @@ describe('isType()', () => {
         assertType<number>(s)
       }
     })
+
+    it('can use a truthy validator', () => {
+      const s: any = { a: 1 }
+      if (isType<{ a: number }>(s, s => s.a)) {
+        assertType<{ a: number }>(s)
+      }
+      else {
+        assertType<number>(s)
+      }
+    })
   })
   describe('with class', () => {
     test('Class as validator', () => {
