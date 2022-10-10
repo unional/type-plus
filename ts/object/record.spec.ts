@@ -52,3 +52,11 @@ test('Object.keys() gets the keys of the initial value', () => {
   const a = record({ a: 1, b: 2 })
   expect(Object.keys(a)).toEqual(['a', 'b'])
 })
+
+it('can specify a custom record', () => {
+  const a = record<{ a: number }>()
+  isType.equal<true, { a: number }, typeof a>()
+
+  const b = record<{ b: string }>({ b: 'b' })
+  isType.equal<true, { b: string }, typeof b>()
+})

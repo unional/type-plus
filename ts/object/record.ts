@@ -3,9 +3,16 @@ import type { AnyRecord } from './AnyRecord.js'
 import { KeyTypes } from './KeyTypes.js'
 
 /**
- * Creates a `Record<Key, Value>`
+ * Creates a `Record<Key, Value>` or your custom record.
+ * By default,
+ * `record()` will widen the keys (`K`) you specified in the `value` to form `Record<Widen<K>, V>`.
+ *
+ * You can also override it by specifying a custom record, e.g.:
+ * `record<{ a: number }>()`
  */
-export function record<K extends KeyTypes, V>(value?: Record<K, V>): Record<Widen<K>, V> {
+export function record<K extends KeyTypes, V>(value?: Record<K, V>): Record<Widen<K>, V>
+export function record<R extends Record<any, any>>(value?: R): R
+export function record(value?: any) {
   const r = Object.create(null) as AnyRecord
-  return (value ? Object.assign(r, value) : r) as Record<Widen<K>, V>
+  return (value ? Object.assign(r, value) : r) as AnyRecord
 }
