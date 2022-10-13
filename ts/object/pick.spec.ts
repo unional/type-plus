@@ -1,12 +1,4 @@
-import { assertType, canAssign, Equal, Pick, pick } from '../index.js'
-
-describe(`${pick.name}()`, () => {
-  it('picks properties from object', () => {
-    const actual = pick({ a: 1, b: 2 }, 'a')
-
-    expect(actual).toEqual({ a: 1 })
-  })
-})
+import { assertType, canAssign, Equal, isType, Pick, pick, record } from '../index.js'
 
 describe(`Pick<T, K>`, () => {
   test('distributive pick', () => {
@@ -68,3 +60,24 @@ describe(`Pick<T, K>`, () => {
     assertType.isTrue(true as Equal<K, never>)
   })
 })
+
+describe(`${pick.name}()`, () => {
+  it('picks properties from object', () => {
+    const actual = pick({ a: 1, b: 2 }, 'a')
+
+    expect(actual).toEqual({ a: 1 })
+  })
+
+  it('supports more than 12 arguments', () => {
+    const actual = pick({ a: 1, b: 1, c: 1 }, 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'b')
+
+    expect(actual).toEqual({ a: 1, b: 1 })
+    isType.equal<true, 'a' | 'b', keyof typeof actual>()
+  })
+
+  it('maintains the prototype null-ness', () => {
+    expect(Object.getPrototypeOf(pick({ a: 1 }, 'a'))).not.toEqual(null)
+    expect(Object.getPrototypeOf(pick(record({ a: 1 }), 'a'))).toEqual(null)
+  })
+})
+
