@@ -1,6 +1,6 @@
-import { assertType, Equal, Except, Omit, omit } from '../index.js'
+import { assertType, Equal, Except, isType, Omit, omit } from '../index.js'
 
-describe('Omit', () => {
+describe('Omit<T, K>', () => {
   test('work with primitive types', () => {
     type N = Omit<number, 'toFixed'>
     assertType.isFunction((() => ({})) as N['toExponential'])
@@ -68,18 +68,35 @@ describe('Omit', () => {
     }
     foo({ b: '1' })
   })
+})
 
-  test('omit properties from object', () => {
+describe(`${omit.name}()`, () => {
+  it('omits properties from object', () => {
     const actual = omit({ a: 1, b: 2 }, 'a')
 
     expect(actual).toEqual({ b: 2 })
+    isType.equal<true, 'b', keyof typeof actual>()
   })
 
-  test('omit all', () => {
-    const actual = omit({ a: 1 }, 'a')
+  it('returns a empty object type when all props are omitted', () => {
+    const actual = omit({ a: 1, b: 1 }, 'a', 'b')
 
     expect(actual).toEqual({})
-    assertType.isTrue(true as Equal<keyof typeof actual, never>)
+    isType.equal<true, never, keyof typeof actual>()
+  })
+
+  it('can object from generic record', () => {
+    const i: Record<string, any> = { a: 1, b: 2 }
+    const r = omit(i, 'a')
+    expect(r).toEqual({ b: 2 })
+    isType.equal<true, Record<string, any>, typeof r>()
+  })
+
+  it('more than 12', () => {
+    const actual = omit({ a: 1, b: 1, c: 1 }, 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'b')
+
+    expect(actual).toEqual({ c: 1 })
+    assertType.isTrue(true as Equal<keyof typeof actual, 'c'>)
   })
 })
 
