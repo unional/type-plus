@@ -1,6 +1,7 @@
-import { AnyRecord, record, reduceByKey } from '../object/index.js'
+import { AnyRecord, reduceByKey } from '../object/index.js'
 import { UnionKeys } from '../UnionKeys.js'
 import { Pick } from './pick.js'
+import { record } from './record.js'
 
 // by Titian Cernicova-Dragomir
 // https://github.com/microsoft/TypeScript/issues/28339#issuecomment-463577347
@@ -33,5 +34,5 @@ export function omit<T extends AnyRecord>(subject: T, ...props: Array<UnionKeys<
   return reduceByKey(subject, (p, k) => {
     if (props.indexOf(k) === -1) p[k] = subject[k]
     return p
-  }, record())
+  }, Object.getPrototypeOf(subject) === null ? record() : {})
 }

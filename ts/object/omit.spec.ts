@@ -1,4 +1,4 @@
-import { assertType, Equal, Except, isType, Omit, omit } from '../index.js'
+import { assertType, Equal, Except, isType, Omit, omit, record } from '../index.js'
 
 describe('Omit<T, K>', () => {
   test('work with primitive types', () => {
@@ -92,11 +92,16 @@ describe(`${omit.name}()`, () => {
     isType.equal<true, Record<string, any>, typeof r>()
   })
 
-  it('more than 12', () => {
+  it('supports more than 12 arguments', () => {
     const actual = omit({ a: 1, b: 1, c: 1 }, 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'b')
 
     expect(actual).toEqual({ c: 1 })
     assertType.isTrue(true as Equal<keyof typeof actual, 'c'>)
+  })
+
+  it('maintains the prototype null-ness', () => {
+    expect(Object.getPrototypeOf(omit({ a: 1 }, 'a'))).not.toEqual(null)
+    expect(Object.getPrototypeOf(omit(record({ a: 1 }), 'a'))).toEqual(null)
   })
 })
 

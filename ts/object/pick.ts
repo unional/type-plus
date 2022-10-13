@@ -1,6 +1,6 @@
-import { record } from 'type-plus'
 import { UnionKeys } from '../UnionKeys.js'
 import type { AnyRecord } from './AnyRecord.js'
+import { record } from './record.js'
 import { reduceByKey } from './reduceKey.js'
 
 export function pick<T extends AnyRecord, P1 extends UnionKeys<T>>(subject: T, prop1: P1): Pick<T, P1>
@@ -20,7 +20,7 @@ export function pick<T extends AnyRecord>(subject: T, ...props: Array<UnionKeys<
   return reduceByKey(subject, (p, k) => {
     if (props.indexOf(k) >= 0) p[k] = subject[k]
     return p
-  }, record())
+  }, Object.getPrototypeOf(subject) === null ? record() : {})
 }
 
 /**
