@@ -15,7 +15,7 @@
 <h1>Function nominalMatch</h1></div>
 <section class="tsd-panel">
 <ul class="tsd-signatures tsd-kind-function">
-<li class="tsd-signature" id="nominalMatch">nominal<wbr/>Match<span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">A</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>[typeSym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">A</span><span class="tsd-signature-symbol"> }</span>, b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>[typeSym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">B</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+<li class="tsd-signature" id="nominalMatch">nominal<wbr/>Match<span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">A</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>[typeSym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">A</span><span class="tsd-signature-symbol">; </span>[valueSym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> }</span>, b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>[typeSym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">B</span><span class="tsd-signature-symbol">; </span>[valueSym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 <li class="tsd-signature" id="nominalMatch-1">nominal<wbr/>Match<span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">A</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>[typeSym]<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">A</span><span class="tsd-signature-symbol"> }</span>, b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>[typeSym]<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">B</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
@@ -30,15 +30,19 @@
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>a: <span class="tsd-signature-symbol">{ </span>[typeSym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">A</span><span class="tsd-signature-symbol"> }</span></h5>
+<h5>a: <span class="tsd-signature-symbol">{ </span>[typeSym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">A</span><span class="tsd-signature-symbol">; </span>[valueSym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> }</span></h5>
 <ul class="tsd-parameters">
 <li class="tsd-parameter">
-<h5>[type<wbr/>Sym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">A</span></h5></li></ul></li>
+<h5>[type<wbr/>Sym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">A</span></h5></li>
+<li class="tsd-parameter">
+<h5>[value<wbr/>Sym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></h5></li></ul></li>
 <li>
-<h5>b: <span class="tsd-signature-symbol">{ </span>[typeSym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">B</span><span class="tsd-signature-symbol"> }</span></h5>
+<h5>b: <span class="tsd-signature-symbol">{ </span>[typeSym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">B</span><span class="tsd-signature-symbol">; </span>[valueSym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> }</span></h5>
 <ul class="tsd-parameters">
 <li class="tsd-parameter">
-<h5>[type<wbr/>Sym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">B</span></h5></li></ul></li></ul></div>
+<h5>[type<wbr/>Sym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">B</span></h5></li>
+<li class="tsd-parameter">
+<h5>[value<wbr/>Sym]<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></h5></li></ul></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4></li>
 <li class="tsd-description">
 <div class="tsd-type-parameters">
