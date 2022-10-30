@@ -1,4 +1,4 @@
-import { isType, KeyTypes, record } from '../index.js'
+import { isType, KeyTypes, record, RecordValue } from '../index.js'
 
 describe(`${record.name}()`, () => {
   it('creates an empty record with value default to unknown', () => {
@@ -60,5 +60,37 @@ describe(`${record.name}()`, () => {
 
     const b = record<{ b: string }>({ b: 'b' })
     isType.equal<true, { b: string }, typeof b>()
+  })
+})
+
+describe(`RecordValue<R>`, () => {
+  it('gets the value type from Record<any, T>', () => {
+    type R = RecordValue<Record<any, string>>
+
+    isType.equal<true, string, R>()
+  })
+
+  it(`gets the value type form Record<number, T>`, () => {
+    type R = RecordValue<Record<number, string>>
+
+    isType.equal<true, string, R>()
+  })
+
+  it(`gets the value type form Record<number, T>`, () => {
+    type R = RecordValue<Record<symbol, string>>
+
+    isType.equal<true, string, R>()
+  })
+
+  it('works with union type', () => {
+    type R = RecordValue<{ a: number } & { b: string }>
+
+    isType.equal<true, number | string, R>()
+  })
+
+  it('works with intersect type', () => {
+    type R = RecordValue<{ a: number } | { b: string }>
+
+    isType.equal<true, number | string, R>()
   })
 })

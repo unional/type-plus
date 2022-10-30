@@ -352,7 +352,7 @@ const someJson: JSONTypes = { a: { b: ['z', { c: 'miku' }]}}
 JSONTypes.get<string>(someJson, 'a', 'b', 1, 'c') // miku
 ```
 
-### Object Key functions
+### Object utilities
 
 - `filterKey()`: type adjusted filter by key.
 - `findKey()`: type adjusted find by key.
@@ -362,6 +362,7 @@ JSONTypes.get<string>(someJson, 'a', 'b', 1, 'c') // miku
 - `IsRecord<T>`: `logical` predicate for `Record`.
 - `KeysWithDiffTypes<A, B>`: gets the keys common in `A` and `B` but with different value type.
 - `mapKey()`: type adjusted map by key.
+- `RecordValue<R>`: gets the value type `T`from `Record<any, T>` [video](https://www.youtube.com/watch?v=1J7xK6FUqPw).
 - `reduceByKey()`: type adjusted reduce by key.
 - `someKey()`: type adjusted some by key.
 - `SpreadRecord<A, B>`: type for `{...a, ...b}` when both `a` and `b` are `Record`\
@@ -381,7 +382,7 @@ JSONTypes.get<string>(someJson, 'a', 'b', 1, 'c') // miku
 - `as<T>(subject)`: assert `subject` as `T`. Avoid ASI issues such as `;(x as T).abc`
 - `asAny(subject)`: assert `subject` as `any`. Avoid ASI issue such as `;(x as any).abc`
 - `EitherAnd<A, B, [C, D]>`: combines 2 to 4 types as `A | B | (A & B)`. This is useful for combining options. **Deprecated**. Renamed to `EitherOrBoth`.
-- `EitherOrBoth<A, B, [C, D]>`: combines 2 to 4 types as `A | B | (A & B)`. This is useful for combining options. [video](https://youtu.be/jBxx03NT4Ik)
+- `EitherOrBoth<A, B, [C, D]>`: combines 2 to 4 types as `A | B | (A & B)`. This is useful for combining options [video](https://youtu.be/jBxx03NT4Ik).
 - `Except<T, K>`: Deprecated. Same as `Omit<T, K>`.
 - `ExcludePropType<T, U>`: excludes type `U` from properties in `T`.
 - `KeyofOptional<T>`: `keyof` that works with `Record<any, any> | undefined`.

@@ -16,3 +16,8 @@ export function record(value?: any) {
   const r = Object.create(null) as AnyRecord
   return (value ? Object.assign(r, value) : r) as AnyRecord
 }
+
+/**
+ * Gets the value type `T` from `Record<any, T>`.
+ */
+export type RecordValue<R extends Record<any, any>> = R extends Record<any, infer T> ? T : never
