@@ -1,8 +1,30 @@
-import { assertType, Equal, NotEqual, ValueOf } from '../index.js'
+import { AnyFunction, assertType, Equal, NotEqual, ValueOf } from '../index.js'
 
 describe('Equal<A, B>', () => {
-  test('match', () => {
+  it('compares among booleans', () => {
+    assertType.isTrue(true as Equal<true, true>)
     assertType.isTrue(true as Equal<false, false>)
+    assertType.isTrue(true as Equal<boolean, boolean>)
+
+    assertType.isFalse(false as Equal<true, false>)
+    assertType.isFalse(false as Equal<false, true>)
+  })
+  it('compares boolean with others', () => {
+    assertType.isFalse(false as Equal<true, undefined>)
+    assertType.isFalse(false as Equal<true, null>)
+    assertType.isFalse(false as Equal<true, number>)
+    assertType.isFalse(false as Equal<true, string>)
+    assertType.isFalse(false as Equal<true, symbol>)
+    assertType.isFalse(false as Equal<true, object>)
+    assertType.isFalse(false as Equal<true, AnyFunction>)
+
+    assertType.isFalse(false as Equal<false, undefined>)
+    assertType.isFalse(false as Equal<false, null>)
+    assertType.isFalse(false as Equal<false, number>)
+    assertType.isFalse(false as Equal<false, string>)
+    assertType.isFalse(false as Equal<false, symbol>)
+    assertType.isFalse(false as Equal<false, object>)
+    assertType.isFalse(false as Equal<false, AnyFunction>)
   })
 
   test('not match', () => {
@@ -94,7 +116,8 @@ describe('NotEqual<A, B>', () => {
     assertType.isTrue(true as NotEqual<{ a: number, b: string }, { a: number } & { b?: string }>)
   })
   it('works with never type', () => {
-    assertType.isFalse(false as NotEqual<never, never>)
+    type A = NotEqual<never, never>
+    assertType.isFalse(false as A)
     assertType.isTrue(true as NotEqual<never, 1>)
     assertType.isFalse(false as Equal<never, NotEqual<never, ValueOf<string>>>)
   })
