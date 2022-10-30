@@ -9,9 +9,9 @@ import { typeSym, valueSym } from './types.js'
  * TypeScript won't allow implicit conversion to this type
  */
 export type Brand<B extends string, T> =
-  T extends undefined | null | number | bigint | boolean
-  ? { [typeSym]: B, [valueSym]: T }
-  : T & { [typeSym]: B }
+  T extends object
+  ? T & { [typeSym]: B }
+  : { [typeSym]: B, [valueSym]: T }
 
 /**
  * Creates a brand creator with the specified type.
