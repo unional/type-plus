@@ -65,6 +65,16 @@ describe('Equal<A, B>', () => {
     assertType.isFalse(false as Equal<never, 1>)
     assertType.isFalse(false as Equal<1, never>)
   })
+
+  it('works with union types containing undefined', () => {
+    type A = Equal<string | undefined, string | undefined | number>
+    assertType.isFalse(false as A)
+  })
+
+  it('works with union types containing symbol', () => {
+    type A = Equal<string | symbol, string | symbol | number>
+    assertType.isFalse(false as A)
+  })
 })
 
 describe('NotEqual<A, B>', () => {
