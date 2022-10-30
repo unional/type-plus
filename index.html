@@ -246,8 +246,8 @@ These utilities include utility types and type-adjusted functions.</p>
 <pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-0"> { </span><span class="hl-7">JSONTypes</span><span class="hl-0"> } </span><span class="hl-9">from</span><span class="hl-0"> </span><span class="hl-8">&#39;type-plus&#39;</span><br/><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">someJson</span><span class="hl-0">: </span><span class="hl-3">JSONTypes</span><span class="hl-0"> = { </span><span class="hl-7">a:</span><span class="hl-0"> { </span><span class="hl-7">b:</span><span class="hl-0"> [</span><span class="hl-8">&#39;z&#39;</span><span class="hl-0">, { </span><span class="hl-7">c:</span><span class="hl-0"> </span><span class="hl-8">&#39;miku&#39;</span><span class="hl-0"> }]}}</span><br/><br/><span class="hl-7">JSONTypes</span><span class="hl-0">.</span><span class="hl-6">get</span><span class="hl-0">&lt;</span><span class="hl-3">string</span><span class="hl-0">&gt;(</span><span class="hl-7">someJson</span><span class="hl-0">, </span><span class="hl-8">&#39;a&#39;</span><span class="hl-0">, </span><span class="hl-8">&#39;b&#39;</span><span class="hl-0">, </span><span class="hl-4">1</span><span class="hl-0">, </span><span class="hl-8">&#39;c&#39;</span><span class="hl-0">) </span><span class="hl-5">// miku</span>
 </code></pre>
 
-<a href="#object-key-functions" id="object-key-functions" style="color: inherit; text-decoration: none;">
-  <h3>Object Key functions</h3>
+<a href="#object-utilities" id="object-utilities" style="color: inherit; text-decoration: none;">
+  <h3>Object utilities</h3>
 </a>
 <ul>
 <li><code>filterKey()</code>: type adjusted filter by key.</li>
@@ -258,6 +258,7 @@ These utilities include utility types and type-adjusted functions.</p>
 <li><code>IsRecord&lt;T&gt;</code>: <code>logical</code> predicate for <code>Record</code>.</li>
 <li><code>KeysWithDiffTypes&lt;A, B&gt;</code>: gets the keys common in <code>A</code> and <code>B</code> but with different value type.</li>
 <li><code>mapKey()</code>: type adjusted map by key.</li>
+<li><code>RecordValue&lt;R&gt;</code>: gets the value type <code>T</code>from <code>Record&lt;any, T&gt;</code> <a href="https://www.youtube.com/watch?v=1J7xK6FUqPw">video</a>.</li>
 <li><code>reduceByKey()</code>: type adjusted reduce by key.</li>
 <li><code>someKey()</code>: type adjusted some by key.</li>
 <li><code>SpreadRecord&lt;A, B&gt;</code>: type for <code>{...a, ...b}</code> when both <code>a</code> and <code>b</code> are <code>Record</code><br>for array, just do <code>[...A, ...B]</code>.</li>
@@ -282,7 +283,7 @@ These utilities include utility types and type-adjusted functions.</p>
 <li><code>as&lt;T&gt;(subject)</code>: assert <code>subject</code> as <code>T</code>. Avoid ASI issues such as <code>;(x as T).abc</code></li>
 <li><code>asAny(subject)</code>: assert <code>subject</code> as <code>any</code>. Avoid ASI issue such as <code>;(x as any).abc</code></li>
 <li><code>EitherAnd&lt;A, B, [C, D]&gt;</code>: combines 2 to 4 types as <code>A | B | (A &amp; B)</code>. This is useful for combining options. <strong>Deprecated</strong>. Renamed to <code>EitherOrBoth</code>.</li>
-<li><code>EitherOrBoth&lt;A, B, [C, D]&gt;</code>: combines 2 to 4 types as <code>A | B | (A &amp; B)</code>. This is useful for combining options. <a href="https://youtu.be/jBxx03NT4Ik">video</a></li>
+<li><code>EitherOrBoth&lt;A, B, [C, D]&gt;</code>: combines 2 to 4 types as <code>A | B | (A &amp; B)</code>. This is useful for combining options <a href="https://youtu.be/jBxx03NT4Ik">video</a>.</li>
 <li><code>Except&lt;T, K&gt;</code>: Deprecated. Same as <code>Omit&lt;T, K&gt;</code>.</li>
 <li><code>ExcludePropType&lt;T, U&gt;</code>: excludes type <code>U</code> from properties in <code>T</code>.</li>
 <li><code>KeyofOptional&lt;T&gt;</code>: <code>keyof</code> that works with <code>Record&lt;any, any&gt; | undefined</code>.</li>
@@ -576,6 +577,7 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li class="tsd-kind-type-alias"><a href="types/PromiseValue.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Promise<wbr/>Value</a></li>
 <li class="tsd-kind-type-alias"><a href="types/PromiseValueMerge.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Promise<wbr/>Value<wbr/>Merge</a></li>
 <li class="tsd-kind-type-alias"><a href="types/PropUnion.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Prop<wbr/>Union</a></li>
+<li class="tsd-kind-type-alias"><a href="types/RecordValue.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Record<wbr/>Value</a></li>
 <li class="tsd-kind-type-alias"><a href="types/RecursiveIntersect.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Recursive<wbr/>Intersect</a></li>
 <li class="tsd-kind-type-alias"><a href="types/RecursivePartial.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Recursive<wbr/>Partial</a></li>
 <li class="tsd-kind-type-alias"><a href="types/RecursiveRequired.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Recursive<wbr/>Required</a></li>
