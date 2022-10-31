@@ -371,9 +371,12 @@ JSONTypes.get<string>(someJson, 'a', 'b', 1, 'c') // miku
 ### Promise function
 
 - `isPromise<R>(subject: any)`: `isPromise()` type guard.
+- `PromiseOrValue<T>`: Alias of `T | Promise<T>`.
 - `PromiseValue<P>`: Gets the type within the Promise.
 - `PromiseValueMerge<P1, P2, ...P9>`: Merge the values of multiple promises.
 - `mapSeries()`: Similar to `bluebird.mapSeries()` but works with `async`/`await`.
+- `transformPromiseOrValue(value, transformer)`: Apply the `transformer` to the `value`.\
+  It is also exported under `PromiseOrValue.transform()`.
 
 ### Type manipulation
 
