@@ -1,5 +1,4 @@
-import { isType } from '../index.js'
-import { ExtractFunction } from './ExtractFunction.js'
+import { ExtractFunction, isType } from '../index.js'
 
 it('gets the function itself if it is not composite', () => {
   type F = () => void
