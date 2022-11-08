@@ -552,6 +552,11 @@ const b2 = brand('y', 1)
 nominalMatch(b1, b2) // false
 ```
 
+## Function Types
+
+- `AnyFunction<P, R>`: a generic type for any function
+- `ExtractFunction<F>`: extract the function signature from a type `F`.
+
 ## Functional Types
 
 - `ChainFn<T>: T`: chain function that returns the input type.
