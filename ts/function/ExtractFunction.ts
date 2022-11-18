@@ -5,3 +5,7 @@ import { AnyFunction } from './AnyFunction.js'
  */
 export type ExtractFunction<T extends AnyFunction> = T extends AnyFunction<infer P, infer R>
   ? (...args: P) => R : never
+
+export function extractFunction<T extends AnyFunction>(fn: T) {
+  return fn as any as ExtractFunction<T>
+}

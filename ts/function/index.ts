@@ -1,2 +1,2 @@
 export type { AnyFunction } from './AnyFunction.js'
-export type { ExtractFunction } from './ExtractFunction.js'
+export * from './ExtractFunction.js'

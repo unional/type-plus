@@ -301,7 +301,7 @@ type Yes = IsAny<any, 'yes', 'no'> // 'yes'
 type No = IsAny<1, 'yes', 'no'> // 'no'
 ```
 
-### Array function
+### Array Utilities
 
 - `CommonPropKeys<A>`: gets common keys inside the records in the array `A` (deprecate `CommonKeys`).
 - `Concat<A, B>`: `[...A, ...B]`.
@@ -552,10 +552,11 @@ const b2 = brand('y', 1)
 nominalMatch(b1, b2) // false
 ```
 
-## Function Types
+## Function Utilties
 
 - `AnyFunction<P, R>`: a generic type for any function
 - `ExtractFunction<F>`: extract the function signature from a type `F`.
+- `extractFunction(fn: F)`: adjust type of `fn` to its function signature only.
 
 ## Functional Types
 
