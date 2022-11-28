@@ -1,4 +1,4 @@
-import a from 'assertron'
+import { a } from 'assertron'
 import { AnyConstructor, AnyFunction, assertType, Equal, isType } from '../index.js'
 
 describe('assertType()', () => {
