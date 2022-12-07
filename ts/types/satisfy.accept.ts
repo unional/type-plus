@@ -1,6 +1,6 @@
 import { baseline } from '@unional/fixture'
 import fs from 'fs'
-import path from 'path'
+import path, { dirname } from 'path'
 import * as T from './index.js'
 import { O } from './optional.js'
 
@@ -28,10 +28,10 @@ const eslint = T.object.create({
   rules: O.record.create(O.string.create('error'))
 })
 
-baseline('fixtures/eslint', ({ caseName, caseFolder }) => {
+baseline('fixtures/eslint', ({ caseName, casePath }) => {
   test(`eslint ${caseName}`, () => {
     const config: unknown = JSON.parse(
-      fs.readFileSync(`${path.join(caseFolder, caseName)}`, 'utf-8')
+      fs.readFileSync(casePath, 'utf-8')
     )
 
     if (!T.satisfy(eslint, config)) fail('should satisfy')
