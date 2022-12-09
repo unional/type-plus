@@ -37,18 +37,18 @@
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:tslib": "tsc -p tsconfig.tslib.json && ncp package.cjs.json tslib/package.json",
     "build:doc": "typedoc",
-    "clean": "rimraf cjs coverage esm lib libm",
+    "clean": "rimraf cjs coverage esm lib libm tslib",
     "coverage": "jest --coverage",
     "depcheck": "depcheck",
     "lint": "eslint --ext=ts,js .",
-    "nuke": "yarn clean && rimraf node_modules",
+    "nuke": "pnpm clean && rimraf node_modules",
     "postinstall": "husky install",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
     "size": "size-limit",
     "test": "jest",
     "verify": "npm-run-all clean -p build depcheck lint coverage -p size",
-    "watch": "yarn test --watch"
+    "watch": "pnpm test --watch"
   },
   "dependencies": {
     "tersify": "^3.10.2",
@@ -57,6 +57,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
+    "@repobuddy/jest": "^1.4.0",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^8.0.5",
