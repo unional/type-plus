@@ -4,14 +4,15 @@ on:
     branches: [main]
 
 jobs:
-  code:
-    uses: unional/.github/.github/workflows/yarn-verify-linux.yml@main
+    uses: unional/.github/.github/workflows/pnpm-verify.yml@main
+    with:
+      os: '["ubuntu-latest"]'
 
   release:
-    uses: unional/.github/.github/workflows/yarn-release-semantic.yml@main
+    uses: unional/.github/.github/workflows/pnpm-release-semantic.yml@main
     needs: code
     secrets: inherit
 
   docgen:
-      uses: unional/.github/.github/workflows/yarn-docs.yml@main
+      uses: unional/.github/.github/workflows/pnpm-docs.yml@main
       needs: release
