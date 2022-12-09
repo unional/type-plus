@@ -1,8 +1,9 @@
 ignores:
   - "@commitlint/*"
+  - "@repobuddy/jest"
   - "@semantic-release/*"
   - "@size-limit/preset-small-lib"
-  - '@types/node'
+  - "@types/node"
   - "@types/jest"
   - babel-jest
   - jest-*
