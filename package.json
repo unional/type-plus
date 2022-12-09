@@ -45,6 +45,7 @@
     "postinstall": "husky install",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
+    "release": "semantic-release",
     "size": "size-limit",
     "test": "jest",
     "verify": "npm-run-all clean -p build depcheck lint coverage -p size",
