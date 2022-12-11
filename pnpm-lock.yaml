@@ -20,7 +20,7 @@ specifiers:
   husky: ^8.0.1
   jest: ^29.0.0
   jest-watch-suspend: ^1.1.2
-  jest-watch-toggle-config: ^2.0.1
+  jest-watch-toggle-config-2: ^2.1.0
   jest-watch-typeahead: ^2.0.0
   ncp: ^2.0.0
   npm-run-all: ^4.1.5
@@ -44,7 +44,7 @@ dependencies:
 devDependencies:
   '@commitlint/cli': 17.3.0
   '@commitlint/config-conventional': 17.3.0
-  '@repobuddy/jest': 2.1.0_vxwm5bnd4dq4kuqxqmfbc4kvne
+  '@repobuddy/jest': 2.1.0_s5p33xs5dg6kbxtbrw7xhweyqi
   '@semantic-release/changelog': 6.0.2_semantic-release@19.0.5
   '@semantic-release/git': 10.0.1_semantic-release@19.0.5
   '@semantic-release/github': 8.0.7_semantic-release@19.0.5
@@ -61,7 +61,7 @@ devDependencies:
   husky: 8.0.2
   jest: 29.3.1_@types+node@14.18.34
   jest-watch-suspend: 1.1.2_jest@29.3.1
-  jest-watch-toggle-config: 2.0.1_jest@29.3.1
+  jest-watch-toggle-config-2: 2.1.0_jest@29.3.1
   jest-watch-typeahead: 2.2.1_jest@29.3.1
   ncp: 2.0.0
   npm-run-all: 4.1.5
@@ -1079,7 +1079,7 @@ packages:
       '@octokit/openapi-types': 14.0.0
     dev: true
 
-  /@repobuddy/jest/2.1.0_vxwm5bnd4dq4kuqxqmfbc4kvne:
+  /@repobuddy/jest/2.1.0_s5p33xs5dg6kbxtbrw7xhweyqi:
     resolution: {integrity: sha512-iDM/8N+lMDvqHQ42bphZa5mtUaFKbJ3Ne18S8v51Epz3v0EQaSPRpWXoBl4IgGl25ot272Kja6Vn3hZ0I2hwtg==}
     peerDependencies:
       '@kayahr/jest-electron-runner': ^29
@@ -1103,6 +1103,7 @@ packages:
       jest: 29.3.1_@types+node@14.18.34
       jest-resolve: 29.3.1
       jest-watch-suspend: 1.1.2_jest@29.3.1
+      jest-watch-toggle-config-2: 2.1.0_jest@29.3.1
       jest-watch-typeahead: 2.2.1_jest@29.3.1
       read-pkg-up: 7.0.1
       resolve.imports: 1.2.3
@@ -4090,12 +4091,11 @@ packages:
       unpartial: 0.6.4
     dev: true
 
-  /jest-watch-toggle-config/2.0.1_jest@29.3.1:
-    resolution: {integrity: sha512-qOOPo8vPlDX/hfHCQbJT5NKUvR+Uah+rsCtt+cCmg8oiMNtUvWUO2sqYW/X5PXmWyaoxwI14D8lVEmFy3w6BwQ==}
+  /jest-watch-toggle-config-2/2.1.0_jest@29.3.1:
+    resolution: {integrity: sha512-z4B6FbVu4+8IVMLsecetm7chL8meA4WhCv4CoY0/zydYbpk2qlAbPileU0E3CU4IhoWU73h4Ui3qg0JCP9+vJA==}
     engines: {node: '>= 10'}
     peerDependencies:
       jest: '>= 23.4.1'
-      jest-validate: '>= 23.4.0'
     dependencies:
       chalk: 4.1.2
       jest: 29.3.1_@types+node@14.18.34

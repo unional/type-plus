@@ -48,8 +48,9 @@
     "release": "semantic-release",
     "size": "size-limit",
     "test": "jest",
+    "test:watch": "jest --watch",
     "verify": "npm-run-all clean -p build depcheck lint coverage -p size",
-    "watch": "pnpm test --watch"
+    "watch": "jest --watch"
   },
   "dependencies": {
     "tersify": "^3.10.2",
