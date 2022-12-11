@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@commitlint/cli': ^17.0.2
   '@commitlint/config-conventional': ^17.0.2
-  '@repobuddy/jest': ^1.4.0
+  '@repobuddy/jest': ^2.1.0
   '@semantic-release/changelog': ^6.0.1
   '@semantic-release/git': ^10.0.1
   '@semantic-release/github': ^8.0.5
@@ -44,7 +44,7 @@ dependencies:
 devDependencies:
   '@commitlint/cli': 17.3.0
   '@commitlint/config-conventional': 17.3.0
-  '@repobuddy/jest': 1.4.0_jqyzxoaiqhaq3dgn76wdplcabq
+  '@repobuddy/jest': 2.1.0_vxwm5bnd4dq4kuqxqmfbc4kvne
   '@semantic-release/changelog': 6.0.2_semantic-release@19.0.5
   '@semantic-release/git': 10.0.1_semantic-release@19.0.5
   '@semantic-release/github': 8.0.7_semantic-release@19.0.5
@@ -939,7 +939,7 @@ packages:
   /@just-func/types/0.5.0:
     resolution: {integrity: sha512-yPH5kX7Y1QjTvoUxLK1/vhWjJq1OqeWJ5qkTjWVVkRdk1qpnt6eGoqmb02OySzkyAFbQgnowv8F8M2bfgrkJrw==}
     dependencies:
-      type-plus: 4.18.0
+      type-plus: 4.18.1
     dev: true
 
   /@nodelib/fs.scandir/2.1.5:
@@ -1079,13 +1079,13 @@ packages:
       '@octokit/openapi-types': 14.0.0
     dev: true
 
-  /@repobuddy/jest/1.4.0_jqyzxoaiqhaq3dgn76wdplcabq:
-    resolution: {integrity: sha512-RJZqwwTg96FmMZq2u3LJ2m6JqlJOh1lVy+NP2JqzI7eCpD194lCX9JOXjJReYIkBYXhybvnB8d8UqCSl+yhPKg==}
+  /@repobuddy/jest/2.1.0_vxwm5bnd4dq4kuqxqmfbc4kvne:
+    resolution: {integrity: sha512-iDM/8N+lMDvqHQ42bphZa5mtUaFKbJ3Ne18S8v51Epz3v0EQaSPRpWXoBl4IgGl25ot272Kja6Vn3hZ0I2hwtg==}
     peerDependencies:
       '@kayahr/jest-electron-runner': ^29
       jest: ^29
       jest-watch-suspend: ^1
-      jest-watch-toggle-config: ^2
+      jest-watch-toggle-config-2: ^2
       jest-watch-typeahead: ^2
       ts-jest: ^29
     peerDependenciesMeta:
@@ -1093,7 +1093,7 @@ packages:
         optional: true
       jest-watch-suspend:
         optional: true
-      jest-watch-toggle-config:
+      jest-watch-toggle-config-2:
         optional: true
       jest-watch-typeahead:
         optional: true
@@ -1103,12 +1103,12 @@ packages:
       jest: 29.3.1_@types+node@14.18.34
       jest-resolve: 29.3.1
       jest-watch-suspend: 1.1.2_jest@29.3.1
-      jest-watch-toggle-config: 2.0.1_jest@29.3.1
       jest-watch-typeahead: 2.2.1_jest@29.3.1
       read-pkg-up: 7.0.1
-      resolve.imports: 1.2.2
+      resolve.imports: 1.2.3
       satisfier: 5.4.2
       ts-jest: 29.0.3_p6ekqnroyms5nhqbfxosryz7rm
+      type-plus: 4.18.1
     dev: true
 
   /@rushstack/eslint-patch/1.2.0:
@@ -5268,8 +5268,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /resolve.imports/1.2.2:
-    resolution: {integrity: sha512-PLXea0WjmmIQDrnLV57C5/g0s4kc+MtEUtkz/3J26XsY0tnQadMZ7uVcR2uMho9+1VSqwi2GxXzOMmuvnj266Q==}
+  /resolve.imports/1.2.3:
+    resolution: {integrity: sha512-/NPVFOO6c/Rwy9jARc/8v2kb8Y9+Peh+JPKPZdKyPgaAIwkbw+Yipy5X5j9nKSbw2ZW2XiNouXC4Gik/w1HTIw==}
     dev: true
 
   /resolve/1.22.1:
@@ -5985,6 +5985,13 @@ packages:
 
   /type-plus/4.18.0:
     resolution: {integrity: sha512-Hds5neDmogRcQheEmdjbEqVq/cE9UUdd9Ic7eCRI2/AzUH1JB+0ha3Hb3Spn2m1PQRBA61kNjbgSLaljNp0L9Q==}
+    dependencies:
+      tersify: 3.11.1
+      unpartial: 1.0.4
+    dev: true
+
+  /type-plus/4.18.1:
+    resolution: {integrity: sha512-/Dq0K/TUedajerhr2JuXhw44V2tiAniGvyZJL23PqxjUzxrXeASWvfi01Bo8o6mudRXJL/sfBD+KZiHSzrhZ9g==}
     dependencies:
       tersify: 3.11.1
       unpartial: 1.0.4
