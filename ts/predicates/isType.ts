@@ -1,4 +1,3 @@
-import { AnyConstructor, isConstructor } from '../class/index.js'
 import type { Equal } from './Equal.js'
 
 /**
@@ -6,21 +5,11 @@ import type { Equal } from './Equal.js'
  */
 export function isType<T>(subject: T): subject is T
 /**
- * Is the subject a class of T
- */
-export function isType<T extends AnyConstructor>(subject: unknown, constructor: T): subject is InstanceType<T>
-/**
  * Is the subject of type T, satisfying the supplied validator
  */
 export function isType<T>(subject: unknown, validator: (s: T) => unknown): subject is T
-export function isType(subject: unknown, validator?: AnyConstructor | ((s: unknown) => unknown)) {
-  if (validator) {
-    if (isConstructor(validator))
-      return subject instanceof validator
-    else
-      return !!validator(subject)
-  }
-  return true
+export function isType(subject: unknown, validator?: (s: unknown) => unknown) {
+  return validator ? !!validator(subject) : true
 }
 
 isType.t = function <T extends true>(subject?: T) {

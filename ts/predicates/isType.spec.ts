@@ -45,23 +45,6 @@ describe('isType()', () => {
         assertType<number>(s)
       }
     })
-  })
-  describe('with class', () => {
-    test('Class as validator', () => {
-      const s: unknown = new Error()
-      if (isType(s, Error))
-        assertType<Error>(s)
-    })
-    test('Class as validator fails', () => {
-      class Foo { a() { } }
-      const s: Foo | number = 1
-      if (isType(s, Foo)) {
-        assertType<Foo>(s)
-      }
-      else {
-        assertType<number>(s)
-      }
-    })
     test('subject can be type any', () => {
       const s: any = false
       if (isType<boolean>(s, s => typeof s === 'boolean'))

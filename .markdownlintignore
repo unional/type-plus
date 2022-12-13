@@ -1,3 +1,4 @@
+.changeset/*.md
 CHANGELOG.md
 flow-types.md
 LICENSE
