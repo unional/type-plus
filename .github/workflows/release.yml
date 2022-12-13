@@ -10,7 +10,7 @@ jobs:
       os: '["ubuntu-latest"]'
 
   release:
-    uses: unional/.github/.github/workflows/pnpm-release-semantic.yml@main
+    uses: unional/.github/.github/workflows/pnpm-release-changeset.yml@main
     needs: code
     secrets: inherit
 
