@@ -1,5 +1,12 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 5.1.0
+
+### Minor Changes
+
+- 1a51b1f: add `inspect()`
+- b203aab: deprecates `PromiseValue`. Use the built-in `Awaited<T>` instead.
+
 ## 5.0.0
 
 ### Major Changes
