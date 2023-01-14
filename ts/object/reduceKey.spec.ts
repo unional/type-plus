@@ -1,5 +1,5 @@
 import t from 'assert'
-import { reduceKey } from '../index.js'
+import { reduceByKey, reduceKey } from '../index.js'
 
 test('predicate key can be used as indexer of the subject', () => {
   const subject = { a: 1, b: 2, c: 3 }
@@ -15,4 +15,10 @@ test('key type is string if subject type is plain object', () => {
   const subject: {} = { a: 1 }
   const actual = reduceKey(subject, (p, k) => p += subject[k], 'a')
   t.strictEqual(actual, 'a1')
+})
+
+it('includes subject in callback', () => {
+  const subject = { a: 1, b: 2, c: 3 }
+  const actual = reduceByKey(subject, (p, k, i, a, s) => p += s[k], 'a')
+  t.strictEqual(actual, 'a123')
 })

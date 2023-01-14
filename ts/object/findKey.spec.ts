@@ -6,3 +6,9 @@ test('predicate key can be used as indexer of the subject', () => {
   const actual = findKey(subject, key => subject[key] === 2)
   t.strictEqual(actual, 'b')
 })
+
+it('includes subject in callback', () => {
+  const subject = { a: 1, b: 2, c: 3 }
+  const actual = findKey(subject, (key, i, a, s) => s[key] === 2)
+  t.strictEqual(actual, 'b')
+})
