@@ -1,5 +1,15 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 5.2.0
+
+### Minor Changes
+
+- 340d54e: Add subject passthrough to object key utilities
+
+### Patch Changes
+
+- f0761b0: Mark inspector param as `Readonly<T>`
+
 ## 5.1.0
 
 ### Minor Changes
