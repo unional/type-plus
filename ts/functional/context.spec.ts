@@ -33,12 +33,8 @@ describe(`${context.name}()`, () => {
 
   it('provides the combined context to the next transformer', () => {
     const r = context({ a: 1 })
-      .extend(
-        ctx => ({ b: ctx.a + 1 })
-      )
-      .extend(
-        ctx => ({ c: ctx.a + ctx.b })
-      )
+      .extend(ctx => ({ b: ctx.a + 1 }))
+      .extend(ctx => ({ c: ctx.a + ctx.b }))
       .build()
 
     isType.equal<true, { a: number, b: number, c: number }, typeof r>()
