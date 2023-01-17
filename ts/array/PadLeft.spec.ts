@@ -14,7 +14,8 @@ test('pad length less than tuple length is ignored', () => {
 })
 
 test('pad elements before array', () => {
-  isType.equal<true, [any, any, any, ...string[]], PadLeft<string[], 3>>()
+  type R = PadLeft<string[], 3>
+  isType.equal<true, [any, any, any, ...string[]], R>()
 })
 
 test('override PadWith', () => {

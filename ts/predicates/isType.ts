@@ -21,7 +21,7 @@ isType.f = function <T extends false>(subject?: T) {
 
 /**
  * Are types A and B equals/not equals.
- * Easier to use then `isType.t<>()` and `isType.f<>()`,
+ * Easier to use than `isType.t<>()` and `isType.f<>()`,
  * when doing type level only equality comparison as you don't have to import `Equal<>`.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

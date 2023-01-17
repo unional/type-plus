@@ -49,9 +49,10 @@ describe('canAssign()', () => {
       assertType.isTrue(t(undefined))
       assertType.isTrue(t({ a: 1 }))
 
-      // these fails
-      // t({ a: '' })
-      // t({ a: '', b: '' })
+      // @ts-expect-error
+      t({ a: '' })
+      // @ts-expect-error
+      t({ a: '', b: '' })
     })
   })
 })
