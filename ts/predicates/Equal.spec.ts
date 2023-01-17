@@ -133,7 +133,7 @@ describe('Equal<A, B>', () => {
     assertType.isTrue(true as Equal<
       F,
       {
-        (v: string): string;
+        (v: string): string,
         (v: number): number
       }
     >)
