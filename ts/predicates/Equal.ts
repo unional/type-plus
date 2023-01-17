@@ -5,9 +5,9 @@ import type { And, Or } from './logical.js'
  * Checks if the two types are equal.
  */
 export type Equal<A, B, Then = true, Else = false> = [A, B] extends [B, A]
-  ? (And<IsAny<A>, IsAny<B>> extends true
-    ? Then
-    : (Or<IsAny<A>, IsAny<B>> extends true ? Else : Then))
+  ? And<IsAny<A>, IsAny<B>,
+    Then,
+    Or<IsAny<A>, IsAny<B>, Else, Then>>
   : Else
 
 /**
