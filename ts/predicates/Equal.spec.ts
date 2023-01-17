@@ -98,12 +98,12 @@ describe('Equal<A, B>', () => {
     assertType.isFalse(false as A)
   })
 
-  it('works with union objects', () => {
+  it('works with intersect objects', () => {
     assertType.isTrue(true as Equal<{ a: number } & { b: number }, { a: number, b: number }>)
     assertType.isFalse(false as Equal<{ a: number } & { c: number }, { a: number, b: number }>)
   })
 
-  it('works with intersect of functions', () => {
+  it('works with union of functions', () => {
     assertType.isTrue(true as Equal<
       ((v: string) => string) | ((v: number) => number),
       ((v: string) => string) | ((v: number) => number)
@@ -122,6 +122,21 @@ describe('Equal<A, B>', () => {
     assertType.isTrue(true as Equal<any, any>)
     assertType.isFalse(false as Equal<any, 1>)
     assertType.isFalse(false as Equal<1, any>)
+  })
+
+  it('works against function overload', () => {
+    function foo(v: string): string
+    function foo(v: number): number
+    function foo(v: unknown) { return v }
+    type F = typeof foo
+
+    assertType.isTrue(true as Equal<
+      F,
+      {
+        (v: string): string;
+        (v: number): number
+      }
+    >)
   })
 })
 
