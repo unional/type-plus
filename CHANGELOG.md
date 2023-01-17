@@ -1,5 +1,17 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 5.3.0
+
+### Minor Changes
+
+- d7338cb2: Add `Then, Else` support to logical types
+
+### Patch Changes
+
+- 29cf3b12: Update JSDocs for ExtractFunction
+- 29cf3b12: Improve `Equal<A,B>`
+- 5e21ddfe: Update JSDoc for `compose()`
+
 ## 5.2.0
 
 ### Minor Changes
