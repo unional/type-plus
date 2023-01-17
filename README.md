@@ -425,10 +425,10 @@ They can be used to compose complex types.
 #### Logical
 
 - `If<Condition, Then = true, Else = false>`: if statement.
-- `And<A, B>`: logical `AND`.
-- `Or<A, B>`: logical `OR`.
-- `Xor<A, B>`: logical `XOR`.
-- `Not<X>`: logical `NOT`.
+- `And<A, B, Then = true, Else = false>`: logical `AND`.
+- `Or<A, B, Then = true, Else = false>`: logical `OR`.
+- `Xor<A, B, Then = true, Else = false>`: logical `XOR`.
+- `Not<X, Then = true, Else = false>`: logical `NOT`.
 
 Note that these types work correctly with the `boolean` type.
 e.g.:
