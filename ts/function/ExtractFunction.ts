@@ -1,13 +1,19 @@
-import { AnyFunction } from './AnyFunction.js'
+import type { AnyFunction } from './AnyFunction.js'
 
 /**
- * Extract the function signature from a composit type T.
+ * Extract the function signature from a composite type T.
  *
+ * It works with interact of functions, but not on function overloads and union.
  * @note does not work with function overloads.
  */
 export type ExtractFunction<T extends AnyFunction> = T extends AnyFunction<infer P, infer R>
   ? (...args: P) => R : never
 
+/**
+ * Extract the function signature from a composite function.
+ *
+ * @note does not work with function overloads.
+ */
 export function extractFunction<T extends AnyFunction>(fn: T) {
   return fn as any as ExtractFunction<T>
 }

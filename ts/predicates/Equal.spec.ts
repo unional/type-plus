@@ -97,6 +97,32 @@ describe('Equal<A, B>', () => {
     type A = Equal<string | symbol, string | symbol | number>
     assertType.isFalse(false as A)
   })
+
+  it('works with union objects', () => {
+    assertType.isTrue(true as Equal<{ a: number } & { b: number }, { a: number, b: number }>)
+    assertType.isFalse(false as Equal<{ a: number } & { c: number }, { a: number, b: number }>)
+  })
+
+  it('works with intersect of functions', () => {
+    assertType.isTrue(true as Equal<
+      ((v: string) => string) | ((v: number) => number),
+      ((v: string) => string) | ((v: number) => number)
+    >)
+    assertType.isFalse(false as Equal<
+      ((v: string) => string),
+      ((v: string) => string) | ((v: number) => number)
+    >)
+    assertType.isFalse(false as Equal<
+      ((v: string) => string) | ((v: number) => number),
+      ((v: string) => string)
+    >)
+  })
+
+  it('works against any', () => {
+    assertType.isTrue(true as Equal<any, any>)
+    assertType.isFalse(false as Equal<any, 1>)
+    assertType.isFalse(false as Equal<1, any>)
+  })
 })
 
 describe('NotEqual<A, B>', () => {

@@ -58,16 +58,18 @@ describe('isType.t()', () => {
     expect(isType.t<true>()).toBe(true)
     expect(isType.t<Equal<1, 1>>()).toBe(true)
 
-    // these fails
-    // isType.t<false>()
-    // isType.t<boolean>()
+    // @ts-expect-error
+    isType.t<false>()
+    // @ts-expect-error
+    isType.t<boolean>()
   })
   test('accept value with type true but not false or boolean', () => {
     expect(isType.t(true)).toBe(true)
 
-    // these fails
-    // isType.t(false)
-    // isType.t(1 === 1)
+    // @ts-expect-error
+    isType.t(false)
+    // @ts-expect-error
+    isType.t(1 === 1)
   })
 })
 
@@ -76,16 +78,19 @@ describe('isType.f()', () => {
     expect(isType.f<false>()).toBe(true)
     expect(isType.f<Equal<1, 2>>()).toBe(true)
 
-    // these fails
-    // isType.f<true>()
-    // isType.f<boolean>()
+    // @ts-expect-error
+    isType.f<true>()
+
+    // @ts-expect-error
+    isType.f<boolean>()
   })
   test('accept value with type true but not false or boolean', () => {
     expect(isType.f(false)).toBe(true)
 
-    // these fails
-    // isType.f(true)
-    // isType.f(1 !== 1)
+    // @ts-expect-error
+    isType.f(true)
+    // @ts-expect-error
+    isType.f(1 !== 1)
   })
 })
 

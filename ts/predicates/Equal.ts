@@ -1,30 +1,26 @@
-/**
- * `<T>() => T extends A ? 1 : 2` idea originate from `typepark`
- * But it does not work with union types.
- *
- * `<T>() => T extends A` is a trick to create an inferred type `T`.
- * This is needed for `boolean`, `string`, and `number`,
- * as they supports literal types.
- */
-
-import { IsNever } from '../PrimitiveTypes.js'
+import type { IsAny } from './IsAny.js'
+import type { And, Or } from './logical.js'
 
 /**
- * Checks if two types are equal.
+ * Checks if the two types are equal.
  */
-export type Equal<A, B, Then = true, Else = false> =
-  [A, B] extends [object, object]
-  ? (IsNever<A> extends true
-    ? (IsNever<B> extends true ? Then : Else)
-    : (A extends B ? B extends A ? Then : Else : Else))
-  : (<T>() => T extends A ? 1 : 2) extends (<T>() => T extends B ? 1 : 2) ? Then : Else
-export type IsEqual<A, B> = Equal<A, B>
+export type Equal<A, B, Then = true, Else = false> = [A, B] extends [B, A]
+  ? (And<IsAny<A>, IsAny<B>> extends true
+    ? Then
+    : (Or<IsAny<A>, IsAny<B>> extends true ? Else : Then))
+  : Else
 
-export type NotEqual<A, B, Then = true, Else = false> =
-  [A, B] extends [object, object]
-  ? (IsNever<A> extends true
-    ? (IsNever<B> extends true ? Else : Then)
-    : (A extends B ? B extends A ? Else : Then : Then))
-  : (<T>() => T extends A ? 1 : 2) extends (<T>() => T extends B ? 1 : 2) ? Else : Then
+/**
+ * Checks if the two types are equal.
+ */
+export type IsEqual<A, B, Then = true, Else = false> = Equal<A, B, Then, Else>
 
-export type IsNotEqual<A, B> = NotEqual<A, B>
+/**
+ * Check if the two types are not equal
+ */
+export type NotEqual<A, B, Then = true, Else = false> = Equal<A, B, Else, Then>
+
+/**
+ * Check if the two types are not equal
+ */
+export type IsNotEqual<A, B, Then = true, Else = false> = NotEqual<A, B, Then, Else>
