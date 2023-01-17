@@ -442,6 +442,15 @@ but <code>Flavor</code> of the same name cannot be assigned to <code>Brand</code
 <li><code>compose(...fns): F</code>: compose functions</li>
 </ul>
 
+<a href="#context-builder" id="context-builder" style="color: inherit; text-decoration: none;">
+  <h2>Context Builder</h2>
+</a>
+<ul>
+<li><code>context()</code>: a context builder. This is useful to build context for functional programming.<br>It is a sync version of the <code>AsyncContext</code> from <a href="https://unional/async-fp">async-fp</a>.</li>
+</ul>
+<pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-0"> { </span><span class="hl-7">context</span><span class="hl-0"> } </span><span class="hl-9">from</span><span class="hl-0"> </span><span class="hl-8">&#39;type-plus&#39;</span><br/><br/><span class="hl-5">// { a: 1, b: 2 }</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">ctx</span><span class="hl-0"> = </span><span class="hl-6">context</span><span class="hl-0">({ </span><span class="hl-7">a:</span><span class="hl-0"> </span><span class="hl-4">1</span><span class="hl-0"> })</span><br/><span class="hl-0">  .</span><span class="hl-6">extend</span><span class="hl-0">(</span><span class="hl-7">c</span><span class="hl-0"> </span><span class="hl-1">=&gt;</span><span class="hl-0"> ({ </span><span class="hl-7">b:</span><span class="hl-0"> </span><span class="hl-7">c</span><span class="hl-0">.</span><span class="hl-7">a</span><span class="hl-0"> + </span><span class="hl-4">1</span><span class="hl-0"> }))</span><br/><span class="hl-0">  .</span><span class="hl-6">build</span><span class="hl-0">()</span>
+</code></pre>
+
 <a href="#attribution" id="attribution" style="color: inherit; text-decoration: none;">
   <h2>Attribution</h2>
 </a>
@@ -519,6 +528,9 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li class="tsd-kind-type-alias"><a href="types/CommonPropKeys.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Common<wbr/>Prop<wbr/>Keys</a></li>
 <li class="tsd-kind-type-alias"><a href="types/ComposableTypes.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Composable<wbr/>Types</a></li>
 <li class="tsd-kind-type-alias"><a href="types/Concat.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Concat</a></li>
+<li class="tsd-kind-type-alias"><a href="types/ContextBaseShape.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Context<wbr/>Base<wbr/>Shape</a></li>
+<li class="tsd-kind-type-alias"><a href="types/ContextBuilder.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Context<wbr/>Builder</a></li>
+<li class="tsd-kind-type-alias"><a href="types/ContextExtender.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Context<wbr/>Extender</a></li>
 <li class="tsd-kind-type-alias"><a href="types/CreateTuple.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Create<wbr/>Tuple</a></li>
 <li class="tsd-kind-type-alias"><a href="types/Decrement.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Decrement</a></li>
 <li class="tsd-kind-type-alias"><a href="types/DropFirst.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Drop<wbr/>First</a></li>
@@ -624,6 +636,7 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li class="tsd-kind-function"><a href="functions/brand-1.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>brand</a></li>
 <li class="tsd-kind-function"><a href="functions/canAssign-1.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>can<wbr/>Assign</a></li>
 <li class="tsd-kind-function"><a href="functions/compose.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>compose</a></li>
+<li class="tsd-kind-function"><a href="functions/context.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>context</a></li>
 <li class="tsd-kind-function"><a href="functions/drop.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>drop</a></li>
 <li class="tsd-kind-function"><a href="functions/everyKey.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>every<wbr/>Key</a></li>
 <li class="tsd-kind-function"><a href="functions/extractFunction-1.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>extract<wbr/>Function</a></li>
