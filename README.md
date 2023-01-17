@@ -564,6 +564,20 @@ nominalMatch(b1, b2) // false
 - `ChainFn<T>: T`: chain function that returns the input type.
 - `compose(...fns): F`: compose functions
 
+## Context Builder
+
+- `context()`: a context builder. This is useful to build context for functional programming.\
+  It is a sync version of the `AsyncContext` from [async-fp](https://unional/async-fp).
+
+```ts
+import { context } from 'type-plus'
+
+// { a: 1, b: 2 }
+const ctx = context({ a: 1 })
+  .extend(c => ({ b: c.a + 1 }))
+  .build()
+```
+
 ## Attribution
 
 Some code in this library is created by other people in the TypeScript community.
