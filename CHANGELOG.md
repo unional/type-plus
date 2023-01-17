@@ -1,5 +1,11 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 5.4.0
+
+### Minor Changes
+
+- 9add14dc: Add `context()` builder
+
 ## 5.3.0
 
 ### Minor Changes
