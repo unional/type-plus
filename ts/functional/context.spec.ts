@@ -40,4 +40,14 @@ describe(`${context.name}()`, () => {
     isType.equal<true, { a: number, b: number, c: number }, typeof r>()
     expect(r).toEqual({ a: 1, b: 2, c: 3 })
   })
+
+  it('accepts extenders needing partial of current context', () => {
+    function foo(ctx: { a: number }) {
+      return { c: ctx.a + 2 }
+    }
+    const r = context({ a: 1, b: 2 }).extend(foo).build()
+
+    isType.equal<true, { a: number, b: number, c: number }, typeof r>()
+    expect(r).toEqual({ a: 1, b: 2, c: 3 })
+  })
 })
