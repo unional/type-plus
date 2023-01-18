@@ -1,5 +1,17 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 5.5.0
+
+### Minor Changes
+
+- 0247123b: Add `AwaitedProps<T, P>`
+
+  This is useful when working with `context()` where the props are Promise
+
+### Patch Changes
+
+- 6b109359: Allow `context().extend()` to specify type
+
 ## 5.4.1
 
 ### Patch Changes
