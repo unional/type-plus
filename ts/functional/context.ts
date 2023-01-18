@@ -29,7 +29,7 @@ export type ContextBuilder<
     Current extends ContextBaseShape = Ctx,
     Additional extends ContextBaseShape = ContextBaseShape
   >(extender: ContextExtender<Current, Additional>)
-    : ContextBuilder<Init, LeftJoin<Current, Additional>>,
+    : ContextBuilder<Init, LeftJoin<Ctx, Additional>>,
   /**
    * Build and return the context.
    */
