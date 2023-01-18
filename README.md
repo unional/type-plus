@@ -370,6 +370,7 @@ JSONTypes.get<string>(someJson, 'a', 'b', 1, 'c') // miku
 
 ### Promise utilities
 
+- `AwaitedProp<T, V>`: `Awaited` on specified props `P` in `T`.
 - `isPromise<R>(subject: any)`: `isPromise()` type guard.
 - `MaybePromise<T>`: Alias of `T | Promise<T>`.
 - `PromiseValue<P>`: Gets the type within the Promise.
