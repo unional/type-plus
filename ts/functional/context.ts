@@ -18,17 +18,22 @@ export type ContextBuilder<
 > = {
   /**
    * Extends the context using an extender.
+   *
+   * @type Additional The additional context to be added by the `extender`.
+   * By default this is inferred by the `extender`.
+   * But you can also explicitly specify it,
+   * if the type is a superset of the actual return type of the `extender`.
    * @param extender function that add new props to the context.
    *
-   * The extender only need to return a new object with new properties.
+   * The extender only need to return a new object with additional properties.
+   * The builder will merge that with the current context.
    *
-   * Do not need to merge the existing context with the new props.
-   * The builder will do that for you.
+   * If the extender specify an existing property,
+   * it overrides the existing value.
    */
   extend<
-    Current extends ContextBaseShape = Ctx,
     Additional extends ContextBaseShape = ContextBaseShape
-  >(extender: ContextExtender<Current, Additional>)
+  >(extender: ContextExtender<Ctx, Additional>)
     : ContextBuilder<Init, LeftJoin<Ctx, Additional>>,
   /**
    * Build and return the context.
