@@ -1,5 +1,5 @@
 export * from './isPromise.js'
 export * from './mapSeries.js'
 export * from './MaybePromise.js'
-export type { PromiseValue } from './PromiseValue.js'
+export type { PromiseValue, AwaitedProp } from './PromiseValue.js'
 export type { PromiseValueMerge } from './PromiseValueMerge.js'
