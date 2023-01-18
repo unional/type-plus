@@ -1,5 +1,11 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 5.4.1
+
+### Patch Changes
+
+- 48520281: Fix `context()` to support `extender` which only needs a partial of the current context.
+
 ## 5.4.0
 
 ### Minor Changes
