@@ -1,3 +1,4 @@
+import { AssertOrder } from 'assertron'
 import { context, isType } from '../index.js'
 
 describe(`${context.name}()`, () => {
@@ -58,5 +59,37 @@ describe(`${context.name}()`, () => {
 
     isType.equal<true, { a: number, b: number | undefined }, typeof r>()
     expect(r).toEqual({ a: 1, b: 2 })
+  })
+
+  it('invoke each extender only once', () => {
+    const o = new AssertOrder(4)
+    const c1 = context({ a: 1 })
+      .extend(() => {
+        o.once(1)
+        return ({ b: 2 })
+      })
+      .extend(() => {
+        o.once(2)
+        return ({ c: 3 })
+      })
+
+    const c2 = c1.extend(() => {
+      o.once(3)
+      return ({ d: 4 })
+    })
+    const c3 = c1.extend(() => {
+      o.once(4)
+      return ({ e: 5 })
+    })
+
+    const r2 = c2.build()
+    const r3 = c3.build()
+    const r1 = c1.build()
+
+    expect(r2).toEqual({ a: 1, b: 2, c: 3, d: 4 })
+    expect(r3).toEqual({ a: 1, b: 2, c: 3, e: 5 })
+    expect(r1).toEqual({ a: 1, b: 2, c: 3 })
+
+    o.end()
   })
 })

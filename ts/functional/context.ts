@@ -10,7 +10,7 @@ export type ContextBaseShape = Record<string | symbol, any>
 export type ContextExtender<
   Current,
   Additional
-> = (context: Current) => Additional
+> = ((context: Current) => Additional)
 
 export type ContextBuilder<
   Init extends ContextBaseShape,
@@ -42,9 +42,7 @@ export type ContextBuilder<
 }
 
 /**
- * A fluent context builder.
- *
- * The initializer and transformer
+ * Creates a context builder.
  *
  * @param init The initial context or an context initializer.
  * @return the context builder where you can
@@ -57,18 +55,22 @@ export function context<
 >(init?: Init | (() => Init)): ContextBuilder<Init, Ctx> {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return typeof init === 'function'
-    ? contextBuilder({}, [init])
+    ? contextBuilder({}, [[init]])
     : contextBuilder(init ?? {}, []) as any
 }
 
-function contextBuilder(init: ContextBaseShape, transformers: ContextExtender<any, any>[]) {
+/* eslint-disable */
+function contextBuilder(init: ContextBaseShape, extenders: Array<[ContextExtender<any, any> | any]>) {
   return {
-    extend(transformer: ContextExtender<any, any>) {
-      return contextBuilder(init, transformers.concat(transformer))
+    extend(extender: ContextExtender<any, any>) {
+      return contextBuilder(init, extenders.concat([[extender]]))
     },
     build() {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      return transformers.reduce((p, t) => ({ ...p, ...t(p) }), init)
+      return extenders.reduce((p, [t], i) => {
+        const v = typeof t === 'function' ? extenders[i][0] = t(p) : t
+        return { ...p, ...v }
+      }, init)
     }
   }
 }
+/* eslint-enable */
