@@ -1,5 +1,11 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 5.5.2
+
+### Patch Changes
+
+- ce86656f: defaults inspector of `inspect()` to `console.dir()`
+
 ## 5.5.1
 
 ### Patch Changes
