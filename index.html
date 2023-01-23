@@ -432,7 +432,7 @@ but <code>Flavor</code> of the same name cannot be assigned to <code>Brand</code
 <li><code>AnyFunction&lt;P, R&gt;</code>: a generic type for any function</li>
 <li><code>ExtractFunction&lt;F&gt;</code>: extract the function signature from a type <code>F</code>.</li>
 <li><code>extractFunction(fn: F)</code>: adjust type of <code>fn</code> to its function signature only.</li>
-<li><code>inspect&lt;T&gt;(value: T, inspector: (v: T) =&gt; void)</code>: inspect a value and return it.</li>
+<li><code>inspect&lt;T&gt;(value: T, inspector?: (v: T) =&gt; void)</code>: inspect a value and return it.<br>Inspector defaults to <code>console.dir()</code></li>
 </ul>
 
 <a href="#functional-types" id="functional-types" style="color: inherit; text-decoration: none;">
