@@ -558,7 +558,8 @@ nominalMatch(b1, b2) // false
 - `AnyFunction<P, R>`: a generic type for any function
 - `ExtractFunction<F>`: extract the function signature from a type `F`.
 - `extractFunction(fn: F)`: adjust type of `fn` to its function signature only.
-- `inspect<T>(value: T, inspector: (v: T) => void)`: inspect a value and return it.
+- `inspect<T>(value: T, inspector?: (v: T) => void)`: inspect a value and return it.\
+  Inspector defaults to `console.dir()`
 
 ## Functional Types
 
