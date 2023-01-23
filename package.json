@@ -1,6 +1,6 @@
 {
   "name": "type-plus",
-  "version": "5.5.1",
+  "version": "5.5.2",
   "description": "Provides additional types for TypeScript.",
   "homepage": "https://github.com/unional/type-plus",
   "bugs": {
