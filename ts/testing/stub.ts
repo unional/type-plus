@@ -13,10 +13,15 @@ export function stub<T>(stub?: stub.Param<T>) {
 /**
  * builds a stub function
  */
-stub.build = function build<T>(init?: stub.Param<T>) {
+function build<T>(): (stub?: stub.Param<T>) => T
+function build<T>(init: RecursivePartial<T> | (() => RecursivePartial<T>)): (stub?: RecursivePartial<T>) => T
+function build<T>(init?: RecursivePartial<T> | (() => RecursivePartial<T>)) {
   return function (value?: stub.Param<T>) {
-    return init
-      ? stub<T>(requiredDeep(init as any, value as any) as any)
+    const initValue = typeof init === 'function' ? init() : init
+    return initValue
+      ? stub<T>(requiredDeep(initValue, value) as any)
       : stub<T>(value)
   }
 }
+
+stub.build = build

@@ -55,4 +55,10 @@ describe('stub.build()', () => {
     expect(a).toEqual({ a: 1, b: 'b' })
     isType.equal<true, S, typeof a>()
   })
+  it('accepts a init function', () => {
+    let count = 0
+    const s = stub.build<{ a: number, b: string }>(() => ({ a: count++ }))
+    expect(s()).toEqual({ a: 0 })
+    expect(s()).toEqual({ a: 1 })
+  })
 })
