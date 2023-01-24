@@ -1,5 +1,12 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 5.6.0
+
+### Minor Changes
+
+- 15443f6d: `stub.build()` now supports an initializer function.
+  This allows the init value to be randomized.
+
 ## 5.5.2
 
 ### Patch Changes
