@@ -1,5 +1,5 @@
 ---
-'type-plus': main
+'type-plus': minor
 ---
 
 `stub.build()` now supports an initializer function.
