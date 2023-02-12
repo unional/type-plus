@@ -64,7 +64,8 @@
     "@commitlint/config-conventional": "^17.0.2",
     "@jest/globals": "^29.3.1",
     "@repobuddy/jest": "^3.0.0",
-    "@size-limit/preset-small-lib": "^8.0.0",
+    "@size-limit/esbuild-why": "^8.2.4",
+    "@size-limit/preset-small-lib": "^8.2.4",
     "@types/jest": "^29.0.0",
     "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
@@ -85,7 +86,7 @@
     "pinst": "^3.0.0",
     "rimraf": "^3.0.2",
     "satisfier": "^5.2.2",
-    "size-limit": "^8.0.0",
+    "size-limit": "^8.2.4",
     "ts-jest": "^29.0.0",
     "tslib": "^2.4.0",
     "typedoc": "^0.23.0",
@@ -95,14 +96,17 @@
   "packageManager": "pnpm@7.26.3",
   "size-limit": [
     {
+      "name": "cjs",
       "path": "./cjs/index.js",
       "limit": "15 kb"
     },
     {
+      "name": "esm",
       "path": "./esm/index.js",
       "limit": "15 kb"
     },
     {
+      "name": "tslib",
       "path": "./tslib/index.js",
       "limit": "15 kb"
     }
