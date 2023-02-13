@@ -1,12 +1,13 @@
 ignores:
-  - "@commitlint/*"
-  - "@jest/globals"
-  - "@repobuddy/jest"
-  - "@semantic-release/*"
-  - "@size-limit/preset-small-lib"
-  - "@types/node"
-  - "@types/jest"
-  - "@typescript-eslint/parser"
+  - '@commitlint/*'
+  - '@jest/globals'
+  - '@repobuddy/jest'
+  - '@semantic-release/*'
+  - '@size-limit/esbuild-why'
+  - '@size-limit/preset-small-lib'
+  - '@types/node'
+  - '@types/jest'
+  - '@typescript-eslint/parser'
   - babel-jest
   - jest-*
   - semantic-release
