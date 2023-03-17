@@ -1,5 +1,34 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 6.0.0
+
+### Major Changes
+
+- 3a01eb6a: CJS target upgraded to ES2020
+
+### Minor Changes
+
+- 35b489de: Add the following:
+
+  - `isType.never`
+  - `Numeric`
+  - `Zero`
+  - `Integer`
+  - `Negative`
+  - `NonNegative`
+  - `NumberPlus.Numeric`
+  - `NumberPlus.Zero`
+  - `NumberPlus.Integer`
+  - `NumberPlus.Negative`
+  - `NumberPlus.NonNegative`
+  - `At`
+  - `ArrayPlus.At`
+  - `ArrayPlus.Concat`
+
+### Patch Changes
+
+- 33b78a76: Add `module` field for `webpack` 4 compatibility.
+
 ## 5.6.0
 
 ### Minor Changes
