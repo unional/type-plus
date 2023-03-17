@@ -588,13 +588,15 @@ Whenever possible, I add attribution to the person who created those **codes** i
 
 ## Similar projects
 
-- [`ts-essentials`](https://github.com/krzkaczor/ts-essentials), all essential TypeScript types in one place.
-- [`ts-toolbelt`](https://github.com/millsp/ts-toolbelt), a more mature type lib.
-- [`type-fest`](https://github.com/sindresorhus/type-fest), a collection of essential TypeScript types.
-- [`type-zoo`](https://github.com/pelotom/type-zoo), a modest type lib usable today.
-- [`typepark`](https://github.com/kgtkr/typepark), a new type collection offering tuple manipulation and `Pipe`.
-- [`typelevel-ts`](https://github.com/gcanti/typelevel-ts), a type lib by [@gcanti](https://github.com/gcanti), author of several FP libraries in TS.
-- [`typical`](https://github.com/KiaraGrouwstra/typical), a playground of type-level operations for TypeScript.
+- [spec.ts]: write tests for your types!
+- [ts-essentials]: all essential TypeScript types in one place.
+- [ts-toolbelt]: TypeScript's largest utility library.
+- [type-fest]: a collection of essential TypeScript types.
+- [type-zoo]: a modest type lib usable today.
+- [typepark]: a new type collection offering tuple manipulation and `Pipe`.
+- [typelevel-ts]: a type lib by [@gcanti], author of several FP libraries in TS.
+- [typical]: a playground of type-level operations for TypeScript.
+- [utility-types]: collection of utility types, complementing TypeScript build-in mapped types ans aliases.
 
 ## Contribute
 
@@ -628,3 +630,13 @@ git push
 [vscode-url]: https://code.visualstudio.com/
 [wallaby-image]: https://img.shields.io/badge/wallaby.js-configured-green.svg
 [wallaby-url]: https://wallabyjs.com
+[spec.ts]: https://www.npmjs.com/package/spec.ts
+[typical]: https://github.com/KiaraGrouwstra/typical
+[@gcanti]: https://github.com/gcanti
+[typelevel-ts]: https://github.com/gcanti/typelevel-ts
+[typepark]: https://github.com/kgtkr/typepark
+[type-zoo]: https://github.com/pelotom/type-zoo
+[type-fest]: https://github.com/sindresorhus/type-fest
+[ts-toolbelt]: https://github.com/millsp/ts-toolbelt
+[ts-essentials]: https://github.com/krzkaczor/ts-essentials
+[utility-types]: https://github.com/piotrwitek/utility-types
