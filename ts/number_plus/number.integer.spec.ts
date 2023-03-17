@@ -1,5 +1,9 @@
 import { Integer, isType } from '../index.js'
 
+it('fails if input is number', () => {
+	isType.equal<true, Integer<number>, never>()
+})
+
 it('is a type filter by default', () => {
 	isType.equal<true, Integer<-1>, -1>()
 	isType.equal<true, Integer<-2>, -2>()
