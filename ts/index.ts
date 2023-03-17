@@ -1,6 +1,6 @@
 // import * as types from './types/index.js'
 export { required, requiredDeep, unpartial } from 'unpartial'
-export * from './array/index.js'
+export * from './array_plus/index.js'
 export * from './assertion/index.js'
 export * from './class/index.js'
 export type { ComposableTypes, NonComposableTypes } from './ComposableTypes.js'

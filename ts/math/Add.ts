@@ -1,4 +1,4 @@
-import type { PadLeft } from '../array/index.js'
+import type { PadLeft } from '../array_plus/index.js'
 import type { And } from '../predicates/index.js'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { Digit, DigitArray } from './Digit.js'
