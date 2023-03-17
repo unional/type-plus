@@ -20,6 +20,20 @@ isType.f = function <T extends false>(subject?: T) {
 }
 
 /**
+ * Check is the type `never`
+ */
+function isNever<S extends never>(): unknown
+/**
+ * Check is the value is type `never`
+ */
+function isNever(subject: never): subject is never
+function isNever(subject?: unknown): subject is never {
+	return true
+}
+
+isType.never = isNever
+
+/**
  * Are types A and B equals/not equals.
  * Easier to use than `isType.t<>()` and `isType.f<>()`,
  * when doing type level only equality comparison as you don't have to import `Equal<>`.

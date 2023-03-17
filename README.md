@@ -32,12 +32,12 @@ yarn add type-plus
 
 Type assertion is one of the main features of `type-plus`.
 
-There are 5 kinds of type assertions:
+Type assertions can be `immediate` compile time check, or they can have `runtime` behavior.
 
-- `runtime`: validates during runtime.
-- `immediate`: validates at compile time.
-- `type guard`: [User-defined type guard functions](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards) (`if (isBool(s))`) introduced in TypeScript 1.6.
-- `assertion function`: [assertion functions](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions) (`assertIsBool(a)`) introduced in TypeScript 3.7.
+There are 4 kinds of type assertions:
+
+- `type guard`: [User-defined type guard functions][type_guard] (`if (isBool(s))`) introduced in TypeScript 1.6.
+- `assertion function`: [assertion functions][assertion_function] (`assertIsBool(a)`) introduced in TypeScript 3.7.
 - `logical`: functions or generic types that returns `true` or `false` type to be used in type level programming.
 - `filter`: generic type that returns `never` if the test fails.
 
@@ -211,6 +211,18 @@ when doing type-level only equality comparison as you don't have to import `Equa
 These overloads of `isType` allow you to specify a `validator`.
 With these overloads, `subject` can be `unknown` or `any`.
 
+[`isType.never<S>()`](ts/predicates/isType.ts#L25):
+
+✔️ `immediate`
+
+Check is the type `never`.
+
+[`isType.never(s)`](ts/predicates/isType.ts#L29):
+
+✔️ `immediate`
+
+Check is the value is type `never`.
+
 `Equal<A, B>`:
 `IsEqual<A, B>`:
 
@@ -303,6 +315,7 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 
 ### Array Utilities
 
+- [`AtArray<A, N>`](ts/array_plus/array.ts#L19): gets the element type at index `N` in the array `A`.
 - `CommonPropKeys<A>`: gets common keys inside the records in the array `A` (deprecate `CommonKeys`).
 - `Concat<A, B>`: `[...A, ...B]`.
 - `CreateTuple<L, T>`: Creates `Tuple<T>` with `L` number of elements.
@@ -439,6 +452,14 @@ e.g.:
 
 There is a problem with generic distribution: <https://github.com/microsoft/TypeScript/issues/41053>
 So you may encounter some weird behavior if your logic is complex.
+
+### Number
+
+- [`Numeric`](ts/number_plus/number.ts#L4): either number or bigint (origin: [type-feat]).
+- [`Zero`](ts/number_plus/number.ts#L9): `0` in number or bigint (origin: [type-feat]).
+- [`Integer<N, Then = N, Else = never>`](ts/number_plus/number.ts#L24): is integer (origin: [type-feat]).
+- [`Negative<N, Then = N, Else = never>`](ts/number_plus/number.ts#39): is negative (origin: [type-feat]).
+- [`NonNegative<N, Then = N, Else = never>`](ts/number_plus/number.ts#58): is non-negative (origin: [type-feat])
 
 ### Math
 
@@ -588,8 +609,10 @@ Whenever possible, I add attribution to the person who created those **codes** i
 
 ## Similar projects
 
+- [expect-type]: Compile-time tests for types
 - [spec.ts]: write tests for your types!
 - [ts-essentials]: all essential TypeScript types in one place.
+- [ts-expect]: Checks values in TypeScript match expectations.
 - [ts-toolbelt]: TypeScript's largest utility library.
 - [type-fest]: a collection of essential TypeScript types.
 - [type-zoo]: a modest type lib usable today.
@@ -615,28 +638,27 @@ git push
 # create PR
 ```
 
+[@gcanti]: https://github.com/gcanti
 [codecov-image]: https://codecov.io/gh/unional/type-plus/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/type-plus
 [downloads-image]: https://img.shields.io/npm/dm/type-plus.svg?style=flat
 [downloads-url]: https://npmjs.org/package/type-plus
+[expect-type]: https://github.com/mmkal/expect-type
 [github-action-url]: https://github.com/unional/type-plus/actions
 [github-nodejs]: https://github.com/unional/type-plus/workflows/nodejs/badge.svg
 [npm-image]: https://img.shields.io/npm/v/type-plus.svg?style=flat
 [npm-url]: https://npmjs.org/package/type-plus
 [semantic-release-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
+[ts-expect]: https://github.com/TypeStrong/ts-expect
+[type-feat]: https://github.com/sindresorhus/type-fest
+[type_guard]: https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates
+[typelevel-ts]: https://github.com/gcanti/typelevel-ts
 [TypeScript]: https://www.typescriptlang.org
+[typical]: https://github.com/KiaraGrouwstra/typical
+[utility-types]: https://github.com/piotrwitek/utility-types
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
 [wallaby-image]: https://img.shields.io/badge/wallaby.js-configured-green.svg
 [wallaby-url]: https://wallabyjs.com
-[spec.ts]: https://www.npmjs.com/package/spec.ts
-[typical]: https://github.com/KiaraGrouwstra/typical
-[@gcanti]: https://github.com/gcanti
-[typelevel-ts]: https://github.com/gcanti/typelevel-ts
-[typepark]: https://github.com/kgtkr/typepark
-[type-zoo]: https://github.com/pelotom/type-zoo
-[type-fest]: https://github.com/sindresorhus/type-fest
-[ts-toolbelt]: https://github.com/millsp/ts-toolbelt
-[ts-essentials]: https://github.com/krzkaczor/ts-essentials
-[utility-types]: https://github.com/piotrwitek/utility-types
+[assertion_function]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions
