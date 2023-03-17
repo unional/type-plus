@@ -15,5 +15,6 @@ Add the following:
 - `NumberPlus.Integer`
 - `NumberPlus.Negative`
 - `NumberPlus.NonNegative`
-- `AtArray`
+- `At`
 - `ArrayPlus.At`
+- `ArrayPlus.Concat`
