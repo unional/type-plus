@@ -2,13 +2,12 @@
 import { IsEmptyObject, isType } from '../index.js'
 
 test('true for {}', () => {
-  isType.t<IsEmptyObject<{}>>()
+	isType.t<IsEmptyObject<{}>>()
 })
 test('false for everything else', () => {
-  isType.f<IsEmptyObject<undefined>>()
-  isType.f<IsEmptyObject<false>>()
-  isType.f<IsEmptyObject<0>>()
-  isType.f<IsEmptyObject<''>>()
-  isType.f<IsEmptyObject<{ a: 1 }>>()
+	isType.f<IsEmptyObject<undefined>>()
+	isType.f<IsEmptyObject<false>>()
+	isType.f<IsEmptyObject<0>>()
+	isType.f<IsEmptyObject<''>>()
+	isType.f<IsEmptyObject<{ a: 1 }>>()
 })
-

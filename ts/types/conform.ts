@@ -11,8 +11,8 @@ import { getPlainAnalysisReport } from './getPlainAnalysisReport.js'
  * and you can get a string report using `conform.getReport()`
  */
 export function conform<T extends AllType>(type: T, subject: unknown): subject is Generate<T> {
-  const result = conform.result = analyze({ strict: true }, type, subject)
-  return !result.analysis.fail
+	const result = (conform.result = analyze({ strict: true }, type, subject))
+	return !result.analysis.fail
 }
 
 /**
@@ -24,4 +24,3 @@ conform.result = { analysis: {}, actual: undefined } as analyze.Result
  * Gets a simple report of the analysis.
  */
 conform.getReport = () => getPlainAnalysisReport(conform.result)
-

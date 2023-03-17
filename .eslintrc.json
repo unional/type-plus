@@ -7,15 +7,13 @@
   "extends": "plugin:harmony/latest",
   "overrides": [
     {
-      "extends": "plugin:harmony/ts-recommended-type-check",
+      "extends": "plugin:harmony/ts-prettier",
       "files": [
         "*.ts",
         "*.tsx"
       ],
-      "parserOptions": {
-        "project": "tsconfig.esm.json"
-      },
       "rules": {
+				"@typescript-eslint/ban-types": "off",
         "no-use-before-define": "off"
       }
     }

@@ -13,18 +13,18 @@ import { record } from './Record.js'
 // import { bigint } from './types/BigInt'
 
 export const optional = {
-  any,
-  array: array.optional,
-  // bigint: bigint.optional,
-  boolean: boolean.optional,
-  null: nil.optional,
-  number: number.optional,
-  object: object.optional,
-  record: record.optional,
-  string: string.optional,
-  symbol: symbol.optional,
-  tuple: tuple.optional,
-  undefined: undef,
-  unknown
+	any,
+	array: array.optional,
+	// bigint: bigint.optional,
+	boolean: boolean.optional,
+	null: nil.optional,
+	number: number.optional,
+	object: object.optional,
+	record: record.optional,
+	string: string.optional,
+	symbol: symbol.optional,
+	tuple: tuple.optional,
+	undefined: undef,
+	unknown
 }
 export const O = optional

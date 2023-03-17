@@ -7,7 +7,19 @@ export type { ComposableTypes, NonComposableTypes } from './ComposableTypes.js'
 export * from './function/index.js'
 export * from './functional/index.js'
 export type { JSONArray, JSONObject, JSONPrimitive, JSONTypes } from './JSONTypes.js'
-export type { Abs, Add, Decrement, Digit, DigitArray, GreaterThan, Increment, IsPositive, IsWhole, Max, Subtract } from './math/index.js'
+export type {
+	Abs,
+	Add,
+	Decrement,
+	Digit,
+	DigitArray,
+	GreaterThan,
+	Increment,
+	IsPositive,
+	IsWhole,
+	Max,
+	Subtract
+} from './math/index.js'
 export * from './nodejs/index.js'
 export * from './nominal-types/index.js'
 export * from './object/index.js'

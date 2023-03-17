@@ -1,3 +1,11 @@
+cjs/
+coverage/
+esm/
+fixtures/
+node_modules/
+tslib/
 *.json
+*.md
+*.mdx
 *.yml
 *.yaml

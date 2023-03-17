@@ -9,14 +9,14 @@ export function isType<T>(subject: T): subject is T
  */
 export function isType<T>(subject: unknown, validator: (s: T) => unknown): subject is T
 export function isType(subject: unknown, validator?: (s: unknown) => unknown) {
-  return validator ? !!validator(subject) : true
+	return validator ? !!validator(subject) : true
 }
 
 isType.t = function <T extends true>(subject?: T) {
-  return subject === undefined || subject === true
+	return subject === undefined || subject === true
 }
 isType.f = function <T extends false>(subject?: T) {
-  return subject === undefined || subject === false
+	return subject === undefined || subject === false
 }
 
 /**
@@ -25,4 +25,4 @@ isType.f = function <T extends false>(subject?: T) {
  * when doing type level only equality comparison as you don't have to import `Equal<>`.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-isType.equal = function <C extends Equal<A, B>, A, B>() { }
+isType.equal = function <C extends Equal<A, B>, A, B>() {}

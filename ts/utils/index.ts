@@ -22,14 +22,25 @@ export type { Widen } from './Widen.js'
  * config({ minify: false })  // INVALID
  */
 export type EitherOrBoth<A, B, C = void, D = void> = C extends void
-  ? A | B | A & B
-  : (D extends void
-    ? A | B | C | A & B | A & C | B & C | A & B & C
-    : A | B | C | D |
-    A & B | A & C | A & D | B & C | B & D | C & D |
-    A & B & C | A & B & D | A & C & D | B & C & D |
-    A & B & C & D
-  )
+	? A | B | (A & B)
+	: D extends void
+	? A | B | C | (A & B) | (A & C) | (B & C) | (A & B & C)
+	:
+			| A
+			| B
+			| C
+			| D
+			| (A & B)
+			| (A & C)
+			| (A & D)
+			| (B & C)
+			| (B & D)
+			| (C & D)
+			| (A & B & C)
+			| (A & B & D)
+			| (A & C & D)
+			| (B & C & D)
+			| (A & B & C & D)
 
 /**
  * `A` | `B` | `A & B`.
@@ -49,4 +60,4 @@ export type EitherOrBoth<A, B, C = void, D = void> = C extends void
  * config({ src: 'src', minify: false })
  * config({ minify: false })  // INVALID
  */
- export type EitherAnd<A, B, C = void, D = void> = EitherOrBoth<A, B, C, D>
+export type EitherAnd<A, B, C = void, D = void> = EitherOrBoth<A, B, C, D>

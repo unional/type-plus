@@ -13,8 +13,8 @@ import type { KeyTypes } from './KeyTypes.js'
 export function record<K extends KeyTypes, V>(value?: Record<K, V>): Record<Widen<K>, V>
 export function record<R extends Record<any, any>>(value?: R): R
 export function record(value?: any) {
-  const r = Object.create(null) as AnyRecord
-  return (value ? Object.assign(r, value) : r) as AnyRecord
+	const r = Object.create(null) as AnyRecord
+	return (value ? Object.assign(r, value) : r) as AnyRecord
 }
 
 /**

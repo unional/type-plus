@@ -11,8 +11,8 @@ import { getPlainAnalysisReport } from './getPlainAnalysisReport.js'
  * and you can get a string report using `satisfy.getReport()`
  */
 export function satisfy<T extends AllType>(type: T, subject: unknown): subject is Generate<T> {
-  const result = satisfy.result = analyze({ strict: false }, type, subject)
-  return !result.analysis.fail
+	const result = (satisfy.result = analyze({ strict: false }, type, subject))
+	return !result.analysis.fail
 }
 
 /**
@@ -24,4 +24,3 @@ satisfy.result = { analysis: {} } as analyze.Result
  * Gets a simple report of the analysis.
  */
 satisfy.getReport = () => getPlainAnalysisReport(satisfy.result)
-

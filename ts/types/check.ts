@@ -9,9 +9,13 @@ import { getPlainAnalysisReport } from './getPlainAnalysisReport.js'
  * the detail report is available in `check.result`,
  * and you can get a string report using `check.getReport()`
  */
-export function check<T extends AllType>(options: analyze.Options, type: T, subject: unknown): subject is Generate<T> {
-  const result = check.result = analyze(options, type, subject)
-  return !result.analysis.fail
+export function check<T extends AllType>(
+	options: analyze.Options,
+	type: T,
+	subject: unknown
+): subject is Generate<T> {
+	const result = (check.result = analyze(options, type, subject))
+	return !result.analysis.fail
 }
 
 /**
@@ -23,4 +27,3 @@ check.result = { analysis: {}, actual: undefined } as analyze.Result
  * Gets a simple report of the analysis.
  */
 check.getReport = () => getPlainAnalysisReport(check.result)
-

@@ -3,11 +3,11 @@ import type { AnyFunction } from '../function/index.js'
 import type { RecursivePartial } from '../object/index.js'
 
 export namespace stub {
-  export type Param<T> = T extends AnyFunction ? T : RecursivePartial<T>
+	export type Param<T> = T extends AnyFunction ? T : RecursivePartial<T>
 }
 
 export function stub<T>(stub?: stub.Param<T>) {
-  return stub as T
+	return stub as T
 }
 
 /**
@@ -16,12 +16,10 @@ export function stub<T>(stub?: stub.Param<T>) {
 function build<T>(): (stub?: stub.Param<T>) => T
 function build<T>(init: RecursivePartial<T> | (() => RecursivePartial<T>)): (stub?: RecursivePartial<T>) => T
 function build<T>(init?: RecursivePartial<T> | (() => RecursivePartial<T>)) {
-  return function (value?: stub.Param<T>) {
-    const initValue = typeof init === 'function' ? init() : init
-    return initValue
-      ? stub<T>(requiredDeep(initValue, value) as any)
-      : stub<T>(value)
-  }
+	return function (value?: stub.Param<T>) {
+		const initValue = typeof init === 'function' ? init() : init
+		return initValue ? stub<T>(requiredDeep(initValue, value) as any) : stub<T>(value)
+	}
 }
 
 stub.build = build

@@ -9,4 +9,6 @@ export type PromiseValue<P extends Promise<any>> = P extends Promise<infer T> ? 
 /**
  * Await on specific props V on type T
  */
-export type AwaitedProp<T extends AnyRecord, K extends keyof T> = { [k in keyof T]: k extends K ? Awaited<T[k]> : T[k] }
+export type AwaitedProp<T extends AnyRecord, K extends keyof T> = {
+	[k in keyof T]: k extends K ? Awaited<T[k]> : T[k]
+}

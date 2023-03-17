@@ -10,14 +10,13 @@ import { ValueOf } from './ValueOf.js'
  * `ramda` has a similar function (`mapObjIndexed()`) with different parameter order.
  * I keep this parameter order because this parameter order provides better type inference.
  */
-export function mapProperties<
-  Subject extends AnyRecord,
-  ResultProp
->(
-  subject: Subject,
-  callbackfn: (value: ValueOf<Subject>, key: keyof Subject, obj: Subject) => ResultProp,
+export function mapProperties<Subject extends AnyRecord, ResultProp>(
+	subject: Subject,
+	callbackfn: (value: ValueOf<Subject>, key: keyof Subject, obj: Subject) => ResultProp
 ): { [K in keyof Subject]: ResultProp } {
-  return reduceByKey(subject, (p, key) => (
-    p[key] = callbackfn(subject[key], key, subject),
-    p), {} as { [K in keyof Subject]: ResultProp })
+	return reduceByKey(
+		subject,
+		(p, key) => ((p[key] = callbackfn(subject[key], key, subject)), p),
+		{} as { [K in keyof Subject]: ResultProp }
+	)
 }

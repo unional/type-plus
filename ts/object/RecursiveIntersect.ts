@@ -11,12 +11,15 @@ import type { AnyRecord } from './AnyRecord.js'
  * `undefined` is not an accepted value.
  * The resulting type would be `never`
  */
-export type RecursiveIntersect<T, U> = (T & (
-  T extends Array<infer Y> ? Array<Y & U> & U :
-  T extends AnyRecord ? {
-    [P in keyof T]:
-    T[P] extends Array<infer R> ? Array<RecursiveIntersect<R, U>> & U :
-    T[P] extends AnyRecord ? RecursiveIntersect<T[P], U> :
-    T[P] & U
-  } & U : U)
-)
+export type RecursiveIntersect<T, U> = T &
+	(T extends Array<infer Y>
+		? Array<Y & U> & U
+		: T extends AnyRecord
+		? {
+				[P in keyof T]: T[P] extends Array<infer R>
+					? Array<RecursiveIntersect<R, U>> & U
+					: T[P] extends AnyRecord
+					? RecursiveIntersect<T[P], U>
+					: T[P] & U
+		  } & U
+		: U)

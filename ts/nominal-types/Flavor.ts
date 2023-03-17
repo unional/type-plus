@@ -11,7 +11,7 @@ import { typeSym } from './types.js'
  * This is a less restrictive form of branding.
  */
 export type Flavor<F extends string, T> = T & {
-  [typeSym]?: F
+	[typeSym]?: F
 }
 
 /**
@@ -23,10 +23,13 @@ export function flavor<F extends string>(type: F): <T>(subject: T) => Flavor<F, 
  */
 export function flavor<F extends string, T>(type: F, subject: T): Flavor<F, Widen<T>>
 export function flavor(type: string, subject?: unknown) {
-  if (subject === undefined) return function <T>(subject: T) { return flavor(type, subject) }
-  if (typeof subject === 'object' && subject !== null) {
-    // if subject is not an object, the branding will exist only in type-level.
-    (subject as { [typeSym]: string })[typeSym] = type
-  }
-  return subject
+	if (subject === undefined)
+		return function <T>(subject: T) {
+			return flavor(type, subject)
+		}
+	if (typeof subject === 'object' && subject !== null) {
+		// if subject is not an object, the branding will exist only in type-level.
+		;(subject as { [typeSym]: string })[typeSym] = type
+	}
+	return subject
 }
