@@ -45,11 +45,10 @@
   <h2>Type Assertions</h2>
 </a>
 <p>Type assertion is one of the main features of <code>type-plus</code>.</p>
-<p>There are 5 kinds of type assertions:</p>
+<p>Type assertions can be <code>immediate</code> compile time check, or they can have <code>runtime</code> behavior.</p>
+<p>There are 4 kinds of type assertions:</p>
 <ul>
-<li><code>runtime</code>: validates during runtime.</li>
-<li><code>immediate</code>: validates at compile time.</li>
-<li><code>type guard</code>: <a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards">User-defined type guard functions</a> (<code>if (isBool(s))</code>) introduced in TypeScript 1.6.</li>
+<li><code>type guard</code>: <a href="https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates">User-defined type guard functions</a> (<code>if (isBool(s))</code>) introduced in TypeScript 1.6.</li>
 <li><code>assertion function</code>: <a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions">assertion functions</a> (<code>assertIsBool(a)</code>) introduced in TypeScript 3.7.</li>
 <li><code>logical</code>: functions or generic types that returns <code>true</code> or <code>false</code> type to be used in type level programming.</li>
 <li><code>filter</code>: generic type that returns <code>never</code> if the test fails.</li>
@@ -146,6 +145,12 @@ when doing type-level only equality comparison as you don&#39;t have to import <
 <p>✔️ <code>type guard</code>, <code>runtime</code></p>
 <p>These overloads of <code>isType</code> allow you to specify a <code>validator</code>.
 With these overloads, <code>subject</code> can be <code>unknown</code> or <code>any</code>.</p>
+<p><a href="ts/predicates/isType.ts#L25"><code>isType.never&lt;S&gt;()</code></a>:</p>
+<p>✔️ <code>immediate</code></p>
+<p>Check is the type <code>never</code>.</p>
+<p><a href="ts/predicates/isType.ts#L29"><code>isType.never(s)</code></a>:</p>
+<p>✔️ <code>immediate</code></p>
+<p>Check is the value is type <code>never</code>.</p>
 <p><code>Equal&lt;A, B&gt;</code>:
 <code>IsEqual&lt;A, B&gt;</code>:</p>
 <p>✔️ <code>logical</code></p>
@@ -199,8 +204,9 @@ These utilities include utility types and type-adjusted functions.</p>
   <h3>Array Utilities</h3>
 </a>
 <ul>
+<li><a href="ts/array_plus/array.ts#L19"><code>At&lt;A, N&gt;</code></a>: gets the element type at index <code>N</code> in the array <code>A</code>.</li>
 <li><code>CommonPropKeys&lt;A&gt;</code>: gets common keys inside the records in the array <code>A</code> (deprecate <code>CommonKeys</code>).</li>
-<li><code>Concat&lt;A, B&gt;</code>: <code>[...A, ...B]</code>.</li>
+<li><a href="ts/array_plus/array.ts#L38"><code>Concat&lt;A, B&gt;</code></a>: <code>[...A, ...B]</code>.</li>
 <li><code>CreateTuple&lt;L, T&gt;</code>: Creates <code>Tuple&lt;T&gt;</code> with <code>L</code> number of elements.</li>
 <li><code>drop(array, value)</code>: drop a particular value from an array.</li>
 <li><code>DropFirst&lt;A&gt;</code>: drops the first value type of <code>A</code>.</li>
@@ -347,6 +353,17 @@ e.g.:</p>
 <p>There is a problem with generic distribution: <a href="https://github.com/microsoft/TypeScript/issues/41053">https://github.com/microsoft/TypeScript/issues/41053</a>
 So you may encounter some weird behavior if your logic is complex.</p>
 
+<a href="#number" id="number" style="color: inherit; text-decoration: none;">
+  <h3>Number</h3>
+</a>
+<ul>
+<li><a href="ts/number_plus/number.ts#L4"><code>Numeric</code></a>: either number or bigint (origin: <a href="https://github.com/sindresorhus/type-fest">type-feat</a>).</li>
+<li><a href="ts/number_plus/number.ts#L9"><code>Zero</code></a>: <code>0</code> in number or bigint (origin: <a href="https://github.com/sindresorhus/type-fest">type-feat</a>).</li>
+<li><a href="ts/number_plus/number.ts#L24"><code>Integer&lt;N, Then = N, Else = never&gt;</code></a>: is integer (origin: <a href="https://github.com/sindresorhus/type-fest">type-feat</a>).</li>
+<li><a href="ts/number_plus/number.ts#39"><code>Negative&lt;N, Then = N, Else = never&gt;</code></a>: is negative (origin: <a href="https://github.com/sindresorhus/type-fest">type-feat</a>).</li>
+<li><a href="ts/number_plus/number.ts#58"><code>NonNegative&lt;N, Then = N, Else = never&gt;</code></a>: is non-negative (origin: <a href="https://github.com/sindresorhus/type-fest">type-feat</a>)</li>
+</ul>
+
 <a href="#math" id="math" style="color: inherit; text-decoration: none;">
   <h3>Math</h3>
 </a>
@@ -463,13 +480,17 @@ Whenever possible, I add attribution to the person who created those <strong>cod
   <h2>Similar projects</h2>
 </a>
 <ul>
-<li><a href="https://github.com/krzkaczor/ts-essentials"><code>ts-essentials</code></a>, all essential TypeScript types in one place.</li>
-<li><a href="https://github.com/millsp/ts-toolbelt"><code>ts-toolbelt</code></a>, a more mature type lib.</li>
-<li><a href="https://github.com/sindresorhus/type-fest"><code>type-fest</code></a>, a collection of essential TypeScript types.</li>
-<li><a href="https://github.com/pelotom/type-zoo"><code>type-zoo</code></a>, a modest type lib usable today.</li>
-<li><a href="https://github.com/kgtkr/typepark"><code>typepark</code></a>, a new type collection offering tuple manipulation and <code>Pipe</code>.</li>
-<li><a href="https://github.com/gcanti/typelevel-ts"><code>typelevel-ts</code></a>, a type lib by <a href="https://github.com/gcanti">@gcanti</a>, author of several FP libraries in TS.</li>
-<li><a href="https://github.com/KiaraGrouwstra/typical"><code>typical</code></a>, a playground of type-level operations for TypeScript.</li>
+<li><a href="https://github.com/mmkal/expect-type">expect-type</a>: Compile-time tests for types</li>
+<li>[spec.ts]: write tests for your types!</li>
+<li>[ts-essentials]: all essential TypeScript types in one place.</li>
+<li><a href="https://github.com/TypeStrong/ts-expect">ts-expect</a>: Checks values in TypeScript match expectations.</li>
+<li>[ts-toolbelt]: TypeScript&#39;s largest utility library.</li>
+<li>[type-fest]: a collection of essential TypeScript types.</li>
+<li>[type-zoo]: a modest type lib usable today.</li>
+<li>[typepark]: a new type collection offering tuple manipulation and <code>Pipe</code>.</li>
+<li><a href="https://github.com/gcanti/typelevel-ts">typelevel-ts</a>: a type lib by <a href="https://github.com/gcanti">@gcanti</a>, author of several FP libraries in TS.</li>
+<li><a href="https://github.com/KiaraGrouwstra/typical">typical</a>: a playground of type-level operations for TypeScript.</li>
+<li><a href="https://github.com/piotrwitek/utility-types">utility-types</a>: collection of utility types, complementing TypeScript build-in mapped types ans aliases.</li>
 </ul>
 
 <a href="#contribute" id="contribute" style="color: inherit; text-decoration: none;">
@@ -500,9 +521,11 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li class="current selected"><a href="modules.html">type-<wbr/>plus</a>
 <ul>
 <li class="tsd-kind-namespace"><a href="modules/Add.html">Add</a></li>
+<li class="tsd-kind-namespace"><a href="modules/ArrayPlus.html">Array<wbr/>Plus</a></li>
 <li class="tsd-kind-namespace"><a href="modules/Digit.html">Digit</a></li>
 <li class="tsd-kind-namespace"><a href="modules/DigitArray.html">Digit<wbr/>Array</a></li>
 <li class="tsd-kind-namespace"><a href="modules/GreaterThan.html">Greater<wbr/>Than</a></li>
+<li class="tsd-kind-namespace"><a href="modules/NumberPlus.html">Number<wbr/>Plus</a></li>
 <li class="tsd-kind-namespace"><a href="modules/OptionalKeys.html">Optional<wbr/>Keys</a></li>
 <li class="tsd-kind-namespace"><a href="modules/Pick.html">Pick</a></li>
 <li class="tsd-kind-namespace"><a href="modules/RequiredKeys.html">Required<wbr/>Keys</a></li>
@@ -521,12 +544,13 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li class="tsd-kind-type-alias"><a href="types/AnyFunction.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Any<wbr/>Function</a></li>
 <li class="tsd-kind-type-alias"><a href="types/AnyRecord.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Any<wbr/>Record</a></li>
 <li class="deprecated tsd-kind-type-alias"><a href="types/ArrayValue.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Array<wbr/>Value</a></li>
+<li class="tsd-kind-type-alias"><a href="types/At.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>At</a></li>
 <li class="tsd-kind-type-alias"><a href="types/AwaitedProp.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Awaited<wbr/>Prop</a></li>
 <li class="tsd-kind-type-alias"><a href="types/BNotA.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>BNotA</a></li>
 <li class="tsd-kind-type-alias"><a href="types/Brand.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Brand</a></li>
 <li class="tsd-kind-type-alias"><a href="types/CanAssign.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Can<wbr/>Assign</a></li>
 <li class="tsd-kind-type-alias"><a href="types/ChainFn.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Chain<wbr/>Fn</a></li>
-<li class="tsd-kind-type-alias"><a href="types/CommonKeys.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Common<wbr/>Keys</a></li>
+<li class="deprecated tsd-kind-type-alias"><a href="types/CommonKeys.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Common<wbr/>Keys</a></li>
 <li class="tsd-kind-type-alias"><a href="types/CommonPropKeys.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Common<wbr/>Prop<wbr/>Keys</a></li>
 <li class="tsd-kind-type-alias"><a href="types/ComposableTypes.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Composable<wbr/>Types</a></li>
 <li class="tsd-kind-type-alias"><a href="types/Concat.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Concat</a></li>
@@ -559,6 +583,7 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li class="tsd-kind-type-alias"><a href="types/Head.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Head</a></li>
 <li class="tsd-kind-type-alias"><a href="types/If.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>If</a></li>
 <li class="tsd-kind-type-alias"><a href="types/Increment.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Increment</a></li>
+<li class="tsd-kind-type-alias"><a href="types/Integer.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Integer</a></li>
 <li class="tsd-kind-type-alias"><a href="types/IntersectOfProps.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Intersect<wbr/>Of<wbr/>Props</a></li>
 <li class="tsd-kind-type-alias"><a href="types/IsAny.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Any</a></li>
 <li class="tsd-kind-type-alias"><a href="types/IsArray.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Array</a></li>
@@ -589,12 +614,15 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li class="tsd-kind-type-alias"><a href="types/MapToProp.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Map<wbr/>To<wbr/>Prop</a></li>
 <li class="tsd-kind-type-alias"><a href="types/Max.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Max</a></li>
 <li class="tsd-kind-type-alias"><a href="types/MaybePromise.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Maybe<wbr/>Promise</a></li>
+<li class="tsd-kind-type-alias"><a href="types/Negative.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Negative</a></li>
 <li class="tsd-kind-type-alias"><a href="types/NonComposableTypes.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Non<wbr/>Composable<wbr/>Types</a></li>
+<li class="tsd-kind-type-alias"><a href="types/NonNegative.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Non<wbr/>Negative</a></li>
 <li class="tsd-kind-type-alias"><a href="types/NonNull.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Non<wbr/>Null</a></li>
 <li class="tsd-kind-type-alias"><a href="types/NonUndefined.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Non<wbr/>Undefined</a></li>
 <li class="tsd-kind-type-alias"><a href="types/Not.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Not</a></li>
 <li class="tsd-kind-type-alias"><a href="types/NotEqual.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Not<wbr/>Equal</a></li>
 <li class="tsd-kind-type-alias"><a href="types/NotExtendable.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Not<wbr/>Extendable</a></li>
+<li class="tsd-kind-type-alias"><a href="types/Numeric.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Numeric</a></li>
 <li class="tsd-kind-type-alias"><a href="types/Omit.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Omit</a></li>
 <li class="tsd-kind-type-alias"><a href="types/OptionalKeys-1.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Optional<wbr/>Keys</a></li>
 <li class="tsd-kind-type-alias"><a href="types/Or.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Or</a></li>
@@ -629,6 +657,7 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li class="tsd-kind-type-alias"><a href="types/ValueOf.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Value<wbr/>Of</a></li>
 <li class="tsd-kind-type-alias"><a href="types/Widen.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Widen</a></li>
 <li class="tsd-kind-type-alias"><a href="types/Xor.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Xor</a></li>
+<li class="tsd-kind-type-alias"><a href="types/Zero.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Zero</a></li>
 <li class="tsd-kind-variable"><a href="variables/JSONTypes-1.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-variable)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-32-path"></rect><path d="M11.106 16L8.85 7.24H9.966L11.454 13.192C11.558 13.608 11.646 13.996 11.718 14.356C11.79 14.708 11.842 14.976 11.874 15.16C11.906 14.976 11.954 14.708 12.018 14.356C12.09 13.996 12.178 13.608 12.282 13.192L13.758 7.24H14.85L12.582 16H11.106Z" fill="var(--color-text)" id="icon-32-text"></path></svg>JSONTypes</a></li>
 <li class="tsd-kind-variable"><a href="variables/MaybePromise-1.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg>Maybe<wbr/>Promise</a></li>
 <li class="tsd-kind-function"><a href="functions/amend.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-64-path"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)" id="icon-64-text"></path></svg>amend</a></li>
