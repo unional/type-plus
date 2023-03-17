@@ -1,6 +1,6 @@
 import type { Equal } from '../predicates/index.js'
-import type { Tail } from './Tail.js'
-import type { UnionOfValues } from './UnionOfValues.js'
+import type { Tail } from './tail.js'
+import type { UnionOfValues } from './union_of_values.js'
 
 export type Some<
 	A extends any[],

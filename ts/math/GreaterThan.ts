@@ -1,4 +1,4 @@
-import type { Head, PadLeft, Tail } from '../array/index.js'
+import type { Head, PadLeft, Tail } from '../array_plus/index.js'
 import type { And, Equal, Or, Xor } from '../predicates/index.js'
 import type { Digit, DigitArray } from './Digit.js'
 import type { IsPositive } from './IsPositive.js'

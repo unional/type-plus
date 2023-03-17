@@ -1,4 +1,4 @@
-import type { Tail } from '../array/index.js'
+import type { Tail } from '../array_plus/index.js'
 import type { And } from '../predicates/index.js'
 import type { IsPositive } from './IsPositive.js'
 import type { IsWhole } from './IsWhole.js'

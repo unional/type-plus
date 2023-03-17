@@ -1,4 +1,4 @@
-import { UnionOfValues } from './UnionOfValues.js'
+import { UnionOfValues } from './union_of_values.js'
 
 /**
  * Gets the types of a tuple except the first entry.

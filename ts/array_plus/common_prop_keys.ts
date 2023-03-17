@@ -1,4 +1,4 @@
-import type { Tail } from './Tail.js'
+import type { Tail } from './tail.js'
 
 /**
  * Gets the common property keys of the elements in `A`.
