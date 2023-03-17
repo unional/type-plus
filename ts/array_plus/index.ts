@@ -1,6 +1,5 @@
-export type { AtArray } from './array.js'
+export type * from './array.js'
 export type { CommonKeys, CommonPropKeys } from './common_prop_keys.js'
-export type { Concat } from './concat.js'
 export type { CreateTuple } from './create_tuple.js'
 export * from './drop.js'
 export type { Filter, KeepMatch } from './filter.js'

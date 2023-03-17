@@ -11,15 +11,28 @@ import type { Negative } from '../number_plus/number.js'
  * @alias ArrayPlus.At
  *
  * ```
- * import type { AtArray } from 'type-plus'
+ * import type { At } from 'type-plus'
  *
- * type R = AtArray<[1, 2, 3], -1> // 3
+ * type R = At<[1, 2, 3], -1> // 3
  * ```
  */
-export type AtArray<A extends Array<unknown>, N extends number> = A['length'] extends 0
+export type At<A extends Array<unknown>, N extends number> = A['length'] extends 0
 	? never
 	: number extends A['length']
 	? A[N]
 	: GreaterThan<Abs<N>, A['length']> extends true
 	? undefined
 	: Negative<N, A[Subtract<A['length'], Abs<N>>], A[N]>
+
+/**
+ * Concats two arrays.
+ *
+ * alias of: `[...A, ...B]`
+ *
+ * ```
+ * import type { Concat } form 'type-plus'
+ *
+ * type R = Concat<[1], [2, 3]> // [1, 2, 3]
+ * ```
+ */
+export type Concat<A extends unknown[], B extends unknown[]> = [...A, ...B]

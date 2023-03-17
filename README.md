@@ -315,9 +315,9 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 
 ### Array Utilities
 
-- [`AtArray<A, N>`](ts/array_plus/array.ts#L19): gets the element type at index `N` in the array `A`.
+- [`At<A, N>`](ts/array_plus/array.ts#L19): gets the element type at index `N` in the array `A`.
 - `CommonPropKeys<A>`: gets common keys inside the records in the array `A` (deprecate `CommonKeys`).
-- `Concat<A, B>`: `[...A, ...B]`.
+- [`Concat<A, B>`](ts/array_plus/array.ts#L38): `[...A, ...B]`.
 - `CreateTuple<L, T>`: Creates `Tuple<T>` with `L` number of elements.
 - `drop(array, value)`: drop a particular value from an array.
 - `DropFirst<A>`: drops the first value type of `A`.
