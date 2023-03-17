@@ -13,6 +13,6 @@ export type CommonPropKeys<A extends Record<string, unknown>[]> = A['length'] ex
 
 /**
  * Gets the common property keys of the elements in `A`.
- * This will be deprecated in 4.0. Please use CommonPropKeys instead.
+ * @deprecated Please use CommonPropKeys instead.
  */
 export type CommonKeys<A extends Record<string, any>[]> = CommonPropKeys<A>
