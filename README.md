@@ -639,6 +639,7 @@ git push
 ```
 
 [@gcanti]: https://github.com/gcanti
+[assertion_function]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions
 [codecov-image]: https://codecov.io/gh/unional/type-plus/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/type-plus
 [downloads-image]: https://img.shields.io/npm/dm/type-plus.svg?style=flat
@@ -650,10 +651,16 @@ git push
 [npm-url]: https://npmjs.org/package/type-plus
 [semantic-release-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
+[spec.ts]: https://github.com/aleclarson/spec.ts
+[ts-essentials]: https://github.com/ts-essentials/ts-essentials
 [ts-expect]: https://github.com/TypeStrong/ts-expect
-[type-feat]: https://github.com/sindresorhus/type-fest
+[ts-toolbelt]: https://github.com/millsp/ts-toolbelt
 [type_guard]: https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates
+[type-feat]: https://github.com/sindresorhus/type-fest
+[type-fest]: https://github.com/sindresorhus/type-fest
+[type-zoo]: https://github.com/pelotom/type-zoo
 [typelevel-ts]: https://github.com/gcanti/typelevel-ts
+[typepark]: https://github.com/kgtkr/typepark
 [TypeScript]: https://www.typescriptlang.org
 [typical]: https://github.com/KiaraGrouwstra/typical
 [utility-types]: https://github.com/piotrwitek/utility-types
@@ -661,4 +668,3 @@ git push
 [vscode-url]: https://code.visualstudio.com/
 [wallaby-image]: https://img.shields.io/badge/wallaby.js-configured-green.svg
 [wallaby-url]: https://wallabyjs.com
-[assertion_function]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions
