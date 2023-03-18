@@ -1,7 +1,9 @@
-import type { GreaterThan } from '../index.js'
 import type { Abs } from '../math/Abs.js'
+import type { GreaterThan } from '../math/GreaterThan.js'
 import type { Subtract } from '../math/Subtract.js'
 import type { Integer, Negative } from '../number_plus/number.js'
+
+export type * from './array.js'
 
 /**
  * Gets the normalized index to access the element of an array or tuple.

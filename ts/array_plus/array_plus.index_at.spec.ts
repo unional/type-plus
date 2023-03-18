@@ -1,5 +1,5 @@
 import { isType } from '../index.js'
-import type { IndexAt } from './array.index_at.js'
+import type { IndexAt } from './array_plus.js'
 
 it('returns never for empty tuple', () => {
 	isType.never<IndexAt<[], 0>>()
