@@ -341,6 +341,7 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 - `Tail<A>`: Gets the types of a tuple except the first entry.
 - `UnionOfProps<A, K>`: gets the union of `A[K]` types (deprecate `PropUnion`).
 - `UnionOfValues<A>`: gets the union of value types in `A` (deprecate `ArrayValue`).
+- `ArrayPlus.IndexAt<A, N>`: gets the normalized index for `A`.
 
 ### Constant Types
 
