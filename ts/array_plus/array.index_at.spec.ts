@@ -2,9 +2,9 @@ import { isType } from '../index.js'
 import type { IndexAt } from './array.index_at.js'
 
 it('returns never for empty tuple', () => {
-	isType.equal<true, IndexAt<[], 0>, never>()
-	isType.equal<true, IndexAt<[], 1>, never>()
-	isType.equal<true, IndexAt<[], -1>, never>()
+	isType.never<IndexAt<[], 0>>()
+	isType.never<IndexAt<[], 1>>()
+	isType.never<IndexAt<[], -1>>()
 })
 
 it('returns N if A is an array and N is positive', () => {
@@ -15,8 +15,8 @@ it('returns N if A is an array and N is positive', () => {
 
 it('returns N if A is an array and N is negative', () => {
 	isType.equal<true, IndexAt<string[], -0>, 0>()
-	isType.equal<true, IndexAt<string[], -1>, never>()
-	isType.equal<true, IndexAt<string[], -100>, never>()
+	isType.never<IndexAt<string[], -1>>()
+	isType.never<IndexAt<string[], -100>>()
 })
 
 it('returns type of the element for positive indexes', () => {
@@ -33,8 +33,8 @@ it('returns type of the element for negative indexes', () => {
 })
 
 it('returns undefined when index is out of range', () => {
-	isType.equal<true, IndexAt<[1, 2, 3], 3>, never>()
-	isType.equal<true, IndexAt<[1, 2, 3], -4>, never>()
+	isType.never<IndexAt<[1, 2, 3], 3>>()
+	isType.never<IndexAt<[1, 2, 3], -4>>()
 })
 
 it('returns never if N is not an integer', () => {
