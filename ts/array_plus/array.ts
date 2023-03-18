@@ -29,6 +29,7 @@ export type At<A extends Array<unknown>, N extends number> = A['length'] extends
  *
  * alias of: `[...A, ...B]`
  *
+ * @alias ArrayPlus.Concat
  * ```
  * import type { Concat } form 'type-plus'
  *
