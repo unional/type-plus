@@ -1,4 +1,4 @@
-import { Concat, isType } from '../index.js'
+import { type Concat, isType } from '../index.js'
 
 it('unionizes the array element type', () => {
 	type A = Concat<string[], boolean[]>
