@@ -1,9 +1,3 @@
-import type { IsNever } from '../PrimitiveTypes.js'
-import type { Not } from '../predicates/logical.js'
-
-const any = Symbol('any')
-type UniqueAnySymbol = typeof any
-
 /**
  * Is the type `T` exactly `any`.
  *
@@ -17,7 +11,7 @@ type UniqueAnySymbol = typeof any
  * type R = IsAny<string | boolean> // false
  * ```
  */
-export type IsAny<T, Then = true, Else = false> = [T] extends [UniqueAnySymbol] ? Not<IsNever<T>, Then, Else> : Else
+export type IsAny<T, Then = true, Else = false> = 0 extends 1 & T ? Then : Else
 
 /**
  * Check if the type `T` is exactly `any`.
