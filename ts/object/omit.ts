@@ -1,7 +1,8 @@
-import { AnyRecord, reduceByKey } from '../object/index.js'
-import { UnionKeys } from '../UnionKeys.js'
-import { Pick } from './pick.js'
+import type { UnionKeys } from '../UnionKeys.js'
+import type { AnyRecord } from './AnyRecord.js'
+import type { Pick } from './pick.js'
 import { record } from './record.js'
+import { reduceByKey } from './reduceKey.js'
 
 // by Titian Cernicova-Dragomir
 // https://github.com/microsoft/TypeScript/issues/28339#issuecomment-463577347

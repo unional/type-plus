@@ -1,6 +1,6 @@
-import { And, Not } from '../predicates/index.js'
+import type { And, Not } from '../predicates/index.js'
 import type { AnyRecord } from './AnyRecord.js'
-import { HasKey } from './hasKey.js'
+import type { HasKey } from './hasKey.js'
 
 /**
  * Are the two records disjoint from each other.

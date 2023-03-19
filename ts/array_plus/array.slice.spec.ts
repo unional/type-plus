@@ -103,6 +103,11 @@ export type Slice<A extends unknown[], Start extends number, End extends number 
 // 	isType.equal<true, Slice<[1, 2, 3], 1, any>, [2, 3]>()
 // })
 
+// it('returns never if start > end', () => {
+// 	isType.never<Slice<['a', 'b', 'c'], 1, 0>>()
+// 	isType.never<Slice<['a', 'b', 'c'], -1, -2>>()
+// })
+
 // it('can override out of bound result', () => {
 // 	isType.equal<true, Slice<[], 0, number, 'out-of-bound'>, 'out-of-bound'>()
 // 	isType.equal<true, Slice<[1], 1, number, 'out-of-bound'>, 'out-of-bound'>()

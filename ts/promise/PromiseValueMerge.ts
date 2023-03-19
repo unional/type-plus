@@ -1,5 +1,3 @@
-import type { PromiseValue } from './PromiseValue.js'
-
 /**
  * Merging value types from multiple promises.
  */
@@ -14,13 +12,13 @@ export type PromiseValueMerge<
 	P8 extends Promise<any> = any,
 	P9 extends Promise<any> = any
 > = Promise<
-	PromiseValue<P1> &
-		PromiseValue<P2> &
-		PromiseValue<P3> &
-		PromiseValue<P4> &
-		PromiseValue<P5> &
-		PromiseValue<P6> &
-		PromiseValue<P7> &
-		PromiseValue<P8> &
-		PromiseValue<P9>
+	Awaited<P1> &
+		Awaited<P2> &
+		Awaited<P3> &
+		Awaited<P4> &
+		Awaited<P5> &
+		Awaited<P6> &
+		Awaited<P7> &
+		Awaited<P8> &
+		Awaited<P9>
 >

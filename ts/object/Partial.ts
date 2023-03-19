@@ -1,6 +1,6 @@
-import { UnionKeys } from '../UnionKeys.js'
-import { Omit } from './omit.js'
-import { Pick } from './pick.js'
+import type { UnionKeys } from '../UnionKeys.js'
+import type { Omit } from './omit.js'
+import type { Pick } from './pick.js'
 
 /**
  * Apply `Partial<>` on the selected properties.

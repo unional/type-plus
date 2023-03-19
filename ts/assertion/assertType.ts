@@ -1,5 +1,5 @@
 import { tersify } from 'tersify'
-import { AnyConstructor, isConstructor } from '../class/index.js'
+import type { AnyConstructor, isConstructor } from '../class/index.js'
 import type { AnyFunction } from '../function/index.js'
 
 /**

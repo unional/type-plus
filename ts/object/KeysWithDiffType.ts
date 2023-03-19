@@ -1,4 +1,4 @@
-import { ValueOf } from './ValueOf.js'
+import type { ValueOf } from './ValueOf.js'
 import type { IsDisjoint } from './IsDisjoint.js'
 import type { AnyRecord } from './AnyRecord.js'
 
