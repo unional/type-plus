@@ -1,5 +1,29 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 6.1.0
+
+### Minor Changes
+
+- b6403520: Add `ArrayType<A>`
+- 569ff770: Export `Concat` under `ArrayPlus`.
+- 15257ec3: Add `ArrayPlus.IsIndexOutOfBound<A, N>`
+- 82bed0e2: Add `ArrayPlus.IndexAt`.
+
+  Update `At` to use `IndexAt` to get consistent results.
+
+- 015d046e: Fix `IsAny` and add to `AnyType`.
+  Now using the same mechanism from `ts-essentials`.
+- 3ff303ce: Add `NumberType<T>`
+
+### Patch Changes
+
+- 812949be: Default `CreateTuple<_, T>` to `unknown`.
+
+  With TypeScript 5.0, the tuple size limit is now 9999.
+
+- 52d62003: Clean up type imports.
+  Use `Awaited` instead of `PromiseValue`.
+
 ## 6.0.0
 
 ### Major Changes
