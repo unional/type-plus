@@ -27,7 +27,7 @@ export type {
 } from './math/index.js'
 export * from './nodejs/index.js'
 export * from './nominal-types/index.js'
-export * as NumberPlus from './number_plus/_plus.js'
+export * as NumberPlus from './number_plus/number_plus.js'
 export * from './number_plus/index.js'
 export * from './object/index.js'
 export * from './predicates/index.js'

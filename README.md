@@ -461,6 +461,7 @@ So you may encounter some weird behavior if your logic is complex.
 - [`Integer<N, Then = N, Else = never>`](ts/number_plus/number.ts#L24): is integer (origin: [type-feat]).
 - [`Negative<N, Then = N, Else = never>`](ts/number_plus/number.ts#39): is negative (origin: [type-feat]).
 - [`NonNegative<N, Then = N, Else = never>`](ts/number_plus/number.ts#58): is non-negative (origin: [type-feat])
+- [`NumberType<T, Then = N, Else = never>`](ts/number_plus/number.ts#L65): Is the type `T` exactly `number`.
 
 ### Math
 

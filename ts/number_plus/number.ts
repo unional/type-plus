@@ -16,9 +16,11 @@ export type Zero = 0 | 0n
  *
  * type R = Integer<0> // 0
  * type R = Integer<1.1> // never
+ * type R = Integer<number> // never as it contains non-integer
  *
  * type R = Integer<0, true, false> // true
  * type R = Integer<1.1, true, false> // false
+ *
  * ```
  */
 export type Integer<N extends Numeric, Then = N, Else = never> = `${N}` extends `${bigint}` ? Then : Else
@@ -56,3 +58,8 @@ export type Negative<N extends Numeric, Then = N, Else = never> = N extends Zero
  * ```
  */
 export type NonNegative<N extends Numeric, Then = N, Else = never> = Negative<N, Else, Then>
+
+/**
+ * Check if the type `T` is exactly the type `number` and not numeric literals.
+ */
+export type NumberType<T extends number, Then = T, Else = never> = number extends T ? Then : Else
