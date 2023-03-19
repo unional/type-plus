@@ -1,4 +1,4 @@
-import type { IsAny } from './IsAny.js'
+import type { IsAny } from '../any_plus/any.js'
 import type { And, Or } from './logical.js'
 
 /**

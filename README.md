@@ -313,7 +313,12 @@ type Yes = IsAny<any, 'yes', 'no'> // 'yes'
 type No = IsAny<1, 'yes', 'no'> // 'no'
 ```
 
-### Array Utilities
+### Any
+
+- [`AnyType<T, Then = T, Else = never>`]: `T === any`.
+- [`IsAny<T, Then = true, Else = false>`]: `T === any` (updated to impl: [expect-type]).
+
+### Array
 
 - [`At<A, N, Fail = never>`](ts/array_plus/array.ts#L19): gets the element type at index `N` in the array `A`.
 - `CommonPropKeys<A>`: gets common keys inside the records in the array `A` (deprecate `CommonKeys`).
@@ -432,7 +437,7 @@ Type predicates are type alias that returns `true` or `false`.
 They can be used to compose complex types.
 
 - `HasKey<T, K>`: predicate type checking `T` has key `K`.
-- `IsAny<T>`: `T === any`.
+- `IsAny<T>`: `T === any` (updated to impl: [expect-type]).
 - `IsBoolean<T>`: check for `boolean`, but not for `true` nor `false`.
 - `IsDisjoint<A, B>`: is `A` and `B` is a disjoint set.
 - `IsEmptyObject<T>`: is `T === {}`.

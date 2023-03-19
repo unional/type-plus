@@ -61,5 +61,12 @@ export type NonNegative<N extends Numeric, Then = N, Else = never> = Negative<N,
 
 /**
  * Check if the type `T` is exactly the type `number` and not numeric literals.
+ *
+ * ```
+ * import { NumberType } from 'type-plus'
+ *
+ * type R = NumberType<number> // true
+ * type R = NumberType<1> // false
+ * ```
  */
 export type NumberType<T extends number, Then = T, Else = never> = number extends T ? Then : Else
