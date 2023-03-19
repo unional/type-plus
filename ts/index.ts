@@ -13,19 +13,7 @@ export * from './assertion/index.js'
 export * from './class/index.js'
 export * from './function/index.js'
 export * from './functional/index.js'
-export type {
-	Abs,
-	Add,
-	Decrement,
-	Digit,
-	DigitArray,
-	GreaterThan,
-	Increment,
-	IsPositive,
-	IsWhole,
-	Max,
-	Subtract
-} from './math/index.js'
+export type * from './math/index.js'
 export * from './nodejs/index.js'
 export * from './nominal-types/index.js'
 export * from './number_plus/index.js'

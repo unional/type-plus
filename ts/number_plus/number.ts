@@ -20,7 +20,6 @@ export type Zero = 0 | 0n
  *
  * type R = Integer<0, true, false> // true
  * type R = Integer<1.1, true, false> // false
- *
  * ```
  */
 export type Integer<N extends Numeric, Then = N, Else = never> = `${N}` extends `${bigint}` ? Then : Else
@@ -70,3 +69,20 @@ export type NonNegative<N extends Numeric, Then = N, Else = never> = Negative<N,
  * ```
  */
 export type NumberType<T extends number, Then = T, Else = never> = number extends T ? Then : Else
+
+/**
+ * Check if the value is an integer.
+ *
+ * ```
+ * import type { IsWhole } from 'type-plus'
+ *
+ * type R = IsWhole<0> // 0
+ * type R = IsWhole<1.1> // never
+ * type R = IsWhole<number> // never as it contains non-integer
+ *
+ * type R = IsWhole<0, true, false> // true
+ * type R = IsWhole<1.1, true, false> // false
+ *
+ * ```
+ */
+export type IsWhole<N extends number, Then = true, Else = false> = Integer<N, Then, Else>

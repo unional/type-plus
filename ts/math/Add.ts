@@ -1,9 +1,8 @@
 import type { PadLeft } from '../array_plus/index.js'
 import type { And } from '../predicates/index.js'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { IsWhole } from '../number_plus/number.js'
 import type { Digit, DigitArray } from './Digit.js'
 import type { IsPositive } from './IsPositive.js'
-import type { IsWhole } from './IsWhole.js'
 import type { Max } from './Max.js'
 
 /**
