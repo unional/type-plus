@@ -53,7 +53,7 @@ it('returns type of the element for negative indexes', () => {
 	isType.equal<true, IndexAt<[1, 2, 3], -3>, 0>()
 })
 
-it('returns undefined when index is out of range', () => {
+it('returns never when index is out of range', () => {
 	isType.never<IndexAt<[1, 2, 3], 3>>()
 	isType.never<IndexAt<[1, 2, 3], -4>>()
 })
