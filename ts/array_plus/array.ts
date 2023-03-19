@@ -1,3 +1,4 @@
+import type { NumberType } from '../number_plus/number.js'
 import type { IndexAt } from './array_plus.js'
 
 /**
@@ -33,3 +34,15 @@ export type At<A extends Array<unknown>, N extends number, Fail = never> = Index
  * ```
  */
 export type Concat<A extends unknown[], B extends unknown[]> = [...A, ...B]
+
+/**
+ * Check if the type `A` is an array type and not a tuple.
+ *
+ * ```
+ * import type { ArrayType } from 'type-plus'
+ *
+ * type R = ArrayType<number[]> // true
+ * type R = ArrayType<[1]> // false
+ * ```
+ */
+export type ArrayType<A extends unknown[], Then = A, Else = never> = NumberType<A['length'], Then, Else>

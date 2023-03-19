@@ -348,6 +348,7 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 - `UnionOfValues<A>`: gets the union of value types in `A` (deprecate `ArrayValue`).
 - [`ArrayPlus.IndexAt<A, N, Fail = never>`](ts/array_plus/array_plus.ts#L23): gets the normalized index for `A`.
 - [`ArrayPlus.IsIndexOutOfBound<A, N, Then = true, Else = false>`](ts/array_plus/array_plus.ts#L62): Is `N` an out of bound index of `A`. Supports negative numbers.
+- [`ArrayType<T, Then = N, Else = never>`](ts/array_plus/array.ts#L48): Is the type `T` exactly an array and not a tuple.
 
 ### Constant Types
 
