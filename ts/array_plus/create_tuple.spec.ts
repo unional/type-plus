@@ -22,10 +22,10 @@ test('negative length gets never', () => {
 	isType.equal<true, never, CreateTuple<-1>>()
 })
 
-test('Can create tuple up to 7000', () => {
-	type A = CreateTuple<7000>['length']
+test('Can create tuple up to 9999', () => {
+	type A = CreateTuple<9999>['length']
 
-	isType.equal<true, 7000, A>()
+	isType.equal<true, 9999, A>()
 })
 
 test('L = number gets array', () => {
