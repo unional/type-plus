@@ -315,8 +315,8 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 
 ### Any
 
-- [`AnyType<T, Then = T, Else = never>`]: `T === any`.
-- [`IsAny<T, Then = true, Else = false>`]: `T === any` (origin: [ts-essentials]).
+- [`AnyType<T, Then = T, Else = never>`](ts/any_plus/any.ts#L14): `T === any`.
+- [`IsAny<T, Then = true, Else = false>`](ts/any_plus/any.ts#L29): `T === any` (origin: [ts-essentials]).
 
 ### Array
 
