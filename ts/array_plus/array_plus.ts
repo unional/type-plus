@@ -1,9 +1,9 @@
-import { IsNever } from '../PrimitiveTypes.js'
+import type { IsNever } from '../PrimitiveTypes.js'
 import type { Abs } from '../math/Abs.js'
 import type { GreaterThan } from '../math/GreaterThan.js'
 import type { Subtract } from '../math/Subtract.js'
 import type { Integer, Negative, NumberType } from '../number_plus/number.js'
-import { Equal } from '../predicates/Equal.js'
+import type { Equal } from '../predicates/Equal.js'
 
 export type * from './array.js'
 
@@ -49,5 +49,18 @@ export type IndexAt<A extends Array<unknown>, N extends number, Fail = never> = 
 
 /**
  * Is N an out of bound index of A.
+ *
+ * ```
+ * import { IsIndexOutOfBound } from 'type-plus'
+ *
+ * type R = IsIndexOutOfBound<[1], 0> // false
+ * type R = IsIndexOutOfBound<[1], -1> // false
+
+ * type R = IsIndexOutOfBound<[1], 1> // true
+ * type R = IsIndexOutOfBound<[1], -2> // true
  */
-export type IndexOutOfBound<A extends unknown[], N extends number> = IsNever<IndexAt<A, N>>
+export type IsIndexOutOfBound<A extends unknown[], N extends number, Then = true, Else = false> = IsNever<
+	IndexAt<A, N>,
+	Then,
+	Else
+>
