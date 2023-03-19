@@ -462,11 +462,11 @@ So you may encounter some weird behavior if your logic is complex.
 
 ### Number
 
-- [`Numeric`](ts/number_plus/number.ts#L4): either `number` or `bigint` (origin: [type-feat]).
-- [`Zero`](ts/number_plus/number.ts#L9): `0` in `number` or `bigint` (origin: [type-feat]).
-- [`Integer<N, Then = N, Else = never>`](ts/number_plus/number.ts#L24): is integer (origin: [type-feat]).
-- [`Negative<N, Then = N, Else = never>`](ts/number_plus/number.ts#39): is negative (origin: [type-feat]).
-- [`NonNegative<N, Then = N, Else = never>`](ts/number_plus/number.ts#58): is non-negative (origin: [type-feat])
+- [`Numeric`](ts/number_plus/number.ts#L4): either `number` or `bigint` (origin: [type-fest]).
+- [`Zero`](ts/number_plus/number.ts#L9): `0` in `number` or `bigint` (origin: [type-fest]).
+- [`Integer<N, Then = N, Else = never>`](ts/number_plus/number.ts#L24): is integer (origin: [type-fest]).
+- [`Negative<N, Then = N, Else = never>`](ts/number_plus/number.ts#39): is negative (origin: [type-fest]).
+- [`NonNegative<N, Then = N, Else = never>`](ts/number_plus/number.ts#58): is non-negative (origin: [type-fest])
 - [`NumberType<T, Then = N, Else = never>`](ts/number_plus/number.ts#L65): Is the type `T` exactly `number`.
 
 ### Math
@@ -664,7 +664,6 @@ git push
 [ts-expect]: https://github.com/TypeStrong/ts-expect
 [ts-toolbelt]: https://github.com/millsp/ts-toolbelt
 [type_guard]: https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates
-[type-feat]: https://github.com/sindresorhus/type-fest
 [type-fest]: https://github.com/sindresorhus/type-fest
 [type-zoo]: https://github.com/pelotom/type-zoo
 [typelevel-ts]: https://github.com/gcanti/typelevel-ts
