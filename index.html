@@ -229,7 +229,8 @@ These utilities include utility types and type-adjusted functions.</p>
 <li><code>Tail&lt;A&gt;</code>: Gets the types of a tuple except the first entry.</li>
 <li><code>UnionOfProps&lt;A, K&gt;</code>: gets the union of <code>A[K]</code> types (deprecate <code>PropUnion</code>).</li>
 <li><code>UnionOfValues&lt;A&gt;</code>: gets the union of value types in <code>A</code> (deprecate <code>ArrayValue</code>).</li>
-<li><code>ArrayPlus.IndexAt&lt;A, N, Fail = never&gt;</code>: gets the normalized index for <code>A</code>.</li>
+<li><a href="ts/array_plus/array_plus.ts#L23"><code>ArrayPlus.IndexAt&lt;A, N, Fail = never&gt;</code></a>: gets the normalized index for <code>A</code>.</li>
+<li><a href="ts/array_plus/array_plus.ts#L62"><code>ArrayPlus.IsIndexOutOfBound&lt;A, N, Then = true, Else = false&gt;</code></a>: Is <code>N</code> an out of bound index of <code>A</code>. Supports negative numbers.</li>
 </ul>
 
 <a href="#constant-types" id="constant-types" style="color: inherit; text-decoration: none;">
@@ -647,7 +648,6 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li class="tsd-kind-type-alias"><a href="types/RequiredKeys-1.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Required<wbr/>Keys</a></li>
 <li class="tsd-kind-type-alias"><a href="types/RequiredPick.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Required<wbr/>Pick</a></li>
 <li class="tsd-kind-type-alias"><a href="types/Reverse.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Reverse</a></li>
-<li class="tsd-kind-type-alias"><a href="types/Slice.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Slice</a></li>
 <li class="tsd-kind-type-alias"><a href="types/Some-1.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Some</a></li>
 <li class="tsd-kind-type-alias"><a href="types/Split.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Split</a></li>
 <li class="tsd-kind-type-alias"><a href="types/SpreadRecord.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Spread<wbr/>Record</a></li>
