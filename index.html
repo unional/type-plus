@@ -204,7 +204,7 @@ These utilities include utility types and type-adjusted functions.</p>
   <h3>Array Utilities</h3>
 </a>
 <ul>
-<li><a href="ts/array_plus/array.ts#L19"><code>At&lt;A, N&gt;</code></a>: gets the element type at index <code>N</code> in the array <code>A</code>.</li>
+<li><a href="ts/array_plus/array.ts#L19"><code>At&lt;A, N, Fail = never&gt;</code></a>: gets the element type at index <code>N</code> in the array <code>A</code>.</li>
 <li><code>CommonPropKeys&lt;A&gt;</code>: gets common keys inside the records in the array <code>A</code> (deprecate <code>CommonKeys</code>).</li>
 <li><a href="ts/array_plus/array.ts#L38"><code>Concat&lt;A, B&gt;</code></a>: <code>[...A, ...B]</code>.</li>
 <li><code>CreateTuple&lt;L, T&gt;</code>: Creates <code>Tuple&lt;T&gt;</code> with <code>L</code> number of elements.</li>
@@ -229,7 +229,7 @@ These utilities include utility types and type-adjusted functions.</p>
 <li><code>Tail&lt;A&gt;</code>: Gets the types of a tuple except the first entry.</li>
 <li><code>UnionOfProps&lt;A, K&gt;</code>: gets the union of <code>A[K]</code> types (deprecate <code>PropUnion</code>).</li>
 <li><code>UnionOfValues&lt;A&gt;</code>: gets the union of value types in <code>A</code> (deprecate <code>ArrayValue</code>).</li>
-<li><code>ArrayPlus.IndexAt&lt;A, N&gt;</code>: gets the normalized index for <code>A</code>.</li>
+<li><code>ArrayPlus.IndexAt&lt;A, N, Fail = never&gt;</code>: gets the normalized index for <code>A</code>.</li>
 </ul>
 
 <a href="#constant-types" id="constant-types" style="color: inherit; text-decoration: none;">
@@ -358,8 +358,8 @@ So you may encounter some weird behavior if your logic is complex.</p>
   <h3>Number</h3>
 </a>
 <ul>
-<li><a href="ts/number_plus/number.ts#L4"><code>Numeric</code></a>: either number or bigint (origin: <a href="https://github.com/sindresorhus/type-fest">type-feat</a>).</li>
-<li><a href="ts/number_plus/number.ts#L9"><code>Zero</code></a>: <code>0</code> in number or bigint (origin: <a href="https://github.com/sindresorhus/type-fest">type-feat</a>).</li>
+<li><a href="ts/number_plus/number.ts#L4"><code>Numeric</code></a>: either <code>number</code> or <code>bigint</code> (origin: <a href="https://github.com/sindresorhus/type-fest">type-feat</a>).</li>
+<li><a href="ts/number_plus/number.ts#L9"><code>Zero</code></a>: <code>0</code> in <code>number</code> or <code>bigint</code> (origin: <a href="https://github.com/sindresorhus/type-fest">type-feat</a>).</li>
 <li><a href="ts/number_plus/number.ts#L24"><code>Integer&lt;N, Then = N, Else = never&gt;</code></a>: is integer (origin: <a href="https://github.com/sindresorhus/type-fest">type-feat</a>).</li>
 <li><a href="ts/number_plus/number.ts#39"><code>Negative&lt;N, Then = N, Else = never&gt;</code></a>: is negative (origin: <a href="https://github.com/sindresorhus/type-fest">type-feat</a>).</li>
 <li><a href="ts/number_plus/number.ts#58"><code>NonNegative&lt;N, Then = N, Else = never&gt;</code></a>: is non-negative (origin: <a href="https://github.com/sindresorhus/type-fest">type-feat</a>)</li>
