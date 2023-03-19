@@ -14,7 +14,7 @@ import type { IndexAt } from './array_plus.js'
  * type R = At<[1, 2, 3], -1> // 3
  * ```
  */
-export type At<A extends Array<unknown>, N extends number, Fail = never> = IndexAt<A, N> extends infer I
+export type At<A extends Array<unknown>, N extends number, Fail = never> = IndexAt<A, N, Fail> extends infer I
 	? I extends number
 		? A[I]
 		: Fail

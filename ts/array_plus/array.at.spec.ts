@@ -13,6 +13,7 @@ it('returns never if N is not an integer', () => {
 
 it('gets never from empty tuple', () => {
 	isType.never<At<[], 0>>()
+	isType.never<At<[], 1.1>>()
 	isType.never<At<[], number>>()
 	isType.never<At<[], any>>()
 	isType.never<At<[], never>>()
@@ -41,4 +42,8 @@ it('gets type of element in tuple', () => {
 it('gets never if N is out of range', () => {
 	isType.never<At<['a'], 1>>()
 	isType.never<At<['a'], -2>>()
+})
+
+it(`can override fail case`, () => {
+	isType.equal<true, At<[], 0, 'ha'>, 'ha'>()
 })

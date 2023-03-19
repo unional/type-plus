@@ -315,7 +315,7 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 
 ### Array Utilities
 
-- [`At<A, N>`](ts/array_plus/array.ts#L19): gets the element type at index `N` in the array `A`.
+- [`At<A, N, Fail = never>`](ts/array_plus/array.ts#L19): gets the element type at index `N` in the array `A`.
 - `CommonPropKeys<A>`: gets common keys inside the records in the array `A` (deprecate `CommonKeys`).
 - [`Concat<A, B>`](ts/array_plus/array.ts#L38): `[...A, ...B]`.
 - `CreateTuple<L, T>`: Creates `Tuple<T>` with `L` number of elements.
@@ -341,7 +341,7 @@ type No = IsAny<1, 'yes', 'no'> // 'no'
 - `Tail<A>`: Gets the types of a tuple except the first entry.
 - `UnionOfProps<A, K>`: gets the union of `A[K]` types (deprecate `PropUnion`).
 - `UnionOfValues<A>`: gets the union of value types in `A` (deprecate `ArrayValue`).
-- `ArrayPlus.IndexAt<A, N>`: gets the normalized index for `A`.
+- `ArrayPlus.IndexAt<A, N, Fail = never>`: gets the normalized index for `A`.
 
 ### Constant Types
 
@@ -456,8 +456,8 @@ So you may encounter some weird behavior if your logic is complex.
 
 ### Number
 
-- [`Numeric`](ts/number_plus/number.ts#L4): either number or bigint (origin: [type-feat]).
-- [`Zero`](ts/number_plus/number.ts#L9): `0` in number or bigint (origin: [type-feat]).
+- [`Numeric`](ts/number_plus/number.ts#L4): either `number` or `bigint` (origin: [type-feat]).
+- [`Zero`](ts/number_plus/number.ts#L9): `0` in `number` or `bigint` (origin: [type-feat]).
 - [`Integer<N, Then = N, Else = never>`](ts/number_plus/number.ts#L24): is integer (origin: [type-feat]).
 - [`Negative<N, Then = N, Else = never>`](ts/number_plus/number.ts#39): is negative (origin: [type-feat]).
 - [`NonNegative<N, Then = N, Else = never>`](ts/number_plus/number.ts#58): is non-negative (origin: [type-feat])
