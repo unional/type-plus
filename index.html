@@ -370,10 +370,14 @@ So you may encounter some weird behavior if your logic is complex.</p>
 <ul>
 <li><a href="ts/number_plus/number.ts#L4"><code>Numeric</code></a>: either <code>number</code> or <code>bigint</code> (origin: <a href="https://github.com/sindresorhus/type-fest">type-fest</a>).</li>
 <li><a href="ts/number_plus/number.ts#L9"><code>Zero</code></a>: <code>0</code> in <code>number</code> or <code>bigint</code> (origin: <a href="https://github.com/sindresorhus/type-fest">type-fest</a>).</li>
-<li><a href="ts/number_plus/number.ts#L24"><code>Integer&lt;N, Then = N, Else = never&gt;</code></a>: is integer (origin: <a href="https://github.com/sindresorhus/type-fest">type-fest</a>).</li>
-<li><a href="ts/number_plus/number.ts#39"><code>Negative&lt;N, Then = N, Else = never&gt;</code></a>: is negative (origin: <a href="https://github.com/sindresorhus/type-fest">type-fest</a>).</li>
-<li><a href="ts/number_plus/number.ts#58"><code>NonNegative&lt;N, Then = N, Else = never&gt;</code></a>: is non-negative (origin: <a href="https://github.com/sindresorhus/type-fest">type-fest</a>)</li>
-<li><a href="ts/number_plus/number.ts#L65"><code>NumberType&lt;T, Then = N, Else = never&gt;</code></a>: Is the type <code>T</code> exactly <code>number</code>.</li>
+<li><a href="ts/number_plus/number.ts#L27"><code>Integer&lt;N, Then = N, Else = never&gt;</code></a>: is integer (origin: <a href="https://github.com/sindresorhus/type-fest">type-fest</a>).</li>
+<li><a href="ts/number_plus/number.ts#L46"><code>IsInteger&lt;N, Then = true, Else = false&gt;</code></a>: is integer.</li>
+<li><a href="ts/number_plus/number.ts#L62"><code>IsWhole&lt;N, Then = true, Else = false&gt;</code></a>: is integer.</li>
+<li><a href="ts/number_plus/number.ts#L77"><code>Negative&lt;N, Then = N, Else = never&gt;</code></a>: is negative (origin: <a href="https://github.com/sindresorhus/type-fest">type-fest</a>).</li>
+<li><a href="ts/number_plus/number.ts#L96"><code>NonNegative&lt;N, Then = N, Else = never&gt;</code></a>: is non-negative (origin: <a href="https://github.com/sindresorhus/type-fest">type-fest</a>)</li>
+<li><a href="ts/number_plus/number.ts#L108"><code>NumberType&lt;T, Then = N, Else = never&gt;</code></a>: Is the type <code>T</code> exactly <code>number</code>.</li>
+<li><a href="ts/number_plus/number.ts#L124"><code>Positive&lt;N, Then = N, Else = never&gt;</code></a>: is positive.</li>
+<li><a href="ts/number_plus/number.ts#L144"><code>IsPositive&lt;N, Then = N, Else = never&gt;</code></a>: is positive.</li>
 </ul>
 
 <a href="#math" id="math" style="color: inherit; text-decoration: none;">
@@ -381,8 +385,6 @@ So you may encounter some weird behavior if your logic is complex.</p>
 </a>
 <ul>
 <li><code>Abs&lt;N, Fail=never&gt;</code>: <code>Abs(N)</code>, <code>Abs&lt;number&gt;</code> returns <code>Fail</code>.</li>
-<li><code>IsPositive&lt;N&gt;</code>: is <code>N</code> a positive number literal. <code>IsPositive&lt;number&gt;</code> returns <code>false</code>.</li>
-<li><code>IsWhole&lt;N&gt;</code>: is <code>N</code> a whole number literal. <code>IsWhole&lt;number&gt;</code> returns <code>false</code>.</li>
 <li><code>Max&lt;A, B, Fail=never&gt;</code>: <code>max(A, B)</code>, for whole number, <code>Fail</code> otherwise.</li>
 <li><code>GreaterThan&lt;A, B, Fail=never&gt;</code>: <code>A &gt; B</code> for whole numbers, <code>Fail</code> otherwise.</li>
 </ul>
@@ -607,6 +609,7 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li class="tsd-kind-type-alias"><a href="types/IsEmptyObject.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Empty<wbr/>Object</a></li>
 <li class="tsd-kind-type-alias"><a href="types/IsEqual.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Equal</a></li>
 <li class="tsd-kind-type-alias"><a href="types/IsExtend.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Extend</a></li>
+<li class="tsd-kind-type-alias"><a href="types/IsInteger.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Integer</a></li>
 <li class="tsd-kind-type-alias"><a href="types/IsLiteral.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Literal</a></li>
 <li class="tsd-kind-type-alias"><a href="types/IsNever.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Never</a></li>
 <li class="tsd-kind-type-alias"><a href="types/IsNotEqual.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Not<wbr/>Equal</a></li>
@@ -646,6 +649,7 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li class="tsd-kind-type-alias"><a href="types/PartialOmit.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Partial<wbr/>Omit</a></li>
 <li class="tsd-kind-type-alias"><a href="types/PartialPick.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Partial<wbr/>Pick</a></li>
 <li class="tsd-kind-type-alias"><a href="types/Pick-1.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Pick</a></li>
+<li class="tsd-kind-type-alias"><a href="types/Positive.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Positive</a></li>
 <li class="tsd-kind-type-alias"><a href="types/PrimitiveTypes.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Primitive<wbr/>Types</a></li>
 <li class="deprecated tsd-kind-type-alias"><a href="types/PromiseValue.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Promise<wbr/>Value</a></li>
 <li class="tsd-kind-type-alias"><a href="types/PromiseValueMerge.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Promise<wbr/>Value<wbr/>Merge</a></li>
