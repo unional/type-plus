@@ -1,5 +1,17 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 6.2.0
+
+### Minor Changes
+
+- bc82e907: Fix number types to support `never` correctly.
+
+  Add `IsInteger`, `Positive`.
+
+### Patch Changes
+
+- 23fd42a3: Fix `NumberType` to handle `any` and union.
+
 ## 6.1.0
 
 ### Minor Changes
