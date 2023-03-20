@@ -4,8 +4,9 @@ it('returns never if N is number as it can include negative', () => {
 	isType.never<Positive<number>>()
 })
 
-it('returns never if N is never', () => {
+it('returns never if N is never or any', () => {
 	isType.never<Positive<never>>()
+	isType.never<Positive<any>>()
 })
 
 it('returns 0 if N is 0', () => {

@@ -1,4 +1,5 @@
 import type { IsNever } from '../PrimitiveTypes.js'
+import type { IsAny } from '../any_plus/any.js'
 
 /**
  * Either number or bigint.
@@ -105,7 +106,11 @@ export type NonNegative<N extends Numeric, Then = N, Else = never> = Negative<N,
  * type R = NumberType<1> // false
  * ```
  */
-export type NumberType<T extends number, Then = T, Else = never> = number extends T ? Then : Else
+export type NumberType<T, Then = T, Else = never> = IsAny<
+	T,
+	Else,
+	[number, T] extends [T, number] ? Then : Else
+>
 
 /**
  * Check if the value is a positive number.

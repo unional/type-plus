@@ -4,8 +4,9 @@ it('returns false if N is number as it can include negative', () => {
 	isType.equal<true, IsPositive<number>, false>()
 })
 
-it('returns false if N is never', () => {
+it('returns false if N is never or any', () => {
 	isType.equal<true, IsPositive<never>, false>()
+	isType.equal<true, IsPositive<any>, false>()
 })
 
 it('returns true for 0', () => {

@@ -1,4 +1,4 @@
-import { AnyFunction, assertType, Equal, NotEqual, ValueOf } from '../index.js'
+import { AnyFunction, assertType, Equal, isType, NotEqual, ValueOf } from '../index.js'
 
 describe('Equal<A, B>', () => {
 	it('compares among booleans', () => {
@@ -119,9 +119,11 @@ describe('Equal<A, B>', () => {
 	})
 
 	it('works against any', () => {
-		assertType.isTrue(true as Equal<any, any>)
-		assertType.isFalse(false as Equal<any, 1>)
-		assertType.isFalse(false as Equal<1, any>)
+		isType.equal<true, true, Equal<any, any>>()
+		isType.equal<true, false, Equal<any, 1>>()
+		isType.equal<true, false, Equal<1, any>>()
+
+		// isType.equal<true, false, Equal<[any], [1]>>()
 	})
 
 	it('works against function overload', () => {
