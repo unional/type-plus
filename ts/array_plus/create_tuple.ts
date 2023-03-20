@@ -1,5 +1,5 @@
-import type { DigitArray, IsPositive } from '../math/index.js'
-import type { IsWhole } from '../number_plus/number.js'
+import type { DigitArray } from '../math/index.js'
+import type { IsPositive, IsWhole } from '../number_plus/number.js'
 
 /**
  * Creates `Tuple<T>` with `L` number of elements.

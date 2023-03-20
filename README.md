@@ -465,16 +465,18 @@ So you may encounter some weird behavior if your logic is complex.
 
 - [`Numeric`](ts/number_plus/number.ts#L4): either `number` or `bigint` (origin: [type-fest]).
 - [`Zero`](ts/number_plus/number.ts#L9): `0` in `number` or `bigint` (origin: [type-fest]).
-- [`Integer<N, Then = N, Else = never>`](ts/number_plus/number.ts#L24): is integer (origin: [type-fest]).
-- [`Negative<N, Then = N, Else = never>`](ts/number_plus/number.ts#39): is negative (origin: [type-fest]).
-- [`NonNegative<N, Then = N, Else = never>`](ts/number_plus/number.ts#58): is non-negative (origin: [type-fest])
-- [`NumberType<T, Then = N, Else = never>`](ts/number_plus/number.ts#L65): Is the type `T` exactly `number`.
+- [`Integer<N, Then = N, Else = never>`](ts/number_plus/number.ts#L27): is integer (origin: [type-fest]).
+- [`IsInteger<N, Then = true, Else = false>`](ts/number_plus/number.ts#L46): is integer.
+- [`IsWhole<N, Then = true, Else = false>`](ts/number_plus/number.ts#L62): is integer.
+- [`Negative<N, Then = N, Else = never>`](ts/number_plus/number.ts#L77): is negative (origin: [type-fest]).
+- [`NonNegative<N, Then = N, Else = never>`](ts/number_plus/number.ts#L96): is non-negative (origin: [type-fest])
+- [`NumberType<T, Then = N, Else = never>`](ts/number_plus/number.ts#L108): Is the type `T` exactly `number`.
+- [`Positive<N, Then = N, Else = never>`](ts/number_plus/number.ts#L124): is positive.
+- [`IsPositive<N, Then = N, Else = never>`](ts/number_plus/number.ts#L144): is positive.
 
 ### Math
 
 - `Abs<N, Fail=never>`: `Abs(N)`, `Abs<number>` returns `Fail`.
-- `IsPositive<N>`: is `N` a positive number literal. `IsPositive<number>` returns `false`.
-- `IsWhole<N>`: is `N` a whole number literal. `IsWhole<number>` returns `false`.
 - `Max<A, B, Fail=never>`: `max(A, B)`, for whole number, `Fail` otherwise.
 - `GreaterThan<A, B, Fail=never>`: `A > B` for whole numbers, `Fail` otherwise.
 

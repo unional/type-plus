@@ -26,4 +26,6 @@ it('can be a type predicate', () => {
 	isType.equal<false, NonNegative<-0n, true, false>, false>()
 	isType.equal<false, NonNegative<1n, true, false>, false>()
 	isType.equal<false, NonNegative<2n, true, false>, false>()
+
+	isType.equal<false, NonNegative<never, true, false>, false>()
 })

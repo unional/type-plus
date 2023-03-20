@@ -1,4 +1,9 @@
-import { Negative, isType } from '../index.js'
+import { isType, type Negative } from '../index.js'
+
+it('returns never if N is number or never', () => {
+	isType.never<Negative<number>>()
+	isType.never<Negative<never>>()
+})
 
 it('acts as a type filter by default', () => {
 	isType.equal<true, Negative<-1>, -1>()
@@ -26,4 +31,6 @@ it('can be a type predicate', () => {
 	isType.equal<true, Negative<-0n, true, false>, false>()
 	isType.equal<true, Negative<1n, true, false>, false>()
 	isType.equal<true, Negative<2n, true, false>, false>()
+
+	isType.equal<true, Negative<never, true, false>, false>()
 })

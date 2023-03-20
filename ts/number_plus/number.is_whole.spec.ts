@@ -1,19 +1,23 @@
-import { isType, IsWhole } from '../index.js'
+import { isType, type IsWhole } from '../index.js'
+
+it('returns false if N is number as it can contain float', () => {
+	isType.equal<true, IsWhole<number>, false>()
+})
+
+it('returns false if N is never', () => {
+	isType.equal<true, IsWhole<never>, false>()
+})
 
 test('whole number is true', () => {
-	isType.t<IsWhole<1>>()
-	isType.t<IsWhole<1>>()
-	isType.t<IsWhole<0>>()
-	isType.t<IsWhole<0>>()
-	isType.t<IsWhole<-0>>()
-	isType.t<IsWhole<-1>>()
+	isType.equal<true, true, IsWhole<1>>()
+	isType.equal<true, true, IsWhole<1>>()
+	isType.equal<true, true, IsWhole<0>>()
+	isType.equal<true, true, IsWhole<0>>()
+	isType.equal<true, true, IsWhole<-0>>()
+	isType.equal<true, true, IsWhole<-1>>()
 })
 
 test('fraction is false', () => {
-	isType.f<IsWhole<0.1>>()
-	isType.f<IsWhole<-0.1>>()
-})
-
-test('number type is false because we cannot determine', () => {
-	isType.f<IsWhole<number>>()
+	isType.equal<true, false, IsWhole<0.1>>()
+	isType.equal<true, false, IsWhole<-0.1>>()
 })

@@ -4,6 +4,10 @@ it('returns never if N is number type', () => {
 	isType.never<Integer<number>>()
 })
 
+it('returns never if N is never', () => {
+	isType.never<Integer<never>>()
+})
+
 it('returns never if N is float', () => {
 	isType.never<Integer<1.1>>()
 	isType.never<Integer<-1.1>>()
@@ -28,4 +32,5 @@ it('returns N if N is bigint', () => {
 it('can override Then/Else', () => {
 	isType.equal<true, Integer<-1, true, false>, true>()
 	isType.f<Integer<1.1, true, false>>()
+	isType.f<Integer<never, true, false>>()
 })
