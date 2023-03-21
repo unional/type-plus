@@ -1,5 +1,15 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 6.3.0
+
+### Minor Changes
+
+- 1168acaa: Add `TupleType`
+
+### Patch Changes
+
+- 97888e9e: `Equal` handles tuple
+
 ## 6.2.0
 
 ### Minor Changes
