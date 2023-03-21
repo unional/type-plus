@@ -487,6 +487,10 @@ So you may encounter some weird behavior if your logic is complex.
 - `Increment<A, Fail=never>`: alias of `Add<A, 1, Fail>`.
 - `Decrement<A, Fail=never>`: alias of `Subtract<A, 1, Fail>`.
 
+### Tuple
+
+- [`TupleType`](ts/tuple/readme.md#tupletype)
+
 ### Utility Functions
 
 - `amend(subject)...`: amend subject as union or intersect of `T`.

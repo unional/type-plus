@@ -22,5 +22,6 @@ export * from './object/index.js'
 export * from './predicates/index.js'
 export * from './promise/index.js'
 export * from './testing/index.js'
+export * from './tuple/index.js'
 export * from './utils/index.js'
 // export { types, types as T }
