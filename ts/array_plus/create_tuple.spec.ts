@@ -1,16 +1,16 @@
-import { CreateTuple, isType } from '../index.js'
+import { isType, type CreateTuple } from '../index.js'
 
 test('create empty tuple', () => {
 	isType.equal<true, [], CreateTuple<0>>()
 })
 
 test('single element', () => {
-	isType.equal<true, [any], CreateTuple<1>>()
+	isType.equal<true, [unknown], CreateTuple<1>>()
 })
 
 test('multiple elements', () => {
 	type A = CreateTuple<3>
-	isType.equal<true, [any, any, any], A>()
+	isType.equal<true, [unknown, unknown, unknown], A>()
 })
 
 test('override element type', () => {
