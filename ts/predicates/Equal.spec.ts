@@ -122,8 +122,17 @@ describe('Equal<A, B>', () => {
 		isType.equal<true, true, Equal<any, any>>()
 		isType.equal<true, false, Equal<any, 1>>()
 		isType.equal<true, false, Equal<1, any>>()
+	})
 
-		// isType.equal<true, false, Equal<[any], [1]>>()
+	it('works agains tuple', () => {
+		isType.equal<true, true, Equal<[1], [1]>>()
+		isType.equal<true, true, Equal<[1, 2], [1, 2]>>()
+		isType.equal<true, true, Equal<[any], [any]>>()
+
+		isType.equal<true, false, Equal<[any], [1]>>()
+		isType.equal<true, false, Equal<1, [1]>>()
+		isType.equal<true, false, Equal<[1], 1>>()
+		isType.equal<true, false, Equal<[1, 2], [2, 1]>>()
 	})
 
 	it('works against function overload', () => {

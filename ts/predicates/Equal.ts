@@ -1,12 +1,31 @@
 import type { IsAny } from '../any_plus/any.js'
+import type { TupleType } from '../tuple/tuple.js'
 import type { And, Or } from './logical.js'
 
 /**
- * Checks if the two types are equal.
+ * Checks `A` and `B` are equal.
+ *
+ * ```ts
+ * import { type Equal } from 'type-plus'
+ *
+ * type R = Equal<1, 1> // true
+ * type R = Equal<any, any> // true
+ * type R = Equal<boolean, boolean> // true
+ * type R = Equal<true, true> // true
+ * type R = Equal<[1], [1]> // true
+ *
+ * type R = Equal<boolean, true> // false
+ * type R = Equal<any, 1> // false
+ * type R = Equal<[any], [1]> // false
+ * type R = Equal<{ a: 1 }, { a: 1; b: 2 }> // false
+ * ```
  */
-export type Equal<A, B, Then = true, Else = false> = [A, B] extends [B, A]
-	? And<IsAny<A>, IsAny<B>, Then, Or<IsAny<A>, IsAny<B>, Else, Then>>
-	: Else
+export type Equal<A, B, Then = true, Else = false> = And<
+	TupleType<A, true, false>,
+	TupleType<B, true, false>,
+	(<_>() => _ extends A ? 1 : 2) extends <_>() => _ extends B ? 1 : 2 ? Then : Else,
+	[A, B] extends [B, A] ? And<IsAny<A>, IsAny<B>, Then, Or<IsAny<A>, IsAny<B>, Else, Then>> : Else
+>
 
 /**
  * Checks if the two types are equal.
