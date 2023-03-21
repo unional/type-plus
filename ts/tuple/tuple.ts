@@ -1,3 +1,5 @@
+import { IsNever } from '../PrimitiveTypes.js'
+
 /**
  * Check if `T` is a tuple.
  *
@@ -11,8 +13,8 @@
  * type R = TupleType<string>   // false
  * ```
  */
-export type TupleType<T, Then = T, Else = never> = T extends infer A extends Array<any>
-	? number extends A['length']
-		? Else
-		: Then
-	: Else
+export type TupleType<T, Then = T, Else = never> = IsNever<
+	T,
+	Else,
+	T extends infer A extends Array<any> ? (number extends A['length'] ? Else : Then) : Else
+>

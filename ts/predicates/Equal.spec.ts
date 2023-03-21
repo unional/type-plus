@@ -1,3 +1,7 @@
+/**
+ * Testing for `Equal` cannot use `isType.equal()` as it is using `Equal`.
+ */
+
 import { AnyFunction, assertType, Equal, isType, NotEqual, ValueOf } from '../index.js'
 
 describe('Equal<A, B>', () => {
@@ -9,6 +13,7 @@ describe('Equal<A, B>', () => {
 		assertType.isFalse(false as Equal<true, false>)
 		assertType.isFalse(false as Equal<false, true>)
 	})
+
 	it('compares boolean with others', () => {
 		assertType.isFalse(false as Equal<true, undefined>)
 		assertType.isFalse(false as Equal<true, null>)
@@ -25,6 +30,14 @@ describe('Equal<A, B>', () => {
 		assertType.isFalse(false as Equal<false, symbol>)
 		assertType.isFalse(false as Equal<false, object>)
 		assertType.isFalse(false as Equal<false, AnyFunction>)
+	})
+
+	it('works with never', () => {
+		assertType.isTrue(true as Equal<never, never>)
+		assertType.isFalse(false as Equal<never, 1>)
+		assertType.isFalse(false as Equal<never, any>)
+		assertType.isFalse(false as Equal<1, never>)
+		assertType.isFalse(false as Equal<any, never>)
 	})
 
 	test('not match', () => {
@@ -124,7 +137,7 @@ describe('Equal<A, B>', () => {
 		isType.equal<true, false, Equal<1, any>>()
 	})
 
-	it('works agains tuple', () => {
+	it('works against tuple', () => {
 		isType.equal<true, true, Equal<[1], [1]>>()
 		isType.equal<true, true, Equal<[1, 2], [1, 2]>>()
 		isType.equal<true, true, Equal<[any], [any]>>()

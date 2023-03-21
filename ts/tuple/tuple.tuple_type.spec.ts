@@ -20,4 +20,5 @@ it('returns T if T is a tuple', () => {
 it('can override Then/Else', () => {
 	isType.equal<true, TupleType<number, true, false>, false>()
 	isType.equal<true, TupleType<[], true, false>, true>()
+	isType.equal<true, TupleType<never, true, false>, false>()
 })
