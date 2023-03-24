@@ -95,7 +95,7 @@
 		"typedoc-plugin-extras": "^2.2.3",
 		"typescript": "^5.0.2"
 	},
-	"packageManager": "pnpm@7.30.2",
+	"packageManager": "pnpm@7.30.3",
 	"size-limit": [
 		{
 			"name": "cjs",
