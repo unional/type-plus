@@ -1,4 +1,4 @@
-import { TrueType, PrimitiveTypes, type } from '../index.js'
+import { TrueType, type } from '../index.js'
 
 it('returns T if T is true', () => {
 	type.equal<TrueType<true>, true>(true)
@@ -35,7 +35,9 @@ it('returns never for all other types', () => {
 })
 
 it('returns never for union type', () => {
-	type.never<TrueType<PrimitiveTypes>>(true)
+	type.never<TrueType<true | false>>(true)
+	type.never<TrueType<boolean>>(true)
+	type.never<TrueType<true | 1>>(true)
 })
 
 it('can override Then/Else', () => {

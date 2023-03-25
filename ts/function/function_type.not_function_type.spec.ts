@@ -33,7 +33,7 @@ it('returns T for all other types', () => {
 	type.equal<NotFunctionType<[]>, []>(true)
 })
 
-it('returns T if T is union of function', () => {
+it('returns T if T is union of function and other types', () => {
 	type.equal<NotFunctionType<(() => void) | { a: 1 }>, (() => void) | { a: 1 }>(true)
 })
 

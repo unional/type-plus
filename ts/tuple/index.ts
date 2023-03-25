@@ -1,1 +1,1 @@
-export type * from './tuple.js'
+export type * from './tuple_type.js'

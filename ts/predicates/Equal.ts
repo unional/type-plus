@@ -1,5 +1,5 @@
 import type { IsAny } from '../any/any_type.js'
-import type { TupleType } from '../tuple/tuple.js'
+import type { TupleType } from '../tuple/tuple_type.js'
 import type { And, Or } from './logical.js'
 
 /**

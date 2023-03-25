@@ -1,42 +1,45 @@
-import { isType, type UndefinedType } from '../index.js'
+import { type, type UndefinedType } from '../index.js'
 
-it('returns undefined for undefined', () => {
-	isType.equal<true, undefined, UndefinedType<undefined>>()
+it('returns undefined if T is undefined', () => {
+	type.equal<UndefinedType<undefined>, undefined>(true)
 })
 
-it('returns never for other special types', () => {
-	isType.equal<true, never, UndefinedType<any>>()
-	isType.equal<true, never, UndefinedType<unknown>>()
-	isType.equal<true, never, UndefinedType<void>>()
-	isType.equal<true, never, UndefinedType<never>>()
+it('returns never for special types', () => {
+	type.never<UndefinedType<any>>(true)
+	type.never<UndefinedType<unknown>>(true)
+	type.never<UndefinedType<void>>(true)
+	type.never<UndefinedType<never>>(true)
 })
 
-test('returns never for singular types', () => {
-	isType.equal<true, never, UndefinedType<null>>()
-	isType.equal<true, never, UndefinedType<number>>()
-	isType.equal<true, never, UndefinedType<boolean>>()
-	isType.equal<true, never, UndefinedType<true>>()
-	isType.equal<true, never, UndefinedType<false>>()
-	isType.equal<true, never, UndefinedType<string>>()
-	isType.equal<true, never, UndefinedType<''>>()
-	isType.equal<true, never, UndefinedType<symbol>>()
-	isType.equal<true, never, UndefinedType<bigint>>()
-	isType.equal<true, never, UndefinedType<{}>>()
-	isType.equal<true, never, UndefinedType<string[]>>()
-	isType.equal<true, never, UndefinedType<[]>>()
-	isType.equal<true, never, UndefinedType<Function>>()
-	isType.equal<true, never, UndefinedType<() => void>>()
+test('returns never for other types', () => {
+	type.never<UndefinedType<null>>(true)
+	type.never<UndefinedType<number>>(true)
+	type.never<UndefinedType<1>>(true)
+	type.never<UndefinedType<boolean>>(true)
+	type.never<UndefinedType<true>>(true)
+	type.never<UndefinedType<false>>(true)
+	type.never<UndefinedType<string>>(true)
+	type.never<UndefinedType<''>>(true)
+	type.never<UndefinedType<symbol>>(true)
+	type.never<UndefinedType<bigint>>(true)
+	type.never<UndefinedType<1n>>(true)
+	type.never<UndefinedType<{}>>(true)
+	type.never<UndefinedType<string[]>>(true)
+	type.never<UndefinedType<[]>>(true)
+	type.never<UndefinedType<Function>>(true)
+	type.never<UndefinedType<() => void>>(true)
 })
 
 it('returns never for union type', () => {
-	isType.equal<true, never, UndefinedType<undefined | 1>>()
-})
-
-it('returns never for intersection type', () => {
-	isType.equal<true, never, UndefinedType<{} & {}>>()
+	type.never<UndefinedType<undefined | 1>>(true)
 })
 
 it('can override Then/Else', () => {
-	isType.equal<true, 1, UndefinedType<undefined, 1, 2>>()
-	// isType.equal<true, 2, UndefinedType<never, 1, 2>>()
+	type.equal<UndefinedType<undefined, 1, 2>, 1>(true)
+	type.equal<UndefinedType<0, 1, 2>, 2>(true)
+
+	type.equal<UndefinedType<any, 1, 2>, 2>(true)
+	type.equal<UndefinedType<unknown, 1, 2>, 2>(true)
+	type.equal<UndefinedType<never, 1, 2>, 2>(true)
+	type.equal<UndefinedType<void, 1, 2>, 2>(true)
 })

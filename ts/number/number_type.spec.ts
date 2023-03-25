@@ -18,7 +18,7 @@ it('returns never for special types', () => {
 	type.never<NumberType<never>>(true)
 })
 
-it('returns never for all other types', () => {
+it('returns never for other types', () => {
 	type.never<NumberType<undefined>>(true)
 	type.never<NumberType<null>>(true)
 	type.never<NumberType<boolean>>(true)
@@ -28,6 +28,7 @@ it('returns never for all other types', () => {
 	type.never<NumberType<''>>(true)
 	type.never<NumberType<symbol>>(true)
 	type.never<NumberType<bigint>>(true)
+	type.never<NumberType<1n>>(true)
 	type.never<NumberType<{}>>(true)
 	type.never<NumberType<string[]>>(true)
 	type.never<NumberType<[]>>(true)
