@@ -1,0 +1,57 @@
+import type { IsAnyOrNever } from '../any/any_or_never.js'
+
+/**
+ * Check if `T` is a `Function`.
+ *
+ * ```ts
+ * import type { FunctionType } from 'type-plus'
+ *
+ * type R = FunctionType<Function> // Function
+ * type R = FunctionType<() => void> // () => void
+ * type R = FunctionType<(() => void) | { a: 1 }> // (() => void) | { a: 1 }
+ *
+ * type R = FunctionType<{ a: 1 }> // never
+ * type R = FunctionType<never> // never
+ * type R = FunctionType<unknown> // never
+ * ```
+ */
+export type FunctionType<T, Then = T, Else = never> = IsAnyOrNever<T, Else, T extends Function ? Then : Else>
+
+/**
+ * Is `T` a `Function`.
+ *
+ * ```ts
+ * import type { IsFunction } from 'type-plus'
+ *
+ * type R = IsFunction<Function> // Function
+ * type R = IsFunction<() => void> // () => void
+ * type R = IsFunction<(() => void) | { a: 1 }> // (() => void) | { a: 1 }
+ *
+ * type R = IsFunction<{ a: 1 }> // never
+ * type R = IsFunction<never> // never
+ * type R = IsFunction<unknown> // never
+ * ```
+ */
+export type IsFunction<T, Then = true, Else = false> = FunctionType<T, Then, Else>
+
+/**
+ * Check if `T` is not a `Function`.
+ *
+ * ```ts
+ * import type { NotFunctionType } from 'type-plus'
+ *
+ * type R = NotFunctionType<Function> // never
+ * type R = NotFunctionType<() => void> // never
+ * type R = NotFunctionType<(() => void) | { a: 1 }> // never
+ *
+ * type R = NotFunctionType<{ a: 1 }> // { a: 1 }
+ * type R = NotFunctionType<never> // never
+ * type R = NotFunctionType<unknown> // unknown
+ * ```
+ */
+export type NotFunctionType<T, Then = T, Else = never> = FunctionType<T, Else, Then>
+
+/**
+ * Check if `T` is not a `Function`.
+ */
+export type IsNotFunction<T, Then = true, Else = false> = FunctionType<T, Else, Then>

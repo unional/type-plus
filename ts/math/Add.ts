@@ -1,6 +1,6 @@
-import type { PadLeft } from '../array_plus/index.js'
+import type { PadLeft } from '../array/index.js'
 import type { And } from '../predicates/index.js'
-import type { IsPositive, IsWhole } from '../number_plus/number.js'
+import type { IsPositive, IsWhole } from '../number/number.js'
 import type { Digit, DigitArray } from './Digit.js'
 import type { Max } from './Max.js'
 

@@ -1,26 +1,26 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { amend, as, asAny, isType } from '../index.js'
+import { amend, as, asAny, type } from '../index.js'
 
 describe('as<T>()', () => {
 	test('defaults subject type to unknown', () => {
 		const s: any = {}
 		const a = as(s)
-		isType.equal<true, unknown, typeof a>()
+		type.equal<typeof a, unknown>(true)
 	})
 
 	test('cast type to T', () => {
 		const s: any = {}
 		const n = as<number>(s)
-		isType.equal<true, number, typeof n>()
+		type.equal<typeof n, number>(true)
 
 		const str = as<string>(s)
-		isType.equal<true, string, typeof str>()
+		type.equal<typeof str, string>(true)
 
 		const o = as<{ a: number }>(s)
-		isType.equal<true, { a: number }, typeof o>()
+		type.equal<typeof o, { a: number }>(true)
 
 		const any = as<any>(s)
-		isType.equal<true, any, typeof any>()
+		type.equal<typeof any, any>(true)
 	})
 })
 
@@ -28,7 +28,7 @@ describe('asAny()', () => {
 	test('cast type to any', () => {
 		const s: unknown = {}
 		const a = asAny(s)
-		isType.equal<true, any, typeof a>()
+		type.equal<typeof a, any>(true)
 	})
 })
 
@@ -36,11 +36,11 @@ describe('amend<T>()', () => {
 	test('assert subject as (subject & T)', () => {
 		const s = { a: 1 }
 		const a = amend(s).union<{ b: string }>()
-		isType.equal<true, { a: number } & { b: string }, typeof a>()
+		type.equal<typeof a, { a: number } & { b: string }>(true)
 	})
 	test('assert subject as (subject | T)', () => {
 		const s = { a: 1 }
 		const a = amend(s).intersect<{ b: string }>()
-		isType.equal<true, { a: number } | { b: string }, typeof a>()
+		type.equal<typeof a, { a: number } | { b: string }>(true)
 	})
 })

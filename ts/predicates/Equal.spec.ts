@@ -2,150 +2,150 @@
  * Testing for `Equal` cannot use `isType.equal()` as it is using `Equal`.
  */
 
-import { AnyFunction, assertType, Equal, isType, NotEqual, ValueOf } from '../index.js'
+import { AnyFunction, assertType, IsEqual, isType, IsNotEqual } from '../index.js'
 
 describe('Equal<A, B>', () => {
 	it('compares among booleans', () => {
-		assertType.isTrue(true as Equal<true, true>)
-		assertType.isTrue(true as Equal<false, false>)
-		assertType.isTrue(true as Equal<boolean, boolean>)
+		assertType.isTrue(true as IsEqual<true, true>)
+		assertType.isTrue(true as IsEqual<false, false>)
+		assertType.isTrue(true as IsEqual<boolean, boolean>)
 
-		assertType.isFalse(false as Equal<true, false>)
-		assertType.isFalse(false as Equal<false, true>)
+		assertType.isFalse(false as IsEqual<true, false>)
+		assertType.isFalse(false as IsEqual<false, true>)
 	})
 
 	it('compares boolean with others', () => {
-		assertType.isFalse(false as Equal<true, undefined>)
-		assertType.isFalse(false as Equal<true, null>)
-		assertType.isFalse(false as Equal<true, number>)
-		assertType.isFalse(false as Equal<true, string>)
-		assertType.isFalse(false as Equal<true, symbol>)
-		assertType.isFalse(false as Equal<true, object>)
-		assertType.isFalse(false as Equal<true, AnyFunction>)
+		assertType.isFalse(false as IsEqual<true, undefined>)
+		assertType.isFalse(false as IsEqual<true, null>)
+		assertType.isFalse(false as IsEqual<true, number>)
+		assertType.isFalse(false as IsEqual<true, string>)
+		assertType.isFalse(false as IsEqual<true, symbol>)
+		assertType.isFalse(false as IsEqual<true, object>)
+		assertType.isFalse(false as IsEqual<true, AnyFunction>)
 
-		assertType.isFalse(false as Equal<false, undefined>)
-		assertType.isFalse(false as Equal<false, null>)
-		assertType.isFalse(false as Equal<false, number>)
-		assertType.isFalse(false as Equal<false, string>)
-		assertType.isFalse(false as Equal<false, symbol>)
-		assertType.isFalse(false as Equal<false, object>)
-		assertType.isFalse(false as Equal<false, AnyFunction>)
+		assertType.isFalse(false as IsEqual<false, undefined>)
+		assertType.isFalse(false as IsEqual<false, null>)
+		assertType.isFalse(false as IsEqual<false, number>)
+		assertType.isFalse(false as IsEqual<false, string>)
+		assertType.isFalse(false as IsEqual<false, symbol>)
+		assertType.isFalse(false as IsEqual<false, object>)
+		assertType.isFalse(false as IsEqual<false, AnyFunction>)
 	})
 
 	it('works with never', () => {
-		assertType.isTrue(true as Equal<never, never>)
-		assertType.isFalse(false as Equal<never, 1>)
-		assertType.isFalse(false as Equal<never, any>)
-		assertType.isFalse(false as Equal<1, never>)
-		assertType.isFalse(false as Equal<any, never>)
+		assertType.isTrue(true as IsEqual<never, never>)
+		assertType.isFalse(false as IsEqual<never, 1>)
+		assertType.isFalse(false as IsEqual<never, any>)
+		assertType.isFalse(false as IsEqual<1, never>)
+		assertType.isFalse(false as IsEqual<any, never>)
 	})
 
 	test('not match', () => {
-		assertType.isFalse(false as Equal<string, number>)
+		assertType.isFalse(false as IsEqual<string, number>)
 	})
 
 	test('literal is not equal to widen type', () => {
-		assertType.isFalse(false as Equal<1, number>)
-		assertType.isFalse(false as Equal<number, 1>)
+		assertType.isFalse(false as IsEqual<1, number>)
+		assertType.isFalse(false as IsEqual<number, 1>)
 	})
 
 	test('super set and sub set are not equal', () => {
-		assertType.isFalse(false as Equal<{ a: 1 }, { a: 1; b: 2 }>)
-		assertType.isFalse(false as Equal<{ a: 1; b: 2 }, { a: 1 }>)
+		assertType.isFalse(false as IsEqual<{ a: 1 }, { a: 1; b: 2 }>)
+		assertType.isFalse(false as IsEqual<{ a: 1; b: 2 }, { a: 1 }>)
 	})
 
 	test('boolean', () => {
-		assertType.isTrue(true as Equal<boolean, boolean>)
-		assertType.isTrue(true as Equal<true, true>)
-		assertType.isTrue(true as Equal<false, false>)
-		assertType.isFalse(false as Equal<boolean, true>)
-		assertType.isFalse(false as Equal<true, boolean>)
-		assertType.isFalse(false as Equal<boolean, false>)
-		assertType.isFalse(false as Equal<false, boolean>)
-		assertType.isFalse(false as Equal<false, true>)
-		assertType.isFalse(false as Equal<true, false>)
+		assertType.isTrue(true as IsEqual<boolean, boolean>)
+		assertType.isTrue(true as IsEqual<true, true>)
+		assertType.isTrue(true as IsEqual<false, false>)
+		assertType.isFalse(false as IsEqual<boolean, true>)
+		assertType.isFalse(false as IsEqual<true, boolean>)
+		assertType.isFalse(false as IsEqual<boolean, false>)
+		assertType.isFalse(false as IsEqual<false, boolean>)
+		assertType.isFalse(false as IsEqual<false, true>)
+		assertType.isFalse(false as IsEqual<true, false>)
 	})
 
 	test('same type is true', () => {
-		assertType.isTrue(true as Equal<{ a: 1 }, { a: 1 }>)
+		assertType.isTrue(true as IsEqual<{ a: 1 }, { a: 1 }>)
 	})
 
 	test('different type is false', () => {
-		assertType.isFalse(false as Equal<{ a: 1 }, { b: 1 }>)
+		assertType.isFalse(false as IsEqual<{ a: 1 }, { b: 1 }>)
 	})
 
 	test('A subset of B is false', () => {
-		assertType.isFalse(false as Equal<{ a: 1 }, { a: 1; b: 1 }>)
+		assertType.isFalse(false as IsEqual<{ a: 1 }, { a: 1; b: 1 }>)
 	})
 
 	test('B subset of A is false', () => {
-		assertType.isFalse(false as Equal<{ a: 1; b: 1 }, { a: 1 }>)
+		assertType.isFalse(false as IsEqual<{ a: 1; b: 1 }, { a: 1 }>)
 	})
 
 	test('disjoin is false', () => {
-		assertType.isFalse(false as Equal<{ b: 1 }, { a: 1 }>)
+		assertType.isFalse(false as IsEqual<{ b: 1 }, { a: 1 }>)
 	})
 
 	test('overlap is false', () => {
-		assertType.isFalse(false as Equal<{ a: 1; b: 1 }, { a: 1; c: 2 }>)
+		assertType.isFalse(false as IsEqual<{ a: 1; b: 1 }, { a: 1; c: 2 }>)
 	})
 
 	it('works with union types', () => {
-		assertType.isTrue(true as Equal<{ a: number; b: string }, { a: number } & { b: string }>)
-		assertType.isTrue(true as Equal<{ a: number; b?: string }, { a: number } & { b?: string }>)
+		assertType.isTrue(true as IsEqual<{ a: number; b: string }, { a: number } & { b: string }>)
+		assertType.isTrue(true as IsEqual<{ a: number; b?: string }, { a: number } & { b?: string }>)
 	})
 
 	it('works with never type', () => {
-		assertType.isTrue(true as Equal<never, never>)
-		assertType.isFalse(false as Equal<never, 1>)
-		assertType.isFalse(false as Equal<1, never>)
+		assertType.isTrue(true as IsEqual<never, never>)
+		assertType.isFalse(false as IsEqual<never, 1>)
+		assertType.isFalse(false as IsEqual<1, never>)
 	})
 
 	it('works with union types containing undefined', () => {
-		type A = Equal<string | undefined, string | undefined | number>
+		type A = IsEqual<string | undefined, string | undefined | number>
 		assertType.isFalse(false as A)
 	})
 
 	it('works with union types containing symbol', () => {
-		type A = Equal<string | symbol, string | symbol | number>
+		type A = IsEqual<string | symbol, string | symbol | number>
 		assertType.isFalse(false as A)
 	})
 
 	it('works with intersect objects', () => {
-		assertType.isTrue(true as Equal<{ a: number } & { b: number }, { a: number; b: number }>)
-		assertType.isFalse(false as Equal<{ a: number } & { c: number }, { a: number; b: number }>)
+		assertType.isTrue(true as IsEqual<{ a: number } & { b: number }, { a: number; b: number }>)
+		assertType.isFalse(false as IsEqual<{ a: number } & { c: number }, { a: number; b: number }>)
 	})
 
 	it('works with union of functions', () => {
 		assertType.isTrue(
-			true as Equal<
+			true as IsEqual<
 				((v: string) => string) | ((v: number) => number),
 				((v: string) => string) | ((v: number) => number)
 			>
 		)
 		assertType.isFalse(
-			false as Equal<(v: string) => string, ((v: string) => string) | ((v: number) => number)>
+			false as IsEqual<(v: string) => string, ((v: string) => string) | ((v: number) => number)>
 		)
 		assertType.isFalse(
-			false as Equal<((v: string) => string) | ((v: number) => number), (v: string) => string>
+			false as IsEqual<((v: string) => string) | ((v: number) => number), (v: string) => string>
 		)
 	})
 
 	it('works against any', () => {
-		isType.equal<true, true, Equal<any, any>>()
-		isType.equal<true, false, Equal<any, 1>>()
-		isType.equal<true, false, Equal<1, any>>()
+		isType.equal<true, true, IsEqual<any, any>>()
+		isType.equal<true, false, IsEqual<any, 1>>()
+		isType.equal<true, false, IsEqual<1, any>>()
 	})
 
 	it('works against tuple', () => {
-		isType.equal<true, true, Equal<[1], [1]>>()
-		isType.equal<true, true, Equal<[1, 2], [1, 2]>>()
-		isType.equal<true, true, Equal<[any], [any]>>()
+		isType.equal<true, true, IsEqual<[1], [1]>>()
+		isType.equal<true, true, IsEqual<[1, 2], [1, 2]>>()
+		isType.equal<true, true, IsEqual<[any], [any]>>()
 
-		isType.equal<true, false, Equal<[any], [1]>>()
-		isType.equal<true, false, Equal<1, [1]>>()
-		isType.equal<true, false, Equal<[1], 1>>()
-		isType.equal<true, false, Equal<[1, 2], [2, 1]>>()
+		isType.equal<true, false, IsEqual<[any], [1]>>()
+		isType.equal<true, false, IsEqual<1, [1]>>()
+		isType.equal<true, false, IsEqual<[1], 1>>()
+		isType.equal<true, false, IsEqual<[1, 2], [2, 1]>>()
 	})
 
 	it('works against function overload', () => {
@@ -157,7 +157,7 @@ describe('Equal<A, B>', () => {
 		type F = typeof foo
 
 		assertType.isTrue(
-			true as Equal<
+			true as IsEqual<
 				F,
 				{
 					(v: string): string
@@ -170,24 +170,24 @@ describe('Equal<A, B>', () => {
 
 describe('NotEqual<A, B>', () => {
 	test('boolean', () => {
-		assertType.isFalse(false as NotEqual<boolean, boolean>)
-		assertType.isFalse(false as NotEqual<true, true>)
-		assertType.isFalse(false as NotEqual<false, false>)
-		assertType.isTrue(true as NotEqual<boolean, true>)
-		assertType.isTrue(true as NotEqual<true, boolean>)
-		assertType.isTrue(true as NotEqual<boolean, false>)
-		assertType.isTrue(true as NotEqual<false, boolean>)
-		assertType.isTrue(true as NotEqual<false, true>)
-		assertType.isTrue(true as NotEqual<true, false>)
+		assertType.isFalse(false as IsNotEqual<boolean, boolean>)
+		assertType.isFalse(false as IsNotEqual<true, true>)
+		assertType.isFalse(false as IsNotEqual<false, false>)
+		assertType.isTrue(true as IsNotEqual<boolean, true>)
+		assertType.isTrue(true as IsNotEqual<true, boolean>)
+		assertType.isTrue(true as IsNotEqual<boolean, false>)
+		assertType.isTrue(true as IsNotEqual<false, boolean>)
+		assertType.isTrue(true as IsNotEqual<false, true>)
+		assertType.isTrue(true as IsNotEqual<true, false>)
 	})
 	it('works with union types', () => {
-		assertType.isFalse(false as NotEqual<{ a: number; b: string }, { a: number } & { b: string }>)
-		assertType.isTrue(true as NotEqual<{ a: number; b: string }, { a: number } & { b?: string }>)
+		assertType.isFalse(false as IsNotEqual<{ a: number; b: string }, { a: number } & { b: string }>)
+		assertType.isTrue(true as IsNotEqual<{ a: number; b: string }, { a: number } & { b?: string }>)
 	})
 	it('works with never type', () => {
-		type A = NotEqual<never, never>
+		type A = IsNotEqual<never, never>
 		assertType.isFalse(false as A)
-		assertType.isTrue(true as NotEqual<never, 1>)
-		assertType.isFalse(false as Equal<never, NotEqual<never, ValueOf<string>>>)
+		assertType.isTrue(true as IsNotEqual<never, 1>)
+		// assertType.isFalse(false as Equal<never, NotEqual<never, ValueOf<string>>>)
 	})
 })

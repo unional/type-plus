@@ -1,14 +1,14 @@
-import { Abs, isType } from '../index.js'
+import { Abs, type } from '../index.js'
 
 test('positive returns itself', () => {
-	isType.equal<true, 1, Abs<1>>()
+	type.equal<Abs<1>, 1>(true)
 })
 
 test('negative returns positive', () => {
-	isType.equal<true, 1234, Abs<-1234>>()
+	type.equal<Abs<-1234>, 1234>(true)
 })
 
 test('number returns Fail', () => {
-	isType.equal<true, never, Abs<number>>()
-	isType.equal<true, 0, Abs<number, 0>>()
+	type.equal<Abs<number>, never>(true)
+	type.equal<Abs<number, 0>, 0>(true)
 })

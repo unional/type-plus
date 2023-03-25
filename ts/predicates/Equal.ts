@@ -1,4 +1,4 @@
-import type { IsAny } from '../any_plus/any.js'
+import type { IsAny } from '../any/any_type.js'
 import type { TupleType } from '../tuple/tuple.js'
 import type { And, Or } from './logical.js'
 
@@ -22,10 +22,14 @@ import type { And, Or } from './logical.js'
  */
 export type Equal<A, B, Then = true, Else = false> = And<
 	TupleType<A, true, false>,
-	TupleType<B, true, false>,
-	(<_>() => _ extends A ? 1 : 2) extends <_>() => _ extends B ? 1 : 2 ? Then : Else,
-	[A, B] extends [B, A] ? And<IsAny<A>, IsAny<B>, Then, Or<IsAny<A>, IsAny<B>, Else, Then>> : Else
->
+	TupleType<B, true, false>
+> extends true
+	? (<G>() => G extends A ? 1 : 2) extends <G>() => G extends B ? 1 : 2
+		? Then
+		: Else
+	: [A, B] extends [B, A]
+	? And<IsAny<A>, IsAny<B>, Then, Or<IsAny<A>, IsAny<B>, Else, Then>>
+	: Else
 
 /**
  * Checks if the two types are equal.
