@@ -625,6 +625,7 @@ Whenever possible, I add attribution to the person who created those **codes** i
 ## Similar projects
 
 - [expect-type]: Compile-time tests for types
+- [hotscript]: Higher-order TypeScript
 - [spec.ts]: write tests for your types!
 - [ts-essentials]: all essential TypeScript types in one place.
 - [ts-expect]: Checks values in TypeScript match expectations.
@@ -662,6 +663,7 @@ git push
 [expect-type]: https://github.com/mmkal/expect-type
 [github-action-url]: https://github.com/unional/type-plus/actions
 [github-nodejs]: https://github.com/unional/type-plus/workflows/nodejs/badge.svg
+[hotscript]: https://github.com/gvergnaud/hotscript
 [npm-image]: https://img.shields.io/npm/v/type-plus.svg?style=flat
 [npm-url]: https://npmjs.org/package/type-plus
 [semantic-release-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
