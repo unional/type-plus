@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { a } from 'assertron'
-import { AnyConstructor, AnyFunction, assertType, Equal, isType } from '../index.js'
+import { AnyConstructor, AnyFunction, assertType, IsEqual, isType } from '../index.js'
 
 describe('assertType()', () => {
 	test('input satisfies specified type', () => {
@@ -71,7 +71,7 @@ describe('assertType.isUndefined()', () => {
 	test('narrow any to undefined', () => {
 		const x: any = undefined
 		assertType.isUndefined(x)
-		assertType.isTrue(true as Equal<undefined, typeof x>)
+		assertType.isTrue(true as IsEqual<undefined, typeof x>)
 	})
 })
 
@@ -128,7 +128,7 @@ describe('assertType.isNull()', () => {
 	test('narrow any to null', () => {
 		const x: any = null
 		assertType.isNull(x)
-		assertType.isTrue(true as Equal<null, typeof x>)
+		assertType.isTrue(true as IsEqual<null, typeof x>)
 	})
 })
 
@@ -178,7 +178,7 @@ describe('assertType.isNumber()', () => {
 	test('narrow any to number', () => {
 		const x: any = 1
 		assertType.isNumber(x)
-		assertType.isTrue(true as Equal<number, typeof x>)
+		assertType.isTrue(true as IsEqual<number, typeof x>)
 	})
 })
 
@@ -227,7 +227,7 @@ describe('assertType.isBoolean()', () => {
 	test('narrow any to boolean', () => {
 		const x: any = true
 		assertType.isBoolean(x)
-		assertType.isTrue(true as Equal<boolean, typeof x>)
+		assertType.isTrue(true as IsEqual<boolean, typeof x>)
 	})
 })
 
@@ -279,7 +279,7 @@ describe('assertType.isTrue()', () => {
 	test('narrow any to true', () => {
 		const x: any = true
 		assertType.isTrue(x)
-		assertType.isTrue(true as Equal<true, typeof x>)
+		assertType.isTrue(true as IsEqual<true, typeof x>)
 	})
 })
 
@@ -389,7 +389,7 @@ describe('assertType.isString()', () => {
 	test('narrow any to string', () => {
 		const x: any = ''
 		assertType.isString(x)
-		assertType.isTrue(true as Equal<string, typeof x>)
+		assertType.isTrue(true as IsEqual<string, typeof x>)
 	})
 })
 
@@ -439,7 +439,7 @@ describe('assertType.isFunction()', () => {
 	test('narrow any to function', () => {
 		const x: any = () => {}
 		assertType.isFunction(x)
-		assertType.isTrue(true as Equal<AnyFunction, typeof x>)
+		assertType.isTrue(true as IsEqual<AnyFunction, typeof x>)
 	})
 })
 
@@ -491,7 +491,7 @@ describe('assertType.isConstructor()', () => {
 		class Foo {}
 		const x: any = Foo
 		assertType.isConstructor(x)
-		assertType.isTrue(true as Equal<AnyConstructor, typeof x>)
+		assertType.isTrue(true as IsEqual<AnyConstructor, typeof x>)
 	})
 })
 
@@ -531,7 +531,7 @@ describe('assertType.isError()', () => {
 	test('narrow any to Error', () => {
 		const x: any = new Error('hello')
 		assertType.isError(x)
-		assertType.isTrue(true as Equal<Error, typeof x>)
+		assertType.isTrue(true as IsEqual<Error, typeof x>)
 	})
 })
 

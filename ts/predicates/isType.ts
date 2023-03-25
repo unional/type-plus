@@ -1,4 +1,4 @@
-import type { Equal } from './Equal.js'
+import type { Equal } from '../equal/equal.js'
 
 /**
  * Is the subject of type T
@@ -15,6 +15,7 @@ export function isType(subject: unknown, validator?: (s: unknown) => unknown) {
 isType.t = function <T extends true>(subject?: T) {
 	return subject === undefined || subject === true
 }
+
 isType.f = function <T extends false>(subject?: T) {
 	return subject === undefined || subject === false
 }
@@ -37,6 +38,7 @@ isType.never = isNever
  * Are types A and B equals/not equals.
  * Easier to use than `isType.t<>()` and `isType.f<>()`,
  * when doing type level only equality comparison as you don't have to import `Equal<>`.
+ *
+ * @deprecated use `type.equal()` instead
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 isType.equal = function <C extends Equal<A, B>, A, B>() {}

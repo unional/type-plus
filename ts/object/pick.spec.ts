@@ -1,4 +1,4 @@
-import { assertType, canAssign, Equal, isType, Pick, pick, record } from '../index.js'
+import { assertType, canAssign, IsEqual, isType, Pick, pick, record } from '../index.js'
 
 describe(`Pick<T, K>`, () => {
 	test('distributive pick', () => {
@@ -59,7 +59,7 @@ describe(`Pick<T, K>`, () => {
 		type A = { a: number }
 		type S = Pick<A, never>
 		type K = keyof S
-		assertType.isTrue(true as Equal<K, never>)
+		assertType.isTrue(true as IsEqual<K, never>)
 	})
 })
 

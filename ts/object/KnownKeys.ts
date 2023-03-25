@@ -2,7 +2,7 @@
 // known from Gerrit Birkeland @Gerrit0
 // https://github.com/Microsoft/TypeScript/issues/25987#issuecomment-408339599
 
-import type { PrimitiveTypes } from '../PrimitiveTypes.js'
+import type { PrimitiveTypes } from '../primitive.js'
 
 // https://github.com/microsoft/TypeScript/issues/25987#issuecomment-441224690
 export type KnownKeys<T> = T extends PrimitiveTypes

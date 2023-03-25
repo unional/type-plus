@@ -1,75 +1,75 @@
-import { GreaterThan, isType } from '../index.js'
+import { type, type GreaterThan } from '../index.js'
 
 test('only support whole number', () => {
-	isType.equal<true, never, GreaterThan<0.1, 1>>()
-	isType.equal<true, never, GreaterThan<1, 0.1>>()
+	type.never<GreaterThan<0.1, 1>>(true)
+	type.never<GreaterThan<1, 0.1>>(true)
 })
 
 test('number gets never', () => {
-	isType.equal<true, never, GreaterThan<number, 1>>()
-	isType.equal<true, never, GreaterThan<1, number>>()
+	type.never<GreaterThan<number, 1>>(true)
+	type.never<GreaterThan<1, number>>(true)
 })
 
 test('override Fail case', () => {
-	isType.equal<true, number, GreaterThan<number, 2, number>>()
+	type.number<GreaterThan<number, 2, number>>(true)
 })
 
 test('n > n is false', () => {
-	isType.equal<true, false, GreaterThan<0, 0>>()
-	isType.equal<true, false, GreaterThan<1, 1>>()
-	isType.equal<true, false, GreaterThan<12, 12>>()
+	type.false<GreaterThan<0, 0>>(true)
+	type.false<GreaterThan<1, 1>>(true)
+	type.false<GreaterThan<12, 12>>(true)
 })
 
 test('with same number of digits', () => {
-	isType.equal<true, true, GreaterThan<1, 0>>()
-	isType.equal<true, true, GreaterThan<22, 11>>()
-	isType.equal<true, true, GreaterThan<20, 19>>()
-	isType.equal<true, true, GreaterThan<19, 10>>()
+	type.true<GreaterThan<1, 0>>(true)
+	type.true<GreaterThan<22, 11>>(true)
+	type.true<GreaterThan<20, 19>>(true)
+	type.true<GreaterThan<19, 10>>(true)
 
-	isType.equal<true, false, GreaterThan<0, 1>>()
-	isType.equal<true, false, GreaterThan<11, 22>>()
-	isType.equal<true, false, GreaterThan<19, 20>>()
-	isType.equal<true, false, GreaterThan<10, 19>>()
+	type.false<GreaterThan<0, 1>>(true)
+	type.false<GreaterThan<11, 22>>(true)
+	type.false<GreaterThan<19, 20>>(true)
+	type.false<GreaterThan<10, 19>>(true)
 })
 
 test('with different number of digits', () => {
-	isType.equal<true, false, GreaterThan<0, 1>>()
-	isType.equal<true, false, GreaterThan<9, 100>>()
-	isType.equal<true, true, GreaterThan<10, 1>>()
-	isType.equal<true, true, GreaterThan<123, 32>>()
-	isType.equal<true, true, GreaterThan<123, 13>>()
+	type.false<GreaterThan<0, 1>>(true)
+	type.false<GreaterThan<9, 100>>(true)
+	type.true<GreaterThan<10, 1>>(true)
+	type.true<GreaterThan<123, 32>>(true)
+	type.true<GreaterThan<123, 13>>(true)
 })
 
 test('-0 > 0 and 0 > -0 are false', () => {
-	isType.equal<true, false, GreaterThan<-0, 0>>()
-	isType.equal<true, false, GreaterThan<0, -0>>()
+	type.false<GreaterThan<-0, 0>>(true)
+	type.false<GreaterThan<0, -0>>(true)
 })
 
 test('works with negative numbers', () => {
-	isType.equal<true, true, GreaterThan<0, -1>>()
-	isType.equal<true, true, GreaterThan<1, -1>>()
-	isType.equal<true, true, GreaterThan<2, -1>>()
+	type.true<GreaterThan<0, -1>>(true)
+	type.true<GreaterThan<1, -1>>(true)
+	type.true<GreaterThan<2, -1>>(true)
 
-	isType.equal<true, false, GreaterThan<-1, 0>>()
-	isType.equal<true, false, GreaterThan<-1, 1>>()
-	isType.equal<true, false, GreaterThan<-1, 2>>()
+	type.false<GreaterThan<-1, 0>>(true)
+	type.false<GreaterThan<-1, 1>>(true)
+	type.false<GreaterThan<-1, 2>>(true)
 
-	isType.equal<true, false, GreaterThan<-0, -0>>()
-	isType.equal<true, false, GreaterThan<-1, -1>>()
+	type.false<GreaterThan<-0, -0>>(true)
+	type.false<GreaterThan<-1, -1>>(true)
 
-	isType.equal<true, true, GreaterThan<-0, -1>>()
-	isType.equal<true, false, GreaterThan<-1, -1>>()
-	isType.equal<true, false, GreaterThan<-2, -1>>()
+	type.true<GreaterThan<-0, -1>>(true)
+	type.false<GreaterThan<-1, -1>>(true)
+	type.false<GreaterThan<-2, -1>>(true)
 
-	isType.equal<true, false, GreaterThan<-1, -0>>()
-	isType.equal<true, false, GreaterThan<-1, -1>>()
-	isType.equal<true, true, GreaterThan<-1, -2>>()
+	type.false<GreaterThan<-1, -0>>(true)
+	type.false<GreaterThan<-1, -1>>(true)
+	type.true<GreaterThan<-1, -2>>(true)
 })
 
 test('work with large numbers', () => {
-	isType.equal<true, true, GreaterThan<1000000, 0>>()
-	isType.equal<true, false, GreaterThan<0, 1000000>>()
+	type.true<GreaterThan<1000000, 0>>(true)
+	type.false<GreaterThan<0, 1000000>>(true)
 
-	isType.equal<true, false, GreaterThan<-1000000, 0>>()
-	isType.equal<true, true, GreaterThan<0, -1000000>>()
+	type.false<GreaterThan<-1000000, 0>>(true)
+	type.true<GreaterThan<0, -1000000>>(true)
 })

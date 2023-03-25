@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { IsEmptyObject, isType } from '../index.js'
+import { IsEmptyObject, type } from '../index.js'
 
 test('true for {}', () => {
-	isType.t<IsEmptyObject<{}>>()
+	type.true<IsEmptyObject<{}>>(true)
 })
 test('false for everything else', () => {
-	isType.f<IsEmptyObject<undefined>>()
-	isType.f<IsEmptyObject<false>>()
-	isType.f<IsEmptyObject<0>>()
-	isType.f<IsEmptyObject<''>>()
-	isType.f<IsEmptyObject<{ a: 1 }>>()
+	type.false<IsEmptyObject<undefined>>(true)
+	type.false<IsEmptyObject<false>>(true)
+	type.false<IsEmptyObject<0>>(true)
+	type.false<IsEmptyObject<''>>(true)
+	type.false<IsEmptyObject<{ a: 1 }>>(true)
 })

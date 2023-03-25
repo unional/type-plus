@@ -1,5 +1,5 @@
 import { AssertOrder } from 'assertron'
-import { context, isType } from '../index.js'
+import { context, type } from '../index.js'
 
 describe(`${context.name}()`, () => {
 	it('allows no param', () => {
@@ -9,26 +9,26 @@ describe(`${context.name}()`, () => {
 
 	it('accepts an initial context value', () => {
 		const r = context({ a: 1 }).build()
-		isType.equal<true, { a: number }, typeof r>()
+		type.equal<typeof r, { a: number }>(true)
 		expect(r).toEqual({ a: 1 })
 	})
 
 	it('accepts an initializer', () => {
 		const r = context(() => ({ a: 1 })).build()
-		isType.equal<true, { a: number }, typeof r>()
+		type.equal<typeof r, { a: number }>(true)
 		expect(r).toEqual({ a: 1 })
 	})
 
 	it('accepts transformer expecting Init', () => {
 		const r = context({ a: 1 })
 			.extend(ctx => {
-				isType.equal<true, { a: number }, typeof ctx>()
+				type.equal<typeof ctx, { a: number }>(true)
 				expect(ctx).toEqual({ a: 1 })
 				return { b: ctx.a + 1 }
 			})
 			.build()
 
-		isType.equal<true, { a: number; b: number }, typeof r>()
+		type.equal<typeof r, { a: number; b: number }>(true)
 		expect(r).toEqual({ a: 1, b: 2 })
 	})
 
@@ -38,7 +38,7 @@ describe(`${context.name}()`, () => {
 			.extend(ctx => ({ c: ctx.a + ctx.b }))
 			.build()
 
-		isType.equal<true, { a: number; b: number; c: number }, typeof r>()
+		type.equal<typeof r, { a: number; b: number; c: number }>(true)
 		expect(r).toEqual({ a: 1, b: 2, c: 3 })
 	})
 
@@ -48,7 +48,7 @@ describe(`${context.name}()`, () => {
 		}
 		const r = context({ a: 1, b: 2 }).extend(foo).build()
 
-		isType.equal<true, { a: number; b: number; c: number }, typeof r>()
+		type.equal<typeof r, { a: number; b: number; c: number }>(true)
 		expect(r).toEqual({ a: 1, b: 2, c: 3 })
 	})
 
@@ -57,7 +57,7 @@ describe(`${context.name}()`, () => {
 			.extend<{ b: number | undefined }>(ctx => ({ b: ctx.a + 1 }))
 			.build()
 
-		isType.equal<true, { a: number; b: number | undefined }, typeof r>()
+		type.equal<typeof r, { a: number; b: number | undefined }>(true)
 		expect(r).toEqual({ a: 1, b: 2 })
 	})
 

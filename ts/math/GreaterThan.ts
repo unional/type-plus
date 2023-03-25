@@ -1,6 +1,7 @@
-import type { Head, PadLeft, Tail } from '../array_plus/index.js'
-import type { IsPositive, IsWhole } from '../number_plus/number.js'
-import type { And, Equal, Or, Xor } from '../predicates/index.js'
+import type { Head, PadLeft, Tail } from '../array/index.js'
+import { IsEqual } from '../equal/equal.js'
+import type { IsPositive, IsWhole } from '../number/number.js'
+import type { And, Or, Xor } from '../predicates/index.js'
 import type { Digit, DigitArray } from './Digit.js'
 import type { Max } from './Max.js'
 
@@ -13,7 +14,7 @@ export type GreaterThan<A extends number, B extends number, Fail = never> = And<
 	? Fail
 	: number extends B
 	? Fail
-	: Equal<A, B> extends true
+	: IsEqual<A, B> extends true
 	? false
 	: Xor<IsPositive<A>, IsPositive<B>> extends true
 	? IsPositive<A>
@@ -47,7 +48,7 @@ export namespace GreaterThan {
 			: never
 		: never
 
-	export type ForDigitArray<DA extends number[], DB extends number[]> = Equal<Head<DA>, Head<DB>> extends true
+	export type ForDigitArray<DA extends number[], DB extends number[]> = IsEqual<Head<DA>, Head<DB>> extends true
 		? ForDigitArray<Tail<DA>, Tail<DB>>
 		: Digit.GreaterThan<Head<DA>, Head<DB>>
 }

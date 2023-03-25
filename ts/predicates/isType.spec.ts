@@ -1,49 +1,61 @@
-import { assertType, Equal, isType } from '../index.js'
+import { isType, type, type IsEqual } from '../index.js'
 
 describe('isType()', () => {
 	describe('without validator', () => {
 		test('subject type is checked at compile time', () => {
-			const subject = { a: 1, b: 2 } as const
-			if (isType<{ a: 1 }>(subject)) {
-				assertType<{ a: 1 }>(subject)
-			}
+			// @ts-expect-error
+			isType<{ a: 1 }>({})
 		})
 		test('work with falsy value such as empty string', () => {
 			const s = ''
 			if (isType<''>(s)) {
-				assertType<''>(s)
+				type R = typeof s
+				type.equal<R, ''>(true)
 			}
 		})
 	})
 	describe('with validator function', () => {
 		test('Specify T in the validate function', () => {
 			const s: unknown = false
-			if (isType(s, (s: boolean) => typeof s === 'boolean')) assertType<boolean>(s)
+			if (isType(s, (s: boolean) => typeof s === 'boolean')) {
+				type R = typeof s
+				type.equal<R, boolean>(true)
+			}
 		})
 		test('Specify T at type declaration', () => {
 			const s: unknown = false
-			if (isType<boolean>(s, s => typeof s === 'boolean')) assertType<boolean>(s)
+			if (isType<boolean>(s, s => typeof s === 'boolean')) {
+				type R = typeof s
+				type.equal<R, boolean>(true)
+			}
 		})
 		test('exclude type if type guard fails', () => {
-			const s: string | number = 1
+			const s = 1 as string | number
 			if (isType<string>(s, s => typeof s === 'string')) {
-				assertType<string>(s)
+				type R = typeof s
+				type.equal<R, string>(true)
 			} else {
-				assertType<number>(s)
+				type R = typeof s
+				type.equal<R, number>(true)
 			}
 		})
 
 		it('can use a truthy validator', () => {
 			const s: any = { a: 1 }
 			if (isType<{ a: number }>(s, s => s.a)) {
-				assertType<{ a: number }>(s)
+				type R = typeof s
+				type.equal<R, { a: number }>(true)
 			} else {
-				assertType<number>(s)
+				type R = typeof s
+				type.equal<R, any>(true)
 			}
 		})
 		test('subject can be type any', () => {
 			const s: any = false
-			if (isType<boolean>(s, s => typeof s === 'boolean')) assertType<boolean>(s)
+			if (isType<boolean>(s, s => typeof s === 'boolean')) {
+				type R = typeof s
+				type.equal<R, boolean>(true)
+			}
 		})
 	})
 })
@@ -51,7 +63,7 @@ describe('isType()', () => {
 describe('isType.t()', () => {
 	test('accept true type but not false or boolean', () => {
 		expect(isType.t<true>()).toBe(true)
-		expect(isType.t<Equal<1, 1>>()).toBe(true)
+		expect(isType.t<IsEqual<1, 1>>()).toBe(true)
 
 		// @ts-expect-error
 		isType.t<false>()
@@ -71,7 +83,7 @@ describe('isType.t()', () => {
 describe('isType.f()', () => {
 	test('accept false type but not true or boolean', () => {
 		expect(isType.f<false>()).toBe(true)
-		expect(isType.f<Equal<1, 2>>()).toBe(true)
+		expect(isType.f<IsEqual<1, 2>>()).toBe(true)
 
 		// @ts-expect-error
 		isType.f<true>()

@@ -1,4 +1,4 @@
-import type { UnionKeys } from '../UnionKeys.js'
+import type { UnionKeys } from '../union_keys.js'
 
 export function getField<T, TX extends Exclude<T, undefined | null>, K extends UnionKeys<TX>>(
 	subject: T,

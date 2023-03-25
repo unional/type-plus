@@ -1,4 +1,4 @@
-import type { UnionKeys } from '../UnionKeys.js'
+import type { UnionKeys } from '../union_keys.js'
 import type { AnyRecord } from './AnyRecord.js'
 import { record } from './record.js'
 import { reduceByKey } from './reduceKey.js'

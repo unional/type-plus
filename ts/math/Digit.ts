@@ -1,5 +1,5 @@
-import type { Tail } from '../array_plus/index.js'
-import type { IsPositive, IsWhole } from '../number_plus/number.js'
+import type { Tail } from '../array/index.js'
+import type { IsPositive, IsWhole } from '../number/number.js'
 import type { And } from '../predicates/index.js'
 
 export namespace Digit {
