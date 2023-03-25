@@ -1,9 +1,10 @@
+import type { IsAny } from '../any/any_type.js'
 import type { IsFunction } from '../function/function_type.js'
+import type { IsNever } from '../never/never.js'
 import type { IsObject } from '../object/object.js'
 import type { Properties } from '../object/properties.js'
 import type { And, Or } from '../predicates/logical.js'
-import type { IsAny } from '../any/any_type.js'
-import type { IsNever } from '../never/never.js'
+import type { IsSymbol } from '../symbol/symbol_type.js'
 
 /**
  * Checks `A` and `B` are equal.
@@ -40,21 +41,26 @@ export type Equal<A, B, Then = true, Else = false> = And<
 				IsAny<B>,
 				Else,
 				And<
-					IsObject<A>,
-					IsObject<B>,
+					IsSymbol<A>,
+					IsSymbol<B>,
+					Then,
 					And<
-						IsFunction<A>,
-						IsFunction<B>,
-						[A, B] extends [B, A] ? Then : Else,
-						(<_>() => _ extends (Properties<A> & _) | _ ? 1 : 2) extends <_>() => _ extends
-							| (Properties<B> & _)
-							| _
-							? 1
-							: 2
-							? Then
-							: Else
-					>,
-					[A, B] extends [B, A] ? Then : Else
+						IsObject<A>,
+						IsObject<B>,
+						And<
+							IsFunction<A>,
+							IsFunction<B>,
+							[A, B] extends [B, A] ? Then : Else,
+							(<_>() => _ extends (Properties<A> & _) | _ ? 1 : 2) extends <_>() => _ extends
+								| (Properties<B> & _)
+								| _
+								? 1
+								: 2
+								? Then
+								: Else
+						>,
+						[A, B] extends [B, A] ? Then : Else
+					>
 				>
 			>
 		>

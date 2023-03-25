@@ -178,6 +178,12 @@ it('returns false when comparing primitive types against each other', () => {
 	type.false<IsEqual<null, object>>(true)
 })
 
+it('compares actual symbol', () => {
+	const s = Symbol()
+	type.equal<typeof s, typeof s>(true)
+	type.equal<typeof s, symbol>(true)
+})
+
 it('compares never', () => {
 	type.true<IsEqual<never, never>>(true)
 	type.false<IsEqual<never, 1>>(true)
@@ -393,7 +399,10 @@ it('detect redonly', () => {
 
 it('works with deep any', () => {
 	type.true<
-		IsEqual<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: never; u: unknown; v: void } }>
+		IsEqual<
+			{ a: { a: any; n: never; u: unknown; v: void } },
+			{ a: { a: any; n: never; u: unknown; v: void } }
+		>
 	>(true)
 
 	type.false<

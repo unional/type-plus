@@ -1,6 +1,6 @@
 import { type, type UndefinedType } from '../index.js'
 
-it('returns undefined if T is undefined', () => {
+it('returns T if T is undefined', () => {
 	type.equal<UndefinedType<undefined>, undefined>(true)
 })
 

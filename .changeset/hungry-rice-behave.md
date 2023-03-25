@@ -15,9 +15,10 @@ Add:
 - `UndefinedType`, `IsUndefined`, `NotUndefinedType`, `IsNotUndefined`
 - `NumberType`, `IsNumber`, `NotNumberType`, `IsNotNumber`
 - `StringType`, `IsString`, `NotStringType`, `IsNotString`
+- `SymbolType`, `IsSymbol`, `NotSymbolType`, `IsNotSymbol`
 
 Improve:
 
-- `Equal`
+- `Equal`: to function overloads, symbol, any and never properly.
 - `IsInteger` to handle all types
 - `IsBoolean`
