@@ -15,7 +15,7 @@ import type { IsAnyOrNever } from '../any/any_or_never.js'
  * type R = FunctionType<unknown> // never
  * ```
  */
-export type FunctionType<T, Then = T, Else = never> = IsAnyOrNever<T, Else, T extends Function ? Then : Else>
+export type FunctionType<T, Then = T, Else = never> = IsAnyOrNever<T, Else, [T] extends [Function] ? Then : Else>
 
 /**
  * Is `T` a `Function`.

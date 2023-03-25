@@ -33,8 +33,8 @@ it('returns never for all other types', () => {
 	type.never<FunctionType<[]>>(true)
 })
 
-it('returns T if T is union of function', () => {
-	type.equal<FunctionType<(() => void) | { a: 1 }>, (() => void) | { a: 1 }>(true)
+it('returns never if T is union of function and other types', () => {
+	type.never<FunctionType<(() => void) | { a: 1 }>>(true)
 })
 
 it('returns T if T is function overloads', () => {

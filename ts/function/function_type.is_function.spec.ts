@@ -33,11 +33,8 @@ it('returns false for all other types', () => {
 	type.false<IsFunction<[]>>(true)
 })
 
-it('returns boolean if T is union of function', () => {
-	// because the union type are distributed so `() => void` returns true,
-	// while `{ a: 1 }` returns false
-	// thus the result is `true | false` -> `boolean`.
-	type.boolean<IsFunction<(() => void) | { a: 1 }>>(true)
+it('returns false if T is union of function', () => {
+	type.false<IsFunction<(() => void) | { a: 1 }>>(true)
 })
 
 it('returns true if T is function overloads', () => {
