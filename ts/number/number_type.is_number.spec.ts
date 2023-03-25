@@ -4,6 +4,13 @@ it('returns true for number', () => {
 	type.true<IsNumber<number>>(true)
 })
 
+it('returns false if T is number literial', () => {
+	type.false<IsNumber<-1>>(true)
+	type.false<IsNumber<0>>(true)
+	type.false<IsNumber<1>>(true)
+	type.false<IsNumber<1.1>>(true)
+})
+
 it('returns false for special types', () => {
 	type.false<IsNumber<void>>(true)
 	type.false<IsNumber<unknown>>(true)
@@ -34,11 +41,6 @@ it('returns false if N is union of non number', () => {
 
 it('returns true if N is union of number and number literal', () => {
 	type.true<IsNumber<number | 1>>(true)
-})
-
-it('returns false for numeric literals', () => {
-	type.false<IsNumber<0>>(true)
-	type.false<IsNumber<1.1>>(true)
 })
 
 it('can override Then/Else', () => {

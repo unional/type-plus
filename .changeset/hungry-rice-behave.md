@@ -16,7 +16,6 @@ Add:
 - `NumberType`, `IsNumber`, `NotNumberType`, `IsNotNumber`
 - `StringType`, `IsString`, `NotStringType`, `IsNotString`
 
-
 Improve:
 
 - `Equal`
