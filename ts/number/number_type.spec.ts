@@ -1,7 +1,14 @@
 import { type, type NumberType } from '../index.js'
 
-it('returns number for number', () => {
+it('returns T if T is number', () => {
 	type.equal<NumberType<number>, number>(true)
+})
+
+it('returns never if T is number literial', () => {
+	type.never<NumberType<-1>>(true)
+	type.never<NumberType<0>>(true)
+	type.never<NumberType<1>>(true)
+	type.never<NumberType<1.1>>(true)
 })
 
 it('returns never for special types', () => {
@@ -28,21 +35,18 @@ it('returns never for all other types', () => {
 	type.never<NumberType<() => void>>(true)
 })
 
-it('returns never if N is union of non number', () => {
+it('returns never if T is union of non number', () => {
 	type.never<NumberType<number | string>>(true)
 })
 
-it('returns number if N is union of number and number literal', () => {
+it('returns T if T is union of number and number literal', () => {
 	type.equal<NumberType<number | 1>, number>(true)
-})
-
-it('returns never for numeric literals', () => {
-	type.never<NumberType<0>>(true)
-	type.never<NumberType<1.1>>(true)
 })
 
 it('can override Then/Else', () => {
 	type.equal<NumberType<number, 1, 2>, 1>(true)
+	type.equal<NumberType<0, 1, 2>, 2>(true)
+
 	type.equal<NumberType<any, 1, 2>, 2>(true)
 	type.equal<NumberType<unknown, 1, 2>, 2>(true)
 	type.equal<NumberType<never, 1, 2>, 2>(true)
