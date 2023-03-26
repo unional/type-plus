@@ -1,4 +1,4 @@
-import { type, type NotBigintType, type PrimitiveTypes } from '../index.js'
+import { type, type NotBigintType } from '../index.js'
 
 it('returns never if T is bigint', () => {
 	type.never<NotBigintType<bigint>>(true)
@@ -6,7 +6,7 @@ it('returns never if T is bigint', () => {
 
 it('returns T if T is bigint literals', () => {
 	type.equal<NotBigintType<0n>, 0n>(true)
-	type.equal<NotBigintType<1n>, 1n>(true)
+	type.equal<NotBigintType<11111111111111111111111111111111n>, 11111111111111111111111111111111n>(true)
 })
 
 it('returns T for special types', () => {
@@ -35,7 +35,12 @@ test('returns T for other types', () => {
 })
 
 it('returns T for union type', () => {
-	type.equal<NotBigintType<PrimitiveTypes>, PrimitiveTypes>(true)
+	type.equal<NotBigintType<bigint | 1>, bigint | 1>(true)
+	type.equal<NotBigintType<bigint | 'a'>, bigint | 'a'>(true)
+})
+
+it('returns never for intersection type', () => {
+	type.never<NotBigintType<bigint & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {
