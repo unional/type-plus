@@ -36,4 +36,4 @@ export * from './type/type.js'
 export type * from './undefined/undefined_type.js'
 export type { UnionKeys } from './union_keys.js'
 export * from './utils/index.js'
-
+export type * from './void/void_type.js'
