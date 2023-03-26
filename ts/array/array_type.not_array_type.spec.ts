@@ -4,18 +4,18 @@ it('returns never if T is array', () => {
 	type.never<NotArrayType<string[]>>(true)
 })
 
-it('returns never if T is tuple', () => {
+it('returns T if T is tuple', () => {
 	type.equal<NotArrayType<[]>, []>(true)
 	type.equal<NotArrayType<[1]>, [1]>(true)
 })
 
-it('returns never for special types', () => {
+it('returns T for special types', () => {
 	type.equal<NotArrayType<void>, void>(true)
 	type.equal<NotArrayType<unknown>, unknown>(true)
 	type.equal<NotArrayType<any>, any>(true)
 	type.equal<NotArrayType<never>, never>(true)
 })
-it('returns never for all other types', () => {
+it('returns T for other types', () => {
 	type.equal<NotArrayType<undefined>, undefined>(true)
 	type.equal<NotArrayType<null>, null>(true)
 	type.equal<NotArrayType<boolean>, boolean>(true)
@@ -27,10 +27,20 @@ it('returns never for all other types', () => {
 	type.equal<NotArrayType<''>, ''>(true)
 	type.equal<NotArrayType<symbol>, symbol>(true)
 	type.equal<NotArrayType<bigint>, bigint>(true)
+	type.equal<NotArrayType<1n>, 1n>(true)
 	type.equal<NotArrayType<{}>, {}>(true)
+	type.equal<NotArrayType<{ a: 1 }>, { a: 1 }>(true)
 	type.equal<NotArrayType<[]>, []>(true)
 	type.equal<NotArrayType<Function>, Function>(true)
 	type.equal<NotArrayType<() => void>, () => void>(true)
+})
+
+it('returns T for union type', () => {
+	type.equal<NotArrayType<number[] | 1>, number[] | 1>(true)
+})
+
+it('returns never for intersection type', () => {
+	type.never<NotArrayType<number[] & 1>>(true)
 })
 
 it('can override Then/Else', () => {

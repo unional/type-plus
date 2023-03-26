@@ -1,5 +1,6 @@
 import type { IsBoolean, IsFalse, IsTrue } from '../boolean/boolean_type.js'
 import type { IsEqual } from '../equal/equal.js'
+import { IsAny } from '../index.js'
 import type { IsNever } from '../never/never_type.js'
 import type { IsNumber } from '../number/number_type.js'
 import type { CanAssign } from '../predicates/CanAssign.js'
@@ -21,6 +22,14 @@ function equal(expected: any) {
 }
 
 export const type = {
+	/**
+	 * Check if type `T` is exactly `any`.
+	 *
+	 * @return value as `T` for type inspection.
+	 */
+	any<T>(expected: IsAny<T>): T {
+		return expected as any
+	},
 	equal,
 	/**
 	 * Check if `A` can assign to `B`.
