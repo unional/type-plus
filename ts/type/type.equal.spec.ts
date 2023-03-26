@@ -15,7 +15,11 @@ it('returns value as type A for inspection', () => {
 	type.equal<{ b: 2 }, RT>(true)
 
 	// @ts-expect-error
-	const f = type.equal<Omit<{ a: 1; b: 2 }, 'a'>, { b: 2 }>(false)
+	const f = type.equal<Omit<{ a: 1; b: 2 }, 'a'>, { b: 3 }>(true)
 	type RF = typeof f
 	type.equal<{ b: 2 }, RF>(true)
+})
+
+it('compares intersection types', () => {
+	type.equal<Omit<{ a: 1; b: 2 }, 'a'> & { c: 3 }, { b: 2; c: 3 }>(true)
 })
