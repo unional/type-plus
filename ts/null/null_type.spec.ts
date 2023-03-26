@@ -32,6 +32,10 @@ it('returns never for union type', () => {
 	type.never<NullType<null | 1>>(true)
 })
 
+it('returns T for intersection type', () => {
+	type.equal<NullType<null & { a: 1 }>, null & { a: 1 }>(true)
+})
+
 it('can override Then/Else', () => {
 	type.equal<NullType<null, 1, 2>, 1>(true)
 
