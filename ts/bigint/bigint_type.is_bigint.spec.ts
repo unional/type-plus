@@ -1,4 +1,4 @@
-import { type, type IsBigint, type PrimitiveTypes } from '../index.js'
+import { type, type IsBigint } from '../index.js'
 
 it('returns true for bigint', () => {
 	type.true<IsBigint<bigint>>(true)
@@ -35,13 +35,12 @@ test('returns false for other types', () => {
 })
 
 it('returns false for union type', () => {
-	type.false<IsBigint<PrimitiveTypes>>(true)
+	type.false<IsBigint<bigint | 1>>(true)
 })
 
-// it('returns true for intersection type', () => {
-// 	type R = bigint & { a: 1 }
-// 	type.true<IsBigint<bigint & { a: 1 }>>(true)
-// })
+it('returns true for interaction type', () => {
+	type.true<IsBigint<bigint & { a: 1 }>>(true)
+})
 
 it('can override Then/Else', () => {
 	type.equal<IsBigint<bigint, 1, 2>, 1>(true)
