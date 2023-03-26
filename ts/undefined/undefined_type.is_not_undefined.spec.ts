@@ -1,4 +1,4 @@
-import { type, type IsNotUndefined, IsUndefined } from '../index.js'
+import { type, type IsNotUndefined } from '../index.js'
 
 it('returns false for undefined', () => {
 	type.false<IsNotUndefined<undefined>>(true)
@@ -32,9 +32,9 @@ it('returns true for union type', () => {
 	type.true<IsNotUndefined<undefined | 1>>(true)
 })
 
-it('returns false as undefined & any => any', () => {
+it('returns true as undefined & any => any', () => {
 	type.equal<undefined & any, any>(true)
-	type.false<IsUndefined<undefined & any>>(true)
+	type.true<IsNotUndefined<undefined & any>>(true)
 })
 
 it('returns false as undefined & unknown => undefined', () => {
