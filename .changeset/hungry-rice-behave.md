@@ -20,6 +20,7 @@ Add:
 
 Improve:
 
-- `Equal`: to function overloads, symbol, any and never properly.
+- `Equal`: to support function overloads, symbol, any and never types.
+  Supports 3-way comparison.
 - `IsInteger` to handle all types
 - `IsBoolean`
