@@ -34,6 +34,43 @@ it('returns never for union type', () => {
 	type.never<UndefinedType<undefined | 1>>(true)
 })
 
+it('returns never as undefined & any => any', () => {
+	type.equal<undefined & any, any>(true)
+	type.never<UndefinedType<undefined & any>>(true)
+})
+
+it('returns undefined as undefined & unknown => undefined', () => {
+	type.equal<UndefinedType<undefined & unknown>, undefined & unknown, undefined>(true)
+})
+
+it('returns undefined as undefined & void => undefined', () => {
+	type.equal<UndefinedType<undefined & void>, undefined & void, undefined>(true)
+})
+
+it('returns never as undefined & never => never', () => {
+	type.equal<UndefinedType<undefined & never>, undefined & never, never>(true)
+})
+
+it('returns never as undefined & <others> => never', () => {
+	type.equal<UndefinedType<undefined & null>, undefined & null, never>(true)
+	type.equal<UndefinedType<undefined & number>, undefined & number, never>(true)
+	type.equal<UndefinedType<undefined & 1>, undefined & 1, never>(true)
+	type.equal<UndefinedType<undefined & boolean>, undefined & boolean, never>(true)
+	type.equal<UndefinedType<undefined & true>, undefined & true, never>(true)
+	type.equal<UndefinedType<undefined & false>, undefined & false, never>(true)
+	type.equal<UndefinedType<undefined & string>, undefined & string, never>(true)
+	type.equal<UndefinedType<undefined & ''>, undefined & '', never>(true)
+	type.equal<UndefinedType<undefined & symbol>, undefined & symbol, never>(true)
+	type.equal<UndefinedType<undefined & bigint>, undefined & bigint, never>(true)
+	type.equal<UndefinedType<undefined & 1n>, undefined & 1n, never>(true)
+	type.equal<UndefinedType<undefined & {}>, undefined & {}, never>(true)
+	type.equal<UndefinedType<undefined & { a: 1 }>, undefined & { a: 1 }, never>(true)
+	type.equal<UndefinedType<undefined & string[]>, undefined & string[], never>(true)
+	type.equal<UndefinedType<undefined & []>, undefined & [], never>(true)
+	type.equal<UndefinedType<undefined & Function>, undefined & Function, never>(true)
+	type.equal<UndefinedType<undefined & (() => void)>, undefined & (() => void), never>(true)
+})
+
 it('can override Then/Else', () => {
 	type.equal<UndefinedType<undefined, 1, 2>, 1>(true)
 	type.equal<UndefinedType<0, 1, 2>, 2>(true)
