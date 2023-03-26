@@ -1,6 +1,6 @@
 import type { IsBoolean, IsFalse, IsTrue } from '../boolean/boolean_type.js'
 import type { IsEqual } from '../equal/equal.js'
-import type { IsNever } from '../never/never.js'
+import type { IsNever } from '../never/never_type.js'
 import type { IsNumber } from '../number/number_type.js'
 import type { CanAssign } from '../predicates/CanAssign.js'
 

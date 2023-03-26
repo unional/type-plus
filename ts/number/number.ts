@@ -1,5 +1,5 @@
 import type { IsAnyOrNever } from '../any/any_or_never.js'
-import type { IsNever } from '../never/never.js'
+import type { IsNever } from '../never/never_type.js'
 
 /**
  * Either number or bigint.
