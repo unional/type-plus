@@ -1,16 +1,15 @@
-const not_never = Symbol('not_never')
+import type { Brand } from '../nominal/brand.js'
+
 
 /**
  * This is a unique type used in the `Else` branch of `NeverType`.
  */
-export type Not_Never = typeof not_never
-
-const is_never = Symbol('is_never')
+export type Not_Never = Brand<'not_never', symbol>
 
 /**
  * This is a unique type used in the `Else` branch of `NotNeverType`.
  */
-export type Is_Never = typeof is_never
+export type Is_Never = Brand<'is_never', symbol>
 
 /**
  * Check if `T` is `never`.

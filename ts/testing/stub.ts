@@ -1,6 +1,6 @@
 import { requiredDeep } from 'unpartial'
-import type { AnyFunction } from '../function/index.js'
-import type { RecursivePartial } from '../object/index.js'
+import type { AnyFunction } from '../function/any_function.js'
+import type { RecursivePartial } from '../object/RecursivePartial.js'
 
 export namespace stub {
 	export type Param<T> = T extends AnyFunction ? T : RecursivePartial<T>

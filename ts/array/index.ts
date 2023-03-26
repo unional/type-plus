@@ -1,5 +1,3 @@
-export type * from './array.js'
-export type * from './array_type.js'
 export type * from './common_prop_keys.js'
 export type * from './create_tuple.js'
 export * from './drop.js'

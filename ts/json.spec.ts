@@ -1,4 +1,4 @@
-import { assertType } from './assertion/index.js'
+import { assertType } from './assertion/assert_type.js'
 import { JSONObject, JSONTypes } from './json.js'
 import { isType } from './predicates/index.js'
 
