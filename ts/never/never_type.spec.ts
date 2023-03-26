@@ -1,4 +1,4 @@
-import { type, type NeverType, type Not_Never, type PrimitiveTypes } from '../index.js'
+import { type, type NeverType, type Not_Never, type PrimitiveTypes, type Is_Never } from '../index.js'
 
 it('returns never for never', () => {
 	type.equal<NeverType<never>, never>(true)
@@ -41,4 +41,8 @@ it('can override Then/Else', () => {
 	type.equal<NeverType<unknown, 1, 2>, 2>(true)
 	type.equal<NeverType<never, 1, 2>, 1>(true)
 	type.equal<NeverType<void, 1, 2>, 2>(true)
+})
+
+it('Is_Never and Not_Never is not the same', () => {
+	type.equal<Is_Never, Not_Never>(false)
 })
