@@ -4,15 +4,24 @@ import type { IsNever } from '../never/never_type.js'
 import type { IsNumber } from '../number/number_type.js'
 import type { CanAssign } from '../predicates/CanAssign.js'
 
+/**
+ * Check if type `A` is equal to type `B` and `C`.
+ *
+ * @return value as `A` for type inspection.
+ */
+function equal<A, B, C>(expected: IsEqual<A, B> & IsEqual<A, C>): A
+/**
+ * Check if type `A` is equal to type `B`.
+ *
+ * @return value as `A` for type inspection.
+ */
+function equal<A, B>(expected: IsEqual<A, B>): A
+function equal(expected: any) {
+	return expected
+}
+
 export const type = {
-	/**
-	 * Check if type `S` (subject) is equal to type `E` (expected).
-	 *
-	 * @return value as `S` for type inspection.
-	 */
-	equal<S, E>(expected: IsEqual<S, E>): S {
-		return expected as any
-	},
+	equal,
 	/**
 	 * Check if `A` can assign to `B`.
 	 *
