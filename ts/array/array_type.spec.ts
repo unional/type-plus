@@ -36,6 +36,7 @@ it('returns never for other types', () => {
 })
 
 test('union behavior of array', () => {
+	type.equal<number[] | undefined, number[] | undefined>(true)
 	type.equal<number[] | null, number[] | null>(true)
 	type.equal<number[] | boolean, number[] | boolean>(true)
 	type.equal<number[] | true, number[] | true>(true)
@@ -61,6 +62,7 @@ test('union behavior of array', () => {
 })
 
 test('intersection behavior of array', () => {
+	type.equal<number[] & undefined, never>(true)
 	type.equal<number[] & null, never>(true)
 
 	type.equal<number[] & boolean, number[] & boolean>(true)

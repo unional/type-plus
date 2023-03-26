@@ -32,6 +32,7 @@ it('returns never for other types', () => {
 })
 
 test('union behavior of any', () => {
+	type.equal<any | undefined, any>(true)
 	type.equal<any | null, any>(true)
 	type.equal<any | boolean, any>(true)
 	type.equal<any | true, any>(true)
@@ -57,6 +58,7 @@ test('union behavior of any', () => {
 })
 
 test('intersection behavior of any', () => {
+	type.equal<any & undefined, any>(true)
 	type.equal<any & null, any>(true)
 	type.equal<any & boolean, any>(true)
 	type.equal<any & true, any>(true)
