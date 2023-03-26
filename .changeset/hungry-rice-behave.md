@@ -16,6 +16,7 @@ Add:
 - `NumberType`, `IsNumber`, `NotNumberType`, `IsNotNumber`
 - `StringType`, `IsString`, `NotStringType`, `IsNotString`
 - `SymbolType`, `IsSymbol`, `NotSymbolType`, `IsNotSymbol`
+- `BigIntType`, `IsBigInt`, `NotBigIntType`, `IsNotBigInt`
 
 Improve:
 
