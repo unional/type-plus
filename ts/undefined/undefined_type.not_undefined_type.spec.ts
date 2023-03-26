@@ -4,14 +4,14 @@ it('returns never for undefined', () => {
 	type.never<NotUndefinedType<undefined>>(true)
 })
 
-it('returns never for other special types', () => {
+it('returns T for special types', () => {
 	type.equal<NotUndefinedType<any>, any>(true)
 	type.equal<NotUndefinedType<unknown>, unknown>(true)
 	type.equal<NotUndefinedType<void>, void>(true)
 	type.equal<NotUndefinedType<never>, never>(true)
 })
 
-test('returns never for other types', () => {
+test('returns T for other types', () => {
 	type.equal<NotUndefinedType<null>, null>(true)
 	type.equal<NotUndefinedType<number>, number>(true)
 	type.equal<NotUndefinedType<boolean>, boolean>(true)

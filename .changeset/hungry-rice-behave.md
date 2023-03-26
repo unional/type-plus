@@ -18,6 +18,7 @@ Add:
 - `SymbolType`, `IsSymbol`, `NotSymbolType`, `IsNotSymbol`
 - `BigIntType`, `IsBigInt`, `NotBigIntType`, `IsNotBigInt`
 - `VoidType`, `IsVoid`, `NotVoidType`, `IsNotVoid`
+- `UnknownType`, `IsUnknown`, `NotUnknownType`, `IsNotUnknown`
 
 Improve:
 
