@@ -15,7 +15,7 @@ export type Is_Never = Brand<'is_never', symbol>
  * Check if `T` is `never`.
  * If it is not, returns `Not_Never`.
  *
- * ```
+ * ```ts
  * import type { NeverType } from 'type-plus'
  *
  * type R = NeverType<never> // never
@@ -23,21 +23,21 @@ export type Is_Never = Brand<'is_never', symbol>
  * type R = NeverType<1> // 'not never'
  * ```
  */
-export type NeverType<T, Then = T, Else = Not_Never> = [T] extends [never] ? Then : Else
+export type NeverType<T, Then = T, Else = Not_Never> = [T, never] extends [never, T] ? Then : Else
 
 /**
  * Check if `T` is not `never`.
  * If it is not, returns `Is_Never`.
  *
- * ```
- * import type { NeverType } from 'type-plus'
+ * ```ts
+ * import type { NotNeverType } from 'type-plus'
  *
- * type R = NeverType<1> // 1
+ * type R = NotNeverType<1> // 1
  *
- * type R = NeverType<never> // never
+ * type R = NotNeverType<never> // 'is_never'
  * ```
  */
-export type NotNeverType<T, Then = T, Else = Is_Never> = [T] extends [never] ? Else : Then
+export type NotNeverType<T, Then = T, Else = Is_Never> = NeverType<T, Else, Then>
 
 /**
  * Is `T` `never`.
@@ -50,7 +50,7 @@ export type NotNeverType<T, Then = T, Else = Is_Never> = [T] extends [never] ? E
  * type R = IsNever<1> // false
  * ```
  */
-export type IsNever<T, Then = true, Else = false> = [T] extends [never] ? Then : Else
+export type IsNever<T, Then = true, Else = false> = NeverType<T, Then, Else>
 
 /**
  * Is `T` not `never`.
@@ -62,4 +62,4 @@ export type IsNever<T, Then = true, Else = false> = [T] extends [never] ? Then :
  *
  * type R = IsNotNever<never> // false
  */
-export type IsNotNever<T, Then = true, Else = false> = [T] extends [never] ? Else : Then
+export type IsNotNever<T, Then = true, Else = false> = NeverType<T, Else, Then>

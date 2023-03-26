@@ -1,16 +1,16 @@
-import { type, type NeverType, type Not_Never, type PrimitiveTypes, type Is_Never } from '../index.js'
+import { type, type Is_Never, type NeverType, type Not_Never } from '../index.js'
 
-it('returns never for never', () => {
+it('returns never if T is never', () => {
 	type.equal<NeverType<never>, never>(true)
 })
 
-it('returns never for other special types', () => {
+it('returns Not_Never for other special types', () => {
 	type.equal<NeverType<unknown>, Not_Never>(true)
 	type.equal<NeverType<void>, Not_Never>(true)
 	type.equal<NeverType<any>, Not_Never>(true)
 })
 
-test('returns never for singular types', () => {
+test('returns Not_Never for other types', () => {
 	type.equal<NeverType<undefined>, Not_Never>(true)
 	type.equal<NeverType<null>, Not_Never>(true)
 	type.equal<NeverType<number>, Not_Never>(true)
@@ -28,18 +28,21 @@ test('returns never for singular types', () => {
 	type.equal<NeverType<() => void>, Not_Never>(true)
 })
 
-it('returns never for union type', () => {
-	type.equal<NeverType<PrimitiveTypes>, Not_Never>(true)
+it('returns Not_Never for union type', () => {
+	type.equal<NeverType<never | 1>, Not_Never>(true)
 })
 
 it('returns never for intersection type', () => {
-	type.equal<NeverType<{} & {}>, Not_Never>(true)
+	type.never<never & { a: 1 }>(true)
+	type.never<NeverType<never & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {
+	type.equal<NeverType<never, 1, 2>, 1>(true)
+	type.equal<NeverType<0, 1, 2>, 2>(true)
+
 	type.equal<NeverType<any, 1, 2>, 2>(true)
 	type.equal<NeverType<unknown, 1, 2>, 2>(true)
-	type.equal<NeverType<never, 1, 2>, 1>(true)
 	type.equal<NeverType<void, 1, 2>, 2>(true)
 })
 
