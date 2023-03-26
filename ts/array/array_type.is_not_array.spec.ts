@@ -9,13 +9,14 @@ it('returns true if T is tuple', () => {
 	type.true<IsNotArray<[1]>>(true)
 })
 
-it('returns false for special types', () => {
+it('returns true for special types', () => {
 	type.true<IsNotArray<void>>(true)
 	type.true<IsNotArray<unknown>>(true)
 	type.true<IsNotArray<any>>(true)
 	type.true<IsNotArray<never>>(true)
 })
-it('returns false for all other types', () => {
+
+it('returns true for other types', () => {
 	type.true<IsNotArray<undefined>>(true)
 	type.true<IsNotArray<null>>(true)
 	type.true<IsNotArray<boolean>>(true)
@@ -27,10 +28,20 @@ it('returns false for all other types', () => {
 	type.true<IsNotArray<''>>(true)
 	type.true<IsNotArray<symbol>>(true)
 	type.true<IsNotArray<bigint>>(true)
+	type.true<IsNotArray<1n>>(true)
 	type.true<IsNotArray<{}>>(true)
+	type.true<IsNotArray<{ a: 1 }>>(true)
 	type.true<IsNotArray<[]>>(true)
 	type.true<IsNotArray<Function>>(true)
 	type.true<IsNotArray<() => void>>(true)
+})
+
+it('returns true for union type', () => {
+	type.true<IsNotArray<number[] | 1>>(true)
+})
+
+it('returns false for intersection type', () => {
+	type.false<IsNotArray<number[] & 1>>(true)
 })
 
 it('can override Then/Else', () => {

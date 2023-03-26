@@ -15,7 +15,8 @@ it('returns false for special types', () => {
 	type.false<IsArray<any>>(true)
 	type.false<IsArray<never>>(true)
 })
-it('returns false for all other types', () => {
+
+it('returns false for other types', () => {
 	type.false<IsArray<undefined>>(true)
 	type.false<IsArray<null>>(true)
 	type.false<IsArray<boolean>>(true)
@@ -27,10 +28,20 @@ it('returns false for all other types', () => {
 	type.false<IsArray<''>>(true)
 	type.false<IsArray<symbol>>(true)
 	type.false<IsArray<bigint>>(true)
+	type.false<IsArray<1n>>(true)
 	type.false<IsArray<{}>>(true)
+	type.false<IsArray<{ a: 1 }>>(true)
 	type.false<IsArray<[]>>(true)
 	type.false<IsArray<Function>>(true)
 	type.false<IsArray<() => void>>(true)
+})
+
+it('returns false for union type', () => {
+	type.false<IsArray<number[] | 1>>(true)
+})
+
+it('returns true for intersection type', () => {
+	type.true<IsArray<number[] & 1>>(true)
 })
 
 it('can override Then/Else', () => {

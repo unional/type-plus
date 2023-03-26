@@ -33,17 +33,14 @@ it('returns T for union type', () => {
 })
 
 it('returns T as undefined & any => any', () => {
-	type.equal<undefined & any, any>(true)
 	type.equal<NotUndefinedType<undefined & any>, undefined & any>(true)
 })
 
 it('returns never as undefined & unknown => undefined', () => {
-	type.equal<undefined & unknown, undefined>(true)
 	type.never<NotUndefinedType<undefined & unknown>>(true)
 })
 
 it('returns never as undefined & void => undefined', () => {
-	type.equal<undefined & void, undefined>(true)
 	type.never<NotUndefinedType<undefined & void>>(true)
 })
 
