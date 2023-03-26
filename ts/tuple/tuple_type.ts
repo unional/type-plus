@@ -1,4 +1,4 @@
-import type { IsNever } from '../never/never.js'
+import type { IsNever } from '../never/never_type.js'
 
 /**
  * Check if `T` is a tuple and not an array.

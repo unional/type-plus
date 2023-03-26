@@ -1,4 +1,4 @@
-import type { IsNever } from '../never/never.js'
+import type { IsNever } from '../never/never_type.js'
 import type { NumberType } from '../number/number_type.js'
 
 /**
