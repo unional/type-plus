@@ -37,7 +37,6 @@ specifiers:
   typedoc-plugin-extras: ^2.2.3
   typescript: ^5.0.2
   unpartial: ^1.0.4
-  zod: ^3.21.4
 
 dependencies:
   tersify: 3.11.1
@@ -78,7 +77,6 @@ devDependencies:
   typedoc: 0.23.21_typescript@5.0.2
   typedoc-plugin-extras: 2.3.1_typedoc@0.23.21
   typescript: 5.0.2
-  zod: 3.21.4
 
 packages:
 
@@ -6041,8 +6039,4 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
-    dev: true
-
-  /zod/3.21.4:
-    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: true
