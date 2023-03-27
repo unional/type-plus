@@ -7,11 +7,13 @@ Add:
 - `IsAnyOrNever`
 - `AnyType`, `IsAny`, `NotAnyType`, `IsNotAny`
 - `NeverType`, `IsNever`, `NotNeverType`, `IsNotNever`
+- `StrictBooleanType`, `IsStrictBoolean`, `NotStrictBooleanType`, `IsNotStrictBoolean`
 - `BooleanType`, `NotBooleanType`, `IsNotBoolean`
+- `TrueType`, `IsTrue`, `NotTrueType`, `IsNotTrue`
 - `FalseType`, `IsFalse`, `NotFalseType`, `IsNotFalse`
 - `ObjectType`, `IsObject`, `NotObjectType`, `IsNotObject`
+- `StrictFunctionType`, `IsStrictFunction`, `NotStrictFunctionType`, `IsNotStrictFunction`
 - `FunctionType`, `IsFunction`, `NotFunctionType`, `IsNotFunction`
-- `TrueType`, `IsTrue`, `NotTrueType`, `IsNotTrue`
 - `UndefinedType`, `IsUndefined`, `NotUndefinedType`, `IsNotUndefined`
 - `NumberType`, `IsNumber`, `NotNumberType`, `IsNotNumber`
 - `StringType`, `IsString`, `NotStringType`, `IsNotString`
@@ -19,6 +21,9 @@ Add:
 - `BigIntType`, `IsBigInt`, `NotBigIntType`, `IsNotBigInt`
 - `VoidType`, `IsVoid`, `NotVoidType`, `IsNotVoid`
 - `UnknownType`, `IsUnknown`, `NotUnknownType`, `IsNotUnknown`
+
+These types perform strict type checks.
+Union and Intersection types are not considered to pass the check.
 
 Improve:
 

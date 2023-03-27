@@ -40,8 +40,8 @@ it('returns true for union type', () => {
 	type.true<IsNotArray<number[] | 1>>(true)
 })
 
-it('returns false for intersection type', () => {
-	type.false<IsNotArray<number[] & 1>>(true)
+it('returns true for intersection type', () => {
+	type.true<IsNotArray<number[] & 1>>(true)
 })
 
 it('can override Then/Else', () => {

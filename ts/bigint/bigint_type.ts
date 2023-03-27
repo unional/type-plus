@@ -17,7 +17,7 @@ import type { IsAnyOrNever } from '../any/any_or_never.js'
 export type BigintType<T, Then = T, Else = never> = IsAnyOrNever<
 	T,
 	Else,
-	[T] extends [bigint] ? (`${T}` extends `${number}` ? Else : Then) : Else
+	[bigint] extends [T] ? ([T] extends [bigint] ? (`${T}` extends `${number}` ? Else : Then) : Else) : Else
 >
 
 /**

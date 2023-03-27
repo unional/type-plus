@@ -1,6 +1,30 @@
 import type { IsAnyOrNever } from '../any/any_or_never.js'
 
 /**
+ * Check if `T` is exactly `Function`.
+ *
+ * ```ts
+ * import type { StrictFunctionType } from 'type-plus'
+ *
+ * type R = StrictFunctionType<Function> // Function
+ * type R = StrictFunctionType<() => void> // never
+ *
+ * type R = StrictFunctionType<(Function | { a: 1 }> // never
+ * ```
+ */
+export type StrictFunctionType<T, Then = T, Else = never> = IsAnyOrNever<
+	T,
+	Else,
+	[T, Function] extends [Function, T] ? Then : Else
+>
+
+export type NotStrictFunctionType<T, Then = T, Else = never> = StrictFunctionType<T, Else, Then>
+
+export type IsStrictFunction<T, Then = true, Else = false> = StrictFunctionType<T, Then, Else>
+
+export type IsNotStrictFunction<T, Then = true, Else = false> = StrictFunctionType<T, Else, Then>
+
+/**
  * Check if `T` is a `Function`.
  *
  * ```ts
@@ -15,7 +39,11 @@ import type { IsAnyOrNever } from '../any/any_or_never.js'
  * type R = FunctionType<unknown> // never
  * ```
  */
-export type FunctionType<T, Then = T, Else = never> = IsAnyOrNever<T, Else, [T] extends [Function] ? Then : Else>
+export type FunctionType<T, Then = T, Else = never> = IsAnyOrNever<
+	T,
+	Else,
+	[T] extends [Function] ? Then : Else
+>
 
 /**
  * Is `T` a `Function`.

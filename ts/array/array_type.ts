@@ -14,7 +14,7 @@ import type { NumberType } from '../number/number_type.js'
 export type ArrayType<T, Then = T, Else = never> = IsNever<
 	T,
 	Else,
-	[T] extends [any[]] ? NumberType<T['length'], Then, Else> : Else
+	[any[]] extends [T] ? ([T] extends [any[]] ? NumberType<T['length'], Then, Else> : Else) : Else
 >
 
 /**

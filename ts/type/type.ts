@@ -1,4 +1,4 @@
-import type { IsBoolean, IsFalse, IsTrue } from '../boolean/boolean_type.js'
+import type { IsStrictBoolean, IsFalse, IsTrue } from '../boolean/boolean_type.js'
 import type { IsEqual } from '../equal/equal.js'
 import { IsAny } from '../index.js'
 import type { IsNever } from '../never/never_type.js'
@@ -60,7 +60,7 @@ export const type = {
 	 *
 	 * @return value as `S` for type inspection.
 	 */
-	boolean<S>(expected: IsBoolean<S>): S {
+	boolean<S>(expected: IsStrictBoolean<S>): S {
 		return expected as any
 	},
 	/**
