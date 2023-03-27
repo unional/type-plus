@@ -94,8 +94,8 @@ it('returns never for union type', () => {
 	type.never<ArrayType<number[] | 1>>(true)
 })
 
-it('returns T for intersection type', () => {
-	type.equal<ArrayType<number[] & 1>, number[] & 1>(true)
+it('returns never for intersection type', () => {
+	type.never<ArrayType<number[] & 1>>(true)
 })
 
 it('can override Then/Else', () => {

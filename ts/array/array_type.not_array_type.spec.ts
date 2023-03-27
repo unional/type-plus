@@ -39,8 +39,8 @@ it('returns T for union type', () => {
 	type.equal<NotArrayType<number[] | 1>, number[] | 1>(true)
 })
 
-it('returns never for intersection type', () => {
-	type.never<NotArrayType<number[] & 1>>(true)
+it('returns T for intersection type', () => {
+	type.equal<NotArrayType<number[] & 1>, number[] & 1>(true)
 })
 
 it('can override Then/Else', () => {

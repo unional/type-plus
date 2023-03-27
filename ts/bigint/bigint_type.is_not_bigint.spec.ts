@@ -38,8 +38,8 @@ it('returns true for union type', () => {
 	type.true<IsNotBigint<bigint | 1>>(true)
 })
 
-it('returns false for interaction type', () => {
-	type.false<IsNotBigint<bigint & { a: 1 }>>(true)
+it('returns true for interaction type', () => {
+	type.true<IsNotBigint<bigint & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {

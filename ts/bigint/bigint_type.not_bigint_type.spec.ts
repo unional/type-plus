@@ -39,8 +39,8 @@ it('returns T for union type', () => {
 	type.equal<NotBigintType<bigint | 'a'>, bigint | 'a'>(true)
 })
 
-it('returns never for intersection type', () => {
-	type.never<NotBigintType<bigint & { a: 1 }>>(true)
+it('returns T for intersection type', () => {
+	type.equal<NotBigintType<bigint & { a: 1 }>, bigint & { a: 1 }>(true)
 })
 
 it('can override Then/Else', () => {

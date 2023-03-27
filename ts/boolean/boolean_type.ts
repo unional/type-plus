@@ -12,7 +12,7 @@ import type { IsAnyOrNever } from '../any/any_or_never.js'
  * type R = FalseType<unknown> // never
  * ```
  */
-export type FalseType<T, Then = T, Else = never> = IsAnyOrNever<T, Else, [T] extends [false] ? Then : Else>
+export type FalseType<T, Then = T, Else = never> = IsAnyOrNever<T, Else, [T, false] extends [false, T] ? Then : Else>
 
 /**
  * Check if the type `T` is not exactly `false`.
@@ -68,7 +68,7 @@ export type IsNotFalse<T, Then = true, Else = false> = FalseType<T, Else, Then>
  * type R = TrueType<unknown> // never
  * ```
  */
-export type TrueType<T, Then = T, Else = never> = IsAnyOrNever<T, Else, [T] extends [true] ? Then : Else>
+export type TrueType<T, Then = T, Else = never> = IsAnyOrNever<T, Else, [T, true] extends [true, T] ? Then : Else>
 
 /**
  * Check if the type `T` is not exactly `true`.
@@ -113,65 +113,91 @@ export type IsTrue<T, Then = true, Else = false> = TrueType<T, Then, Else>
 export type IsNotTrue<T, Then = true, Else = false> = TrueType<T, Else, Then>
 
 /**
- * Check if the type `T` is exactly `boolean`.
+ * Check if the type `T` is `boolean`, including `true` and `false`.
  *
  * ```ts
  * import type { BooleanType } from 'type-plus'
  *
- * type R = BooleanType<boolean> // true
+ * type R = BooleanType<boolean> // boolean
+ * type R = BooleanType<true> // true
+ * type R = BooleanType<false> // false
  *
- * type R = BooleanType<true> // never
- * type R = BooleanType<false> // never
+ * type R = BooleanType<number> // never
  * type R = BooleanType<unknown> // never
  * ```
  */
 export type BooleanType<T, Then = T, Else = never> = IsAnyOrNever<
 	T,
 	Else,
+	[T] extends [boolean] ? Then : Else
+>
+
+export type NotBooleanType<T, Then = T, Else = never> = BooleanType<T, Else, Then>
+
+export type IsBoolean<T, Then = true, Else = false> = BooleanType<T, Then, Else>
+
+export type IsNotBoolean<T, Then = true, Else = false> = BooleanType<T, Else, Then>
+
+/**
+ * Check if the type `T` is exactly `boolean`.
+ *
+ * ```ts
+ * import type { StrictBooleanType } from 'type-plus'
+ *
+ * type R = StrictBooleanType<boolean> // true
+ *
+ * type R = StrictBooleanType<true> // never
+ * type R = StrictBooleanType<false> // never
+ * type R = StrictBooleanType<unknown> // never
+ * ```
+ */
+export type StrictBooleanType<T, Then = T, Else = never> = IsAnyOrNever<
+	T,
+	Else,
 	[T, boolean] extends [boolean, T] ? Then : Else
 >
 
 /**
- * Check if the type `T` is not exactly `false`.
+ * Check if the type `T` is not exactly `boolean`.
  *
  * ```ts
- * import type { NotBooleanType } from 'type-plus'
+ * import type { NotStrictBooleanType } from 'type-plus'
  *
- * type R = NotBooleanType<boolean> // never
+ * type R = NotStrictBooleanType<boolean> // never
  *
- * type R = NotBooleanType<true> // true
- * type R = NotBooleanType<false> // false
- * type R = NotBooleanType<unknown> // unknown
+ * type R = NotStrictBooleanType<true> // true
+ * type R = NotStrictBooleanType<false> // false
+ * type R = NotStrictBooleanType<unknown> // unknown
  * ```
  */
-export type NotBooleanType<T, Then = T, Else = never> = BooleanType<T, Else, Then>
+export type NotStrictBooleanType<T, Then = T, Else = never> = StrictBooleanType<T, Else, Then>
 
 /**
- * Is the type `T` exactly `false`.
+ * Is the type `T` exactly `boolean`.
  *
  * ```ts
- * import type { IsBoolean } from 'type-plus'
+ * import type { IsStrictBoolean } from 'type-plus'
  *
- * type R = IsBoolean<boolean> // true
+ * type R = IsStrictBoolean<boolean> // true
  *
- * type R = IsBoolean<true> // false
- * type R = IsBoolean<false> // true
- * type R = IsBoolean<unknown> // false
+ * type R = IsStrictBoolean<true> // false
+ * type R = IsStrictBoolean<false> // true
+ * type R = IsStrictBoolean<unknown> // false
  * ```
  */
-export type IsBoolean<T, Then = true, Else = false> = BooleanType<T, Then, Else>
+export type IsStrictBoolean<T, Then = true, Else = false> = StrictBooleanType<T, Then, Else>
 
 /**
  * Is the type `T` not exactly `false`.
  *
  * ```ts
- * import type { IsNotBoolean } from 'type-plus'
+ * import type { IsNotStrictBoolean } from 'type-plus'
  *
- * type R = IsNotBoolean<boolean> // false
+ * type R = IsNotStrictBoolean<boolean> // false
  *
- * type R = IsNotBoolean<true> // true
- * type R = IsNotBoolean<false> // false
- * type R = IsNotBoolean<unknown> // true
+ * type R = IsNotStrictBoolean<true> // true
+ * type R = IsNotStrictBoolean<false> // false
+ * type R = IsNotStrictBoolean<unknown> // true
  * ```
  */
-export type IsNotBoolean<T, Then = true, Else = false> = BooleanType<T, Else, Then>
+export type IsNotStrictBoolean<T, Then = true, Else = false> = StrictBooleanType<T, Else, Then>

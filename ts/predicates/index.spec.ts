@@ -1,4 +1,4 @@
-import { IsBoolean, IsLiteral, isType } from '../index.js'
+import { IsStrictBoolean, IsLiteral, isType } from '../index.js'
 
 describe('IsLiteral<T>', () => {
 	test('`number` is not literal', () => {
@@ -27,12 +27,12 @@ describe('IsLiteral<T>', () => {
 
 describe('IsBoolean<T>', () => {
 	test('boolean/true/false', () => {
-		isType.equal<true, true, IsBoolean<boolean>>()
-		isType.equal<true, false, IsBoolean<false>>()
-		isType.equal<true, false, IsBoolean<true>>()
+		isType.equal<true, true, IsStrictBoolean<boolean>>()
+		isType.equal<true, false, IsStrictBoolean<false>>()
+		isType.equal<true, false, IsStrictBoolean<true>>()
 	})
 	test('override Then/Else', () => {
-		isType.equal<true, 'yes', IsBoolean<boolean, 'yes'>>()
-		isType.equal<true, 'no', IsBoolean<1, 'yes', 'no'>>()
+		isType.equal<true, 'yes', IsStrictBoolean<boolean, 'yes'>>()
+		isType.equal<true, 'no', IsStrictBoolean<1, 'yes', 'no'>>()
 	})
 })

@@ -1,4 +1,4 @@
-import { type, type NotTrueType, type PrimitiveTypes } from '../index.js'
+import { type, type NotTrueType } from '../index.js'
 
 it('returns never it T is true', () => {
 	type.never<NotTrueType<true>>(true)
@@ -16,7 +16,7 @@ it('returns T for special types', () => {
 	type.equal<NotTrueType<never>, never>(true)
 })
 
-it('returns T for all other types', () => {
+it('returns T for other types', () => {
 	type.equal<NotTrueType<undefined>, undefined>(true)
 	type.equal<NotTrueType<null>, null>(true)
 	type.equal<NotTrueType<number>, number>(true)
@@ -26,7 +26,9 @@ it('returns T for all other types', () => {
 	type.equal<NotTrueType<''>, ''>(true)
 	type.equal<NotTrueType<symbol>, symbol>(true)
 	type.equal<NotTrueType<bigint>, bigint>(true)
+	type.equal<NotTrueType<1n>, 1n>(true)
 	type.equal<NotTrueType<{}>, {}>(true)
+	type.equal<NotTrueType<{ a: 1 }>, { a: 1 }>(true)
 	type.equal<NotTrueType<string[]>, string[]>(true)
 	type.equal<NotTrueType<[]>, []>(true)
 	type.equal<NotTrueType<Function>, Function>(true)
@@ -34,11 +36,17 @@ it('returns T for all other types', () => {
 })
 
 it('returns T for union type', () => {
-	type.equal<NotTrueType<PrimitiveTypes>, PrimitiveTypes>(true)
+	type.equal<NotTrueType<true | 1>, true | 1>(true)
+	type.equal<NotTrueType<true | boolean>, boolean>(true)
+})
+
+it('returns T for intersection type', () => {
+	type.equal<NotTrueType<true & { a: 1 }>, true & { a: 1 }>(true)
 })
 
 it('can override Then/Else', () => {
 	type.equal<NotTrueType<true, 1, 2>, 2>(true)
+	type.equal<NotTrueType<0, 1, 2>, 1>(true)
 
 	type.equal<NotTrueType<any, 1, 2>, 1>(true)
 	type.equal<NotTrueType<unknown, 1, 2>, 1>(true)
