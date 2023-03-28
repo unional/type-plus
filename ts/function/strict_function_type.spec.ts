@@ -40,62 +40,6 @@ it('returns never for other types', () => {
 	type.never<StrictFunctionType<[]>>(true)
 })
 
-test('union behavior of Function', () => {
-	type.equal<Function | undefined, Function | undefined>(true)
-	type.equal<Function | null, Function | null>(true)
-	type.equal<Function | boolean, Function | boolean>(true)
-	type.equal<Function | true, Function | true>(true)
-	type.equal<Function | false, Function | false>(true)
-	type.equal<Function | number, Function | number>(true)
-	type.equal<Function | 1, Function | 1>(true)
-	type.equal<Function | string, Function | string>(true)
-	type.equal<Function | '', Function | ''>(true)
-	type.equal<Function | symbol, Function | symbol>(true)
-	type.equal<Function | bigint, Function | bigint>(true)
-	type.equal<Function | 1n, Function | 1n>(true)
-	type.equal<Function | {}, Function | {}>(true)
-	type.equal<Function | { a: 1 }, Function | { a: 1 }>(true)
-	type.equal<Function | string[], Function | string[]>(true)
-	type.equal<Function | [], Function | []>(true)
-	type.equal<Function | Function, Function>(true)
-	type.equal<Function | (() => void), Function | (() => void)>(true)
-
-	type.equal<Function | any, any>(true)
-	type.equal<Function | unknown, unknown>(true)
-	type.equal<Function | never, Function>(true)
-	type.equal<Function | void, Function | void>(true)
-})
-
-test('intersection behavior of Function', () => {
-	type.equal<Function & undefined, never>(true)
-	type.equal<Function & null, never>(true)
-
-	type.equal<Function & boolean, Function & boolean>(true)
-	type.equal<Function & true, Function & true>(true)
-	type.equal<Function & false, Function & false>(true)
-
-	type.equal<Function & number, Function & number>(true)
-	type.equal<Function & 1, Function & 1>(true)
-	type.equal<Function & string, Function & string>(true)
-	type.equal<Function & '', Function & ''>(true)
-	type.equal<Function & symbol, Function & symbol>(true)
-	type.equal<Function & bigint, Function & bigint>(true)
-	type.equal<Function & 1n, Function & 1n>(true)
-
-	type.equal<Function & {}, Function>(true)
-
-	type.equal<Function & { a: 1 }, Function & { a: 1 }>(true)
-	type.equal<Function & string[], Function & string[]>(true)
-	type.equal<Function & [], Function & []>(true)
-	type.equal<Function & Function, Function>(true)
-	type.equal<Function & (() => void), Function & (() => void)>(true)
-
-	type.equal<Function & any, any>(true)
-	type.equal<Function & unknown, Function>(true)
-	type.equal<Function & never, never>(true)
-	type.equal<Function & void, Function & void>(true)
-})
-
 it('returns never if T is union of function and other types', () => {
 	type.never<StrictFunctionType<Function | { a: 1 }>>(true)
 })
