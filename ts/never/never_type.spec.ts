@@ -49,3 +49,59 @@ it('can override Then/Else', () => {
 it('Is_Never and Not_Never is not the same', () => {
 	type.equal<Is_Never, Not_Never>(false)
 })
+
+test('union behavior of never', () => {
+	type.equal<never | undefined, undefined>(true)
+	type.equal<never | null, null>(true)
+	type.equal<never | boolean, boolean>(true)
+	type.equal<never | true, true>(true)
+	type.equal<never | false, false>(true)
+	type.equal<never | number, number>(true)
+	type.equal<never | 1, 1>(true)
+	type.equal<never | string, string>(true)
+	type.equal<never | '', ''>(true)
+	type.equal<never | symbol, symbol>(true)
+	type.equal<never | bigint, bigint>(true)
+	type.equal<never | 1n, 1n>(true)
+	type.equal<never | {}, {}>(true)
+	type.equal<never | { a: 1 }, { a: 1 }>(true)
+	type.equal<never | string[], string[]>(true)
+	type.equal<never | [], []>(true)
+	type.equal<never | never, never>(true)
+	type.equal<never | (() => void), () => void>(true)
+
+	type.equal<never | any, any>(true)
+	type.equal<never | unknown, unknown>(true)
+	type.equal<never | never, never>(true)
+	type.equal<never | void, void>(true)
+})
+
+test('intersection behavior of never', () => {
+	type.equal<never & undefined, never>(true)
+	type.equal<never & null, never>(true)
+
+	type.equal<never & boolean, never>(true)
+	type.equal<never & true, never>(true)
+	type.equal<never & false, never>(true)
+
+	type.equal<never & number, never>(true)
+	type.equal<never & 1, never>(true)
+	type.equal<never & string, never>(true)
+	type.equal<never & '', never>(true)
+	type.equal<never & symbol, never>(true)
+	type.equal<never & bigint, never>(true)
+	type.equal<never & 1n, never>(true)
+
+	type.equal<never & {}, never>(true)
+
+	type.equal<never & { a: 1 }, never>(true)
+	type.equal<never & string[], never>(true)
+	type.equal<never & [], never>(true)
+	type.equal<never & never, never>(true)
+	type.equal<never & (() => void), never>(true)
+
+	type.equal<never & any, never>(true)
+	type.equal<never & unknown, never>(true)
+	type.equal<never & never, never>(true)
+	type.equal<never & void, never>(true)
+})

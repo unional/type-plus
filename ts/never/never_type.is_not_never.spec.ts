@@ -35,7 +35,6 @@ it('returns true for union type', () => {
 })
 
 it('returns false for intersection type', () => {
-	// never intersect with any type is never
 	type.false<IsNotNever<never & { a: 1 }>>(true)
 })
 
