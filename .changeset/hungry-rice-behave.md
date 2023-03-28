@@ -16,6 +16,7 @@ Add:
 - `FunctionType`, `IsFunction`, `NotFunctionType`, `IsNotFunction`
 - `UndefinedType`, `IsUndefined`, `NotUndefinedType`, `IsNotUndefined`
 - `NumberType`, `IsNumber`, `NotNumberType`, `IsNotNumber`
+- `StrictNumberType`, `IsStrictNumber`, `NotStrictNumberType`, `IsNotStrictNumber`
 - `StringType`, `IsString`, `NotStringType`, `IsNotString`
 - `SymbolType`, `IsSymbol`, `NotSymbolType`, `IsNotSymbol`
 - `BigIntType`, `IsBigInt`, `NotBigIntType`, `IsNotBigInt`

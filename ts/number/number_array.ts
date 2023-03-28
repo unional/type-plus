@@ -1,6 +1,6 @@
-import type { Add, IsNumber } from '../index.js'
+import type { Add, IsStrictNumber } from '../index.js'
 
-export type Sum<A extends number[], Fail = never> = IsNumber<
+export type Sum<A extends number[], Fail = never> = IsStrictNumber<
 	A['length'],
 	Fail,
 	A['length'] extends 0

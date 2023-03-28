@@ -1,5 +1,5 @@
 import type { IsNever } from '../never/never_type.js'
-import type { NumberType } from '../number/number_type.js'
+import type { StrictNumberType } from '../number/strict_number_type.js'
 
 /**
  * Check if the type `T` is an array and not a tuple.
@@ -14,7 +14,7 @@ import type { NumberType } from '../number/number_type.js'
 export type ArrayType<T, Then = T, Else = never> = IsNever<
 	T,
 	Else,
-	[any[]] extends [T] ? ([T] extends [any[]] ? NumberType<T['length'], Then, Else> : Else) : Else
+	[any[]] extends [T] ? ([T] extends [any[]] ? StrictNumberType<T['length'], Then, Else> : Else) : Else
 >
 
 /**

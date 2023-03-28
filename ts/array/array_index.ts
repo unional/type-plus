@@ -4,7 +4,7 @@ import type { GreaterThan } from '../math/GreaterThan.js'
 import type { Subtract } from '../math/Subtract.js'
 import type { IsNever } from '../never/never_type.js'
 import type { Integer, Negative } from '../number/number.js'
-import { NumberType } from '../number/number_type.js'
+import { StrictNumberType } from '../number/strict_number_type.js'
 import type { Equal } from '../predicates/Equal.js'
 
 /**
@@ -26,7 +26,7 @@ export type IndexAt<A extends Array<unknown>, N extends number, Fail = never> = 
 	Fail,
 	Integer<
 		N,
-		NumberType<
+		StrictNumberType<
 			A['length'],
 			// A: array
 			N,
@@ -41,7 +41,7 @@ export type IndexAt<A extends Array<unknown>, N extends number, Fail = never> = 
 		IsAny<
 			N,
 			number,
-			NumberType<
+			StrictNumberType<
 				N,
 				// TODO: handle tuple to union of indexes
 				N
