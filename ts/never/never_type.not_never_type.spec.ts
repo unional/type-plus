@@ -33,7 +33,6 @@ it('returns T for union type', () => {
 })
 
 it('returns Is_Never for intersection type', () => {
-	// never intersect with any type is never
 	type.equal<NotNeverType<never & { a: 1 }>, Is_Never>(true)
 })
 
