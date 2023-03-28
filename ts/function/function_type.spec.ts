@@ -33,6 +33,30 @@ it('returns never for other types', () => {
 	type.never<FunctionType<[]>>(true)
 })
 
+it('returns never if T is union of function and other types', () => {
+	type.never<FunctionType<Function | { a: 1 }>>(true)
+})
+
+it('returns T if T is function overloads', () => {
+	type.equal<FunctionType<{ (): void; (x: number): number }>, { (): void; (x: number): number }>(true)
+	type.equal<FunctionType<{ (): void; a: 1 }>, { (): void; a: 1 }>(true)
+})
+
+it('returns T if T is intersection of function', () => {
+	type.equal<FunctionType<Function & { a: 1 }>, Function & { a: 1 }>(true)
+	type.equal<FunctionType<Function & 1>, Function & 1>(true)
+})
+
+it('can override Then/Else', () => {
+	type.equal<FunctionType<Function, 1, 2>, 1>(true)
+	type.equal<FunctionType<0, 1, 2>, 2>(true)
+
+	type.equal<FunctionType<any, 1, 2>, 2>(true)
+	type.equal<FunctionType<unknown, 1, 2>, 2>(true)
+	type.equal<FunctionType<never, 1, 2>, 2>(true)
+	type.equal<FunctionType<void, 1, 2>, 2>(true)
+})
+
 test('union behavior of Function', () => {
 	type.equal<Function | undefined, Function | undefined>(true)
 	type.equal<Function | null, Function | null>(true)
@@ -87,28 +111,4 @@ test('intersection behavior of Function', () => {
 	type.equal<Function & unknown, Function>(true)
 	type.equal<Function & never, never>(true)
 	type.equal<Function & void, Function & void>(true)
-})
-
-it('returns never if T is union of function and other types', () => {
-	type.never<FunctionType<Function | { a: 1 }>>(true)
-})
-
-it('returns T if T is function overloads', () => {
-	type.equal<FunctionType<{ (): void; (x: number): number }>, { (): void; (x: number): number }>(true)
-	type.equal<FunctionType<{ (): void; a: 1 }>, { (): void; a: 1 }>(true)
-})
-
-it('returns T if T is intersection of function', () => {
-	type.equal<FunctionType<Function & { a: 1 }>, Function & { a: 1 }>(true)
-	type.equal<FunctionType<Function & 1>, Function & 1>(true)
-})
-
-it('can override Then/Else', () => {
-	type.equal<FunctionType<Function, 1, 2>, 1>(true)
-	type.equal<FunctionType<0, 1, 2>, 2>(true)
-
-	type.equal<FunctionType<any, 1, 2>, 2>(true)
-	type.equal<FunctionType<unknown, 1, 2>, 2>(true)
-	type.equal<FunctionType<never, 1, 2>, 2>(true)
-	type.equal<FunctionType<void, 1, 2>, 2>(true)
 })
