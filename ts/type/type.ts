@@ -4,7 +4,7 @@ import type { IsStrictBoolean } from '../boolean/strict_boolean_type.js'
 import type { IsTrue } from '../boolean/true_type.js'
 import type { IsEqual } from '../equal/equal.js'
 import type { IsNever } from '../never/never_type.js'
-import type { IsNumber } from '../number/number_type.js'
+import type { IsStrictNumber } from '../number/strict_number_type.js'
 import type { CanAssign } from '../predicates/CanAssign.js'
 
 /**
@@ -78,7 +78,7 @@ export const type = {
 	 *
 	 * @return value as `S` for type inspection.
 	 */
-	number<S>(expected: IsNumber<S>): S {
+	number<S>(expected: IsStrictNumber<S>): S {
 		return expected as any
 	}
 }

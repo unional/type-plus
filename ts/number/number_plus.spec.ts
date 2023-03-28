@@ -5,5 +5,5 @@ test('exports', () => {
 	isType<NumberPlus.Numeric>(1)
 	type.equal<NumberPlus.Negative<-1>, -1>(true)
 	type.equal<NumberPlus.Integer<0>, 0>(true)
-	type.never<NumberPlus.NumberType<1>>(true)
+	type.never<NumberPlus.StrictNumberType<1>>(true)
 })
