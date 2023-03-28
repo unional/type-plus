@@ -28,13 +28,15 @@ it('returns true for all other types', () => {
 	type.true<IsNotFunction<''>>(true)
 	type.true<IsNotFunction<symbol>>(true)
 	type.true<IsNotFunction<bigint>>(true)
+	type.true<IsNotFunction<1n>>(true)
 	type.true<IsNotFunction<{}>>(true)
+	type.true<IsNotFunction<{ a: 1 }>>(true)
 	type.true<IsNotFunction<string[]>>(true)
 	type.true<IsNotFunction<[]>>(true)
 })
 
 it('returns true if T is union of function and other types', () => {
-	type.true<IsNotFunction<(() => void) | { a: 1 }>>(true)
+	type.true<IsNotFunction<Function | { a: 1 }>>(true)
 })
 
 it('returns false if T is function overloads', () => {
@@ -42,7 +44,7 @@ it('returns false if T is function overloads', () => {
 })
 
 it('returns false if T is intersection of function', () => {
-	type.false<IsNotFunction<(() => void) & { a: 1 }>>(true)
+	type.false<IsNotFunction<Function & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {

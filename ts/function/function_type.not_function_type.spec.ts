@@ -34,7 +34,7 @@ it('returns T for all other types', () => {
 })
 
 it('returns T if T is union of function and other types', () => {
-	type.equal<NotFunctionType<(() => void) | { a: 1 }>, (() => void) | { a: 1 }>(true)
+	type.equal<NotFunctionType<Function | { a: 1 }>, Function | { a: 1 }>(true)
 })
 
 it('returns never if T is function overloads', () => {
@@ -42,7 +42,7 @@ it('returns never if T is function overloads', () => {
 })
 
 it('returns never if T is intersection of function', () => {
-	type.never<NotFunctionType<(() => void) & { a: 1 }>>(true)
+	type.never<NotFunctionType<Function & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {
