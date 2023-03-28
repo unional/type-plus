@@ -1,4 +1,4 @@
-import { PrimitiveTypes, type, type IsNotNull } from '../index.js'
+import { type, type IsNotNull } from '../index.js'
 
 it('returns false for null', () => {
 	type.false<IsNotNull<null>>(true)
@@ -30,7 +30,7 @@ test('returns true for other types', () => {
 })
 
 it('returns true for union type', () => {
-	type.true<IsNotNull<PrimitiveTypes>>(true)
+	type.true<IsNotNull<null | 1>>(true)
 })
 
 it('can override Then/Else', () => {
