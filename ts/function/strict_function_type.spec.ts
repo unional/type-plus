@@ -9,6 +9,11 @@ it('returns never if T is a function signature', () => {
 	type.never<StrictFunctionType<AnyFunction>>(true)
 })
 
+it('returns never if T is function overloads', () => {
+	type.never<StrictFunctionType<{ (): void; (x: number): number }>>(true)
+	type.never<StrictFunctionType<{ (): void; a: 1 }>>(true)
+})
+
 it('returns never for special types', () => {
 	type.never<StrictFunctionType<void>>(true)
 	type.never<StrictFunctionType<unknown>>(true)
@@ -28,7 +33,9 @@ it('returns never for other types', () => {
 	type.never<StrictFunctionType<''>>(true)
 	type.never<StrictFunctionType<symbol>>(true)
 	type.never<StrictFunctionType<bigint>>(true)
+	type.never<StrictFunctionType<1n>>(true)
 	type.never<StrictFunctionType<{}>>(true)
+	type.never<StrictFunctionType<{ a: 1 }>>(true)
 	type.never<StrictFunctionType<string[]>>(true)
 	type.never<StrictFunctionType<[]>>(true)
 })
@@ -90,16 +97,11 @@ test('intersection behavior of Function', () => {
 })
 
 it('returns never if T is union of function and other types', () => {
-	type.never<StrictFunctionType<(() => void) | { a: 1 }>>(true)
-})
-
-it('returns never if T is function overloads', () => {
-	type.never<StrictFunctionType<{ (): void; (x: number): number }>>(true)
-	type.never<StrictFunctionType<{ (): void; a: 1 }>>(true)
+	type.never<StrictFunctionType<Function | { a: 1 }>>(true)
 })
 
 it('returns never if T is intersection of function', () => {
-	type.never<StrictFunctionType<(() => void) & { a: 1 }>>(true)
+	type.never<StrictFunctionType<Function & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {

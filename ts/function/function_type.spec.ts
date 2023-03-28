@@ -90,7 +90,7 @@ test('intersection behavior of Function', () => {
 })
 
 it('returns never if T is union of function and other types', () => {
-	type.never<FunctionType<(() => void) | { a: 1 }>>(true)
+	type.never<FunctionType<Function | { a: 1 }>>(true)
 })
 
 it('returns T if T is function overloads', () => {
@@ -99,8 +99,8 @@ it('returns T if T is function overloads', () => {
 })
 
 it('returns T if T is intersection of function', () => {
-	type.equal<FunctionType<(() => void) & { a: 1 }>, (() => void) & { a: 1 }>(true)
-	type.equal<FunctionType<(() => void) & 1>, (() => void) & 1>(true)
+	type.equal<FunctionType<Function & { a: 1 }>, Function & { a: 1 }>(true)
+	type.equal<FunctionType<Function & 1>, Function & 1>(true)
 })
 
 it('can override Then/Else', () => {
