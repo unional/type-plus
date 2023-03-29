@@ -1,3 +1,5 @@
+import { IsAnyOrNever } from '../any/any_or_never.js'
+
 /**
  * Check if `T` is an `object`.
  *
@@ -11,7 +13,7 @@
  * type R = ObjectType<number> // never
  * ```
  */
-export type ObjectType<T, Then = T, Else = never> = T extends object ? Then : Else
+export type ObjectType<T, Then = T, Else = never> = IsAnyOrNever<T, Else, [T] extends [object] ? Then : Else>
 
 /**
  * Is `T` an `object`.
