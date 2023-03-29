@@ -18,6 +18,7 @@ Add:
 - `NumberType`, `IsNumber`, `NotNumberType`, `IsNotNumber`
 - `StrictNumberType`, `IsStrictNumber`, `NotStrictNumberType`, `IsNotStrictNumber`
 - `StringType`, `IsString`, `NotStringType`, `IsNotString`
+- `StrictStringType`, `IsStrictString`, `NotStrictStringType`, `IsNotStrictString`
 - `SymbolType`, `IsSymbol`, `NotSymbolType`, `IsNotSymbol`
 - `BigIntType`, `IsBigInt`, `NotBigIntType`, `IsNotBigInt`
 - `VoidType`, `IsVoid`, `NotVoidType`, `IsNotVoid`
