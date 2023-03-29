@@ -37,6 +37,10 @@ it('returns T for union type', () => {
 	type.equal<NotStringType<string | 1>, string | 1>(true)
 })
 
+it('returns never for intersection type', () => {
+	type.equal<NotStringType<string & { a: 1 }>, never>(true)
+})
+
 it('can override Then/Else', () => {
 	type.equal<NotStringType<string, 1, 2>, 2>(true)
 	type.equal<NotStringType<'', 1, 2>, 2>(true)

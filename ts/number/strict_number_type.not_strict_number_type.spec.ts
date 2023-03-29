@@ -43,6 +43,10 @@ it('returns never if T is union of number and number literal', () => {
 	type.never<NotStrictNumberType<number | 1>>(true)
 })
 
+it('returns T if T is intersection of number', () => {
+	type.equal<NotStrictNumberType<number & { a: 1 }>, number & { a: 1 }>(true)
+})
+
 it('can override Then/Else', () => {
 	type.equal<NotStrictNumberType<number, 1, 2>, 2>(true)
 	type.equal<NotStrictNumberType<0, 1, 2>, 1>(true)
@@ -52,5 +56,3 @@ it('can override Then/Else', () => {
 	type.equal<NotStrictNumberType<never, 1, 2>, 1>(true)
 	type.equal<NotStrictNumberType<void, 1, 2>, 1>(true)
 })
-
-

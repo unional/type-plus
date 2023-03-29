@@ -43,6 +43,10 @@ it('returns false if N is union of number and number literal', () => {
 	type.false<IsNotNumber<number | 1>>(true)
 })
 
+it('returns false if T is intersection of number', () => {
+	type.equal<IsNotNumber<number & { a: 1 }>, false>(true)
+})
+
 it('can override Then/Else', () => {
 	type.equal<IsNotNumber<number, 1, 2>, 2>(true)
 	type.equal<IsNotNumber<0, 1, 2>, 2>(true)

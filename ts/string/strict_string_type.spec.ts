@@ -38,6 +38,10 @@ it('returns never for union type', () => {
 	type.never<StrictStringType<string | 1>>(true)
 })
 
+it('returns never for intersection type', () => {
+	type.equal<StrictStringType<string & { a: 1 }>, never>(true)
+})
+
 it('can override Then/Else', () => {
 	type.equal<StrictStringType<string, 1, 2>, 1>(true)
 	type.equal<StrictStringType<'', 1, 2>, 2>(true)
