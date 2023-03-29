@@ -16,7 +16,7 @@ it('returns false for special types', () => {
 	type.false<IsStrictString<never>>(true)
 })
 
-test('returns false for other types', () => {
+it('returns false for other types', () => {
 	type.false<IsStrictString<undefined>>(true)
 	type.false<IsStrictString<null>>(true)
 	type.false<IsStrictString<boolean>>(true)

@@ -16,7 +16,7 @@ it('returns T for special types', () => {
 	type.equal<NotStrictStringType<never>, never>(true)
 })
 
-test('returns T for other types', () => {
+it('returns T for other types', () => {
 	type.equal<NotStrictStringType<undefined>, undefined>(true)
 	type.equal<NotStrictStringType<null>, null>(true)
 	type.equal<NotStrictStringType<boolean>, boolean>(true)

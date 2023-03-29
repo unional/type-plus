@@ -16,7 +16,7 @@ it('returns never for special types', () => {
 	type.never<StringType<never>>(true)
 })
 
-test('returns never for other types', () => {
+it('returns never for other types', () => {
 	type.never<StringType<undefined>>(true)
 	type.never<StringType<null>>(true)
 	type.never<StringType<boolean>>(true)
