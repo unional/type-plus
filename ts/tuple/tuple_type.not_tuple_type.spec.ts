@@ -43,6 +43,10 @@ it('returns never if T is union of tuples', () => {
 	type.never<NotTupleType<[] | [1]>>(true)
 })
 
+it('returns never if T is intersection of tuples', () => {
+	type.equal<NotTupleType<[] & { a: 1 }>, never>(true)
+})
+
 it('can override Then/Else', () => {
 	type.equal<NotTupleType<[], 1, 2>, 2>(true)
 	type.equal<NotTupleType<string[], 1, 2>, 1>(true)
