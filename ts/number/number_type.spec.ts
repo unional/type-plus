@@ -44,6 +44,10 @@ it('returns T if T is union of number and number literal', () => {
 	type.equal<NumberType<number | 1>, number>(true)
 })
 
+it('returns T if T is intersection of number', () => {
+	type.equal<NumberType<number & { a: 1 }>, number & { a: 1 }>(true)
+})
+
 it('can override Then/Else', () => {
 	type.equal<NumberType<number, 1, 2>, 1>(true)
 	type.equal<NumberType<0, 1, 2>, 1>(true)

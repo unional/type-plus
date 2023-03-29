@@ -37,6 +37,10 @@ it('returns true for union type', () => {
 	type.true<IsNotString<string | 1>>(true)
 })
 
+it('returns false for intersection type', () => {
+	type.equal<IsNotString<string & { a: 1 }>, false>(true)
+})
+
 it('can override Then/Else', () => {
 	type.equal<IsNotString<string, 1, 2>, 2>(true)
 	type.equal<IsNotString<'', 1, 2>, 2>(true)

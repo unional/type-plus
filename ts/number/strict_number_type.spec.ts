@@ -44,6 +44,10 @@ it('returns T if T is union of number and number literal', () => {
 	type.equal<StrictNumberType<number | 1>, number>(true)
 })
 
+it('returns never if T is intersection of number', () => {
+	type.equal<StrictNumberType<number & { a: 1 }>, never>(true)
+})
+
 it('can override Then/Else', () => {
 	type.equal<StrictNumberType<number, 1, 2>, 1>(true)
 	type.equal<StrictNumberType<0, 1, 2>, 2>(true)

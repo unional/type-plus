@@ -37,6 +37,10 @@ it('returns false for union type', () => {
 	type.false<IsStrictString<string | 1>>(true)
 })
 
+it('returns false for intersection type', () => {
+	type.equal<IsStrictString<string & { a: 1 }>, false>(true)
+})
+
 it('can override Then/Else', () => {
 	type.equal<IsStrictString<string, 1, 2>, 1>(true)
 	type.equal<IsStrictString<'', 1, 2>, 2>(true)
