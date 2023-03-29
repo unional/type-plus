@@ -43,6 +43,10 @@ it('returns false if T is union of tuples', () => {
 	type.false<IsNotTuple<[] | [1]>>(true)
 })
 
+it('returns false if T is intersection of tuples', () => {
+	type.equal<IsNotTuple<[] & { a: 1 }>, false>(true)
+})
+
 it('can override Then/Else', () => {
 	type.equal<IsNotTuple<[], 1, 2>, 2>(true)
 	type.equal<IsNotTuple<string[], 1, 2>, 1>(true)
