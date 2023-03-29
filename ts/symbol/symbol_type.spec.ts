@@ -50,3 +50,60 @@ it('can override Then/Else', () => {
 	type.equal<SymbolType<never, 1, 2>, 2>(true)
 	type.equal<SymbolType<void, 1, 2>, 2>(true)
 })
+
+test('union behavior of symbol', () => {
+	type.equal<symbol | undefined, symbol | undefined>(true)
+	type.equal<symbol | null, symbol | null>(true)
+	type.equal<symbol | boolean, symbol | boolean>(true)
+	type.equal<symbol | true, symbol | true>(true)
+	type.equal<symbol | false, symbol | false>(true)
+	type.equal<symbol | number, symbol | number>(true)
+	type.equal<symbol | 1, symbol | 1>(true)
+	type.equal<symbol | string, symbol | string>(true)
+	type.equal<symbol | '', symbol | ''>(true)
+	type.equal<symbol | symbol, symbol>(true)
+	type.equal<symbol | bigint, symbol | bigint>(true)
+	type.equal<symbol | 1n, symbol | 1n>(true)
+	type.equal<symbol | {}, symbol | {}>(true)
+	type.equal<symbol | { a: 1 }, symbol | { a: 1 }>(true)
+	type.equal<symbol | string[], symbol | string[]>(true)
+	type.equal<symbol | [], symbol | []>(true)
+	type.equal<symbol | Function, symbol | Function>(true)
+	type.equal<symbol | (() => void), symbol | (() => void)>(true)
+
+	type.equal<symbol | any, any>(true)
+	type.equal<symbol | unknown, unknown>(true)
+	type.equal<symbol | never, symbol>(true)
+	type.equal<symbol | void, symbol | void>(true)
+})
+
+test('intersection behavior of symbol', () => {
+	type.equal<symbol & undefined, never>(true)
+	type.equal<symbol & null, never>(true)
+
+	type.equal<symbol & boolean, never>(true)
+	type.equal<symbol & true, never>(true)
+	type.equal<symbol & false, never>(true)
+	type.equal<symbol & number, never>(true)
+	type.equal<symbol & 1, never>(true)
+	type.equal<symbol & string, never>(true)
+	type.equal<symbol & '', never>(true)
+
+	type.equal<symbol & symbol, symbol>(true)
+
+	type.equal<symbol & bigint, never>(true)
+	type.equal<symbol & 1n, never>(true)
+
+	type.equal<symbol & {}, symbol>(true)
+
+	type.equal<symbol & { a: 1 }, symbol & { a: 1 }>(true)
+	type.equal<symbol & string[], symbol & string[]>(true)
+	type.equal<symbol & [], symbol & []>(true)
+	type.equal<symbol & Function, symbol & Function>(true)
+	type.equal<symbol & (() => void), symbol & (() => void)>(true)
+
+	type.equal<symbol & any, any>(true)
+	type.equal<symbol & unknown, symbol>(true)
+	type.equal<symbol & never, never>(true)
+	type.equal<symbol & void, never>(true)
+})
