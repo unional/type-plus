@@ -7,9 +7,9 @@ import type { IsAnyOrNever } from '../any/any_or_never.js'
  * import type { StrictFunctionType } from 'type-plus'
  *
  * type R = StrictFunctionType<Function> // Function
- * type R = StrictFunctionType<() => void> // never
  *
- * type R = StrictFunctionType<(Function | { a: 1 }> // never
+ * type R = StrictFunctionType<() => void> // never
+ * type R = StrictFunctionType<Function & { a: 1 }> // never
  * ```
  */
 export type StrictFunctionType<T, Then = T, Else = never> = IsAnyOrNever<
@@ -27,7 +27,7 @@ export type StrictFunctionType<T, Then = T, Else = never> = IsAnyOrNever<
  * type R = NotStrictFunctionType<Function> // never
  * type R = NotStrictFunctionType<() => void> // () => void
  *
- * type R = NotStrictFunctionType<(Function | { a: 1 }> // (Function | { a: 1 })
+ * type R = NotStrictFunctionType<Function & { a: 1 }> // Function & { a: 1 }
  * ```
  */
 export type NotStrictFunctionType<T, Then = T, Else = never> = StrictFunctionType<T, Else, Then>
@@ -41,7 +41,7 @@ export type NotStrictFunctionType<T, Then = T, Else = never> = StrictFunctionTyp
  * type R = IsStrictFunction<Function> // true
  *
  * type R = IsStrictFunction<() => void> // false
- * type R = IsStrictFunction<(() => void) | { a: 1 }> // false
+ * type R = IsStrictFunction<(() => void) & { a: 1 }> // false
  * ```
  */
 export type IsStrictFunction<T, Then = true, Else = false> = StrictFunctionType<T, Then, Else>
@@ -55,7 +55,7 @@ export type IsStrictFunction<T, Then = true, Else = false> = StrictFunctionType<
  * type R = IsNotStrictFunction<Function> // false
  *
  * type R = IsNotStrictFunction<() => void> // true
- * type R = IsNotStrictFunction<(() => void) | { a: 1 }> // true
+ * type R = IsNotStrictFunction<(() => void) & { a: 1 }> // true
  * ```
  */
 export type IsNotStrictFunction<T, Then = true, Else = false> = StrictFunctionType<T, Else, Then>
