@@ -1,0 +1,4 @@
+paths:
+  - ts
+paths-ignore:
+  - '**/*.spec.ts'
