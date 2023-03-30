@@ -24,8 +24,10 @@ Provides additional types and type adjusted utilities for [TypeScript].
 
 ```sh
 npm install type-plus
-// or
+
 yarn add type-plus
+
+pnpm add type-plus
 ```
 
 ## Type Assertions

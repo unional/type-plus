@@ -4,9 +4,9 @@ it('returns false for bigint', () => {
 	type.false<IsNotBigint<bigint>>(true)
 })
 
-it('returns true if T is bigint literals', () => {
-	type.true<IsNotBigint<0n>>(true)
-	type.true<IsNotBigint<1n>>(true)
+it('returns false if T is bigint literals', () => {
+	type.false<IsNotBigint<0n>>(true)
+	type.false<IsNotBigint<1n>>(true)
 })
 
 it('returns true for special types', () => {
@@ -38,13 +38,13 @@ it('returns true for union type', () => {
 	type.true<IsNotBigint<bigint | 1>>(true)
 })
 
-it('returns true for interaction type', () => {
-	type.true<IsNotBigint<bigint & { a: 1 }>>(true)
+it('returns false for interaction type', () => {
+	type.false<IsNotBigint<bigint & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {
 	type.equal<IsNotBigint<bigint, 1, 2>, 2>(true)
-	type.equal<IsNotBigint<0n, 1, 2>, 1>(true)
+	type.equal<IsNotBigint<0n, 1, 2>, 2>(true)
 
 	type.equal<IsNotBigint<any, 1, 2>, 1>(true)
 	type.equal<IsNotBigint<unknown, 1, 2>, 1>(true)

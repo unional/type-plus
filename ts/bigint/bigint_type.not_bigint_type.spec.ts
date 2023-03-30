@@ -4,9 +4,9 @@ it('returns never if T is bigint', () => {
 	type.never<NotBigintType<bigint>>(true)
 })
 
-it('returns T if T is bigint literals', () => {
-	type.equal<NotBigintType<0n>, 0n>(true)
-	type.equal<NotBigintType<11111111111111111111111111111111n>, 11111111111111111111111111111111n>(true)
+it('returns never if T is bigint literals', () => {
+	type.equal<NotBigintType<0n>, never>(true)
+	type.equal<NotBigintType<11111111111111111111111111111111n>, never>(true)
 })
 
 it('returns T for special types', () => {
@@ -39,13 +39,13 @@ it('returns T for union type', () => {
 	type.equal<NotBigintType<bigint | 'a'>, bigint | 'a'>(true)
 })
 
-it('returns T for intersection type', () => {
-	type.equal<NotBigintType<bigint & { a: 1 }>, bigint & { a: 1 }>(true)
+it('returns never for intersection type', () => {
+	type.equal<NotBigintType<bigint & { a: 1 }>, never>(true)
 })
 
 it('can override Then/Else', () => {
 	type.equal<NotBigintType<bigint, 1, 2>, 2>(true)
-	type.equal<NotBigintType<0n, 1, 2>, 1>(true)
+	type.equal<NotBigintType<0n, 1, 2>, 2>(true)
 
 	type.equal<NotBigintType<any, 1, 2>, 1>(true)
 	type.equal<NotBigintType<unknown, 1, 2>, 1>(true)
