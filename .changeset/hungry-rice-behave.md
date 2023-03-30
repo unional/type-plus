@@ -34,3 +34,7 @@ Improve:
   Supports 3-way comparison.
 - `IsInteger` to handle all types
 - `IsBoolean`
+
+
+- `type.equal` to support function overloads, symbol, any and never types.
+  Supports 3-way comparison.

@@ -2,7 +2,7 @@ import type { IsAny } from '../any/any_type.js'
 import type { IsFalse } from '../boolean/false_type.js'
 import type { IsStrictBoolean } from '../boolean/strict_boolean_type.js'
 import type { IsTrue } from '../boolean/true_type.js'
-import type { IsEqual } from '../equal/equal.js'
+import type { Equal } from '../equal/equal.js'
 import type { IsNever } from '../never/never_type.js'
 import type { IsStrictNumber } from '../number/strict_number_type.js'
 import type { CanAssign } from '../predicates/CanAssign.js'
@@ -12,13 +12,13 @@ import type { CanAssign } from '../predicates/CanAssign.js'
  *
  * @return value as `A` for type inspection.
  */
-function equal<A, B, C>(expected: IsEqual<A, B> & IsEqual<A, C>): A
+function equal<A, B, C>(expected: Equal<A, B> & Equal<A, C>): A
 /**
  * Check if type `A` is equal to type `B`.
  *
  * @return value as `A` for type inspection.
  */
-function equal<A, B>(expected: IsEqual<A, B>): A
+function equal<A, B>(expected: Equal<A, B>): A
 function equal(expected: any) {
 	return expected
 }

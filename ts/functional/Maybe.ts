@@ -1,5 +1,5 @@
 import type { Brand } from '../nominal/index.js'
-import type { IsEqual } from '../equal/equal.js'
+import type { Equal } from '../equal/equal.js'
 import type { Widen } from '../utils/index.js'
 
 export type Maybe<T> = Just<T> | None<T>
@@ -8,7 +8,7 @@ export type None<T> = Brand<'maybe', void> & { unwrap(): T }
 
 export function just<T>(
 	value: T
-): IsEqual<T, undefined | null> extends true ? None<T> : Just<Widen<NonNullable<T>>> {
+): Equal<T, undefined | null> extends true ? None<T> : Just<Widen<NonNullable<T>>> {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 	return {
 		unwrap() {

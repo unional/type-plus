@@ -1,4 +1,4 @@
-import { assertType, IsEqual, Except, isType, Omit, omit, record } from '../index.js'
+import { assertType, Equal, Except, isType, Omit, omit, record } from '../index.js'
 
 describe('Omit<T, K>', () => {
 	test('work with primitive types', () => {
@@ -98,7 +98,7 @@ describe(`${omit.name}()`, () => {
 		const actual = omit({ a: 1, b: 1, c: 1 }, 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'b')
 
 		expect(actual).toEqual({ c: 1 })
-		assertType.isTrue(true as IsEqual<keyof typeof actual, 'c'>)
+		assertType.isTrue(true as Equal<keyof typeof actual, 'c'>)
 	})
 
 	it('maintains the prototype null-ness', () => {
