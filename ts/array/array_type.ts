@@ -7,8 +7,9 @@ import type { StrictNumberType } from '../number/strict_number_type.js'
  * ```ts
  * import type { ArrayType } from 'type-plus'
  *
- * type R = ArrayType<number[]> // true
- * type R = ArrayType<[1]> // false
+ * type R = ArrayType<number[]> // number[]
+ *
+ * type R = ArrayType<[1]> // never
  * ```
  */
 export type ArrayType<T, Then = T, Else = never> = IsNever<

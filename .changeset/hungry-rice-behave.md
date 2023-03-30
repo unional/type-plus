@@ -21,6 +21,7 @@ Add:
 - `StrictStringType`, `IsStrictString`, `NotStrictStringType`, `IsNotStrictString`
 - `SymbolType`, `IsSymbol`, `NotSymbolType`, `IsNotSymbol`
 - `BigIntType`, `IsBigInt`, `NotBigIntType`, `IsNotBigInt`
+- `StrictBigIntType`, `IsStrictBigInt`, `NotStrictBigIntType`, `IsNotStrictBigInt`
 - `VoidType`, `IsVoid`, `NotVoidType`, `IsNotVoid`
 - `UnknownType`, `IsUnknown`, `NotUnknownType`, `IsNotUnknown`
 
