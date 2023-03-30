@@ -68,26 +68,6 @@ export type Equal<A, B, Then = true, Else = false> = And<
 >
 
 /**
- * Is `A` and `B` equals.
- *
- * ```ts
- * import { type IsEqual } from 'type-plus'
- *
- * type R = IsEqual<1, 1> // true
- * type R = IsEqual<any, any> // true
- * type R = IsEqual<boolean, boolean> // true
- * type R = IsEqual<true, true> // true
- * type R = IsEqual<[1], [1]> // true
- *
- * type R = IsEqual<boolean, true> // false
- * type R = IsEqual<any, 1> // false
- * type R = IsEqual<[any], [1]> // false
- * type R = IsEqual<{ a: 1 }, { a: 1; b: 2 }> // false
- * ```
- */
-export type IsEqual<A, B, Then = true, Else = false> = Equal<A, B, Then, Else>
-
-/**
  * Checks `A` and `B` are not equal.
  *
  * ```ts
@@ -106,23 +86,3 @@ export type IsEqual<A, B, Then = true, Else = false> = Equal<A, B, Then, Else>
  * ```
  */
 export type NotEqual<A, B, Then = true, Else = false> = Equal<A, B, Else, Then>
-
-/**
- * If `A` and `B` are not equal.
- *
- * ```ts
- * import { type IsNotEqual } from 'type-plus'
- *
- * type R = IsNotEqual<1, 1> // false
- * type R = IsNotEqual<any, any> // false
- * type R = IsNotEqual<boolean, boolean> // false
- * type R = IsNotEqual<true, true> // false
- * type R = IsNotEqual<[1], [1]> // false
- *
- * type R = IsNotEqual<boolean, true> // true
- * type R = IsNotEqual<any, 1> // true
- * type R = IsNotEqual<[any], [1]> // true
- * type R = IsNotEqual<{ a: 1 }, { a: 1; b: 2 }> // true
- * ```
- */
-export type IsNotEqual<A, B, Then = true, Else = false> = IsEqual<A, B, Else, Then>

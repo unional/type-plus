@@ -1,4 +1,4 @@
-import type { IsEqual } from '../equal/equal.js'
+import type { Equal } from '../equal/equal.js'
 import type { NonNull, NonUndefined } from '../utils/index.js'
 
 export type DropFirst<A extends any[]> = number extends A['length']
@@ -21,7 +21,7 @@ export type DropLast<A extends any[]> = number extends A['length']
 	? Heads
 	: never
 
-type ExcludeUnionOfEmptyTuple<A> = IsEqual<A, []> extends true ? A : Exclude<A, []>
+type ExcludeUnionOfEmptyTuple<A> = Equal<A, []> extends true ? A : Exclude<A, []>
 
 /**
  * drops entries matching `Criteria` in array or tuple `A`.

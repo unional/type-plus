@@ -1,11 +1,11 @@
 import type { IsAny } from '../any/any_type.js'
+import type { Equal } from '../equal/equal.js'
 import type { Abs } from '../math/Abs.js'
 import type { GreaterThan } from '../math/GreaterThan.js'
 import type { Subtract } from '../math/Subtract.js'
 import type { IsNever } from '../never/never_type.js'
 import type { Integer, Negative } from '../number/number.js'
-import { StrictNumberType } from '../number/strict_number_type.js'
-import type { Equal } from '../predicates/Equal.js'
+import type { StrictNumberType } from '../number/strict_number_type.js'
 
 /**
  * Gets the normalized index to access the element of an array or tuple.
