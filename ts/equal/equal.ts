@@ -1,10 +1,26 @@
 import type { IsAny } from '../any/any_type.js'
-import type { IsFunction } from '../function/function_type.js'
 import type { IsNever } from '../never/never_type.js'
 import type { IsObject } from '../object/object_type.js'
 import type { Properties } from '../object/properties.js'
 import type { And, Or } from '../predicates/logical.js'
 import type { IsSymbol } from '../symbol/symbol_type.js'
+
+type BothNever<A, B, Both, One, None> = And<
+	IsNever<A>,
+	IsNever<B>,
+	Both,
+	Or<IsNever<A>, IsNever<B>, One, None>
+>
+
+type BothAny<A, B, Both, One, None> = And<IsAny<A>, IsAny<B>, Both, Or<IsAny<A>, IsAny<B>, One, None>>
+
+type IdentityEqual<A, B, Then, Else> = (<_>() => _ extends (A & _) | _ ? 1 : 2) extends <_>() => _ extends
+	| (B & _)
+	| _
+	? 1
+	: 2
+	? Then
+	: Else
 
 /**
  * Checks `A` and `B` are equal.
@@ -24,48 +40,32 @@ import type { IsSymbol } from '../symbol/symbol_type.js'
  * type R = Equal<{ a: 1 }, { a: 1; b: 2 }> // false
  * ```
  */
-export type Equal<A, B, Then = true, Else = false> = And<
-	IsNever<A>,
-	IsNever<B>,
-	Then,
-	Or<
-		IsNever<A>,
-		IsNever<B>,
-		Else,
-		And<
-			IsAny<A>,
-			IsAny<B>,
+export type Equal<A, B, Then = true, Else = false> = [A, B] extends [B, A]
+	? BothNever<
+			A,
+			B,
 			Then,
-			Or<
-				IsAny<A>,
-				IsAny<B>,
+			Else,
+			BothAny<
+				A,
+				B,
+				Then,
 				Else,
-				And<
-					IsSymbol<A>,
-					IsSymbol<B>,
+				IdentityEqual<
+					A,
+					B,
 					Then,
 					And<
 						IsObject<A>,
 						IsObject<B>,
-						And<
-							IsFunction<A>,
-							IsFunction<B>,
-							[A, B] extends [B, A] ? Then : Else,
-							(<_>() => _ extends (Properties<A> & _) | _ ? 1 : 2) extends <_>() => _ extends
-								| (Properties<B> & _)
-								| _
-								? 1
-								: 2
-								? Then
-								: Else
-						>,
+						IdentityEqual<Properties<A>, Properties<B>, Then, Else>,
+						// `A` and `B` are narrowed, need to check again.
 						[A, B] extends [B, A] ? Then : Else
 					>
 				>
 			>
-		>
-	>
->
+	  >
+	: And<IsSymbol<A>, IsSymbol<B>, Then, Else>
 
 /**
  * Checks `A` and `B` are not equal.

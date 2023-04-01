@@ -296,13 +296,21 @@ it('works against tuple', () => {
 	type.true<Equal<[never], [never]>>(true)
 	type.true<Equal<[any], [any]>>(true)
 	type.true<Equal<[unknown], [unknown]>>(true)
+	type.true<Equal<[void], [void]>>(true)
 
-	type.false<Equal<[any], [never]>>(true)
 	type.false<Equal<[any], [unknown]>>(true)
+	type.false<Equal<[any], [never]>>(true)
+	type.false<Equal<[any], [void]>>(true)
 	type.false<Equal<[never], [any]>>(true)
 	type.false<Equal<[never], [unknown]>>(true)
+	type.false<Equal<[never], [void]>>(true)
 	type.false<Equal<[unknown], [any]>>(true)
 	type.false<Equal<[unknown], [never]>>(true)
+	type.false<Equal<[unknown], [void]>>(true)
+
+	type.false<Equal<[void], [any]>>(true)
+	type.false<Equal<[void], [unknown]>>(true)
+	type.false<Equal<[void], [never]>>(true)
 
 	type.false<Equal<[any, number], [number, any]>>(true)
 })
@@ -329,7 +337,11 @@ it('works with union of functions', () => {
 
 it('detects liternal and widen type are different', () => {
 	type.false<Equal<1, number>>(true)
-	// type.false<Equal<1 & { a: 1 }, number & { a: 1 }>>(true)
+	type.false<Equal<number, 1>>(true)
+	type.false<Equal<1 & { a: 1 }, number & { a: 1 }>>(true)
+	type.false<Equal<bigint & { a: 1 }, 1n & { a: 1 }>>(true)
+
+	type.true<Equal<1 & { a: 1 }, 1 & { a: 1 }>>(true)
 })
 
 it('works with intersect types', () => {
