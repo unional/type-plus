@@ -327,6 +327,11 @@ it('works with union of functions', () => {
 	type.false<Equal<((v: string) => string) | ((v: number) => number), (v: string) => string>>(true)
 })
 
+it('detects liternal and widen type are different', () => {
+	type.false<Equal<1, number>>(true)
+	// type.false<Equal<1 & { a: 1 }, number & { a: 1 }>>(true)
+})
+
 it('works with intersect types', () => {
 	type.true<Equal<{ a: number; b: string }, { a: number } & { b: string }>>(true)
 	type.true<Equal<{ a: number } & { b: number }, { a: number; b: number }>>(true)
@@ -399,10 +404,7 @@ it('detect redonly', () => {
 
 it('works with deep any', () => {
 	type.true<
-		Equal<
-			{ a: { a: any; n: never; u: unknown; v: void } },
-			{ a: { a: any; n: never; u: unknown; v: void } }
-		>
+		Equal<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: never; u: unknown; v: void } }>
 	>(true)
 
 	type.false<

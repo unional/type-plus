@@ -45,6 +45,29 @@ test('returns false for other types', () => {
 	type.false<IsNumeric<() => void>>(true)
 })
 
+it('returns false if T is union of non number', () => {
+	type.false<IsNumeric<number | string>>(true)
+})
+
+it('returns true if T is union of number and number literal', () => {
+	type.true<IsNumeric<number | 1>>(true)
+})
+
+it('returns true if T is union of mixing number and bigint', () => {
+	type.true<IsNumeric<number | bigint>>(true)
+	type.true<IsNumeric<bigint | 1>>(true)
+	type.true<IsNumeric<number | 1n>>(true)
+	type.true<IsNumeric<1 | 1n>>(true)
+})
+
+it('returns true if T is union of bigint and bigint literal', () => {
+	type.true<IsNumeric<bigint | 1n>>(true)
+})
+
+it('returns true if T is intersection of number', () => {
+	type.true<IsNumeric<number & { a: 1 }>>(true)
+})
+
 it('can override Then/Else', () => {
 	type.equal<IsNumeric<-1, 1, 2>, 1>(true)
 	type.equal<IsNumeric<1.1, 1, 2>, 1>(true)
