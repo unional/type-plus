@@ -4,7 +4,7 @@ import type { Numeric } from './numeric_type.js'
 /**
  * Check if T is an integer, including bigint.
  *
- * ```
+ * ```ts
  * import type { Integer } from 'type-plus'
  *
  * type R = Integer<0> // 0
@@ -23,7 +23,7 @@ export type Integer<T, Then = T, Else = never> = IsAnyOrNever<
 /**
  * Is T an integer, including bigint.
  *
- * ```
+ * ```ts
  * import type { IsInteger } from 'type-plus'
  *
  * type R = IsInteger<0> // true
@@ -35,8 +35,34 @@ export type Integer<T, Then = T, Else = never> = IsAnyOrNever<
  */
 export type IsInteger<T, Then = true, Else = false> = Integer<T, Then, Else>
 
+/**
+ * Check if T is not an integer, including bigint.
+ *
+ * ```ts
+ * import type { NotInteger } from 'type-plus'
+ *
+ * type R = NotInteger<1.1> // 1.1
+ * type R = NotInteger<number> // number as it contains non-integer
+ *
+ * type R = NotInteger<0> // never
+ * type R = NotInteger<1n> // never
+ * ```
+ */
 export type NotInteger<T, Then = T, Else = never> = Integer<T, Else, Then>
 
+/**
+ * Is T not an integer, including bigint.
+ *
+ * ```ts
+ * import type { IsNotInteger } from 'type-plus'
+ *
+ * type R = IsNotInteger<1.1> // true
+ * type R = IsNotInteger<number> // true as it contains non-integer
+ *
+ * type R = IsNotInteger<0> // false
+ * type R = IsNotInteger<1n> // false
+ * ```
+ */
 export type IsNotInteger<T, Then = true, Else = false> = NotInteger<T, Else, Then>
 
 /**

@@ -75,10 +75,11 @@ type R = Integer<1.0> // 1.0
 type R = Integer<1.1> // never
 ```
 
-- [`Integer<T, Then = T, Else = never>`](integer.ts#L18): check if `T` is an integer.
-- [`IsInteger<T, Then = true, Else = false>`](integer.ts#L38): is `T` an integer.
-- [`NotIntegerType<T, Then = T, Else = never>`](integer.ts#L53): check if `T` is not an integer.
-- [`IsNotInteger<T, Then = true, Else = false>`](integer.ts#L68): is `T` not an integer.
+- [`Integer<T, Then = T, Else = never>`](integer.ts#L17): check if `T` is an integer.
+- [`IsInteger<T, Then = true, Else = false>`](integer.ts#L36): is `T` an integer.
+- [`NotIntegerType<T, Then = T, Else = never>`](integer.ts#L51): check if `T` is not an integer.
+- [`IsNotInteger<T, Then = true, Else = false>`](integer.ts#L66): is `T` not an integer.
+- [`IsWholeNumber<T, Then = true, Else = false>`](integer.ts#L81): same as `Integer<T>`, will be deprecated in the future.
 
 ---
 
