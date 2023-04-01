@@ -5,17 +5,17 @@ It is a "safer" variant of `any` that you cannot use the value until there are s
 
 ## Type Checking
 
-The `TupleType<T>` and friends are used to check if `T` is a tuple, excluding array.
+The `UnknownType<T>` and friends are used to check if a type is `unknown` or not.
 
 ```ts
-import type { TupleType } from 'type-plus'
+import type { UnknownType } from 'type-plus'
 
-type R = TupleType<unknown> // unknown
+type R = UnknownType<unknown> // unknown
 
-type R = TupleType<1> // never
+type R = UnknownType<1> // never
 ```
 
-- [`TupleType<T, Then = T, Else = never>`](unknown_type.ts#L16): check if `T` is `unknown`.
+- [`UnknownType<T, Then = T, Else = never>`](unknown_type.ts#L16): check if `T` is `unknown`.
 - [`IsUnknown<T, Then = true, Else = false`](unknown_type.ts#L35): is `T` `unknown`.
 - [`NotUnknownType<T, Then = T, Else = never>`](unknown_type.ts#L50): check if `T` is not `unknown`.
 - [`IsNotUnknown<T, Then = true, Else = false>`](unknown_type.ts#L65): is `T` not `unknown`.
