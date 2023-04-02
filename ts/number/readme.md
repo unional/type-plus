@@ -152,4 +152,4 @@ type R = Negative<'1'> // '1'
 
 - [Handbook]
 
-[handbook]: https://www.typescriptlang.org/docs/handbook/2/functions.html#unknown
+[handbook]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#the-primitives-string-number-and-boolean
