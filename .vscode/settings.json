@@ -1,9 +1,9 @@
 {
-	"[typescript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
 	"[markdown]": {
 		"editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"cSpell.words": [
 		"ajafff",
@@ -57,6 +57,7 @@
 			"url": "http://json.schemastore.org/tsconfig"
 		}
 	],
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"markdown.extension.toc.orderedList": true
+	"markdown.extension.toc.orderedList": true,
+	"markdownlint.ignore": ".markdownlintignore",
+	"typescript.tsdk": "node_modules/typescript/lib"
 }

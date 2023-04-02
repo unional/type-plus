@@ -6,16 +6,14 @@
 [![GitHub NodeJS][github-nodejs]][github-action-url]
 [![Codecov][codecov-image]][codecov-url]
 
-[![Semantic Release][semantic-release-image]][semantic-release-url]
-
 [![Visual Studio Code][vscode-image]][vscode-url]
-[![Wallaby.js][wallaby-image]][wallaby-url]
 
-Provides additional types and type adjusted utilities for [TypeScript].
+Advance type utilities for [TypeScript].
 
 ## Feature Highlights
 
 - [Type assertions](#type-assertions)
+- [Type Checking](#type-checking)
 - [Type Utilities](#type-utilities)
 - [Nominal Types](#nominal-types)
 - [Functional Types](#functional-types)
@@ -300,6 +298,35 @@ Check if `A` is `never`.
 IsNever<never> // true
 IsNever<1>     // false
 ```
+
+## Type Checking
+
+[type-plus](./README.md) privides type checking utilities for every type.
+
+Each type has at least 4 type checks.
+Using `string` as an example, there are `StringType<T>`, `IsString<T>`, `NotStringType<T>`, and `IsNotString<T>`.
+
+Some types will have more checks, such as `boolean` has `StrictBooleanType<T>`, `TrueType<T>`, `FalseType<T>`.
+
+You can learn more in their respective sections:
+
+- [any](./ts/any/readme.md)
+- [array](./ts/array/readme.md)
+- [bigint](./ts/bigint/readme.md)
+- [boolean](./ts/boolean/readme.md)
+- [function](./ts/function/readme.md)
+- [never](./ts/never/readme.md)
+- [null](./ts/null/readme.md)
+- [number](./ts/number/readme.md)
+- [object](./ts/object/readme.md)
+- [string](./ts/string/readme.md)
+- [symbol](./ts/symbol/readme.md)
+- [tuple](./ts/tuple/readme.md)
+- [undefined](./ts/undefined/readme.md)
+- [unknown](./ts/unknown/readme.md)
+- [void](./ts/void/readme.md)
+
+These checks
 
 ## Type Utilities
 
@@ -668,8 +695,6 @@ git push
 [hotscript]: https://github.com/gvergnaud/hotscript
 [npm-image]: https://img.shields.io/npm/v/type-plus.svg?style=flat
 [npm-url]: https://npmjs.org/package/type-plus
-[semantic-release-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
-[semantic-release-url]: https://github.com/semantic-release/semantic-release
 [spec.ts]: https://github.com/aleclarson/spec.ts
 [ts-essentials]: https://github.com/ts-essentials/ts-essentials
 [ts-expect]: https://github.com/TypeStrong/ts-expect
@@ -684,5 +709,3 @@ git push
 [utility-types]: https://github.com/piotrwitek/utility-types
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
-[wallaby-image]: https://img.shields.io/badge/wallaby.js-configured-green.svg
-[wallaby-url]: https://wallabyjs.com

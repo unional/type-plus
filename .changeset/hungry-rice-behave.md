@@ -2,7 +2,7 @@
 'type-plus': minor
 ---
 
-Add:
+Adding a new set of types for type-level programming.
 
 - `IsAnyOrNever`
 - `AnyType`, `IsAny`, `NotAnyType`, `IsNotAny`
@@ -26,16 +26,9 @@ Add:
 - `UnknownType`, `IsUnknown`, `NotUnknownType`, `IsNotUnknown`
 - `Positive`, `IsPositive`, `NotPositive`, `IsNotPositive`
 
-These types perform strict type checks.
-Union and Intersection types are not considered to pass the check.
+Adding a new `testType` for testing.
+It provides better testing support compares to `isType` and `assertType`.
 
 Improve:
 
-- `Equal`: to support function overloads, symbol, any and never types.
-  Supports 3-way comparison.
-- `IsInteger` to handle all types
-- `IsBoolean`
-
-
-- `type.equal` to support function overloads, symbol, any and never types.
-  Supports 3-way comparison.
+- `Equal`: to support all known scenarios.
