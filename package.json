@@ -95,22 +95,5 @@
 		"typedoc-plugin-extras": "^2.2.3",
 		"typescript": "^5.0.2"
 	},
-	"packageManager": "pnpm@7.30.3",
-	"size-limit": [
-		{
-			"name": "cjs",
-			"path": "./cjs/index.js",
-			"limit": "15 kb"
-		},
-		{
-			"name": "esm",
-			"path": "./esm/index.js",
-			"limit": "15 kb"
-		},
-		{
-			"name": "tslib",
-			"path": "./tslib/index.js",
-			"limit": "15 kb"
-		}
-	]
+	"packageManager": "pnpm@8.1.0"
 }
