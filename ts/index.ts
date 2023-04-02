@@ -85,7 +85,7 @@ export type { IsNotString, IsString, NotStringType, StringType } from './string/
 export type { IsNotSymbol, IsSymbol, NotSymbolType, SymbolType } from './symbol/symbol_type.js'
 export * from './testing/stub.js'
 export * from './testing/test_type.js'
-export * from './tuple/index.js'
+export type { IsNotTuple, IsTuple, NotTupleType, TupleType } from './tuple/tuple_type.js'
 export type {
 	IsNotUndefined,
 	IsUndefined,
