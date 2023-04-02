@@ -1,6 +1,7 @@
 import type { PadLeft } from '../array/index.js'
+import type { IsInteger } from '../number/integer.js'
+import type { IsPositive } from '../number/positive.js'
 import type { And } from '../predicates/index.js'
-import type { IsPositive, IsWhole } from '../number/number.js'
 import type { Digit, DigitArray } from './Digit.js'
 import type { Max } from './Max.js'
 
@@ -8,8 +9,8 @@ import type { Max } from './Max.js'
  * Add two number literals.
  */
 export type Add<A extends number, B extends number, Fail = never> = And<
-	And<IsPositive<A>, IsWhole<A>>,
-	And<IsPositive<B>, IsWhole<B>>
+	And<IsPositive<A>, IsInteger<A>>,
+	And<IsPositive<B>, IsInteger<B>>
 > extends false
 	? Fail
 	: DigitArray.FromNumber<A> extends infer DA

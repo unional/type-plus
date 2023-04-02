@@ -4,7 +4,8 @@ import type { Abs } from '../math/Abs.js'
 import type { GreaterThan } from '../math/GreaterThan.js'
 import type { Subtract } from '../math/Subtract.js'
 import type { IsNever } from '../never/never_type.js'
-import type { Integer, Negative } from '../number/number.js'
+import type { Integer } from '../number/integer.js'
+import type { Negative } from '../number/negative.js'
 import type { StrictNumberType } from '../number/strict_number_type.js'
 
 /**

@@ -1,5 +1,6 @@
-import type { Tail } from '../array/index.js'
-import type { IsPositive, IsWhole } from '../number/number.js'
+import type { Tail } from '../array/tail.js'
+import type { IsInteger } from '../number/integer.js'
+import type { IsPositive } from '../number/positive.js'
 import type { And } from '../predicates/index.js'
 
 export namespace Digit {
@@ -66,7 +67,7 @@ export namespace DigitArray {
 	export type FromNumberAbs<N extends number> = FromString<TrimMinusSign<`${N}`>>
 	export type TrimMinusSign<N extends string> = N extends `-${infer rest}` ? rest : N
 
-	export type NumberToString<N extends number> = And<IsPositive<N>, IsWhole<N>> extends true ? `${N}` : never
+	export type NumberToString<N extends number> = And<IsPositive<N>, IsInteger<N>> extends true ? `${N}` : never
 
 	export type FromString<S extends string> = S extends `1${infer L}`
 		? [1, ...FromString<L>]

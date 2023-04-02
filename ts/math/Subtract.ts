@@ -1,13 +1,13 @@
 import type { PadLeft, Some, Tail } from '../array/index.js'
+import type { IsInteger } from '../number/integer.js'
+import type { IsPositive } from '../number/positive.js'
 import type { And } from '../predicates/index.js'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { IsPositive, IsWhole } from '../number/number.js'
 import type { Digit, DigitArray } from './Digit.js'
 import type { Max } from './Max.js'
 
 export type Subtract<A extends number, B extends number, Fail = never> = And<
-	And<IsPositive<A>, IsWhole<A>>,
-	And<IsPositive<B>, IsWhole<B>>
+	And<IsPositive<A>, IsInteger<A>>,
+	And<IsPositive<B>, IsInteger<B>>
 > extends true
 	? DigitArray.Shift10<DigitArray.FromNumber<A>> extends infer DA
 		? DA extends number[]

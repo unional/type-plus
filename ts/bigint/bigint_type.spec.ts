@@ -6,6 +6,8 @@ it('returns T if T is bigint', () => {
 
 it('returns T if T is bigint literals', () => {
 	type.equal<BigintType<0n>, 0n>(true)
+	type.equal<BigintType<1n>, 1n>(true)
+	type.equal<BigintType<-1n>, -1n>(true)
 	type.equal<BigintType<11111111111111111111111111111111n>, 11111111111111111111111111111111n>(true)
 })
 
