@@ -1,4 +1,5 @@
-import { inspect } from './index.js'
+/* eslint-disable no-console */
+import { inspect } from '../index.js'
 
 describe(`${inspect.name}()`, () => {
 	it('should return the same value', () => {
