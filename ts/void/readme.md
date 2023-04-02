@@ -1,27 +1,26 @@
 # void
 
-`void` is one of the top type in TypeScript.
-It is a "safer" variant of `any` that you cannot use the value until there are some type guards or type assertions to the value.
+`void` is a type that represents the absence of a value. It is used as the return type of functions that do not return a value.
 
 ## Type Checking
 
-The `UnknownType<T>` and friends are used to check if a type is `unknown` or not.
+The `VoidType<T>` and friends are used to check if a type is exactly `void`.
 
 ```ts
-import type { UnknownType } from 'type-plus'
+import type { VoidType } from 'type-plus'
 
-type R = UnknownType<unknown> // unknown
+type R = VoidType<void> // void
 
-type R = UnknownType<1> // never
+type R = VoidType<1> // never
 ```
 
-- [`UnknownType<T, Then = T, Else = never>`](unknown_type.ts#L16): check if `T` is `unknown`.
-- [`IsUnknown<T, Then = true, Else = false`](unknown_type.ts#L35): is `T` `unknown`.
-- [`NotUnknownType<T, Then = T, Else = never>`](unknown_type.ts#L50): check if `T` is not `unknown`.
-- [`IsNotUnknown<T, Then = true, Else = false>`](unknown_type.ts#L65): is `T` not `unknown`.
+- [`VoidType<T, Then = T, Else = never>`](void_type.ts#L15): check if `T` is `void`.
+- [`IsVoid<T, Then = true, Else = false`](void_type.ts#L32): is `T` `void`.
+- [`NotVoidType<T, Then = T, Else = never>`](void_type.ts#L45): check if `T` is not `void`.
+- [`IsNotVoid<T, Then = true, Else = false>`](void_type.ts#L58): is `T` not `void`.
 
 ## References
 
 - [Handbook]
 
-[handbook]: https://www.typescriptlang.org/docs/handbook/2/functions.html#unknown
+[handbook]: https://www.typescriptlang.org/docs/handbook/2/functions.html#void

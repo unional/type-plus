@@ -2,23 +2,42 @@
 
 ## Type Checking
 
-The `UnknownType<T>` and friends are used to check if a type is `unknown` or not.
+The `StringType<T>` and friends are used to check if a type is `string` or string literals.
 
 ```ts
-import type { UnknownType } from 'type-plus'
+import type { StringType } from 'type-plus'
 
-type R = UnknownType<unknown> // unknown
+type R = StringType<string> // string
+type R = StringType<'a'> // 'a'
 
-type R = UnknownType<1> // never
+type R = StringType<1> // never
 ```
 
-- [`UnknownType<T, Then = T, Else = never>`](unknown_type.ts#L16): check if `T` is `unknown`.
-- [`IsUnknown<T, Then = true, Else = false`](unknown_type.ts#L35): is `T` `unknown`.
-- [`NotUnknownType<T, Then = T, Else = never>`](unknown_type.ts#L50): check if `T` is not `unknown`.
-- [`IsNotUnknown<T, Then = true, Else = false>`](unknown_type.ts#L65): is `T` not `unknown`.
+- [`StringType<T, Then = T, Else = never>`](string_type.ts#L18): check if `T` is `string`.
+- [`IsString<T, Then = true, Else = false`](string_type.ts#L35): is `T` `string`.
+- [`NotStringType<T, Then = T, Else = never>`](string_type.ts#L52): check if `T` is not `string`.
+- [`IsNotString<T, Then = true, Else = false>`](string_type.ts#L69): is `T` not `string`.
+
+---
+
+The `StrictStringType<T>` and friends are used to check if a type is exactly `string` type.
+
+```ts
+import type { StrictStringType } from 'type-plus'
+
+type R = StrictStringType<string> // string
+
+type R = StrictStringType<'a'> // never
+type R = StrictStringType<1> // never
+```
+
+- [`StrictStringType<T, Then = T, Else = never>`](strict_string_type.ts#L18): check if `T` is exactly `string`.
+- [`IsStrictString<T, Then = true, Else = false`](strict_string_type.ts#L35): is `T` exactly `string`.
+- [`NotStrictStringType<T, Then = T, Else = never>`](strict_string_type.ts#L52): check if `T` is not exactly `string`.
+- [`IsNotStrictString<T, Then = true, Else = false>`](strict_string_type.ts#L69): is `T` not exactly `string`.
 
 ## References
 
 - [Handbook]
 
-[handbook]: https://www.typescriptlang.org/docs/handbook/2/functions.html#unknown
+[handbook]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#the-primitives-string-number-and-boolean
