@@ -1,0 +1,102 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>NotNumberType | type-plus</title><meta name="description" content="Documentation for type-plus"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script async src="../assets/search.js" id="search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container">
+<div class="table-cell" id="tsd-search" data-base="..">
+<div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
+<div class="field">
+<div id="tsd-toolbar-links"></div></div>
+<ul class="results">
+<li class="state loading">Preparing search index...</li>
+<li class="state failure">The search index is not available</li></ul><a href="https://github.com/unional/type-plus" class="title">Additional types and utils for TypeScript</a></div>
+<div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="7" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="11" width="14" height="2" fill="var(--color-text)"></rect></svg></a></div></div></header>
+<div class="container container-main">
+<div class="col-8 col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb">
+<li><a href="../modules.html">type-plus</a></li>
+<li><a href="../modules/NumberPlus.html">NumberPlus</a></li>
+<li><a href="NumberPlus.NotNumberType.html">NotNumberType</a></li></ul>
+<h1>Type alias NotNumberType&lt;T, Then, Else&gt;</h1></div>
+<div class="tsd-signature">Not<wbr/>Number<wbr/>Type<span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">Then</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">Else</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">:</span> <a href="NumberPlus.NumberType.html" class="tsd-signature-type" data-tsd-kind="Type alias">NumberType</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">Else</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">Then</span><span class="tsd-signature-symbol">&gt;</span></div>
+<div class="tsd-comment tsd-typography"><p>Check if the type <code>T</code> is not <code>number</code>.</p>
+<pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-0"> </span><span class="hl-9">type</span><span class="hl-0"> { </span><span class="hl-7">NotNumberType</span><span class="hl-0"> } </span><span class="hl-9">from</span><span class="hl-0"> </span><span class="hl-8">&#39;type-plus&#39;</span><br/><br/><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-3">R</span><span class="hl-0"> = </span><span class="hl-3">NotNumberType</span><span class="hl-0">&lt;</span><span class="hl-3">number</span><span class="hl-0">&gt; </span><span class="hl-5">// false</span><br/><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-3">R</span><span class="hl-0"> = </span><span class="hl-3">NotNumberType</span><span class="hl-0">&lt;</span><span class="hl-4">1</span><span class="hl-0">&gt; </span><span class="hl-5">// false</span><br/><br/><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-3">R</span><span class="hl-0"> = </span><span class="hl-3">NotNumberType</span><span class="hl-0">&lt;</span><span class="hl-3">never</span><span class="hl-0">&gt; </span><span class="hl-5">// true</span><br/><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-3">R</span><span class="hl-0"> = </span><span class="hl-3">NotNumberType</span><span class="hl-0">&lt;</span><span class="hl-3">unknown</span><span class="hl-0">&gt; </span><span class="hl-5">// true</span>
+</code></pre>
+</div>
+<section class="tsd-panel tsd-type-parameters">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameters">
+<li>
+<h4>T</h4></li>
+<li>
+<h4>Then = <span class="tsd-signature-type" data-tsd-kind="Type parameter">T</span></h4></li>
+<li>
+<h4>Else = <span class="tsd-signature-type">never</span></h4></li></ul></section><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/e726d118/ts/number/number_type.ts#L46">ts/number/number_type.ts:46</a></li></ul></aside></div>
+<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+<div class="tsd-navigation settings">
+<details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility">
+<h4 class="uppercase">Member Visibility</h4><form>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-private" name="private"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Private</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></form></div>
+<div class="tsd-theme-toggle">
+<h4 class="uppercase">Theme</h4><select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<nav class="tsd-navigation primary">
+<details class="tsd-index-accordion" open><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Modules</h3></summary>
+<div class="tsd-accordion-details">
+<ul>
+<li class="current"><a href="../modules.html">type-<wbr/>plus</a>
+<ul>
+<li class="tsd-kind-namespace"><a href="../modules/Add.html">Add</a></li>
+<li class="tsd-kind-namespace"><a href="../modules/ArrayPlus.html">Array<wbr/>Plus</a></li>
+<li class="tsd-kind-namespace"><a href="../modules/Digit.html">Digit</a></li>
+<li class="tsd-kind-namespace"><a href="../modules/DigitArray.html">Digit<wbr/>Array</a></li>
+<li class="tsd-kind-namespace"><a href="../modules/GreaterThan.html">Greater<wbr/>Than</a></li>
+<li class="current tsd-kind-namespace"><a href="../modules/NumberPlus.html">Number<wbr/>Plus</a></li>
+<li class="tsd-kind-namespace"><a href="../modules/OptionalKeys.html">Optional<wbr/>Keys</a></li>
+<li class="tsd-kind-namespace"><a href="../modules/Pick.html">Pick</a></li>
+<li class="tsd-kind-namespace"><a href="../modules/RequiredKeys.html">Required<wbr/>Keys</a></li>
+<li class="tsd-kind-namespace"><a href="../modules/Some.html">Some</a></li>
+<li class="tsd-kind-namespace"><a href="../modules/Subtract.html">Subtract</a></li>
+<li class="tsd-kind-namespace"><a href="../modules/assertType.html">assert<wbr/>Type</a></li>
+<li class="tsd-kind-namespace"><a href="../modules/isType.html">is<wbr/>Type</a></li>
+<li class="tsd-kind-namespace"><a href="../modules/stub.html">stub</a></li></ul></li></ul></div></details></nav>
+<nav class="tsd-navigation secondary menu-sticky">
+<ul>
+<li class="tsd-kind-reference tsd-parent-kind-namespace"><a href="../modules/NumberPlus.html#Integer" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="#FF4D82" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12" id="icon-8388608-path"></rect><path d="M10.354 17V8.24H13.066C13.586 8.24 14.042 8.348 14.434 8.564C14.826 8.772 15.13 9.064 15.346 9.44C15.562 9.816 15.67 10.256 15.67 10.76C15.67 11.352 15.514 11.86 15.202 12.284C14.898 12.708 14.482 13 13.954 13.16L15.79 17H14.518L12.838 13.28H11.434V17H10.354ZM11.434 12.308H13.066C13.514 12.308 13.874 12.168 14.146 11.888C14.418 11.6 14.554 11.224 14.554 10.76C14.554 10.288 14.418 9.912 14.146 9.632C13.874 9.352 13.514 9.212 13.066 9.212H11.434V12.308Z" fill="var(--color-text)" id="icon-8388608-text"></path></svg>Integer</a></li>
+<li class="tsd-kind-reference tsd-parent-kind-namespace"><a href="../modules/NumberPlus.html#IsInteger" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg>Is<wbr/>Integer</a></li>
+<li class="tsd-kind-reference tsd-parent-kind-namespace"><a href="../modules/NumberPlus.html#IsNegative" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg>Is<wbr/>Negative</a></li>
+<li class="tsd-kind-reference tsd-parent-kind-namespace"><a href="../modules/NumberPlus.html#IsNotInteger" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg>Is<wbr/>Not<wbr/>Integer</a></li>
+<li class="tsd-kind-reference tsd-parent-kind-namespace"><a href="../modules/NumberPlus.html#IsNotNegative" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg>Is<wbr/>Not<wbr/>Negative</a></li>
+<li class="tsd-kind-reference tsd-parent-kind-namespace"><a href="../modules/NumberPlus.html#IsWhole" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg>Is<wbr/>Whole</a></li>
+<li class="tsd-kind-reference tsd-parent-kind-namespace"><a href="../modules/NumberPlus.html#Negative" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg>Negative</a></li>
+<li class="tsd-kind-reference tsd-parent-kind-namespace"><a href="../modules/NumberPlus.html#NotInteger" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg>Not<wbr/>Integer</a></li>
+<li class="tsd-kind-reference tsd-parent-kind-namespace"><a href="../modules/NumberPlus.html#NotNegative" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg>Not<wbr/>Negative</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.IsNotNumber.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-4194304-path"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)" id="icon-4194304-text"></path></svg>Is<wbr/>Not<wbr/>Number</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.IsNotNumeric.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Not<wbr/>Numeric</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.IsNotPositive.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Not<wbr/>Positive</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.IsNotStrictNumber.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Not<wbr/>Strict<wbr/>Number</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.IsNumber.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Number</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.IsNumeric.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Numeric</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.IsPositive.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Positive</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.IsStrictNumber.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Is<wbr/>Strict<wbr/>Number</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.NonPositive.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Non<wbr/>Positive</a></li>
+<li class="current tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.NotNumberType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Not<wbr/>Number<wbr/>Type</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.NotNumericType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Not<wbr/>Numeric<wbr/>Type</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.NotStrictNumberType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Not<wbr/>Strict<wbr/>Number<wbr/>Type</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.NumberType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Number<wbr/>Type</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.Numeric.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Numeric</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.NumericType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Numeric<wbr/>Type</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.Positive.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Positive</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.StrictNumberType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Strict<wbr/>Number<wbr/>Type</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.Sum.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Sum</a></li>
+<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="NumberPlus.Zero.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Zero</a></li></ul></nav></div></div>
+<div class="container tsd-generator">
+<p style="line-height: 28px;">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
+<div class="overlay"></div><script src="../assets/main.js"></script></body></html>
