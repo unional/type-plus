@@ -1,50 +1,50 @@
-import { type, type IsNotSymbol } from '../index.js'
+import { testType, type IsNotSymbol } from '../index.js'
 
 it('returns false for symbol', () => {
-	type.false<IsNotSymbol<symbol>>(true)
+	testType.false<IsNotSymbol<symbol>>(true)
 
 	const s = Symbol()
-	type.false<IsNotSymbol<typeof s>>(true)
+	testType.false<IsNotSymbol<typeof s>>(true)
 })
 
 it('returns true for other special types', () => {
-	type.true<IsNotSymbol<any>>(true)
-	type.true<IsNotSymbol<unknown>>(true)
-	type.true<IsNotSymbol<void>>(true)
-	type.true<IsNotSymbol<never>>(true)
+	testType.true<IsNotSymbol<any>>(true)
+	testType.true<IsNotSymbol<unknown>>(true)
+	testType.true<IsNotSymbol<void>>(true)
+	testType.true<IsNotSymbol<never>>(true)
 })
 
 test('returns true for singular types', () => {
-	type.true<IsNotSymbol<undefined>>(true)
-	type.true<IsNotSymbol<null>>(true)
-	type.true<IsNotSymbol<number>>(true)
-	type.true<IsNotSymbol<boolean>>(true)
-	type.true<IsNotSymbol<true>>(true)
-	type.true<IsNotSymbol<false>>(true)
-	type.true<IsNotSymbol<string>>(true)
-	type.true<IsNotSymbol<''>>(true)
-	type.true<IsNotSymbol<bigint>>(true)
-	type.true<IsNotSymbol<{}>>(true)
-	type.true<IsNotSymbol<string[]>>(true)
-	type.true<IsNotSymbol<[]>>(true)
-	type.true<IsNotSymbol<Function>>(true)
-	type.true<IsNotSymbol<() => void>>(true)
+	testType.true<IsNotSymbol<undefined>>(true)
+	testType.true<IsNotSymbol<null>>(true)
+	testType.true<IsNotSymbol<number>>(true)
+	testType.true<IsNotSymbol<boolean>>(true)
+	testType.true<IsNotSymbol<true>>(true)
+	testType.true<IsNotSymbol<false>>(true)
+	testType.true<IsNotSymbol<string>>(true)
+	testType.true<IsNotSymbol<''>>(true)
+	testType.true<IsNotSymbol<bigint>>(true)
+	testType.true<IsNotSymbol<{}>>(true)
+	testType.true<IsNotSymbol<string[]>>(true)
+	testType.true<IsNotSymbol<[]>>(true)
+	testType.true<IsNotSymbol<Function>>(true)
+	testType.true<IsNotSymbol<() => void>>(true)
 })
 
 it('returns true for union type', () => {
-	type.true<IsNotSymbol<symbol | 1>>(true)
+	testType.true<IsNotSymbol<symbol | 1>>(true)
 })
 
 it('returns true for intersection type', () => {
-	type.false<IsNotSymbol<symbol & { a: 1 }>>(true)
+	testType.false<IsNotSymbol<symbol & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {
-	type.equal<IsNotSymbol<symbol, 1, 2>, 2>(true)
-	type.equal<IsNotSymbol<0, 1, 2>, 1>(true)
+	testType.equal<IsNotSymbol<symbol, 1, 2>, 2>(true)
+	testType.equal<IsNotSymbol<0, 1, 2>, 1>(true)
 
-	type.equal<IsNotSymbol<any, 1, 2>, 1>(true)
-	type.equal<IsNotSymbol<unknown, 1, 2>, 1>(true)
-	type.equal<IsNotSymbol<never, 1, 2>, 1>(true)
-	type.equal<IsNotSymbol<void, 1, 2>, 1>(true)
+	testType.equal<IsNotSymbol<any, 1, 2>, 1>(true)
+	testType.equal<IsNotSymbol<unknown, 1, 2>, 1>(true)
+	testType.equal<IsNotSymbol<never, 1, 2>, 1>(true)
+	testType.equal<IsNotSymbol<void, 1, 2>, 1>(true)
 })

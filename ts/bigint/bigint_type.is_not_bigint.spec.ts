@@ -1,53 +1,53 @@
-import { type, type IsNotBigint } from '../index.js'
+import { testType, type IsNotBigint } from '../index.js'
 
 it('returns false for bigint', () => {
-	type.false<IsNotBigint<bigint>>(true)
+	testType.false<IsNotBigint<bigint>>(true)
 })
 
 it('returns false if T is bigint literals', () => {
-	type.false<IsNotBigint<0n>>(true)
-	type.false<IsNotBigint<1n>>(true)
+	testType.false<IsNotBigint<0n>>(true)
+	testType.false<IsNotBigint<1n>>(true)
 })
 
 it('returns true for special types', () => {
-	type.true<IsNotBigint<any>>(true)
-	type.true<IsNotBigint<unknown>>(true)
-	type.true<IsNotBigint<void>>(true)
-	type.true<IsNotBigint<never>>(true)
+	testType.true<IsNotBigint<any>>(true)
+	testType.true<IsNotBigint<unknown>>(true)
+	testType.true<IsNotBigint<void>>(true)
+	testType.true<IsNotBigint<never>>(true)
 })
 
 test('returns true for other types', () => {
-	type.true<IsNotBigint<undefined>>(true)
-	type.true<IsNotBigint<null>>(true)
-	type.true<IsNotBigint<boolean>>(true)
-	type.true<IsNotBigint<true>>(true)
-	type.true<IsNotBigint<false>>(true)
-	type.true<IsNotBigint<number>>(true)
-	type.true<IsNotBigint<1>>(true)
-	type.true<IsNotBigint<string>>(true)
-	type.true<IsNotBigint<''>>(true)
-	type.true<IsNotBigint<symbol>>(true)
-	type.true<IsNotBigint<{}>>(true)
-	type.true<IsNotBigint<string[]>>(true)
-	type.true<IsNotBigint<[]>>(true)
-	type.true<IsNotBigint<Function>>(true)
-	type.true<IsNotBigint<() => void>>(true)
+	testType.true<IsNotBigint<undefined>>(true)
+	testType.true<IsNotBigint<null>>(true)
+	testType.true<IsNotBigint<boolean>>(true)
+	testType.true<IsNotBigint<true>>(true)
+	testType.true<IsNotBigint<false>>(true)
+	testType.true<IsNotBigint<number>>(true)
+	testType.true<IsNotBigint<1>>(true)
+	testType.true<IsNotBigint<string>>(true)
+	testType.true<IsNotBigint<''>>(true)
+	testType.true<IsNotBigint<symbol>>(true)
+	testType.true<IsNotBigint<{}>>(true)
+	testType.true<IsNotBigint<string[]>>(true)
+	testType.true<IsNotBigint<[]>>(true)
+	testType.true<IsNotBigint<Function>>(true)
+	testType.true<IsNotBigint<() => void>>(true)
 })
 
 it('returns true for union type', () => {
-	type.true<IsNotBigint<bigint | 1>>(true)
+	testType.true<IsNotBigint<bigint | 1>>(true)
 })
 
 it('returns false for interaction type', () => {
-	type.false<IsNotBigint<bigint & { a: 1 }>>(true)
+	testType.false<IsNotBigint<bigint & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {
-	type.equal<IsNotBigint<bigint, 1, 2>, 2>(true)
-	type.equal<IsNotBigint<0n, 1, 2>, 2>(true)
+	testType.equal<IsNotBigint<bigint, 1, 2>, 2>(true)
+	testType.equal<IsNotBigint<0n, 1, 2>, 2>(true)
 
-	type.equal<IsNotBigint<any, 1, 2>, 1>(true)
-	type.equal<IsNotBigint<unknown, 1, 2>, 1>(true)
-	type.equal<IsNotBigint<never, 1, 2>, 1>(true)
-	type.equal<IsNotBigint<void, 1, 2>, 1>(true)
+	testType.equal<IsNotBigint<any, 1, 2>, 1>(true)
+	testType.equal<IsNotBigint<unknown, 1, 2>, 1>(true)
+	testType.equal<IsNotBigint<never, 1, 2>, 1>(true)
+	testType.equal<IsNotBigint<void, 1, 2>, 1>(true)
 })

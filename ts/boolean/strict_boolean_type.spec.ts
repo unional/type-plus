@@ -1,54 +1,54 @@
-import { type, type StrictBooleanType } from '../index.js'
+import { testType, type StrictBooleanType } from '../index.js'
 
 it('returns boolean if T is boolean', () => {
-	type.equal<StrictBooleanType<boolean>, boolean>(true)
+	testType.equal<StrictBooleanType<boolean>, boolean>(true)
 })
 
 it('returns never if T is true or false literal', () => {
-	type.never<StrictBooleanType<true>>(true)
-	type.never<StrictBooleanType<false>>(true)
+	testType.never<StrictBooleanType<true>>(true)
+	testType.never<StrictBooleanType<false>>(true)
 })
 
 it('returns never for special types', () => {
-	type.never<StrictBooleanType<void>>(true)
-	type.never<StrictBooleanType<unknown>>(true)
-	type.never<StrictBooleanType<any>>(true)
-	type.never<StrictBooleanType<never>>(true)
+	testType.never<StrictBooleanType<void>>(true)
+	testType.never<StrictBooleanType<unknown>>(true)
+	testType.never<StrictBooleanType<any>>(true)
+	testType.never<StrictBooleanType<never>>(true)
 })
 
 it('returns never for other types', () => {
-	type.never<StrictBooleanType<undefined>>(true)
-	type.never<StrictBooleanType<null>>(true)
-	type.never<StrictBooleanType<number>>(true)
-	type.never<StrictBooleanType<1>>(true)
-	type.never<StrictBooleanType<string>>(true)
-	type.never<StrictBooleanType<''>>(true)
-	type.never<StrictBooleanType<symbol>>(true)
-	type.never<StrictBooleanType<bigint>>(true)
-	type.never<StrictBooleanType<1n>>(true)
-	type.never<StrictBooleanType<{}>>(true)
-	type.never<StrictBooleanType<{ a: 1 }>>(true)
-	type.never<StrictBooleanType<string[]>>(true)
-	type.never<StrictBooleanType<[]>>(true)
-	type.never<StrictBooleanType<Function>>(true)
-	type.never<StrictBooleanType<() => void>>(true)
+	testType.never<StrictBooleanType<undefined>>(true)
+	testType.never<StrictBooleanType<null>>(true)
+	testType.never<StrictBooleanType<number>>(true)
+	testType.never<StrictBooleanType<1>>(true)
+	testType.never<StrictBooleanType<string>>(true)
+	testType.never<StrictBooleanType<''>>(true)
+	testType.never<StrictBooleanType<symbol>>(true)
+	testType.never<StrictBooleanType<bigint>>(true)
+	testType.never<StrictBooleanType<1n>>(true)
+	testType.never<StrictBooleanType<{}>>(true)
+	testType.never<StrictBooleanType<{ a: 1 }>>(true)
+	testType.never<StrictBooleanType<string[]>>(true)
+	testType.never<StrictBooleanType<[]>>(true)
+	testType.never<StrictBooleanType<Function>>(true)
+	testType.never<StrictBooleanType<() => void>>(true)
 })
 
 it('returns never for union type', () => {
-	type.never<StrictBooleanType<boolean | 1>>(true)
+	testType.never<StrictBooleanType<boolean | 1>>(true)
 })
 
 it('returns never for intersection type', () => {
-	type.never<StrictBooleanType<boolean & { a: 1 }>>(true)
+	testType.never<StrictBooleanType<boolean & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {
-	type.equal<StrictBooleanType<boolean, 1, 2>, 1>(true)
-	type.equal<StrictBooleanType<true, 1, 2>, 2>(true)
-	type.equal<StrictBooleanType<false, 1, 2>, 2>(true)
+	testType.equal<StrictBooleanType<boolean, 1, 2>, 1>(true)
+	testType.equal<StrictBooleanType<true, 1, 2>, 2>(true)
+	testType.equal<StrictBooleanType<false, 1, 2>, 2>(true)
 
-	type.equal<StrictBooleanType<any, 1, 2>, 2>(true)
-	type.equal<StrictBooleanType<unknown, 1, 2>, 2>(true)
-	type.equal<StrictBooleanType<never, 1, 2>, 2>(true)
-	type.equal<StrictBooleanType<void, 1, 2>, 2>(true)
+	testType.equal<StrictBooleanType<any, 1, 2>, 2>(true)
+	testType.equal<StrictBooleanType<unknown, 1, 2>, 2>(true)
+	testType.equal<StrictBooleanType<never, 1, 2>, 2>(true)
+	testType.equal<StrictBooleanType<void, 1, 2>, 2>(true)
 })

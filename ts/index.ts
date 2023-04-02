@@ -71,19 +71,28 @@ export type {
 	StrictNumberType
 } from './number/strict_number_type.js'
 export * from './object/index.js'
-export type * from './object/object_type.js'
+export type { IsNotObject, IsObject, NotObjectType, ObjectType } from './object/object_type.js'
 export * from './predicates/index.js'
 export type { PrimitiveTypes } from './primitive.js'
 export * from './promise/index.js'
-export type * from './string/strict_string_type.js'
-export type * from './string/string_type.js'
-export type * from './symbol/symbol_type.js'
-export * from './testing/index.js'
+export type {
+	IsNotStrictString,
+	IsStrictString,
+	NotStrictStringType,
+	StrictStringType
+} from './string/strict_string_type.js'
+export type { IsNotString, IsString, NotStringType, StringType } from './string/string_type.js'
+export type { IsNotSymbol, IsSymbol, NotSymbolType, SymbolType } from './symbol/symbol_type.js'
+export * from './testing/stub.js'
+export * from './testing/test_type.js'
 export * from './tuple/index.js'
-export * from './type/type.js'
-export type * from './undefined/undefined_type.js'
+export type {
+	IsNotUndefined,
+	IsUndefined,
+	NotUndefinedType,
+	UndefinedType
+} from './undefined/undefined_type.js'
 export type { UnionKeys } from './union_keys.js'
-export type * from './unknown/unknown_type.js'
+export type { IsNotUnknown, IsUnknown, NotUnknownType, UnknownType } from './unknown/unknown_type.js'
 export * from './utils/index.js'
-export type * from './void/void_type.js'
-
+export type { IsNotVoid, IsVoid, NotVoidType, VoidType } from './void/void_type.js'

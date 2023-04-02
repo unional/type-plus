@@ -1,50 +1,50 @@
-import { type, type NotSymbolType } from '../index.js'
+import { testType, type NotSymbolType } from '../index.js'
 
 it('returns never for symbol', () => {
-	type.never<NotSymbolType<symbol>>(true)
+	testType.never<NotSymbolType<symbol>>(true)
 
 	const s = Symbol()
-	type.never<NotSymbolType<typeof s>>(true)
+	testType.never<NotSymbolType<typeof s>>(true)
 })
 
 it('returns never for special types', () => {
-	type.equal<NotSymbolType<any>, any>(true)
-	type.equal<NotSymbolType<unknown>, unknown>(true)
-	type.equal<NotSymbolType<void>, void>(true)
-	type.equal<NotSymbolType<never>, never>(true)
+	testType.equal<NotSymbolType<any>, any>(true)
+	testType.equal<NotSymbolType<unknown>, unknown>(true)
+	testType.equal<NotSymbolType<void>, void>(true)
+	testType.equal<NotSymbolType<never>, never>(true)
 })
 
 test('returns never for singular types', () => {
-	type.equal<NotSymbolType<undefined>, undefined>(true)
-	type.equal<NotSymbolType<null>, null>(true)
-	type.equal<NotSymbolType<number>, number>(true)
-	type.equal<NotSymbolType<boolean>, boolean>(true)
-	type.equal<NotSymbolType<true>, true>(true)
-	type.equal<NotSymbolType<false>, false>(true)
-	type.equal<NotSymbolType<string>, string>(true)
-	type.equal<NotSymbolType<''>, ''>(true)
-	type.equal<NotSymbolType<bigint>, bigint>(true)
-	type.equal<NotSymbolType<{}>, {}>(true)
-	type.equal<NotSymbolType<string[]>, string[]>(true)
-	type.equal<NotSymbolType<[]>, []>(true)
-	type.equal<NotSymbolType<Function>, Function>(true)
-	type.equal<NotSymbolType<() => void>, () => void>(true)
+	testType.equal<NotSymbolType<undefined>, undefined>(true)
+	testType.equal<NotSymbolType<null>, null>(true)
+	testType.equal<NotSymbolType<number>, number>(true)
+	testType.equal<NotSymbolType<boolean>, boolean>(true)
+	testType.equal<NotSymbolType<true>, true>(true)
+	testType.equal<NotSymbolType<false>, false>(true)
+	testType.equal<NotSymbolType<string>, string>(true)
+	testType.equal<NotSymbolType<''>, ''>(true)
+	testType.equal<NotSymbolType<bigint>, bigint>(true)
+	testType.equal<NotSymbolType<{}>, {}>(true)
+	testType.equal<NotSymbolType<string[]>, string[]>(true)
+	testType.equal<NotSymbolType<[]>, []>(true)
+	testType.equal<NotSymbolType<Function>, Function>(true)
+	testType.equal<NotSymbolType<() => void>, () => void>(true)
 })
 
 it('returns T for union type', () => {
-	type.equal<NotSymbolType<symbol | 1>, symbol | 1>(true)
+	testType.equal<NotSymbolType<symbol | 1>, symbol | 1>(true)
 })
 
 it('returns T for intersection type', () => {
-	type.never<NotSymbolType<symbol & { a: 1 }>>(true)
+	testType.never<NotSymbolType<symbol & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {
-	type.equal<NotSymbolType<symbol, 1, 2>, 2>(true)
-	type.equal<NotSymbolType<0, 1, 2>, 1>(true)
+	testType.equal<NotSymbolType<symbol, 1, 2>, 2>(true)
+	testType.equal<NotSymbolType<0, 1, 2>, 1>(true)
 
-	type.equal<NotSymbolType<any, 1, 2>, 1>(true)
-	type.equal<NotSymbolType<unknown, 1, 2>, 1>(true)
-	type.equal<NotSymbolType<never, 1, 2>, 1>(true)
-	type.equal<NotSymbolType<void, 1, 2>, 1>(true)
+	testType.equal<NotSymbolType<any, 1, 2>, 1>(true)
+	testType.equal<NotSymbolType<unknown, 1, 2>, 1>(true)
+	testType.equal<NotSymbolType<never, 1, 2>, 1>(true)
+	testType.equal<NotSymbolType<void, 1, 2>, 1>(true)
 })

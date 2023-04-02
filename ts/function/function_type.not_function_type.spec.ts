@@ -1,56 +1,56 @@
-import { type, type AnyFunction, type NotFunctionType } from '../index.js'
+import { testType, type AnyFunction, type NotFunctionType } from '../index.js'
 
 it('returns never if T is Function', () => {
-	type.never<NotFunctionType<Function>>(true)
+	testType.never<NotFunctionType<Function>>(true)
 })
 
 it('returns never if T is function signature', () => {
-	type.never<NotFunctionType<() => void>>(true)
-	type.never<NotFunctionType<AnyFunction>>(true)
+	testType.never<NotFunctionType<() => void>>(true)
+	testType.never<NotFunctionType<AnyFunction>>(true)
 })
 
 it('returns T for special types', () => {
-	type.equal<NotFunctionType<void>, void>(true)
-	type.equal<NotFunctionType<unknown>, unknown>(true)
-	type.equal<NotFunctionType<any>, any>(true)
-	type.equal<NotFunctionType<never>, never>(true)
+	testType.equal<NotFunctionType<void>, void>(true)
+	testType.equal<NotFunctionType<unknown>, unknown>(true)
+	testType.equal<NotFunctionType<any>, any>(true)
+	testType.equal<NotFunctionType<never>, never>(true)
 })
 
 it('returns T for all other types', () => {
-	type.equal<NotFunctionType<undefined>, undefined>(true)
-	type.equal<NotFunctionType<null>, null>(true)
-	type.equal<NotFunctionType<boolean>, boolean>(true)
-	type.equal<NotFunctionType<true>, true>(true)
-	type.equal<NotFunctionType<false>, false>(true)
-	type.equal<NotFunctionType<number>, number>(true)
-	type.equal<NotFunctionType<1>, 1>(true)
-	type.equal<NotFunctionType<string>, string>(true)
-	type.equal<NotFunctionType<''>, ''>(true)
-	type.equal<NotFunctionType<symbol>, symbol>(true)
-	type.equal<NotFunctionType<bigint>, bigint>(true)
-	type.equal<NotFunctionType<{}>, {}>(true)
-	type.equal<NotFunctionType<string[]>, string[]>(true)
-	type.equal<NotFunctionType<[]>, []>(true)
+	testType.equal<NotFunctionType<undefined>, undefined>(true)
+	testType.equal<NotFunctionType<null>, null>(true)
+	testType.equal<NotFunctionType<boolean>, boolean>(true)
+	testType.equal<NotFunctionType<true>, true>(true)
+	testType.equal<NotFunctionType<false>, false>(true)
+	testType.equal<NotFunctionType<number>, number>(true)
+	testType.equal<NotFunctionType<1>, 1>(true)
+	testType.equal<NotFunctionType<string>, string>(true)
+	testType.equal<NotFunctionType<''>, ''>(true)
+	testType.equal<NotFunctionType<symbol>, symbol>(true)
+	testType.equal<NotFunctionType<bigint>, bigint>(true)
+	testType.equal<NotFunctionType<{}>, {}>(true)
+	testType.equal<NotFunctionType<string[]>, string[]>(true)
+	testType.equal<NotFunctionType<[]>, []>(true)
 })
 
 it('returns T if T is union of function and other types', () => {
-	type.equal<NotFunctionType<Function | { a: 1 }>, Function | { a: 1 }>(true)
+	testType.equal<NotFunctionType<Function | { a: 1 }>, Function | { a: 1 }>(true)
 })
 
 it('returns never if T is function overloads', () => {
-	type.never<NotFunctionType<{ (): void; (x: number): number }>>(true)
+	testType.never<NotFunctionType<{ (): void; (x: number): number }>>(true)
 })
 
 it('returns never if T is intersection of function', () => {
-	type.never<NotFunctionType<Function & { a: 1 }>>(true)
+	testType.never<NotFunctionType<Function & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {
-	type.equal<NotFunctionType<Function, 1, 2>, 2>(true)
-	type.equal<NotFunctionType<{}, 1, 2>, 1>(true)
+	testType.equal<NotFunctionType<Function, 1, 2>, 2>(true)
+	testType.equal<NotFunctionType<{}, 1, 2>, 1>(true)
 
-	type.equal<NotFunctionType<any, 1, 2>, 1>(true)
-	type.equal<NotFunctionType<unknown, 1, 2>, 1>(true)
-	type.equal<NotFunctionType<never, 1, 2>, 1>(true)
-	type.equal<NotFunctionType<void, 1, 2>, 1>(true)
+	testType.equal<NotFunctionType<any, 1, 2>, 1>(true)
+	testType.equal<NotFunctionType<unknown, 1, 2>, 1>(true)
+	testType.equal<NotFunctionType<never, 1, 2>, 1>(true)
+	testType.equal<NotFunctionType<void, 1, 2>, 1>(true)
 })

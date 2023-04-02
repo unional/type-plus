@@ -1,54 +1,54 @@
-import { type, type ArrayType } from '../index.js'
+import { testType, type ArrayType } from '../index.js'
 
 it('returns T if T is array', () => {
-	type.equal<ArrayType<string[]>, string[]>(true)
+	testType.equal<ArrayType<string[]>, string[]>(true)
 })
 
 it('returns never if T is tuple', () => {
-	type.never<ArrayType<[]>>(true)
-	type.never<ArrayType<[1]>>(true)
+	testType.never<ArrayType<[]>>(true)
+	testType.never<ArrayType<[1]>>(true)
 })
 
 it('returns never for special types', () => {
-	type.never<ArrayType<void>>(true)
-	type.never<ArrayType<unknown>>(true)
-	type.never<ArrayType<any>>(true)
-	type.never<ArrayType<never>>(true)
+	testType.never<ArrayType<void>>(true)
+	testType.never<ArrayType<unknown>>(true)
+	testType.never<ArrayType<any>>(true)
+	testType.never<ArrayType<never>>(true)
 })
 it('returns never for other types', () => {
-	type.never<ArrayType<undefined>>(true)
-	type.never<ArrayType<null>>(true)
-	type.never<ArrayType<boolean>>(true)
-	type.never<ArrayType<true>>(true)
-	type.never<ArrayType<false>>(true)
-	type.never<ArrayType<number>>(true)
-	type.never<ArrayType<1>>(true)
-	type.never<ArrayType<string>>(true)
-	type.never<ArrayType<''>>(true)
-	type.never<ArrayType<symbol>>(true)
-	type.never<ArrayType<bigint>>(true)
-	type.never<ArrayType<1n>>(true)
-	type.never<ArrayType<{}>>(true)
-	type.never<ArrayType<{ a: 1 }>>(true)
-	type.never<ArrayType<[]>>(true)
-	type.never<ArrayType<Function>>(true)
-	type.never<ArrayType<() => void>>(true)
+	testType.never<ArrayType<undefined>>(true)
+	testType.never<ArrayType<null>>(true)
+	testType.never<ArrayType<boolean>>(true)
+	testType.never<ArrayType<true>>(true)
+	testType.never<ArrayType<false>>(true)
+	testType.never<ArrayType<number>>(true)
+	testType.never<ArrayType<1>>(true)
+	testType.never<ArrayType<string>>(true)
+	testType.never<ArrayType<''>>(true)
+	testType.never<ArrayType<symbol>>(true)
+	testType.never<ArrayType<bigint>>(true)
+	testType.never<ArrayType<1n>>(true)
+	testType.never<ArrayType<{}>>(true)
+	testType.never<ArrayType<{ a: 1 }>>(true)
+	testType.never<ArrayType<[]>>(true)
+	testType.never<ArrayType<Function>>(true)
+	testType.never<ArrayType<() => void>>(true)
 })
 
 it('returns never for union type', () => {
-	type.never<ArrayType<number[] | 1>>(true)
+	testType.never<ArrayType<number[] | 1>>(true)
 })
 
 it('returns never for intersection type', () => {
-	type.never<ArrayType<number[] & 1>>(true)
+	testType.never<ArrayType<number[] & 1>>(true)
 })
 
 it('can override Then/Else', () => {
-	type.equal<ArrayType<string[], 1, 2>, 1>(true)
-	type.equal<ArrayType<[], 1, 2>, 2>(true)
+	testType.equal<ArrayType<string[], 1, 2>, 1>(true)
+	testType.equal<ArrayType<[], 1, 2>, 2>(true)
 
-	type.equal<ArrayType<any, 1, 2>, 2>(true)
-	type.equal<ArrayType<unknown, 1, 2>, 2>(true)
-	type.equal<ArrayType<never, 1, 2>, 2>(true)
-	type.equal<ArrayType<void, 1, 2>, 2>(true)
+	testType.equal<ArrayType<any, 1, 2>, 2>(true)
+	testType.equal<ArrayType<unknown, 1, 2>, 2>(true)
+	testType.equal<ArrayType<never, 1, 2>, 2>(true)
+	testType.equal<ArrayType<void, 1, 2>, 2>(true)
 })
