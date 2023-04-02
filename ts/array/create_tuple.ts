@@ -1,5 +1,6 @@
 import type { DigitArray } from '../math/index.js'
-import type { IsPositive, IsWhole } from '../number/number.js'
+import type { IsInteger } from '../number/integer.js'
+import type { IsPositive } from '../number/positive.js'
 
 /**
  * Creates `Tuple<T>` with `L` number of elements.
@@ -10,7 +11,7 @@ import type { IsPositive, IsWhole } from '../number/number.js'
 export type CreateTuple<L extends number, T = unknown, Fail = never> = number extends L
 	? T[]
 	: IsPositive<L> extends true
-	? IsWhole<L> extends true
+	? IsInteger<L> extends true
 		? DigitArray.ToTuple<[], DigitArray.FromNumber<L>, T>
 		: Fail
 	: Fail

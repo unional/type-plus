@@ -52,7 +52,7 @@ export * from './nodejs/index.js'
 export * from './nominal/index.js'
 export type { IsNotNull, IsNull, NotNullType, NullType } from './null/null_type.js'
 export type { Integer, IsInteger, IsNotInteger, IsWhole, NotInteger } from './number/integer.js'
-export type { Negative, NonNegative } from './number/number.js'
+export type { IsNegative, IsNotNegative, Negative, NotNegative } from './number/negative.js'
 export * as NumberPlus from './number/number_plus.js'
 export type { IsNotNumber, IsNumber, NotNumberType, NumberType } from './number/number_type.js'
 export type {
@@ -63,7 +63,7 @@ export type {
 	NumericType,
 	Zero
 } from './number/numeric_type.js'
-export type { IsPositive, Positive } from './number/positive.js'
+export type { IsNotPositive, IsPositive, NonPositive, Positive } from './number/positive.js'
 export type {
 	IsNotStrictNumber,
 	IsStrictNumber,
@@ -86,3 +86,4 @@ export type { UnionKeys } from './union_keys.js'
 export type * from './unknown/unknown_type.js'
 export * from './utils/index.js'
 export type * from './void/void_type.js'
+

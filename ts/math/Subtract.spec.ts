@@ -1,5 +1,4 @@
-import { Subtract } from '../index.js'
-import { type } from '../type/type.js'
+import { type, type Subtract } from '../index.js'
 
 test('only support positive and whole number', () => {
 	type.never<Subtract<0.1, 1>>(true)

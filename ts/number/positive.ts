@@ -1,4 +1,5 @@
-import type { IsNever } from '../never/never_type.js'
+import { IsAny } from '../any/any_type.js'
+import { IsNever } from '../index.js'
 
 /**
  * Check if `T` is a positive numeric type.
@@ -13,10 +14,10 @@ import type { IsNever } from '../never/never_type.js'
  * type R = Positive<-1> // never
  * ```
  */
-export type Positive<T, Then = T, Else = never> = IsNever<
+export type Positive<T, Then = T, Else = never> = IsAny<
 	T,
-	Else,
-	number extends T ? Else : T extends number | bigint ? (`${T}` extends `-${string}` ? Else : Then) : Else
+	Then | Else,
+	IsNever<T, Else, T extends number | bigint ? (`${T}` extends `-${string}` ? Else : Then) : Else>
 >
 
 /**
@@ -25,11 +26,15 @@ export type Positive<T, Then = T, Else = never> = IsNever<
  * ```ts
  * import type { IsPositive } from 'type-plus'
  *
- * type R = Positive<1> // true
- * type R = Positive<0> // true
- * type R = Positive<1n> // true
+ * type R = IsPositive<1> // true
+ * type R = IsPositive<0> // true
+ * type R = IsPositive<1n> // true
  *
- * type R = Positive<-1> // false
+ * type R = IsPositive<number> // boolean
+ * type R = IsPositive<bigint> // boolean
+ * type R = IsPosistive<any> // boolean
+ *
+ * type R = IsPositive<-1> // false
  * ```
  */
 export type IsPositive<T, Then = true, Else = false> = Positive<T, Then, Else>

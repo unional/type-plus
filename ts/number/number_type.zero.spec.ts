@@ -1,5 +1,4 @@
-import { isType } from '../index.js'
-import type { Zero } from './number.js'
+import { isType, type Zero } from '../index.js'
 
 it('can be 0', () => {
 	isType<Zero>(0)

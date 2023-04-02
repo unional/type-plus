@@ -79,11 +79,23 @@ type R = Integer<1.1> // never
 - [`IsInteger<T, Then = true, Else = false>`](integer.ts#L36): is `T` an integer.
 - [`NotIntegerType<T, Then = T, Else = never>`](integer.ts#L51): check if `T` is not an integer.
 - [`IsNotInteger<T, Then = true, Else = false>`](integer.ts#L66): is `T` not an integer.
-- [`IsWholeNumber<T, Then = true, Else = false>`](integer.ts#L81): same as `Integer<T>`, will be deprecated in the future.
+- [`IsWhole<T, Then = true, Else = false>`](integer.ts#L81): same as `Integer<T>`, will be deprecated in the future.
 
 ---
 
-`Positive<T>` and friends are used to check if `T` is a positive numeric value, including `bigint`.
+`Positive<T>` and friends are used to check if `T` is a positive numeric value.
+
+The `number` and `bigint` can be considered as a union of all positive and negative numeric literals.
+
+That is why `IsPositive<T>` will yield `boolean` as the union is distributive.
+`Positive<T>` returns `T` for `number` and `bigint` for the same reason.
+It is a bit confusing but it is correct as it really returns `T | never`,
+which resolves to `T`.
+
+This behavior is different than `TrueType<T>` which `TrueType<boolean>` returns `never`.
+
+This is because `TrueType<T>` is checking for the exect `true` type,
+while `Positive<T>` is checking for a criteria of types (i.e. a set).
 
 ```ts
 import type { Positive } from 'type-plus'
@@ -96,14 +108,45 @@ type R = Positive<-1> // never
 type R = Positive<'1'> // never
 ```
 
-- [`Positive<T, Then = T, Else = never>`](positive.ts#L16): check if `T` is a positive numeric value.
-- [`IsPositive<T, Then = true, Else = false>`](positive.ts#L35): is `T` a positive numeric value.
-- [`NotPositiveType<T, Then = T, Else = never>`](positive.ts#L49): check if `T` is not a positive numeric value.
-- [`IsNotPositive<T, Then = true, Else = false>`](positive.ts#L63): is `T` not a positive numeric value.
+- [`Positive<T, Then = T, Else = never>`](positive.ts#L17): check if `T` is a positive numeric value.
+- [`IsPositive<T, Then = true, Else = false>`](positive.ts#L40): is `T` a positive numeric value.
+- [`NotPositiveType<T, Then = T, Else = never>`](positive.ts#L54): check if `T` is not a positive numeric value.
+- [`IsNotPositive<T, Then = true, Else = false>`](positive.ts#L68): is `T` not a positive numeric value.
 
 ---
 
-Negative
+`Negative<T>` and friends are used to check if `T` is a negative numeric value.
+
+The `number` and `bigint` can be considered as a union of all negative and negative numeric literals.
+
+That is why `IsNegative<T>` will yield `boolean` as the union is distributive.
+`Negative<T>` returns `T` for `number` and `bigint` for the same reason.
+It is a bit confusing but it is correct as it really returns `T | never`,
+which resolves to `T`.
+
+This behavior is different than `TrueType<T>` which `TrueType<boolean>` returns `never`.
+
+This is because `TrueType<T>` is checking for the exect `true` type,
+while `Negative<T>` is checking for a criteria of types (i.e. a set).
+
+```ts
+import type { Negative } from 'type-plus'
+
+type R = Negative<1> // never
+type R = Negative<1.0> // never
+type R = Negative<1n> // never
+
+type R = Negative<number> // number
+type R = Negative<any> // any
+
+type R = Negative<-1> // -1
+type R = Negative<'1'> // '1'
+```
+
+- [`Negative<T, Then = T, Else = never>`](negative.ts#L21): check if `T` is a negative numeric value.
+- [`IsNegative<T, Then = true, Else = false>`](negative.ts#L57): is `T` a negative numeric value.
+- [`NotNegativeType<T, Then = T, Else = never>`](negative.ts#L75): check if `T` is not a negative numeric value.
+- [`IsNotNegative<T, Then = true, Else = false>`](negative.ts#L109): is `T` not a negative numeric value.
 
 ## References
 
