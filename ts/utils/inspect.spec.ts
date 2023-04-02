@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-import { jest } from '@jest/globals'
 import { inspect } from './index.js'
 
 describe(`${inspect.name}()`, () => {
