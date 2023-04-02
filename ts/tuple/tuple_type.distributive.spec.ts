@@ -1,4 +1,4 @@
-import { type, type IsNever } from '../index.js'
+import { testType, type IsNever } from '../index.js'
 
 // @todo: this should be a new type that filter within the union.
 // That type cannot support override because the `Then` type can be overridden,
@@ -10,6 +10,6 @@ export type TupleTypeFilterUnion<T> = IsNever<
 >
 
 it.skip('returns filtered union if T is an union of tuple with non-tuple types', () => {
-	type.equal<TupleTypeFilterUnion<[1] | string>, [1]>(true)
-	type.equal<TupleTypeFilterUnion<[1] | [1, 2] | string>, [1] | [1, 2]>(true)
+	testType.equal<TupleTypeFilterUnion<[1] | string>, [1]>(true)
+	testType.equal<TupleTypeFilterUnion<[1] | [1, 2] | string>, [1] | [1, 2]>(true)
 })

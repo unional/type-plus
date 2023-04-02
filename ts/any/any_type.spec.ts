@@ -1,49 +1,49 @@
-import { type, type AnyType } from '../index.js'
+import { testType, type AnyType } from '../index.js'
 
 it('returns any for any', () => {
-	type.equal<AnyType<any>, any>(true)
+	testType.equal<AnyType<any>, any>(true)
 })
 
 it('returns never for other special types', () => {
-	type.never<AnyType<unknown>>(true)
-	type.never<AnyType<void>>(true)
-	type.never<AnyType<never>>(true)
+	testType.never<AnyType<unknown>>(true)
+	testType.never<AnyType<void>>(true)
+	testType.never<AnyType<never>>(true)
 })
 
 it('returns never for other types', () => {
-	type.never<AnyType<undefined>>(true)
-	type.never<AnyType<null>>(true)
-	type.never<AnyType<boolean>>(true)
-	type.never<AnyType<true>>(true)
-	type.never<AnyType<false>>(true)
-	type.never<AnyType<number>>(true)
-	type.never<AnyType<1>>(true)
-	type.never<AnyType<string>>(true)
-	type.never<AnyType<''>>(true)
-	type.never<AnyType<symbol>>(true)
-	type.never<AnyType<bigint>>(true)
-	type.never<AnyType<1n>>(true)
-	type.never<AnyType<{}>>(true)
-	type.never<AnyType<{ a: 1 }>>(true)
-	type.never<AnyType<string[]>>(true)
-	type.never<AnyType<[]>>(true)
-	type.never<AnyType<Function>>(true)
-	type.never<AnyType<() => void>>(true)
+	testType.never<AnyType<undefined>>(true)
+	testType.never<AnyType<null>>(true)
+	testType.never<AnyType<boolean>>(true)
+	testType.never<AnyType<true>>(true)
+	testType.never<AnyType<false>>(true)
+	testType.never<AnyType<number>>(true)
+	testType.never<AnyType<1>>(true)
+	testType.never<AnyType<string>>(true)
+	testType.never<AnyType<''>>(true)
+	testType.never<AnyType<symbol>>(true)
+	testType.never<AnyType<bigint>>(true)
+	testType.never<AnyType<1n>>(true)
+	testType.never<AnyType<{}>>(true)
+	testType.never<AnyType<{ a: 1 }>>(true)
+	testType.never<AnyType<string[]>>(true)
+	testType.never<AnyType<[]>>(true)
+	testType.never<AnyType<Function>>(true)
+	testType.never<AnyType<() => void>>(true)
 })
 
 it('returns any for union type', () => {
-	type.any<AnyType<any | 1>>(true)
+	testType.any<AnyType<any | 1>>(true)
 })
 
 it('returns any for intersection type', () => {
-	type.any<AnyType<any & 1>>(true)
+	testType.any<AnyType<any & 1>>(true)
 })
 
 it('can override Then/Else', () => {
-	type.equal<AnyType<any, 1, 2>, 1>(true)
-	type.equal<AnyType<0, 1, 2>, 2>(true)
+	testType.equal<AnyType<any, 1, 2>, 1>(true)
+	testType.equal<AnyType<0, 1, 2>, 2>(true)
 
-	type.equal<AnyType<never, 1, 2>, 2>(true)
-	type.equal<AnyType<unknown, 1, 2>, 2>(true)
-	type.equal<AnyType<void, 1, 2>, 2>(true)
+	testType.equal<AnyType<never, 1, 2>, 2>(true)
+	testType.equal<AnyType<unknown, 1, 2>, 2>(true)
+	testType.equal<AnyType<void, 1, 2>, 2>(true)
 })

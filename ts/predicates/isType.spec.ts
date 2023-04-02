@@ -1,4 +1,4 @@
-import { isType, type, type Equal } from '../index.js'
+import { isType, testType, type Equal } from '../index.js'
 
 describe('isType()', () => {
 	describe('without validator', () => {
@@ -10,7 +10,7 @@ describe('isType()', () => {
 			const s = ''
 			if (isType<''>(s)) {
 				type R = typeof s
-				type.equal<R, ''>(true)
+				testType.equal<R, ''>(true)
 			}
 		})
 	})
@@ -19,24 +19,24 @@ describe('isType()', () => {
 			const s: unknown = false
 			if (isType(s, (s: boolean) => typeof s === 'boolean')) {
 				type R = typeof s
-				type.equal<R, boolean>(true)
+				testType.equal<R, boolean>(true)
 			}
 		})
 		test('Specify T at type declaration', () => {
 			const s: unknown = false
 			if (isType<boolean>(s, s => typeof s === 'boolean')) {
 				type R = typeof s
-				type.equal<R, boolean>(true)
+				testType.equal<R, boolean>(true)
 			}
 		})
 		test('exclude type if type guard fails', () => {
 			const s = 1 as string | number
 			if (isType<string>(s, s => typeof s === 'string')) {
 				type R = typeof s
-				type.equal<R, string>(true)
+				testType.equal<R, string>(true)
 			} else {
 				type R = typeof s
-				type.equal<R, number>(true)
+				testType.equal<R, number>(true)
 			}
 		})
 
@@ -44,17 +44,17 @@ describe('isType()', () => {
 			const s: any = { a: 1 }
 			if (isType<{ a: number }>(s, s => s.a)) {
 				type R = typeof s
-				type.equal<R, { a: number }>(true)
+				testType.equal<R, { a: number }>(true)
 			} else {
 				type R = typeof s
-				type.equal<R, any>(true)
+				testType.equal<R, any>(true)
 			}
 		})
 		test('subject can be type any', () => {
 			const s: any = false
 			if (isType<boolean>(s, s => typeof s === 'boolean')) {
 				type R = typeof s
-				type.equal<R, boolean>(true)
+				testType.equal<R, boolean>(true)
 			}
 		})
 	})

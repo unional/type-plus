@@ -1,54 +1,54 @@
-import { type, type IsBoolean } from '../index.js'
+import { testType, type IsBoolean } from '../index.js'
 
 it('returns true if T is boolean', () => {
-	type.true<IsBoolean<boolean>>(true)
+	testType.true<IsBoolean<boolean>>(true)
 })
 
 it('returns true it T is true or false literal', () => {
-	type.true<IsBoolean<true>>(true)
-	type.true<IsBoolean<false>>(true)
+	testType.true<IsBoolean<true>>(true)
+	testType.true<IsBoolean<false>>(true)
 })
 
 it('returns false for special types', () => {
-	type.false<IsBoolean<void>>(true)
-	type.false<IsBoolean<unknown>>(true)
-	type.false<IsBoolean<any>>(true)
-	type.false<IsBoolean<never>>(true)
+	testType.false<IsBoolean<void>>(true)
+	testType.false<IsBoolean<unknown>>(true)
+	testType.false<IsBoolean<any>>(true)
+	testType.false<IsBoolean<never>>(true)
 })
 
 it('returns false for other types', () => {
-	type.false<IsBoolean<undefined>>(true)
-	type.false<IsBoolean<null>>(true)
-	type.false<IsBoolean<number>>(true)
-	type.false<IsBoolean<1>>(true)
-	type.false<IsBoolean<string>>(true)
-	type.false<IsBoolean<''>>(true)
-	type.false<IsBoolean<symbol>>(true)
-	type.false<IsBoolean<bigint>>(true)
-	type.false<IsBoolean<1n>>(true)
-	type.false<IsBoolean<{}>>(true)
-	type.false<IsBoolean<{ a: 1 }>>(true)
-	type.false<IsBoolean<string[]>>(true)
-	type.false<IsBoolean<[]>>(true)
-	type.false<IsBoolean<Function>>(true)
-	type.false<IsBoolean<() => void>>(true)
+	testType.false<IsBoolean<undefined>>(true)
+	testType.false<IsBoolean<null>>(true)
+	testType.false<IsBoolean<number>>(true)
+	testType.false<IsBoolean<1>>(true)
+	testType.false<IsBoolean<string>>(true)
+	testType.false<IsBoolean<''>>(true)
+	testType.false<IsBoolean<symbol>>(true)
+	testType.false<IsBoolean<bigint>>(true)
+	testType.false<IsBoolean<1n>>(true)
+	testType.false<IsBoolean<{}>>(true)
+	testType.false<IsBoolean<{ a: 1 }>>(true)
+	testType.false<IsBoolean<string[]>>(true)
+	testType.false<IsBoolean<[]>>(true)
+	testType.false<IsBoolean<Function>>(true)
+	testType.false<IsBoolean<() => void>>(true)
 })
 
 it('returns false for union type', () => {
-	type.false<IsBoolean<boolean | 1>>(true)
+	testType.false<IsBoolean<boolean | 1>>(true)
 })
 
 it('returns true for intersection type', () => {
-	type.true<IsBoolean<boolean & { a: 1 }>>(true)
+	testType.true<IsBoolean<boolean & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {
-	type.equal<IsBoolean<boolean, 1, 2>, 1>(true)
-	type.equal<IsBoolean<true, 1, 2>, 1>(true)
-	type.equal<IsBoolean<false, 1, 2>, 1>(true)
+	testType.equal<IsBoolean<boolean, 1, 2>, 1>(true)
+	testType.equal<IsBoolean<true, 1, 2>, 1>(true)
+	testType.equal<IsBoolean<false, 1, 2>, 1>(true)
 
-	type.equal<IsBoolean<any, 1, 2>, 2>(true)
-	type.equal<IsBoolean<unknown, 1, 2>, 2>(true)
-	type.equal<IsBoolean<never, 1, 2>, 2>(true)
-	type.equal<IsBoolean<void, 1, 2>, 2>(true)
+	testType.equal<IsBoolean<any, 1, 2>, 2>(true)
+	testType.equal<IsBoolean<unknown, 1, 2>, 2>(true)
+	testType.equal<IsBoolean<never, 1, 2>, 2>(true)
+	testType.equal<IsBoolean<void, 1, 2>, 2>(true)
 })

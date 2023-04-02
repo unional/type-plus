@@ -1,53 +1,53 @@
-import { type, type IsStrictString } from '../index.js'
+import { testType, type IsStrictString } from '../index.js'
 
 it('returns true for string', () => {
-	type.true<IsStrictString<string>>(true)
+	testType.true<IsStrictString<string>>(true)
 })
 
 it('returns false if T is a string literal', () => {
-	type.false<IsStrictString<''>>(true)
-	type.false<IsStrictString<'a'>>(true)
+	testType.false<IsStrictString<''>>(true)
+	testType.false<IsStrictString<'a'>>(true)
 })
 
 it('returns false for special types', () => {
-	type.false<IsStrictString<any>>(true)
-	type.false<IsStrictString<unknown>>(true)
-	type.false<IsStrictString<void>>(true)
-	type.false<IsStrictString<never>>(true)
+	testType.false<IsStrictString<any>>(true)
+	testType.false<IsStrictString<unknown>>(true)
+	testType.false<IsStrictString<void>>(true)
+	testType.false<IsStrictString<never>>(true)
 })
 
 it('returns false for other types', () => {
-	type.false<IsStrictString<undefined>>(true)
-	type.false<IsStrictString<null>>(true)
-	type.false<IsStrictString<boolean>>(true)
-	type.false<IsStrictString<true>>(true)
-	type.false<IsStrictString<false>>(true)
-	type.false<IsStrictString<number>>(true)
-	type.false<IsStrictString<1>>(true)
-	type.false<IsStrictString<symbol>>(true)
-	type.false<IsStrictString<bigint>>(true)
-	type.false<IsStrictString<{}>>(true)
-	type.false<IsStrictString<string[]>>(true)
-	type.false<IsStrictString<[]>>(true)
-	type.false<IsStrictString<Function>>(true)
-	type.false<IsStrictString<() => void>>(true)
+	testType.false<IsStrictString<undefined>>(true)
+	testType.false<IsStrictString<null>>(true)
+	testType.false<IsStrictString<boolean>>(true)
+	testType.false<IsStrictString<true>>(true)
+	testType.false<IsStrictString<false>>(true)
+	testType.false<IsStrictString<number>>(true)
+	testType.false<IsStrictString<1>>(true)
+	testType.false<IsStrictString<symbol>>(true)
+	testType.false<IsStrictString<bigint>>(true)
+	testType.false<IsStrictString<{}>>(true)
+	testType.false<IsStrictString<string[]>>(true)
+	testType.false<IsStrictString<[]>>(true)
+	testType.false<IsStrictString<Function>>(true)
+	testType.false<IsStrictString<() => void>>(true)
 })
 
 it('returns false for union type', () => {
-	type.false<IsStrictString<string | 1>>(true)
+	testType.false<IsStrictString<string | 1>>(true)
 })
 
 it('returns false for intersection type', () => {
-	type.equal<IsStrictString<string & { a: 1 }>, false>(true)
+	testType.equal<IsStrictString<string & { a: 1 }>, false>(true)
 })
 
 it('can override Then/Else', () => {
-	type.equal<IsStrictString<string, 1, 2>, 1>(true)
-	type.equal<IsStrictString<'', 1, 2>, 2>(true)
-	type.equal<IsStrictString<'a', 1, 2>, 2>(true)
+	testType.equal<IsStrictString<string, 1, 2>, 1>(true)
+	testType.equal<IsStrictString<'', 1, 2>, 2>(true)
+	testType.equal<IsStrictString<'a', 1, 2>, 2>(true)
 
-	type.equal<IsStrictString<any, 1, 2>, 2>(true)
-	type.equal<IsStrictString<unknown, 1, 2>, 2>(true)
-	type.equal<IsStrictString<never, 1, 2>, 2>(true)
-	type.equal<IsStrictString<void, 1, 2>, 2>(true)
+	testType.equal<IsStrictString<any, 1, 2>, 2>(true)
+	testType.equal<IsStrictString<unknown, 1, 2>, 2>(true)
+	testType.equal<IsStrictString<never, 1, 2>, 2>(true)
+	testType.equal<IsStrictString<void, 1, 2>, 2>(true)
 })

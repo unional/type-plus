@@ -1,4 +1,4 @@
-import { assertType, brand, CanAssign, Flavor, flavor, isType, type } from '../index.js'
+import { assertType, brand, CanAssign, Flavor, flavor, isType, testType } from '../index.js'
 
 test('underlying type can be assigned to Flavor', () => {
 	type PersonId = Flavor<'Person', number>
@@ -12,7 +12,7 @@ test('underlying type can be assigned to Flavor', () => {
 
 	const blogId: BlogId = 1
 
-	type.canAssign<typeof blogId, typeof personId>(false)
+	testType.canAssign<typeof blogId, typeof personId>(false)
 })
 
 describe('flavor()', () => {

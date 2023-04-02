@@ -1,48 +1,48 @@
-import { type, type IsNotAny } from '../index.js'
+import { testType, type IsNotAny } from '../index.js'
 
 it('returns false for any', () => {
-	type.false<IsNotAny<any>>(true)
+	testType.false<IsNotAny<any>>(true)
 })
 
 it('returns true for other special types', () => {
-	type.true<IsNotAny<unknown>>(true)
-	type.true<IsNotAny<void>>(true)
-	type.true<IsNotAny<never>>(true)
+	testType.true<IsNotAny<unknown>>(true)
+	testType.true<IsNotAny<void>>(true)
+	testType.true<IsNotAny<never>>(true)
 })
 
 test('returns true for other types', () => {
-	type.true<IsNotAny<undefined>>(true)
-	type.true<IsNotAny<null>>(true)
-	type.true<IsNotAny<boolean>>(true)
-	type.true<IsNotAny<true>>(true)
-	type.true<IsNotAny<false>>(true)
-	type.true<IsNotAny<number>>(true)
-	type.true<IsNotAny<1>>(true)
-	type.true<IsNotAny<string>>(true)
-	type.true<IsNotAny<''>>(true)
-	type.true<IsNotAny<symbol>>(true)
-	type.true<IsNotAny<bigint>>(true)
-	type.true<IsNotAny<1n>>(true)
-	type.true<IsNotAny<{}>>(true)
-	type.true<IsNotAny<string[]>>(true)
-	type.true<IsNotAny<[]>>(true)
-	type.true<IsNotAny<Function>>(true)
-	type.true<IsNotAny<() => void>>(true)
+	testType.true<IsNotAny<undefined>>(true)
+	testType.true<IsNotAny<null>>(true)
+	testType.true<IsNotAny<boolean>>(true)
+	testType.true<IsNotAny<true>>(true)
+	testType.true<IsNotAny<false>>(true)
+	testType.true<IsNotAny<number>>(true)
+	testType.true<IsNotAny<1>>(true)
+	testType.true<IsNotAny<string>>(true)
+	testType.true<IsNotAny<''>>(true)
+	testType.true<IsNotAny<symbol>>(true)
+	testType.true<IsNotAny<bigint>>(true)
+	testType.true<IsNotAny<1n>>(true)
+	testType.true<IsNotAny<{}>>(true)
+	testType.true<IsNotAny<string[]>>(true)
+	testType.true<IsNotAny<[]>>(true)
+	testType.true<IsNotAny<Function>>(true)
+	testType.true<IsNotAny<() => void>>(true)
 })
 
 it('returns false for union type', () => {
-	type.false<IsNotAny<any | 1>>(true)
+	testType.false<IsNotAny<any | 1>>(true)
 })
 
 it('returns false for intersection type', () => {
-	type.false<IsNotAny<any & 1>>(true)
+	testType.false<IsNotAny<any & 1>>(true)
 })
 
 it('can override Then/Else', () => {
-	type.equal<IsNotAny<any, 1, 2>, 2>(true)
-	type.equal<IsNotAny<0, 1, 2>, 1>(true)
+	testType.equal<IsNotAny<any, 1, 2>, 2>(true)
+	testType.equal<IsNotAny<0, 1, 2>, 1>(true)
 
-	type.equal<IsNotAny<unknown, 1, 2>, 1>(true)
-	type.equal<IsNotAny<never, 1, 2>, 1>(true)
-	type.equal<IsNotAny<void, 1, 2>, 1>(true)
+	testType.equal<IsNotAny<unknown, 1, 2>, 1>(true)
+	testType.equal<IsNotAny<never, 1, 2>, 1>(true)
+	testType.equal<IsNotAny<void, 1, 2>, 1>(true)
 })

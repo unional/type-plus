@@ -1,79 +1,79 @@
-import { type, type IsNumeric } from '../index.js'
+import { testType, type IsNumeric } from '../index.js'
 
 it('returns true if N is number', () => {
-	type.true<IsNumeric<number>>(true)
+	testType.true<IsNumeric<number>>(true)
 
-	type.true<IsNumeric<-1>>(true)
-	type.true<IsNumeric<-2>>(true)
-	type.true<IsNumeric<-0>>(true)
-	type.true<IsNumeric<1>>(true)
-	type.true<IsNumeric<2>>(true)
+	testType.true<IsNumeric<-1>>(true)
+	testType.true<IsNumeric<-2>>(true)
+	testType.true<IsNumeric<-0>>(true)
+	testType.true<IsNumeric<1>>(true)
+	testType.true<IsNumeric<2>>(true)
 
-	type.true<IsNumeric<1.1>>(true)
+	testType.true<IsNumeric<1.1>>(true)
 })
 
 it('returns true if N is bigint', () => {
-	type.true<IsNumeric<bigint>>(true)
+	testType.true<IsNumeric<bigint>>(true)
 
-	type.true<IsNumeric<-1n>>(true)
-	type.true<IsNumeric<-2n>>(true)
-	type.true<IsNumeric<-0n>>(true)
-	type.true<IsNumeric<1n>>(true)
-	type.true<IsNumeric<2n>>(true)
+	testType.true<IsNumeric<-1n>>(true)
+	testType.true<IsNumeric<-2n>>(true)
+	testType.true<IsNumeric<-0n>>(true)
+	testType.true<IsNumeric<1n>>(true)
+	testType.true<IsNumeric<2n>>(true)
 })
 
 it('returns false if N is special types', () => {
-	type.false<IsNumeric<any>>(true)
-	type.false<IsNumeric<unknown>>(true)
-	type.false<IsNumeric<never>>(true)
-	type.false<IsNumeric<void>>(true)
+	testType.false<IsNumeric<any>>(true)
+	testType.false<IsNumeric<unknown>>(true)
+	testType.false<IsNumeric<never>>(true)
+	testType.false<IsNumeric<void>>(true)
 })
 
 test('returns false for other types', () => {
-	type.false<IsNumeric<undefined>>(true)
-	type.false<IsNumeric<null>>(true)
-	type.false<IsNumeric<boolean>>(true)
-	type.false<IsNumeric<true>>(true)
-	type.false<IsNumeric<false>>(true)
-	type.false<IsNumeric<string>>(true)
-	type.false<IsNumeric<''>>(true)
-	type.false<IsNumeric<symbol>>(true)
-	type.false<IsNumeric<{}>>(true)
-	type.false<IsNumeric<string[]>>(true)
-	type.false<IsNumeric<[]>>(true)
-	type.false<IsNumeric<Function>>(true)
-	type.false<IsNumeric<() => void>>(true)
+	testType.false<IsNumeric<undefined>>(true)
+	testType.false<IsNumeric<null>>(true)
+	testType.false<IsNumeric<boolean>>(true)
+	testType.false<IsNumeric<true>>(true)
+	testType.false<IsNumeric<false>>(true)
+	testType.false<IsNumeric<string>>(true)
+	testType.false<IsNumeric<''>>(true)
+	testType.false<IsNumeric<symbol>>(true)
+	testType.false<IsNumeric<{}>>(true)
+	testType.false<IsNumeric<string[]>>(true)
+	testType.false<IsNumeric<[]>>(true)
+	testType.false<IsNumeric<Function>>(true)
+	testType.false<IsNumeric<() => void>>(true)
 })
 
 it('returns false if T is union of non number', () => {
-	type.false<IsNumeric<number | string>>(true)
+	testType.false<IsNumeric<number | string>>(true)
 })
 
 it('returns true if T is union of number and number literal', () => {
-	type.true<IsNumeric<number | 1>>(true)
+	testType.true<IsNumeric<number | 1>>(true)
 })
 
 it('returns true if T is union of mixing number and bigint', () => {
-	type.true<IsNumeric<number | bigint>>(true)
-	type.true<IsNumeric<bigint | 1>>(true)
-	type.true<IsNumeric<number | 1n>>(true)
-	type.true<IsNumeric<1 | 1n>>(true)
+	testType.true<IsNumeric<number | bigint>>(true)
+	testType.true<IsNumeric<bigint | 1>>(true)
+	testType.true<IsNumeric<number | 1n>>(true)
+	testType.true<IsNumeric<1 | 1n>>(true)
 })
 
 it('returns true if T is union of bigint and bigint literal', () => {
-	type.true<IsNumeric<bigint | 1n>>(true)
+	testType.true<IsNumeric<bigint | 1n>>(true)
 })
 
 it('returns true if T is intersection of number', () => {
-	type.true<IsNumeric<number & { a: 1 }>>(true)
+	testType.true<IsNumeric<number & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {
-	type.equal<IsNumeric<-1, 1, 2>, 1>(true)
-	type.equal<IsNumeric<1.1, 1, 2>, 1>(true)
+	testType.equal<IsNumeric<-1, 1, 2>, 1>(true)
+	testType.equal<IsNumeric<1.1, 1, 2>, 1>(true)
 
-	type.equal<IsNumeric<any, 1, 2>, 2>(true)
-	type.equal<IsNumeric<unknown, 1, 2>, 2>(true)
-	type.equal<IsNumeric<never, 1, 2>, 2>(true)
-	type.equal<IsNumeric<void, 1, 2>, 2>(true)
+	testType.equal<IsNumeric<any, 1, 2>, 2>(true)
+	testType.equal<IsNumeric<unknown, 1, 2>, 2>(true)
+	testType.equal<IsNumeric<never, 1, 2>, 2>(true)
+	testType.equal<IsNumeric<void, 1, 2>, 2>(true)
 })

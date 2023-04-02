@@ -1,53 +1,53 @@
-import { type, type IsNotString } from '../index.js'
+import { testType, type IsNotString } from '../index.js'
 
 it('returns false for string', () => {
-	type.false<IsNotString<string>>(true)
+	testType.false<IsNotString<string>>(true)
 })
 
 it('returns false if T is a string literal', () => {
-	type.false<IsNotString<''>>(true)
-	type.false<IsNotString<'a'>>(true)
+	testType.false<IsNotString<''>>(true)
+	testType.false<IsNotString<'a'>>(true)
 })
 
 it('returns true for special types', () => {
-	type.true<IsNotString<any>>(true)
-	type.true<IsNotString<unknown>>(true)
-	type.true<IsNotString<void>>(true)
-	type.true<IsNotString<never>>(true)
+	testType.true<IsNotString<any>>(true)
+	testType.true<IsNotString<unknown>>(true)
+	testType.true<IsNotString<void>>(true)
+	testType.true<IsNotString<never>>(true)
 })
 
 it('returns true for other types', () => {
-	type.true<IsNotString<undefined>>(true)
-	type.true<IsNotString<null>>(true)
-	type.true<IsNotString<boolean>>(true)
-	type.true<IsNotString<true>>(true)
-	type.true<IsNotString<false>>(true)
-	type.true<IsNotString<number>>(true)
-	type.true<IsNotString<1>>(true)
-	type.true<IsNotString<symbol>>(true)
-	type.true<IsNotString<bigint>>(true)
-	type.true<IsNotString<{}>>(true)
-	type.true<IsNotString<string[]>>(true)
-	type.true<IsNotString<[]>>(true)
-	type.true<IsNotString<Function>>(true)
-	type.true<IsNotString<() => void>>(true)
+	testType.true<IsNotString<undefined>>(true)
+	testType.true<IsNotString<null>>(true)
+	testType.true<IsNotString<boolean>>(true)
+	testType.true<IsNotString<true>>(true)
+	testType.true<IsNotString<false>>(true)
+	testType.true<IsNotString<number>>(true)
+	testType.true<IsNotString<1>>(true)
+	testType.true<IsNotString<symbol>>(true)
+	testType.true<IsNotString<bigint>>(true)
+	testType.true<IsNotString<{}>>(true)
+	testType.true<IsNotString<string[]>>(true)
+	testType.true<IsNotString<[]>>(true)
+	testType.true<IsNotString<Function>>(true)
+	testType.true<IsNotString<() => void>>(true)
 })
 
 it('returns true for union type', () => {
-	type.true<IsNotString<string | 1>>(true)
+	testType.true<IsNotString<string | 1>>(true)
 })
 
 it('returns false for intersection type', () => {
-	type.equal<IsNotString<string & { a: 1 }>, false>(true)
+	testType.equal<IsNotString<string & { a: 1 }>, false>(true)
 })
 
 it('can override Then/Else', () => {
-	type.equal<IsNotString<string, 1, 2>, 2>(true)
-	type.equal<IsNotString<'', 1, 2>, 2>(true)
-	type.equal<IsNotString<'a', 1, 2>, 2>(true)
+	testType.equal<IsNotString<string, 1, 2>, 2>(true)
+	testType.equal<IsNotString<'', 1, 2>, 2>(true)
+	testType.equal<IsNotString<'a', 1, 2>, 2>(true)
 
-	type.equal<IsNotString<any, 1, 2>, 1>(true)
-	type.equal<IsNotString<unknown, 1, 2>, 1>(true)
-	type.equal<IsNotString<never, 1, 2>, 1>(true)
-	type.equal<IsNotString<void, 1, 2>, 1>(true)
+	testType.equal<IsNotString<any, 1, 2>, 1>(true)
+	testType.equal<IsNotString<unknown, 1, 2>, 1>(true)
+	testType.equal<IsNotString<never, 1, 2>, 1>(true)
+	testType.equal<IsNotString<void, 1, 2>, 1>(true)
 })

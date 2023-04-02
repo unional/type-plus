@@ -1,57 +1,57 @@
-import { type, type AnyFunction, type IsFunction } from '../index.js'
+import { testType, type AnyFunction, type IsFunction } from '../index.js'
 
 it('returns true if T is Function', () => {
-	type.true<IsFunction<Function>>(true)
+	testType.true<IsFunction<Function>>(true)
 })
 
 it('returns true if T is function signature', () => {
-	type.true<IsFunction<() => void>>(true)
-	type.true<IsFunction<AnyFunction>>(true)
+	testType.true<IsFunction<() => void>>(true)
+	testType.true<IsFunction<AnyFunction>>(true)
 })
 
 it('returns false for special types', () => {
-	type.false<IsFunction<void>>(true)
-	type.false<IsFunction<unknown>>(true)
-	type.false<IsFunction<any>>(true)
-	type.false<IsFunction<never>>(true)
+	testType.false<IsFunction<void>>(true)
+	testType.false<IsFunction<unknown>>(true)
+	testType.false<IsFunction<any>>(true)
+	testType.false<IsFunction<never>>(true)
 })
 
 it('returns false for all other types', () => {
-	type.false<IsFunction<undefined>>(true)
-	type.false<IsFunction<null>>(true)
-	type.false<IsFunction<boolean>>(true)
-	type.false<IsFunction<true>>(true)
-	type.false<IsFunction<false>>(true)
-	type.false<IsFunction<number>>(true)
-	type.false<IsFunction<1>>(true)
-	type.false<IsFunction<string>>(true)
-	type.false<IsFunction<''>>(true)
-	type.false<IsFunction<symbol>>(true)
-	type.false<IsFunction<bigint>>(true)
-	type.false<IsFunction<1n>>(true)
-	type.false<IsFunction<{}>>(true)
-	type.false<IsFunction<{ a: 1 }>>(true)
-	type.false<IsFunction<string[]>>(true)
-	type.false<IsFunction<[]>>(true)
+	testType.false<IsFunction<undefined>>(true)
+	testType.false<IsFunction<null>>(true)
+	testType.false<IsFunction<boolean>>(true)
+	testType.false<IsFunction<true>>(true)
+	testType.false<IsFunction<false>>(true)
+	testType.false<IsFunction<number>>(true)
+	testType.false<IsFunction<1>>(true)
+	testType.false<IsFunction<string>>(true)
+	testType.false<IsFunction<''>>(true)
+	testType.false<IsFunction<symbol>>(true)
+	testType.false<IsFunction<bigint>>(true)
+	testType.false<IsFunction<1n>>(true)
+	testType.false<IsFunction<{}>>(true)
+	testType.false<IsFunction<{ a: 1 }>>(true)
+	testType.false<IsFunction<string[]>>(true)
+	testType.false<IsFunction<[]>>(true)
 })
 
 it('returns false if T is union of function', () => {
-	type.false<IsFunction<Function | { a: 1 }>>(true)
+	testType.false<IsFunction<Function | { a: 1 }>>(true)
 })
 
 it('returns true if T is function overloads', () => {
-	type.true<IsFunction<{ (): void; (x: number): number }>>(true)
+	testType.true<IsFunction<{ (): void; (x: number): number }>>(true)
 })
 
 it('returns true if T is intersection of function', () => {
-	type.true<IsFunction<Function & { a: 1 }>>(true)
+	testType.true<IsFunction<Function & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {
-	type.equal<IsFunction<Function, 1, 2>, 1>(true)
+	testType.equal<IsFunction<Function, 1, 2>, 1>(true)
 
-	type.equal<IsFunction<any, 1, 2>, 2>(true)
-	type.equal<IsFunction<unknown, 1, 2>, 2>(true)
-	type.equal<IsFunction<never, 1, 2>, 2>(true)
-	type.equal<IsFunction<void, 1, 2>, 2>(true)
+	testType.equal<IsFunction<any, 1, 2>, 2>(true)
+	testType.equal<IsFunction<unknown, 1, 2>, 2>(true)
+	testType.equal<IsFunction<never, 1, 2>, 2>(true)
+	testType.equal<IsFunction<void, 1, 2>, 2>(true)
 })
