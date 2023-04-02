@@ -83,7 +83,23 @@ type R = Integer<1.1> // never
 
 ---
 
-Positive
+`Positive<T>` and friends are used to check if `T` is a positive numeric value, including `bigint`.
+
+```ts
+import type { Positive } from 'type-plus'
+
+type R = Positive<1> // 1
+type R = Positive<1.0> // 1.0
+type R = Positive<1n> // 1n
+
+type R = Positive<-1> // never
+type R = Positive<'1'> // never
+```
+
+- [`Positive<T, Then = T, Else = never>`](positive.ts#L16): check if `T` is a positive numeric value.
+- [`IsPositive<T, Then = true, Else = false>`](positive.ts#L35): is `T` a positive numeric value.
+- [`NotPositiveType<T, Then = T, Else = never>`](positive.ts#L49): check if `T` is not a positive numeric value.
+- [`IsNotPositive<T, Then = true, Else = false>`](positive.ts#L63): is `T` not a positive numeric value.
 
 ---
 

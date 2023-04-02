@@ -24,6 +24,7 @@ Add:
 - `StrictBigIntType`, `IsStrictBigInt`, `NotStrictBigIntType`, `IsNotStrictBigInt`
 - `VoidType`, `IsVoid`, `NotVoidType`, `IsNotVoid`
 - `UnknownType`, `IsUnknown`, `NotUnknownType`, `IsNotUnknown`
+- `Positive`, `IsPositive`, `NotPositive`, `IsNotPositive`
 
 These types perform strict type checks.
 Union and Intersection types are not considered to pass the check.
