@@ -78,4 +78,4 @@ export type IsNotInteger<T, Then = true, Else = false> = NotInteger<T, Else, The
  * type R = IsWhole<number> // never as it contains non-integer
  * ```
  */
-export type IsWhole<N extends Numeric, Then = true, Else = false> = Integer<N, Then, Else>
+export type IsWhole<N, Then = true, Else = false> = Integer<N, Then, Else>
