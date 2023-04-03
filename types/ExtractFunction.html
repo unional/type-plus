@@ -20,7 +20,7 @@
 <p>It works with interact of functions, but not on function overloads and union.</p>
 
 <h3>Note</h3><p>does not work with function overloads.</p>
-<pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-0"> </span><span class="hl-9">type</span><span class="hl-0"> { </span><span class="hl-7">ExtractFunction</span><span class="hl-0"> } </span><span class="hl-9">from</span><span class="hl-0"> </span><span class="hl-8">&#39;type-plus&#39;</span><br/><br/><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-3">R</span><span class="hl-0"> = </span><span class="hl-3">ExtractFunction</span><span class="hl-0">&lt;{</span><br/><span class="hl-0">  () </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-3">void</span><br/><span class="hl-0">  </span><span class="hl-7">a</span><span class="hl-0">: </span><span class="hl-4">1</span><br/><span class="hl-0">}&gt; </span><span class="hl-5">// () =&gt; void</span>
+<pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-0"> </span><span class="hl-9">type</span><span class="hl-0"> { </span><span class="hl-8">ExtractFunction</span><span class="hl-0"> } </span><span class="hl-9">from</span><span class="hl-0"> </span><span class="hl-1">&#39;type-plus&#39;</span><br/><br/><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">ExtractFunction</span><span class="hl-0">&lt;{</span><br/><span class="hl-0">  () </span><span class="hl-2">=&gt;</span><span class="hl-0"> </span><span class="hl-4">void</span><br/><span class="hl-0">  </span><span class="hl-8">a</span><span class="hl-0">: </span><span class="hl-5">1</span><br/><span class="hl-0">}&gt; </span><span class="hl-6">// () =&gt; void</span>
 </code></pre>
 </div>
 <section class="tsd-panel tsd-type-parameters">
@@ -29,7 +29,7 @@
 <li>
 <h4>T<span class="tsd-signature-symbol"> extends </span><a href="AnyFunction.html" class="tsd-signature-type" data-tsd-kind="Type alias">AnyFunction</a></h4></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/e726d118/ts/function/extract_function.ts#L18">ts/function/extract_function.ts:18</a></li></ul></aside></div>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/3d2dfb83/ts/function/extract_function.ts#L18">ts/function/extract_function.ts:18</a></li></ul></aside></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
@@ -336,5 +336,5 @@
 <li class="tsd-kind-function"><a href="../functions/typeOverrideIncompatible.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>type<wbr/>Override<wbr/>Incompatible</a></li>
 <li class="tsd-kind-function tsd-is-external"><a href="../functions/unpartial.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>unpartial</a></li></ul></nav></div></div>
 <div class="container tsd-generator">
-<p style="line-height: 28px;">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
+<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
 <div class="overlay"></div><script src="../assets/main.js"></script></body></html>
