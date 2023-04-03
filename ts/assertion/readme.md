@@ -11,5 +11,4 @@ so that that type of the value can be narrowed down.
 
 - [Handbook][assertion_functions]
 
-
 [assertion_functions]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions
