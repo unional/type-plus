@@ -1,4 +1,5 @@
-import { assertType, CanAssign, canAssign } from '../index.js'
+import { describe, test } from '@jest/globals'
+import { CanAssign, assertType, canAssign } from '../index.js'
 
 describe('CanAssign<A, B>', () => {
 	test('literal type to widen', () => {

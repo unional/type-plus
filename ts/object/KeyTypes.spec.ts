@@ -1,6 +1,7 @@
+import { it } from '@jest/globals'
 import { KeyTypes } from '../index.js'
 
-test('contains type of all keys', () => {
+it('contains type of all keys', () => {
 	acceptKeys('a')
 	acceptKeys(1)
 	acceptKeys(Symbol())

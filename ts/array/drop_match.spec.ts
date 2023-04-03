@@ -1,4 +1,5 @@
-import { drop, DropMatch, DropNull, DropNullable, DropUndefined, testType } from '../index.js'
+import { describe, expect, test } from '@jest/globals'
+import { DropMatch, DropNull, DropNullable, DropUndefined, drop, testType } from '../index.js'
 
 describe('DropMatch<A, C>', () => {
 	describe('A is array', () => {

@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { assertType, If, isType } from '../index.js'
 
 test('true gets Then', () => {

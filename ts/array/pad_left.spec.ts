@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { PadLeft, testType } from '../index.js'
 
 test('zero length returns the same', () => {

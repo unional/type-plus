@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type BigintType } from '../index.js'
 
 it('returns T if T is bigint', () => {
@@ -18,7 +19,7 @@ it('returns never for special types', () => {
 	testType.never<BigintType<never>>(true)
 })
 
-test('returns never for other types', () => {
+it('returns never for other types', () => {
 	testType.never<BigintType<undefined>>(true)
 	testType.never<BigintType<null>>(true)
 	testType.never<BigintType<boolean>>(true)

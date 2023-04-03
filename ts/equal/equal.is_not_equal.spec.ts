@@ -1,3 +1,4 @@
+import { it, test } from '@jest/globals'
 import type { NotEqual, Head, Equal, ValueOf } from '../index.js'
 import { testType } from '../index.js'
 

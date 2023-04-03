@@ -1,3 +1,4 @@
+import { expect, it, test } from '@jest/globals'
 import t from 'assert'
 import { isType, someKey } from '../index.js'
 

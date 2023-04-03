@@ -1,3 +1,4 @@
+import { expect, test } from '@jest/globals'
 import { compose, testType } from '../index.js'
 
 test('works with endofunctors: +2 *3', () => {

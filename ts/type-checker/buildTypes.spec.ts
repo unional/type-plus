@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 // import { MapToProp } from '../array/index.js'
 // import { assertType } from '../assertion/index.js'
 // import * as T from '../types/index.js'

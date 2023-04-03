@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { Is_Never, testType, type NotNeverType } from '../index.js'
 
 it('returns `is_never` if T is never', () => {
@@ -10,7 +11,7 @@ it('returns T for other special types', () => {
 	testType.equal<NotNeverType<any>, any>(true)
 })
 
-test('returns T for other types', () => {
+it('returns T for other types', () => {
 	testType.equal<NotNeverType<undefined>, undefined>(true)
 	testType.equal<NotNeverType<null>, null>(true)
 	testType.equal<NotNeverType<number>, number>(true)

@@ -1,3 +1,4 @@
+import { describe, expect, test } from '@jest/globals'
 import { brand, flavor, nominalMatch } from '../index.js'
 
 describe('Brand', () => {

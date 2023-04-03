@@ -1,7 +1,8 @@
+import { describe, expect, test } from '@jest/globals'
 import { satisfies } from 'satisfier'
-import * as T from './index.js'
 import type { AllType } from './AllType.js'
 import { analyze } from './analyze.js'
+import * as T from './index.js'
 
 describe('non-strict', () => {
 	const options = { strict: false, debug: false }

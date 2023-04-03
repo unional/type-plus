@@ -1,3 +1,4 @@
+import { expect, it } from '@jest/globals'
 import { assertType, brand, flavor, testType } from '../index.js'
 
 it('cannot assign from unbranded type', () => {

@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import type { AnyConstructor } from '../index.js'
 
 test('basic', () => {

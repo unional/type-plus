@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { isType } from './isType.js'
 
 it('can be used for type-only', () => {

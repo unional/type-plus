@@ -1,3 +1,4 @@
+import { describe, test } from '@jest/globals'
 import { assertType, isSystemError } from '../index.js'
 
 describe('isSystemError()', () => {

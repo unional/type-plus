@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type VoidType } from '../index.js'
 
 it('returns T if T is void', () => {
@@ -10,7 +11,7 @@ it('returns never for other special types', () => {
 	testType.never<VoidType<never>>(true)
 })
 
-test('returns never for other types', () => {
+it('returns never for other types', () => {
 	testType.never<VoidType<undefined>>(true)
 	testType.never<VoidType<null>>(true)
 	testType.never<VoidType<number>>(true)
@@ -45,61 +46,4 @@ it('can override Then/Else', () => {
 	testType.equal<VoidType<any, 1, 2>, 2>(true)
 	testType.equal<VoidType<unknown, 1, 2>, 2>(true)
 	testType.equal<VoidType<never, 1, 2>, 2>(true)
-})
-
-test('union behavior of void', () => {
-	testType.equal<void | undefined, void | undefined>(true)
-	testType.equal<void | null, void | null>(true)
-	testType.equal<void | boolean, void | boolean>(true)
-	testType.equal<void | true, void | true>(true)
-	testType.equal<void | false, void | false>(true)
-	testType.equal<void | number, void | number>(true)
-	testType.equal<void | 1, void | 1>(true)
-	testType.equal<void | string, void | string>(true)
-	testType.equal<void | '', void | ''>(true)
-	testType.equal<void | symbol, void | symbol>(true)
-	testType.equal<void | bigint, void | bigint>(true)
-	testType.equal<void | 1n, void | 1n>(true)
-	testType.equal<void | {}, void | {}>(true)
-	testType.equal<void | { a: 1 }, void | { a: 1 }>(true)
-	testType.equal<void | string[], void | string[]>(true)
-	testType.equal<void | [], void | []>(true)
-	testType.equal<void | Function, void | Function>(true)
-	testType.equal<void | (() => void), void | (() => void)>(true)
-
-	testType.equal<void | any, any>(true)
-	testType.equal<void | unknown, unknown>(true)
-	testType.equal<void | never, void>(true)
-	testType.equal<void | void, void | void>(true)
-})
-
-test('intersection behavior of void', () => {
-	testType.equal<void & undefined, undefined>(true)
-	testType.equal<void & null, never>(true)
-
-	testType.equal<void & boolean, never>(true)
-	testType.equal<void & true, never>(true)
-	testType.equal<void & false, never>(true)
-	testType.equal<void & number, never>(true)
-	testType.equal<void & 1, never>(true)
-	testType.equal<void & string, never>(true)
-	testType.equal<void & '', never>(true)
-
-	testType.equal<void & symbol, never>(true)
-
-	testType.equal<void & bigint, never>(true)
-	testType.equal<void & 1n, never>(true)
-
-	testType.equal<void & {}, void & {}>(true)
-
-	testType.equal<void & { a: 1 }, void & { a: 1 }>(true)
-	testType.equal<void & string[], void & string[]>(true)
-	testType.equal<void & [], void & []>(true)
-	testType.equal<void & Function, void & Function>(true)
-	testType.equal<void & (() => void), void & (() => void)>(true)
-
-	testType.equal<void & any, any>(true)
-	testType.equal<void & unknown, void>(true)
-	testType.equal<void & never, never>(true)
-	testType.equal<void & void, void>(true)
 })

@@ -1,7 +1,8 @@
+import { it } from '@jest/globals'
 import t from 'assert'
 import { filterKey } from '../index.js'
 
-test(`return type is 'keyof subject'`, () => {
+it(`returns with type as 'keyof subject'`, () => {
 	const subject = { a: 1, b: 2, c: 3 }
 	const actual = filterKey(subject, key => subject[key] > 1)
 	t.deepStrictEqual(actual, ['b', 'c'])

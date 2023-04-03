@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type IsNull } from '../index.js'
 
 it('returns true for null', () => {
@@ -11,7 +12,7 @@ it('returns false for special types', () => {
 	testType.false<IsNull<never>>(true)
 })
 
-test('returns false for other types', () => {
+it('returns false for other types', () => {
 	testType.false<IsNull<undefined>>(true)
 	testType.false<IsNull<boolean>>(true)
 	testType.false<IsNull<true>>(true)

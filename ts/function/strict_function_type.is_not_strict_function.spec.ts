@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type AnyFunction, type IsNotStrictFunction } from '../index.js'
 
 it('returns false if T is Function', () => {

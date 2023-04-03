@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-types */
+import { test } from '@jest/globals'
 import { IsEmptyObject, testType } from '../index.js'
 
 test('true for {}', () => {

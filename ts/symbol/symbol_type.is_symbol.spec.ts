@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type IsSymbol } from '../index.js'
 
 it('returns true for symbol', () => {
@@ -14,7 +15,7 @@ it('returns false for special types', () => {
 	testType.false<IsSymbol<never>>(true)
 })
 
-test('returns false for other types', () => {
+it('returns false for other types', () => {
 	testType.false<IsSymbol<undefined>>(true)
 	testType.false<IsSymbol<null>>(true)
 	testType.false<IsSymbol<number>>(true)

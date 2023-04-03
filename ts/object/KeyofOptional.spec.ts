@@ -1,6 +1,7 @@
+import { it } from '@jest/globals'
 import { assertType, Equal, KeysOfOptional } from '../index.js'
 
-test('get keys from optional type', () => {
+it('get keys from optional type', () => {
 	type X = { o?: { a: string; b: string } }
 	type A = KeysOfOptional<X['o']>
 

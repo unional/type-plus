@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { AnyFunction, testType } from '../index.js'
 import type { Last } from './last.js'
 

@@ -1,4 +1,5 @@
-import { assertType } from '../assertion/index.js'
+import { describe, test } from '@jest/globals'
+import { assertType } from '../assertion/assert_type.js'
 import type { Tuple } from './Tuple.js'
 
 describe('Find<T,S>', () => {

@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { testType, type FindLast } from '../index.js'
 
 test('pick last type matching criteria', () => {

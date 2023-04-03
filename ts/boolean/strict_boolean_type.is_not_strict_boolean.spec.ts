@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type IsNotStrictBoolean } from '../index.js'
 
 it('returns false if T is boolean', () => {

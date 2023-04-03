@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type IsNotNever } from '../index.js'
 
 it('returns false for never', () => {
@@ -10,7 +11,7 @@ it('returns true for other special types', () => {
 	testType.true<IsNotNever<any>>(true)
 })
 
-test('returns true for singular types', () => {
+it('returns true for singular types', () => {
 	testType.true<IsNotNever<undefined>>(true)
 	testType.true<IsNotNever<null>>(true)
 	testType.true<IsNotNever<number>>(true)

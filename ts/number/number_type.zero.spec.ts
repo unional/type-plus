@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { isType, type Zero } from '../index.js'
 
 it('can be 0', () => {

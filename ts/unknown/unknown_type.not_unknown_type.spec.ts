@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type NotUnknownType } from '../index.js'
 
 it('returns never for unknown', () => {
@@ -10,7 +11,7 @@ it('returns T for other special types', () => {
 	testType.equal<NotUnknownType<never>, never>(true)
 })
 
-test('returns T for other types', () => {
+it('returns T for other types', () => {
 	testType.equal<NotUnknownType<null>, null>(true)
 	testType.equal<NotUnknownType<number>, number>(true)
 	testType.equal<NotUnknownType<boolean>, boolean>(true)

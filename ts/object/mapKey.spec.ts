@@ -1,3 +1,4 @@
+import { it, test } from '@jest/globals'
 import { a } from 'assertron'
 import { mapKey } from '../index.js'
 

@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { testType, type CommonPropKeys } from '../index.js'
 
 test('no common key returns never', () => {

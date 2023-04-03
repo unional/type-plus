@@ -1,4 +1,5 @@
-import { assertType, PromiseValueMerge } from '../index.js'
+import { test } from '@jest/globals'
+import { PromiseValueMerge, assertType } from '../index.js'
 
 test('merge promise value', async () => {
 	const result = {} as PromiseValueMerge<Promise<{ a: string }>, Promise<{ b: string }>>

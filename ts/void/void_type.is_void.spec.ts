@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type IsVoid } from '../index.js'
 
 it('returns true for void', () => {
@@ -10,7 +11,7 @@ it('returns false for other special types', () => {
 	testType.false<IsVoid<never>>(true)
 })
 
-test('returns false for singular types', () => {
+it('returns false for singular types', () => {
 	testType.false<IsVoid<undefined>>(true)
 	testType.false<IsVoid<null>>(true)
 	testType.false<IsVoid<number>>(true)

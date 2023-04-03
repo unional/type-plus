@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { testType, type DropFirst } from '../index.js'
 
 test('drop from empty gets itself', () => {

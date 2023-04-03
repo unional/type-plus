@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type IsNumeric } from '../index.js'
 
 it('returns true if N is number', () => {
@@ -29,7 +30,7 @@ it('returns false if N is special types', () => {
 	testType.false<IsNumeric<void>>(true)
 })
 
-test('returns false for other types', () => {
+it('returns false for other types', () => {
 	testType.false<IsNumeric<undefined>>(true)
 	testType.false<IsNumeric<null>>(true)
 	testType.false<IsNumeric<boolean>>(true)

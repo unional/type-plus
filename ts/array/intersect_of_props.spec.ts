@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { testType, type IntersectOfProps } from '../index.js'
 
 test('get property from single value tuple', () => {

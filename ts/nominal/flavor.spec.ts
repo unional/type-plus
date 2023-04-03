@@ -1,4 +1,5 @@
-import { assertType, brand, CanAssign, Flavor, flavor, isType, testType } from '../index.js'
+import { describe, expect, test } from '@jest/globals'
+import { CanAssign, Flavor, assertType, brand, flavor, isType, testType } from '../index.js'
 
 test('underlying type can be assigned to Flavor', () => {
 	type PersonId = Flavor<'Person', number>

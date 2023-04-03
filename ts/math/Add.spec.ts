@@ -1,3 +1,4 @@
+import { describe, test } from '@jest/globals'
 import type { Add, Increment } from '../index.js'
 import { testType } from '../index.js'
 

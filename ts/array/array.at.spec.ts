@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type At } from '../index.js'
 
 it('gets never if N is never', () => {

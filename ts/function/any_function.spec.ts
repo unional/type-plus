@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { assertType, type AnyFunction } from '../index.js'
 
 test('basic', () => {

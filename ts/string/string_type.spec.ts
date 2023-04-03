@@ -1,3 +1,4 @@
+import { it, test } from '@jest/globals'
 import { testType, type StringType } from '../index.js'
 
 it('returns T if T is string', () => {

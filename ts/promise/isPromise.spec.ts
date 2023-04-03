@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import t from 'assert'
 import { isPromise } from '../index.js'
 

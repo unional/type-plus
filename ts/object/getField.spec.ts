@@ -1,3 +1,4 @@
+import { expect, test } from '@jest/globals'
 import { getField } from '../index.js'
 
 test('support undefined', () => {

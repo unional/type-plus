@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type NumericType } from '../index.js'
 
 it('returns T if T is number', () => {

@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { Max, testType } from '../index.js'
 
 test('only support whole number', () => {

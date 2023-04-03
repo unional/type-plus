@@ -1,3 +1,4 @@
+import { describe, test } from '@jest/globals'
 import { assertType } from '../index.js'
 import * as T from '../types/index.js'
 import { createTypeChecker } from './typeChecker.js'

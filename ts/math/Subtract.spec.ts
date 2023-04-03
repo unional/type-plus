@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { testType, type Subtract } from '../index.js'
 
 test('only support positive and whole number', () => {

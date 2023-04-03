@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type IsInteger } from '../index.js'
 
 it('returns false if N is number as it can contain float', () => {
@@ -33,7 +34,7 @@ it('returns false if N is special types', () => {
 	testType.false<IsInteger<void>>(true)
 })
 
-test('returns false for singular types', () => {
+it('returns false for other types', () => {
 	testType.false<IsInteger<undefined>>(true)
 	testType.false<IsInteger<null>>(true)
 	testType.false<IsInteger<number>>(true)

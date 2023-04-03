@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { Tail, testType } from '../index.js'
 
 test('get tail types', () => {

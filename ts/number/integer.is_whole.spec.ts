@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { isType, type IsWhole } from '../index.js'
 
 it('returns false if N is number as it can contain float', () => {
@@ -8,7 +9,7 @@ it('returns false if N is never', () => {
 	isType.equal<true, IsWhole<never>, false>()
 })
 
-test('whole number is true', () => {
+it('whole number is true', () => {
 	isType.equal<true, true, IsWhole<1>>()
 	isType.equal<true, true, IsWhole<1>>()
 	isType.equal<true, true, IsWhole<0>>()
@@ -17,7 +18,7 @@ test('whole number is true', () => {
 	isType.equal<true, true, IsWhole<-1>>()
 })
 
-test('fraction is false', () => {
+it('fraction is false', () => {
 	isType.equal<true, false, IsWhole<0.1>>()
 	isType.equal<true, false, IsWhole<-0.1>>()
 })

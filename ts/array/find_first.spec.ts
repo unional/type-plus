@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { testType, type FindFirst } from '../index.js'
 
 test('pick first type matching criteria', () => {

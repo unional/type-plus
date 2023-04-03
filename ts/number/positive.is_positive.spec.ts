@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type IsPositive } from '../index.js'
 
 it('returns true if T is number or bigint', () => {
@@ -34,7 +35,7 @@ it('returns false if T is a special type', () => {
 	testType.false<IsPositive<void>>(true)
 })
 
-test('returns false for other types', () => {
+it('returns false for other types', () => {
 	testType.false<IsPositive<undefined>>(true)
 	testType.false<IsPositive<null>>(true)
 	testType.false<IsPositive<boolean>>(true)

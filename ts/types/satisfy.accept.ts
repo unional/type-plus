@@ -1,8 +1,9 @@
+import { test } from '@jest/globals'
 import { baseline } from '@unional/fixture'
 import fs from 'fs'
-import path, { dirname } from 'path'
 import * as T from './index.js'
 import { O } from './optional.js'
+import { fail } from 'assert'
 
 const eslint = T.object.create({
 	env: O.object.create({

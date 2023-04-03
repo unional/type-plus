@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { assertType, KnownKeys } from '../index.js'
 
 test('pick out only known keys', () => {

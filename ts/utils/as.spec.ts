@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { describe, test } from '@jest/globals'
 import { amend, as, asAny, testType } from '../index.js'
 
 describe('as<T>()', () => {

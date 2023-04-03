@@ -1,4 +1,5 @@
-import { And, assertType, Equal, Not, Or, Xor } from '../index.js'
+import { describe, test } from '@jest/globals'
+import { And, Equal, Not, Or, Xor, assertType } from '../index.js'
 
 describe('And<A,B>', () => {
 	test('basic', () => {

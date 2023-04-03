@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { isType, type CreateTuple } from '../index.js'
 
 test('create empty tuple', () => {

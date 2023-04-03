@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { type Concat, testType, isType } from '../index.js'
 
 it('unionizes the array element type', () => {

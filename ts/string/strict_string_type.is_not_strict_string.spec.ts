@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type IsNotStrictString } from '../index.js'
 
 it('returns false for string', () => {

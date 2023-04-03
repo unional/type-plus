@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type IsNever } from '../index.js'
 
 // @todo: this should be a new type that filter within the union.

@@ -1,3 +1,4 @@
+import { describe, test } from '@jest/globals'
 import { testType } from '../index.js'
 import type { Digit, DigitArray } from './Digit.js'
 

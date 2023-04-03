@@ -1,5 +1,6 @@
-import * as T from './index.js'
+import { expect, test } from '@jest/globals'
 import { check } from './check.js'
+import * as T from './index.js'
 
 test('check without strict', () => {
 	const t = T.tuple.create(T.string)

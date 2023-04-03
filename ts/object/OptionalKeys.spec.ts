@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { assertType, Equal, OptionalKeys } from '../index.js'
 
 test('extract optional keys from object', () => {

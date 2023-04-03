@@ -1,3 +1,4 @@
+import { describe, test } from '@jest/globals'
 import { testType, type Some } from '../index.js'
 
 test('empty array', () => {

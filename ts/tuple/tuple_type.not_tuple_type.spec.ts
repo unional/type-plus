@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type NotTupleType } from '../index.js'
 
 it('returns never if T is a tuple', () => {

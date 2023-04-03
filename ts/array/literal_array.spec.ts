@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { literalArray, testType } from '../index.js'
 
 test('entries in array are restricted to the input literals', () => {

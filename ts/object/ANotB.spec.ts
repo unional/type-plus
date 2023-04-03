@@ -1,3 +1,4 @@
+import { describe, test } from '@jest/globals'
 import { ANotB, assertType, BNotA, IsDisjoint, LeftJoin } from '../index.js'
 
 describe('ANotB<A, B>', () => {

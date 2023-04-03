@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType } from '../index.js'
 import type { IndexAt } from './array_plus.js'
 

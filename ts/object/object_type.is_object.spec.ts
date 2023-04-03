@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type IsObject } from '../index.js'
 
 it('returns true if T is object', () => {

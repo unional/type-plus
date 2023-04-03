@@ -1,4 +1,5 @@
-import { assertType, canAssign, Equal, isType, Pick, pick, record } from '../index.js'
+import { describe, expect, it, test } from '@jest/globals'
+import { Equal, Pick, assertType, canAssign, isType, pick, record } from '../index.js'
 
 describe(`Pick<T, K>`, () => {
 	test('distributive pick', () => {

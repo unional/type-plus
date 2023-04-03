@@ -1,3 +1,4 @@
+import { describe, it } from '@jest/globals'
 import { ExtractFunction, extractFunction, testType } from '../index.js'
 
 describe(`ExtraceFunction<T>`, () => {

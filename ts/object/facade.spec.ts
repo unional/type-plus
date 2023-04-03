@@ -1,3 +1,4 @@
+import { test, expect } from '@jest/globals'
 import { facade } from '../index.js'
 
 test('facade on property', () => {

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
+import { describe, expect, it, test } from '@jest/globals'
 import { a } from 'assertron'
-import { AnyConstructor, AnyFunction, assertType, Equal, isType } from '../index.js'
+import { AnyConstructor, AnyFunction, Equal, assertType, isType } from '../index.js'
 
 describe('assertType()', () => {
 	test('input satisfies specified type', () => {

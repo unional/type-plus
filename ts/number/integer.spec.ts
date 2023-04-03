@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type Integer } from '../index.js'
 
 it('returns never if T is number as it can contain float', () => {
@@ -34,7 +35,7 @@ it('returns never if T is a special type', () => {
 	testType.never<Integer<void>>(true)
 })
 
-test('returns never for other types', () => {
+it('returns never for other types', () => {
 	testType.never<Integer<undefined>>(true)
 	testType.never<Integer<null>>(true)
 	testType.never<Integer<number>>(true)

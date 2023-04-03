@@ -1,3 +1,4 @@
+import { expect, test } from '@jest/globals'
 import { mapSeries } from '../index.js'
 
 test('map over values', () => {

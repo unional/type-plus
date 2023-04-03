@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type IsUndefined } from '../index.js'
 
 it('returns true for undefined', () => {
@@ -11,7 +12,7 @@ it('returns false for special types', () => {
 	testType.false<IsUndefined<never>>(true)
 })
 
-test('returns false for singular types', () => {
+it('returns false for other types', () => {
 	testType.false<IsUndefined<null>>(true)
 	testType.false<IsUndefined<number>>(true)
 	testType.false<IsUndefined<boolean>>(true)

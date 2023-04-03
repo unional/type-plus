@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type NotTrueType } from '../index.js'
 
 it('returns never it T is true', () => {

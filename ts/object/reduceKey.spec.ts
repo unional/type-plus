@@ -1,3 +1,4 @@
+import { it, test } from '@jest/globals'
 import t from 'assert'
 import { reduceByKey, reduceKey } from '../index.js'
 

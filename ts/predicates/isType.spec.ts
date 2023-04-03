@@ -1,3 +1,4 @@
+import { describe, expect, it, test } from '@jest/globals'
 import { isType, testType, type Equal } from '../index.js'
 
 describe('isType()', () => {

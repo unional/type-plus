@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { testType } from '../index.js'
 
 test('union behavior of array', () => {

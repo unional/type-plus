@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type NotSymbolType } from '../index.js'
 
 it('returns never for symbol', () => {
@@ -14,7 +15,7 @@ it('returns never for special types', () => {
 	testType.equal<NotSymbolType<never>, never>(true)
 })
 
-test('returns never for singular types', () => {
+it('returns never for singular types', () => {
 	testType.equal<NotSymbolType<undefined>, undefined>(true)
 	testType.equal<NotSymbolType<null>, null>(true)
 	testType.equal<NotSymbolType<number>, number>(true)

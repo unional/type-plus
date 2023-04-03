@@ -1,4 +1,5 @@
-import { UnionOfValues, assertType, Equal, isType } from '../index.js'
+import { it, test } from '@jest/globals'
+import { Equal, UnionOfValues, assertType, isType } from '../index.js'
 
 test('get value of generic array', () => {
 	type Actual = UnionOfValues<string[]>

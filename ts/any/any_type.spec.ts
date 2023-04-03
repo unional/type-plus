@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType, type AnyType } from '../index.js'
 
 it('returns any for any', () => {

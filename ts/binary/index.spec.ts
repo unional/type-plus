@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { testType } from '../index.js'
 import type { B } from './index.js'
 

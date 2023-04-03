@@ -1,6 +1,7 @@
+import { it } from '@jest/globals'
 import { assertType, canAssign, ComposableTypes, NonComposableTypes } from './index.js'
 
-test('ComposableTypes includes object, array, and function', () => {
+it('includes object, array, and function', () => {
 	assertType<ComposableTypes>({})
 	assertType<ComposableTypes>([])
 	// function is composable because you can do
@@ -15,7 +16,7 @@ test('ComposableTypes includes object, array, and function', () => {
 	assertType.isTrue(canAssign<ComposableTypes>(false)(Symbol()))
 })
 
-test('NonComposableType excludes object, array, and function', () => {
+it('NonComposableType excludes object, array, and function', () => {
 	assertType<NonComposableTypes>(null)
 	assertType<NonComposableTypes>(undefined)
 	assertType<NonComposableTypes>(true)

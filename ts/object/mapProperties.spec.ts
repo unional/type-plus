@@ -1,3 +1,4 @@
+import { expect, test } from '@jest/globals'
 import { mapProperties } from '../index.js'
 
 test('basic usage', () => {

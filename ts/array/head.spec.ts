@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { testType, type Head } from '../index.js'
 
 test('get first type', () => {

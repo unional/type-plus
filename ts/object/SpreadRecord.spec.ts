@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { assertType, Equal, SpreadRecord } from '../index.js'
 
 test('records are combined as intersection', () => {

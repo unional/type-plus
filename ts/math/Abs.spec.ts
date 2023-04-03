@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import { Abs, testType } from '../index.js'
 
 test('positive returns itself', () => {

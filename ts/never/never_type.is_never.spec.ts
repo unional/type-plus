@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 // never intersect with any type is never
 import { testType, type IsNever } from '../index.js'
 
@@ -11,7 +12,7 @@ it('returns false for other special types', () => {
 	testType.false<IsNever<any>>(true)
 })
 
-test('returns false for other types', () => {
+it('returns false for other types', () => {
 	testType.false<IsNever<undefined>>(true)
 	testType.false<IsNever<null>>(true)
 	testType.false<IsNever<number>>(true)

@@ -1,3 +1,4 @@
+import { it } from '@jest/globals'
 import { testType } from './test_type.js'
 
 it('accepts true and false', () => {
