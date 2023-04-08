@@ -100,11 +100,11 @@ devDependencies:
     specifier: ^2.4.0
     version: 2.4.1
   typedoc:
-    specifier: ^0.23.0
-    version: 0.23.21(typescript@5.0.2)
+    specifier: ^0.24.0
+    version: 0.24.0(typescript@5.0.2)
   typedoc-plugin-extras:
     specifier: ^2.2.3
-    version: 2.3.1(typedoc@0.23.21)
+    version: 2.3.1(typedoc@0.24.0)
   typescript:
     specifier: ^5.0.2
     version: 5.0.2
@@ -2086,6 +2086,10 @@ packages:
   /ansi-regex@6.0.1:
     resolution: {integrity: sha512-n5M855fKb2SsfMIiFFoVrABHJC8QtHwVx+mHWP3QcEqBHYienj5dHSgjbxtC0WEZXYt4wcD6zrQElDPhFuZgfA==}
     engines: {node: '>=12'}
+    dev: true
+
+  /ansi-sequence-parser@1.1.0:
+    resolution: {integrity: sha512-lEm8mt52to2fT8GhciPCGeCXACSz2UwIN4X2e2LJSnZ5uAbn2/dsYdOmUXq0AtWS5cpAupysIneExOgH0Vd2TQ==}
     dev: true
 
   /ansi-styles@3.2.1:
@@ -4527,8 +4531,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /marked@4.2.3:
-    resolution: {integrity: sha512-slWRdJkbTZ+PjkyJnE30Uid64eHwbwa1Q25INCAYfZlK4o6ylagBy/Le9eWntqJFoFT93ikUKMv47GZ4gTwHkw==}
+  /marked@4.3.0:
+    resolution: {integrity: sha512-PRsaiG84bK+AMvxziE/lCFss8juXjNaWzVbN5tXAm4XjeaS9NAHhop+PjQxz2A9h8Q4M/xGmzP8vqNwy6JeK0A==}
     engines: {node: '>= 12'}
     hasBin: true
     dev: true
@@ -4612,6 +4616,13 @@ packages:
 
   /minimatch@5.1.1:
     resolution: {integrity: sha512-362NP+zlprccbEt/SkxKfRMHnNY85V74mVnpUpNyr3F35covl09Kec7/sEFLt3RA4oXmewtoaanoIf67SE5Y5g==}
+    engines: {node: '>=10'}
+    dependencies:
+      brace-expansion: 2.0.1
+    dev: true
+
+  /minimatch@7.4.5:
+    resolution: {integrity: sha512-OzOamaOmNBJZUv2qqY1OSWa+++4YPpOkLgkc0w30Oov5ufKlWWXnFUl0l4dgmSv5Shq/zRVkEOXAe2NaqO4l5Q==}
     engines: {node: '>=10'}
     dependencies:
       brace-expansion: 2.0.1
@@ -5363,12 +5374,13 @@ packages:
     resolution: {integrity: sha512-8o/QEhSSRb1a5i7TFR0iM4G16Z0vYB2OQVs4G3aAFXjn3T6yEx8AZxy1PgDF7I00LZHYA3WxaSYIf5e5sAX8Rw==}
     dev: true
 
-  /shiki@0.11.1:
-    resolution: {integrity: sha512-EugY9VASFuDqOexOgXR18ZV+TbFrQHeCpEYaXamO+SZlsnT/2LxuLBX25GGtIrwaEVFXUAbUQ601SWE2rMwWHA==}
+  /shiki@0.14.1:
+    resolution: {integrity: sha512-+Jz4nBkCBe0mEDqo1eKRcCdjRtrCjozmcbTUjbPTX7OOJfEbTZzlUWlZtGe3Gb5oV1/jnojhG//YZc3rs9zSEw==}
     dependencies:
+      ansi-sequence-parser: 1.1.0
       jsonc-parser: 3.2.0
       vscode-oniguruma: 1.7.0
-      vscode-textmate: 6.0.0
+      vscode-textmate: 8.0.0
     dev: true
 
   /side-channel@1.0.4:
@@ -5879,25 +5891,25 @@ packages:
       unpartial: 1.0.4
     dev: true
 
-  /typedoc-plugin-extras@2.3.1(typedoc@0.23.21):
+  /typedoc-plugin-extras@2.3.1(typedoc@0.24.0):
     resolution: {integrity: sha512-EqrIX9oOxJ3yZa/TNAmMqvg87v3RTs63yFm/ROJtjiu1yVNQl74v2hDHsgheWb+1Puy+Vu5jFMwx//Cme0hzqg==}
     peerDependencies:
       typedoc: 0.23.x
     dependencies:
-      typedoc: 0.23.21(typescript@5.0.2)
+      typedoc: 0.24.0(typescript@5.0.2)
     dev: true
 
-  /typedoc@0.23.21(typescript@5.0.2):
-    resolution: {integrity: sha512-VNE9Jv7BgclvyH9moi2mluneSviD43dCE9pY8RWkO88/DrEgJZk9KpUk7WO468c9WWs/+aG6dOnoH7ccjnErhg==}
+  /typedoc@0.24.0(typescript@5.0.2):
+    resolution: {integrity: sha512-yNbhPdDCb67r+v+SRcyXDp5JTImMqHHOFQDI7zciT7rXJnJt5UD9wz1Z4WllCVm5Ey92j2bOML0hnaiK1Pk2JA==}
     engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
-      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x
+      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x
     dependencies:
       lunr: 2.3.9
-      marked: 4.2.3
-      minimatch: 5.1.1
-      shiki: 0.11.1
+      marked: 4.3.0
+      minimatch: 7.4.5
+      shiki: 0.14.1
       typescript: 5.0.2
     dev: true
 
@@ -5992,8 +6004,8 @@ packages:
     resolution: {integrity: sha512-L9WMGRfrjOhgHSdOYgCt/yRMsXzLDJSL7BPrOZt73gU0iWO4mpqzqQzOz5srxqTvMBaR0XZTSrVWo4j55Rc6cA==}
     dev: true
 
-  /vscode-textmate@6.0.0:
-    resolution: {integrity: sha512-gu73tuZfJgu+mvCSy4UZwd2JXykjK9zAZsfmDeut5dx/1a7FeTk0XwJsSuqQn+cuMCGVbIBfl+s53X4T19DnzQ==}
+  /vscode-textmate@8.0.0:
+    resolution: {integrity: sha512-AFbieoL7a5LMqcnOF04ji+rpXadgOXnZsxQr//r83kLPr7biP7am3g9zbaZIaBGwBRWeSvoMD4mgPdX3e4NWBg==}
     dev: true
 
   /walker@1.0.8:
