@@ -1,5 +1,5 @@
 import { expect, it } from '@jest/globals'
-import { uniSym } from '../constants.internal.js'
+import { uniSym } from '../type/constants.js'
 import { brand, flavor, testType, type Brand } from '../index.js'
 
 it('branded type does not resolve to never', () => {
