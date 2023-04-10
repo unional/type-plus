@@ -11,7 +11,7 @@ import { typeSym, valueSym } from './constants.js'
  * but will allow unflavored values of that type to be passed in where a flavored version is expected.
  * This is a less restrictive form of branding.
  */
-export type Flavor<F extends string, T> = [T] extends [null] | [undefined]
+export type Flavor<F extends string, T> = [T] extends [null] | [undefined] | [symbol]
 	? FlavoredUnit<F, T>
 	: Flavored<F> & T
 
@@ -23,7 +23,7 @@ export interface Flavored<F extends string> {
 }
 
 /**
- * A special flavored type for `null` and `undefined`.
+ * A special flavored type for `null`, `undefined`, `symbol`.
  */
 export interface FlavoredUnit<F extends string, T> {
 	[typeSym]?: F
