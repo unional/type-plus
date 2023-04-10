@@ -1,5 +1,36 @@
 import { expect, it } from '@jest/globals'
-import { assertType, brand, flavor, testType } from '../index.js'
+import { uniSym } from '../constants.internal.js'
+import { brand, flavor, testType, type Brand } from '../index.js'
+
+it('branded type does not resolve to never', () => {
+	testType.never<Brand<'test', undefined>>(false)
+	testType.never<Brand<'test', null>>(false)
+
+	testType.never<Brand<'test', boolean>>(false)
+	testType.never<Brand<'test', true>>(false)
+	testType.never<Brand<'test', false>>(false)
+
+	testType.never<Brand<'test', number>>(false)
+	testType.never<Brand<'test', 0>>(false)
+	testType.never<Brand<'test', 1>>(false)
+
+	testType.never<Brand<'test', string>>(false)
+	testType.never<Brand<'test', 'a'>>(false)
+
+	testType.never<Brand<'test', symbol>>(false)
+	testType.never<Brand<'test', typeof uniSym>>(false)
+
+	testType.never<Brand<'test', bigint>>(false)
+	testType.never<Brand<'test', 1n>>(false)
+
+	testType.never<Brand<'test', object>>(false)
+	testType.never<Brand<'test', {}>>(false)
+	testType.never<Brand<'test', { a: 1 }>>(false)
+	testType.never<Brand<'test', []>>(false)
+
+	testType.never<Brand<'test', Function>>(false)
+	testType.never<Brand<'test', () => void>>(false)
+})
 
 it('cannot assign from unbranded type', () => {
 	const a = brand('a', { a: 1 })
@@ -14,14 +45,21 @@ it('can assign to unbranded type', () => {
 	testType.canAssign<typeof b, typeof a>(true)
 })
 
+it('cannot assign between null and undefined brand', () => {
+	type N = Brand<'b', null>
+	type U = Brand<'b', undefined>
+	testType.canAssign<N, U>(false)
+})
+
 it('cannot assign between two different brand', () => {
 	const a = brand('a', { a: 1 as const })
 	const b = brand('b', { b: 'b' })
 
 	testType.canAssign<typeof a, typeof b>(false)
-	assertType<1>(a.a)
-	assertType<string>(b.b)
+	testType.equal<typeof a.a, 1>(true)
+	testType.equal<typeof b.b, string>(true)
 })
+
 it('can assign betwen same brand of the same type', () => {
 	const a = brand('a', { a: 1 })
 	let b = brand('a', { a: 2 })
