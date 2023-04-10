@@ -37,7 +37,7 @@
 		"build:cjs": "tsc -p tsconfig.cjs.json && ncp package.cjs.json cjs/package.json",
 		"build:esm": "tsc -p tsconfig.esm.json",
 		"build:tslib": "tsc -p tsconfig.tslib.json && ncp package.cjs.json tslib/package.json",
-		"build:doc": "typedoc",
+		"build:doc": "typedoc --plugin typedoc-plugin-extras",
 		"clean": "rimraf cjs coverage esm lib libm tslib",
 		"coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --coverage",
 		"cs": "changeset",
@@ -90,8 +90,8 @@
 		"size-limit": "^8.2.4",
 		"ts-jest": "^29.1.0",
 		"tslib": "^2.4.0",
-		"typedoc": "^0.24.0",
-		"typedoc-plugin-extras": "^2.2.3",
+		"typedoc": "^0.24.1",
+		"typedoc-plugin-extras": "^2.3.2",
 		"typescript": "^5.0.2"
 	},
 	"packageManager": "pnpm@8.2.0"

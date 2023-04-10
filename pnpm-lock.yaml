@@ -100,11 +100,11 @@ devDependencies:
     specifier: ^2.4.0
     version: 2.4.1
   typedoc:
-    specifier: ^0.24.0
-    version: 0.24.0(typescript@5.0.2)
+    specifier: ^0.24.1
+    version: 0.24.1(typescript@5.0.2)
   typedoc-plugin-extras:
-    specifier: ^2.2.3
-    version: 2.3.1(typedoc@0.24.0)
+    specifier: ^2.3.2
+    version: 2.3.2(typedoc@0.24.1)
   typescript:
     specifier: ^5.0.2
     version: 5.0.2
@@ -4012,7 +4012,7 @@ packages:
       '@jest/types': 29.5.0
       '@types/stack-utils': 2.0.1
       chalk: 4.1.2
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       micromatch: 4.0.5
       pretty-format: 29.5.0
       slash: 3.0.0
@@ -4332,7 +4332,7 @@ packages:
   /jsonfile@4.0.0:
     resolution: {integrity: sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg==}
     optionalDependencies:
-      graceful-fs: 4.2.11
+      graceful-fs: 4.2.10
     dev: true
 
   /jsonfile@6.1.0:
@@ -4340,7 +4340,7 @@ packages:
     dependencies:
       universalify: 2.0.0
     optionalDependencies:
-      graceful-fs: 4.2.11
+      graceful-fs: 4.2.10
     dev: true
 
   /jsonparse@1.3.1:
@@ -5891,16 +5891,16 @@ packages:
       unpartial: 1.0.4
     dev: true
 
-  /typedoc-plugin-extras@2.3.1(typedoc@0.24.0):
-    resolution: {integrity: sha512-EqrIX9oOxJ3yZa/TNAmMqvg87v3RTs63yFm/ROJtjiu1yVNQl74v2hDHsgheWb+1Puy+Vu5jFMwx//Cme0hzqg==}
+  /typedoc-plugin-extras@2.3.2(typedoc@0.24.1):
+    resolution: {integrity: sha512-g2m8UuGgaD5lNKO6f1p3atEugtTEb/le8IYkAiksmGYZyyF44SvRe8NcaJLq61mC+XRHHszQ664v3Vw9avIrMw==}
     peerDependencies:
       typedoc: 0.23.x
     dependencies:
-      typedoc: 0.24.0(typescript@5.0.2)
+      typedoc: 0.24.1(typescript@5.0.2)
     dev: true
 
-  /typedoc@0.24.0(typescript@5.0.2):
-    resolution: {integrity: sha512-yNbhPdDCb67r+v+SRcyXDp5JTImMqHHOFQDI7zciT7rXJnJt5UD9wz1Z4WllCVm5Ey92j2bOML0hnaiK1Pk2JA==}
+  /typedoc@0.24.1(typescript@5.0.2):
+    resolution: {integrity: sha512-u4HwjZcSQhQSkkhLjgcs0ooAf6HrFVLDHHrwU2xZW8WxH0KnGZlNkaWxiOcK5Gagj7mxJSgwWx0dv8ACDAOXAQ==}
     engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
