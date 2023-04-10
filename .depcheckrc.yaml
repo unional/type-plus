@@ -10,6 +10,7 @@ ignores:
   - '@typescript-eslint/parser'
   - babel-jest
   - jest-*
+  - rimraf
   - semantic-release
   - ts-jest
   - tslib
