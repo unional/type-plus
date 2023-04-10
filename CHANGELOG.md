@@ -1,5 +1,16 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 6.5.0
+
+### Minor Changes
+
+- 99afa70a: Add `Failed` and `FailedT` error type.
+
+### Patch Changes
+
+- c741e86e: Improve `Brand` and `Flavor` to handle all types.
+  Added `Branded` and `Flavored` interface to improve their rendering in IDE.
+
 ## 6.4.0
 
 ### Minor Changes
