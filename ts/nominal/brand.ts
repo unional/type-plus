@@ -9,7 +9,7 @@ import { typeSym, valueSym } from './constants.js'
  * Create a "branded" version of a type.
  * TypeScript won't allow implicit conversion to this type
  */
-export type Brand<B extends string, T = never> = [T] extends [null] | [undefined] | [symbol]
+export type Brand<B extends string, T = never> = [T] extends [null] | [undefined] | [symbol] | [void]
 	? Branded<B, T>
 	: Branded<B, T> & T
 
