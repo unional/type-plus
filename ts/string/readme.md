@@ -39,6 +39,7 @@ type R = StrictStringType<1> // never
 ## String Utilities
 
 - [`StringIncludes<Subject, Search, Then = true, Else = false>`](./string.ts): check if `Subject` includes `Search`.
+- [`StringSplit<Subject, Separater>`](./string.ts): split `Subject` by `Separater`.
 
 ## References
 
