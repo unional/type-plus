@@ -1,6 +1,5 @@
 import { describe, expect, test, it } from '@jest/globals'
 import { CanAssign, Flavor, assertType, brand, flavor, isType, testType } from '../index.js'
-import { uniSym } from '../type/constants.js'
 
 it('branded type does not resolve to never', () => {
 	testType.never<Flavor<'test', undefined>>(false)
@@ -17,6 +16,7 @@ it('branded type does not resolve to never', () => {
 	testType.never<Flavor<'test', string>>(false)
 	testType.never<Flavor<'test', 'a'>>(false)
 
+	const uniSym = Symbol()
 	testType.never<Flavor<'test', symbol>>(false)
 	testType.never<Flavor<'test', typeof uniSym>>(false)
 

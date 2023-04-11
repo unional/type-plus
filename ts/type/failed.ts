@@ -1,4 +1,4 @@
-import { uniSym } from './constants.js'
+declare const uniSym: unique symbol
 
 /**
  * A failed type with message.
