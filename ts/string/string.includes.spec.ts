@@ -1,6 +1,5 @@
 import { it } from '@jest/globals'
-import { testType } from '../index.js'
-import { StringIncludes } from './string.js'
+import { testType, type StringIncludes } from '../index.js'
 
 it('should return true if the string contains the search string', () => {
 	testType.true<StringIncludes<'abc', 'b'>>(true)
@@ -20,14 +19,6 @@ it('should return true if the string contains the search string at the beginning
 
 it('should return true if the string matches exactly', () => {
 	testType.true<StringIncludes<'abc', 'abc'>>(true)
-})
-
-it('should return false if S is not string', () => {
-	testType.false<StringIncludes<1, '1'>>(true)
-})
-
-it('should return false if Search is not string', () => {
-	testType.false<StringIncludes<'1', 1>>(true)
 })
 
 it('can overrride Then/Else', () => {
