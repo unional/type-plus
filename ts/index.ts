@@ -81,6 +81,8 @@ export type {
 	NotStrictStringType,
 	StrictStringType
 } from './string/strict_string_type.js'
+export type { StringIncludes } from './string/string.js'
+export type { StringPlus } from './string/string_plus.js'
 export type { IsNotString, IsString, NotStringType, StringType } from './string/string_type.js'
 export type { IsNotSymbol, IsSymbol, NotSymbolType, SymbolType } from './symbol/symbol_type.js'
 export * from './testing/stub.js'

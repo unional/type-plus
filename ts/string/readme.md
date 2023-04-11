@@ -36,6 +36,10 @@ type R = StrictStringType<1> // never
 - [`NotStrictStringType<T, Then = T, Else = never>`](strict_string_type.ts#L52): check if `T` is not exactly `string`.
 - [`IsNotStrictString<T, Then = true, Else = false>`](strict_string_type.ts#L69): is `T` not exactly `string`.
 
+## String Utilities
+
+- [`StringIncludes<Subject, Search, Then = true, Else = false>`](./string.ts): check if `Subject` includes `Search`.
+
 ## References
 
 - [Handbook]
