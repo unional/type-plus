@@ -308,7 +308,6 @@ it('works against tuple', () => {
 	testType.false<Equal<[unknown], [any]>>(true)
 	testType.false<Equal<[unknown], [never]>>(true)
 	testType.false<Equal<[unknown], [void]>>(true)
-
 	testType.false<Equal<[void], [any]>>(true)
 	testType.false<Equal<[void], [unknown]>>(true)
 	testType.false<Equal<[void], [never]>>(true)

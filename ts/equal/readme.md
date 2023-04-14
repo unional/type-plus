@@ -26,6 +26,9 @@ type R = Equal<{ a: 1 }, { a: 1; b: 2 }> // false
 ---
 
 [![Just Code: Equality is hard][equality-is-hard]][equality-is-hard-url]
+[![Just Code: Equality is hard part 2][equality-is-hard-2]][equality-is-hard-2-url]
 
 [equality-is-hard]: https://img.youtube.com/vi/VEqrFzCzo28/0.jpg
 [equality-is-hard-url]: https://www.youtube.com/watch?v=VEqrFzCzo28
+[equality-is-hard-2]: https://img.youtube.com/vi/l6G6Rz1n9Sw/0.jpg
+[equality-is-hard-2-url]: https://www.youtube.com/watch?v=l6G6Rz1n9Sw
