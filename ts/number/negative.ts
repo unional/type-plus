@@ -6,8 +6,6 @@ import type { Zero } from './numeric_type.js'
  * Check if 'T' is a negative numeric type.
  *
  * ```ts
- * import type { Negative } from 'type-plus'
- *
  * type R = Negative<-1> // -1
  * type R = Negative<-1n> // -1n
  *
@@ -42,8 +40,6 @@ export type Negative<T, Then = T, Else = never> = IsAny<
  * Is 'T' a negative numeric type.
  *
  * ```ts
- * import type { IsNegative } from 'type-plus'
- *
  * type R = IsNegative<-1> // true
  * type R = IsNegative<-1n> // true
  *
@@ -60,8 +56,6 @@ export type IsNegative<T, Then = true, Else = false> = Negative<T, Then, Else>
  * Check if 'T' is not a negative numeric type.
  *
  * ```ts
- * import type { NotNegative } from 'type-plus'
- *
  * type R = NotNegative<-1> // never
  * type R = NotNegative<-1n> // never
  *
@@ -94,8 +88,6 @@ export type NotNegative<T, Then = T, Else = never> = IsAny<
  * Is 'T' not a negative numeric type.
  *
  * ```ts
- * import type { IsNotNegative } from 'type-plus'
- *
  * type R = IsNotNegative<-1> // false
  * type R = IsNotNegative<-1n> // false
  *

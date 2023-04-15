@@ -3,9 +3,7 @@ import type { IsAny } from '../any/any_type.js'
 /**
  * Check if the type `T` is exactly `null`.
  *
- * ```
- * import type { NullType } from 'type-plus'
- *
+ * ```ts
  * type R = NullType<null> // null
  *
  * type R = NullType<never> // never
@@ -18,9 +16,7 @@ export type NullType<T, Then = T, Else = never> = IsAny<T, Else, [T, null] exten
 /**
  * Is the type `T` exactly `null`.
  *
- * ```
- * import type { IsNull } from 'type-plus'
- *
+ * ```ts
  * type R = IsNull<null> // true
  *
  * type R = IsNull<never> // false
@@ -33,9 +29,7 @@ export type IsNull<T, Then = true, Else = false> = NullType<T, Then, Else>
 /**
  * Check if the type `T` is not exactly `null`.
  *
- * ```
- * import type { NotNullType } from 'type-plus'
- *
+ * ```ts
  * type R = NotNullType<null> // never
  *
  * type R = NotNullType<never> // never
@@ -48,9 +42,7 @@ export type NotNullType<T, Then = T, Else = never> = NullType<T, Else, Then>
 /**
  * Is the type `T` not exactly `null`.
  *
- * ```
- * import type { IsNotNull } from 'type-plus'
- *
+ * ```ts
  * type R = IsNotNull<null> // false
  *
  * type R = IsNotNull<never> // true

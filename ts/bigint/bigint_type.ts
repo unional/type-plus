@@ -3,9 +3,7 @@ import type { IsAnyOrNever } from '../any/any_or_never.js'
 /**
  * Check if the type `T` is exactly `bigint`.
  *
- * ```
- * import type { BigintType } from 'type-plus'
- *
+ * ```ts
  * type R = BigintType<bigint> // bigint
  *
  * type R = BigintType<1n> // never
@@ -19,9 +17,7 @@ export type BigintType<T, Then = T, Else = never> = IsAnyOrNever<T, Else, [T] ex
 /**
  * Is the type `T` exactly `bigint`.
  *
- * ```
- * import type { IsBigint } from 'type-plus'
- *
+ * ```ts
  * type R = IsBigint<bigint> // true
  *
  * type R = IsBigint<1n> // false
@@ -35,9 +31,7 @@ export type IsBigint<T, Then = true, Else = false> = BigintType<T, Then, Else>
 /**
  * Check if the type `T` is not exactly `null`.
  *
- * ```
- * import type { NotBigintType } from 'type-plus'
- *
+ * ```ts
  * type R = NotBigintType<bigint> // never
  *
  * type R = NotBigintType<1n> // 1n
@@ -51,9 +45,7 @@ export type NotBigintType<T, Then = T, Else = never> = BigintType<T, Else, Then>
 /**
  * Is the type `T` not exactly `null`.
  *
- * ```
- * import type { IsNotBigint } from 'type-plus'
- *
+ * ```ts
  * type R = IsNotBigint<bigint> // false
  *
  * type R = IsNotBigint<1n> // true

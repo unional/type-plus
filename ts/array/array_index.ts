@@ -11,14 +11,12 @@ import type { StrictNumberType } from '../number/strict_number_type.js'
 /**
  * Gets the normalized index to access the element of an array or tuple.
  *
- * ```
- * import type { ArrayPlus } from 'type-plus'
+ * ```ts
+ * type R = IndexAt<['a', 'b', 'c'], 2> // 2
+ * type R = IndexAt<['a', 'b', 'c'], -2> // 1
  *
- * type R = ArrayPlus.IndexAt<['a', 'b', 'c'], 2> // 2
- * type R = ArrayPlus.IndexAt<['a', 'b', 'c'], -2> // 1
- *
- * type R = ArrayPlus.IndexAt<['a', 'b', 'c'], 3> // never
- * type R = ArrayPlus.IndexAt<['a', 'b', 'c'], -4> // never
+ * type R = IndexAt<['a', 'b', 'c'], 3> // never
+ * type R = IndexAt<['a', 'b', 'c'], -4> // never
  * ```
  */
 export type IndexAt<A extends Array<unknown>, N extends number, Fail = never> = Equal<
@@ -54,14 +52,13 @@ export type IndexAt<A extends Array<unknown>, N extends number, Fail = never> = 
 /**
  * Is N an out of bound index of A.
  *
- * ```
- * import { IsIndexOutOfBound } from 'type-plus'
- *
+ * ```ts
  * type R = IsIndexOutOfBound<[1], 0> // false
  * type R = IsIndexOutOfBound<[1], -1> // false
 
  * type R = IsIndexOutOfBound<[1], 1> // true
  * type R = IsIndexOutOfBound<[1], -2> // true
+ * ```
  */
 export type IsIndexOutOfBound<A extends unknown[], N extends number, Then = true, Else = false> = IsNever<
 	IndexAt<A, N>,

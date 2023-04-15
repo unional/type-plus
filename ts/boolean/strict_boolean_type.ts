@@ -4,8 +4,6 @@ import type { IsAnyOrNever } from '../any/any_or_never.js'
  * Check if the type `T` is exactly `boolean`.
  *
  * ```ts
- * import type { StrictBooleanType } from 'type-plus'
- *
  * type R = StrictBooleanType<boolean> // true
  *
  * type R = StrictBooleanType<true> // never
@@ -23,8 +21,6 @@ export type StrictBooleanType<T, Then = T, Else = never> = IsAnyOrNever<
  * Check if the type `T` is not exactly `boolean`.
  *
  * ```ts
- * import type { NotStrictBooleanType } from 'type-plus'
- *
  * type R = NotStrictBooleanType<boolean> // never
  *
  * type R = NotStrictBooleanType<true> // true
@@ -38,8 +34,6 @@ export type NotStrictBooleanType<T, Then = T, Else = never> = StrictBooleanType<
  * Is the type `T` exactly `boolean`.
  *
  * ```ts
- * import type { IsStrictBoolean } from 'type-plus'
- *
  * type R = IsStrictBoolean<boolean> // true
  *
  * type R = IsStrictBoolean<true> // false
@@ -53,8 +47,6 @@ export type IsStrictBoolean<T, Then = true, Else = false> = StrictBooleanType<T,
  * Is the type `T` not exactly `false`.
  *
  * ```ts
- * import type { IsNotStrictBoolean } from 'type-plus'
- *
  * type R = IsNotStrictBoolean<boolean> // false
  *
  * type R = IsNotStrictBoolean<true> // true

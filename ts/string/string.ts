@@ -3,8 +3,6 @@
  * If either of them is not a string, returns `Else`.
  *
  * ```ts
- * import type { StringIncludes } from 'type-plus'
- *
  * type R = StringIncludes<'abc', 'a'> // true
  *
  * type R = StringIncludes<'abc', 'd'> // false
@@ -22,8 +20,6 @@ export type StringIncludes<
  * and return them as an array.
  *
  * ```ts
- * import type { StringSplit } from 'type-plus'
- *
  * type R = StringSplit<'abc', ''> // ['a', 'b', 'c']
  * type R = StringSplit<'abc', 'a'> // ['', 'bc']
  * type R = StringSplit<'abc', 'b'> // ['a', 'c']

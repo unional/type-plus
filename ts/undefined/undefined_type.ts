@@ -3,9 +3,7 @@ import type { IsAny } from '../any/any_type.js'
 /**
  * Check if the type `T` is exactly `undefined`.
  *
- * ```
- * import type { UndefinedType } from 'type-plus'
- *
+ * ```ts
  * type R = UndefinedType<undefined> // undefined
  *
  * type R = UndefinedType<never> // never
@@ -22,9 +20,7 @@ export type UndefinedType<T, Then = T, Else = never> = IsAny<
 /**
  * Is the type `T` exactly `undefined`.
  *
- * ```
- * import type { IsUndefined } from 'type-plus'
- *
+ * ```ts
  * type R = IsUndefined<undefined> // true
  *
  * type R = IsUndefined<never> // false
@@ -37,9 +33,7 @@ export type IsUndefined<T, Then = true, Else = false> = UndefinedType<T, Then, E
 /**
  * Check if the type `T` is not `undefined`.
  *
- * ```
- * import type { NotUndefinedType } from 'type-plus'
- *
+ * ```ts
  * type R = NotUndefinedType<undefined> // never
  *
  * type R = NotUndefinedType<never> // never
@@ -52,9 +46,7 @@ export type NotUndefinedType<T, Then = T, Else = never> = UndefinedType<T, Else,
 /**
  * Is the type `T` not `undefined`.
  *
- * ```
- * import type { IsNotUndefined } from 'type-plus'
- *
+ * ```ts
  * type R = IsNotUndefined<undefined> // false
  *
  * type R = IsNotUndefined<never> // true

@@ -15,8 +15,6 @@ export type Zero = 0 | 0n
  * Meaning it is either a `number` or a `bigint`.
  *
  * ```ts
- * import type { NumericType } from 'type-plus'
- *
  * type R = NumericType<1> // 1
  * type R = NumericType<1.1> // 1.1
  *
@@ -30,8 +28,6 @@ export type NumericType<T, Then = T, Else = never> = IsAnyOrNever<T, Else, [T] e
  * Is `T` numeric.
  *
  * ```ts
- * import type { IsNumeric } from 'type-plus'
- *
  * type R = IsNumeric<1> // true
  * type R = IsNumeric<1.1> // true
  *
@@ -45,8 +41,6 @@ export type IsNumeric<T, Then = true, Else = false> = NumericType<T, Then, Else>
  * Check if `T` is not numeric.
  *
  * ```ts
- * import type { NotNumericType } from 'type-plus'
- *
  * type R = NotNumericType<1> // never
  * type R = NotNumericType<1.1> // never
  *
@@ -60,8 +54,6 @@ export type NotNumericType<T, Then = T, Else = never> = NumericType<T, Else, The
  * Is `T` not numeric.
  *
  * ```ts
- * import type { IsNotNumeric } from 'type-plus'
- *
  * type R = IsNotNumeric<1> // false
  * type R = IsNotNumeric<1.1> // false
  *

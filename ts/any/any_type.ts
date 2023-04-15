@@ -2,9 +2,7 @@
 /**
  * Check if the type `T` is exactly `any`.
  *
- * ```
- * import type { AnyType } from 'type-plus'
- *
+ * ```ts
  * type R = AnyType<any> // any
  *
  * type R = AnyType<never> // never
@@ -17,9 +15,7 @@ export type AnyType<T, Then = T, Else = never> = 0 extends 1 & T ? Then : Else
 /**
  * Is the type `T` exactly `any`.
  *
- * ```
- * import type { IsAny } from 'type-plus'
- *
+ * ```ts
  * type R = IsAny<any> // true
  *
  * type R = IsAny<never> // false

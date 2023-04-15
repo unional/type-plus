@@ -3,9 +3,7 @@ import type { IsAnyOrNever } from '../any/any_or_never.js'
 /**
  * Check if the type `T` is `string` or string literals.
  *
- * ```
- * import type { StringType } from 'type-plus'
- *
+ * ```ts
  * type R = StringType<string> // string
  * type R = StringType<''> // ''
  * type R = StringType<'1'> // '1'
@@ -20,9 +18,7 @@ export type StringType<T, Then = T, Else = never> = IsAnyOrNever<T, Else, [T] ex
 /**
  * Is the type `T` `string` or string literals.
  *
- * ```
- * import type { IsString } from 'type-plus'
- *
+ * ```ts
  * type R = IsString<string> // true
  * type R = IsString<''> // true
  * type R = IsString<'a'> // true
@@ -37,9 +33,7 @@ export type IsString<T, Then = true, Else = false> = StringType<T, Then, Else>
 /**
  * Check if the type `T` is not `string` nor string literals.
  *
- * ```
- * import type { NotStringType } from 'type-plus'
- *
+ * ```ts
  * type R = NotStringType<string> // never
  * type R = NotStringType<''> // ''
  * type R = NotStringType<'a'> // 'a'
@@ -54,9 +48,7 @@ export type NotStringType<T, Then = T, Else = never> = StringType<T, Else, Then>
 /**
  * Is the type `T` not `string` nor string literals.
  *
- * ```
- * import type { IsNotString } from 'type-plus'
- *
+ * ```ts
  * type R = IsNotString<string> // false
  * type R = IsNotString<''> // false
  * type R = IsNotString<'a'> // false

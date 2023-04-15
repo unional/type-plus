@@ -9,8 +9,6 @@ import type { IndexAt } from './array_index.js'
  * @see https://github.com/microsoft/TypeScript/issues/53345#issuecomment-1477138167
  *
  * ```ts
- * import type { At } from 'type-plus'
- *
  * type R = At<[1, 2, 3], 2> // 3
  * type R = At<[1, 2, 3], -1> // 3
  * ```
@@ -29,8 +27,6 @@ export type At<A extends unknown[], N extends number, Fail = never> = IndexAt<A,
  * @alias ArrayPlus.Concat
  *
  * ```ts
- * import type { Concat } form 'type-plus'
- *
  * type R = Concat<[1], [2, 3]> // [1, 2, 3]
  * ```
  */

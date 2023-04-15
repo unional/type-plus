@@ -4,8 +4,6 @@ import type { IsAnyOrNever } from '../any/any_or_never.js'
  * Check if the type `T` is `boolean`, including `true` and `false`.
  *
  * ```ts
- * import type { BooleanType } from 'type-plus'
- *
  * type R = BooleanType<boolean> // boolean
  * type R = BooleanType<true> // true
  * type R = BooleanType<false> // false
@@ -24,8 +22,6 @@ export type BooleanType<T, Then = T, Else = never> = IsAnyOrNever<
  * Check if the type `T` is not `boolean`, including `true` and `false`.
  *
  * ```ts
- * import type { NotBooleanType } from 'type-plus'
- *
  * type R = NotBooleanType<boolean> // never
  * type R = NotBooleanType<true> // never
  * type R = NotBooleanType<false> // never
@@ -40,8 +36,6 @@ export type NotBooleanType<T, Then = T, Else = never> = BooleanType<T, Else, The
  * Is the type `T` `boolean`, including `true` and `false`.
  *
  * ```ts
- * import type { IsBoolean } from 'type-plus'
- *
  * type R = IsBoolean<boolean> // true
  * type R = IsBoolean<true> // true
  * type R = IsBoolean<false> // true
@@ -56,8 +50,6 @@ export type IsBoolean<T, Then = true, Else = false> = BooleanType<T, Then, Else>
  * Is the type `T` not `boolean`, including `true` and `false`.
  *
  * ```ts
- * import type { IsNotBoolean } from 'type-plus'
- *
  * type R = IsNotBoolean<boolean> // false
  * type R = IsNotBoolean<true> // false
  * type R = IsNotBoolean<false> // false

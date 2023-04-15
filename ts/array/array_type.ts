@@ -5,8 +5,6 @@ import type { StrictNumberType } from '../number/strict_number_type.js'
  * Check if the type `T` is an array and not a tuple.
  *
  * ```ts
- * import type { ArrayType } from 'type-plus'
- *
  * type R = ArrayType<number[]> // number[]
  *
  * type R = ArrayType<[1]> // never
@@ -22,8 +20,6 @@ export type ArrayType<T, Then = T, Else = never> = IsNever<
  * Check if the type `T` is not an array.
  *
  * ```ts
- * import type { NotArrayType } from 'type-plus'
- *
  * type R = NotArrayType<number[]> // never
  *
  * type R = NotArrayType<number> // number
@@ -36,8 +32,6 @@ export type NotArrayType<T, Then = T, Else = never> = ArrayType<T, Else, Then>
  * Is `T` an array?
  *
  * ```ts
- * import type { IsArray } from 'type-plus'
- *
  * type R = IsArray<number[]> // true
  *
  * type R = IsArray<number> // false
@@ -50,8 +44,6 @@ export type IsArray<T, Then = true, Else = false> = ArrayType<T, Then, Else>
  * Is `T` not an array?
  *
  * ```ts
- * import type { IsNotArray } from 'type-plus'
- *
  * type R = IsNotArray<number[]> // false
  *
  * type R = IsNotArray<number> // true

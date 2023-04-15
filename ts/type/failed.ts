@@ -11,8 +11,6 @@ declare const uniSym: unique symbol
  * use `FailedT` or create your own failed type instead.
  *
  * ```ts
- * import { Failed } from 'type-plus'
- *
  * type T = Failed<'error message'>
  * ```
  */

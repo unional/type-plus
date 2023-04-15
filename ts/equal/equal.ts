@@ -26,8 +26,6 @@ type IdentityEqual<A, B, Then, Else> = (<_>() => _ extends (A & _) | _ ? 1 : 2) 
  * Checks `A` and `B` are equal.
  *
  * ```ts
- * import { type Equal } from 'type-plus'
- *
  * type R = Equal<1, 1> // true
  * type R = Equal<any, any> // true
  * type R = Equal<boolean, boolean> // true
@@ -72,8 +70,6 @@ export type Equal<A, B, Then = true, Else = false> = [A, B] extends [B, A]
  * Checks `A` and `B` are not equal.
  *
  * ```ts
- * import { type NotEqual } from 'type-plus'
- *
  * type R = NotEqual<1, 1> // false
  * type R = NotEqual<any, any> // false
  * type R = NotEqual<boolean, boolean> // false

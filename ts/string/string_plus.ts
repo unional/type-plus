@@ -6,8 +6,6 @@ export namespace StringPlus {
 	 * If either of them is not a string, returns `Else`.
 	 *
 	 * ```ts
-	 * import type { StringPlus } from 'type-plus'
-	 *
 	 * type R = StringPlus.Includes<'abc', 'a'> // true
 	 *
 	 * type R = StringPlus.Includes<'abc', 'd'> // false
@@ -25,8 +23,6 @@ export namespace StringPlus {
 	 * and return them as an array.
 	 *
 	 * ```ts
-	 * import type { StringPlus } from 'type-plus'
-	 *
 	 * type R = StringPlus.Split<'abc', ''> // ['a', 'b', 'c']
 	 * type R = StringPlus.Split<'abc', 'a'> // ['', 'bc']
 	 * type R = StringPlus.Split<'abc', 'b'> // ['a', 'c']

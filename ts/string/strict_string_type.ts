@@ -3,26 +3,26 @@ import type { IsAny } from '../any/any_type.js'
 /**
  * Check if the type `T` is exactly `string`.
  *
- * ```
- * import type { StrictStringType } from 'type-plus'
- *
+ * ```ts
  * type R = StrictStringType<string> // string
-*
-* type R = StrictStringType<''> // never
-* type R = StrictStringType<'1'> // never
-* type R = StrictStringType<string | boolean> // never
-* type R = StrictStringType<never> // never
-* type R = StrictStringType<unknown> // never
+ *
+ * type R = StrictStringType<''> // never
+ * type R = StrictStringType<'1'> // never
+ * type R = StrictStringType<string | boolean> // never
+ * type R = StrictStringType<never> // never
+ * type R = StrictStringType<unknown> // never
  * ```
  */
-export type StrictStringType<T, Then = T, Else = never> = IsAny<T, Else, [T, string] extends [string, T] ? Then : Else>
+export type StrictStringType<T, Then = T, Else = never> = IsAny<
+	T,
+	Else,
+	[T, string] extends [string, T] ? Then : Else
+>
 
 /**
  * Is the type `T` exactly `string`.
  *
- * ```
- * import type { IsStrictString } from 'type-plus'
- *
+ * ```ts
  * type R = IsStrictString<string> // true
  *
  * type R = IsStrictString<''> // false
@@ -37,9 +37,7 @@ export type IsStrictString<T, Then = true, Else = false> = StrictStringType<T, T
 /**
  * Check if the type `T` is not exactly `string`.
  *
- * ```
- * import type { NotStrictStringType } from 'type-plus'
- *
+ * ```ts
  * type R = NotStrictStringType<string> // never
  *
  * type R = NotStrictStringType<''> // ''
@@ -54,9 +52,7 @@ export type NotStrictStringType<T, Then = T, Else = never> = StrictStringType<T,
 /**
  * Is the type `T` not exactly `string`.
  *
- * ```
- * import type { IsNotStrictString } from 'type-plus'
- *
+ * ```ts
  * type R = IsNotStrictString<string> // false
  *
  * type R = IsNotStrictString<''> // true
