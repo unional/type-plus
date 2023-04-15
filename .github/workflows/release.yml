@@ -15,5 +15,5 @@ jobs:
     secrets: inherit
 
   docgen:
-      uses: unional/.github/.github/workflows/pnpm-docs.yml@main
-      needs: release
+    uses: unional/.github/.github/workflows/pnpm-docs.yml@main
+    needs: release
