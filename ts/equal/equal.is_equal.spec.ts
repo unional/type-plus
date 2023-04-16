@@ -450,3 +450,11 @@ it('can override Then/Else', () => {
 	testType.equal<Equal<undefined, never, 1, 2>, 2>(true)
 	testType.equal<Equal<undefined, void, 1, 2>, 2>(true)
 })
+
+it('can detect difference with optional param', () => {
+	testType.false<Equal<() => void, (a?: number) => void>>(true)
+})
+
+it('can detect difference with union return value', () => {
+	testType.false<Equal<() => number, () => number | undefined>>(true)
+})

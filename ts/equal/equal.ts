@@ -56,7 +56,14 @@ export type Equal<A, B, Then = true, Else = false> = [A, B] extends [B, A]
 					And<
 						IsObject<A>,
 						IsObject<B>,
-						IdentityEqual<Properties<A>, Properties<B>, Then, Else>,
+						IdentityEqual<
+							Properties<A>,
+							Properties<B>,
+							[A, B] extends [(...args: infer P1) => any, (...args: infer P2) => any]
+								? Equal<P1, P2, Then, Else>
+								: Then,
+							Else
+						>,
 						// `A` and `B` are narrowed, need to check again.
 						// This is fixed in TS 5.0.2, but keeping it to support older versions.
 						[A, B] extends [B, A] ? Then : Else
