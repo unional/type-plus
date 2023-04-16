@@ -1,5 +1,18 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 6.6.0
+
+### Minor Changes
+
+- e098b7c3: Add `StringSplit`
+- 6a4bfd71: Add `StringIncludes` type.
+
+### Patch Changes
+
+- a9825e69: Update JSDocs
+- 7496bbaf: Remove extra unique symbol.
+- f52c794b: Fix `Equal<A, B>` to handle optional param.
+
 ## 6.5.0
 
 ### Minor Changes
