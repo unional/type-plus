@@ -1,5 +1,11 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 6.7.0
+
+### Minor Changes
+
+- cf32375f: Add `NoInfer<T>` and improve `stub()`
+
 ## 6.6.0
 
 ### Minor Changes
