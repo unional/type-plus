@@ -89,6 +89,7 @@ export * from './testing/stub.js'
 export * from './testing/test_type.js'
 export type { IsNotTuple, IsTuple, NotTupleType, TupleType } from './tuple/tuple_type.js'
 export type { Failed, FailedT } from './type/failed.js'
+export type { NoInfer } from './type/no_infer.js'
 export type {
 	IsNotUndefined,
 	IsUndefined,
