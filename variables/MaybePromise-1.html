@@ -27,12 +27,10 @@
 <li class="tsd-signature" id="__type.transform.__type-1.__type-2"><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">value</span>, <span class="tsd-kind-parameter">transformer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Transforms the value within the promise.</p>
-
-<h3>Returns</h3><p>a new promise with the transformed result.</p>
 </div>
-<section class="tsd-panel tsd-type-parameters">
+<section class="tsd-panel">
 <h4>Type Parameters</h4>
-<ul class="tsd-type-parameters">
+<ul class="tsd-type-parameter-list">
 <li>
 <h4><span class="tsd-kind-type-parameter">T</span></h4></li>
 <li>
@@ -55,18 +53,16 @@
 <li>
 <h5><span class="tsd-kind-parameter">value</span>: <span class="tsd-signature-type tsd-kind-type-parameter">T</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type tsd-kind-type-parameter">R</span></h4></li></ul></li></ul></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span></h4></li>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span></h4><p>a new promise with the transformed result.</p>
+</li>
 <li class="tsd-signature" id="__type.transform.__type-1.__type-3"><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">value</span>, <span class="tsd-kind-parameter">transformer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><br/><span>    </span><span class="tsd-signature-symbol">? </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><br/><span>    </span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type tsd-kind-type-parameter">R</span></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Transforms the value, or if the value is a promise,
 transform the resolved value of the promise.</p>
-
-<h3>Returns</h3><p>the transformed result,
-or if the value is a promise, a new promse with the transformed result.</p>
 </div>
-<section class="tsd-panel tsd-type-parameters">
+<section class="tsd-panel">
 <h4>Type Parameters</h4>
-<ul class="tsd-type-parameters">
+<ul class="tsd-type-parameter-list">
 <li>
 <h4><span class="tsd-kind-type-parameter">T</span></h4></li>
 <li>
@@ -89,10 +85,12 @@ or if the value is a promise, a new promse with the transformed result.</p>
 <li>
 <h5><span class="tsd-kind-parameter">value</span>: <span class="tsd-signature-type tsd-kind-type-parameter">T</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type tsd-kind-type-parameter">R</span></h4></li></ul></li></ul></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><br/><span>    </span><span class="tsd-signature-symbol">? </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><br/><span>    </span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type tsd-kind-type-parameter">R</span></h4></li></ul></li></ul></li></ul></div><aside class="tsd-sources">
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><br/><span>    </span><span class="tsd-signature-symbol">? </span><span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">R</span><span class="tsd-signature-symbol">&gt;</span><br/><span>    </span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type tsd-kind-type-parameter">R</span></h4><p>the transformed result,
+or if the value is a promise, a new promse with the transformed result.</p>
+</li></ul></li></ul></li></ul></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/ad532a2b/ts/promise/MaybePromise.ts#L6">ts/promise/MaybePromise.ts:6</a></li>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/ad532a2b/ts/promise/MaybePromise.ts#L29">ts/promise/MaybePromise.ts:29</a></li></ul></aside></div>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/cf32375f/ts/promise/MaybePromise.ts#L6">ts/promise/MaybePromise.ts:6</a></li>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/cf32375f/ts/promise/MaybePromise.ts#L29">ts/promise/MaybePromise.ts:29</a></li></ul></aside></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -406,6 +404,7 @@ or if the value is a promise, a new promse with the transformed result.</p>
 <li><a href="../types/MaybePromise.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Maybe<wbr/>Promise</span></a></li>
 <li><a href="../types/Negative.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Negative</span></a></li>
 <li><a href="../types/NeverType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Never<wbr/>Type</span></a></li>
+<li><a href="../types/NoInfer.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>No<wbr/>Infer</span></a></li>
 <li><a href="../types/NonComposableTypes.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Non<wbr/>Composable<wbr/>Types</span></a></li>
 <li><a href="../types/NonNull.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Non<wbr/>Null</span></a></li>
 <li><a href="../types/NonUndefined.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Non<wbr/>Undefined</span></a></li>

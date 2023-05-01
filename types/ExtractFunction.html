@@ -20,16 +20,16 @@
 <p>It works with interact of functions, but not on function overloads and union.</p>
 
 <h3>Note</h3><p>does not work with function overloads.</p>
-<pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-0"> </span><span class="hl-9">type</span><span class="hl-0"> { </span><span class="hl-8">ExtractFunction</span><span class="hl-0"> } </span><span class="hl-9">from</span><span class="hl-0"> </span><span class="hl-1">&#39;type-plus&#39;</span><br/><br/><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">ExtractFunction</span><span class="hl-0">&lt;{</span><br/><span class="hl-0">  () </span><span class="hl-2">=&gt;</span><span class="hl-0"> </span><span class="hl-4">void</span><br/><span class="hl-0">  </span><span class="hl-8">a</span><span class="hl-0">: </span><span class="hl-5">1</span><br/><span class="hl-0">}&gt; </span><span class="hl-6">// () =&gt; void</span>
-</code></pre>
+<pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-1"> </span><span class="hl-9">type</span><span class="hl-1"> { </span><span class="hl-8">ExtractFunction</span><span class="hl-1"> } </span><span class="hl-9">from</span><span class="hl-1"> </span><span class="hl-2">&#39;type-plus&#39;</span><br/><br/><span class="hl-3">type</span><span class="hl-1"> </span><span class="hl-5">R</span><span class="hl-1"> = </span><span class="hl-5">ExtractFunction</span><span class="hl-1">&lt;{</span><br/><span class="hl-1">  () </span><span class="hl-3">=&gt;</span><span class="hl-1"> </span><span class="hl-5">void</span><br/><span class="hl-1">  </span><span class="hl-8">a</span><span class="hl-1">: </span><span class="hl-6">1</span><br/><span class="hl-1">}&gt; </span><span class="hl-7">// () =&gt; void</span>
+</code><button>Copy</button></pre>
 </div>
-<section class="tsd-panel tsd-type-parameters">
+<section class="tsd-panel">
 <h4>Type Parameters</h4>
-<ul class="tsd-type-parameters">
+<ul class="tsd-type-parameter-list">
 <li>
 <h4><span class="tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol"> extends </span><a href="AnyFunction.html" class="tsd-signature-type tsd-kind-type-alias">AnyFunction</a></h4></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/ad532a2b/ts/function/extract_function.ts#L18">ts/function/extract_function.ts:18</a></li></ul></aside></div>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/cf32375f/ts/function/extract_function.ts#L18">ts/function/extract_function.ts:18</a></li></ul></aside></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -343,6 +343,7 @@
 <li><a href="MaybePromise.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Maybe<wbr/>Promise</span></a></li>
 <li><a href="Negative.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Negative</span></a></li>
 <li><a href="NeverType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Never<wbr/>Type</span></a></li>
+<li><a href="NoInfer.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>No<wbr/>Infer</span></a></li>
 <li><a href="NonComposableTypes.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Non<wbr/>Composable<wbr/>Types</span></a></li>
 <li><a href="NonNull.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Non<wbr/>Null</span></a></li>
 <li><a href="NonUndefined.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Non<wbr/>Undefined</span></a></li>

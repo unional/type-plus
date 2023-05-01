@@ -18,12 +18,12 @@
 <div class="tsd-signature"><span class="tsd-kind-type-alias">Never<wbr/>Type</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">Then</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">Else</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">]</span><br/><span>    </span><span class="tsd-signature-symbol">? </span><span class="tsd-signature-type tsd-kind-type-parameter">Then</span><br/><span>    </span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type tsd-kind-type-parameter">Else</span></div>
 <div class="tsd-comment tsd-typography"><p>Check if <code>T</code> is <code>never</code>.
 If it is not, returns <code>Not_Never</code>.</p>
-<pre><code class="language-ts"><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">NeverType</span><span class="hl-0">&lt;</span><span class="hl-4">never</span><span class="hl-0">&gt; </span><span class="hl-6">// never</span><br/><br/><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">NeverType</span><span class="hl-0">&lt;</span><span class="hl-5">1</span><span class="hl-0">&gt; </span><span class="hl-6">// &#39;not never&#39;</span>
-</code></pre>
+<pre><code class="language-ts"><span class="hl-3">type</span><span class="hl-1"> </span><span class="hl-5">R</span><span class="hl-1"> = </span><span class="hl-5">NeverType</span><span class="hl-1">&lt;</span><span class="hl-5">never</span><span class="hl-1">&gt; </span><span class="hl-7">// never</span><br/><br/><span class="hl-3">type</span><span class="hl-1"> </span><span class="hl-5">R</span><span class="hl-1"> = </span><span class="hl-5">NeverType</span><span class="hl-1">&lt;</span><span class="hl-6">1</span><span class="hl-1">&gt; </span><span class="hl-7">// &#39;not never&#39;</span>
+</code><button>Copy</button></pre>
 </div>
-<section class="tsd-panel tsd-type-parameters">
+<section class="tsd-panel">
 <h4>Type Parameters</h4>
-<ul class="tsd-type-parameters">
+<ul class="tsd-type-parameter-list">
 <li>
 <h4><span class="tsd-kind-type-parameter">T</span></h4></li>
 <li>
@@ -31,7 +31,7 @@ If it is not, returns <code>Not_Never</code>.</p>
 <li>
 <h4><span class="tsd-kind-type-parameter">Else</span> = <a href="Not_Never.html" class="tsd-signature-type tsd-kind-type-alias">Not_Never</a></h4></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/ad532a2b/ts/never/never_type.ts#L24">ts/never/never_type.ts:24</a></li></ul></aside></div>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/cf32375f/ts/never/never_type.ts#L24">ts/never/never_type.ts:24</a></li></ul></aside></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -345,6 +345,7 @@ If it is not, returns <code>Not_Never</code>.</p>
 <li><a href="MaybePromise.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Maybe<wbr/>Promise</span></a></li>
 <li><a href="Negative.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Negative</span></a></li>
 <li><a href="NeverType.html" class="current"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Never<wbr/>Type</span></a></li>
+<li><a href="NoInfer.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>No<wbr/>Infer</span></a></li>
 <li><a href="NonComposableTypes.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Non<wbr/>Composable<wbr/>Types</span></a></li>
 <li><a href="NonNull.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Non<wbr/>Null</span></a></li>
 <li><a href="NonUndefined.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Non<wbr/>Undefined</span></a></li>
