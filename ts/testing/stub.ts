@@ -17,11 +17,18 @@ export function stub<T>(stub: unknown): T {
  * builds a stub function
  */
 function build<T>(): (stub?: stub.Param<T>) => T
-function build<T>(init: RecursivePartial<T> | (() => RecursivePartial<T>)): (stub?: RecursivePartial<T>) => T
-function build<T>(init?: RecursivePartial<T> | (() => RecursivePartial<T>)) {
+function build<T>(
+	init: RecursivePartial<T> | ((stub?: stub.Param<T>) => RecursivePartial<T>)
+): (stub?: stub.Param<T>) => T
+function build<T>(init?: RecursivePartial<T> | ((stub?: stub.Param<T>) => RecursivePartial<T>)) {
 	return function (value?: stub.Param<T>) {
-		const initValue = typeof init === 'function' ? init() : init
-		return initValue ? stub(requiredDeep(initValue, value) as any) : stub(value as any)
+		if (typeof init === 'function') {
+			return init(value)
+		}
+		if (init) {
+			return requiredDeep(init, value)
+		}
+		return value
 	}
 }
 
