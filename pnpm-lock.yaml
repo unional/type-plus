@@ -22,8 +22,8 @@ devDependencies:
     specifier: ^29.5.0
     version: 29.5.0
   '@repobuddy/jest':
-    specifier: ^3.1.5
-    version: 3.1.5(jest-watch-suspend@1.1.2)(jest-watch-toggle-config-2@2.1.0)(jest-watch-typeahead@2.2.2)(jest@29.5.0)(ts-jest@29.1.0)
+    specifier: ^3.4.0
+    version: 3.4.0(jest-watch-suspend@1.1.2)(jest-watch-toggle-config-2@2.1.0)(jest-watch-typeahead@2.2.2)(jest@29.5.0)(ts-jest@29.1.0)
   '@size-limit/esbuild-why':
     specifier: ^8.2.4
     version: 8.2.4(size-limit@8.2.4)
@@ -1415,7 +1415,7 @@ packages:
   /@just-func/types@0.5.0:
     resolution: {integrity: sha512-yPH5kX7Y1QjTvoUxLK1/vhWjJq1OqeWJ5qkTjWVVkRdk1qpnt6eGoqmb02OySzkyAFbQgnowv8F8M2bfgrkJrw==}
     dependencies:
-      type-plus: 4.18.1
+      type-plus: 4.18.0
     dev: true
 
   /@manypkg/find-root@1.1.0:
@@ -1459,12 +1459,12 @@ packages:
       fastq: 1.14.0
     dev: true
 
-  /@repobuddy/jest@3.1.5(jest-watch-suspend@1.1.2)(jest-watch-toggle-config-2@2.1.0)(jest-watch-typeahead@2.2.2)(jest@29.5.0)(ts-jest@29.1.0):
-    resolution: {integrity: sha512-YQUUjJhOPe4e2TSPKe3Hfte/JkkmciJfGKN99onFwG/V2hs62+pxKDFjlX85FGV44j0ENpFEjQjWuPM09S1mww==}
+  /@repobuddy/jest@3.4.0(jest-watch-suspend@1.1.2)(jest-watch-toggle-config-2@2.1.0)(jest-watch-typeahead@2.2.2)(jest@29.5.0)(ts-jest@29.1.0):
+    resolution: {integrity: sha512-a/yAN0zwijbLI+Dqo4tPZq2qlkae8smcWazlU/mUiaeELd/EjkmrEO4XnOev4xVQK14c4a4nabHWhULoaD2iZQ==}
     peerDependencies:
       '@kayahr/jest-electron-runner': ^29
       identity-obj-proxy: ^3.0.0
-      jest: '>=29.4.0'
+      jest: '>=29.5.0'
       jest-esm-transformer-2: ^1
       jest-watch-suspend: ^1
       jest-watch-toggle-config-2: ^2
@@ -1495,7 +1495,7 @@ packages:
       resolve.imports: 2.0.3
       satisfier: 5.4.2
       ts-jest: 29.1.0(@babel/core@7.21.4)(jest@29.5.0)(typescript@5.0.2)
-      type-plus: 6.3.0
+      type-plus: 6.7.1
     dev: true
 
   /@rushstack/eslint-patch@1.2.0:
@@ -5563,7 +5563,7 @@ packages:
       '@just-func/types': 0.5.0
       iso-error: 5.0.2
       ms: 2.1.3
-      type-plus: 4.18.1
+      type-plus: 4.18.0
       upper-case: 2.0.2
     dev: true
 
@@ -5920,15 +5920,8 @@ packages:
       unpartial: 1.0.4
     dev: true
 
-  /type-plus@4.18.1:
-    resolution: {integrity: sha512-/Dq0K/TUedajerhr2JuXhw44V2tiAniGvyZJL23PqxjUzxrXeASWvfi01Bo8o6mudRXJL/sfBD+KZiHSzrhZ9g==}
-    dependencies:
-      tersify: 3.11.1
-      unpartial: 1.0.4
-    dev: true
-
-  /type-plus@6.3.0:
-    resolution: {integrity: sha512-aEhBC+XRZAOa/Z1D+krYABmHnZODNQNPLrQpmKlSlyjdhyANaH5k76InNOJJ5E7Vr9k3QvHjum2S0xGPbmyQIQ==}
+  /type-plus@6.7.1:
+    resolution: {integrity: sha512-axN0qepds6XXqZIERK4DFXPAQyeqHhp2AKcjVXZoBxeC0Vvq2ePyfAMlhBmAizP2p6gdes+c9VnaMSNRzS6exg==}
     dependencies:
       tersify: 3.11.1
       unpartial: 1.0.4

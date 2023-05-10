@@ -53,7 +53,8 @@
 		"test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watch",
 		"verify": "npm-run-all clean -p build depcheck lint coverage -p size",
 		"version": "changeset version",
-		"watch": "jest --watch"
+		"watch": "jest --watch",
+		"w": "jest --watch"
 	},
 	"dependencies": {
 		"tersify": "^3.11.1",
@@ -64,7 +65,7 @@
 		"@commitlint/cli": "^17.0.2",
 		"@commitlint/config-conventional": "^17.0.2",
 		"@jest/globals": "^29.5.0",
-		"@repobuddy/jest": "^3.1.5",
+		"@repobuddy/jest": "^3.4.0",
 		"@size-limit/esbuild-why": "^8.2.4",
 		"@size-limit/preset-small-lib": "^8.2.4",
 		"@types/node": "^18.0.0",

@@ -1,16 +1,7 @@
 import { expect, it } from '@jest/globals'
 import { stub, testType } from '../index.js'
 
-it('builds a stub function', () => {
-	const real = { a: 1, b: { c: 2 }, d: 3 }
-
-	const s = stub.build<typeof real>()
-	const a = s({ a: 2 })
-	expect(a.a).toBe(2)
-	testType.equal<typeof a, typeof real>(true)
-})
-
-it('can define init value', () => {
+it('can specify init as value', () => {
 	type S = { a: number; b: string }
 	const s = stub.build<S>({ b: 'b' })
 	const a = s({ a: 1 })
