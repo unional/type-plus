@@ -62,10 +62,7 @@ function builder<T>(init: RecursivePartial<T> | ((stub?: RecursivePartial<T>) =>
 					if (typeof init === 'function') {
 						return init(acc)
 					}
-					if (init) {
-						return requiredDeep<RecursivePartial<T>>(init, acc)
-					}
-					return acc
+					return requiredDeep<RecursivePartial<T>>(init, acc)
 				}, stub) as T
 			}
 		}
