@@ -24,3 +24,7 @@ it('returns value as type A for inspection', () => {
 it('compares intersection types', () => {
 	testType.equal<Omit<{ a: 1; b: 2 }, 'a'> & { c: 3 }, { b: 2; c: 3 }>(true)
 })
+
+it('compares 3 types', () => {
+	testType.equal<1, 1, 1>(true)
+})

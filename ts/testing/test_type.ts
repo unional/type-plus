@@ -1,13 +1,19 @@
 import type { IsAny } from '../any/any_type.js'
+import type { IsBigint } from '../bigint/bigint_type.js'
+import type { IsStrictBigint } from '../bigint/strict_bigint_type.js'
 import type { IsBoolean } from '../boolean/boolean_type.js'
 import type { IsFalse } from '../boolean/false_type.js'
 import type { IsStrictBoolean } from '../boolean/strict_boolean_type.js'
 import type { IsTrue } from '../boolean/true_type.js'
 import type { Equal } from '../equal/equal.js'
 import type { IsNever } from '../never/never_type.js'
-import { IsNumber } from '../number/number_type.js'
+import type { IsNull } from '../null/null_type.js'
+import type { IsNumber } from '../number/number_type.js'
 import type { IsStrictNumber } from '../number/strict_number_type.js'
 import type { CanAssign } from '../predicates/CanAssign.js'
+import type { IsStrictString } from '../string/strict_string_type.js'
+import type { IsString } from '../string/string_type.js'
+import type { IsUndefined } from '../undefined/undefined_type.js'
 import type { IsUnknown } from '../unknown/unknown_type.js'
 import type { IsVoid } from '../void/void_type.js'
 
@@ -122,6 +128,54 @@ export const testType = {
 	 * @return `expected` as `T` for type inspection.
 	 */
 	number<T>(expected: IsNumber<T>) {
+		return expected as T
+	},
+	/**
+	 * Check if type `T` is exactly `string`.
+	 *
+	 * @return `expected` as `T` for type inspection.
+	 */
+	strictString<T>(expected: IsStrictString<T>) {
+		return expected as T
+	},
+	/**
+	 * Check if type `T` is `string` or string literals.
+	 *
+	 * @return `expected` as `T` for type inspection.
+	 */
+	string<T>(expected: IsString<T>) {
+		return expected as T
+	},
+	/**
+	 * Check if type `T` is exactly `bigint`.
+	 *
+	 * @return `expected` as `T` for type inspection.
+	 */
+	strictBigint<T>(expected: IsStrictBigint<T>) {
+		return expected as T
+	},
+	/**
+	 * Check if type `T` is `bigint` or bigint literals.
+	 *
+	 * @return `expected` as `T` for type inspection.
+	 */
+	bigint<T>(expected: IsBigint<T>) {
+		return expected as T
+	},
+	/**
+	 * Check if type `T` is exactly `undefined`.
+	 *
+	 * @return `expected` as `T` for type inspection.
+	 */
+	undefined<T>(expected: IsUndefined<T>) {
+		return expected as T
+	},
+	/**
+	 * Check if type `T` is exactly `null`.
+	 *
+	 * @return `expected` as `T` for type inspection.
+	 */
+	null<T>(expected: IsNull<T>) {
 		return expected as T
 	}
 }

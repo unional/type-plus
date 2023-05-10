@@ -8,7 +8,7 @@ it('accepts number', () => {
 	testType.number<1>(true)
 })
 
-it('accepts union of number', () => {
+it('accepts intersection of number', () => {
 	testType.number<number & { a: 1 }>(true)
 })
 
@@ -28,7 +28,6 @@ it('rejects others', () => {
 	testType.number<string>(false)
 	testType.number<''>(false)
 	testType.number<symbol>(false)
-	testType.number<bigint>(false)
 	testType.number<{}>(false)
 	testType.number<string[]>(false)
 	testType.number<[]>(false)

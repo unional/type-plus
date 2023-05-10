@@ -7,7 +7,7 @@ it('accepts boolean', () => {
 	testType.boolean<false>(true)
 })
 
-it('accepts union of boolean', () => {
+it('accepts intersection of boolean', () => {
 	testType.boolean<boolean & { a: 1 }>(true)
 })
 
