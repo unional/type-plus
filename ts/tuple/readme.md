@@ -1,7 +1,6 @@
-# unknown
+# Tuple
 
-`unknown` is one of the top type in TypeScript.
-It is a "safer" variant of `any` that you cannot use the value until there are some type guards or type assertions to the value.
+A *tuple type* is another sort of `Array` type that knows exactly how many elements it contains, and exactly which types it contains at specific positions.
 
 ## Type Checking
 
@@ -10,18 +9,20 @@ The `TupleType<T>` and friends are used to check if `T` is a tuple, excluding ar
 ```ts
 import type { TupleType } from 'type-plus'
 
-type R = TupleType<unknown> // unknown
+type R = TupleType<[]> // []
+type R = TupleType<[1]> // [1]
 
-type R = TupleType<1> // never
+type R = TupleType<number[]> // never
+type R = TupleType<number> // never
 ```
 
-- [`TupleType<T, Then = T, Else = never>`](unknown_type.ts#L16): check if `T` is `unknown`.
-- [`IsUnknown<T, Then = true, Else = false`](unknown_type.ts#L35): is `T` `unknown`.
-- [`NotUnknownType<T, Then = T, Else = never>`](unknown_type.ts#L50): check if `T` is not `unknown`.
-- [`IsNotUnknown<T, Then = true, Else = false>`](unknown_type.ts#L65): is `T` not `unknown`.
+- [`TupleType<T, Then = T, Else = never>`](tuple_type.ts#L16): check if `T` is a *tuple*.
+- [`IsTuple<T, Then = true, Else = false`](tuple_type.ts#L35): is `T` *tuple*.
+- [`NotTupleType<T, Then = T, Else = never>`](tuple_type.ts#L50): check if `T` is not *tuple*.
+- [`IsNotTuple<T, Then = true, Else = false>`](tuple_type.ts#L65): is `T` not *tuple*.
 
 ## References
 
 - [Handbook]
 
-[handbook]: https://www.typescriptlang.org/docs/handbook/2/functions.html#unknown
+[handbook]: https://www.typescriptlang.org/docs/handbook/2/objects.html#tuple-types

@@ -327,8 +327,6 @@ You can learn more in their respective sections:
 - [unknown](./ts/unknown/readme.md)
 - [void](./ts/void/readme.md)
 
-These checks
-
 ## Type Utilities
 
 `type-plus` also provides additional type utilities.
