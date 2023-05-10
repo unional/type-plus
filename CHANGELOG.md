@@ -1,5 +1,23 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 6.8.0
+
+### Minor Changes
+
+- 38b59e9b: Add `stub.builder()`
+- c2b6f375: Add more `testType.*`:
+
+  `testType.undefined()`
+  `testType.null()`
+  `testType.bigint()`
+  `testType.strictBigint()`
+  `testType.string()`
+  `testType.strictString()`
+
+### Patch Changes
+
+- 38b59e9b: `stub.build()` should not accept no `init` value.
+
 ## 6.7.1
 
 ### Patch Changes
