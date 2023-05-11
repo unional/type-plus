@@ -1,5 +1,11 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 6.8.1
+
+### Patch Changes
+
+- caa70e9e: Support isolated stub.builder use case.
+
 ## 6.8.0
 
 ### Minor Changes
