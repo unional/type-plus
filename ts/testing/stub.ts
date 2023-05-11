@@ -38,7 +38,12 @@ function build<T>(init: RecursivePartial<T> | ((stub?: RecursivePartial<T>) => R
  * ```
  */
 function builder<T>(init: RecursivePartial<T> | ((stub?: RecursivePartial<T>) => RecursivePartial<T>)) {
-	const initializers = [init]
+	return builderInternal([init])
+}
+
+function builderInternal<T>(
+	initializers: Array<RecursivePartial<T> | ((stub?: RecursivePartial<T>) => RecursivePartial<T>)>
+) {
 	const builder = {
 		/**
 		 * Adds an init object or handler to the builder.
@@ -49,8 +54,7 @@ function builder<T>(init: RecursivePartial<T> | ((stub?: RecursivePartial<T>) =>
 		 * @return {Builder<T>} The builder instance.
 		 */
 		with(init: RecursivePartial<T> | ((stub?: RecursivePartial<T>) => RecursivePartial<T>)) {
-			initializers.push(init)
-			return builder
+			return builderInternal([...initializers, init])
 		},
 		/**
 		 * Creates the resulting stub function.
@@ -69,6 +73,5 @@ function builder<T>(init: RecursivePartial<T> | ((stub?: RecursivePartial<T>) =>
 	}
 	return builder
 }
-
 stub.build = build
 stub.builder = builder

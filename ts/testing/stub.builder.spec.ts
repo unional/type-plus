@@ -21,14 +21,31 @@ it('can add init object to builder', () => {
 })
 
 it('can add init function to builder', () => {
-	const s = stub.builder<{ a: number; b?: string }>(input => ({
-		...input,
-		a: (input?.a ?? 0) + 1 }))
+	const s = stub
+		.builder<{ a: number; b?: string }>(input => ({
+			...input,
+			a: (input?.a ?? 0) + 1
+		}))
 		.with(input => ({
 			...input,
-			b: (input?.b ?? '0') + '1' }))
+			b: (input?.b ?? '0') + '1'
+		}))
 		.create()
 	expect(s()).toEqual({ a: 1, b: '01' })
 	expect(s({ a: 1 })).toEqual({ a: 2, b: '01' })
 	expect(s({ a: 1 })).toEqual({ a: 2, b: '01' })
+})
+
+it('can be use to create multiple builders', () => {
+	const s = stub.builder<{ a: number; b: number; c: number }>({ a: 1 })
+	const s1 = s.with({ b: 2 })
+	const s2 = s.with({ b: 3 })
+	const b1 = s1.create()
+	const b2 = s2.create()
+
+	expect(b1({ c: 0 })).toEqual({ a: 1, b: 2, c: 0 })
+	expect(b1({ c: 1 })).toEqual({ a: 1, b: 2, c: 1 })
+
+	expect(b2({ c: 0 })).toEqual({ a: 1, b: 3, c: 0 })
+	expect(b2({ c: 1 })).toEqual({ a: 1, b: 3, c: 1 })
 })
