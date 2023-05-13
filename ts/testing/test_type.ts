@@ -23,7 +23,7 @@ import type { IsUndefined } from '../undefined/undefined_type.js'
 import type { IsUnknown } from '../unknown/unknown_type.js'
 import type { IsVoid } from '../void/void_type.js'
 
-type TestType = {
+interface TestType {
 	/**
 	 * Check if type `A` is equal to type `B` and `C`.
 	 *
