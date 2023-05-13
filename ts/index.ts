@@ -87,6 +87,7 @@ export type { IsNotString, IsString, NotStringType, StringType } from './string/
 export type { IsNotSymbol, IsSymbol, NotSymbolType, SymbolType } from './symbol/symbol_type.js'
 export * from './testing/stub.js'
 export * from './testing/test_type.js'
+export * from './tuple/create_tuple.js'
 export type { IsNotTuple, IsTuple, NotTupleType, TupleType } from './tuple/tuple_type.js'
 export type { Failed, FailedT } from './type/failed.js'
 export type { NoInfer } from './type/no_infer.js'
@@ -100,4 +101,3 @@ export type { UnionKeys } from './union_keys.js'
 export type { IsNotUnknown, IsUnknown, NotUnknownType, UnknownType } from './unknown/unknown_type.js'
 export * from './utils/index.js'
 export type { IsNotVoid, IsVoid, NotVoidType, VoidType } from './void/void_type.js'
-

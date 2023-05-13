@@ -1,5 +1,4 @@
 export * from './common_prop_keys.js'
-export * from './create_tuple.js'
 export * from './drop.js'
 export * from './filter.js'
 export * from './find_first.js'
