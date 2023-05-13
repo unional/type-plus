@@ -372,7 +372,7 @@ it('works with complex cases', () => {
 	testType.false<NotEqual<Head<[1, 2, 3]>, 1>>(true)
 })
 
-it('works with complext cases 2', () => {
+it('works with complex cases 2', () => {
 	type A = () => 'foo'
 	type B = () => 'foo'
 

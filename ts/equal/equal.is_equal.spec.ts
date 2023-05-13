@@ -335,7 +335,7 @@ it('works with union of functions', () => {
 	testType.false<Equal<((v: string) => string) | ((v: number) => number), (v: string) => string>>(true)
 })
 
-it('detects liternal and widen type are different', () => {
+it('detects literal and widen type are different', () => {
 	testType.false<Equal<1, number>>(true)
 	testType.false<Equal<number, 1>>(true)
 	testType.false<Equal<1 & { a: 1 }, number & { a: 1 }>>(true)
@@ -394,7 +394,7 @@ it('works with complex cases', () => {
 	testType.true<Equal<Head<[1, 2, 3]>, 1>>(true)
 })
 
-it('works with complext cases 2', () => {
+it('works with complex cases 2', () => {
 	type A = () => 'foo'
 	type B = () => 'foo'
 

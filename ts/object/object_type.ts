@@ -16,7 +16,7 @@ export type ObjectType<T, Then = T, Else = never> = IsAnyOrNever<T, Else, [T] ex
 /**
  * Is `T` an `object`.
  *
- * Note that `Function` is also an `object`.
+ * Note that `Function`, `Array`, and *tuple* are also `object`.
  *
  * ```ts
  * type R = IsObject<{}> // true
