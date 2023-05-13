@@ -1,6 +1,6 @@
 import type { IsAny } from '../any/any_type.js'
 import type { Equal } from '../equal/equal.js'
-import type { CreateTuple } from './create_tuple.js'
+import type { CreateTuple } from '../tuple/create_tuple.js'
 import type { UnionOfValues } from './union_of_values.js'
 
 export type PadLeft<A extends any[], Total extends number, PadWith = any> = number extends A['length']

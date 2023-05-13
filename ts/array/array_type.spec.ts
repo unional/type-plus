@@ -16,6 +16,7 @@ it('returns never for special types', () => {
 	testType.never<ArrayType<any>>(true)
 	testType.never<ArrayType<never>>(true)
 })
+
 it('returns never for other types', () => {
 	testType.never<ArrayType<undefined>>(true)
 	testType.never<ArrayType<null>>(true)
