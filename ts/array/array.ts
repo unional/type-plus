@@ -1,3 +1,4 @@
+import type { IsStrictNumber } from '../number/strict_number_type.js'
 import type { TupleType } from '../tuple/tuple_type.js'
 import type { IndexAt } from './array_index.js'
 
@@ -16,7 +17,7 @@ import type { IndexAt } from './array_index.js'
  */
 export type At<A extends unknown[], N extends number, Fail = never> = IndexAt<A, N, Fail> extends infer I
 	? I extends number
-		? TupleType<A, A[I], A[I] | undefined>
+		? TupleType<A, IsStrictNumber<I, A[I] | undefined, A[I]>, A[I] | undefined>
 		: Fail
 	: never
 

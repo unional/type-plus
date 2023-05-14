@@ -12,7 +12,7 @@ test('behavior of tuple.at()', () => {
 	const tuple = [1, 2, '3'] as const
 	const first = tuple.at(0)
 	expect(first).toBe(1)
-	// @ts-expect-error
+	// @ts-expect-error This is an limitation of the existing type
 	testType.equal<typeof first, number>(true)
 })
 
@@ -49,8 +49,8 @@ it('gets type of element in tuple', () => {
 	testType.equal<ArrayPlus.At<['a', 1, string], -1>, string>(true)
 	testType.equal<ArrayPlus.At<['a', 1, string], -2>, 1>(true)
 	testType.equal<ArrayPlus.At<['a', 1, string], -3>, 'a'>(true)
-	testType.equal<ArrayPlus.At<['a', 1, string], number>, 'a' | 1 | string>(true)
-	testType.equal<ArrayPlus.At<['a', 1, string], any>, 'a' | 1 | string>(true)
+	testType.equal<ArrayPlus.At<['a', 1, string], number>,'a' | 1 | string | undefined>(true)
+	testType.equal<ArrayPlus.At<['a', 1, string], any>, 'a' | 1 | string | undefined>(true)
 })
 
 it('gets never if N is out of range', () => {
