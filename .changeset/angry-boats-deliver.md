@@ -2,6 +2,6 @@
 'type-plus': minor
 ---
 
-Expose `FindFirst` also as `ArrayPlus.Find`.
+Expose `FindLast` also as `ArrayPlus.FindList`.
 
 Improved its handling of array.

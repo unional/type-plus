@@ -102,6 +102,22 @@ ArrayPlus.Find<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
 ArrayPlus.Find<[true, 1, 'x', 3], string> // 'x'
 ```
 
+### [`ArrayPlus.FindLast`](./array.find_last.ts#L17)
+
+> `ArrayPlus.FindLast<A, Criteria>
+
+Returns the last type in the array or tuple that matches the `Criteria`.
+
+If the `Criteria` is not met, it will return `never'.
+
+For `Array<T>`, it will return `T | undefined` if `T` satisfies `Criteria`.
+
+```ts
+ArrayPlus.FindLast<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
+
+ArrayPlus.FindLast<[true, 123, 'x', 321], number> // 321
+```
+
 ## Builtin array methods
 
 JavaScript has many builtin array methods.
@@ -123,12 +139,13 @@ while some common ones are exposed at top-level.
 Here are the list of array methods and their corresponding type-level functions, if availableL
 
 - ✅ `at`: [`ArrayPlus.At`](#arrayplusat)
-- ✅ `concat`: [`Concat`](#arrayplusconcat)
+- ✅ `concat`: [`Concat` | `ArrayPlus.Concat`](#arrayplusconcat)
 - 🚧 `copyWithin`:  `CopyWithin<A, Target, Start, End>`
 - ✴️ `entries`: [`ArrayPlus.Entries`](#arrayplusentries)
 - 🚧 `every`: `Every<A, Criteria, Then = A, Else = never>`
 - 🚧 `fill`: `Fill<A, V, Start, End>`
-- 🚧 `find`: [`FindFirst` | `ArrayPlus.Find`](#arrayplusfind)
+- ✴️ `find`: [`FindFirst` | `ArrayPlus.Find`](#arrayplusfind)
+  - ✴️ [`FindLast` | `ArrayPlus.FindLast`](#arrayplusfindlast)
 - 🚧 `findIndex`: `FindIndex<A, Criteria> => number | number literal | never`
 - 🚧 `flat`: `Flat<A>`
 - 🚧 `flatMap`: `Flat<A, Criteria, R>`

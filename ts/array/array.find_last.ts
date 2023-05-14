@@ -1,7 +1,7 @@
 import type { TupleType } from '../tuple/tuple_type.js'
 
 /**
- * Returns the first type in the array or tuple that matches the `Criteria`.
+ * Returns the last type in the array or tuple that matches the `Criteria`.
  *
  * If the `Criteria` is not met, it will return `never'.
  *
@@ -11,22 +11,17 @@ import type { TupleType } from '../tuple/tuple_type.js'
  * ```ts
  * ArrayPlus.Find<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
  *
- * ArrayPlus.Find<[true, 1, 'x', 3], string> // 'x'
+ * ArrayPlus.Find<[true, 123, 'x', 321], number> // 321
  * ```
  */
-export type FindFirst<A extends unknown[], Criteria> = TupleType<
+export type FindLast<A extends Array<any>, Criteria> = TupleType<
 	A,
 	A['length'] extends 0
 		? never
-		: A extends [infer Head, ...infer Tail]
-		? Head extends Criteria
-			? Head
-			: FindFirst<Tail, Criteria>
+		: A extends [...infer Heads, infer Last]
+		? Last extends Criteria
+			? Last
+			: FindLast<Heads, Criteria>
 		: never,
 	A extends Array<infer T> ? (T extends Criteria ? T | undefined : never) : never
 >
-
-/**
- * @deprecated use FindFirst
- */
-export type First<A extends any[], Criteria> = FindFirst<A, Criteria>
