@@ -86,6 +86,22 @@ ArrayPlus.Entries<Array<string | number>> // Array<[number, string | number]>
 ArrayPlus.Entries<[1, 2, 3]> // [[0, 1], [1, 2], [2, 3]]
 ```
 
+### [`ArrayPlus.Find`](./array.find.ts#L17)
+
+> `ArrayPlus.Find<A, Criteria>
+
+Returns the first type in the array or tuple that matches the `Criteria`.
+
+If the `Criteria` is not met, it will return `never'.
+
+For `Array<T>`, it will return `T | undefined` if `T` satisfies `Criteria`.
+
+```ts
+ArrayPlus.Find<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
+
+ArrayPlus.Find<[true, 1, 'x', 3], string> // 'x'
+```
+
 ## Builtin array methods
 
 JavaScript has many builtin array methods.
@@ -112,7 +128,7 @@ Here are the list of array methods and their corresponding type-level functions,
 - ✴️ `entries`: [`ArrayPlus.Entries`](#arrayplusentries)
 - 🚧 `every`: `Every<A, Criteria, Then = A, Else = never>`
 - 🚧 `fill`: `Fill<A, V, Start, End>`
-- 🚧 `find`: `Find<A, Criteria> => V | never`
+- 🚧 `find`: [`FindFirst` | `ArrayPlus.Find`](#arrayplusfind)
 - 🚧 `findIndex`: `FindIndex<A, Criteria> => number | number literal | never`
 - 🚧 `flat`: `Flat<A>`
 - 🚧 `flatMap`: `Flat<A, Criteria, R>`
