@@ -109,8 +109,7 @@ Here are the list of array methods and their corresponding type-level functions,
 - ✅ `at`: [`ArrayPlus.At`](#arrayplusat)
 - ✅ `concat`: [`Concat`](#arrayplusconcat)
 - 🚧 `copyWithin`:  `CopyWithin<A, Target, Start, End>`
-- 🚧 ⬇️ `entries`: `Array<T> => Array<[number, T]>`, `Tuple<...T> => [[0, T1], [1, T2], ...[n, Tn]]`\
-  (this is not the same as `array.entries()` which returns `IterableIterator<[number, T]>`)
+- ✴️ `entries`: [`ArrayPlus.Entries`](#arrayplusentries)
 - 🚧 `every`: `Every<A, Criteria, Then = A, Else = never>`
 - 🚧 `fill`: `Fill<A, V, Start, End>`
 - 🚧 `find`: `Find<A, Criteria> => V | never`
