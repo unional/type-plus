@@ -1,5 +1,5 @@
-import { describe, test } from '@jest/globals'
-import { testType, type Some } from '../index.js'
+import { describe, it, test } from '@jest/globals'
+import { testType, type Some, ArrayPlus } from '../index.js'
 
 test('empty array', () => {
 	testType.false<Some<[], any>>(true)
@@ -77,4 +77,8 @@ describe('strict mode', () => {
 		testType.false<Some<1[], number, 'strict'>>(true)
 		testType.false<Some<'a'[], string, 'strict'>>(true)
 	})
+})
+
+it('exposes under ArrayPlus.Some', () => {
+	testType.equal<ArrayPlus.Some<[1, 2, 3], number>, true>(true)
 })
