@@ -35,7 +35,7 @@ please check [`TuplePlus`](../tuple/readme.md#TuplePlus).
 
 ### [`ArrayPlus.At`](./array.ts#L17)
 
-> ArrayPlus.At<A, N, Fail = never>
+> `ArrayPlus.At<A, N, Fail = never>`
 
 Gets the type of the array or tuple `A` at index `N`.
 
@@ -60,6 +60,17 @@ ArrayPlus.At<T, -1> // 3
 If the `N` is out of bound,
 or `N` is not a valid index,
 `ArrayPlus.At` will return the `Fail` case, which defaults to `never`.
+
+### [`ArrayPlus.Concat`](./array.ts#L35)
+
+> `ArrayPlus.Concat<A, B>`
+
+Concats two arrays or tuples.
+
+It is just an alias of `[...A, ...B]`.
+It is added for completeness.
+
+You are encouraged to use `[...A, ...B]` directly.
 
 ## References
 

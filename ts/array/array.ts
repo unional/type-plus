@@ -22,7 +22,7 @@ export type At<A extends unknown[], N extends number, Fail = never> = IndexAt<A,
 	: never
 
 /**
- * Concats two arrays.
+ * Concats two arrays or tuples.
  *
  * alias of: `[...A, ...B]`
  *
