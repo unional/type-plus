@@ -30,7 +30,8 @@
 		"tersify",
 		"typelevel",
 		"typepark",
-		"unpartial"
+		"unpartial",
+		"unshift"
 	],
 	"eslint.enable": true,
 	"files.watcherExclude": {
@@ -61,5 +62,10 @@
 	],
 	"markdown.extension.toc.orderedList": true,
 	"markdownlint.ignore": ".markdownlintignore",
+	"tsimporter.filesToExclude": [
+		"**/cjs",
+		"**/esm",
+		"**/tslib"
+	],
 	"typescript.tsdk": "node_modules/typescript/lib"
 }

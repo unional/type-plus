@@ -20,16 +20,3 @@ export type At<A extends unknown[], N extends number, Fail = never> = IndexAt<A,
 		? TupleType<A, IsStrictNumber<I, A[I] | undefined, A[I]>, A[I] | undefined>
 		: Fail
 	: never
-
-/**
- * Concats two arrays or tuples.
- *
- * alias of: `[...A, ...B]`
- *
- * @alias ArrayPlus.Concat
- *
- * ```ts
- * type R = Concat<[1], [2, 3]> // [1, 2, 3]
- * ```
- */
-export type Concat<A extends unknown[], B extends unknown[]> = [...A, ...B]

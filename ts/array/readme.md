@@ -33,7 +33,7 @@ as *tuples* is a subset of array.
 For *tuple* specific types and type utilities,
 please check [`TuplePlus`](../tuple/readme.md#TuplePlus).
 
-### [`ArrayPlus.At`](./array.ts#L17)
+### [`ArrayPlus.At`](./array.at.ts#L18)
 
 > `ArrayPlus.At<A, N, Fail = never>`
 
@@ -61,7 +61,7 @@ If the `N` is out of bound,
 or `N` is not a valid index,
 `ArrayPlus.At` will return the `Fail` case, which defaults to `never`.
 
-### [`ArrayPlus.Concat`](./array.ts#L35)
+### [`ArrayPlus.Concat`](./array.concat.ts#L12)
 
 > `ArrayPlus.Concat<A, B>`
 
@@ -71,6 +71,68 @@ It is just an alias of `[...A, ...B]`.
 It is added for completeness.
 
 You are encouraged to use `[...A, ...B]` directly.
+
+### [`ArrayPlus.Entries`](./array.entries.ts#L14)
+
+> `ArrayPlus.Entries<A>`
+
+Returns an array of key-value pairs for every entry in the array or tuple.
+
+Note that this is not the same as `Array.entries(A)`,
+which returns an iterable interator.
+
+```ts
+ArrayPlus.Entries<Array<string | number>> // Array<[number, string | number]>
+ArrayPlus.Entries<[1, 2, 3]> // [[0, 1], [1, 2], [2, 3]]
+```
+
+## Builtin array methods
+
+JavaScript has many builtin array methods.
+We will try to bring them to the type-level.
+
+Not all methods can be implemented in the type-level,
+or in the same way.
+
+For example, type-level does not support higher-level generics,
+i.e. it is not possible to pass in a generic type and "invoke" it.
+
+Therefore, methods like `map` and `reduce()` cannot be implemented generically.
+They have to be implemented separately for each specific use case,
+or with reduced capability.
+
+They are exposed under the `ArrayPlus` namespace,
+while some common ones are exposed at top-level.
+
+Here are the list of array methods and their corresponding type-level functions, if availableL
+
+- ✅ `at`: [`ArrayPlus.At`](#arrayplusat)
+- ✅ `concat`: [`Concat`](#arrayplusconcat)
+- 🚧 `copyWithin`:  `CopyWithin<A, Target, Start, End>`
+- 🚧 ⬇️ `entries`: `Array<T> => Array<[number, T]>`, `Tuple<...T> => [[0, T1], [1, T2], ...[n, Tn]]`\
+  (this is not the same as `array.entries()` which returns `IterableIterator<[number, T]>`)
+- 🚧 `every`: `Every<A, Criteria, Then = A, Else = never>`
+- 🚧 `fill`: `Fill<A, V, Start, End>`
+- 🚧 `find`: `Find<A, Criteria> => V | never`
+- 🚧 `findIndex`: `FindIndex<A, Criteria> => number | number literal | never`
+- 🚧 `flat`: `Flat<A>`
+- 🚧 `flatMap`: `Flat<A, Criteria, R>`
+- 🚧 `includes`:
+- 🚧 `join`:
+- 🚧 `keys`:
+- 🚧 `map`: `Map<A, Criteria, R>`
+- 🚧 `pop`: `Pop<A>`
+- 🚧 `push`: `Push<A>`
+- 🚧 `reduce`:
+- 🚧 `reduceRight`:
+- 🚧 `reverse`:
+- 🚧 `shift`:
+- 🚧 `slice`:
+- 🚧 `some`:
+- 🚧 `sort`:
+- 🚧 `splice`:
+- 🚧 `unshift`:
+- 🚧 `values`:
 
 ## References
 
