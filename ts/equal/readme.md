@@ -20,8 +20,8 @@ type R = Equal<[any], [1]> // false
 type R = Equal<{ a: 1 }, { a: 1; b: 2 }> // false
 ```
 
-- [`Equal<A, B, Then = true, Else = false>`](equal.ts#L27): check if `A` and `B` are equal.
-- [`NotEqual<A, B, Then = true, Else = false>`](equal.ts#L88): check if `A` and `B` are not equal.
+- [`IsEqual<A, B, Then = true, Else = false>`](equal.ts#L27): check if `A` and `B` are equal.
+- [`IsNotEqual<A, B, Then = true, Else = false>`](equal.ts#L88): check if `A` and `B` are not equal.
 
 ---
 

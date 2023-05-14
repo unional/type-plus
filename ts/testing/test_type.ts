@@ -6,7 +6,7 @@ import type { IsBoolean } from '../boolean/boolean_type.js'
 import type { IsFalse } from '../boolean/false_type.js'
 import type { IsStrictBoolean } from '../boolean/strict_boolean_type.js'
 import type { IsTrue } from '../boolean/true_type.js'
-import type { Equal } from '../equal/equal.js'
+import type { IsEqual } from '../equal/equal.js'
 import type { IsFunction } from '../function/function_type.js'
 import type { IsStrictFunction } from '../function/strict_function_type.js'
 import type { IsNever } from '../never/never_type.js'
@@ -29,13 +29,13 @@ interface TestType {
 	 *
 	 * @return `expected` as `A` for type inspection.
 	 */
-	equal<A, B, C>(expected: Equal<A, B> & Equal<A, C>): A
+	equal<A, B, C>(expected: IsEqual<A, B> & IsEqual<A, C>): A
 	/**
 	 * Check if type `A` is equal to type `B`.
 	 *
 	 * @return `expected` as `A` for type inspection.
 	 */
-	equal<A, B>(expected: Equal<A, B>): A
+	equal<A, B>(expected: IsEqual<A, B>): A
 	/**
 	 * Check if `A` can assign to `B`.
 	 *

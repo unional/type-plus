@@ -24,7 +24,7 @@ export type {
 export type { IsNotTrue, IsTrue, NotTrueType, TrueType } from './boolean/true_type.js'
 export * from './class/index.js'
 export type { ComposableTypes, NonComposableTypes } from './composable_types.js'
-export type { Equal, NotEqual } from './equal/equal.js'
+export type { Equal, IsEqual, IsNotEqual, NotEqual } from './equal/equal.js'
 export type { AnyFunction } from './function/any_function.js'
 export * from './function/extract_function.js'
 export type { FunctionType, IsFunction, IsNotFunction, NotFunctionType } from './function/function_type.js'

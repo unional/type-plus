@@ -1,4 +1,4 @@
-import type { Equal } from '../equal/equal.js'
+import type { IsEqual } from '../equal/equal.js'
 
 /**
  * Is the subject of type T
@@ -41,4 +41,4 @@ isType.never = isNever
  *
  * @deprecated use `type.equal()` instead
  */
-isType.equal = function <C extends Equal<A, B>, A, B>() {}
+isType.equal = function <C extends IsEqual<A, B>, A, B>() {}

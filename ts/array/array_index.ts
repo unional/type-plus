@@ -1,5 +1,5 @@
 import type { IsAny } from '../any/any_type.js'
-import type { Equal } from '../equal/equal.js'
+import type { IsEqual } from '../equal/equal.js'
 import type { Abs } from '../math/Abs.js'
 import type { GreaterThan } from '../math/GreaterThan.js'
 import type { Subtract } from '../math/Subtract.js'
@@ -19,7 +19,7 @@ import type { StrictNumberType } from '../number/strict_number_type.js'
  * type R = IndexAt<['a', 'b', 'c'], -4> // never
  * ```
  */
-export type IndexAt<A extends Array<unknown>, N extends number, Fail = never> = Equal<
+export type IndexAt<A extends Array<unknown>, N extends number, Fail = never> = IsEqual<
 	A['length'],
 	0,
 	Fail,
