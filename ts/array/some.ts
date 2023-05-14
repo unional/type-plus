@@ -8,17 +8,7 @@ export type Some<
 	Mode extends 'strict' | 'loose' = 'loose',
 	Then = true,
 	Else = false
-> = Mode extends 'strict'
-	? Some.Strict<A, Criteria, Then, Else>
-	: number extends A['length']
-	? UnionOfValues<A> extends Criteria
-		? Then
-		: Else
-	: A['length'] extends 0
-	? Else
-	: A[0] extends Criteria
-	? Then
-	: Some<Tail<A>, Criteria, 'loose', Then, Else>
+> = Mode extends 'strict' ? Some.Strict<A, Criteria, Then, Else> : Some.Loose<A, Criteria, Then, Else>
 
 export namespace Some {
 	export type Strict<A extends any[], Criteria, Then, Else> = number extends A['length']
@@ -30,4 +20,13 @@ export namespace Some {
 		: IsEqual<A[0], Criteria> extends true
 		? Then
 		: Strict<Tail<A>, Criteria, Then, Else>
+	export type Loose<A extends any[], Criteria, Then, Else> = number extends A['length']
+		? UnionOfValues<A> extends Criteria
+			? Then
+			: Else
+		: A['length'] extends 0
+		? Else
+		: A[0] extends Criteria
+		? Then
+		: Loose<Tail<A>, Criteria, Then, Else>
 }
