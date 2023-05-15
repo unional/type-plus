@@ -118,6 +118,24 @@ ArrayPlus.FindLast<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
 ArrayPlus.FindLast<[true, 123, 'x', 321], number> // 321
 ```
 
+### [`ArrayPlus.Some`](./array.some.ts#L23)
+
+> `ArrayPlus.Some<A, Criteria, Mode, Then, Else>`
+
+Determines whether the array type `A` contains any elements that satisfies the specified `Criteria` type.
+
+It operates in `loose` mode by default,
+which means literal types satisfies their widened counterparts.
+You can also change it to `strict` mode.
+
+```ts
+Some<string[], string> // true
+Some<['a', boolean], boolean> // true
+Some<['a', true], boolean> //true
+ *
+Some<['a', true], boolean, 'strict'> // false
+```
+
 ## Builtin array methods
 
 JavaScript has many builtin array methods.
@@ -160,7 +178,7 @@ Here are the list of array methods and their corresponding type-level functions,
 - 🚧 `reverse`:
 - 🚧 `shift`:
 - 🚧 `slice`:
-- 🚧 `some`:
+- ✴️ `some`: [`Some` | `ArrayPlus.Some`](#arrayplussome)
 - 🚧 `sort`:
 - 🚧 `splice`:
 - 🚧 `unshift`:

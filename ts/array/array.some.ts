@@ -1,8 +1,25 @@
 import type { IsEqual } from '../equal/equal.js'
-import { CanAssign } from '../index.js'
+import type { CanAssign } from '../index.js'
 import type { Tail } from './tail.js'
 import type { UnionOfValues } from './union_of_values.js'
 
+/**
+ * Determines whether the array type `A` contains any elements that satisfies the specified `Criteria` type.
+ *
+ * It operates in `loose` mode by default,
+ * which means literal types satisfies their widened counterparts.
+ *
+ * You can also change it to `strict` mode.
+ *
+ * @example
+ * ```ts
+ * Some<string[], string> // true
+ * Some<['a', boolean], boolean> // true
+ * Some<['a', true], boolean> //true
+ *
+ * Some<['a', true], boolean, 'strict'> // false
+ * ```
+ */
 export type Some<
 	A extends any[],
 	Criteria,
@@ -25,13 +42,7 @@ export namespace Some {
 		: StrictTuple<Tail<A>, Criteria, Then, Else>
 
 	export type Loose<A extends unknown[], Criteria, Then, Else> = number extends A['length']
-		? CanAssign<UnionOfValues<A>, Criteria> extends infer C
-			? boolean extends C
-				? Then
-				: C extends true
-				? Then
-				: Else
-			: never
+		? CanAssign<UnionOfValues<A>, Criteria, Then, Else>
 		: LooseTuple<A, Criteria, Then, Else>
 
 	export type LooseTuple<A extends unknown[], Criteria, Then, Else> = A['length'] extends 0

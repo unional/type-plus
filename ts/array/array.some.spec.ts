@@ -1,6 +1,6 @@
 import { describe, it } from '@jest/globals'
 import { testType, type ArrayPlus, type Some } from '../index.js'
-
+;[].some
 it('returns true if array satisfies Criteria', () => {
 	testType.true<Some<number[], number>>(true)
 	testType.true<Some<string[], string>>(true)
@@ -14,7 +14,7 @@ it('returns true if one of the array elements satisfies Criteria', () => {
 	// `Array<number | string>` really means some values are numbers and others are strings.
 	// So when asking "does it has one or more elements that is a number",
 	// the answer should be true
-	testType.true<Some<Array<number | string>, number>>(true)
+	testType.strictBoolean<Some<Array<number | string>, number>>(true)
 })
 
 it('returns false if array does not satisfies Criteria', () => {
@@ -84,6 +84,7 @@ describe('strict mode', () => {
 		testType.true<Some<[string], string, 'strict'>>(true)
 
 		testType.false<Some<['a', true], boolean, 'strict'>>(true)
+		testType.false<Some<['a', true, false], boolean, 'strict'>>(true)
 		testType.false<Some<['a', 1], number, 'strict'>>(true)
 		testType.false<Some<[1, 2, 3, 'a'], string, 'strict'>>(true)
 	})
@@ -97,6 +98,13 @@ describe('strict mode', () => {
 		testType.false<Some<1[], number, 'strict'>>(true)
 		testType.false<Some<'a'[], string, 'strict'>>(true)
 	})
+
+	it('returns true if one of the array elements strictly satisfies Criteria', () => {
+		testType.true<Some<Array<number | string>, number | string, 'strict'>>(true)
+	})
+
+	it.todo('returns true|boolean? if one of the array elements satisfies Criteria')
+	// testType.strictBoolean<Some<Array<number | string>, number, 'strict'>>(true)
 })
 
 it('exposes under ArrayPlus.Some', () => {
