@@ -1,31 +1,21 @@
-import { it, test } from '@jest/globals'
-import { Equal, UnionOfValues, assertType, isType } from '../index.js'
+import { it } from '@jest/globals'
+import { testType, type UnionOfValues } from '../index.js'
 
-test('get value of generic array', () => {
-	type Actual = UnionOfValues<string[]>
-	assertType.isTrue(true as Equal<string, Actual>)
+it('returns type T of Array<T>', () => {
+	testType.equal<UnionOfValues<string[]>, string>(true)
+	testType.equal<UnionOfValues<Array<string | number>>, string | number>(true)
 })
 
-test('tuple get union type of values', () => {
-	type Actual = UnionOfValues<[string, boolean]>
-	assertType.isTrue(true as Equal<string | boolean, Actual>)
+it('returns the union of values of an tuple', () => {
+	testType.equal<UnionOfValues<[string, boolean]>, string | boolean>(true)
 })
 
-it('extracts literal types from a tuple', () => {
-	type R = UnionOfValues<['a', 'b', 'c']>
-
-	isType.equal<true, 'a' | 'b' | 'c', R>()
-})
-
-it('extracts mixed types from tuple', () => {
-	type R = UnionOfValues<['a', 1, true]>
-
-	isType.equal<true, 'a' | 1 | true, R>()
+it('returns literal types from tuple', () => {
+	testType.equal<UnionOfValues<['a', 1, true]>, 'a' | 1 | true>(true)
 })
 
 it('preserves union types', () => {
 	const t: ['a' | 'b', number, boolean] = ['a', 1, true]
 	type R = UnionOfValues<typeof t>
-
-	isType.equal<true, 'a' | 'b' | number | boolean, R>()
+	testType.equal<R, 'a' | 'b' | number | boolean>(true)
 })
