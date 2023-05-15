@@ -1,54 +1,58 @@
-import { describe, test } from '@jest/globals'
-import { CanAssign, assertType, canAssign } from '../index.js'
+import { describe, test, it } from '@jest/globals'
+import { canAssign, testType, type CanAssign } from '../index.js'
 
 describe('CanAssign<A, B>', () => {
 	test('literal type to widen', () => {
-		assertType.isTrue(true as CanAssign<1, number>)
-		assertType.isTrue(true as CanAssign<1, 1>)
-		assertType.isTrue(true as CanAssign<number, number>)
-		assertType.isTrue(true as CanAssign<'a', string>)
-		assertType.isTrue(true as CanAssign<'a', 'a'>)
-		assertType.isTrue(true as CanAssign<string, string>)
-		assertType.isTrue(true as CanAssign<false, boolean>)
-		assertType.isTrue(true as CanAssign<true, boolean>)
-		assertType.isTrue(true as CanAssign<boolean, boolean>)
+		testType.true<CanAssign<1, number>>(true)
+		testType.true<CanAssign<1, 1>>(true)
+		testType.true<CanAssign<number, number>>(true)
+		testType.true<CanAssign<'a', string>>(true)
+		testType.true<CanAssign<'a', 'a'>>(true)
+		testType.true<CanAssign<string, string>>(true)
+		testType.true<CanAssign<false, boolean>>(true)
+		testType.true<CanAssign<true, boolean>>(true)
+		testType.true<CanAssign<boolean, boolean>>(true)
 	})
 	test('base type to literal type fails', () => {
-		assertType.isFalse(false as CanAssign<number, 1>)
-		assertType.isFalse(false as CanAssign<string, 'a'>)
-		assertType.isFalse(false as CanAssign<true, false>)
-		assertType.isFalse(false as CanAssign<false, true>)
-		assertType.isFalse(false as CanAssign<boolean, false>)
-		assertType.isFalse(false as CanAssign<boolean, true>)
+		testType.false<CanAssign<number, 1>>(true)
+		testType.false<CanAssign<string, 'a'>>(true)
+		testType.false<CanAssign<true, false>>(true)
+		testType.false<CanAssign<false, true>>(true)
+		testType.false<CanAssign<boolean, false>>(true)
+		testType.false<CanAssign<boolean, true>>(true)
 	})
 	test('super set to sub set', () => {
-		assertType.isTrue(true as CanAssign<{ a: string; b: number }, { a: string }>)
+		testType.true<CanAssign<{ a: string; b: number }, { a: string }>>(true)
 	})
 	test('sub set to super set fail', () => {
-		assertType.isFalse(false as CanAssign<{ a: string }, { a: string; b: number }>)
+		testType.false<CanAssign<{ a: string }, { a: string; b: number }>>(true)
+	})
+
+	it('distributes union types to return boolean if only part of the union is assignable', () => {
+		testType.strictBoolean<CanAssign<number | string, number>>(true)
 	})
 })
 
 describe('canAssign()', () => {
 	describe('without subject', () => {
 		test('returns a function that check type at compile time', () => {
-			assertType.isTrue(canAssign<{ a: string }>()({ a: 'a' }))
-			assertType.isTrue(canAssign<{ a: string }>()({ a: 'a', b: 'b' }))
+			testType.true<true>(canAssign<{ a: string }>()({ a: 'a' }))
+			testType.true<true>(canAssign<{ a: string }>()({ a: 'a', b: 'b' }))
 
 			// fails at compile time
 			// canAssign<{ a: string }>()({ a: 1 })
 		})
 		test('work with falsy value such as empty string', () => {
 			const s = ''
-			assertType.isTrue(canAssign<''>()(s))
+			testType.true<true>(canAssign<''>()(s))
 		})
 		test('work with undefined', () => {
-			assertType.isTrue(canAssign<number | undefined>()(undefined))
+			testType.true<true>(canAssign<number | undefined>()(undefined))
 		})
 		test('canAssign false', () => {
 			const t = canAssign<{ a: string }>(false)
-			assertType.isTrue(t(undefined))
-			assertType.isTrue(t({ a: 1 }))
+			testType.true<true>(t(undefined))
+			testType.true<true>(t({ a: 1 }))
 
 			// @ts-expect-error
 			t({ a: '' })
