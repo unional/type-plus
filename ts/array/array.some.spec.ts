@@ -1,25 +1,45 @@
-import { describe, it, test } from '@jest/globals'
-import { testType, type Some, ArrayPlus } from '../index.js'
+import { describe, it } from '@jest/globals'
+import { testType, type ArrayPlus, type Some } from '../index.js'
 
-test('empty array', () => {
-	testType.false<Some<[], any>>(true)
+it('returns true if array satisfies Criteria', () => {
+	testType.true<Some<number[], number>>(true)
+	testType.true<Some<string[], string>>(true)
+	testType.true<Some<Array<number | string>, number | string>>(true)
+	testType.true<Some<string[], string | number>>(true)
+	testType.true<Some<string[], any>>(true)
+	testType.true<Some<string[], unknown>>(true)
 })
 
-test('typed array', () => {
-	testType.true<Some<string[], any>>(true)
-	testType.true<Some<string[], string>>(true)
+it('returns true if one of the array elements satisfies Criteria', () => {
+	// `Array<number | string>` really means some values are numbers and others are strings.
+	// So when asking "does it has one or more elements that is a number",
+	// the answer should be true
+	testType.true<Some<Array<number | string>, number>>(true)
+})
+
+it('returns false if array does not satisfies Criteria', () => {
 	testType.false<Some<string[], number>>(true)
 })
 
-test('contain single returns true', () => {
-	testType.true<Some<['a', 1], 1>>(true)
+it('returns false for empty tuple', () => {
+	testType.false<Some<[], number>>(true)
+	testType.false<Some<[], any>>(true)
+	testType.false<Some<[], unknown>>(true)
+	testType.false<Some<[], never>>(true)
 })
 
-test('not contain returns false', () => {
+it('returns true when one of the tuple element satisfies Criteria', () => {
+	testType.true<Some<['a', 1], 1>>(true)
+	testType.true<Some<['a', 1], number>>(true)
+	testType.true<Some<['a', 1], 'a'>>(true)
+	testType.true<Some<['a', 1], string>>(true)
+})
+
+it('returns false when none of the tuple elements satisfies Criteria', () => {
 	testType.false<Some<['a', 'b', 'c'], 1>>(true)
 })
 
-test('number', () => {
+it('number', () => {
 	testType.true<Some<['a', number], number>>(true)
 	testType.true<Some<['a', 1], 1>>(true)
 	testType.true<Some<['a', 777], 777>>(true)
@@ -30,7 +50,7 @@ test('number', () => {
 	testType.false<Some<['a', 1], 2>>(true)
 })
 
-test('boolean', () => {
+it('boolean', () => {
 	testType.true<Some<['a', boolean], boolean>>(true)
 	testType.true<Some<['a', true], true>>(true)
 	testType.true<Some<['a', false], false>>(true)
@@ -46,7 +66,7 @@ test('boolean', () => {
 	testType.false<Some<['a', boolean], false>>(true)
 })
 
-test('string', () => {
+it('string', () => {
 	testType.true<Some<[1, 2, 3, string], string>>(true)
 	testType.true<Some<[1, 2, 3, 'a'], 'a'>>(true)
 	testType.true<Some<[1, 2, 3, 'a', 'a'], 'a'>>(true)
@@ -58,7 +78,7 @@ test('string', () => {
 })
 
 describe('strict mode', () => {
-	test('ensure number boolean string does not match literals', () => {
+	it('ensure number boolean string does not match literals', () => {
 		testType.true<Some<[boolean], boolean, 'strict'>>(true)
 		testType.true<Some<[number], number, 'strict'>>(true)
 		testType.true<Some<[string], string, 'strict'>>(true)
@@ -68,7 +88,7 @@ describe('strict mode', () => {
 		testType.false<Some<[1, 2, 3, 'a'], string, 'strict'>>(true)
 	})
 
-	test('typed array', () => {
+	it('typed array', () => {
 		testType.true<Some<boolean[], boolean, 'strict'>>(true)
 		testType.true<Some<number[], number, 'strict'>>(true)
 		testType.true<Some<string[], string, 'strict'>>(true)

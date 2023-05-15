@@ -1,4 +1,5 @@
 import type { IsEqual } from '../equal/equal.js'
+import { CanAssign } from '../index.js'
 import type { Tail } from './tail.js'
 import type { UnionOfValues } from './union_of_values.js'
 
@@ -11,22 +12,31 @@ export type Some<
 > = Mode extends 'strict' ? Some.Strict<A, Criteria, Then, Else> : Some.Loose<A, Criteria, Then, Else>
 
 export namespace Some {
-	export type Strict<A extends any[], Criteria, Then, Else> = number extends A['length']
+	export type Strict<A extends unknown[], Criteria, Then, Else> = number extends A['length']
 		? IsEqual<UnionOfValues<A>, Criteria> extends true
 			? Then
 			: Else
-		: A['length'] extends 0
+		: StrictTuple<A, Criteria, Then, Else>
+
+	export type StrictTuple<A extends unknown[], Criteria, Then, Else> = A['length'] extends 0
 		? Else
 		: IsEqual<A[0], Criteria> extends true
 		? Then
-		: Strict<Tail<A>, Criteria, Then, Else>
-	export type Loose<A extends any[], Criteria, Then, Else> = number extends A['length']
-		? UnionOfValues<A> extends Criteria
-			? Then
-			: Else
-		: A['length'] extends 0
+		: StrictTuple<Tail<A>, Criteria, Then, Else>
+
+	export type Loose<A extends unknown[], Criteria, Then, Else> = number extends A['length']
+		? CanAssign<UnionOfValues<A>, Criteria> extends infer C
+			? boolean extends C
+				? Then
+				: C extends true
+				? Then
+				: Else
+			: never
+		: LooseTuple<A, Criteria, Then, Else>
+
+	export type LooseTuple<A extends unknown[], Criteria, Then, Else> = A['length'] extends 0
 		? Else
 		: A[0] extends Criteria
 		? Then
-		: Loose<Tail<A>, Criteria, Then, Else>
+		: LooseTuple<Tail<A>, Criteria, Then, Else>
 }
