@@ -157,7 +157,7 @@ while some common ones are exposed at top-level.
 Here are the list of array methods and their corresponding type-level functions, if availableL
 
 - ✅ `at`: [`ArrayPlus.At`](#arrayplusat)
-- ✅ `concat`: [`Concat` | `ArrayPlus.Concat`](#arrayplusconcat)
+- ✅ `concat`: [`Concat` | `ArrayPlus.Concat`](#arrayplusconcat) (`[...A, ...B]`)
 - 🚧 `copyWithin`:  `CopyWithin<A, Target, Start, End>`
 - ✴️ `entries`: [`ArrayPlus.Entries`](#arrayplusentries)
 - 🚧 `every`: `Every<A, Criteria, Then = A, Else = never>`
@@ -172,7 +172,7 @@ Here are the list of array methods and their corresponding type-level functions,
 - 🚧 `keys`:
 - 🚧 `map`: `Map<A, Criteria, R>`
 - 🚧 `pop`: `Pop<A>`
-- 🚧 `push`: `Push<A>`
+- 🧬 `push`: `[...A, T]`
 - 🚧 `reduce`:
 - 🚧 `reduceRight`:
 - 🚧 `reverse`:
@@ -181,8 +181,8 @@ Here are the list of array methods and their corresponding type-level functions,
 - ✴️ `some`: [`Some` | `ArrayPlus.Some`](#arrayplussome)
 - 🚧 `sort`:
 - 🚧 `splice`:
-- 🚧 `unshift`:
-- 🚧 `values`:
+- 🧬 `unshift`: `[T, ...A]`
+- 🧬 `values`: `keyof A`
 
 ## References
 
