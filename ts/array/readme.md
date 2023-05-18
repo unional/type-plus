@@ -118,6 +118,16 @@ ArrayPlus.FindLast<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
 ArrayPlus.FindLast<[true, 123, 'x', 321], number> // 321
 ```
 
+### [`ArrayPlus.Reverse`](./array.reverse.ts#L14)
+
+> `ArrayPlus.Reverse<A>`
+
+Reverses the order of the array or tuple.
+
+```ts
+ArrayPlus.Reverse<[1, 2, 3]> // [3, 2, 1]
+```
+
 ### [`ArrayPlus.Some`](./array.some.ts#L23)
 
 > `ArrayPlus.Some<A, Criteria, Mode, Then, Else>`
@@ -169,13 +179,13 @@ Here are the list of array methods and their corresponding type-level functions,
 - 🚧 `flatMap`: `Flat<A, Criteria, R>`
 - 🚧 `includes`:
 - 🚧 `join`:
-- 🚧 `keys`:
+- 🚧 `keys`: `Range<0, T['length']>`?
 - 🚧 `map`: `Map<A, Criteria, R>`
 - 🚧 `pop`: `Pop<A>`
 - 🧬 `push`: `[...A, T]`
 - 🚧 `reduce`:
 - 🚧 `reduceRight`:
-- 🚧 `reverse`:
+- 🚧 `reverse`: [`ArrayPlus.Reverse`](#arrayplusreverse)
 - 🚧 `shift`:
 - 🚧 `slice`:
 - ✴️ `some`: [`Some` | `ArrayPlus.Some`](#arrayplussome)
