@@ -142,7 +142,7 @@ You can also change it to `strict` mode.
 Some<string[], string> // true
 Some<['a', boolean], boolean> // true
 Some<['a', true], boolean> //true
- *
+
 Some<['a', true], boolean, 'strict'> // false
 ```
 
@@ -185,7 +185,7 @@ Here are the list of array methods and their corresponding type-level functions,
 - 🧬 `push`: `[...A, T]`
 - 🚧 `reduce`:
 - 🚧 `reduceRight`:
-- 🚧 `reverse`: [`ArrayPlus.Reverse`](#arrayplusreverse)
+- ✅ `reverse`: [`ArrayPlus.Reverse`](#arrayplusreverse)
 - 🚧 `shift`:
 - 🚧 `slice`:
 - ✴️ `some`: [`Some` | `ArrayPlus.Some`](#arrayplussome)
