@@ -1,6 +1,6 @@
 import type { Tail } from '../array/tail.js'
-import type { IsInteger } from '../number/integer.js'
-import type { IsPositive } from '../number/positive.js'
+import type { IsInteger } from '../numeric/integer.js'
+import type { IsPositive } from '../numeric/positive.js'
 import type { And } from '../predicates/index.js'
 
 export namespace Digit {

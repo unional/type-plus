@@ -54,19 +54,8 @@ export * from './nodejs/index.js'
 export * from './nominal/index.js'
 export type { IsNotNull, IsNull, NotNullType, NullType } from './null/null_type.js'
 export type { CastToNumber } from './number/cast.js'
-export type { Integer, IsInteger, IsNotInteger, IsWhole, NotInteger } from './number/integer.js'
-export type { IsNegative, IsNotNegative, Negative, NotNegative } from './number/negative.js'
 export * as NumberPlus from './number/number_plus.js'
 export type { IsNotNumber, IsNumber, NotNumberType, NumberType } from './number/number_type.js'
-export type {
-	IsNotNumeric,
-	IsNumeric,
-	NotNumericType,
-	Numeric,
-	NumericType,
-	Zero
-} from './number/numeric_type.js'
-export type { IsNotPositive, IsPositive, NonPositive, Positive } from './number/positive.js'
 export type {
 	IsNotStrictNumber,
 	IsStrictNumber,
@@ -74,6 +63,18 @@ export type {
 	StrictNumberType
 } from './number/strict_number_type.js'
 export type { CastToNumeric } from './numeric/cast.js'
+export type { Integer, IsInteger, IsNotInteger, IsWhole, NotInteger } from './numeric/integer.js'
+export type { IsNegative, IsNotNegative, Negative, NotNegative } from './numeric/negative.js'
+export * as NumericPlus from './numeric/numeric_plus.js'
+export type {
+	IsNotNumeric,
+	IsNumeric,
+	NotNumericType,
+	Numeric,
+	NumericType,
+	Zero
+} from './numeric/numeric_type.js'
+export type { IsNotPositive, IsPositive, NonPositive, Positive } from './numeric/positive.js'
 export * from './object/index.js'
 export type { IsNotObject, IsObject, NotObjectType, ObjectType } from './object/object_type.js'
 export * from './predicates/index.js'
@@ -105,3 +106,4 @@ export type { UnionKeys } from './union_keys.js'
 export type { IsNotUnknown, IsUnknown, NotUnknownType, UnknownType } from './unknown/unknown_type.js'
 export * from './utils/index.js'
 export type { IsNotVoid, IsVoid, NotVoidType, VoidType } from './void/void_type.js'
+
