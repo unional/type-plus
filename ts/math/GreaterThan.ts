@@ -27,29 +27,22 @@ export namespace GreaterThan {
 	export type ForWholeNumber<
 		A extends number,
 		B extends number
-	> = DigitArray.FromNumberAbs<A> extends infer DA
-		? DA extends number[]
-			? DigitArray.FromNumberAbs<B> extends infer DB
-				? DB extends number[]
-					? Max<DA['length'], DB['length']> extends infer M
-						? M extends number
-							? PadLeft<DA, M, 0> extends infer PDA
-								? PDA extends number[]
-									? PadLeft<DB, M, 0> extends infer PDB
-										? PDB extends number[]
-											? ForDigitArray<PDA, PDB>
-											: never
-										: never
-									: never
-								: never
-							: never
+	> = DigitArray.FromNumberAbs<A> extends infer DA extends number[]
+		? DigitArray.FromNumberAbs<B> extends infer DB extends number[]
+			? Max<DA['length'], DB['length']> extends infer M extends number
+				? PadLeft<DA, M, 0> extends infer PDA extends number[]
+					? PadLeft<DB, M, 0> extends infer PDB extends number[]
+						? ForDigitArray<PDA, PDB>
 						: never
 					: never
 				: never
 			: never
 		: never
 
-	export type ForDigitArray<DA extends number[], DB extends number[]> = IsEqual<Head<DA>, Head<DB>> extends true
+	export type ForDigitArray<DA extends number[], DB extends number[]> = IsEqual<
+		Head<DA>,
+		Head<DB>
+	> extends true
 		? ForDigitArray<Tail<DA>, Tail<DB>>
 		: Digit.GreaterThan<Head<DA>, Head<DB>>
 }
