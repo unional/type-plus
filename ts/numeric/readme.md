@@ -54,7 +54,7 @@ which resolves to `T`.
 
 This behavior is different than `TrueType<T>` which `TrueType<boolean>` returns `never`.
 
-This is because `TrueType<T>` is checking for the exect `true` type,
+This is because `TrueType<T>` is checking for the exact `true` type,
 while `Positive<T>` is checking for a criteria of types (i.e. a set).
 
 ```ts
@@ -86,7 +86,7 @@ which resolves to `T`.
 
 This behavior is different than `TrueType<T>` which `TrueType<boolean>` returns `never`.
 
-This is because `TrueType<T>` is checking for the exect `true` type,
+This is because `TrueType<T>` is checking for the exact `true` type,
 while `Negative<T>` is checking for a criteria of types (i.e. a set).
 
 ```ts
