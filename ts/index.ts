@@ -8,6 +8,7 @@ export type { ArrayType, IsArray, IsNotArray, NotArrayType } from './array/array
 export * from './array/index.js'
 export * from './assertion/assert_type.js'
 export type { BigintType, IsBigint, IsNotBigint, NotBigintType } from './bigint/bigint_type.js'
+export type { CastToBigint } from './bigint/cast.js'
 export type {
 	IsNotStrictBigint,
 	IsStrictBigint,
@@ -52,6 +53,7 @@ export type { IsNever, IsNotNever, Is_Never, NeverType, NotNeverType, Not_Never 
 export * from './nodejs/index.js'
 export * from './nominal/index.js'
 export type { IsNotNull, IsNull, NotNullType, NullType } from './null/null_type.js'
+export type { CastToNumber } from './number/cast.js'
 export type { Integer, IsInteger, IsNotInteger, IsWhole, NotInteger } from './number/integer.js'
 export type { IsNegative, IsNotNegative, Negative, NotNegative } from './number/negative.js'
 export * as NumberPlus from './number/number_plus.js'
@@ -71,6 +73,7 @@ export type {
 	NotStrictNumberType,
 	StrictNumberType
 } from './number/strict_number_type.js'
+export type { CastToNumeric } from './numeric/cast.js'
 export * from './object/index.js'
 export type { IsNotObject, IsObject, NotObjectType, ObjectType } from './object/object_type.js'
 export * from './predicates/index.js'
@@ -102,4 +105,3 @@ export type { UnionKeys } from './union_keys.js'
 export type { IsNotUnknown, IsUnknown, NotUnknownType, UnknownType } from './unknown/unknown_type.js'
 export * from './utils/index.js'
 export type { IsNotVoid, IsVoid, NotVoidType, VoidType } from './void/void_type.js'
-
