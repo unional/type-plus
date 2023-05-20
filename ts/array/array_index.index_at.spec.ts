@@ -56,14 +56,18 @@ it('returns type of the element for negative indexes', () => {
 	testType.equal<IndexAt<[1, 2, 3], -3>, 0>(true)
 })
 
-it('returns never when index is out of range', () => {
-	testType.never<IndexAt<[1, 2, 3], 3>>(true)
-	testType.never<IndexAt<[1, 2, 3], -4>>(true)
+it('returns upper bound when index is out of upper bound', () => {
+	// TODO: should this be 2 instead of 3?
+	testType.equal<IndexAt<[1, 2, 3], 3>, 3>(true)
+})
+
+it('returns lower bound (0) when index is out of lower bound', () => {
+	// TODO: should this be 2 instead of 3?
+	testType.equal<IndexAt<[1, 2, 3], -4>, 0>(true)
 })
 
 it('can override fail case', () => {
-	testType.equal<IndexAt<[], 0, 'ha'>, 'ha'>(true)
-
-	testType.equal<IndexAt<[], any, 'ha'>, 'ha'>(true)
-	testType.equal<IndexAt<[], never, 'ha'>, 'ha'>(true)
+	testType.equal<IndexAt<[1], 1, 'f', 'u', 'l'>, 'u'>(true)
+	testType.equal<IndexAt<[1], -2, 'f', 'u', 'l'>, 'l'>(true)
+	testType.equal<IndexAt<[], 0, 'f', 'u', 'l'>, 'f'>(true)
 })

@@ -15,7 +15,13 @@ import type { IndexAt } from './array_index.js'
  * type R = At<[1, 2, 3], -1> // 3
  * ```
  */
-export type At<A extends unknown[], N extends number, Fail = never> = IndexAt<A, N, Fail> extends infer I
+export type At<A extends unknown[], N extends number, Fail = never> = IndexAt<
+	A,
+	N,
+	Fail,
+	Fail,
+	Fail
+> extends infer I
 	? I extends number
 		? TupleType<A, IsStrictNumber<I, A[I] | undefined, A[I]>, A[I] | undefined>
 		: Fail

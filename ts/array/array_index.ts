@@ -19,7 +19,13 @@ import type { StrictNumberType } from '../number/strict_number_type.js'
  * type R = IndexAt<['a', 'b', 'c'], -4> // never
  * ```
  */
-export type IndexAt<A extends Array<unknown>, N extends number, Fail = never> = IsEqual<
+export type IndexAt<
+	A extends Array<unknown>,
+	N extends number,
+	Fail = never,
+	Upper = A['length'],
+	Lower = 0,
+> = IsEqual<
 	A['length'],
 	0,
 	Fail,
@@ -32,8 +38,8 @@ export type IndexAt<A extends Array<unknown>, N extends number, Fail = never> = 
 			// A: tuple
 			Negative<
 				N,
-				GreaterThan<Abs<N>, A['length']> extends true ? Fail : Subtract<A['length'], Abs<N>>,
-				GreaterThan<A['length'], N> extends true ? N : Fail
+				GreaterThan<Abs<N>, A['length']> extends true ? Lower : Subtract<A['length'], Abs<N>>,
+				GreaterThan<A['length'], N> extends true ? N : Upper
 			>
 		>,
 		// N: number or float
