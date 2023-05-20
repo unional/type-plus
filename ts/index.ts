@@ -8,7 +8,7 @@ export type { ArrayType, IsArray, IsNotArray, NotArrayType } from './array/array
 export * from './array/index.js'
 export * from './assertion/assert_type.js'
 export type { BigintType, IsBigint, IsNotBigint, NotBigintType } from './bigint/bigint_type.js'
-export type { CastToBigint } from './bigint/cast.js'
+export type { StringToBigint } from './bigint/cast.js'
 export type {
 	IsNotStrictBigint,
 	IsStrictBigint,
@@ -53,7 +53,7 @@ export type { IsNever, IsNotNever, Is_Never, NeverType, NotNeverType, Not_Never 
 export * from './nodejs/index.js'
 export * from './nominal/index.js'
 export type { IsNotNull, IsNull, NotNullType, NullType } from './null/null_type.js'
-export type { CastToNumber } from './number/cast.js'
+export type { StringToNumber } from './number/cast.js'
 export * as NumberPlus from './number/number_plus.js'
 export type { IsNotNumber, IsNumber, NotNumberType, NumberType } from './number/number_type.js'
 export type {
@@ -62,7 +62,7 @@ export type {
 	NotStrictNumberType,
 	StrictNumberType
 } from './number/strict_number_type.js'
-export type { CastToNumeric } from './numeric/cast.js'
+export type { StringToNumeric } from './numeric/cast.js'
 export type { Integer, IsInteger, IsNotInteger, IsWhole, NotInteger } from './numeric/integer.js'
 export type { IsNegative, IsNotNegative, Negative, NotNegative } from './numeric/negative.js'
 export * as NumericPlus from './numeric/numeric_plus.js'
