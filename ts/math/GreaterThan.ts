@@ -6,7 +6,7 @@ import type { And, Or, Xor } from '../predicates/index.js'
 import type { Digit, DigitArray } from './Digit.js'
 import type { Max } from './Max.js'
 
-export type GreaterThan<A extends number, B extends number, Fail = never> = And<
+export type GreaterThan<A extends number | bigint, B extends number | bigint, Fail = never> = And<
 	IsInteger<A>,
 	IsInteger<B>
 > extends false
@@ -25,8 +25,8 @@ export type GreaterThan<A extends number, B extends number, Fail = never> = And<
 
 export namespace GreaterThan {
 	export type ForWholeNumber<
-		A extends number,
-		B extends number
+		A extends number | bigint,
+		B extends number | bigint
 	> = DigitArray.FromNumberAbs<A> extends infer DA extends number[]
 		? DigitArray.FromNumberAbs<B> extends infer DB extends number[]
 			? Max<DA['length'], DB['length']> extends infer M extends number

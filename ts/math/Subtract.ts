@@ -5,7 +5,7 @@ import type { And } from '../predicates/index.js'
 import type { Digit, DigitArray } from './Digit.js'
 import type { Max } from './Max.js'
 
-export type Subtract<A extends number, B extends number, Fail = never> = And<
+export type Subtract<A extends number | bigint, B extends number | bigint, Fail = never> = And<
 	And<IsPositive<A>, IsInteger<A>>,
 	And<IsPositive<B>, IsInteger<B>>
 > extends true

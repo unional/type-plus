@@ -63,11 +63,13 @@ export namespace DigitArray {
 
 	export type Multi10<C extends any[]> = [...C, ...C, ...C, ...C, ...C, ...C, ...C, ...C, ...C, ...C]
 
-	export type FromNumber<N extends number> = FromString<NumberToString<N>>
-	export type FromNumberAbs<N extends number> = FromString<TrimMinusSign<`${N}`>>
+	export type FromNumber<N extends number | bigint> = FromString<NumberToString<N>>
+	export type FromNumberAbs<N extends number | bigint> = FromString<TrimMinusSign<`${N}`>>
 	export type TrimMinusSign<N extends string> = N extends `-${infer rest}` ? rest : N
 
-	export type NumberToString<N extends number> = And<IsPositive<N>, IsInteger<N>> extends true ? `${N}` : never
+	export type NumberToString<N extends number | bigint> = And<IsPositive<N>, IsInteger<N>> extends true
+		? `${N}`
+		: never
 
 	export type FromString<S extends string> = S extends `1${infer L}`
 		? [1, ...FromString<L>]
