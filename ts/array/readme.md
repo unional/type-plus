@@ -128,6 +128,16 @@ Reverses the order of the array or tuple.
 ArrayPlus.Reverse<[1, 2, 3]> // [3, 2, 1]
 ```
 
+### [`ArrayPlus.SplitAt`](./array_plus.split_at.ts#L22)
+
+> `ArrayPlus.SplitAt<A, Index>`
+
+Splits the array or tuple at `Index`.
+
+```ts
+ArrayPlus.SplitAt<[1, 2, 3], 1> // [[1, 2], [3]]
+```
+
 ### [`ArrayPlus.Some`](./array.some.ts#L23)
 
 > `ArrayPlus.Some<A, Criteria, Mode, Then, Else>`
