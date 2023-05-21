@@ -24,7 +24,7 @@ export type IndexAt<
 	N extends number,
 	Fail = never,
 	Upper = A['length'],
-	Lower = 0,
+	Lower = 0
 > = IsEqual<
 	A['length'],
 	0,
@@ -67,7 +67,7 @@ export type IndexAt<
  * ```
  */
 export type IsIndexOutOfBound<A extends unknown[], N extends number, Then = true, Else = false> = IsNever<
-	IndexAt<A, N>,
+	IndexAt<A, N, never, never, never>,
 	Then,
 	Else
 >
