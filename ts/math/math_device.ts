@@ -1,4 +1,3 @@
-import type { ArraySplitAtDevice } from '../array/array_plus.split_at.js'
 import type { Tail } from '../array/tail.js'
 import type { StringToNumber } from '../number/cast.js'
 
@@ -6,15 +5,13 @@ import type { StringToNumber } from '../number/cast.js'
  * @note The value inside `number[]` range from 0 to 19.
  * That's the secret sauce of `MathDevice` type.
  */
-export type MathDevice = ['bigint', '-' | '+', number[]] | ['number', '-' | '+', number[], number]
+export type MathDevice = ['bigint', '-' | '+', number[]] | ['number', '-' | '+', number[], number[]]
 
 export namespace MathDevice {
 	export type CastToNumberParts<S extends string> = StringToNumber<S> extends infer N extends number
 		? `${N}` extends `${infer W}.${infer F}`
-			? CastToNumberArray<W> extends infer Y extends any[]
-				? [[...Y, ...CastToNumberArray<F>], Y['length']]
-				: never
-			: [CastToNumberArray<S>, 0]
+			? [CastToNumberArray<W>, CastToNumberArray<F>]
+			: [CastToNumberArray<S>, []]
 		: never
 	export type CastToNumberArray<S extends string> = S extends `1${infer L}`
 		? [1, ...CastToNumberArray<L>]
@@ -51,26 +48,22 @@ export namespace MathDevice {
 		: Fail
 	export type ToNumber<M extends MathDevice, Fail = never> = M[0] extends 'number'
 		? M[1] extends '+'
-			? M[3] extends 0
-				? NumberArrayToString<M[2]> extends `${infer N extends number}`
-					? N
+			? M[3] extends []
+				? NumberArrayToString<M[2]> extends `${infer W extends number}`
+					? W
 					: never
-				: M[3] extends infer Exponent extends number
-				? ArraySplitAtDevice<M[2], [], Exponent> extends [infer W extends number[], infer F extends number[]]
-					? `${NumberArrayToString<W>}.${NumberArrayToString<F>}` extends `${infer N extends number}`
-						? N
-						: never
+				: M[3] extends number[]
+				? `${NumberArrayToString<M[2]>}.${NumberArrayToString<M[3]>}` extends `${infer W extends number}`
+					? W
 					: never
 				: never
-			: M[3] extends 0
+			: M[3] extends []
 			? `-${NumberArrayToString<M[2]>}` extends `${infer N extends number}`
 				? N
 				: never
-			: M[3] extends infer Exponent extends number
-			? ArraySplitAtDevice<M[2], [], Exponent> extends [infer W extends number[], infer F extends number[]]
-				? `-${NumberArrayToString<W>}.${NumberArrayToString<F>}` extends `${infer N extends number}`
-					? N
-					: never
+			: M[3] extends number[]
+			? `-${NumberArrayToString<M[2]>}.${NumberArrayToString<M[3]>}` extends `${infer W extends number}`
+				? W
 				: never
 			: never
 		: Fail

@@ -1,6 +1,6 @@
 import { testType } from '../index.js'
-import { NumericToString } from '../numeric/cast.js'
-import { MathDeviceToNumeric, StringToMathDevice } from './cast.js'
+import type { NumericToString } from '../numeric/cast.js'
+import type { MathDeviceToNumeric, StringToMathDevice } from './cast.js'
 import { it } from '@jest/globals'
 
 type RoundTrip<N extends number | bigint> = MathDeviceToNumeric<StringToMathDevice<NumericToString<N>>>
