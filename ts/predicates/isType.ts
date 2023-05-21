@@ -12,20 +12,28 @@ export function isType(subject: unknown, validator?: (s: unknown) => unknown) {
 	return validator ? !!validator(subject) : true
 }
 
+/**
+ * @deprecated use `isType<T>()` or `testType.true<T>()` instead
+ */
 isType.t = function <T extends true>(subject?: T) {
 	return subject === undefined || subject === true
 }
 
+/**
+ * @deprecated use `isType<T>()` or `testType.false<T>()` instead
+ */
 isType.f = function <T extends false>(subject?: T) {
 	return subject === undefined || subject === false
 }
 
 /**
  * Check is the type `never`
+ * @deprecated use `isType<T>()` or `testType.never<T>()` instead
  */
 function isNever<S extends never>(): unknown
 /**
  * Check is the value is type `never`
+ * @deprecated use `isType<T>()` or `testType.never<T>()` instead
  */
 function isNever(subject: never): subject is never
 function isNever(subject?: unknown): subject is never {
@@ -39,6 +47,6 @@ isType.never = isNever
  * Easier to use than `isType.t<>()` and `isType.f<>()`,
  * when doing type level only equality comparison as you don't have to import `Equal<>`.
  *
- * @deprecated use `type.equal()` instead
+ * @deprecated use `testType.equal()` instead
  */
 isType.equal = function <C extends IsEqual<A, B>, A, B>() {}
