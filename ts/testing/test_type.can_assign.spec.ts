@@ -1,9 +1,16 @@
 import { it } from '@jest/globals'
 import { testType } from '../index.js'
 
-it('TODO: how to handle distributed union types', () => {
-	// `CanAssign<A, B>` returns boolean is the correct behavior.
-	// Need a `CanAssignStrict<A, B>` or `CanStrictAssign<A, B>` or `StrictCanAssign<A, B>`?
-	testType.canAssign<string|number, number>(true)
-	testType.canAssign<string|number, number>(false)
+it(`should pass if A can assign to B`, () => {
+	testType.canAssign<number, number>(true)
+	testType.canAssign<string, string>(true)
+})
+
+it('should pass if A is a literal of B', () => {
+	testType.canAssign<123, number>(true)
+})
+
+it('accepts both true/false if A is a union an partially assignable to B', () => {
+	testType.canAssign<string | number, number>(true)
+	testType.canAssign<string | number, number>(false)
 })

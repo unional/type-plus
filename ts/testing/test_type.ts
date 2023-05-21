@@ -14,7 +14,7 @@ import type { IsNull } from '../null/null_type.js'
 import type { IsNumber } from '../number/number_type.js'
 import type { IsStrictNumber } from '../number/strict_number_type.js'
 import type { IsObject } from '../object/object_type.js'
-import type { CanAssign } from '../predicates/CanAssign.js'
+import type { CanAssign, StrictCanAssign } from '../predicates/CanAssign.js'
 import type { IsStrictString } from '../string/strict_string_type.js'
 import type { IsString } from '../string/string_type.js'
 import type { IsSymbol } from '../symbol/symbol_type.js'
@@ -39,9 +39,40 @@ interface TestType {
 	/**
 	 * Check if `A` can assign to `B`.
 	 *
+	 * If `A` is a union,
+	 * the check is distributive.
+	 *
+	 * Meaning the result can be `boolean`,
+	 * meaning both `true` and `false` will pass.
+	 *
+	 * If you want to avoid the distributivity,
+	 * use `testType.strictCanAssign()` instead.
+	 *
+	 * @example
+	 * ```ts
+	 * testType.canAssign<123, number> // true
+	 *
+	 * testType.canAssign<number | string, number> // boolean
+	 * ```
+	 *
 	 * @return `expected` as `A` for type inspection.
 	 */
 	canAssign<A, B>(expected: CanAssign<A, B>): A
+	/**
+	 * Check if `A` can fully assign to `B`.
+	 *
+	 * This checks all branches in an union `A` are assignable to `B`.
+	 *
+	 * @example
+	 * ```ts
+	 * testType.strictCanAssign<number | string, number | string> // true
+	 *
+	 * testType.strictCanAssign<number | string, number> // false
+	 * ```
+	 *
+	 * @return `expected` as `A` for type inspection.
+	 */
+	strictCanAssign<A, B>(expected: StrictCanAssign<A, B>): A
 	/**
 	 * Check if type `T` is exactly `any`.
 	 *
@@ -185,10 +216,8 @@ interface TestType {
  * The return value is the input `expected` parameter asserted as the first type parameter,
  * so that the type can be further inspected.
  */
-export const testType: TestType = new Proxy({} as any, {
+export const testType = new Proxy({} as TestType, {
 	get(_target, _prop, _receiver) {
-		return (expected: unknown) => {
-			return expected
-		}
+		return (expected: unknown) => expected
 	}
 })
