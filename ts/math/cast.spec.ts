@@ -1,45 +1,43 @@
-import { it } from '@jest/globals'
 import { testType } from '../index.js'
-import { type StringToMathDevice } from './cast.js'
+import { NumericToString } from '../numeric/cast.js'
+import { MathDeviceToNumeric, StringToMathDevice } from './cast.js'
+import { it } from '@jest/globals'
 
-it('casts negative bigint to ["bigint", "-", Significand]', () => {
-	testType.equal<StringToMathDevice<'-1n'>, ['bigint', '-', [1]]>(true)
-	testType.equal<StringToMathDevice<'-1234567890n'>, ['bigint', '-', [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]]>(true)
+type RoundTrip<N extends number | bigint> = MathDeviceToNumeric<StringToMathDevice<NumericToString<N>>>
+
+it(`keep widen type?`, () => {
+	// @ts-expect-error
+	testType.equal<RoundTrip<number>, number>(true)
+	// @ts-expect-error
+	testType.equal<RoundTrip<bigint>, bigint>(true)
 })
 
-it('casts positive bigint to ["bigint", "+", Significand]', () => {
-	testType.equal<StringToMathDevice<'1n'>, ['bigint', '+', [1]]>(true)
-	testType.equal<StringToMathDevice<'1234567890n'>, ['bigint', '+', [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]]>(true)
+it('round trip for number', () => {
+	testType.equal<RoundTrip<0>, 0>(true)
+	testType.equal<RoundTrip<-0>, 0>(true)
+
+	testType.equal<RoundTrip<1>, 1>(true)
+	testType.equal<RoundTrip<1234567890>, 1234567890>(true)
+	testType.equal<RoundTrip<-1>, -1>(true)
+	testType.equal<RoundTrip<-1234567890>, -1234567890>(true)
+
+	testType.equal<RoundTrip<1.234>, 1.234>(true)
+	testType.equal<RoundTrip<12.34>, 12.34>(true)
+	testType.equal<RoundTrip<0.1234>, 0.1234>(true)
+	testType.equal<RoundTrip<0.001234>, 0.001234>(true)
+
+	testType.equal<RoundTrip<-1.234>, -1.234>(true)
+	testType.equal<RoundTrip<-12.34>, -12.34>(true)
+	testType.equal<RoundTrip<-0.1234>, -0.1234>(true)
+	testType.equal<RoundTrip<-0.001234>, -0.001234>(true)
 })
 
-it('casts negative number to ["number", "-", Significand, -Exponent]', () => {
-	testType.equal<StringToMathDevice<'-1'>, ['number', '-', [1], 0]>(true)
-	testType.equal<StringToMathDevice<'-1234567890'>, ['number', '-', [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 0]>(true)
+it('round trip for bigint', () => {
+	testType.equal<RoundTrip<0n>, 0n>(true)
+	testType.equal<RoundTrip<-0n>, 0n>(true)
 
-	testType.equal<StringToMathDevice<'-0.0'>, ['number', '-', [0], 0]>(true)
-	testType.equal<StringToMathDevice<'-0.1000'>, ['number', '-', [0, 1], 1]>(true)
-	testType.equal<StringToMathDevice<'-0.1'>, ['number', '-', [0, 1], 1]>(true)
-	testType.equal<StringToMathDevice<'-1.0000'>, ['number', '-', [1], 0]>(true)
-	testType.equal<StringToMathDevice<'-1.0'>, ['number', '-', [1], 0]>(true)
-	testType.equal<StringToMathDevice<'-1.10000'>, ['number', '-', [1, 1], 1]>(true)
-	testType.equal<StringToMathDevice<'-1.1'>, ['number', '-', [1, 1], 1]>(true)
-
-	testType.equal<StringToMathDevice<'-0.123'>, ['number', '-', [0, 1, 2, 3], 3]>(true)
-	testType.equal<StringToMathDevice<'-123.45'>, ['number', '-', [1, 2, 3, 4, 5], 2]>(true)
-})
-
-it('casts positive number to ["number", "+", Significand, -Exponent]', () => {
-	testType.equal<StringToMathDevice<'1'>, ['number', '+', [1], 0]>(true)
-	testType.equal<StringToMathDevice<'1234567890'>, ['number', '+', [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 0]>(true)
-
-	testType.equal<StringToMathDevice<'0.0'>, ['number', '+', [0], 0]>(true)
-	testType.equal<StringToMathDevice<'0.1000'>, ['number', '+', [0, 1], 1]>(true)
-	testType.equal<StringToMathDevice<'0.1'>, ['number', '+', [0, 1], 1]>(true)
-	testType.equal<StringToMathDevice<'1.0000'>, ['number', '+', [1], 0]>(true)
-	testType.equal<StringToMathDevice<'1.0'>, ['number', '+', [1], 0]>(true)
-	testType.equal<StringToMathDevice<'1.10000'>, ['number', '+', [1, 1], 1]>(true)
-	testType.equal<StringToMathDevice<'1.1'>, ['number', '+', [1, 1], 1]>(true)
-
-	testType.equal<StringToMathDevice<'0.123'>, ['number', '+', [0, 1, 2, 3], 3]>(true)
-	testType.equal<StringToMathDevice<'123.45'>, ['number', '+', [1, 2, 3, 4, 5], 2]>(true)
+	testType.equal<RoundTrip<1n>, 1n>(true)
+	testType.equal<RoundTrip<1234567890n>, 1234567890n>(true)
+	testType.equal<RoundTrip<-1n>, -1n>(true)
+	testType.equal<RoundTrip<-1234567890n>, -1234567890n>(true)
 })
