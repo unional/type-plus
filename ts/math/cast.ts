@@ -1,9 +1,9 @@
 import type { MathDevice } from './math_device.js'
 
 export type StringToMathDevice<S extends string, Fail = never> = S extends `-${infer R}n`
-	? ['bigint', '-', MathDevice.StringToNumberArray<R>]
+	? ['bigint', '-', MathDevice.StringToNumberPart<R>]
 	: S extends `${infer R}n`
-	? ['bigint', '+', MathDevice.StringToNumberArray<R>]
+	? ['bigint', '+', MathDevice.StringToNumberPart<R>]
 	: S extends `-${infer R}`
 	? ['number', '-', ...MathDevice.StringToNumberParts<R>]
 	: S extends `${infer R}`

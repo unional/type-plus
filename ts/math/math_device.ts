@@ -10,75 +10,75 @@ export type MathDevice = ['bigint', '-' | '+', number[]] | ['number', '-' | '+',
 export namespace MathDevice {
 	export type StringToNumberParts<S extends string> = StringToNumber<S> extends infer N extends number
 		? `${N}` extends `${infer W}.${infer F}`
-			? [StringToNumberArray<W>, StringToNumberArray<F>]
-			: [StringToNumberArray<S>, []]
+			? [StringToNumberPart<W>, StringToNumberPart<F>]
+			: [StringToNumberPart<S>, []]
 		: never
-	export type StringToNumberArray<S extends string> = S extends `1${infer L}`
-		? [1, ...StringToNumberArray<L>]
+	export type StringToNumberPart<S extends string> = S extends `1${infer L}`
+		? [1, ...StringToNumberPart<L>]
 		: S extends `2${infer L}`
-		? [2, ...StringToNumberArray<L>]
+		? [2, ...StringToNumberPart<L>]
 		: S extends `3${infer L}`
-		? [3, ...StringToNumberArray<L>]
+		? [3, ...StringToNumberPart<L>]
 		: S extends `4${infer L}`
-		? [4, ...StringToNumberArray<L>]
+		? [4, ...StringToNumberPart<L>]
 		: S extends `5${infer L}`
-		? [5, ...StringToNumberArray<L>]
+		? [5, ...StringToNumberPart<L>]
 		: S extends `6${infer L}`
-		? [6, ...StringToNumberArray<L>]
+		? [6, ...StringToNumberPart<L>]
 		: S extends `7${infer L}`
-		? [7, ...StringToNumberArray<L>]
+		? [7, ...StringToNumberPart<L>]
 		: S extends `8${infer L}`
-		? [8, ...StringToNumberArray<L>]
+		? [8, ...StringToNumberPart<L>]
 		: S extends `9${infer L}`
-		? [9, ...StringToNumberArray<L>]
+		? [9, ...StringToNumberPart<L>]
 		: S extends `0${infer L}`
-		? [0, ...StringToNumberArray<L>]
+		? [0, ...StringToNumberPart<L>]
 		: []
 
 	export type ToBigint<M extends MathDevice, Fail = never> = M[0] extends 'bigint'
 		? M[1] extends '+'
-			? NumberArrayToString<M[2]> extends `${infer N extends bigint}`
+			? NumberPartToString<M[2]> extends `${infer N extends bigint}`
 				? N
 				: never
 			: M[2] extends [0]
 			? 0n
-			: `-${NumberArrayToString<M[2]>}` extends `${infer N extends bigint}`
+			: `-${NumberPartToString<M[2]>}` extends `${infer N extends bigint}`
 			? N
 			: never
 		: Fail
 	export type ToNumber<M extends MathDevice, Fail = never> = M[0] extends 'number'
 		? M[1] extends '+'
 			? M[3] extends []
-				? NumberArrayToString<M[2]> extends `${infer W extends number}`
+				? NumberPartToString<M[2]> extends `${infer W extends number}`
 					? [number] extends [W]
-						? NumberArrayToString<M[2]> extends `${infer B extends bigint}`
+						? NumberPartToString<M[2]> extends `${infer B extends bigint}`
 							? B
 							: never
 						: W
 					: never
 				: M[3] extends number[]
-				? `${NumberArrayToString<M[2]>}.${NumberArrayToString<M[3]>}` extends `${infer W extends number}`
+				? `${NumberPartToString<M[2]>}.${NumberPartToString<M[3]>}` extends `${infer W extends number}`
 					? W
 					: never
 				: never
 			: M[3] extends []
-			? `-${NumberArrayToString<M[2]>}` extends `${infer W extends number}`
+			? `-${NumberPartToString<M[2]>}` extends `${infer W extends number}`
 				? [number] extends [W]
-					? `-${NumberArrayToString<M[2]>}` extends `${infer B extends bigint}`
+					? `-${NumberPartToString<M[2]>}` extends `${infer B extends bigint}`
 						? B
 						: never
 					: W
 				: never
 			: M[3] extends number[]
-			? `-${NumberArrayToString<M[2]>}.${NumberArrayToString<M[3]>}` extends `${infer W extends number}`
+			? `-${NumberPartToString<M[2]>}.${NumberPartToString<M[3]>}` extends `${infer W extends number}`
 				? W
 				: never
 			: never
 		: Fail
 
-	type NumberArrayToString<N extends number[]> = N['length'] extends 0
+	type NumberPartToString<N extends number[]> = N['length'] extends 0
 		? ''
-		: `${N[0]}${NumberArrayToString<Tail<N>>}`
+		: `${N[0]}${NumberPartToString<Tail<N>>}`
 
 	export type Normalize<M extends MathDevice> = M[0] extends 'bigint'
 		? NormalizeBigint<M>
