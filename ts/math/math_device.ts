@@ -1,4 +1,5 @@
 import type { Tail } from '../array/tail.js'
+import { IsNever } from '../never/never_type.js'
 import type { StringToNumber } from '../number/cast.js'
 
 /**
@@ -33,6 +34,26 @@ export namespace MathDevice {
 		? [9, ...StringToNumberPart<L>]
 		: S extends `0${infer L}`
 		? [0, ...StringToNumberPart<L>]
+		: S extends `-1${infer L}`
+		? [-1, ...StringToNumberPart<L>]
+		: S extends `-2${infer L}`
+		? [-2, ...StringToNumberPart<L>]
+		: S extends `-3${infer L}`
+		? [-3, ...StringToNumberPart<L>]
+		: S extends `-4${infer L}`
+		? [-4, ...StringToNumberPart<L>]
+		: S extends `-5${infer L}`
+		? [-5, ...StringToNumberPart<L>]
+		: S extends `-6${infer L}`
+		? [-6, ...StringToNumberPart<L>]
+		: S extends `-7${infer L}`
+		? [-7, ...StringToNumberPart<L>]
+		: S extends `-8${infer L}`
+		? [-8, ...StringToNumberPart<L>]
+		: S extends `-9${infer L}`
+		? [-9, ...StringToNumberPart<L>]
+		: S extends `-0${infer L}`
+		? [-0, ...StringToNumberPart<L>]
 		: []
 
 	export type ToBigint<M extends MathDevice, Fail = never> = M[0] extends 'bigint'
@@ -86,6 +107,32 @@ export namespace MathDevice {
 
 	type NormalizeBigint<M extends MathDevice> = M
 	type NormalizeNumber<M extends MathDevice> = M
+
+	export type NormalizeDigit<N extends number> = NormalizeSingleDigit<N> extends infer D extends [number]
+		? IsNever<D, StringToNumberPart<`${N}`>, D>
+		: never
+
+	type NormalizeSingleDigit<N extends number> = ({ [k in number]: never } & {
+		'-9': [-9]
+		'-8': [-8]
+		'-7': [-7]
+		'-6': [-6]
+		'-5': [-5]
+		'-4': [-4]
+		'-3': [-3]
+		'-2': [-2]
+		'-1': [-1]
+		0: [0]
+		1: [1]
+		2: [2]
+		3: [3]
+		4: [4]
+		5: [5]
+		6: [6]
+		7: [7]
+		8: [8]
+		9: [9]
+	})[N]
 
 	export type DigitAdd<A extends number, B extends number> = [
 		[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
