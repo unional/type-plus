@@ -35,3 +35,23 @@ it('converts numbers with fractional part', () => {
 	testType.equal<MathDeviceToNumeric<['number', '-', [0], [1, 2, 3, 4, 5]]>, -0.12345>(true)
 	testType.equal<MathDeviceToNumeric<['number', '-', [0], [0, 0, 0, 1, 2, 3]]>, -0.000123>(true)
 })
+
+it('converts overflow number to bigint', () => {
+	testType.equal<
+		MathDeviceToNumeric<['number', '+', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2], []]>,
+		9007199254740992
+	>(true)
+	testType.equal<
+		MathDeviceToNumeric<['number', '+', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 3], []]>,
+		9007199254740993n
+	>(true)
+
+	testType.equal<
+		MathDeviceToNumeric<['number', '-', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2], []]>,
+		-9007199254740992
+	>(true)
+	testType.equal<
+		MathDeviceToNumeric<['number', '-', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 3], []]>,
+		-9007199254740993n
+	>(true)
+})

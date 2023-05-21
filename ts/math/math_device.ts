@@ -50,7 +50,11 @@ export namespace MathDevice {
 		? M[1] extends '+'
 			? M[3] extends []
 				? NumberArrayToString<M[2]> extends `${infer W extends number}`
-					? W
+					? [number] extends [W]
+						? NumberArrayToString<M[2]> extends `${infer B extends bigint}`
+							? B
+							: never
+						: W
 					: never
 				: M[3] extends number[]
 				? `${NumberArrayToString<M[2]>}.${NumberArrayToString<M[3]>}` extends `${infer W extends number}`
@@ -58,8 +62,12 @@ export namespace MathDevice {
 					: never
 				: never
 			: M[3] extends []
-			? `-${NumberArrayToString<M[2]>}` extends `${infer N extends number}`
-				? N
+			? `-${NumberArrayToString<M[2]>}` extends `${infer W extends number}`
+				? [number] extends [W]
+					? `-${NumberArrayToString<M[2]>}` extends `${infer B extends bigint}`
+						? B
+						: never
+					: W
 				: never
 			: M[3] extends number[]
 			? `-${NumberArrayToString<M[2]>}.${NumberArrayToString<M[3]>}` extends `${infer W extends number}`
