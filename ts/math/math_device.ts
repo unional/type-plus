@@ -8,31 +8,31 @@ import type { StringToNumber } from '../number/cast.js'
 export type MathDevice = ['bigint', '-' | '+', number[]] | ['number', '-' | '+', number[], number[]]
 
 export namespace MathDevice {
-	export type CastToNumberParts<S extends string> = StringToNumber<S> extends infer N extends number
+	export type StringToNumberParts<S extends string> = StringToNumber<S> extends infer N extends number
 		? `${N}` extends `${infer W}.${infer F}`
-			? [CastToNumberArray<W>, CastToNumberArray<F>]
-			: [CastToNumberArray<S>, []]
+			? [StringToNumberArray<W>, StringToNumberArray<F>]
+			: [StringToNumberArray<S>, []]
 		: never
-	export type CastToNumberArray<S extends string> = S extends `1${infer L}`
-		? [1, ...CastToNumberArray<L>]
+	export type StringToNumberArray<S extends string> = S extends `1${infer L}`
+		? [1, ...StringToNumberArray<L>]
 		: S extends `2${infer L}`
-		? [2, ...CastToNumberArray<L>]
+		? [2, ...StringToNumberArray<L>]
 		: S extends `3${infer L}`
-		? [3, ...CastToNumberArray<L>]
+		? [3, ...StringToNumberArray<L>]
 		: S extends `4${infer L}`
-		? [4, ...CastToNumberArray<L>]
+		? [4, ...StringToNumberArray<L>]
 		: S extends `5${infer L}`
-		? [5, ...CastToNumberArray<L>]
+		? [5, ...StringToNumberArray<L>]
 		: S extends `6${infer L}`
-		? [6, ...CastToNumberArray<L>]
+		? [6, ...StringToNumberArray<L>]
 		: S extends `7${infer L}`
-		? [7, ...CastToNumberArray<L>]
+		? [7, ...StringToNumberArray<L>]
 		: S extends `8${infer L}`
-		? [8, ...CastToNumberArray<L>]
+		? [8, ...StringToNumberArray<L>]
 		: S extends `9${infer L}`
-		? [9, ...CastToNumberArray<L>]
+		? [9, ...StringToNumberArray<L>]
 		: S extends `0${infer L}`
-		? [0, ...CastToNumberArray<L>]
+		? [0, ...StringToNumberArray<L>]
 		: []
 
 	export type ToBigint<M extends MathDevice, Fail = never> = M[0] extends 'bigint'
