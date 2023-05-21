@@ -62,7 +62,7 @@ export type {
 	NotStrictNumberType,
 	StrictNumberType
 } from './number/strict_number_type.js'
-export type { StringToNumeric } from './numeric/cast.js'
+export type { NumericToString, StringToNumeric } from './numeric/cast.js'
 export type { Integer, IsInteger, IsNotInteger, IsWhole, NotInteger } from './numeric/integer.js'
 export type { IsNegative, IsNotNegative, Negative, NotNegative } from './numeric/negative.js'
 export * as NumericPlus from './numeric/numeric_plus.js'
