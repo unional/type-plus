@@ -33,6 +33,7 @@ test('single digit', () => {
 
 test('multi digits', () => {
 	testType.equal<Subtract<123, 23>, 100>(true)
+	testType.equal<Subtract<100, 1>, 99>(true)
 	testType.equal<Subtract<7777, 1234>, 6543>(true)
 })
 
