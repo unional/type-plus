@@ -1,5 +1,6 @@
+import type { SplitAt } from '../array/array_plus.split_at.js'
 import type { Tail } from '../array/tail.js'
-import { IsNever } from '../never/never_type.js'
+import type { IsNever } from '../never/never_type.js'
 import type { StringToNumber } from '../number/cast.js'
 
 /**
@@ -107,9 +108,26 @@ export namespace MathDevice {
 				? [M[1], Sign] extends ['+', '+'] | ['-', '-']
 					? ['bigint', '+', N]
 					: ['bigint', '-', N]
-				: D
-			: 'f'
-		: NormalizeNumber<M>
+				: never
+			: never
+		: M[3] extends number[]
+		? NormalizeIntegerArrayDevice<[...M[2], ...M[3]], []> extends infer D
+			? [D, M[3]['length']] extends [
+					[infer Sign, infer N extends number[]],
+					infer FractionalLength extends number
+			  ]
+				? [M[1], Sign] extends ['+', '+'] | ['-', '-']
+					? FractionalLength extends 0
+						? ['number', '+', N, []]
+						: ['number', '+', ...SplitAt<N, ToNegative<FractionalLength>>]
+					: FractionalLength extends 0
+					? ['number', '-', N, []]
+					: ['number', '-', ...SplitAt<N, ToNegative<FractionalLength>>]
+				: never
+			: never
+		: never
+
+	type ToNegative<N extends number> = `-${N}` extends `${infer W extends number}` ? W : never
 
 	type NormalizeIntegerArrayDevice<M extends number[], R extends number[]> = M extends []
 		? R extends [infer F extends number, ...infer Rest extends number[]]
@@ -131,11 +149,9 @@ export namespace MathDevice {
 					: Heads extends [...infer Pres extends number[], infer Head extends number]
 					? NormalizeIntegerArrayDevice<[...Pres, DigitAdd<Head, D1>], [D2, ...R]>
 					: Heads
-				: 'b'
-			: 'c'
-		: 'd'
-
-	type NormalizeNumber<M extends MathDevice> = M
+				: never
+			: never
+		: never
 
 	export type NormalizeDigit<N extends number> = NormalizeSingleDigit<N> extends infer D extends [number]
 		? IsNever<D, StringToNumberPart<`${N}`>, D>
@@ -253,7 +269,7 @@ export namespace MathDevice {
 		[86, 87, 88, 89, 90, 91, 92, 93, 94, 95],
 		[87, 88, 89, 90, 91, 92, 93, 94, 95, 96],
 		[88, 89, 90, 91, 92, 93, 94, 95, 96, 97],
-		[89, 90, 91, 92, 93, 94, 95, 96, 97, 98],
+		[89, 90, 91, 92, 93, 94, 95, 96, 97, 98]
 	][A][B]
 
 	export type DigitSubtract<A extends number, B extends number> = [
