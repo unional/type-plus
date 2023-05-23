@@ -320,6 +320,7 @@ it('works with union types containing undefined', () => {
 })
 
 it('works with union types containing symbol', () => {
+	testType.false<IsEqual<1 | 2, 1>>(true)
 	testType.false<IsEqual<string | symbol, string | symbol | number>>(true)
 })
 
@@ -350,7 +351,6 @@ it('works with intersect types', () => {
 	testType.true<IsEqual<{ a: number; b?: string }, { a: number } & { b?: string }>>(true)
 	testType.true<IsEqual<{ a: number } & { b?: string }, { a: number; b?: string }>>(true)
 
-	testType.false<IsEqual<1 | 2, 1>>(true)
 	testType.false<IsEqual<{ a: number } & { c: number }, { a: number; b: number }>>(true)
 	testType.false<IsEqual<{ a: number; b: number }, { a: number } & { c: number }>>(true)
 })
