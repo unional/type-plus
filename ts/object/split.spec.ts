@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { isType, split } from '../index.js'
+import { isType, split, testType } from '../index.js'
 
 const target = { a: 0, b: '', c: false }
 
@@ -42,7 +42,7 @@ test('remove optional/undefined when default is provided', () => {
 	}
 	const s: S = {}
 	const [a] = split(s, { variant: 'def' })
-	isType.equal<true, 'abc' | 'def', typeof a.variant>()
+	testType.equal<typeof a.variant, 'abc' | 'def'>(true)
 })
 
 test('keep undefined when default is undefined', () => {
@@ -104,10 +104,10 @@ test('work with simple Record', () => {
 test('can specify multiple splitters', () => {
 	const t = { r: 'r' } as { a?: string; b?: string; c?: string; r?: string }
 	const [a, b, c, r] = split(t, { a: 'a' }, { b: 'b' }, { c: 'c' })
-	isType.equal<true, typeof a, { a: string }>()
-	isType.equal<true, typeof b, { b: string }>()
-	isType.equal<true, typeof c, { c: string }>()
-	isType.equal<true, typeof r, { r?: string | undefined }>()
+	testType.equal<typeof a, { a: string }>(true)
+	testType.equal<typeof b, { b: string }>(true)
+	testType.equal<typeof c, { c: string }>(true)
+	testType.equal<typeof r, { r?: string }>(true)
 	expect(a).toEqual({ a: 'a' })
 	expect(b).toEqual({ b: 'b' })
 	expect(c).toEqual({ c: 'c' })

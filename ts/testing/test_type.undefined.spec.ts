@@ -29,3 +29,15 @@ it('treat all other types as not true', () => {
 	testType.undefined<Function>(false)
 	testType.undefined<() => void>(false)
 })
+
+// it('check if the type has undefined', () => {
+// 	testType.hasUndefined<number | undefined>(true)
+// 	testType.hasUndefined<undefined>(true)
+// 	testType.hasUndefined<undefined | null>(true)
+// 	testType.hasUndefined<number>(false)
+
+// 	testType.hasUndefined<any>(true)
+// 	testType.hasUndefined<unknown>(true)
+// 	testType.hasUndefined<void>(true)
+// 	testType.hasUndefined<never>(true)
+// })

@@ -1,24 +1,24 @@
 import { test } from '@jest/globals'
-import { assertType, RequiredExcept, RequiredPick } from '../index.js'
+import { assertType, testType, type RequiredExcept, type RequiredPick } from '../index.js'
 
 test('make picked properties required', () => {
 	type Foo = {
-		a?: number
-		b?: number
+		a?: number | undefined
+		b?: number | undefined
 		c: number
 	}
 
 	const y: RequiredPick<Foo, 'a'> = { a: 1, c: 2 }
 
-	assertType.noUndefined(y.a)
+	testType.equal<typeof y.a, number>(true)
 	y.b = undefined
-	assertType.noUndefined(y.c)
+	testType.equal<typeof y.c, number>(true)
 })
 
 test('make not picked properties required', () => {
 	type Foo = {
-		a?: number
-		b?: number
+		a?: number | undefined
+		b?: number | undefined
 		c: number
 	}
 

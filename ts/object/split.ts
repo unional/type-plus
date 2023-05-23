@@ -2,10 +2,12 @@
 import type { AnyRecord } from './AnyRecord.js'
 import type { Omit } from './omit.js'
 import { reduceByKey } from './reduceKey.js'
+import type { Partial } from './Partial.js'
+import { NonUndefined } from '../utils/NonUndefined.js'
 
 type Splitter<T extends AnyRecord> = Partial<{ [k in keyof T]: T[k] | undefined }>
 export type Split<T extends AnyRecord, S extends AnyRecord> = {
-	[k in keyof S]-?: S[k] extends undefined ? T[k] : NonNullable<T[k]> | S[k]
+	[k in keyof S]-?: S[k] extends undefined ? T[k] : NonNullable<T[k]> | NonUndefined<S[k]>
 }
 
 /**

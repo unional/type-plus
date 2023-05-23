@@ -12,7 +12,7 @@ test('support null', () => {
 })
 
 test('can specify default value', () => {
-	const sub: { a?: number } = { a: undefined }
+	const sub: { a?: number | undefined } = { a: undefined }
 	expect(getField(sub, 'a', 2)).toBe(2)
 })
 

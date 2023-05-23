@@ -195,6 +195,7 @@ interface TestType {
 	 * @return `expected` as `T` for type inspection.
 	 */
 	undefined<T>(expected: IsUndefined<T>): T
+	// hasUndefined<T>(expected: CanAssign<T, undefined>): T
 	/**
 	 * Check if type `T` is exactly `unknown`.
 	 *

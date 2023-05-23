@@ -3,11 +3,12 @@
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
+    "exactOptionalPropertyTypes": true,
+    "isolatedModules": true,
     "lib": [
       "ES2015",
       "ES2021.Promise"
     ],
-    "isolatedModules": true,
     "newLine": "LF",
     "noUnusedLocals": true,
     "noUnusedParameters": false,
