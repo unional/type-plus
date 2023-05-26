@@ -4,6 +4,7 @@ import type { MathDevice } from './math_device.js'
 
 it('keeps single digit intact', () => {
 	testType.equal<MathDevice.NormalizeDigit<0>, [0]>(true)
+
 	testType.equal<MathDevice.NormalizeDigit<-1>, [-1]>(true)
 	testType.equal<MathDevice.NormalizeDigit<-2>, [-2]>(true)
 	testType.equal<MathDevice.NormalizeDigit<-3>, [-3]>(true)
