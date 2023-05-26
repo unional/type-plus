@@ -4,10 +4,14 @@ import type { IsNever } from '../never/never_type.js'
 import type { StringToNumber } from '../number/cast.js'
 
 /**
- * @note The value inside `number[]` range from 0 to 19.
+ * @note The value inside `number[]` range from -90 to 90.
  * That's the secret sauce of `MathDevice` type.
  */
 export type MathDevice = ['bigint', '-' | '+', number[]] | ['number', '-' | '+', number[], number[]]
+
+export type MathDevice2 = ['bigint'|'number', '+'|'-', number[], number]
+
+export type NumberToMathDevice2<N extends number> = []
 
 export namespace MathDevice {
 	export type StringToNumberParts<S extends string> = StringToNumber<S> extends infer N extends number
@@ -57,52 +61,113 @@ export namespace MathDevice {
 		? [-0, ...StringToNumberPart<L>]
 		: []
 
-	export type ToBigint<M extends MathDevice, Fail = never> = M[0] extends 'bigint'
-		? M[1] extends '+'
-			? NumberPartToString<M[2]> extends `${infer N extends bigint}`
+	export type ToBigint<M extends MathDevice, Fail = never> = Normalize<M> extends infer R extends MathDevice
+		? R[0] extends 'bigint'
+			? R[1] extends '+'
+				? NumberPartToString<R[2]> extends `${infer N extends bigint}`
+					? N
+					: never
+				: R[2] extends [0]
+				? 0n
+				: `-${NumberPartToString<R[2]>}` extends `${infer N extends bigint}`
 				? N
 				: never
-			: M[2] extends [0]
-			? 0n
-			: `-${NumberPartToString<M[2]>}` extends `${infer N extends bigint}`
-			? N
-			: never
-		: Fail
-	export type ToNumber<M extends MathDevice, Fail = never> = M[0] extends 'number'
-		? M[1] extends '+'
-			? M[3] extends []
-				? NumberPartToString<M[2]> extends `${infer W extends number}`
+			: Fail
+		: never
+
+	export type ToNumber<M extends MathDevice, Fail = never> = Normalize<M> extends infer R extends MathDevice
+		? R[0] extends 'number'
+			? R[1] extends '+'
+				? R[3] extends []
+					? NumberPartToString<R[2]> extends `${infer W extends number}`
+						? [number] extends [W]
+							? NumberPartToString<R[2]> extends `${infer B extends bigint}`
+								? B
+								: never
+							: W
+						: never
+					: R[3] extends number[]
+					? `${NumberPartToString<R[2]>}.${NumberPartToString<R[3]>}` extends `${infer W extends number}`
+						? W
+						: never
+					: never
+				: R[3] extends []
+				? `-${NumberPartToString<R[2]>}` extends `${infer W extends number}`
 					? [number] extends [W]
-						? NumberPartToString<M[2]> extends `${infer B extends bigint}`
+						? `-${NumberPartToString<R[2]>}` extends `${infer B extends bigint}`
 							? B
 							: never
 						: W
 					: never
-				: M[3] extends number[]
-				? `${NumberPartToString<M[2]>}.${NumberPartToString<M[3]>}` extends `${infer W extends number}`
+				: R[3] extends number[]
+				? `-${NumberPartToString<R[2]>}.${NumberPartToString<R[3]>}` extends `${infer W extends number}`
 					? W
 					: never
 				: never
-			: M[3] extends []
-			? `-${NumberPartToString<M[2]>}` extends `${infer W extends number}`
-				? [number] extends [W]
-					? `-${NumberPartToString<M[2]>}` extends `${infer B extends bigint}`
-						? B
-						: never
-					: W
-				: never
-			: M[3] extends number[]
-			? `-${NumberPartToString<M[2]>}.${NumberPartToString<M[3]>}` extends `${infer W extends number}`
-				? W
-				: never
-			: never
-		: Fail
-
+			: Fail
+		: never
 	type NumberPartToString<N extends number[]> = N['length'] extends 0
 		? ''
 		: `${N[0]}${NumberPartToString<Tail<N>>}`
 
-	export type Normalize<M extends MathDevice> = M[0] extends 'bigint'
+	export type Normalize<M extends MathDevice> = M[3] extends number[]
+		? NumericConversion<M[0], M[1], NormalizeValueDevice<[...M[2], ...M[3]], []>>
+		: NumericConversion<M[0], M[1], NormalizeValueDevice<M[2], []>>
+
+	export type NumericConversion<T extends 'bigint' | 'number', S extends '+' | '-', N extends number[]> = [T, S, N]
+
+	/**
+	 * Normalize a value.
+	 * It converts value to single digit array,
+	 * and only the first digit can be negative.
+	 */
+	export type NormalizeValueDevice<N extends number[], R extends number[]> = N extends []
+		? R
+		: N extends [infer Tail extends number]
+		? `${Tail}` extends `${infer T1 extends number}${infer T2 extends number}`
+			? NormalizeValueDevice<[], [T1, T2, ...R]>
+			: `${Tail}` extends `-${infer T1 extends number}${infer T2 extends number}`
+			? `-${T1}` extends `${infer NT extends number}`
+				? NormalizeValueDevice<[], [NT, T2, ...R]>
+				: never
+			: NormalizeValueDevice<[], [Tail, ...R]>
+		: N extends [infer Head extends number, infer Tail extends number]
+		? `${Tail}` extends `${infer T1 extends number}${infer T2 extends number}`
+			? NormalizeValueDevice<[IntegerEntryAdd<Head, T1>], [T2, ...R]>
+			: `${Tail}` extends `-${infer T1 extends number}${infer T2 extends number}`
+			? `-${T1}` extends `${infer NT extends number}`
+				? NormalizeValueDevice<[IntegerEntryAdd<Head, NT>], [T2, ...R]>
+				: never
+			: `${Tail}` extends `-${number}`
+			? NormalizeValueDevice<[IntegerEntryAdd<Head, -1>], [Plus10[Tail], ...R]>
+			: NormalizeValueDevice<[Head], [Tail, ...R]>
+		: N extends [...infer Heads extends number[], infer Head extends number, infer Tail extends number]
+		? `${Tail}` extends `${infer T1 extends number}${infer T2 extends number}`
+			? NormalizeValueDevice<[...Heads, IntegerEntryAdd<Head, T1>], [T2, ...R]>
+			: `${Tail}` extends `-${infer T1 extends number}${infer T2 extends number}`
+			? `-${T1}` extends `${infer NT extends number}`
+				? NormalizeValueDevice<[...Heads, IntegerEntryAdd<Head, NT>], [T2, ...R]>
+				: never
+			: `${Tail}` extends `-${number}`
+			? NormalizeValueDevice<[...Heads, IntegerEntryAdd<Head, -1>], [Plus10[Tail], ...R]>
+			: NormalizeValueDevice<[...Heads, Head], [Tail, ...R]>
+		: never
+	type Plus10 = { [k in number]: number } & {
+		'-1': 9
+		'-2': 8
+		'-3': 7
+		'-4': 6
+		'-5': 5
+		'-6': 4
+		'-7': 3
+		'-8': 2
+		'-9': 1
+	}
+
+	/**
+	 * Normalize MathDevice that the number parts can transform to string.
+	 */
+	export type NormalizeOld<M extends MathDevice> = M[0] extends 'bigint'
 		? NormalizeIntegerArrayDevice<M[2], []> extends infer D
 			? D extends [infer Sign, infer N]
 				? [M[1], Sign] extends ['+', '+'] | ['-', '-']
@@ -145,9 +210,9 @@ export namespace MathDevice {
 				? NormalizeIntegerArrayDevice<Heads, [Digit, ...R]>
 				: Digits extends [infer D1 extends number, infer D2 extends number]
 				? Heads extends [infer Head extends number]
-					? NormalizeIntegerArrayDevice<[DigitAdd<Head, D1>], [D2, ...R]>
+					? NormalizeIntegerArrayDevice<[IntegerEntryAdd<Head, D1>], [D2, ...R]>
 					: Heads extends [...infer Pres extends number[], infer Head extends number]
-					? NormalizeIntegerArrayDevice<[...Pres, DigitAdd<Head, D1>], [D2, ...R]>
+					? NormalizeIntegerArrayDevice<[...Pres, IntegerEntryAdd<Head, D1>], [D2, ...R]>
 					: Heads
 				: never
 			: never
@@ -179,7 +244,23 @@ export namespace MathDevice {
 		9: [9]
 	})[N]
 
-	export type DigitAdd<A extends number, B extends number> = [
+	/**
+	 * Adds two intger entries together.
+	 *
+	 * The first entry should always between `0` and `9`.
+	 * The second entry can range from `-81` to `81`.
+	 *
+	 * The code needs to be adjusted if this is no longer true.
+	 */
+	export type IntegerEntryAdd<A extends number, B extends number> = `${A}` extends `-${infer AD extends number}`
+		? `${B}` extends `-${infer BD extends number}`
+			? ToNegative<PositiveEntryAdd<AD, BD>>
+			: PositiveEntrySubtract<B, AD>
+		: `${B}` extends `-${infer BD extends number}`
+		? PositiveEntrySubtract<A, BD>
+		: PositiveEntryAdd<A, B>
+
+	export type PositiveEntryAdd<A extends number, B extends number> = [
 		[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
 		[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
 		[2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
@@ -272,7 +353,22 @@ export namespace MathDevice {
 		[89, 90, 91, 92, 93, 94, 95, 96, 97, 98]
 	][A][B]
 
-	export type DigitSubtract<A extends number, B extends number> = [
+	/**
+	 * Subtract two positive numbers.
+	 * The number range from 0 to 81.
+	 */
+	export type PositiveEntrySubtract<A extends number, B extends number> = [`${A}`, `${B}`] extends [
+		`${infer A1 extends number}${infer A2 extends number}`,
+		`${infer B1 extends number}${infer B2 extends number}`
+	]
+		? PositiveEntrySubtract<A2, B2>
+		: `${A}` extends `${infer A1 extends number}${infer A2 extends number}`
+		? PositiveEntrySubtract<A2, B>
+		: `${B}` extends `${infer B1 extends number}${infer B2 extends number}`
+		? PositiveEntrySubtract<A, B2>
+		: SingleDigitSubtract<A, B>
+
+	export type SingleDigitSubtract<A extends number, B extends number> = [
 		[0, -1, -2, -3, -4, -5, -6, -7, -8, -9],
 		[1, 0, -1, -2, -3, -4, -5, -6, -7, -8],
 		[2, 1, 0, -1, -2, -3, -4, -5, -6, -7],
