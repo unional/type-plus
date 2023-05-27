@@ -1,14 +1,13 @@
 import { describe, it } from '@jest/globals'
 import { testType } from '../index.js'
 import {
-	AddNormalizedNumberStruct,
 	BigintToMathStruct,
-	GetMinPadEnd,
 	NormalizeMathStruct,
 	NormalizedMathStructToNumeric,
 	NumberToMathStruct,
 	NumericToMathStruct
 } from './math_struct.js'
+import { AddNormalizedNumberStruct, GetMinPadEnd } from './math_struct.number_struct.js'
 
 describe('BigintToMathStruct', () => {
 	it('casts positive bigint to ["bigint", "+", NumberStruct]', () => {
