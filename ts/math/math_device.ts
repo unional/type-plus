@@ -1,7 +1,7 @@
 import type { SplitAt } from '../array/array_plus.split_at.js'
 import type { Tail } from '../array/tail.js'
 import type { IsNever } from '../never/never_type.js'
-import type { StringToNumber } from './math_struct.js'
+import type { StringToNumber } from './numeric_struct.js'
 
 /**
  * @note The value inside `number[]` range from -90 to 90.

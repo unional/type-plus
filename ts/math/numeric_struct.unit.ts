@@ -6,7 +6,7 @@ import {
 	NormalizedMathStructToNumeric,
 	NumberToMathStruct,
 	NumericToMathStruct
-} from './math_struct.js'
+} from './numeric_struct.js'
 
 describe('BigintToMathStruct', () => {
 	it('casts positive bigint to ["bigint", "+", NumberStruct]', () => {
