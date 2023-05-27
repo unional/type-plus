@@ -136,3 +136,22 @@ type NumberArrayToString<A extends Array<number | string>> = number extends A['l
 	: A['length'] extends 0
 	? ''
 	: `${A[0]}${NumberArrayToString<Tail<A>>}`
+
+export type NormalizeMathStruct<M extends MathStruct> = M
+
+export type AddDevice<A extends NumberStruct, B extends NumberStruct, R extends NumberStruct | unknown> = A
+
+export type SubtractDevice<
+	A extends NumberStruct,
+	B extends NumberStruct,
+	R extends NumberStruct | unknown
+> = A
+
+/**
+ * This is used to align the `NumberStruct` during `Add/Subtract`.
+ */
+export type GetMinPadEnd<A extends number, B extends number, R extends number[]=[]> = R['length'] extends A
+	? [R, B]
+	: R['length'] extends B
+	? [R, A]
+	: GetMinPadEnd<A, B, [0, ...R]>
