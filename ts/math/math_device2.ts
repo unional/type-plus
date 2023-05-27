@@ -1,4 +1,7 @@
+import { SplitAt } from '../array/array_plus.split_at.js'
 import { Tail } from '../array/tail.js'
+import { PadStart } from '../tuple/tuple_plus.pad_start.js'
+import { ToNegative } from './math_plus.to_negative.js'
 
 /**
  * Internal number representation to perform math operations.
@@ -84,7 +87,7 @@ export type NormalizedMathStructToNumeric<M extends MathStruct, Fail = never> = 
 	NormalizedMathStructToNumber<M, Fail>
 >
 
-export type NormalizedMathStructToBigint<M extends MathStruct, Fail = never> = M[0] extends 'bigint'
+type NormalizedMathStructToBigint<M extends MathStruct, Fail = never> = M[0] extends 'bigint'
 	? M[1] extends '+'
 		? NumberStructToString<M[2]> extends `${infer N extends bigint}`
 			? N
@@ -96,20 +99,36 @@ export type NormalizedMathStructToBigint<M extends MathStruct, Fail = never> = M
 		: never
 	: Fail
 
-export type NormalizedMathStructToNumber<M extends MathStruct, Fail = never> = M[0] extends 'number'
+type NormalizedMathStructToNumber<M extends MathStruct, Fail = never> = M[0] extends 'number'
 	? M[1] extends '+'
 		? NumberStructToString<M[2]> extends `${infer N extends number}`
 			? N
 			: never
-		: M[2] extends [0]
-		? 0n
+		: M[2] extends [[0], 0]
+		? 0
 		: `-${NumberStructToString<M[2]>}` extends `${infer N extends number}`
 		? N
 		: never
 	: Fail
 
-type NumberStructToString<N extends NumberStruct> = NumberArrayToString<N[0]>
+type NumberStructToString<N extends NumberStruct> = PadStart<
+	N[0],
+	N[1],
+	0
+> extends infer Padded extends number[]
+	? Padded['length'] extends N[1]
+		? NumberArrayToString<[0, '.', ...Padded]>
+		: SplitAt<Padded, ToNegative<N[1]>> extends [infer W extends number[], infer E extends number[]]
+		? W extends []
+			? E extends []
+				? ''
+				: NumberArrayToString<E>
+			: NumberArrayToString<[...W, '.', ...E]>
+		: never
+	: never
 
-type NumberArrayToString<A extends number[]> = A['length'] extends 0
+type NumberArrayToString<A extends Array<number | string>> = number extends A['length']
+	? ''
+	: A['length'] extends 0
 	? ''
 	: `${A[0]}${NumberArrayToString<Tail<A>>}`
