@@ -56,15 +56,15 @@ describe(`NumberToMathStruct`, () => {
 		>(true)
 
 		testType.equal<NumberToMathStruct<0.0>, ['number', '+', [[0], 0, 0]]>(true)
-		testType.equal<NumberToMathStruct<0.1>, ['number', '+', [[0, 1], 1, 0]]>(true)
-		testType.equal<NumberToMathStruct<0.1>, ['number', '+', [[0, 1], 1, 0]]>(true)
+		testType.equal<NumberToMathStruct<0.1>, ['number', '+', [[0, 1], 1, 1]]>(true)
+		testType.equal<NumberToMathStruct<0.1>, ['number', '+', [[0, 1], 1, 1]]>(true)
 		testType.equal<NumberToMathStruct<1.0>, ['number', '+', [[1], 0, 0]]>(true)
 		testType.equal<NumberToMathStruct<1.0>, ['number', '+', [[1], 0, 0]]>(true)
 		testType.equal<NumberToMathStruct<1.1>, ['number', '+', [[1, 1], 1, 0]]>(true)
 		testType.equal<NumberToMathStruct<1.1>, ['number', '+', [[1, 1], 1, 0]]>(true)
 
-		testType.equal<NumberToMathStruct<0.123>, ['number', '+', [[0, 1, 2, 3], 3, 0]]>(true)
-		testType.equal<NumberToMathStruct<0.000123>, ['number', '+', [[0, 0, 0, 0, 1, 2, 3], 6, 0]]>(true)
+		testType.equal<NumberToMathStruct<0.123>, ['number', '+', [[0, 1, 2, 3], 3, 1]]>(true)
+		testType.equal<NumberToMathStruct<0.000123>, ['number', '+', [[0, 0, 0, 0, 1, 2, 3], 6, 4]]>(true)
 		testType.equal<NumberToMathStruct<123.45>, ['number', '+', [[1, 2, 3, 4, 5], 2, 0]]>(true)
 	})
 
@@ -82,15 +82,15 @@ describe(`NumberToMathStruct`, () => {
 		>(true)
 
 		testType.equal<NumberToMathStruct<-0.0>, ['number', '+', [[0], 0, 0]]>(true)
-		testType.equal<NumberToMathStruct<-0.1>, ['number', '-', [[0, 1], 1, 0]]>(true)
-		testType.equal<NumberToMathStruct<-0.1>, ['number', '-', [[0, 1], 1, 0]]>(true)
+		testType.equal<NumberToMathStruct<-0.1>, ['number', '-', [[0, 1], 1, 1]]>(true)
+		testType.equal<NumberToMathStruct<-0.1>, ['number', '-', [[0, 1], 1, 1]]>(true)
 		testType.equal<NumberToMathStruct<-1.0>, ['number', '-', [[1], 0, 0]]>(true)
 		testType.equal<NumberToMathStruct<-1.0>, ['number', '-', [[1], 0, 0]]>(true)
 		testType.equal<NumberToMathStruct<-1.1>, ['number', '-', [[1, 1], 1, 0]]>(true)
 		testType.equal<NumberToMathStruct<-1.1>, ['number', '-', [[1, 1], 1, 0]]>(true)
 
-		testType.equal<NumberToMathStruct<-0.123>, ['number', '-', [[0, 1, 2, 3], 3, 0]]>(true)
-		testType.equal<NumberToMathStruct<-0.000123>, ['number', '-', [[0, 0, 0, 0, 1, 2, 3], 6, 0]]>(true)
+		testType.equal<NumberToMathStruct<-0.123>, ['number', '-', [[0, 1, 2, 3], 3, 1]]>(true)
+		testType.equal<NumberToMathStruct<-0.000123>, ['number', '-', [[0, 0, 0, 0, 1, 2, 3], 6, 4]]>(true)
 		testType.equal<NumberToMathStruct<-123.45>, ['number', '-', [[1, 2, 3, 4, 5], 2, 0]]>(true)
 	})
 
@@ -110,11 +110,11 @@ describe(`NumberToMathStruct`, () => {
 	})
 
 	it('normalizes floating point numbers', () => {
-		testType.equal<NumberToMathStruct<0.1>, ['number', '+', [[0, 1], 1, 0]]>(true)
-		testType.equal<NumberToMathStruct<0.00123>, ['number', '+', [[0, 0, 0, 1, 2, 3], 5, 0]]>(true)
+		testType.equal<NumberToMathStruct<0.1>, ['number', '+', [[0, 1], 1, 1]]>(true)
+		testType.equal<NumberToMathStruct<0.00123>, ['number', '+', [[0, 0, 0, 1, 2, 3], 5, 3]]>(true)
 
-		testType.equal<NumberToMathStruct<-0.1>, ['number', '-', [[0, 1], 1, 0]]>(true)
-		testType.equal<NumberToMathStruct<-0.00123>, ['number', '-', [[0, 0, 0, 1, 2, 3], 5, 0]]>(true)
+		testType.equal<NumberToMathStruct<-0.1>, ['number', '-', [[0, 1], 1, 1]]>(true)
+		testType.equal<NumberToMathStruct<-0.00123>, ['number', '-', [[0, 0, 0, 1, 2, 3], 5, 3]]>(true)
 	})
 })
 

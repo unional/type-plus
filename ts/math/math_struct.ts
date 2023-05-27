@@ -121,7 +121,15 @@ export type NormalizeFloatingPoint<
 	Z extends number[] = E
 > = T extends [0, ...infer Tail extends number[]]
 	? NormalizeFloatingPoint<W, E, Tail, Z>
-	: [[...W,...E], Z['length'], 0]
+	: [...W, ...E] extends infer D extends number[]
+	? [D, Z['length'], CountZeros<D, []>]
+	: never
+
+type CountZeros<T extends number[], R extends number[]> = T extends []
+	? R['length']
+	: T extends [0, ...infer Tail extends number[]]
+	? CountZeros<Tail, [0, ...R]>
+	: R['length']
 
 export type NormalizedMathStructToNumeric<M extends MathStruct, Fail = never> = NormalizedMathStructToBigint<
 	M,
