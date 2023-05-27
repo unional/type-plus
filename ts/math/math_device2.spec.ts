@@ -143,7 +143,41 @@ describe(`MathDeviceToNumeric`, () => {
 		testType.equal<NormalizedMathStructToNumeric<['number', '-', [[1, 2, 3], 5]]>, -0.00123>(true)
 	})
 
-	it.todo('converts bigint with floating point numbers to number')
-	it.todo('fail for floating point number that is too large?')
-	it.todo('convert number to bigint if the number is too large')
+	it('converts bigint with floating point number to number', () => {
+		testType.equal<NormalizedMathStructToNumeric<['bigint', '+', [[1, 2, 3, 4, 5], 3]]>, 12.345>(true)
+		testType.equal<NormalizedMathStructToNumeric<['bigint', '+', [[1, 2], 4]]>, 0.0012>(true)
+
+		testType.equal<NormalizedMathStructToNumeric<['bigint', '-', [[1, 2, 3, 4, 5], 3]]>, -12.345>(true)
+		testType.equal<NormalizedMathStructToNumeric<['bigint', '-', [[1, 2], 4]]>, -0.0012>(true)
+	})
+
+	it('returns never for floating point number that is too large', () => {
+		testType.never<
+			NormalizedMathStructToNumeric<['number', '+', [[9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2, 1], 1]]>
+		>(true)
+
+		testType.never<
+			NormalizedMathStructToNumeric<['number', '-', [[9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2, 1], 1]]>
+		>(true)
+
+		testType.never<
+			NormalizedMathStructToNumeric<['bigint', '+', [[9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2, 1], 1]]>
+		>(true)
+
+		testType.never<
+			NormalizedMathStructToNumeric<['bigint', '-', [[9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2, 1], 1]]>
+		>(true)
+	})
+
+	it('convert number to bigint if the number is too large', () => {
+		testType.equal<
+			NormalizedMathStructToNumeric<['number', '+', [[9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 3], 0]]>,
+			9007199254740993n
+		>(true)
+
+		testType.equal<
+			NormalizedMathStructToNumeric<['number', '-', [[9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 3], 0]]>,
+			-9007199254740993n
+		>(true)
+	})
 })

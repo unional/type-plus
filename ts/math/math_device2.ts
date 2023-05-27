@@ -89,26 +89,22 @@ export type NormalizedMathStructToNumeric<M extends MathStruct, Fail = never> = 
 
 type NormalizedMathStructToBigint<M extends MathStruct, Fail = never> = M[0] extends 'bigint'
 	? M[1] extends '+'
-		? NumberStructToString<M[2]> extends `${infer N extends bigint}`
-			? N
-			: never
+		? StringToBigint<NumberStructToString<M[2]>, Fail>
 		: M[2] extends [[0], 0]
 		? 0n
-		: `-${NumberStructToString<M[2]>}` extends `${infer N extends bigint}`
-		? N
-		: never
+		: StringToBigint<`-${NumberStructToString<M[2]>}`, Fail>
 	: Fail
 
-type NormalizedMathStructToNumber<M extends MathStruct, Fail = never> = M[0] extends 'number'
-	? M[1] extends '+'
-		? NumberStructToString<M[2]> extends `${infer N extends number}`
-			? N
-			: never
-		: M[2] extends [[0], 0]
-		? 0
-		: `-${NumberStructToString<M[2]>}` extends `${infer N extends number}`
-		? N
-		: never
+type StringToBigint<S extends string, Fail> = S extends `${infer N extends bigint}` ? N : Fail
+
+type NormalizedMathStructToNumber<M extends MathStruct, Fail = never> = M[1] extends '+'
+	? NumberStructToString<M[2]> extends `${infer N extends number}`
+		? number extends N ? StringToBigint<NumberStructToString<M[2]>, Fail> : N
+		: Fail
+	: M[2] extends [[0], 0]
+	? 0
+	: `-${NumberStructToString<M[2]>}` extends `${infer N extends number}`
+	? number extends N ? StringToBigint<`-${NumberStructToString<M[2]>}`, Fail> : N
 	: Fail
 
 type NumberStructToString<N extends NumberStruct> = PadStart<
