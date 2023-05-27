@@ -4,6 +4,7 @@ import {
 	AddNormalizedNumberStruct,
 	BigintToMathStruct,
 	GetMinPadEnd,
+	NormalizeMathStruct,
 	NormalizedMathStructToNumeric,
 	NumberToMathStruct,
 	NumericToMathStruct
@@ -297,4 +298,61 @@ describe('AddNormalizedNumberStruct', () => {
 	it('0 + 0', () => {
 		testType.equal<AddNormalizedNumberStruct<[[0], 0, 0], [[0], 0, 0]>, [[0], 0, 0]>(true)
 	})
+})
+
+describe('NormalizeMathStruct', () => {
+	it('remain unchanged if every digits are single digits for bigint', () => {
+		testType.equal<NormalizeMathStruct<['bigint', '+', [[0], 0, 0]]>, ['bigint', '+', [[0], 0, 0]]>(true)
+		testType.equal<NormalizeMathStruct<['bigint', '+', [[9], 0, 0]]>, ['bigint', '+', [[9], 0, 0]]>(true)
+		testType.equal<
+			NormalizeMathStruct<['bigint', '+', [[1, 2, 3], 0, 0]]>,
+			['bigint', '+', [[1, 2, 3], 0, 0]]
+		>(true)
+		testType.equal<
+			NormalizeMathStruct<['bigint', '+', [[1, 2, 3], 1, 0]]>,
+			['bigint', '+', [[1, 2, 3], 1, 0]]
+		>(true)
+		testType.equal<
+			NormalizeMathStruct<['bigint', '+', [[0, 0, 1, 2, 3], 4, 2]]>,
+			['bigint', '+', [[0, 0, 1, 2, 3], 4, 2]]
+		>(true)
+
+		testType.equal<NormalizeMathStruct<['bigint', '-', [[0], 0, 0]]>, ['bigint', '-', [[0], 0, 0]]>(true)
+		testType.equal<NormalizeMathStruct<['bigint', '-', [[9], 0, 0]]>, ['bigint', '-', [[9], 0, 0]]>(true)
+		testType.equal<
+			NormalizeMathStruct<['bigint', '-', [[1, 2, 3], 0, 0]]>,
+			['bigint', '-', [[1, 2, 3], 0, 0]]
+		>(true)
+		testType.equal<
+			NormalizeMathStruct<['bigint', '-', [[1, 2, 3], 1, 0]]>,
+			['bigint', '-', [[1, 2, 3], 1, 0]]
+		>(true)
+		testType.equal<
+			NormalizeMathStruct<['bigint', '-', [[0, 0, 1, 2, 3], 4, 2]]>,
+			['bigint', '-', [[0, 0, 1, 2, 3], 4, 2]]
+		>(true)
+	})
+
+	// it('advance digits when digit > 10', () => {
+	// 	testType.equal<NormalizeMathStruct<['bigint', '+', [[10], 0, 0]]>, ['bigint', '+', [[1, 0], 0, 0]]>(true)
+
+	// 	testType.equal<NormalizeMathStruct<['bigint', '+', [[81], 0, 0]]>, ['bigint', '+', [[8, 1], 0, 0]]>(true)
+
+	// 	testType.equal<NormalizeMathStruct<['bigint', '+', [[1, 10], 0, 0]]>, ['bigint', '+', [[2, 0], 0, 0]]>(
+	// 		true
+	// 	)
+	// 	testType.equal<NormalizeMathStruct<['bigint', '+', [[1, 81], 0, 0]]>, ['bigint', '+', [[9, 1], 0, 0]]>(
+	// 		true
+	// 	)
+
+	// 	testType.equal<
+	// 		NormalizeMathStruct<['bigint', '+', [[81, 81], 0, 0]]>,
+	// 		['bigint', '+', [[8, 9, 1], 0, 0]]
+	// 	>(true)
+
+	// 	testType.equal<
+	// 		NormalizeMathStruct<['bigint', '+', [[9, 9, 9, 9, 10], 0, 0]]>,
+	// 		['bigint', '+', [[1, 0, 0, 0, 0, 0], 0, 0]]
+	// 	>(true)
+	// })
 })
