@@ -2,7 +2,7 @@ import type { SplitAt } from '../array/array_plus.split_at.js'
 import type { Tail } from '../array/tail.js'
 import type { PadStart } from '../tuple/tuple_plus.pad_start.js'
 import type { ToNegative } from './math_plus.to_negative.js'
-import type { NormalizeNumberStruct, NumberStruct, StringToNumberStruct } from './math_struct.number_struct.js'
+import type { NormalizeNumberStruct, NumberStruct, StringToNumberStruct } from './digit_struct.js'
 
 /**
  * Internal number representation to perform math operations.

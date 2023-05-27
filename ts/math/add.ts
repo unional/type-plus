@@ -5,7 +5,7 @@ import {
 	NumericToMathStruct
 } from './math_struct.js'
 
-import { AddNormalizedNumberStruct, SubtractDevice } from './math_struct.number_struct.js'
+import { AddNormalizedNumberStruct, SubtractDevice } from './digit_struct.js'
 
 export type Add<A extends number | bigint, B extends number | bigint, Fail = never> = [
 	NumericToMathStruct<A>,
