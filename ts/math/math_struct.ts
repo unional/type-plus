@@ -180,7 +180,9 @@ type NumberArrayToString<A extends Array<number | string>> = number extends A['l
 	? ''
 	: `${A[0]}${NumberArrayToString<Tail<A>>}`
 
-export type NormalizeMathStruct<M extends MathStruct> = M
+export type NormalizeMathStruct<M extends MathStruct> = [M[0], M[1], NormalizeNumberStruct<M[2]>]
+
+type NormalizeNumberStruct<N extends NumberStruct, R extends NumberStruct = [[], 0, 0]> = [N[0], N[1], N[2]]
 
 /**
  * Add `A` and `B` together.
