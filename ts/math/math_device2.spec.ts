@@ -69,13 +69,19 @@ describe(`NumberToMathDevice`, () => {
 	it('casts floating point numbers with correct exponent', () => {
 		testType.equal<NumberToMathStruct<1.1>, ['number', '+', [[1, 1], 1]]>(true)
 		testType.equal<NumberToMathStruct<1.2345>, ['number', '+', [[1, 2, 3, 4, 5], 4]]>(true)
-
 		testType.equal<NumberToMathStruct<123.45>, ['number', '+', [[1, 2, 3, 4, 5], 2]]>(true)
+
+		testType.equal<NumberToMathStruct<-1.1>, ['number', '-', [[1, 1], 1]]>(true)
+		testType.equal<NumberToMathStruct<-1.2345>, ['number', '-', [[1, 2, 3, 4, 5], 4]]>(true)
+		testType.equal<NumberToMathStruct<-123.45>, ['number', '-', [[1, 2, 3, 4, 5], 2]]>(true)
 	})
 
 	it('normalizes floating point numbers', () => {
 		testType.equal<NumberToMathStruct<0.1>, ['number', '+', [[1], 1]]>(true)
 		testType.equal<NumberToMathStruct<0.00123>, ['number', '+', [[1, 2, 3], 5]]>(true)
+
+		testType.equal<NumberToMathStruct<-0.1>, ['number', '-', [[1], 1]]>(true)
+		testType.equal<NumberToMathStruct<-0.00123>, ['number', '-', [[1, 2, 3], 5]]>(true)
 	})
 })
 
@@ -95,4 +101,49 @@ describe(`MathDeviceToNumeric`, () => {
 			-9876543210n
 		>(true)
 	})
+
+	it('converts whole numbers', () => {
+		testType.equal<NormalizedMathStructToNumeric<['number', '+', [[0], 0]]>, 0>(true)
+		testType.equal<NormalizedMathStructToNumeric<['number', '+', [[1], 0]]>, 1>(true)
+		testType.equal<
+			NormalizedMathStructToNumeric<['number', '+', [[9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 0]]>,
+			9876543210
+		>(true)
+
+		testType.equal<
+			NormalizedMathStructToNumeric<['number', '+', [[9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2], 0]]>,
+			9007199254740992
+		>(true)
+
+		testType.equal<NormalizedMathStructToNumeric<['number', '-', [[0], 0]]>, 0>(true)
+		testType.equal<NormalizedMathStructToNumeric<['number', '-', [[1], 0]]>, -1>(true)
+		testType.equal<
+			NormalizedMathStructToNumeric<['number', '-', [[9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 0]]>,
+			-9876543210
+		>(true)
+
+		testType.equal<
+			NormalizedMathStructToNumeric<['number', '-', [[9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2], 0]]>,
+			-9007199254740992
+		>(true)
+	})
+
+	it('converts floating point numbers', () => {
+		testType.equal<NormalizedMathStructToNumeric<['number', '+', [[1, 1], 1]]>, 1.1>(true)
+		testType.equal<NormalizedMathStructToNumeric<['number', '+', [[1, 2, 3, 4, 5], 4]]>, 1.2345>(true)
+
+		testType.equal<NormalizedMathStructToNumeric<['number', '+', [[1, 2, 3, 4, 5], 2]]>, 123.45>(true)
+	})
+
+	it('normalizes floating point numbers', () => {
+		testType.equal<NormalizedMathStructToNumeric<['number', '+', [[1], 1]]>, 0.1>(true)
+		testType.equal<NormalizedMathStructToNumeric<['number', '+', [[1, 2, 3], 5]]>, 0.00123>(true)
+
+		testType.equal<NormalizedMathStructToNumeric<['number', '-', [[1], 1]]>, -0.1>(true)
+		testType.equal<NormalizedMathStructToNumeric<['number', '-', [[1, 2, 3], 5]]>, -0.00123>(true)
+	})
+
+	it.todo('converts bigint with floating point numbers to number')
+	it.todo('fail for floating point number that is too large?')
+	it.todo('convert number to bigint if the number is too large')
 })
