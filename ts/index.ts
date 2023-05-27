@@ -41,12 +41,12 @@ export * from './functional/index.js'
 export type { JSONArray, JSONObject, JSONPrimitive, JSONTypes } from './json.js'
 export type {
 	Abs,
-	Add,
+	// Add,
 	Decrement,
 	Digit,
 	DigitArray,
 	GreaterThan,
-	Increment,
+	// Increment,
 	Max,
 	Subtract
 } from './math/index.js'

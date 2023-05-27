@@ -1,6 +1,7 @@
 import { describe, it } from '@jest/globals'
 import { testType } from '../index.js'
 import {
+	AddNormalizedNumberStruct,
 	BigintToMathStruct,
 	GetMinPadEnd,
 	NormalizedMathStructToNumeric,
@@ -272,4 +273,11 @@ describe('GetMinPadEnd', () => {
 		testType.equal<GetMinPadEnd<4, 1>, [[0], 'A']>(true)
 		testType.equal<GetMinPadEnd<3, 7>, [[0, 0, 0], 'B']>(true)
 	})
+})
+
+describe('AddNumberStruct', () => {
+	it('0 + 0', () => {
+		testType.equal<AddNormalizedNumberStruct<[[0], 0], [[0], 0]>, [[0], 0]>(true)
+	})
+
 })
