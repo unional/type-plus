@@ -1,7 +1,7 @@
 import type { SplitAt } from '../array/array_plus.split_at.js'
 import type { Tail } from '../array/tail.js'
 import type { IsNever } from '../never/never_type.js'
-import type { StringToNumber } from '../number/cast.js'
+import type { StringToNumber } from './math_device2.js'
 
 /**
  * @note The value inside `number[]` range from -90 to 90.
@@ -14,7 +14,7 @@ export type MathDevice2 = ['bigint'|'number', '+'|'-', number[], number]
 export type NumberToMathDevice2<N extends number> = []
 
 export namespace MathDevice {
-	export type StringToNumberParts<S extends string> = StringToNumber<S> extends infer N extends number
+	export type StringToNumberParts<S extends string> = StringToNumber<S, never> extends infer N extends number
 		? `${N}` extends `${infer W}.${infer F}`
 			? [StringToNumberPart<W>, StringToNumberPart<F>]
 			: [StringToNumberPart<S>, []]

@@ -16,6 +16,12 @@ import { ToNegative } from './math_plus.to_negative.js'
 export type MathStruct = ['bigint' | 'number', '+' | '-', NumberStruct]
 export type NumberStruct = [number[], number]
 
+export type NumericToMathStruct<N extends number | bigint> = N extends number
+	? NumberToMathStruct<N>
+	: N extends bigint
+	? BigintToMathStruct<N>
+	: never
+
 export type NumberToMathStruct<N extends number> = `${N}` extends `-${infer R}`
 	? ['number', '-', StringToNumberStruct<R>]
 	: ['number', '+', StringToNumberStruct<`${N}`>]
@@ -98,13 +104,15 @@ type NormalizedMathStructToBigint<M extends MathStruct, Fail = never> = M[0] ext
 type StringToBigint<S extends string, Fail> = S extends `${infer N extends bigint}` ? N : Fail
 
 type NormalizedMathStructToNumber<M extends MathStruct, Fail = never> = M[1] extends '+'
-	? NumberStructToString<M[2]> extends `${infer N extends number}`
-		? number extends N ? StringToBigint<NumberStructToString<M[2]>, Fail> : N
-		: Fail
+	? StringToNumber<NumberStructToString<M[2]>, Fail>
 	: M[2] extends [[0], 0]
 	? 0
-	: `-${NumberStructToString<M[2]>}` extends `${infer N extends number}`
-	? number extends N ? StringToBigint<`-${NumberStructToString<M[2]>}`, Fail> : N
+	: StringToNumber<`-${NumberStructToString<M[2]>}`, Fail>
+
+export type StringToNumber<S extends string, Fail> = S extends `${infer N extends number}`
+	? number extends N
+		? StringToBigint<S, Fail>
+		: N
 	: Fail
 
 type NumberStructToString<N extends NumberStruct> = PadStart<
