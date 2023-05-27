@@ -3,7 +3,7 @@ import {
 	NormalizeMathStruct,
 	NormalizedMathStructToNumeric,
 	NumericToMathStruct
-} from './math_struct.js'
+} from './numeric_struct.js'
 
 import { DigitsStruct } from './digit_struct.js'
 
