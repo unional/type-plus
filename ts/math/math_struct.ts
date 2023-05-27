@@ -14,7 +14,40 @@ import { ToNegative } from './math_plus.to_negative.js'
  * That's the secret sauce of `MathStruct` type.
  */
 export type MathStruct = ['bigint' | 'number', '+' | '-', NumberStruct]
-export type NumberStruct = [number[], number]
+
+/**
+ * [Digits, Exponent, SignIndex]
+ *
+ * Digit range from -89 to 89.
+ * The max case comes from multiplication:
+ *
+ * ```
+ * 99 * 9
+ * => [[    9,  9], 0, 0]
+ * *  [        [9], 0, 0]
+ * => [[   81, 81], 0, 0]
+ * => [[   89,  1], 0, 0]
+ * => [[ 8, 9,  1], 0, 0]
+ * ```
+ *
+ * Exponent is the negative exponent of the number.
+ *
+ * ```
+ * 1.23 = 123 x e^-2 = [[1, 2, 3], 2, 0]
+ * ```
+ *
+ * SignIndex is the Digit index where the sign is located.
+ * It is used to track which Digit can be negative when the `NumberStruct` is normalized.
+ * It is the same as how many zeros at the start of the Digits.
+ *
+ * It is used to determine when the normalization can stop.
+ *
+ * ```
+ * -0.01 = [[0, 0, -1], 2, 2]
+ * -0.00123 = [[0, 0, 0, -1, 2, 3], 5, 3]
+ * ```
+ */
+export type NumberStruct = [number[], number, number]
 
 export type NumericToMathStruct<N extends number | bigint> = N extends number
 	? NumberToMathStruct<N>
@@ -37,7 +70,7 @@ export type BigintToMathStruct<N extends bigint> = `${N}` extends `-${infer R}`
  */
 export type StringToNumberStruct<S extends string> = S extends `${infer W}.${infer F}`
 	? NormalizeFloatingPoint<StringToNumberArray<W>, StringToNumberArray<F>>
-	: [StringToNumberArray<S>, 0]
+	: [StringToNumberArray<S>, 0, 0]
 
 export type StringToNumberArray<S extends string> = S extends `1${infer L}`
 	? [1, ...StringToNumberArray<L>]
@@ -86,7 +119,9 @@ export type NormalizeFloatingPoint<
 	E extends number[],
 	T extends number[] = [...W, ...E],
 	Z extends number[] = E
-> = T extends [0, ...infer Tail extends number[]] ? NormalizeFloatingPoint<W, E, Tail, Z> : [T, Z['length']]
+> = T extends [0, ...infer Tail extends number[]]
+	? NormalizeFloatingPoint<W, E, Tail, Z>
+	: [[...W,...E], Z['length'], 0]
 
 export type NormalizedMathStructToNumeric<M extends MathStruct, Fail = never> = NormalizedMathStructToBigint<
 	M,
@@ -96,7 +131,7 @@ export type NormalizedMathStructToNumeric<M extends MathStruct, Fail = never> = 
 type NormalizedMathStructToBigint<M extends MathStruct, Fail = never> = M[0] extends 'bigint'
 	? M[1] extends '+'
 		? StringToBigint<NumberStructToString<M[2]>, Fail>
-		: M[2] extends [[0], 0]
+		: M[2] extends [[0], 0, 0]
 		? 0n
 		: StringToBigint<`-${NumberStructToString<M[2]>}`, Fail>
 	: Fail
@@ -105,7 +140,7 @@ type StringToBigint<S extends string, Fail> = S extends `${infer N extends bigin
 
 type NormalizedMathStructToNumber<M extends MathStruct, Fail = never> = M[1] extends '+'
 	? StringToNumber<NumberStructToString<M[2]>, Fail>
-	: M[2] extends [[0], 0]
+	: M[2] extends [[0], 0, 0]
 	? 0
 	: StringToNumber<`-${NumberStructToString<M[2]>}`, Fail>
 
@@ -145,34 +180,35 @@ export type NormalizeMathStruct<M extends MathStruct> = M
  * `A` and `B` must be normalized,
  * meaning each entry are single digits.
  */
-export type AddNormalizedNumberStruct<
-	A extends NumberStruct,
-	B extends NumberStruct
-> = GetMinPadEnd<A[1], B[1]> extends [infer Pads extends number[], infer Longer]
+export type AddNormalizedNumberStruct<A extends NumberStruct, B extends NumberStruct> = GetMinPadEnd<
+	A[1],
+	B[1]
+> extends [infer Pads extends number[], infer Longer]
 	? Longer extends 'A'
-		? [AddNormalizedNumberArrayDevice<A[0], [...B[0], ...Pads]>, A[1]]
-		: [AddNormalizedNumberArrayDevice<[...A[0], ...Pads], B[0]>, B[1]]
+		? AddNormalizedNumberArrayDevice<A[0], [...B[0], ...Pads], A[1]>
+		: AddNormalizedNumberArrayDevice<[...A[0], ...Pads], B[0], B[1]>
 	: never
 
 type AddNormalizedNumberArrayDevice<
 	A extends number[],
 	B extends number[],
+	E extends number,
 	R extends number[] = []
 > = A extends []
 	? B extends []
-		? R
+		? [R, E, 0]
 		: B extends [...infer BH extends number[], infer BL extends number]
-		? AddNormalizedNumberArrayDevice<[], BH, [BL, ...R]>
+		? AddNormalizedNumberArrayDevice<[], BH, E, [BL, ...R]>
 		: never
 	: B extends []
 	? A extends [...infer AH extends number[], infer AL extends number]
-		? AddNormalizedNumberArrayDevice<AH, [], [AL, ...R]>
+		? AddNormalizedNumberArrayDevice<AH, [], E, [AL, ...R]>
 		: never
 	: [A, B] extends [
 			[...infer AH extends number[], infer AL extends number],
 			[...infer BH extends number[], infer BL extends number]
 	  ]
-	? AddNormalizedNumberArrayDevice<AH, BH, [IntegerEntryAdd<AL, BL>, ...R]>
+	? AddNormalizedNumberArrayDevice<AH, BH, E, [IntegerEntryAdd<AL, BL>, ...R]>
 	: never
 
 /**
