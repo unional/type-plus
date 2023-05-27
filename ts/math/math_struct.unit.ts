@@ -7,7 +7,6 @@ import {
 	NumberToMathStruct,
 	NumericToMathStruct
 } from './math_struct.js'
-import { AddNormalizedNumberStruct, GetMinPadEnd } from './math_struct.number_struct.js'
 
 describe('BigintToMathStruct', () => {
 	it('casts positive bigint to ["bigint", "+", NumberStruct]', () => {
@@ -278,24 +277,6 @@ describe('conversion roundtrip', () => {
 		testType.equal<RoundTrip<1234567890n>, 1234567890n>(true)
 		testType.equal<RoundTrip<-1n>, -1n>(true)
 		testType.equal<RoundTrip<-1234567890n>, -1234567890n>(true)
-	})
-})
-
-describe('GetMinPadEnd', () => {
-	it('returns [0, M] if one of the value is 0', () => {
-		testType.equal<GetMinPadEnd<0, 1>, [[], 'B']>(true)
-		testType.equal<GetMinPadEnd<2, 0>, [[], 'A']>(true)
-	})
-
-	it('returns [[0...n], M]', () => {
-		testType.equal<GetMinPadEnd<4, 1>, [[0], 'A']>(true)
-		testType.equal<GetMinPadEnd<3, 7>, [[0, 0, 0], 'B']>(true)
-	})
-})
-
-describe('AddNormalizedNumberStruct', () => {
-	it('0 + 0', () => {
-		testType.equal<AddNormalizedNumberStruct<[[0], 0, 0], [[0], 0, 0]>, [[0], 0, 0]>(true)
 	})
 })
 
