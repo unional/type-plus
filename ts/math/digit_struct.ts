@@ -1,3 +1,6 @@
+import { SplitAt } from '../array/array_plus.split_at.js'
+import { Tail } from '../array/tail.js'
+import { PadStart } from '../tuple/tuple_plus.pad_start.js'
 import type { ToNegative } from './math_plus.to_negative.js'
 
 /**
@@ -32,96 +35,128 @@ import type { ToNegative } from './math_plus.to_negative.js'
  * -0.00123 = [[0, 0, 0, -1, 2, 3], 5, 3]
  * ```
  */
-export type NumberStruct = [number[], number, number]
+export type DigitsStruct = [number[], number, number]
 
-/**
- * `S` is expected to be positive number.
- *
- * Either `12345` or `123.45`
- */
-export type StringToNumberStruct<S extends string> = S extends `${infer W}.${infer F}`
-	? NormalizeFloatingPoint<StringToNumberArray<W>, StringToNumberArray<F>>
-	: [StringToNumberArray<S>, 0, 0]
+export namespace DigitsStruct {
+	/**
+	 * `S` is expected to be positive number.
+	 *
+	 * Either `12345` or `123.45`
+	 */
+	export type FromString<S extends string> = S extends `${infer W}.${infer F}`
+		? DigitsArray.NormalizeFloatingPoint<DigitsArray.FromString<W>, DigitsArray.FromString<F>>
+		: [DigitsArray.FromString<S>, 0, 0]
 
-export type StringToNumberArray<S extends string> = S extends `1${infer L}`
-	? [1, ...StringToNumberArray<L>]
-	: S extends `2${infer L}`
-	? [2, ...StringToNumberArray<L>]
-	: S extends `3${infer L}`
-	? [3, ...StringToNumberArray<L>]
-	: S extends `4${infer L}`
-	? [4, ...StringToNumberArray<L>]
-	: S extends `5${infer L}`
-	? [5, ...StringToNumberArray<L>]
-	: S extends `6${infer L}`
-	? [6, ...StringToNumberArray<L>]
-	: S extends `7${infer L}`
-	? [7, ...StringToNumberArray<L>]
-	: S extends `8${infer L}`
-	? [8, ...StringToNumberArray<L>]
-	: S extends `9${infer L}`
-	? [9, ...StringToNumberArray<L>]
-	: S extends `0${infer L}`
-	? [0, ...StringToNumberArray<L>]
-	: S extends `-1${infer L}`
-	? [-1, ...StringToNumberArray<L>]
-	: S extends `-2${infer L}`
-	? [-2, ...StringToNumberArray<L>]
-	: S extends `-3${infer L}`
-	? [-3, ...StringToNumberArray<L>]
-	: S extends `-4${infer L}`
-	? [-4, ...StringToNumberArray<L>]
-	: S extends `-5${infer L}`
-	? [-5, ...StringToNumberArray<L>]
-	: S extends `-6${infer L}`
-	? [-6, ...StringToNumberArray<L>]
-	: S extends `-7${infer L}`
-	? [-7, ...StringToNumberArray<L>]
-	: S extends `-8${infer L}`
-	? [-8, ...StringToNumberArray<L>]
-	: S extends `-9${infer L}`
-	? [-9, ...StringToNumberArray<L>]
-	: S extends `-0${infer L}`
-	? [-0, ...StringToNumberArray<L>]
-	: []
+	export type Normalize<N extends DigitsStruct, R extends DigitsStruct = [[], 0, 0]> = [N[0], N[1], N[2]]
 
-export type NormalizeFloatingPoint<
-	W extends number[],
-	E extends number[],
-	T extends number[] = [...W, ...E],
-	Z extends number[] = E
-> = T extends [0, ...infer Tail extends number[]]
-	? NormalizeFloatingPoint<W, E, Tail, Z>
-	: [...W, ...E] extends infer D extends number[]
-	? [D, Z['length'], CountZeros<D, []>]
-	: never
+	/**
+	 * Add `A` and `B` together.
+	 *
+	 * `A` and `B` must be normalized,
+	 * meaning each entry are single digits.
+	 */
+	export type AddNormalized<A extends DigitsStruct, B extends DigitsStruct> = GetMinPadEnd<
+		A[1],
+		B[1]
+	> extends [infer Pads extends number[], infer Longer]
+		? Longer extends 'A'
+			? AddNormalizedNumberArrayDevice<A[0], [...B[0], ...Pads], A[1]>
+			: AddNormalizedNumberArrayDevice<[...A[0], ...Pads], B[0], B[1]>
+		: never
 
-type CountZeros<T extends number[], R extends number[]> = T extends []
-	? R['length']
-	: T extends [0, ...infer Tail extends number[]]
-	? CountZeros<Tail, [0, ...R]>
-	: R['length']
+	/**
+	 * This is used to align the `NumberStruct` during `Add/Subtract`.
+	 */
+	export type GetMinPadEnd<
+		A extends number,
+		B extends number,
+		R extends number[] = []
+	> = R['length'] extends A ? [R, 'B'] : R['length'] extends B ? [R, 'A'] : GetMinPadEnd<A, B, [0, ...R]>
 
-export type NormalizeNumberStruct<N extends NumberStruct, R extends NumberStruct = [[], 0, 0]> = [
-	N[0],
-	N[1],
-	N[2]
-]
+	export type SubtractNormalized<
+		A extends DigitsStruct,
+		B extends DigitsStruct,
+		R extends DigitsStruct | unknown
+	> = A
 
-/**
- * Add `A` and `B` together.
- *
- * `A` and `B` must be normalized,
- * meaning each entry are single digits.
- */
-export type AddNormalizedNumberStruct<A extends NumberStruct, B extends NumberStruct> = GetMinPadEnd<
-	A[1],
-	B[1]
-> extends [infer Pads extends number[], infer Longer]
-	? Longer extends 'A'
-		? AddNormalizedNumberArrayDevice<A[0], [...B[0], ...Pads], A[1]>
-		: AddNormalizedNumberArrayDevice<[...A[0], ...Pads], B[0], B[1]>
-	: never
+	export type ToString<N extends DigitsStruct> = PadStart<N[0], N[1], 0> extends infer Padded extends number[]
+		? Padded['length'] extends N[1]
+			? DigitsArray.ToString<[0, '.', ...Padded]>
+			: SplitAt<Padded, ToNegative<N[1]>> extends [infer W extends number[], infer E extends number[]]
+			? W extends []
+				? E extends []
+					? ''
+					: DigitsArray.ToString<E>
+				: DigitsArray.ToString<[...W, '.', ...E]>
+			: never
+		: never
+}
+
+export namespace DigitsArray {
+	export type FromString<S extends string> = S extends `1${infer L}`
+		? [1, ...FromString<L>]
+		: S extends `2${infer L}`
+		? [2, ...FromString<L>]
+		: S extends `3${infer L}`
+		? [3, ...FromString<L>]
+		: S extends `4${infer L}`
+		? [4, ...FromString<L>]
+		: S extends `5${infer L}`
+		? [5, ...FromString<L>]
+		: S extends `6${infer L}`
+		? [6, ...FromString<L>]
+		: S extends `7${infer L}`
+		? [7, ...FromString<L>]
+		: S extends `8${infer L}`
+		? [8, ...FromString<L>]
+		: S extends `9${infer L}`
+		? [9, ...FromString<L>]
+		: S extends `0${infer L}`
+		? [0, ...FromString<L>]
+		: S extends `-1${infer L}`
+		? [-1, ...FromString<L>]
+		: S extends `-2${infer L}`
+		? [-2, ...FromString<L>]
+		: S extends `-3${infer L}`
+		? [-3, ...FromString<L>]
+		: S extends `-4${infer L}`
+		? [-4, ...FromString<L>]
+		: S extends `-5${infer L}`
+		? [-5, ...FromString<L>]
+		: S extends `-6${infer L}`
+		? [-6, ...FromString<L>]
+		: S extends `-7${infer L}`
+		? [-7, ...FromString<L>]
+		: S extends `-8${infer L}`
+		? [-8, ...FromString<L>]
+		: S extends `-9${infer L}`
+		? [-9, ...FromString<L>]
+		: S extends `-0${infer L}`
+		? [-0, ...FromString<L>]
+		: []
+	export type NormalizeFloatingPoint<
+		W extends number[],
+		E extends number[],
+		T extends number[] = [...W, ...E],
+		Z extends number[] = E
+	> = T extends [0, ...infer Tail extends number[]]
+		? NormalizeFloatingPoint<W, E, Tail, Z>
+		: [...W, ...E] extends infer D extends number[]
+		? [D, Z['length'], CountZeros<D, []>]
+		: never
+
+	type CountZeros<T extends number[], R extends number[]> = T extends []
+		? R['length']
+		: T extends [0, ...infer Tail extends number[]]
+		? CountZeros<Tail, [0, ...R]>
+		: R['length']
+
+	export type ToString<A extends Array<number | string>> = number extends A['length']
+		? ''
+		: A['length'] extends 0
+		? ''
+		: `${A[0]}${ToString<Tail<A>>}`
+}
 
 type AddNormalizedNumberArrayDevice<
 	A extends number[],
@@ -281,18 +316,3 @@ export type SingleDigitSubtract<A extends number, B extends number> = [
 	[8, 7, 6, 5, 4, 3, 2, 1, 0, -1],
 	[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 ][A][B]
-
-export type SubtractDevice<
-	A extends NumberStruct,
-	B extends NumberStruct,
-	R extends NumberStruct | unknown
-> = A
-
-/**
- * This is used to align the `NumberStruct` during `Add/Subtract`.
- */
-export type GetMinPadEnd<A extends number, B extends number, R extends number[] = []> = R['length'] extends A
-	? [R, 'B']
-	: R['length'] extends B
-	? [R, 'A']
-	: GetMinPadEnd<A, B, [0, ...R]>
