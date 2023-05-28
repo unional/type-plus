@@ -650,6 +650,10 @@ Some code in this library is created by other people in the TypeScript community
 I'm merely adding them in and maybe making some adjustments.
 Whenever possible, I add attribution to the person who created those **codes** in the file.
 
+## Useful Tips
+
+- <https://github.com/microsoft/TypeScript/wiki/Performance>
+
 ## Similar projects
 
 - [expect-type]: Compile-time tests for types
