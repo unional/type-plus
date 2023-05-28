@@ -15,11 +15,11 @@ autoPlayMedia: true
 
 ## Type-Level Programming
 
-Type-level programming is hard
+is hard
 
-- complex rules {.fragment .fade-left}
+- ~~functional~~ logical programming {.fragment .fade-left}
 - unsound {.fragment .fade-left}
-- logical vs functional {.fragment .fade-left}
+- performance {.fragment .fade-left}
 - missing equality check {.fragment .fade-left}
 
 ---
