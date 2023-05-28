@@ -1,6 +1,6 @@
 import { describe, it } from '@jest/globals'
 import { testType } from '../index.js'
-import { DigitsStruct } from './digit_struct.js'
+import type { DigitsStruct } from './digit_struct.js'
 
 describe('DigitsStruct.GetMinPadEnd', () => {
 	it('returns [0, M] if one of the value is 0', () => {
@@ -14,8 +14,15 @@ describe('DigitsStruct.GetMinPadEnd', () => {
 	})
 })
 
+describe(`DigitsStruct.Normalize`, () => {
+
+})
+
 describe('AddNormalizedNumberStruct', () => {
-	it('0 + 0', () => {
+	it('0 + 0 = 0', () => {
+		testType.equal<DigitsStruct.AddNormalized<[[0], 0, 0], [[0], 0, 0]>, [[0], 0, 0]>(true)
+	})
+	it('works when no shift', () => {
 		testType.equal<DigitsStruct.AddNormalized<[[0], 0, 0], [[0], 0, 0]>, [[0], 0, 0]>(true)
 	})
 })
