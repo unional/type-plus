@@ -1,4 +1,4 @@
-import type { Head, PadLeft, Tail } from '../array/index.js'
+import type { Head, PadStart, Tail } from '../array/index.js'
 import type { IsEqual } from '../equal/equal.js'
 import type { IsInteger } from '../numeric/integer.js'
 import type { IsPositive } from '../numeric/positive.js'
@@ -30,8 +30,8 @@ export namespace GreaterThan {
 	> = DigitArray.FromNumberAbs<A> extends infer DA extends number[]
 		? DigitArray.FromNumberAbs<B> extends infer DB extends number[]
 			? Max<DA['length'], DB['length']> extends infer M extends number
-				? PadLeft<DA, M, 0> extends infer PDA extends number[]
-					? PadLeft<DB, M, 0> extends infer PDB extends number[]
+				? PadStart<DA, M, 0> extends infer PDA extends number[]
+					? PadStart<DB, M, 0> extends infer PDB extends number[]
 						? ForDigitArray<PDA, PDB>
 						: never
 					: never
