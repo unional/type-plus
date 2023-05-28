@@ -1,19 +1,41 @@
-import type { IsAny } from '../any/any_type.js'
-import type { IsEqual } from '../equal/equal.js'
+import type { CanAssign } from '../index.js'
 import type { CreateTuple } from '../tuple/create_tuple.js'
+import type { PadStart as TuplePadStart } from '../tuple/tuple_plus.pad_start.js'
 import type { UnionOfValues } from './union_of_values.js'
 
-export type PadStart<A extends any[], Total extends number, PadWith = any> = number extends A['length']
-	? IsAny<UnionOfValues<A>> extends true
+/**
+ * Pads the start of an array or tuple with `PadWith`.
+ *
+ * @example
+ * ```ts
+ * // Padding array
+ * PadStart<number[], 1, string> // [string, ...number[]]
+ *
+ * // Ignore if the type is compatible
+ * PadStart<number[], 2, number> // number[]
+ * PadStart<number[], 3, 1> // number[]
+ *
+ * // Padding tuple
+ * PadStart<[1, 2, 3], 5, 0> // [0, 0, 1, 2, 3]
+ *
+ * // Ignore if MaxLength is less than the length of the tuple
+ * PadStart<[1, 2, 3], 5, 0> // [0, 0, 1, 2, 3]
+ *
+ * // Default to unknown
+ * PadStart<[1, 2, 3], 5> // [unknown, unknown, 1, 2, 3]
+ * ```
+ */
+export type PadStart<
+	A extends unknown[],
+	MaxLength extends number,
+	PadWith = unknown
+> = number extends A['length']
+	? MaxLength extends 0
 		? A
-		: IsEqual<UnionOfValues<A>, PadWith> extends true
+		: CanAssign<PadWith, UnionOfValues<A>> extends true
 		? A
-		: PadStart<[...CreateTuple<Total, PadWith>, ...A], Total, PadWith>
-	: CreateTuple<Total, any> extends [...infer U, ...A]
-	? number extends U['length']
-		? A
-		: [...CreateTuple<U['length'], PadWith>, ...A]
-	: A
+		: PadStart<[...CreateTuple<MaxLength, PadWith>, ...A], MaxLength, PadWith>
+	: TuplePadStart<A, MaxLength, PadWith>
 
 /**
  * @deprecated use PadStart instead
