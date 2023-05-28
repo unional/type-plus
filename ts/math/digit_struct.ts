@@ -53,7 +53,10 @@ export namespace DigitsStruct {
 	 * Add `A` and `B` together.
 	 *
 	 * `A` and `B` must be normalized,
-	 * meaning each entry are single digits.
+	 * meaning every digits are single-digit, i.e. -9 to 9.
+	 *
+	 * Normal `Add<A, B>` calls will not have negative
+	 * Every resulting digits are 0 to 18.
 	 */
 	export type AddNormalized<A extends DigitsStruct, B extends DigitsStruct> = GetMinPadEnd<
 		A[1],
@@ -142,7 +145,7 @@ export namespace DigitsArray {
 	> = T extends [0, ...infer Tail extends number[]]
 		? NormalizeFloatingPoint<W, E, Tail, Z>
 		: [...W, ...E] extends infer D extends number[]
-		? [D, Z['length'], CountZeros<D, []>]
+		? [T, Z['length'], CountZeros<D, []>]
 		: never
 
 	type CountZeros<T extends number[], R extends number[]> = T extends []
