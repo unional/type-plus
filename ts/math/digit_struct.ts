@@ -4,38 +4,28 @@ import { PadStart } from '../tuple/tuple_plus.pad_start.js'
 import type { ToNegative } from './math_plus.to_negative.js'
 
 /**
- * [Digits, Exponent, SignIndex]
+ * [Digits, Exponent]
  *
  * Digit range from -89 to 89.
  * The max case comes from multiplication:
  *
  * ```
  * 99 * 9
- * => [[    9,  9], 0, 0]
- * *  [        [9], 0, 0]
- * => [[   81, 81], 0, 0]
- * => [[   89,  1], 0, 0]
- * => [[ 8, 9,  1], 0, 0]
+ * => [[    9,  9], 0]
+ * *  [        [9], 0]
+ * => [[   81, 81], 0]
+ * => [[   89,  1], 0]
+ * => [[ 8, 9,  1], 0]
  * ```
  *
  * Exponent is the negative exponent of the number.
  *
  * ```
- * 1.23 = 123 x e^-2 = [[1, 2, 3], 2, 0]
- * ```
- *
- * SignIndex is the Digit index where the sign is located.
- * It is used to track which Digit can be negative when the `NumberStruct` is normalized.
- * It is the same as how many zeros at the start of the Digits.
- *
- * It is used to determine when the normalization can stop.
- *
- * ```
- * -0.01 = [[0, 0, -1], 2, 2]
- * -0.00123 = [[0, 0, 0, -1, 2, 3], 5, 3]
+ * 1.23 = 123e^-2 = [[1, 2, 3], 2]
+ * 0.0123 = 123e^-4 = [[1, 2, 3], 4]
  * ```
  */
-export type DigitsStruct = [number[], number, number]
+export type DigitsStruct = [number[], number]
 
 export namespace DigitsStruct {
 	/**
@@ -45,9 +35,9 @@ export namespace DigitsStruct {
 	 */
 	export type FromString<S extends string> = S extends `${infer W}.${infer F}`
 		? DigitsArray.NormalizeFloatingPoint<DigitsArray.FromString<W>, DigitsArray.FromString<F>>
-		: [DigitsArray.FromString<S>, 0, 0]
+		: [DigitsArray.FromString<S>, 0]
 
-	export type Normalize<N extends DigitsStruct, R extends DigitsStruct = [[], 0, 0]> = [N[0], N[1], N[2]]
+	export type Normalize<N extends DigitsStruct, R extends DigitsStruct = [[], 0]> = [N[0], N[1]]
 
 	/**
 	 * Add `A` and `B` together.
@@ -142,17 +132,7 @@ export namespace DigitsArray {
 		E extends number[],
 		T extends number[] = [...W, ...E],
 		Z extends number[] = E
-	> = T extends [0, ...infer Tail extends number[]]
-		? NormalizeFloatingPoint<W, E, Tail, Z>
-		: [...W, ...E] extends infer D extends number[]
-		? [T, Z['length'], CountZeros<D, []>]
-		: never
-
-	type CountZeros<T extends number[], R extends number[]> = T extends []
-		? R['length']
-		: T extends [0, ...infer Tail extends number[]]
-		? CountZeros<Tail, [0, ...R]>
-		: R['length']
+	> = T extends [0, ...infer Tail extends number[]] ? NormalizeFloatingPoint<W, E, Tail, Z> : [T, Z['length']]
 
 	export type ToString<A extends Array<number | string>> = number extends A['length']
 		? ''
@@ -168,7 +148,7 @@ type AddNormalizedNumberArrayDevice<
 	R extends number[] = []
 > = A extends []
 	? B extends []
-		? [R, E, 0]
+		? [R, E]
 		: B extends [...infer BH extends number[], infer BL extends number]
 		? AddNormalizedNumberArrayDevice<[], BH, E, [BL, ...R]>
 		: never
