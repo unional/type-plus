@@ -1,4 +1,4 @@
-import type { PadLeft, Some, Tail } from '../array/index.js'
+import type { PadStart, Some, Tail } from '../array/index.js'
 import type { IsInteger } from '../numeric/integer.js'
 import type { IsPositive } from '../numeric/positive.js'
 import type { And } from '../predicates/index.js'
@@ -12,8 +12,8 @@ export type Subtract<A extends number | bigint, B extends number | bigint, Fail 
 	? DigitArray.Shift10<DigitArray.FromNumber<A>> extends infer DA extends number[]
 		? DigitArray.FromNumber<B> extends infer DB extends number[]
 			? Max<DA['length'], DB['length']> extends infer M extends number
-				? PadLeft<DA, M, 0> extends infer PDA extends number[]
-					? PadLeft<DB, M, 0> extends infer PDB extends number[]
+				? PadStart<DA, M, 0> extends infer PDA extends number[]
+					? PadStart<DB, M, 0> extends infer PDB extends number[]
 						? Subtract.DigitArray<[], PDA, PDB> extends infer Result extends number[]
 							? Some<Result, never, 'strict'> extends true
 								? Fail
