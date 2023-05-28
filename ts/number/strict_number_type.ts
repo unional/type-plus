@@ -3,6 +3,11 @@ import type { IsAny } from '../any/any_type.js'
 /**
  * Check if the type `T` is exactly the type `number` and not numeric literals.
  *
+ * Note that if `T` is guaranteed to be a `number`, e.g. `SomeArray['length']`,
+ *
+ * A simple `number extends SomeArray['length'] ? Then, Else` is sufficient.
+ *
+ * @example
  * ```ts
  * type R = StrictNumberType<number> // true
  * type R = StrictNumberType<1> // false
@@ -20,6 +25,11 @@ export type StrictNumberType<T, Then = T, Else = never> = IsAny<
 /**
  * Is the type `T` exactly the type `number` and not numeric literals.
  *
+ * Note that if `T` is guaranteed to be a `number`, e.g. `SomeArray['length']`,
+ *
+ * A simple `number extends SomeArray['length'] ? Then, Else` is sufficient.
+ *
+ * @example
  * ```ts
  * type R = IsStrictNumber<number> // true
  * type R = IsStrictNumber<1> // false
@@ -33,6 +43,7 @@ export type IsStrictNumber<T, Then = true, Else = false> = StrictNumberType<T, T
 /**
  * Check if the type `T` is not the type `number` or numeric literals.
  *
+ * @example
  * ```ts
  * type R = NotStrictNumberType<number> // false
  * type R = NotStrictNumberType<1> // true
@@ -46,6 +57,7 @@ export type NotStrictNumberType<T, Then = T, Else = never> = StrictNumberType<T,
 /**
  * Is the type `T` not the type `number` or numeric literals.
  *
+ * @example
  * ```ts
  * type R = IsNotStrictNumber<number> // false
  * type R = IsNotStrictNumber<1> // true
