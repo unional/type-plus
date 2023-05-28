@@ -20,9 +20,9 @@ describe(`DigitsStruct.Normalize`, () => {
 
 describe('AddNormalizedNumberStruct', () => {
 	it('0 + 0 = 0', () => {
-		testType.equal<DigitsStruct.AddNormalized<[[0], 0, 0], [[0], 0, 0]>, [[0], 0, 0]>(true)
+		testType.equal<DigitsStruct.AddNormalized<[[0], 0], [[0], 0]>, [[0], 0]>(true)
 	})
 	it('works when no shift', () => {
-		testType.equal<DigitsStruct.AddNormalized<[[0], 0, 0], [[0], 0, 0]>, [[0], 0, 0]>(true)
+		testType.equal<DigitsStruct.AddNormalized<[[0], 0], [[0], 0]>, [[0], 0]>(true)
 	})
 })

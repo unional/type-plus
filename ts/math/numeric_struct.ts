@@ -31,13 +31,13 @@ export namespace NumericStruct {
 	type NormalizedToBigint<M extends NumericStruct, Fail = never> = M[0] extends 'bigint'
 		? M[1] extends '+'
 			? StringToBigint<DigitsStruct.ToString<M[2]>, Fail>
-			: M[2] extends [[0], 0, 0]
+			: M[2] extends [[0], 0]
 			? 0n
 			: StringToBigint<`-${DigitsStruct.ToString<M[2]>}`, Fail>
 		: Fail
 	type NormalizedToNumber<M extends NumericStruct, Fail = never> = M[1] extends '+'
 		? StringToNumber<DigitsStruct.ToString<M[2]>, Fail>
-		: M[2] extends [[0], 0, 0]
+		: M[2] extends [[0], 0]
 		? 0
 		: StringToNumber<`-${DigitsStruct.ToString<M[2]>}`, Fail>
 
