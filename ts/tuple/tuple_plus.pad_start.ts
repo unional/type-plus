@@ -1,27 +1,33 @@
 /**
  * Pads the start of a tuple with `PadWith`.
  *
- * If the `Total` is less than the length of the tuple,
+ * If the `MaxLength` is less than the length of the tuple,
  * the `Tuple` will be returned unchanged.
  *
  * @example
  * ```ts
  * PadStart<[1, 2, 3], 5, 0> // [0, 0, 1, 2, 3]
+ *
+ * // Ignore if MaxLength is less than the length of the tuple
+ * PadStart<[1, 2, 3], 5, 0> // [0, 0, 1, 2, 3]
+ *
+ * // Default to unknown
+ * PadStart<[1, 2, 3], 5> // [unknown, unknown, 1, 2, 3]
  * ```
  */
-export type PadStart<Tuple extends unknown[], Total extends number, PadWith = unknown> = PadStartDevice<
+export type PadStart<Tuple extends unknown[], MaxLength extends number, PadWith = unknown> = PadStartDevice<
 	Tuple,
-	Total,
+	MaxLength,
 	PadWith,
 	[]
 >
 
 type PadStartDevice<
 	Source extends unknown[],
-	Total extends number,
+	MaxLength extends number,
 	PadWith,
 	Result extends unknown[]
-> = Result['length'] extends Total
+> = Result['length'] extends MaxLength
 	? Source extends []
 		? Result
 		: Source extends [...infer Head, infer Tail]
@@ -30,7 +36,7 @@ type PadStartDevice<
 			: never
 		: never
 	: Source extends []
-	? PadStartDevice<Source, Total, PadWith, [PadWith, ...Result]>
+	? PadStartDevice<Source, MaxLength, PadWith, [PadWith, ...Result]>
 	: Source extends [...infer Head, infer Tail]
-	? PadStartDevice<Head, Total, PadWith, [Tail, ...Result]>
+	? PadStartDevice<Head, MaxLength, PadWith, [Tail, ...Result]>
 	: Source
