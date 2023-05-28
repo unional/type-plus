@@ -19,11 +19,12 @@
     "useDefineForClassFields": true
   },
   "exclude": [
+		"node_modules",
     "ts/type-checker",
     "ts/types"
   ],
   "include": [
     "ts",
-    "typings"
+    "types"
   ]
 }
