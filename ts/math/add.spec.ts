@@ -47,6 +47,23 @@ import type { Add } from './add.js'
 // => [[0, 1, 4, 5, 4, 5, 3], 6]
 // => 0.145453
 
+/**
+ * Algorithm:
+ *
+ * Add<A, B> = NumericStruct.ToNumeric<
+ *    NumericStruct.Add<
+ *     NumericStruct.FromNumeric<A>,
+ *     NumericStruct.FromNumeric<B>
+ *   >
+ * >
+ *
+ * NumericStruct.Add<A, B> = [A[TYPE], DigitsStruct.Add<A, B>]
+ * DigitsStruct.Add<A, B> = DigitsStruct.AlignExponent<A, B> extends [infer X, infer Y, infer Exp]
+ * ? DigitsStruct.Normalize<[A[SIGN], DigitsArray.Add<X[DIGITS], Y[DIGITS]>, Exp]>
+ * : never
+ *
+ * DigitsStruct.Normalize<D> = DigitsStruct.ShiftDigits<DigitsStruct.FixSign<D>>
+ */
 it('adds two positive bigints', () => {
 	testType.equal<Add<1n, 1n>, 2n>(true)
 
