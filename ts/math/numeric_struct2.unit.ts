@@ -5,7 +5,7 @@ import type { NumericStruct } from './numeric_struct2.js'
 describe('NumericStruct.FromNumeric', () => {
 	describe('bigint', () => {
 		// Exponent is always 0 as bigint does not support floating point number.
-		it('converts positive bigint to ["bigint", "+", Digits, 0]', () => {
+		it('converts positive bigint to ["bigint", ["+", Digits, 0]]', () => {
 			testType.equal<NumericStruct.FromNumeric<1n>, ['bigint', ['+', [1], 0]]>(true)
 
 			testType.equal<
@@ -19,7 +19,7 @@ describe('NumericStruct.FromNumeric', () => {
 			>(true)
 		})
 
-		it('handles negative bigint', () => {
+		it('converts positive bigint to ["bigint", ["-", Digits, 0]]', () => {
 			testType.equal<NumericStruct.FromNumeric<-1n>, ['bigint', ['-', [1], 0]]>(true)
 
 			testType.equal<
@@ -33,14 +33,14 @@ describe('NumericStruct.FromNumeric', () => {
 			>(true)
 		})
 
-		it('casts 0n to ["bigint", "+", [0]]]', () => {
+		it('casts 0n/-0n to ["bigint", ["+", [0], 0]]', () => {
 			testType.equal<NumericStruct.FromNumeric<0n>, ['bigint', ['+', [0], 0]]>(true)
 			testType.equal<NumericStruct.FromNumeric<-0n>, ['bigint', ['+', [0], 0]]>(true)
 		})
 	})
 
 	describe(`number`, () => {
-		it('casts positive number to ["number", "+", Digits, Exponent]', () => {
+		it('casts positive number to ["number", ["+", Digits, Exponent]]', () => {
 			testType.equal<NumericStruct.FromNumeric<1>, ['number', ['+', [1], 0]]>(true)
 
 			testType.equal<
@@ -66,7 +66,7 @@ describe('NumericStruct.FromNumeric', () => {
 			testType.equal<NumericStruct.FromNumeric<123.45>, ['number', ['+', [1, 2, 3, 4, 5], 2]]>(true)
 		})
 
-		it('casts negative number to ["number", "-", NumberStruct]', () => {
+		it('casts negative number to ["number", ["-", Digits, Exponent]]', () => {
 			testType.equal<NumericStruct.FromNumeric<-1>, ['number', ['-', [1], 0]]>(true)
 
 			testType.equal<
@@ -93,7 +93,7 @@ describe('NumericStruct.FromNumeric', () => {
 			testType.equal<NumericStruct.FromNumeric<-123.45>, ['number', ['-', [1, 2, 3, 4, 5], 2]]>(true)
 		})
 
-		it('casts 0n to ["number", "+", [0], 0]', () => {
+		it('casts 0/-0 to ["number", ["+", [0], 0]]', () => {
 			testType.equal<NumericStruct.FromNumeric<0>, ['number', ['+', [0], 0]]>(true)
 			testType.equal<NumericStruct.FromNumeric<-0>, ['number', ['+', [0], 0]]>(true)
 		})
@@ -282,56 +282,3 @@ describe('conversion roundtrip', () => {
 		testType.equal<RoundTrip<-1234567890n>, -1234567890n>(true)
 	})
 })
-
-// describe('Normalize', () => {
-// 	it('remain unchanged if every digits are single digits for bigint', () => {
-// 		testType.equal<NumericStruct.Normalize<['bigint', ['+', [0], 0]]>, ['bigint', ['+', [0], 0]]>(true)
-// 		testType.equal<NumericStruct.Normalize<['bigint', ['+', [9], 0]]>, ['bigint', ['+', [9], 0]]>(true)
-// 		testType.equal<NumericStruct.Normalize<['bigint', ['+', [1, 2, 3], 0]]>, ['bigint', ['+', [1, 2, 3], 0]]>(
-// 			true
-// 		)
-// 		testType.equal<NumericStruct.Normalize<['bigint', ['+', [1, 2, 3], 1]]>, ['bigint', ['+', [1, 2, 3], 1]]>(
-// 			true
-// 		)
-// 		testType.equal<
-// 			NumericStruct.Normalize<['bigint', ['+', [0, 0, 1, 2, 3], 4]]>,
-// 			['bigint', ['+', [0, 0, 1, 2, 3], 4]]
-// 		>(true)
-
-// 		testType.equal<NumericStruct.Normalize<['bigint', ['-', [0], 0]]>, ['bigint', ['-', [0], 0]]>(true)
-// 		testType.equal<NumericStruct.Normalize<['bigint', ['-', [9], 0]]>, ['bigint', ['-', [9], 0]]>(true)
-// 		testType.equal<NumericStruct.Normalize<['bigint', ['-', [1, 2, 3], 0]]>, ['bigint', ['-', [1, 2, 3], 0]]>(
-// 			true
-// 		)
-// 		testType.equal<NumericStruct.Normalize<['bigint', ['-', [1, 2, 3], 1]]>, ['bigint', ['-', [1, 2, 3], 1]]>(
-// 			true
-// 		)
-// 		testType.equal<
-// 			NumericStruct.Normalize<['bigint', ['-', [0, 0, 1, 2, 3], 4]]>,
-// 			['bigint', ['-', [0, 0, 1, 2, 3], 4]]
-// 		>(true)
-// 	})
-
-// 	// it('advance digits when digit > 10', () => {
-// 	// 	testType.equal<NormalizeMathStruct<['bigint', ['+', [10], 0]]>, ['bigint', ['+', [1, 0], 0]]>(true)
-
-// 	// 	testType.equal<NormalizeMathStruct<['bigint', ['+', [81], 0]]>, ['bigint', ['+', [8, 1], 0]]>(true)
-
-// 	// 	testType.equal<NormalizeMathStruct<['bigint', ['+', [1, 10], 0]]>, ['bigint', ['+', [2, 0], 0]]>(
-// 	// 		true
-// 	// 	)
-// 	// 	testType.equal<NormalizeMathStruct<['bigint', ['+', [1, 81], 0]]>, ['bigint', ['+', [9, 1], 0]]>(
-// 	// 		true
-// 	// 	)
-
-// 	// 	testType.equal<
-// 	// 		NormalizeMathStruct<['bigint', ['+', [81, 81], 0]]>,
-// 	// 		['bigint', ['+', [8, 9, 1], 0]]
-// 	// 	>(true)
-
-// 	// 	testType.equal<
-// 	// 		NormalizeMathStruct<['bigint', ['+', [9, 9, 9, 9, 10], 0]]>,
-// 	// 		['bigint', ['+', [1, 0, 0, 0, 0, 0], 0]]
-// 	// 	>(true)
-// 	// })
-// })

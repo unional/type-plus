@@ -21,8 +21,8 @@ import type { ToNegative } from './math_plus.to_negative.js'
  * @template Digits Digits of the value.
  * It is a tuple of digits,
  * where each digits can range from 0 to 9 during input,
- * and range from -89 to 89 during operation.
- * The max case comes from multiplication:
+ * and range from -10 to 89 during operation.
+ * The max 89 comes from multiplication:
  *
  * ```
  * 99 * 9
@@ -32,6 +32,20 @@ import type { ToNegative } from './math_plus.to_negative.js'
  * => [[   89,  1], 0]
  * => [[ 8, 9,  1], 0]
  * ```
+ *
+ * While -10 comes from subtraction:
+ *
+ * ```
+ * 100 - 99 = 1
+ * => [[  1,  0,  0], 0]
+ * -  [[      9,  9], 0]
+ * => [[  1, -9, -9], 0]
+ * => [[  1,-10,  1], 0] // here, as in intermediate step
+ * => [[  0,  0,  1], 0]
+ * => [[1], 0]
+ * => 1
+ * ```
+ *
  *
  * Unlike floating point numbers, the digits length is not limited.
  *
@@ -177,13 +191,239 @@ export namespace DigitsStruct {
 		: never
 
 	/**
+	 * Normalizes a `DigitsStruct`.
 	 *
+	 * The normalization two two things:
+	 *
+	 * - if the first digit is negative, it will flip the sign.
+	 * - carry digits if the digit is negative or greater than 9.
 	 */
-	export type Normalize<N extends DigitsStruct, R extends DigitsStruct = ['+', [], 0]> = [
-		N[SIGN],
-		N[DIGITS],
-		N[EXPONENT]
+	export type Normalize<
+		N extends DigitsStruct,
+		R extends DigitsStruct = ['+', [], 0]
+	> = `${N[DIGITS][0]}` extends `-${number}` ? Normalize<FlipSign<N>, R> : CarryDigits<N>
+
+	type FlipSign<
+		D extends DigitsStruct,
+		I extends number[] = D[DIGITS],
+		R extends number[] = []
+	> = I extends []
+		? D[SIGN] extends '-'
+			? ['+', R, D[EXPONENT]]
+			: ['-', R, D[EXPONENT]]
+		: I extends [infer H extends number, ...infer T extends number[]]
+		? FlipSign<D, T, [...R, FlipDigitSign<H>]>
+		: never
+
+	type FlipDigitSign<T extends number> = `${T}` extends `-${infer R extends number}`
+		? R
+		: `-${T}` extends `${infer R extends number}`
+		? R
+		: never
+
+	/**
+	 * ref `NormalizeValueDevice`
+	 */
+	type CarryDigits<
+		D extends DigitsStruct,
+		N extends number[] = D[DIGITS],
+		R extends number[] = []
+	> = N extends []
+		? AdjustExponent<[D[SIGN], R, D[EXPONENT]]>
+		: N extends [infer Tail extends number]
+		? `${Tail}` extends `${infer T1 extends number}${infer T2 extends number}`
+			? CarryDigits<D, [], [T1, T2, ...R]>
+			: `${Tail}` extends `-${infer T1 extends number}${infer T2 extends number}`
+			? `-${T1}` extends `${infer NT extends number}`
+				? CarryDigits<D, [], [NT, T2, ...R]>
+				: never
+			: CarryDigits<D, [], [Tail, ...R]>
+		: N extends [infer Head extends number, infer Tail extends number]
+		? `${Tail}` extends `${infer T1 extends number}${infer T2 extends number}`
+			? CarryDigits<D, [IntegerEntryAdd<Head, T1>], [T2, ...R]>
+			: `${Tail}` extends `-${infer T1 extends number}${infer T2 extends number}`
+			? `-${T1}` extends `${infer NT extends number}`
+				? CarryDigits<D, [IntegerEntryAdd<Head, NT>], [T2, ...R]>
+				: never
+			: `${Tail}` extends `-${number}`
+			? CarryDigits<D, [IntegerEntryAdd<Head, -1>], [Plus10[Tail], ...R]>
+			: CarryDigits<D, [Head], [Tail, ...R]>
+		: N extends [...infer Heads extends number[], infer Head extends number, infer Tail extends number]
+		? `${Tail}` extends `${infer T1 extends number}${infer T2 extends number}`
+			? CarryDigits<D, [...Heads, IntegerEntryAdd<Head, T1>], [T2, ...R]>
+			: `${Tail}` extends `-${infer T1 extends number}${infer T2 extends number}`
+			? `-${T1}` extends `${infer NT extends number}`
+				? CarryDigits<D, [...Heads, IntegerEntryAdd<Head, NT>], [T2, ...R]>
+				: never
+			: `${Tail}` extends `-${number}`
+			? CarryDigits<D, [...Heads, IntegerEntryAdd<Head, -1>], [Plus10[Tail], ...R]>
+			: CarryDigits<D, [...Heads, Head], [Tail, ...R]>
+		: never
+
+	/**
+	 * Adds two intger entries together.
+	 *
+	 * The first entry should always between `0` and `9`.
+	 * The second entry can range from `-81` to `81`.
+	 *
+	 * The code needs to be adjusted if this is no longer true.
+	 */
+	export type IntegerEntryAdd<
+		A extends number,
+		B extends number
+	> = `${A}` extends `-${infer AD extends number}`
+		? `${B}` extends `-${infer BD extends number}`
+			? ToNegative<PositiveEntryAdd<AD, BD>>
+			: PositiveEntrySubtract<B, AD>
+		: `${B}` extends `-${infer BD extends number}`
+		? PositiveEntrySubtract<A, BD>
+		: PositiveEntryAdd<A, B>
+	export type PositiveEntryAdd<A extends number, B extends number> = [
+		[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+		[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+		[2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+		[3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+		[4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+		[5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+		[6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		[7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+		[8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+		[9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+		[10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+		[11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+		[12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+		[13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+		[14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+		[15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+		[16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+		[17, 18, 19, 20, 21, 22, 23, 24, 25, 26],
+		[18, 19, 20, 21, 22, 23, 24, 25, 26, 27],
+		[19, 20, 21, 22, 23, 24, 25, 26, 27, 28],
+		[20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+		[21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+		[22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+		[23, 24, 25, 26, 27, 28, 29, 30, 31, 32],
+		[24, 25, 26, 27, 28, 29, 30, 31, 32, 33],
+		[25, 26, 27, 28, 29, 30, 31, 32, 33, 34],
+		[26, 27, 28, 29, 30, 31, 32, 33, 34, 35],
+		[27, 28, 29, 30, 31, 32, 33, 34, 35, 36],
+		[28, 29, 30, 31, 32, 33, 34, 35, 36, 37],
+		[29, 30, 31, 32, 33, 34, 35, 36, 37, 38],
+		[30, 31, 32, 33, 34, 35, 36, 37, 38, 39],
+		[31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+		[32, 33, 34, 35, 36, 37, 38, 39, 40, 41],
+		[33, 34, 35, 36, 37, 38, 39, 40, 41, 42],
+		[34, 35, 36, 37, 38, 39, 40, 41, 42, 43],
+		[35, 36, 37, 38, 39, 40, 41, 42, 43, 44],
+		[36, 37, 38, 39, 40, 41, 42, 43, 44, 45],
+		[37, 38, 39, 40, 41, 42, 43, 44, 45, 46],
+		[38, 39, 40, 41, 42, 43, 44, 45, 46, 47],
+		[39, 40, 41, 42, 43, 44, 45, 46, 47, 48],
+		[40, 41, 42, 43, 44, 45, 46, 47, 48, 49],
+		[41, 42, 43, 44, 45, 46, 47, 48, 49, 50],
+		[42, 43, 44, 45, 46, 47, 48, 49, 50, 51],
+		[43, 44, 45, 46, 47, 48, 49, 50, 51, 52],
+		[44, 45, 46, 47, 48, 49, 50, 51, 52, 53],
+		[45, 46, 47, 48, 49, 50, 51, 52, 53, 54],
+		[46, 47, 48, 49, 50, 51, 52, 53, 54, 55],
+		[47, 48, 49, 50, 51, 52, 53, 54, 55, 56],
+		[48, 49, 50, 51, 52, 53, 54, 55, 56, 57],
+		[49, 50, 51, 52, 53, 54, 55, 56, 57, 58],
+		[50, 51, 52, 53, 54, 55, 56, 57, 58, 59],
+		[51, 52, 53, 54, 55, 56, 57, 58, 59, 60],
+		[52, 53, 54, 55, 56, 57, 58, 59, 60, 61],
+		[53, 54, 55, 56, 57, 58, 59, 60, 61, 62],
+		[54, 55, 56, 57, 58, 59, 60, 61, 62, 63],
+		[55, 56, 57, 58, 59, 60, 61, 62, 63, 64],
+		[56, 57, 58, 59, 60, 61, 62, 63, 64, 65],
+		[57, 58, 59, 60, 61, 62, 63, 64, 65, 66],
+		[58, 59, 60, 61, 62, 63, 64, 65, 66, 67],
+		[59, 60, 61, 62, 63, 64, 65, 66, 67, 68],
+		[60, 61, 62, 63, 64, 65, 66, 67, 68, 69],
+		[61, 62, 63, 64, 65, 66, 67, 68, 69, 70],
+		[62, 63, 64, 65, 66, 67, 68, 69, 70, 71],
+		[63, 64, 65, 66, 67, 68, 69, 70, 71, 72],
+		[64, 65, 66, 67, 68, 69, 70, 71, 72, 73],
+		[65, 66, 67, 68, 69, 70, 71, 72, 73, 74],
+		[66, 67, 68, 69, 70, 71, 72, 73, 74, 75],
+		[67, 68, 69, 70, 71, 72, 73, 74, 75, 76],
+		[68, 69, 70, 71, 72, 73, 74, 75, 76, 77],
+		[69, 70, 71, 72, 73, 74, 75, 76, 77, 78],
+		[70, 71, 72, 73, 74, 75, 76, 77, 78, 79],
+		[71, 72, 73, 74, 75, 76, 77, 78, 79, 80],
+		[72, 73, 74, 75, 76, 77, 78, 79, 80, 81],
+		[73, 74, 75, 76, 77, 78, 79, 80, 81, 82],
+		[74, 75, 76, 77, 78, 79, 80, 81, 82, 83],
+		[75, 76, 77, 78, 79, 80, 81, 82, 83, 84],
+		[76, 77, 78, 79, 80, 81, 82, 83, 84, 85],
+		[77, 78, 79, 80, 81, 82, 83, 84, 85, 86],
+		[78, 79, 80, 81, 82, 83, 84, 85, 86, 87],
+		[79, 80, 81, 82, 83, 84, 85, 86, 87, 88],
+		[80, 81, 82, 83, 84, 85, 86, 87, 88, 89],
+		[81, 82, 83, 84, 85, 86, 87, 88, 89, 90],
+		[82, 83, 84, 85, 86, 87, 88, 89, 90, 91],
+		[83, 84, 85, 86, 87, 88, 89, 90, 91, 92],
+		[84, 85, 86, 87, 88, 89, 90, 91, 92, 93],
+		[85, 86, 87, 88, 89, 90, 91, 92, 93, 94],
+		[86, 87, 88, 89, 90, 91, 92, 93, 94, 95],
+		[87, 88, 89, 90, 91, 92, 93, 94, 95, 96],
+		[88, 89, 90, 91, 92, 93, 94, 95, 96, 97],
+		[89, 90, 91, 92, 93, 94, 95, 96, 97, 98]
+	][A][B]
+
+	/**
+	 * Subtract two positive numbers.
+	 * The number range from 0 to 81.
+	 */
+	export type PositiveEntrySubtract<A extends number, B extends number> = [`${A}`, `${B}`] extends [
+		`${infer A1 extends number}${infer A2 extends number}`,
+		`${infer B1 extends number}${infer B2 extends number}`
 	]
+		? PositiveEntrySubtract<A2, B2>
+		: `${A}` extends `${infer A1 extends number}${infer A2 extends number}`
+		? PositiveEntrySubtract<A2, B>
+		: `${B}` extends `${infer B1 extends number}${infer B2 extends number}`
+		? PositiveEntrySubtract<A, B2>
+		: SingleDigitSubtract<A, B>
+
+	export type SingleDigitSubtract<A extends number, B extends number> = [
+		[0, -1, -2, -3, -4, -5, -6, -7, -8, -9],
+		[1, 0, -1, -2, -3, -4, -5, -6, -7, -8],
+		[2, 1, 0, -1, -2, -3, -4, -5, -6, -7],
+		[3, 2, 1, 0, -1, -2, -3, -4, -5, -6],
+		[4, 3, 2, 1, 0, -1, -2, -3, -4, -5],
+		[5, 4, 3, 2, 1, 0, -1, -2, -3, -4],
+		[6, 5, 4, 3, 2, 1, 0, -1, -2, -3],
+		[7, 6, 5, 4, 3, 2, 1, 0, -1, -2],
+		[8, 7, 6, 5, 4, 3, 2, 1, 0, -1],
+		[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+	][A][B]
+
+	type Plus10 = { [k in number]: number } & {
+		'-1': 9
+		'-2': 8
+		'-3': 7
+		'-4': 6
+		'-5': 5
+		'-6': 4
+		'-7': 3
+		'-8': 2
+		'-9': 1
+	}
+
+	/**
+	 * ['+', [0, 0, 1], 2] => ['+', [1], 4]
+	 * @internal
+	 */
+	export type AdjustExponent<
+		D extends DigitsStruct,
+		T extends number[] = D[DIGITS],
+		Z extends number[] = []
+	> = T extends [0]
+		? [D[SIGN], T, D[EXPONENT]]
+		: T extends [0, ...infer Tail extends number[]]
+		? AdjustExponent<D, Tail, [0, ...Z]>
+		: [D[SIGN], T, D[EXPONENT]]
 }
 
 export namespace DigitArray {
