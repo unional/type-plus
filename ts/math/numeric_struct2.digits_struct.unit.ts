@@ -82,6 +82,11 @@ describe('Balance', () => {
 			DigitsStruct.Balance<['+', [1, 3, 5, 7], 4], ['+', [9, 7, 5, 3], 6]>,
 			[['+', [1, 3, 5, 7, 0, 0], 6], ['+', [9, 7, 5, 3], 6]]
 		>(true)
+
+		testType.equal<
+			DigitsStruct.Balance<['+', [1], 0], ['+', [1, 2], 1]>,
+			[['+', [1, 0], 1], ['+', [1, 2], 1]]
+		>(true)
 	})
 })
 
@@ -100,5 +105,21 @@ describe('GetMinPadEnd', () => {
 describe('Subtract', () => {
 	it('A < B', () => {
 		testType.equal<DigitsStruct.Subtract<['+', [1], 0], ['+', [1, 0], 0]>, ['-', [9], 0]>(true)
+	})
+
+	it('works with integer - floating point', () => {
+		testType.equal<DigitsStruct.Subtract<['+', [1], 0], ['+', [2], 1]>, ['+', [8], 1]>(true)
+
+		// 1 - 1.2 = -0.2
+		// =>   [   [  1], 0]
+		// -    [[ 1,  2], 1]
+		// =>   [[ 1,  0], 1]
+		// -    [[ 1,  2], 1]
+		// =>   [[ 0, -2], 1]
+		// =>   [   [ -2], 1]
+		// => - [   [  2], 1]
+		// => - [[ 0,  2], 1]
+		// => -0.2
+		testType.equal<DigitsStruct.Subtract<['+', [1], 0], ['+', [1, 2], 1]>, ['-', [2], 1]>(true)
 	})
 })
