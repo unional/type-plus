@@ -81,10 +81,14 @@ export namespace NumericStruct {
 	/**
 	 * Creates a `NumericStruct` from number or bigint `N`.
 	 */
-	export type FromNumeric<N extends number | bigint> = N extends number
-		? ['number', DigitsStruct.FromNumber<N>]
+	export type FromNumeric<N extends number | bigint, Fail = never> = N extends number
+		? number extends N
+			? Fail
+			: ['number', DigitsStruct.FromNumber<N>]
 		: N extends bigint
-		? ['bigint', DigitsStruct.FromBigint<N>]
+		? bigint extends N
+			? Fail
+			: ['bigint', DigitsStruct.FromBigint<N>]
 		: never
 
 	/**
@@ -96,8 +100,8 @@ export namespace NumericStruct {
 		M[DIGITS_STRUCT]
 	> extends infer S extends string
 		? M[TYPE] extends 'bigint'
-			? StringToBigint<S, StringToNumber<S, `The value '${S} cannot be represented as bigint or number`>>
-			: StringToNumber<S, StringToBigint<S, `The value '${S} cannot be represented as bigint or number`>>
+			? StringToBigint<S, StringToNumber<S, `The value '${S}' cannot be represented as bigint or number`>>
+			: StringToNumber<S, StringToBigint<S, `The value '${S}' cannot be represented as bigint or number`>>
 		: never
 
 	export type Add<A extends NumericStruct, B extends NumericStruct> = [
