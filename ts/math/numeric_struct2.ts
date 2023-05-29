@@ -6,7 +6,8 @@ import type { ToNegative } from './math_plus.to_negative.js'
 /**
  * Internal numeric representation to perform math operations.
  *
- * `[Type, [Sign, Digits, Exponent]]`
+ * NumericStruct: `[Type, DigitsStruct]`
+ * DigitsStruct: `[Sign, Digits, Exponent]`
  *
  * It is similar to the floating point representation with some minor differences.
  *
@@ -40,7 +41,23 @@ import type { ToNegative } from './math_plus.to_negative.js'
  * 1.23 = 123e^-2 = [[1, 2, 3], 2]
  * 0.0123 = 123e^-4 = [[1, 2, 3], 4]
  * ```
- */
+ *
+ * There are 2 kinds of `NumericStruct`:
+ * - Normalized: The `NumericStruct` is clean and can be converted to/from `number` or `bigint`
+ * - Not normalized: The `DigitsStruct` within the `NumericStruct` is normalized,
+ *   but may need to convert between `number` and `bigint`.\
+ *   e.g. bigint + float => float (if possible), number + number => bigint (too big)
+ *
+ * During operations, the `DigitsStruct` can be not normalized,
+ * but each operation should always normalize the `DigitsStruct` before returning.
+ * Each operations assume the input `DigitsStruct` is normalized.
+ *
+ * All operations are performed in similar way:
+ *
+ * value -> NormalizedNumericStruct -> operation(NormalizedDigitsStruct) -> NormalizedNumericStruct -> Value
+ *
+ * This allows the operations to be composable.
+ * */
 export type NumericStruct = ['bigint' | 'number', DigitsStruct]
 // These are used to reference the NumericStruct values
 export type TYPE = 0
@@ -56,6 +73,11 @@ export namespace NumericStruct {
 		? ['bigint', DigitsStruct.FromBigint<N>]
 		: never
 
+	/**
+	 * Converts a `NumericStruct` to a number or bigint.
+	 *
+	 * It includes the normalization of the `NumericStruct`.
+	 */
 	export type ToNumeric<M extends NumericStruct, Fail = never> = NormalizedToBigint<
 		M,
 		NormalizedToNumber<M, Fail>
@@ -68,13 +90,6 @@ export namespace NumericStruct {
 		DigitsStruct.ToString<M[DIGITS_STRUCT]>,
 		Fail
 	>
-
-	/**
-	 * Normalize the `NumericStruct` so that it can be used to convert back to numeric.
-	 *
-	 * The `DigitsStruct` is expected to be normalized before calling this type.
-	 */
-	export type Normalize<M extends NumericStruct> = [M[TYPE], DigitsStruct.Normalize<M[DIGITS_STRUCT]>]
 }
 
 // TODO: move into `NumericHelpers`
