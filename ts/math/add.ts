@@ -1,6 +1,6 @@
-import { NumericStruct } from './numeric_struct.js'
+import type { NumericStruct } from './numeric_struct.js'
 
-import { DigitsStruct } from './digit_struct.js'
+import type { DigitsStruct } from './digit_struct.js'
 
 export type Add<A extends number | bigint, B extends number | bigint, Fail = never> = [
 	NumericStruct.FromNumeric<A>,
