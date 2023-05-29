@@ -37,6 +37,11 @@ describe('FromNumeric', () => {
 			testType.equal<NumericStruct.FromNumeric<0n>, ['bigint', ['+', [0], 0]]>(true)
 			testType.equal<NumericStruct.FromNumeric<-0n>, ['bigint', ['+', [0], 0]]>(true)
 		})
+
+		it('bigint type gets Fail', () => {
+			testType.equal<NumericStruct.FromNumeric<bigint>, never>(true)
+			testType.equal<NumericStruct.FromNumeric<bigint, 'not literal'>, 'not literal'>(true)
+		})
 	})
 
 	describe(`number`, () => {
@@ -196,22 +201,22 @@ describe(`ToNumeric`, () => {
 	it('returns never for floating point number that is too large', () => {
 		testType.equal<
 			NumericStruct.ToNumeric<['number', ['+', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2, 1], 1]]>,
-			"The value '9007199254740992.1 cannot be represented as bigint or number"
+			"The value '9007199254740992.1' cannot be represented as bigint or number"
 		>(true)
 
 		testType.equal<
 			NumericStruct.ToNumeric<['number', ['-', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2, 1], 1]]>,
-			"The value '-9007199254740992.1 cannot be represented as bigint or number"
+			"The value '-9007199254740992.1' cannot be represented as bigint or number"
 		>(true)
 
 		testType.equal<
 			NumericStruct.ToNumeric<['bigint', ['+', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2, 1], 1]]>,
-			"The value '9007199254740992.1 cannot be represented as bigint or number"
+			"The value '9007199254740992.1' cannot be represented as bigint or number"
 		>(true)
 
 		testType.equal<
 			NumericStruct.ToNumeric<['bigint', ['-', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2, 1], 1]]>,
-			"The value '-9007199254740992.1 cannot be represented as bigint or number"
+			"The value '-9007199254740992.1' cannot be represented as bigint or number"
 		>(true)
 	})
 
