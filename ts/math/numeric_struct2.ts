@@ -411,7 +411,7 @@ export namespace DigitArray {
 
 	export type Subtract<A extends number[], B extends number[], R extends number[] = []> = A extends []
 		? B extends []
-			? R
+			? TrimLeadingZeros<R>
 			: B extends [...infer BH extends number[], infer BL extends number]
 			? Subtract<[], BH, [ToNegative<BL>, ...R]>
 			: never

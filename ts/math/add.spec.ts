@@ -162,7 +162,7 @@ it('-A + B', () => {
 	testType.equal<Add<-1, 1>, 0>(true)
 })
 
-it('B is floating pointfractional B gets never', () => {
+it('B is floating point', () => {
 	testType.equal<Add<1, 1.2>, 2.2>(true)
 })
 
