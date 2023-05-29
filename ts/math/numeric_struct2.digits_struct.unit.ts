@@ -21,6 +21,7 @@ describe('Normalize', () => {
 		testType.equal<DigitsStruct.Normalize<['+', [10], 0]>, ['+', [1, 0], 0]>(true)
 
 		testType.equal<DigitsStruct.Normalize<['+', [81], 0]>, ['+', [8, 1], 0]>(true)
+		testType.equal<DigitsStruct.Normalize<['+', [89], 0]>, ['+', [8, 9], 0]>(true)
 
 		testType.equal<DigitsStruct.Normalize<['+', [1, 10], 0]>, ['+', [2, 0], 0]>(true)
 		testType.equal<DigitsStruct.Normalize<['+', [1, 81], 0]>, ['+', [9, 1], 0]>(true)
@@ -34,6 +35,7 @@ describe('Normalize', () => {
 		testType.equal<DigitsStruct.Normalize<['+', [2, -1], 0]>, ['+', [1, 9], 0]>(true)
 		testType.equal<DigitsStruct.Normalize<['+', [2, -10, 3], 0]>, ['+', [1, 0, 3], 0]>(true)
 		testType.equal<DigitsStruct.Normalize<['+', [1, -1], 0]>, ['+', [9], 0]>(true)
+		testType.equal<DigitsStruct.Normalize<['+', [1, 0, -1], 0]>, ['+', [9, 9], 0]>(true)
 
 		testType.equal<DigitsStruct.Normalize<['-', [2, -1], 0]>, ['-', [1, 9], 0]>(true)
 		testType.equal<DigitsStruct.Normalize<['-', [2, -10, 3], 0]>, ['-', [1, 0, 3], 0]>(true)
@@ -43,5 +45,7 @@ describe('Normalize', () => {
 	it('flips sign when first digit is negative, and then normalize', () => {
 		testType.equal<DigitsStruct.Normalize<['+', [-1, 2, -3], 0]>, ['-', [8, 3], 0]>(true)
 		testType.equal<DigitsStruct.Normalize<['-', [-1, 2, -3], 0]>, ['+', [8, 3], 0]>(true)
+
+		testType.equal<DigitsStruct.Normalize<['+', [-9], 0]>, ['-', [9], 0]>(true)
 	})
 })
