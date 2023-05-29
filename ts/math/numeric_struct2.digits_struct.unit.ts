@@ -47,6 +47,7 @@ describe('Normalize', () => {
 		testType.equal<DigitsStruct.Normalize<['-', [-1, 2, -3], 0]>, ['+', [8, 3], 0]>(true)
 
 		testType.equal<DigitsStruct.Normalize<['+', [-9], 0]>, ['-', [9], 0]>(true)
+		testType.equal<DigitsStruct.Normalize<['+', [-8, -4, 0, 4, 8], 0]>, ['-', [8, 3, 9, 5, 2], 0]>(true)
 	})
 })
 
@@ -93,5 +94,11 @@ describe('GetMinPadEnd', () => {
 	it('returns [[0...n], M]', () => {
 		testType.equal<DigitsStruct.GetMinPadEnd<4, 1>, [[0], 'A']>(true)
 		testType.equal<DigitsStruct.GetMinPadEnd<3, 7>, [[0, 0, 0], 'B']>(true)
+	})
+})
+
+describe('Subtract', () => {
+	it('A < B', () => {
+		testType.equal<DigitsStruct.Subtract<['+', [1], 0], ['+', [1, 0], 0]>, ['-', [9], 0]>(true)
 	})
 })

@@ -108,6 +108,11 @@ export namespace NumericStruct {
 		A[TYPE],
 		DigitsStruct.Add<A[DIGITS_STRUCT], B[DIGITS_STRUCT]>
 	]
+
+	export type Subtract<A extends NumericStruct, B extends NumericStruct> = [
+		A[TYPE],
+		DigitsStruct.Subtract<A[DIGITS_STRUCT], B[DIGITS_STRUCT]>
+	]
 }
 
 // TODO: move into `NumericHelpers`
@@ -282,7 +287,7 @@ export namespace DigitsStruct {
 			: [BA[SIGN], BB[SIGN]] extends ['-', '+']
 			? Normalize<['-', DigitArray.Add<BB[DIGITS], BA[DIGITS]>, BA[EXPONENT]]>
 			: [BA[SIGN], BB[SIGN]] extends ['-', '-']
-			? Normalize<['+', DigitArray.Subtract<BA[DIGITS], BB[DIGITS]>, BA[EXPONENT]]>
+			? Normalize<['-', DigitArray.Subtract<BA[DIGITS], BB[DIGITS]>, BA[EXPONENT]]>
 			: never
 		: never
 
@@ -408,7 +413,7 @@ export namespace DigitArray {
 		? B extends []
 			? R
 			: B extends [...infer BH extends number[], infer BL extends number]
-			? Subtract<[], BH, [BL, ...R]>
+			? Subtract<[], BH, [ToNegative<BL>, ...R]>
 			: never
 		: B extends []
 		? A extends [...infer AH extends number[], infer AL extends number]
@@ -439,7 +444,9 @@ export namespace Digit {
 		? Subtract<A, BD>
 		: PositiveEntryAdd<A, B>
 
-	export type FlipSign<T extends number> = `${T}` extends `-${infer R extends number}`
+	export type FlipSign<T extends number> = T extends 0
+		? 0
+		: `${T}` extends `-${infer R extends number}`
 		? R
 		: `-${T}` extends `${infer R extends number}`
 		? R
