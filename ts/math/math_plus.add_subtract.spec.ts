@@ -6,58 +6,6 @@ it.todo('to be fixed')
 // import type { Add } from '../index.js'
 // import { testType } from '../index.js'
 
-// it('adds two positive bigints', () => {
-// 	testType.equal<Add<1n, 1n>, 2n>(true)
-
-// 	testType.equal<Add<1n, 10n>, 11n>(true)
-// 	testType.equal<Add<10n, 1n>, 11n>(true)
-
-// 	testType.equal<Add<123n, 123n>, 246n>(true)
-
-// 	testType.equal<Add<19n, 1n>, 20n>(true)
-// 	testType.equal<Add<1n, 19n>, 20n>(true)
-
-// 	testType.equal<Add<13579n, 97531n>, 111110n>(true)
-// })
-
-// it('adds two negative bigints', () => {
-// 	testType.equal<Add<-1n, -1n>, -2n>(true)
-
-// 	testType.equal<Add<-1n, -10n>, -11n>(true)
-// 	testType.equal<Add<-10n, -1n>, -11n>(true)
-
-// 	testType.equal<Add<-123n, -123n>, -246n>(true)
-
-// 	testType.equal<Add<-19n, -1n>, -20n>(true)
-// 	testType.equal<Add<-1n, -19n>, -20n>(true)
-
-// 	testType.equal<Add<-13579n, -97531n>, -111110n>(true)
-// })
-
-// it('adds a negative bigint to a positive bigint', () => {
-// 	testType.equal<Add<1n, -1n>, 0n>(true)
-// 	testType.equal<Add<10n, -1n>, 9n>(true)
-// })
-
-// it('errors when trying to add a non-integer to a bigint', () => {
-// 	testType.equal<Add<1n, 1.2>, 'Cannot add a non-integer to a bigint'>(true)
-// })
-
-// it('can add an integer to a bigint', () => {
-// 	testType.equal<Add<1n, 1>, 2n>(true)
-// })
-
-// test('negative A gets never', () => {
-// 	testType.never<Add<-1, 1>>(true)
-// })
-
-// test('fractional B gets never', () => {
-// 	testType.never<Add<1, 1.2>>(true)
-// })
-
-// test('negative B gets never', () => {
-// 	testType.never<Add<1, -1>>(true)
-// })
 
 // test('number gets Fail', () => {
 // 	testType.never<Add<number, 1>>(true)

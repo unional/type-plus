@@ -49,3 +49,49 @@ describe('Normalize', () => {
 		testType.equal<DigitsStruct.Normalize<['+', [-9], 0]>, ['-', [9], 0]>(true)
 	})
 })
+
+describe('Balance', () => {
+	it('returns origin if they has the same exponent', () => {
+		testType.equal<
+			DigitsStruct.Balance<['+', [1, 2, 3], 0], ['+', [4, 5, 6], 0]>,
+			[['+', [1, 2, 3], 0], ['+', [4, 5, 6], 0]]
+		>(true)
+	})
+	it('balances the struct when they have different exponent', () => {
+		testType.equal<
+			DigitsStruct.Balance<['+', [1], 0], ['+', [1, 2], 1]>,
+			[['+', [1, 0], 1], ['+', [1, 2], 1]]
+		>(true)
+
+		testType.equal<DigitsStruct.Balance<['+', [0], 0], ['+', [1], 3]>, [['+', [0], 3], ['+', [1], 3]]>(true)
+
+		// 0.001 + 1.2 = 1.201
+		// => ['+',          [1], 3]
+		// +  ['+',       [1, 2], 1]
+		// => ['+',          [1], 3]
+		// +  ['+', [1, 2, 0, 0], 3]
+		// => ['+', [1, 2, 0, 1], 3]
+		// => 1.201
+		testType.equal<
+			DigitsStruct.Balance<['+', [1], 3], ['+', [1, 2], 1]>,
+			[['+', [1], 3], ['+', [1, 2, 0, 0], 3]]
+		>(true)
+
+		testType.equal<
+			DigitsStruct.Balance<['+', [1, 3, 5, 7], 4], ['+', [9, 7, 5, 3], 6]>,
+			[['+', [1, 3, 5, 7, 0, 0], 6], ['+', [9, 7, 5, 3], 6]]
+		>(true)
+	})
+})
+
+describe('GetMinPadEnd', () => {
+	it('returns [0, M] if one of the value is 0', () => {
+		testType.equal<DigitsStruct.GetMinPadEnd<0, 1>, [[], 'B']>(true)
+		testType.equal<DigitsStruct.GetMinPadEnd<2, 0>, [[], 'A']>(true)
+	})
+
+	it('returns [[0...n], M]', () => {
+		testType.equal<DigitsStruct.GetMinPadEnd<4, 1>, [[0], 'A']>(true)
+		testType.equal<DigitsStruct.GetMinPadEnd<3, 7>, [[0, 0, 0], 'B']>(true)
+	})
+})

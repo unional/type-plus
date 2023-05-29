@@ -2,7 +2,7 @@ import { describe, it } from '@jest/globals'
 import { testType } from '../index.js'
 import type { NumericStruct } from './numeric_struct2.js'
 
-describe('NumericStruct.FromNumeric', () => {
+describe('FromNumeric', () => {
 	describe('bigint', () => {
 		// Exponent is always 0 as bigint does not support floating point number.
 		it('converts positive bigint to ["bigint", ["+", Digits, 0]]', () => {
@@ -73,7 +73,6 @@ describe('NumericStruct.FromNumeric', () => {
 				NumericStruct.FromNumeric<-1234567890>,
 				['number', ['-', [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 0]]
 			>(true)
-
 			// MAX_NUMBER = 9007199254740992
 			testType.equal<
 				NumericStruct.FromNumeric<-9007199254740992>,
@@ -120,7 +119,7 @@ describe('NumericStruct.FromNumeric', () => {
 	})
 })
 
-describe(`NumericStruct.ToNumeric`, () => {
+describe(`ToNumeric`, () => {
 	it('converts bigint', () => {
 		testType.equal<NumericStruct.ToNumeric<['bigint', ['+', [0], 0]]>, 0n>(true)
 		testType.equal<NumericStruct.ToNumeric<['bigint', ['+', [1], 0]]>, 1n>(true)
@@ -140,14 +139,11 @@ describe(`NumericStruct.ToNumeric`, () => {
 	it('converts whole numbers', () => {
 		testType.equal<NumericStruct.ToNumeric<['number', ['+', [0], 0]]>, 0>(true)
 		testType.equal<NumericStruct.ToNumeric<['number', ['+', [1], 0]]>, 1>(true)
+		testType.equal<NumericStruct.ToNumeric<['number', ['+', [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 0]]>, 9876543210>(
+			true
+		)
 		testType.equal<
-			NumericStruct.ToNumeric<['number', ['+', [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 0]]>,
-			9876543210
-		>(true)
-		testType.equal<
-			NumericStruct.ToNumeric<
-				['number', ['+', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2], 0]]
-			>,
+			NumericStruct.ToNumeric<['number', ['+', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2], 0]]>,
 			9007199254740992
 		>(true)
 
@@ -158,9 +154,7 @@ describe(`NumericStruct.ToNumeric`, () => {
 			-9876543210
 		>(true)
 		testType.equal<
-			NumericStruct.ToNumeric<
-				['number', ['-', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2], 0]]
-			>,
+			NumericStruct.ToNumeric<['number', ['-', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2], 0]]>,
 			-9007199254740992
 		>(true)
 	})
@@ -200,43 +194,35 @@ describe(`NumericStruct.ToNumeric`, () => {
 	})
 
 	it('returns never for floating point number that is too large', () => {
-		testType.never<
-			NumericStruct.ToNumeric<
-				['number', ['+', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2, 1], 1]]
-			>
+		testType.equal<
+			NumericStruct.ToNumeric<['number', ['+', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2, 1], 1]]>,
+			"The value '9007199254740992.1 cannot be represented as bigint or number"
 		>(true)
 
-		testType.never<
-			NumericStruct.ToNumeric<
-				['number', ['-', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2, 1], 1]]
-			>
+		testType.equal<
+			NumericStruct.ToNumeric<['number', ['-', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2, 1], 1]]>,
+			"The value '-9007199254740992.1 cannot be represented as bigint or number"
 		>(true)
 
-		testType.never<
-			NumericStruct.ToNumeric<
-				['bigint', ['+', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2, 1], 1]]
-			>
+		testType.equal<
+			NumericStruct.ToNumeric<['bigint', ['+', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2, 1], 1]]>,
+			"The value '9007199254740992.1 cannot be represented as bigint or number"
 		>(true)
 
-		testType.never<
-			NumericStruct.ToNumeric<
-				['bigint', ['-', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2, 1], 1]]
-			>
+		testType.equal<
+			NumericStruct.ToNumeric<['bigint', ['-', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2, 1], 1]]>,
+			"The value '-9007199254740992.1 cannot be represented as bigint or number"
 		>(true)
 	})
 
 	it('convert number to bigint if the number is too large', () => {
 		testType.equal<
-			NumericStruct.ToNumeric<
-				['number', ['+', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 3], 0]]
-			>,
+			NumericStruct.ToNumeric<['number', ['+', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 3], 0]]>,
 			9007199254740993n
 		>(true)
 
 		testType.equal<
-			NumericStruct.ToNumeric<
-				['number', ['-', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 3], 0]]
-			>,
+			NumericStruct.ToNumeric<['number', ['-', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 3], 0]]>,
 			-9007199254740993n
 		>(true)
 	})
@@ -280,5 +266,14 @@ describe('conversion roundtrip', () => {
 		testType.equal<RoundTrip<1234567890n>, 1234567890n>(true)
 		testType.equal<RoundTrip<-1n>, -1n>(true)
 		testType.equal<RoundTrip<-1234567890n>, -1234567890n>(true)
+	})
+})
+
+describe('Add', () => {
+	it('can add integer with floating point', () => {
+		testType.equal<
+			NumericStruct.Add<['number', ['+', [1], 0]], ['number', ['+', [1, 2], 1]]>,
+			['number', ['+', [2, 2], 1]]
+		>(true)
 	})
 })

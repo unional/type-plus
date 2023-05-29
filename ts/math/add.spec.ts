@@ -72,8 +72,54 @@ it('adds two positive bigints', () => {
 
 	testType.equal<Add<123n, 123n>, 246n>(true)
 
-	// testType.equal<Add<19n, 1n>, 20n>(true)
-	// testType.equal<Add<1n, 19n>, 20n>(true)
+	testType.equal<Add<19n, 1n>, 20n>(true)
+	testType.equal<Add<1n, 19n>, 20n>(true)
 
-	// testType.equal<Add<13579n, 97531n>, 111110n>(true)
+	testType.equal<Add<13579n, 97531n>, 111110n>(true)
+})
+
+it('adds two negative bigints', () => {
+	testType.equal<Add<-1n, -1n>, -2n>(true)
+
+	testType.equal<Add<-1n, -10n>, -11n>(true)
+	testType.equal<Add<-10n, -1n>, -11n>(true)
+
+	testType.equal<Add<-123n, -123n>, -246n>(true)
+
+	testType.equal<Add<-19n, -1n>, -20n>(true)
+	testType.equal<Add<-1n, -19n>, -20n>(true)
+
+	testType.equal<Add<-13579n, -97531n>, -111110n>(true)
+})
+
+it('adds a negative bigint to a positive bigint', () => {
+	testType.equal<Add<1n, -1n>, 0n>(true)
+	testType.equal<Add<10n, -1n>, 9n>(true)
+})
+
+it('bigint + int = bigint', () => {
+	testType.equal<Add<1n, 1>, 2n>(true)
+})
+
+it('bigint + floating point = floating point', () => {
+	testType.equal<Add<1n, 1.2>, 2.2>(true)
+})
+
+it('bigint + floating point = floating point', () => {
+	testType.equal<
+		Add<9007199254740992n, 1.2>,
+		"The value '9007199254740993.2 cannot be represented as bigint or number"
+	>(true)
+})
+
+it('-A + B', () => {
+	testType.equal<Add<-1, 1>, 0>(true)
+})
+
+it('B is floating pointfractional B gets never', () => {
+	testType.equal<Add<1, 1.2>, 2.2>(true)
+})
+
+it('A + -B', () => {
+	testType.equal<Add<1, -1>, 0>(true)
 })
