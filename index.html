@@ -20,7 +20,10 @@
 <a href="https://wallabyjs.com/oss/"><img src="https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=flat&logo=github" alt="Wallaby.js"></a></p>
 <p>More than 200 type utilities for <a href="https://www.typescriptlang.org">TypeScript</a>.</p>
 <a id="$table-of-contents" class="tsd-anchor"></a><h2><a href="#$table-of-contents" style="color:inherit;text-decoration:none">Table of Contents</a></h2><ol>
-<li><a href="#assertion-function">Assertion Function</a></li>
+<li><a href="#assertion-function">Assertion Function</a><ol>
+<li><a href="#asserttype">assertType</a></li>
+</ol>
+</li>
 <li><a href="#type-guard">Type Guard</a></li>
 <li><a href="#type-utilities">Type Utilities</a></li>
 <li><a href="#type-checking">Type Checking</a><ol>
@@ -32,6 +35,7 @@
 <li><a href="#never">never</a></li>
 <li><a href="#null">null</a></li>
 <li><a href="#number">number</a></li>
+<li><a href="#numeric">numeric</a></li>
 <li><a href="#object">object</a></li>
 <li><a href="#promise">Promise</a></li>
 <li><a href="#string">string</a></li>
@@ -62,142 +66,201 @@
 <a id="$installation" class="tsd-anchor"></a><h2><a href="#$installation" style="color:inherit;text-decoration:none">Installation</a></h2><pre><code class="language-sh"><span class="hl-0">npm </span><span class="hl-1">install</span><span class="hl-0"> </span><span class="hl-1">type-plus</span><br/><br/><span class="hl-0">yarn </span><span class="hl-1">add</span><span class="hl-0"> </span><span class="hl-1">type-plus</span><br/><br/><span class="hl-0">pnpm </span><span class="hl-1">add</span><span class="hl-0"> </span><span class="hl-1">type-plus</span>
 </code></pre>
 <a id="$assertion-function" class="tsd-anchor"></a><h2><a href="#$assertion-function" style="color:inherit;text-decoration:none">Assertion Function</a></h2><p><a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions">Assertion Functions</a> are special functions that asserts certain conditions of your program.</p>
+<p>It is introduced in TypeScript 3.7.</p>
 <p>They throw an error if the condition is not met, and return nothing otherwise.</p>
 <p>These assertion functions are typically used in runtime,
 so that that type of the value can be narrowed down.</p>
+<a id="$asserttype" class="tsd-anchor"></a><h3><a href="#$asserttype" style="color:inherit;text-decoration:none">assertType</a></h3><p><a href="./ts/assertion/assert_type.ts"><code>assertType</code></a> provides a generic assertion function,
+as well as many assertion functions for builtin types.</p>
 <blockquote>
-<p><a href="./ts/assertion/readme.md#asserttype"><code>assertType()</code></a>:  💀 deprecated. Use <code>assertType.as()</code> instead</p>
+<p><a href="./ts/assertion/readme.md#asserttype"><code>assertType&lt;T&gt;(subject)</code></a></p>
 </blockquote>
+<p>💀 deprecated. Use <code>assertType.as()</code> instead.</p>
+<p><code>assertType&lt;T&gt;(subject, validator)</code>:</p>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is type <code>T</code> with the specified <code>validator</code>.</p>
+<p>If <code>subject</code> fails the assertion,
+a standard <code>TypeError</code> will be thrown and provide better error info.
+For example:</p>
+<pre><code class="language-ts"><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">s</span><span class="hl-0">: </span><span class="hl-4">unknown</span><span class="hl-0"> = </span><span class="hl-5">1</span><br/><br/><span class="hl-6">// TypeError: subject fails to satisfy s =&gt; typeof s === &#39;boolean&#39;</span><br/><span class="hl-7">assertType</span><span class="hl-0">&lt;</span><span class="hl-4">boolean</span><span class="hl-0">&gt;(</span><span class="hl-8">s</span><span class="hl-0">, </span><span class="hl-8">s</span><span class="hl-0"> </span><span class="hl-2">=&gt;</span><span class="hl-0"> </span><span class="hl-2">typeof</span><span class="hl-0"> </span><span class="hl-8">s</span><span class="hl-0"> === </span><span class="hl-1">&#39;boolean&#39;</span><span class="hl-0">)</span>
+</code></pre>
+<p>The message beautification is provided by <a href="https://github.com/unional/tersify"><code>tersify</code></a>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.isUndefined()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is <code>undefined</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.noUndefined()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is not <code>undefined</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.isNull()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is <code>null</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.noNull()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is not <code>null</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.isNumber()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is <code>number</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.noNumber()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is not <code>number</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.isBoolean()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is <code>boolean</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.noBoolean()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is not <code>boolean</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.isTrue()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is <code>true</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.noTrue()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is not <code>true</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.isFalse()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is <code>false</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.noFalse()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is not <code>false</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.isString()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is <code>string</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.noString()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is not <code>string</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.isFunction()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is <code>function</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.noFunction()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is not <code>function</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.isError()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is an <code>Error</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.noError()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is not an <code>Error</code>.</p>
 <blockquote>
-<p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.isConstructor()</code></a>: 💀 deprecated. It is not a failsafe test.</p>
+<p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.isConstructor()</code></a></p>
 </blockquote>
+<p>💀 deprecated. It does not work in all cases.</p>
+<p>It passes for function that can be called with <code>new</code>.
+If the subject is an arrow function, it can still return true after compilation.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.isNever()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> is <code>never</code>.</p>
 <blockquote>
 <p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.custom()</code></a></p>
 </blockquote>
+<p>🚦<code>assertion</code>: creates a custom assertion function.</p>
+<p>Using it to create a custom assertion function that provides better error messages.</p>
+<p>The message beautification is provided by <a href="https://github.com/unional/tersify"><code>tersify</code></a>.</p>
 <blockquote>
-<p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.as()</code></a></p>
+<p><a href="./ts/assertion/readme.md#asserttype"><code>assertType.as&lt;T&gt;()</code></a></p>
 </blockquote>
-<a id="$type-guard" class="tsd-anchor"></a><h2><a href="#$type-guard" style="color:inherit;text-decoration:none">Type Guard</a></h2><p><a href="https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates">User-defined type guard functions</a> is a function which its return type is specified as <code>x as T</code>.</p>
+<p>🚦<code>assertion</code>: assert the <code>subject</code> as <code>T</code> without validator.</p>
+<p>This works similar to manual assertion <code>;(subject as T)</code></p>
+<a id="$type-guard" class="tsd-anchor"></a><h2><a href="#$type-guard" style="color:inherit;text-decoration:none">Type Guard</a></h2><p><a href="https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates">User-defined type guard functions</a> is a function which its return type is specified as <code>x is T</code>.</p>
 <blockquote>
 <p><a href="./ts/type-guard/readme.md#istype"><code>isType()</code></a></p>
 </blockquote>
+<p>🛡️ <code>guard</code>: a generic type guard function</p>
 <blockquote>
-<p><a href="./ts/type-guard/readme.md#istype"><code>isType.t()</code></a>: 💀 deprecated. Use <code>testType.true()</code> instead.</p>
+<p><a href="./ts/type-guard/readme.md#istype"><code>isType.t()</code></a></p>
 </blockquote>
+<p>💀 <code>deprecated</code>: use <code>testType.true()</code> instead.</p>
 <blockquote>
-<p><a href="./ts/type-guard/readme.md#istype"><code>isType.f()</code></a>: 💀 deprecated. Use <code>testType.false()</code> instead.</p>
+<p><a href="./ts/type-guard/readme.md#istype"><code>isType.f()</code></a></p>
 </blockquote>
+<p>💀 <code>deprecated</code>: use <code>testType.false()</code> instead.</p>
 <blockquote>
-<p><a href="./ts/type-guard/readme.md#istype"><code>isType.never()</code></a>: 💀 deprecated. Use <code>testType.never()</code> instead.</p>
+<p><a href="./ts/type-guard/readme.md#istype"><code>isType.never()</code></a></p>
 </blockquote>
+<p>💀 <code>deprecated</code>: use <code>testType.never()</code> instead.</p>
 <blockquote>
-<p><a href="./ts/type-guard/readme.md#istype"><code>isType.equal()</code></a>: 💀 deprecated. Use <code>testType.equal()</code> instead.</p>
+<p><a href="./ts/type-guard/readme.md#istype"><code>isType.equal()</code></a></p>
 </blockquote>
+<p>💀 <code>deprecated</code>: use <code>testType.equal()</code> instead.</p>
 <a id="$type-utilities" class="tsd-anchor"></a><h2><a href="#$type-utilities" style="color:inherit;text-decoration:none">Type Utilities</a></h2><blockquote>
-<p><code>Equal&lt;A, B&gt;</code>: 💀 deprecated. use <code>IsEqual</code> instead. This will be converted to a <code>filter</code>.</p>
+<p><code>Equal&lt;A, B, Then = true, Else = false&gt;</code></p>
 </blockquote>
+<p>💀 deprecated. use <code>IsEqual</code> instead. This will be converted to a ↪️ <code>parse</code>.</p>
 <blockquote>
-<p><code>IsEqual&lt;A, B&gt;</code>: Check if <code>A</code> and <code>B</code> are the same.</p>
+<p><code>IsEqual&lt;A, B, Then = true, Else = false&gt;</code></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: if <code>A</code> and <code>B</code> are the same.</p>
 <blockquote>
-<p><code>NotEqual&lt;A, B&gt;</code>:</p>
+<p><code>NotEqual&lt;A, B, Then = true, Else = false&gt;</code></p>
 </blockquote>
+<p>💀 deprecated. use <code>IsNotEqual</code> instead. This will be converted to a ↪️ <code>parse</code>.</p>
 <blockquote>
-<p><code>IsNotEqual&lt;A, B&gt;</code>:</p>
+<p><code>IsNotEqual&lt;A, B, Then = true, Else = false&gt;</code>:</p>
 </blockquote>
+<p>⭕ <code>predicate</code>: check if <code>A</code> and <code>B</code> are not the same.</p>
 <blockquote>
-<p><code>IsExtend&lt;A, B&gt;</code>: Check if <code>A</code> extends or not extends <code>B</code>.</p>
+<p><code>Extendable&lt;A, B, Then = A, Else = never&gt;</code></p>
 </blockquote>
+<p>↪️ <code>parse</code>: check if <code>A</code> extends <code>B</code>.</p>
 <blockquote>
-<p><code>IsNotExtend&lt;A, B&gt;</code>:</p>
+<p><code>IsExtend&lt;A, B, Then = true, Else = false&gt;</code></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: check if <code>A</code> extends <code>B</code>.</p>
 <blockquote>
-<p><code>Extendable&lt;A, B&gt;</code>: <code>filter</code> &gt; Check if <code>A</code> extends or not extends <code>B</code>.</p>
+<p><code>NotExtendable&lt;A, B, Then = A, Else = never&gt;</code>:</p>
 </blockquote>
+<p>↪️ <code>parse</code>: check if <code>A</code> not extends <code>B</code>.</p>
 <blockquote>
-<p><code>NotExtendable&lt;A, B&gt;</code>:</p>
+<p><code>IsNotExtend&lt;A, B, Then = true, Else = false&gt;</code>:</p>
 </blockquote>
+<p>⭕ <code>predicate</code>: check if <code>A</code> not extends <code>B</code>.</p>
 <blockquote>
-<p><code>IsAssign&lt;A, B&gt;</code>: Check if <code>A</code> can be assigned to <code>B</code>.</p>
+<p><code>IsAssign&lt;A, B, Then = true, Else = false&gt;</code></p>
 </blockquote>
+<p>💀 <code>deprecated</code>: use <code>CanAssign</code> instead.</p>
 <blockquote>
-<p><code>CanAssign&lt;A, B&gt;</code>:</p>
+<p><code>CanAssign&lt;A, B, Then = true, Else = false&gt;</code>:</p>
 </blockquote>
-<p>✔️ <code>logical</code></p>
-<p>Check if <code>A</code> can be assigned to <code>B</code>.
-A typical usage is using it with <code>assertType</code>:</p>
-<pre><code class="language-ts"><span class="hl-2">assertType</span><span class="hl-0">.</span><span class="hl-3">isFalse</span><span class="hl-0">(</span><span class="hl-4">false</span><span class="hl-0"> </span><span class="hl-5">as</span><span class="hl-0"> </span><span class="hl-6">CanAssign</span><span class="hl-0">&lt;</span><span class="hl-6">boolean</span><span class="hl-0">, { </span><span class="hl-2">a</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0"> }&gt;)</span><br/><span class="hl-2">assertType</span><span class="hl-0">.</span><span class="hl-3">isTrue</span><span class="hl-0">(</span><span class="hl-4">true</span><span class="hl-0"> </span><span class="hl-5">as</span><span class="hl-0"> </span><span class="hl-6">CanAssign</span><span class="hl-0">&lt;{ </span><span class="hl-2">a</span><span class="hl-0">:</span><span class="hl-6">string</span><span class="hl-0">, </span><span class="hl-2">b</span><span class="hl-0">:</span><span class="hl-6">number</span><span class="hl-0"> }, { </span><span class="hl-2">a</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0"> }&gt;)</span>
+<p>⭕ <code>predicate</code>: check can <code>A</code> assign to <code>B</code>.</p>
+<p>A typical usage is using it with <code>assertType</code>:</p>
+<pre><code class="language-ts"><span class="hl-8">assertType</span><span class="hl-0">.</span><span class="hl-7">isFalse</span><span class="hl-0">(</span><span class="hl-2">false</span><span class="hl-0"> </span><span class="hl-9">as</span><span class="hl-0"> </span><span class="hl-4">CanAssign</span><span class="hl-0">&lt;</span><span class="hl-4">boolean</span><span class="hl-0">, { </span><span class="hl-8">a</span><span class="hl-0">: </span><span class="hl-4">string</span><span class="hl-0"> }&gt;)</span><br/><span class="hl-8">assertType</span><span class="hl-0">.</span><span class="hl-7">isTrue</span><span class="hl-0">(</span><span class="hl-2">true</span><span class="hl-0"> </span><span class="hl-9">as</span><span class="hl-0"> </span><span class="hl-4">CanAssign</span><span class="hl-0">&lt;{ </span><span class="hl-8">a</span><span class="hl-0">:</span><span class="hl-4">string</span><span class="hl-0">, </span><span class="hl-8">b</span><span class="hl-0">:</span><span class="hl-4">number</span><span class="hl-0"> }, { </span><span class="hl-8">a</span><span class="hl-0">: </span><span class="hl-4">string</span><span class="hl-0"> }&gt;)</span>
+</code></pre>
+<blockquote>
+<p><code>StrictCanAssign&lt;A, B, Then = true, Else = false&gt;</code></p>
+</blockquote>
+<p>⭕ <code>predicate</code>: can <code>A</code> strictly assign to <code>B</code></p>
+<p>When <code>A</code> is a union, all branches must be assignable to <code>B</code>.</p>
+<pre><code class="language-ts"><span class="hl-8">StrictCanAssign</span><span class="hl-0">&lt;</span><span class="hl-8">number</span><span class="hl-0"> | </span><span class="hl-8">string</span><span class="hl-0">, </span><span class="hl-8">number</span><span class="hl-0">&gt; </span><span class="hl-6">// false</span><br/><span class="hl-8">StrictCanAssign</span><span class="hl-0">&lt;</span><span class="hl-8">number</span><span class="hl-0"> | </span><span class="hl-8">string</span><span class="hl-0">, </span><span class="hl-8">number</span><span class="hl-0"> | </span><span class="hl-8">string</span><span class="hl-0">&gt; </span><span class="hl-6">// true</span>
 </code></pre>
 <blockquote>
 <p><code>canAssign&lt;T&gt;(): (subject) =&gt; true</code></p>
 </blockquote>
-<p>✔️ <code>immediate</code>, <code>logical</code></p>
+<p>⭕💻 <code>predicate</code>, <code>compile-time</code></p>
 <p>Returns a compile-time validating function to ensure <code>subject</code> is assignable to <code>T</code>.</p>
-<pre><code class="language-ts"><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-7">isConfig</span><span class="hl-0"> = </span><span class="hl-3">canAssign</span><span class="hl-0">&lt;{ </span><span class="hl-2">a</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0"> }&gt;()</span><br/><span class="hl-2">assertType</span><span class="hl-0">.</span><span class="hl-3">isTrue</span><span class="hl-0">(</span><span class="hl-3">isConfig</span><span class="hl-0">({ </span><span class="hl-2">a:</span><span class="hl-0"> </span><span class="hl-1">&#39;a&#39;</span><span class="hl-0"> }))</span>
+<pre><code class="language-ts"><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">isConfig</span><span class="hl-0"> = </span><span class="hl-7">canAssign</span><span class="hl-0">&lt;{ </span><span class="hl-8">a</span><span class="hl-0">: </span><span class="hl-4">string</span><span class="hl-0"> }&gt;()</span><br/><span class="hl-8">assertType</span><span class="hl-0">.</span><span class="hl-7">isTrue</span><span class="hl-0">(</span><span class="hl-7">isConfig</span><span class="hl-0">({ </span><span class="hl-8">a:</span><span class="hl-0"> </span><span class="hl-1">&#39;a&#39;</span><span class="hl-0"> }))</span>
 </code></pre>
 <blockquote>
 <p><code>canAssign&lt;T&gt;(false): (subject) =&gt; false</code>:</p>
 </blockquote>
-<p>✔️ <code>immediate</code>, <code>logical</code></p>
+<p>⭕💻 <code>predicate</code>, <code>compile-time</code></p>
 <p>Returns a compile-time validating function to ensure <code>subject</code> is not assignable to <code>T</code>.</p>
-<pre><code class="language-ts"><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-7">notA</span><span class="hl-0"> = </span><span class="hl-3">canAssign</span><span class="hl-0">&lt;{ </span><span class="hl-2">a</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0"> }&gt;(</span><span class="hl-4">false</span><span class="hl-0">)</span><br/><span class="hl-2">assertType</span><span class="hl-0">.</span><span class="hl-3">isTrue</span><span class="hl-0">(</span><span class="hl-3">notA</span><span class="hl-0">({ </span><span class="hl-2">a:</span><span class="hl-0"> </span><span class="hl-8">1</span><span class="hl-0"> }))</span><br/><br/><span class="hl-3">notA</span><span class="hl-0">({ </span><span class="hl-2">a:</span><span class="hl-0"> </span><span class="hl-1">&#39;&#39;</span><span class="hl-0"> }) </span><span class="hl-9">// TypeScript complains</span>
+<pre><code class="language-ts"><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">notA</span><span class="hl-0"> = </span><span class="hl-7">canAssign</span><span class="hl-0">&lt;{ </span><span class="hl-8">a</span><span class="hl-0">: </span><span class="hl-4">string</span><span class="hl-0"> }&gt;(</span><span class="hl-2">false</span><span class="hl-0">)</span><br/><span class="hl-8">assertType</span><span class="hl-0">.</span><span class="hl-7">isTrue</span><span class="hl-0">(</span><span class="hl-7">notA</span><span class="hl-0">({ </span><span class="hl-8">a:</span><span class="hl-0"> </span><span class="hl-5">1</span><span class="hl-0"> }))</span><br/><br/><span class="hl-7">notA</span><span class="hl-0">({ </span><span class="hl-8">a:</span><span class="hl-0"> </span><span class="hl-1">&#39;&#39;</span><span class="hl-0"> }) </span><span class="hl-6">// TypeScript complains</span>
 </code></pre>
 <a id="$type-checking" class="tsd-anchor"></a><h2><a href="#$type-checking" style="color:inherit;text-decoration:none">Type Checking</a></h2><p><a href="./README.md">type-plus</a> privides type checking utilities for every type.</p>
 <p>Each type has at least 4 type checks.
@@ -222,592 +285,848 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <li><a href="./ts/void/readme.md">void</a></li>
 </ul>
 <a id="$any" class="tsd-anchor"></a><h3><a href="#$any" style="color:inherit;text-decoration:none">any</a></h3><blockquote>
-<p><a href="./ts/any/readme.md#type-checking"><code>AnyType&lt;T&gt;</code></a>: <code>T === any</code>.</p>
+<p><a href="./ts/any/readme.md#type-checking"><code>AnyType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: <code>T === any</code>.</p>
 <blockquote>
-<p><a href="./ts/any/readme.md#type-checking"><code>IsAny&lt;T&gt;</code></a>: <code>T === any</code></p>
+<p><a href="./ts/any/readme.md#type-checking"><code>IsAny&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T === any</code>.</p>
 <blockquote>
 <p><a href="./ts/any/readme.md#type-checking"><code>NotAnyType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: <code>T !== any</code>.</p>
 <blockquote>
 <p><a href="./ts/any/readme.md#type-checking"><code>IsNotAny&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T !== any</code>.</p>
 <blockquote>
 <p><a href="./ts/any/readme.md#type-utilities"><code>IsAnyOrNever&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T === any || T === never</code>.</p>
 <a id="$array" class="tsd-anchor"></a><h3><a href="#$array" style="color:inherit;text-decoration:none">Array</a></h3><blockquote>
-<p><a href="./ts/array/readme.md#type-checking"><code>ArrayType&lt;T&gt;</code></a>: Is the type <code>T</code> exactly an array and not a tuple.</p>
+<p><a href="./ts/array/readme.md#type-checking"><code>ArrayType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: is the type <code>T</code> exactly an array and not a tuple.</p>
 <blockquote>
 <p><a href="./ts/array/readme.md#type-checking"><code>IsArray&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: is the type <code>T</code> exactly an array and not a tuple.</p>
 <blockquote>
 <p><a href="./ts/array/readme.md#type-checking"><code>NotArrayType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: is the type <code>T</code> not an array or tuple.</p>
 <blockquote>
 <p><a href="./ts/array/readme.md#type-checking"><code>IsNotArray&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: is the type <code>T</code> exactly an array and not a tuple.</p>
 <blockquote>
-<p><a href="./ts/array/readme.md#type-utilities"><code>IsArrayOrNever&lt;T&gt;</code></a></p>
+<p><a href="ts/array_plus/array.ts#L19"><code>At&lt;A, N, Fail = never&gt;</code></a></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: gets the element type at index <code>N</code> in the array <code>A</code>.</p>
 <blockquote>
-<p><a href="ts/array_plus/array.ts#L19"><code>At&lt;A, N, Fail = never&gt;</code></a>: gets the element type at index <code>N</code> in the array <code>A</code>.</p>
+<p><code>CommonPropKeys&lt;A&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: gets common keys inside the records in the array <code>A</code> (deprecate <code>CommonKeys</code>).</p>
 <blockquote>
-<p><code>CommonPropKeys&lt;A&gt;</code>: gets common keys inside the records in the array <code>A</code> (deprecate <code>CommonKeys</code>).</p>
+<p><a href="ts/array_plus/array.ts#L38"><code>Concat&lt;A, B&gt;</code></a></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: <code>[...A, ...B]</code>.</p>
 <blockquote>
-<p><a href="ts/array_plus/array.ts#L38"><code>Concat&lt;A, B&gt;</code></a>: <code>[...A, ...B]</code>.</p>
+<p><code>CreateTuple&lt;L, T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: creates <code>tuple&lt;T&gt;</code> with <code>L</code> number of elements.</p>
 <blockquote>
-<p><code>CreateTuple&lt;L, T&gt;</code>: Creates <code>Tuple&lt;T&gt;</code> with <code>L</code> number of elements.</p>
+<p><code>drop(array, value)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: drop a particular value from an array.</p>
 <blockquote>
-<p><code>drop(array, value)</code>: drop a particular value from an array.</p>
+<p><code>DropFirst&lt;A&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: drops the first value type of <code>A</code>.</p>
 <blockquote>
-<p><code>DropFirst&lt;A&gt;</code>: drops the first value type of <code>A</code>.</p>
+<p><code>DropLast&lt;A&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: drops the last value type of <code>A</code>.</p>
 <blockquote>
-<p><code>DropLast&lt;A&gt;</code>: drops the last value type of <code>A</code>.</p>
+<p><code>DropMatch&lt;A, Criteria&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: drops entries matching <code>Criteria</code> in array or tuple <code>A</code>.</p>
 <blockquote>
-<p><code>DropMatch&lt;A, Criteria&gt;</code>: drops entries matching <code>Criteria</code> in array or tuple <code>A</code>.</p>
+<p><code>DropUndefined&lt;A&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: drop undefined entries from array of tuple <code>A</code>.</p>
 <blockquote>
-<p><code>DropUndefined&lt;A&gt;</code>: drop undefined entries from array of tuple <code>A</code>.</p>
+<p><code>Filter&lt;A, Criteria&gt;</code></p>
 </blockquote>
+<p>💀🔨 <code>deprecated</code>,<code>utilities</code>: filter the array or tuple <code>A</code>, keeping entries satisfying <code>Criteria</code>. <strong>Deprecated. Renaming to <code>KeepMatch</code></strong></p>
 <blockquote>
-<p><code>Filter&lt;A, Criteria&gt;</code>: filter the array or tuple <code>A</code>, keeping entries satisfying <code>Criteria</code>. <strong>Deprecated. Renaming to <code>KeepMatch</code></strong></p>
+<p><code>FindFirst&lt;A, Criteria&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: gets the first type satisfying <code>Criteria</code>.</p>
 <blockquote>
-<p><code>FindFirst&lt;A, Criteria&gt;</code>: gets the first type satisfying <code>Criteria</code>.</p>
+<p><code>FindLast&lt;A, Criteria&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: gets the last type satisfying <code>Criteria</code>.</p>
 <blockquote>
-<p><code>FindLast&lt;A, Criteria&gt;</code>: gets the last type satisfying <code>Criteria</code>.</p>
+<p><code>Head&lt;A&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: gets the first entry in the array.</p>
 <blockquote>
-<p><code>Head&lt;A&gt;</code>: gets the first entry in the array.</p>
+<p><code>IntersectOfProps&lt;A, K&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: gets the intersect of <code>A[K]</code> types (deprecate <code>MapToProp</code>)</p>
 <blockquote>
-<p><code>IntersectOfProps&lt;A, K&gt;</code>: gets the intersect of <code>A[K]</code> types (deprecate <code>MapToProp</code>)</p>
+<p><code>KeepMatch&lt;A, Criteria&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: keeps entries satisfying <code>Criteria</code> in array or tuple <code>A</code>.</p>
 <blockquote>
-<p><code>KeepMatch&lt;A, Criteria&gt;</code>: keeps entries satisfying <code>Criteria</code> in array or tuple <code>A</code>.</p>
+<p><code>Last&lt;A&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: gets the last type of array or tuple.</p>
 <blockquote>
-<p><code>Last&lt;A&gt;</code>: gets the last type of array or tuple.</p>
+<p><code>literalArray(...entries)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: return an array whose items are restricted to the provided literals.</p>
 <blockquote>
-<p><code>literalArray(...entries)</code>: return an array whose items are restricted to the provided literals.</p>
+<p><code>PadLeft&lt;A, Total, PadWith&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: pads <code>A</code> with <code>PadWith</code> if the length of <code>A</code> is less than <code>L</code>.</p>
 <blockquote>
-<p><code>PadLeft&lt;A, Total, PadWith&gt;</code>: pads <code>A</code> with <code>PadWith</code> if the length of <code>A</code> is less than <code>L</code>.</p>
+<p><code>reduceWhile()</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: <code>reduce()</code> with predicate for early termination. <br>  A simple version of the same function in the <code>ramda</code> package.</p>
 <blockquote>
-<p><code>reduceWhile()</code>: <code>reduce()</code> with predicate for early termination. <br>  A simple version of the same function in the <code>ramda</code> package.</p>
+<p><code>Reverse&lt;A&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: reverses the order of <code>A</code>.</p>
 <blockquote>
-<p><code>Reverse&lt;A&gt;</code>: reverses the order of <code>A</code>.</p>
+<p><code>Some&lt;A, Criteria&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: true if some elements in <code>A</code> matches <code>Criteria</code>.</p>
 <blockquote>
-<p><code>Some&lt;A, Criteria&gt;</code>: true if some elements in <code>A</code> matches <code>Criteria</code>.</p>
+<p><code>Tail&lt;A&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: Gets the types of a tuple except the first entry.</p>
 <blockquote>
-<p><code>Tail&lt;A&gt;</code>: Gets the types of a tuple except the first entry.</p>
+<p><code>UnionOfProps&lt;A, K&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: gets the union of <code>A[K]</code> types (deprecate <code>PropUnion</code>).</p>
 <blockquote>
-<p><code>UnionOfProps&lt;A, K&gt;</code>: gets the union of <code>A[K]</code> types (deprecate <code>PropUnion</code>).</p>
+<p><code>UnionOfValues&lt;A&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: gets the union of value types in <code>A</code> (deprecate <code>ArrayValue</code>).</p>
 <blockquote>
-<p><code>UnionOfValues&lt;A&gt;</code>: gets the union of value types in <code>A</code> (deprecate <code>ArrayValue</code>).</p>
+<p><a href="ts/array_plus/array_plus.ts#L23"><code>ArrayPlus.IndexAt&lt;A, N, Fail = never&gt;</code></a></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: gets the normalized index for <code>A</code>.</p>
 <blockquote>
-<p><a href="ts/array_plus/array_plus.ts#L23"><code>ArrayPlus.IndexAt&lt;A, N, Fail = never&gt;</code></a>: gets the normalized index for <code>A</code>.</p>
+<p><a href="ts/array_plus/array_plus.ts#L62"><code>ArrayPlus.IsIndexOutOfBound&lt;A, N, Then = true, Else = false&gt;</code></a></p>
 </blockquote>
-<blockquote>
-<p><a href="ts/array_plus/array_plus.ts#L62"><code>ArrayPlus.IsIndexOutOfBound&lt;A, N, Then = true, Else = false&gt;</code></a>: Is <code>N</code> an out of bound index of <code>A</code>. Supports negative numbers.</p>
-</blockquote>
+<p>⭕ <code>predicate</code>: is <code>N</code> an out of bound index of <code>A</code>. Supports negative numbers.</p>
 <a id="$bigint" class="tsd-anchor"></a><h3><a href="#$bigint" style="color:inherit;text-decoration:none">bigint</a></h3><blockquote>
-<p><a href="./ts/bigint/readme.md#type-checking"><code>BigintType&lt;T&gt;</code></a>: <code>T === bigint</code>.</p>
+<p><a href="./ts/bigint/bigint_type.ts#L15"><code>BigintType&lt;T, Then = T, Else = never&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: if <code>T</code> is <code>bigint</code> or bigint literal.</p>
 <blockquote>
-<p><a href="./ts/bigint/readme.md#type-checking"><code>IsBigint&lt;T&gt;</code></a>: <code>T === bigint</code></p>
+<p><a href="./ts/bigint/bigint_type.ts#L33"><code>IsBigint&lt;T, Then = true, Else = false&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: if <code>T</code> is <code>bigint</code> or bigint literal.</p>
 <blockquote>
-<p><a href="./ts/bigint/readme.md#type-checking"><code>NotBigintType&lt;T&gt;</code></a></p>
+<p><a href="./ts/bigint/bigint_type.ts#L47"><code>NotBigintType&lt;T, Then = T, Else = never&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: if <code>T</code> is not <code>bigint</code> or bigint literal.</p>
 <blockquote>
-<p><a href="./ts/bigint/readme.md#type-checking"><code>IsNotBigint&lt;T&gt;</code></a></p>
+<p><a href="./ts/bigint/bigint_type.ts#L61"><code>IsNotBigInt&lt;T, Then = true, Else = false&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: if <code>T</code> is not <code>bigint</code> or bigint literal.</p>
+<blockquote>
+<p><a href="./ts/bigint/strict_bigint_type.ts#L15"><code>StrictBigintType&lt;T, Then = T, Else = never&gt;</code></a></p>
+</blockquote>
+<p>↪️ <code>parse</code>: if <code>T</code> is exactly <code>bigint</code>.</p>
+<blockquote>
+<p><a href="./ts/bigint/strict_bigint_type.ts#L33"><code>IsStrictBigint&lt;T, Then = true, Else = false&gt;</code></a></p>
+</blockquote>
+<p>⭕ <code>predicate</code>: if <code>T</code> is exactly <code>bigint</code>.</p>
+<blockquote>
+<p><a href="./ts/bigint/strict_bigint_type.ts#L47"><code>NotStrictBigintType&lt;T, Then = T, Else = never&gt;</code></a></p>
+</blockquote>
+<p>↪️ <code>parse</code>: if <code>T</code> is not exactly <code>bigint</code>.</p>
+<blockquote>
+<p><a href="./ts/bigint/strict_bigint_type.ts#L61"><code>IsNotStrictBigint&lt;T, Then = true, Else = false&gt;</code></a></p>
+</blockquote>
+<p>⭕ <code>predicate</code>: if <code>T</code> is not exactly <code>bigint</code>.</p>
 <a id="$boolean" class="tsd-anchor"></a><h3><a href="#$boolean" style="color:inherit;text-decoration:none">boolean</a></h3><blockquote>
-<p><a href="./ts/boolean/readme.md#type-checking"><code>BooleanType&lt;T&gt;</code></a>: <code>T === boolean</code>.</p>
+<p><a href="./ts/boolean/readme.md#type-checking"><code>BooleanType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: <code>T === boolean</code>.</p>
 <blockquote>
-<p><a href="./ts/boolean/readme.md#type-checking"><code>IsBoolean&lt;T&gt;</code></a>: <code>T === boolean</code></p>
+<p><a href="./ts/boolean/readme.md#type-checking"><code>IsBoolean&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T === boolean</code></p>
 <blockquote>
 <p><a href="./ts/boolean/readme.md#type-checking"><code>NotBooleanType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: <code>T !== boolean</code>.</p>
 <blockquote>
 <p><a href="./ts/boolean/readme.md#type-checking"><code>IsNotBoolean&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T !== boolean</code></p>
 <a id="$function" class="tsd-anchor"></a><h3><a href="#$function" style="color:inherit;text-decoration:none">function</a></h3><blockquote>
-<p><a href="./ts/function/readme.md#type-checking"><code>FunctionType&lt;T&gt;</code></a>: <code>T === function</code>.</p>
+<p><a href="./ts/function/readme.md#type-checking"><code>FunctionType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: <code>T === function</code>.</p>
 <blockquote>
-<p><a href="./ts/function/readme.md#type-checking"><code>IsFunction&lt;T&gt;</code></a>: <code>T === function</code></p>
+<p><a href="./ts/function/readme.md#type-checking"><code>IsFunction&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T === function</code></p>
 <blockquote>
 <p><a href="./ts/function/readme.md#type-checking"><code>NotFunctionType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: <code>T !== function</code>.</p>
 <blockquote>
 <p><a href="./ts/function/readme.md#type-checking"><code>IsNotFunction&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T !== function</code></p>
 <blockquote>
-<p><code>AnyFunction&lt;P, R&gt;</code>: a generic type for any function</p>
+<p><code>AnyFunction&lt;P, R&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: a generic type for any function</p>
 <blockquote>
-<p><code>ExtractFunction&lt;F&gt;</code>: extract the function signature from a type <code>F</code>.</p>
+<p><code>ExtractFunction&lt;F&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: extract the function signature from a type <code>F</code>.</p>
 <blockquote>
-<p><code>extractFunction(fn: F)</code>: adjust type of <code>fn</code> to its function signature only.</p>
+<p><code>extractFunction(fn: F)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: adjust type of <code>fn</code> to its function signature only.</p>
 <blockquote>
-<p><code>inspect&lt;T&gt;(value: T, inspector?: (v: T) =&gt; void)</code>: inspect a value and return it.<br>  Inspector defaults to <code>console.dir()</code></p>
+<p><code>inspect&lt;T&gt;(value: T, inspector?: (v: T) =&gt; void)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: inspect a value and return it. Inspector defaults to <code>console.dir()</code></p>
 <a id="$never" class="tsd-anchor"></a><h3><a href="#$never" style="color:inherit;text-decoration:none">never</a></h3><blockquote>
-<p><a href="./ts/never/readme.md#type-checking"><code>NeverType&lt;T&gt;</code></a>: <code>T === never</code>.</p>
+<p><a href="./ts/never/readme.md#type-checking"><code>NeverType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: <code>T === never</code>.</p>
 <blockquote>
-<p><a href="./ts/never/readme.md#type-checking"><code>IsNever&lt;T&gt;</code></a>: <code>T === never</code></p>
+<p><a href="./ts/never/readme.md#type-checking"><code>IsNever&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T === never</code></p>
 <blockquote>
 <p><a href="./ts/never/readme.md#type-checking"><code>NotNeverType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: <code>T !== never</code>.</p>
 <blockquote>
 <p><a href="./ts/never/readme.md#type-checking"><code>IsNotNever&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T !== never</code></p>
 <a id="$null" class="tsd-anchor"></a><h3><a href="#$null" style="color:inherit;text-decoration:none">null</a></h3><blockquote>
-<p><a href="ts/null/readme.md#type-checking"><code>NullType&lt;T&gt;</code></a></p>
+<p><a href="./ts/null/readme.md#type-checking"><code>NullType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: <code>T === null</code>.</p>
 <blockquote>
-<p><a href="ts/null/readme.md#type-checking"><code>IsNull&lt;T&gt;</code></a></p>
+<p><a href="./ts/null/readme.md#type-checking"><code>IsNull&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T === null</code></p>
 <blockquote>
-<p><a href="ts/null/readme.md#type-checking"><code>NotNullType&lt;T&gt;</code></a></p>
+<p><a href="./ts/null/readme.md#type-checking"><code>NotNullType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: <code>T !== null</code>.</p>
 <blockquote>
-<p><a href="ts/null/readme.md#type-checking"><code>IsNotNull&lt;T&gt;</code></a></p>
+<p><a href="./ts/null/readme.md#type-checking"><code>IsNotNull&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T !== null</code></p>
 <a id="$number" class="tsd-anchor"></a><h3><a href="#$number" style="color:inherit;text-decoration:none">number</a></h3><blockquote>
-<p><a href="ts/number_plus/number.ts#L4"><code>Numeric</code></a>: either <code>number</code> or <code>bigint</code>.</p>
+<p><a href="./ts/number/number_type.ts#L14"><code>NumberType&lt;T, Then = N, Else = never&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: is the type <code>T</code> <code>number</code>.</p>
 <blockquote>
-<p><a href="ts/number_plus/number.ts#L9"><code>Zero</code></a>: <code>0</code> in <code>number</code> or <code>bigint</code>.</p>
+<p><a href="./ts/number/number_type.ts#L27"><code>IsNumber&lt;T, Then = true, Else = false&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: is the type <code>T</code> <code>number</code>.</p>
 <blockquote>
-<p><a href="ts/number_plus/number.ts#L27"><code>Integer&lt;N, Then = N, Else = never&gt;</code></a>: is integer.</p>
+<p><a href="./ts/number/number_type.ts#L40"><code>NotNumberType&lt;T, Then = T, Else = never&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: is the type <code>T</code> not <code>number</code>.</p>
 <blockquote>
-<p><a href="ts/number_plus/number.ts#L46"><code>IsInteger&lt;N, Then = true, Else = false&gt;</code></a>: is integer.</p>
+<p><a href="./ts/number/number_type.ts#L53"><code>IsNotNumber&lt;T, Then = true, Else = false&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: is the type <code>T</code> not <code>number</code>.</p>
 <blockquote>
-<p><a href="ts/number_plus/number.ts#L62"><code>IsWhole&lt;N, Then = true, Else = false&gt;</code></a>: is integer.</p>
+<p><a href="./ts/number/strict_number_type.ts#L19"><code>StrictNumberType&lt;T, Then = N, Else = never&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: is the type <code>T</code> exactly <code>number</code>.</p>
 <blockquote>
-<p><a href="ts/number_plus/number.ts#L77"><code>Negative&lt;N, Then = N, Else = never&gt;</code></a>: is negative.</p>
+<p><a href="./ts/number/strict_number_type.ts#L41"><code>IsStrictNumber&lt;T, Then = true, Else = false&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: is the type <code>T</code> exactly <code>number</code>.</p>
 <blockquote>
-<p><a href="ts/number_plus/number.ts#L96"><code>NonNegative&lt;N, Then = N, Else = never&gt;</code></a>: is non-negative</p>
+<p><a href="./ts/number/strict_number_type.ts#L55"><code>NotStrictNumberType&lt;T, Then = T, Else = never&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: is the type <code>T</code> not exactly <code>number</code>.</p>
 <blockquote>
-<p><a href="ts/number_plus/number.ts#L108"><code>NumberType&lt;T, Then = N, Else = never&gt;</code></a>: Is the type <code>T</code> exactly <code>number</code>.</p>
+<p><a href="./ts/number/strict_number_type.ts#L69"><code>IsNotStrictNumber&lt;T, Then = true, Else = false&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: is the type <code>T</code> not exactly <code>number</code>.</p>
+<a id="$numeric" class="tsd-anchor"></a><h3><a href="#$numeric" style="color:inherit;text-decoration:none">numeric</a></h3><blockquote>
+<p><a href="./ts/numeric/numeric_type.ts#L4"><code>Numeric</code></a></p>
+</blockquote>
+<p>📘 <code>definition</code>: <code>number | bigint</code>.</p>
 <blockquote>
-<p><a href="ts/number_plus/number.ts#L124"><code>Positive&lt;N, Then = N, Else = never&gt;</code></a>: is positive.</p>
+<p><a href="ts/numeric_plus/numeric_type.ts#L9"><code>Zero</code></a></p>
 </blockquote>
+<p>📘 <code>definition</code>: <code>0 | 0n</code></p>
 <blockquote>
-<p><a href="ts/number_plus/number.ts#L144"><code>IsPositive&lt;N, Then = N, Else = never&gt;</code></a>: is positive.</p>
+<p><a href="./ts/numeric/integer.ts#L15"><code>Integer&lt;N, Then = N, Else = never&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: is integer.</p>
+<blockquote>
+<p><a href="./ts/numeric/integer.ts#L32"><code>IsInteger&lt;N, Then = true, Else = false&gt;</code></a></p>
+</blockquote>
+<p>⭕ <code>predicate</code>: is integer.</p>
+<blockquote>
+<p><a href="./ts/numeric/integer.ts#L45"><code>NotInteger&lt;N, Then = N, Else = never&gt;</code></a></p>
+</blockquote>
+<p>↪️ <code>parse</code>: is not integer.</p>
+<blockquote>
+<p><a href="./ts/numeric/integer.ts#L60"><code>IsNotInteger&lt;N, Then = true, Else = false&gt;</code></a></p>
+</blockquote>
+<p>⭕ <code>predicate</code>: is not integer.</p>
+<blockquote>
+<p><a href="./ts/numeric/integer.ts#L75"><code>IsWhole&lt;N, Then = true, Else = false&gt;</code></a></p>
+</blockquote>
+<p>💀⭕ <code>deprecated</code>, <code>predicate</code>: is integer. Use <code>IsInteger</code> instead.</p>
+<blockquote>
+<p><a href="./ts/numeric/negative.ts#L19"><code>Negative&lt;N, Then = N, Else = never&gt;</code></a></p>
+</blockquote>
+<p>↪️ <code>parse</code>: is negative.</p>
+<blockquote>
+<p><a href="./ts/numeric/negative.ts#L53"><code>IsNegative&lt;N, Then = true, Else = false&gt;</code></a></p>
+</blockquote>
+<p>⭕ <code>predicate</code>: is negative.</p>
+<blockquote>
+<p><a href="./ts/numeric/negative.ts#L69"><code>NonNegative&lt;N, Then = N, Else = never&gt;</code></a></p>
+</blockquote>
+<p>↪️ <code>parse</code>: is not negative.</p>
+<blockquote>
+<p><a href="./ts/numeric/negative.ts#L101"><code>IsNonNegative&lt;N, Then = N, Else = never&gt;</code></a></p>
+</blockquote>
+<p>⭕ <code>predicate</code>: is not negative.</p>
+<blockquote>
+<p><a href="./ts/numeric/positive.ts#15"><code>Positive&lt;N, Then = N, Else = never&gt;</code></a></p>
+</blockquote>
+<p>↪️ <code>parse</code>: is positive.</p>
+<blockquote>
+<p><a href="./ts/numeric/positive.ts#L36"><code>IsPositive&lt;N, Then = true, Else = false&gt;</code></a></p>
+</blockquote>
+<p>⭕ <code>predicate</code>: is positive.</p>
+<blockquote>
+<p><a href="./ts/numeric/positive.ts#48"><code>NotPositive&lt;N, Then = N, Else = never&gt;</code></a></p>
+</blockquote>
+<p>↪️ <code>parse</code>: is not positive.</p>
+<blockquote>
+<p><a href="./ts/numeric/positive.ts#L60"><code>IsNotPositive&lt;N, Then = true, Else = false&gt;</code></a></p>
+</blockquote>
+<p>⭕ <code>predicate</code>: is not positive.</p>
 <a id="$object" class="tsd-anchor"></a><h3><a href="#$object" style="color:inherit;text-decoration:none">object</a></h3><blockquote>
-<p><code>filterKey()</code>: type adjusted filter by key.</p>
+<p><code>filterKey()</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: type adjusted filter by key.</p>
 <blockquote>
-<p><code>findKey()</code>: type adjusted find by key.</p>
+<p><code>findKey()</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: type adjusted find by key.</p>
 <blockquote>
-<p><code>forEachKey()</code>: type adjusted for each by key.</p>
+<p><code>forEachKey()</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: type adjusted for each by key.</p>
 <blockquote>
-<p><code>HasKey&lt;T, K&gt;</code>: predicate type checking <code>T</code> has key <code>K</code>.</p>
+<p><code>HasKey&lt;T, K&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: predicate type checking <code>T</code> has key <code>K</code>.</p>
 <blockquote>
-<p><code>hasKey()</code>: function of <code>HasKey</code>.</p>
+<p><code>hasKey()</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: function of <code>HasKey</code>.</p>
 <blockquote>
-<p><code>IsRecord&lt;T&gt;</code>: <code>logical</code> predicate for <code>Record</code>.</p>
+<p><code>IsRecord&lt;T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: <code>logical</code> predicate for <code>Record</code>.</p>
 <blockquote>
-<p><code>KeysWithDiffTypes&lt;A, B&gt;</code>: gets the keys common in <code>A</code> and <code>B</code> but with different value type.</p>
+<p><code>KeysWithDiffTypes&lt;A, B&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: gets the keys common in <code>A</code> and <code>B</code> but with different value type.</p>
 <blockquote>
-<p><code>mapKey()</code>: type adjusted map by key.</p>
+<p><code>mapKey()</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: type adjusted map by key.</p>
 <blockquote>
-<p><code>RecordValue&lt;R&gt;</code>: gets the value type <code>T</code>from <code>Record&lt;any, T&gt;</code> <a href="https://www.youtube.com/watch?v=1J7xK6FUqPw">video</a>.</p>
+<p><code>RecordValue&lt;R&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: gets the value type <code>T</code>from <code>Record&lt;any, T&gt;</code></p>
+<p><a href="https://www.youtube.com/watch?v=1J7xK6FUqPw">video</a>.</p>
 <blockquote>
-<p><code>reduceByKey()</code>: type adjusted reduce by key.</p>
+<p><code>reduceByKey()</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: type adjusted reduce by key.</p>
 <blockquote>
-<p><code>someKey()</code>: type adjusted some by key.</p>
+<p><code>someKey()</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: type adjusted some by key.</p>
 <blockquote>
-<p><code>SpreadRecord&lt;A, B&gt;</code>: type for <code>{...a, ...b}</code> when both <code>a</code> and <code>b</code> are <code>Record</code><br>  for array, just do <code>[...A, ...B]</code>.</p>
+<p><code>SpreadRecord&lt;A, B&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: type for <code>{...a, ...b}</code> when both <code>a</code> and <code>b</code> are <code>Record</code><br>  for array, just do <code>[...A, ...B]</code>.</p>
 <a id="$promise" class="tsd-anchor"></a><h3><a href="#$promise" style="color:inherit;text-decoration:none">Promise</a></h3><blockquote>
-<p><code>AwaitedProp&lt;T, V&gt;</code>: <code>Awaited</code> on specified props <code>P</code> in <code>T</code>.</p>
+<p><code>AwaitedProp&lt;T, V&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: <code>Awaited</code> on specified props <code>P</code> in <code>T</code>.</p>
 <blockquote>
-<p><code>isPromise&lt;R&gt;(subject: any)</code>: <code>isPromise()</code> type guard.</p>
+<p><code>isPromise&lt;R&gt;(subject: any)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: <code>isPromise()</code> type guard.</p>
 <blockquote>
-<p><code>MaybePromise&lt;T&gt;</code>: Alias of <code>T | Promise&lt;T&gt;</code>.</p>
+<p><code>MaybePromise&lt;T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: Alias of <code>T | Promise&lt;T&gt;</code>.</p>
 <blockquote>
-<p><code>PromiseValue&lt;P&gt;</code>: Gets the type within the Promise.</p>
+<p><code>PromiseValue&lt;P&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: Gets the type within the Promise.</p>
 <blockquote>
-<p><code>PromiseValueMerge&lt;P1, P2, ...P9&gt;</code>: Merge the values of multiple promises.</p>
+<p><code>PromiseValueMerge&lt;P1, P2, ...P9&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: Merge the values of multiple promises.</p>
 <blockquote>
-<p><code>mapSeries()</code>: Similar to <code>bluebird.mapSeries()</code> but works with <code>async</code>/<code>await</code>.</p>
+<p><code>mapSeries()</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: Similar to <code>bluebird.mapSeries()</code> but works with <code>async</code>/<code>await</code>.</p>
 <blockquote>
-<p><code>transformMaybePromise(value, transformer)</code>: Apply the <code>transformer</code> to the <code>value</code>.<br>  It is also exported under <code>MaybePromise.transform()</code>.</p>
+<p><code>transformMaybePromise(value, transformer)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: Apply the <code>transformer</code> to the <code>value</code>.<br>  It is also exported under <code>MaybePromise.transform()</code>.</p>
 <a id="$string" class="tsd-anchor"></a><h3><a href="#$string" style="color:inherit;text-decoration:none">string</a></h3><blockquote>
 <p><a href="ts/string/readme.md#type-checking"><code>StringType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: is <code>string</code>.</p>
 <blockquote>
 <p><a href="ts/string/readme.md#type-checking"><code>IsString&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: is <code>string</code>.</p>
 <blockquote>
 <p><a href="ts/string/readme.md#type-checking"><code>NotStringType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: is not <code>string</code>.</p>
 <blockquote>
 <p><a href="ts/string/readme.md#type-checking"><code>IsNotString&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: is not <code>string</code>.</p>
 <a id="$symbol" class="tsd-anchor"></a><h3><a href="#$symbol" style="color:inherit;text-decoration:none">symbol</a></h3><blockquote>
 <p><a href="ts/symbol/readme.md#type-checking"><code>SymbolType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: is <code>symbol</code>.</p>
 <blockquote>
 <p><a href="ts/symbol/readme.md#type-checking"><code>IsSymbol&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: is <code>symbol</code>.</p>
 <blockquote>
 <p><a href="ts/symbol/readme.md#type-checking"><code>NotSymbolType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: is not <code>symbol</code>.</p>
 <blockquote>
 <p><a href="ts/symbol/readme.md#type-checking"><code>IsNotSymbol&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: is not <code>symbol</code>.</p>
 <a id="$tuple" class="tsd-anchor"></a><h3><a href="#$tuple" style="color:inherit;text-decoration:none">tuple</a></h3><blockquote>
 <p><a href="ts/tuple/readme.md#type-checking"><code>TupleType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: is a tuple.</p>
 <blockquote>
 <p><a href="ts/tuple/readme.md#type-checking"><code>IsTuple&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: is a tuple.</p>
 <blockquote>
 <p><a href="ts/tuple/readme.md#type-checking"><code>NotTupleType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: is not a tuple.</p>
 <blockquote>
 <p><a href="ts/tuple/readme.md#type-checking"><code>IsNotTuple&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: is not a tuple.</p>
 <a id="$undefined" class="tsd-anchor"></a><h3><a href="#$undefined" style="color:inherit;text-decoration:none">undefined</a></h3><blockquote>
-<p><a href="./ts/undefined/readme.md#type-checking"><code>UndefinedType&lt;T&gt;</code></a>: <code>T === undefined</code>.</p>
+<p><a href="./ts/undefined/readme.md#type-checking"><code>UndefinedType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: <code>T === undefined</code>.</p>
 <blockquote>
-<p><a href="./ts/undefined/readme.md#type-checking"><code>IsUndefined&lt;T&gt;</code></a>: <code>T === undefined</code></p>
+<p><a href="./ts/undefined/readme.md#type-checking"><code>IsUndefined&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T === undefined</code></p>
 <blockquote>
 <p><a href="./ts/undefined/readme.md#type-checking"><code>NotUndefinedType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: <code>T !== undefined</code>.</p>
 <blockquote>
 <p><a href="./ts/undefined/readme.md#type-checking"><code>IsNotUndefined&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T !== undefined</code></p>
 <a id="$unknown" class="tsd-anchor"></a><h3><a href="#$unknown" style="color:inherit;text-decoration:none">unknown</a></h3><blockquote>
-<p><a href="./ts/unknown/readme.md#type-checking"><code>UnknownType&lt;T&gt;</code></a>: <code>T === unknown</code>.</p>
+<p><a href="./ts/unknown/readme.md#type-checking"><code>UnknownType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: <code>T === unknown</code>.</p>
 <blockquote>
-<p><a href="./ts/unknown/readme.md#type-checking"><code>IsUnknown&lt;T&gt;</code></a>: <code>T === unknown</code></p>
+<p><a href="./ts/unknown/readme.md#type-checking"><code>IsUnknown&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T === unknown</code></p>
 <blockquote>
 <p><a href="./ts/unknown/readme.md#type-checking"><code>NotUnknownType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: <code>T !== unknown</code>.</p>
 <blockquote>
 <p><a href="./ts/unknown/readme.md#type-checking"><code>IsNotUnknown&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T !== unknown</code></p>
 <a id="$void" class="tsd-anchor"></a><h3><a href="#$void" style="color:inherit;text-decoration:none">void</a></h3><blockquote>
-<p><a href="./ts/void/readme.md#type-checking"><code>VoidType&lt;T&gt;</code></a>: <code>T === void</code>.</p>
+<p><a href="./ts/void/readme.md#type-checking"><code>VoidType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: <code>T === void</code>.</p>
 <blockquote>
-<p><a href="./ts/void/readme.md#type-checking"><code>IsVoid&lt;T&gt;</code></a>: <code>T === void</code></p>
+<p><a href="./ts/void/readme.md#type-checking"><code>IsVoid&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T === void</code></p>
 <blockquote>
 <p><a href="./ts/void/readme.md#type-checking"><code>NotVoidType&lt;T&gt;</code></a></p>
 </blockquote>
+<p>↪️ <code>parse</code>: <code>T !== void</code>.</p>
 <blockquote>
 <p><a href="./ts/void/readme.md#type-checking"><code>IsNotVoid&lt;T&gt;</code></a></p>
 </blockquote>
+<p>⭕ <code>predicate</code>: <code>T !== void</code></p>
 <a id="$constant-types" class="tsd-anchor"></a><h2><a href="#$constant-types" style="color:inherit;text-decoration:none">Constant Types</a></h2><blockquote>
-<p><code>KeyTypes</code>: type of all keys.</p>
+<p><code>KeyTypes</code></p>
 </blockquote>
+<p>📘 <code>definition</code>: type of all keys.</p>
 <blockquote>
-<p><code>PrimitiveTypes</code>: all primitive types, including <code>Function</code>, <code>symbol</code>, and <code>bigint</code>.</p>
+<p><code>PrimitiveTypes</code></p>
 </blockquote>
+<p>📘 <code>definition</code>: all primitive types, including <code>Function</code>, <code>symbol</code>, and <code>bigint</code>.</p>
 <blockquote>
-<p><code>ComposableTypes</code>: Types that can contain custom properties. i.e. <code>object</code>, <code>array</code>, <code>function</code>.</p>
+<p><code>ComposableTypes</code></p>
 </blockquote>
+<p>📘 <code>definition</code>: Types that can contain custom properties. i.e. <code>object</code>, <code>array</code>, <code>function</code>.</p>
 <blockquote>
-<p><code>NonComposableTypes</code>: Types that cannot contain custom properties. i.e. not composable.</p>
+<p><code>NonComposableTypes</code></p>
 </blockquote>
+<p>📘 <code>definition</code>: Types that cannot contain custom properties. i.e. not composable.</p>
 <a id="$json-support" class="tsd-anchor"></a><h2><a href="#$json-support" style="color:inherit;text-decoration:none">JSON Support</a></h2><blockquote>
-<p><code>JSONPrimitive</code>: primitive types valid in JSON</p>
+<p><code>JSONPrimitive</code></p>
 </blockquote>
+<p>📘 <code>definition</code>: primitive types valid in JSON</p>
 <blockquote>
-<p><code>JSONObject</code>: JSON object</p>
+<p><code>JSONObject</code></p>
 </blockquote>
+<p>📘 <code>definition</code>: JSON object</p>
 <blockquote>
-<p><code>JSONArray</code>: JSON array</p>
+<p><code>JSONArray</code></p>
 </blockquote>
+<p>📘 <code>definition</code>: JSON array</p>
 <blockquote>
-<p><code>JSONTypes</code>: all JSON compatible types.</p>
+<p><code>JSONTypes</code></p>
 </blockquote>
+<p>📘 <code>definition</code>: all JSON compatible types.</p>
 <blockquote>
-<p><code>JSONTypes.get&lt;T&gt;(obj, ...props)</code>: get a cast value in JSON</p>
+<p><code>JSONTypes.get&lt;T&gt;(obj, ...props)</code></p>
 </blockquote>
-<pre><code class="language-ts"><span class="hl-5">import</span><span class="hl-0"> { </span><span class="hl-2">JSONTypes</span><span class="hl-0"> } </span><span class="hl-5">from</span><span class="hl-0"> </span><span class="hl-1">&#39;type-plus&#39;</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-7">someJson</span><span class="hl-0">: </span><span class="hl-6">JSONTypes</span><span class="hl-0"> = { </span><span class="hl-2">a:</span><span class="hl-0"> { </span><span class="hl-2">b:</span><span class="hl-0"> [</span><span class="hl-1">&#39;z&#39;</span><span class="hl-0">, { </span><span class="hl-2">c:</span><span class="hl-0"> </span><span class="hl-1">&#39;miku&#39;</span><span class="hl-0"> }]}}</span><br/><br/><span class="hl-2">JSONTypes</span><span class="hl-0">.</span><span class="hl-3">get</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;(</span><span class="hl-2">someJson</span><span class="hl-0">, </span><span class="hl-1">&#39;a&#39;</span><span class="hl-0">, </span><span class="hl-1">&#39;b&#39;</span><span class="hl-0">, </span><span class="hl-8">1</span><span class="hl-0">, </span><span class="hl-1">&#39;c&#39;</span><span class="hl-0">) </span><span class="hl-9">// miku</span>
+<p>🔨 <code>utilities</code>: get a cast value in JSON</p>
+<pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-0"> { </span><span class="hl-8">JSONTypes</span><span class="hl-0"> } </span><span class="hl-9">from</span><span class="hl-0"> </span><span class="hl-1">&#39;type-plus&#39;</span><br/><br/><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">someJson</span><span class="hl-0">: </span><span class="hl-4">JSONTypes</span><span class="hl-0"> = { </span><span class="hl-8">a:</span><span class="hl-0"> { </span><span class="hl-8">b:</span><span class="hl-0"> [</span><span class="hl-1">&#39;z&#39;</span><span class="hl-0">, { </span><span class="hl-8">c:</span><span class="hl-0"> </span><span class="hl-1">&#39;miku&#39;</span><span class="hl-0"> }]}}</span><br/><br/><span class="hl-8">JSONTypes</span><span class="hl-0">.</span><span class="hl-7">get</span><span class="hl-0">&lt;</span><span class="hl-4">string</span><span class="hl-0">&gt;(</span><span class="hl-8">someJson</span><span class="hl-0">, </span><span class="hl-1">&#39;a&#39;</span><span class="hl-0">, </span><span class="hl-1">&#39;b&#39;</span><span class="hl-0">, </span><span class="hl-5">1</span><span class="hl-0">, </span><span class="hl-1">&#39;c&#39;</span><span class="hl-0">) </span><span class="hl-6">// miku</span>
 </code></pre>
 <a id="$type-manipulation" class="tsd-anchor"></a><h2><a href="#$type-manipulation" style="color:inherit;text-decoration:none">Type manipulation</a></h2><blockquote>
-<p><code>ANotB&lt;A, B&gt;</code>: get object with properties in <code>A</code> and not in <code>B</code>, including properties with a different value type.</p>
+<p><code>ANotB&lt;A, B&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: get object with properties in <code>A</code> and not in <code>B</code>, including properties with a different value type.</p>
 <blockquote>
-<p><code>BNotA&lt;A, B&gt;</code>: flip of <code>ANotB</code></p>
+<p><code>BNotA&lt;A, B&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: flip of <code>ANotB</code></p>
 <blockquote>
-<p><code>as&lt;T&gt;(subject)</code>: assert <code>subject</code> as <code>T</code>. Avoid ASI issues such as <code>;(x as T).abc</code></p>
+<p><code>as&lt;T&gt;(subject)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: assert <code>subject</code> as <code>T</code>. Avoid ASI issues such as <code>;(x as T).abc</code></p>
 <blockquote>
-<p><code>asAny(subject)</code>: assert <code>subject</code> as <code>any</code>. Avoid ASI issue such as <code>;(x as any).abc</code></p>
+<p><code>asAny(subject)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: assert <code>subject</code> as <code>any</code>. Avoid ASI issue such as <code>;(x as any).abc</code></p>
 <blockquote>
-<p><code>EitherAnd&lt;A, B, [C, D]&gt;</code>: combines 2 to 4 types as <code>A | B | (A &amp; B)</code>. This is useful for combining options. <strong>Deprecated</strong>. Renamed to <code>EitherOrBoth</code>.</p>
+<p><code>EitherAnd&lt;A, B, [C, D]&gt;</code></p>
 </blockquote>
+<p>💀🔨 <code>deprecated</code>,<code>utilities</code>: Renamed to <code>EitherOrBoth</code>. combines 2 to 4 types as <code>A | B | (A &amp; B)</code>.</p>
+<p>This is useful for combining options.</p>
 <blockquote>
-<p><code>EitherOrBoth&lt;A, B, [C, D]&gt;</code>: combines 2 to 4 types as <code>A | B | (A &amp; B)</code>. This is useful for combining options <a href="https://youtu.be/jBxx03NT4Ik">video</a>.</p>
+<p><code>EitherOrBoth&lt;A, B, [C, D]&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: combines 2 to 4 types as <code>A | B | (A &amp; B)</code>.</p>
+<p>This is useful for combining options <a href="https://youtu.be/jBxx03NT4Ik">video</a>.</p>
 <blockquote>
-<p><code>Except&lt;T, K&gt;</code>: Deprecated. Same as <code>Omit&lt;T, K&gt;</code>.</p>
+<p><code>Except&lt;T, K&gt;</code></p>
 </blockquote>
+<p>💀🔨 <code>deprecated</code>,<code>utilities</code>: same as <code>Omit&lt;T, K&gt;</code>.</p>
 <blockquote>
-<p><code>ExcludePropType&lt;T, U&gt;</code>: excludes type <code>U</code> from properties in <code>T</code>.</p>
+<p><code>ExcludePropType&lt;T, U&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: excludes type <code>U</code> from properties in <code>T</code>.</p>
 <blockquote>
-<p><code>KeyofOptional&lt;T&gt;</code>: <code>keyof</code> that works with <code>Record&lt;any, any&gt; | undefined</code>.</p>
+<p><code>KeyofOptional&lt;T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: <code>keyof</code> that works with <code>Record&lt;any, any&gt; | undefined</code>.</p>
 <blockquote>
-<p><code>KnownKeys&lt;T&gt;</code>: extract known (defined) keys from type <code>T</code>.</p>
+<p><code>KnownKeys&lt;T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: extract known (defined) keys from type <code>T</code>.</p>
 <blockquote>
-<p><code>LeftJoin&lt;A, B&gt;</code>: left join <code>A</code> with <code>B</code></p>
+<p><code>LeftJoin&lt;A, B&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: left join <code>A</code> with <code>B</code></p>
 <blockquote>
-<p><code>NonNull&lt;T&gt;</code>: remove <code>null</code></p>
+<p><code>NonNull&lt;T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: remove <code>null</code></p>
 <blockquote>
-<p><code>NonUndefined&lt;T&gt;</code>: remove <code>undefined</code></p>
+<p><code>NonNullable&lt;T&gt;</code> (built-in)</p>
 </blockquote>
+<p>🔨 <code>utilities</code>: adjust the type not to nullable</p>
 <blockquote>
-<p><code>Omit&lt;T, K&gt;</code>: From <code>T</code>, pick a set of properties whose keys are not in the union <code>K</code>. This is the opposite of <code>Pick&lt;T, K&gt;</code>.</p>
+<p><code>NonUndefined&lt;T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: remove <code>undefined</code></p>
 <blockquote>
-<p><code>OptionalKeys&lt;T&gt;</code>: gets keys of optional properties in <code>T</code>.</p>
+<p><code>Omit&lt;T, K&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: From <code>T</code>, pick a set of properties whose keys are not in the union <code>K</code>. This is the opposite of <code>Pick&lt;T, K&gt;</code>.</p>
 <blockquote>
-<p><code>PartialExcept&lt;T, U&gt;</code>: Deprecated. Same as <code>PartialOmit&lt;T, U&gt;</code>.</p>
+<p><code>OptionalKeys&lt;T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: gets keys of optional properties in <code>T</code>.</p>
 <blockquote>
-<p><code>PartialOmit&lt;T, U&gt;</code>: makes the properties not specified in <code>U</code> becomes optional.</p>
+<p><code>PartialExcept&lt;T, U&gt;</code></p>
 </blockquote>
+<p>💀🔨 <code>deprecated</code>,<code>utilities</code>: same as <code>PartialOmit&lt;T, U&gt;</code>.</p>
 <blockquote>
-<p><code>PartialPick&lt;T, U&gt;</code>: makes the properties specified in <code>U</code> becomes optional.</p>
+<p><code>PartialOmit&lt;T, U&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: makes the properties not specified in <code>U</code> becomes optional.</p>
 <blockquote>
-<p><code>Pick&lt;T, K&gt;</code>: pick properties <code>K</code> from <code>T</code>. Works with unions.</p>
+<p><code>PartialPick&lt;T, U&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: makes the properties specified in <code>U</code> becomes optional.</p>
 <blockquote>
-<p><code>RecursivePartial&lt;T&gt;</code>: make type <code>T</code> optional recursively.</p>
+<p><code>Pick&lt;T, K&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: pick properties <code>K</code> from <code>T</code>. Works with unions.</p>
 <blockquote>
-<p><code>RecursiveRequired&lt;T&gt;</code>: make type <code>T</code> required recursively.</p>
+<p><code>RecursivePartial&lt;T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: make type <code>T</code> optional recursively.</p>
 <blockquote>
-<p><code>ReplaceProperty&lt;T, K, V&gt;</code>: replace property <code>K</code> in <code>T</code> with <code>V</code>.</p>
+<p><code>RecursiveRequired&lt;T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: make type <code>T</code> required recursively.</p>
 <blockquote>
-<p><code>RequiredKeys&lt;T&gt;</code>: gets keys of required properties in <code>T</code>.</p>
+<p><code>ReplaceProperty&lt;T, K, V&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: replace property <code>K</code> in <code>T</code> with <code>V</code>.</p>
 <blockquote>
-<p><code>RequiredPick&lt;T, U&gt;</code>: makes the properties specified in <code>U</code> become required.</p>
+<p><code>RequiredKeys&lt;T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: gets keys of required properties in <code>T</code>.</p>
 <blockquote>
-<p><code>RequiredExcept&lt;T, U&gt;</code>: makes the properties not specified in <code>U</code> become required.</p>
+<p><code>RequiredPick&lt;T, U&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: makes the properties specified in <code>U</code> become required.</p>
 <blockquote>
-<p><code>RecursiveIntersect&lt;T, U&gt;</code>: intersect type <code>U</code> onto <code>T</code> recursively.</p>
+<p><code>RequiredExcept&lt;T, U&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: makes the properties not specified in <code>U</code> become required.</p>
 <blockquote>
-<p><code>ValueOf&lt;T&gt;</code>: type of the value of the properties of <code>T</code>.</p>
+<p><code>RecursiveIntersect&lt;T, U&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: intersect type <code>U</code> onto <code>T</code> recursively.</p>
 <blockquote>
-<p><code>Widen&lt;T&gt;</code>: widen literal types.</p>
+<p><code>ValueOf&lt;T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: type of the value of the properties of <code>T</code>.</p>
 <blockquote>
-<p>PropType: ...no helper type for this. Just do <code>YourType[&#39;propName&#39;]</code>.</p>
+<p><code>Widen&lt;T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: widen literal types.</p>
+<p>PropType</p>
+<p>💀 ...no helper type for this. Just do <code>YourType[&#39;propName&#39;]</code>.</p>
 <a id="$type-predicates" class="tsd-anchor"></a><h2><a href="#$type-predicates" style="color:inherit;text-decoration:none">Type Predicates</a></h2><p>Type predicates are type alias that returns <code>true</code> or <code>false</code>.
 They can be used to compose complex types.</p>
 <blockquote>
-<p><code>HasKey&lt;T, K&gt;</code>: predicate type checking <code>T</code> has key <code>K</code>.</p>
+<p><code>HasKey&lt;T, K&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: predicate type checking <code>T</code> has key <code>K</code>.</p>
 <blockquote>
-<p><code>IsAny&lt;T&gt;</code>: <code>T === any</code> (updated to impl: <a href="https://github.com/mmkal/expect-type">expect-type</a>).</p>
+<p><code>IsAny&lt;T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: <code>T === any</code> (updated to impl: <a href="https://github.com/mmkal/expect-type">expect-type</a>).</p>
 <blockquote>
-<p><code>IsBoolean&lt;T&gt;</code>: check for <code>boolean</code>, but not for <code>true</code> nor <code>false</code>.</p>
+<p><code>IsBoolean&lt;T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: check for <code>boolean</code>, but not for <code>true</code> nor <code>false</code>.</p>
 <blockquote>
-<p><code>IsDisjoint&lt;A, B&gt;</code>: is <code>A</code> and <code>B</code> is a disjoint set.</p>
+<p><code>IsDisjoint&lt;A, B&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: is <code>A</code> and <code>B</code> is a disjoint set.</p>
 <blockquote>
-<p><code>IsEmptyObject&lt;T&gt;</code>: is <code>T === {}</code>.</p>
+<p><code>IsEmptyObject&lt;T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: is <code>T === {}</code>.</p>
 <blockquote>
-<p><code>IsLiteral&lt;T&gt;</code>: is <code>T</code> a literal type (literal string or number).</p>
+<p><code>IsLiteral&lt;T&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: is <code>T</code> a literal type (literal string or number).</p>
 <a id="$logical" class="tsd-anchor"></a><h3><a href="#$logical" style="color:inherit;text-decoration:none">Logical</a></h3><blockquote>
-<p><code>If&lt;Condition, Then = true, Else = false&gt;</code>: if statement.</p>
+<p><code>If&lt;Condition, Then = true, Else = false&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: if statement</p>
 <blockquote>
-<p><code>And&lt;A, B, Then = true, Else = false&gt;</code>: logical <code>AND</code>.</p>
+<p><code>And&lt;A, B, Then = true, Else = false&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: logical <code>AND</code></p>
 <blockquote>
-<p><code>Or&lt;A, B, Then = true, Else = false&gt;</code>: logical <code>OR</code>.</p>
+<p><code>Or&lt;A, B, Then = true, Else = false&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: logical <code>OR</code></p>
 <blockquote>
-<p><code>Xor&lt;A, B, Then = true, Else = false&gt;</code>: logical <code>XOR</code>.</p>
+<p><code>Xor&lt;A, B, Then = true, Else = false&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: logical <code>XOR</code></p>
 <blockquote>
-<p><code>Not&lt;X, Then = true, Else = false&gt;</code>: logical <code>NOT</code>.</p>
+<p><code>Not&lt;X, Then = true, Else = false&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: logical <code>NOT</code></p>
 <p>Note that these types work correctly with the <code>boolean</code> type.
 e.g.:</p>
-<blockquote>
-<p><code>And&lt;boolean, true&gt; -&gt; boolean</code></p>
-</blockquote>
-<blockquote>
-<p><code>Not&lt;boolean&gt; -&gt; boolean</code></p>
-</blockquote>
+<pre><code class="language-ts"><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">And</span><span class="hl-0">&lt;</span><span class="hl-4">boolean</span><span class="hl-0">, </span><span class="hl-4">true</span><span class="hl-0">&gt; </span><span class="hl-6">// boolean</span><br/><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">Not</span><span class="hl-0">&lt;</span><span class="hl-4">boolean</span><span class="hl-0">&gt;       </span><span class="hl-6">// boolean`</span>
+</code></pre>
 <p>There is a problem with generic distribution: <a href="https://github.com/microsoft/TypeScript/issues/41053">https://github.com/microsoft/TypeScript/issues/41053</a>
 So you may encounter some weird behavior if your logic is complex.</p>
 <a id="$math" class="tsd-anchor"></a><h2><a href="#$math" style="color:inherit;text-decoration:none">Math</a></h2><p>The math types in <code>type-plus</code> works with most numeric types.</p>
 <p>It works with <code>number</code> and <code>bigint</code>, positive and negative number, including floating point numbers.</p>
 <p>It will cast the type between <code>number</code> and <code>bigint</code> if needed.</p>
 <blockquote>
-<p><code>Abs&lt;N, Fail=never&gt;</code>: <code>Abs(N)</code>.</p>
+<p><code>Abs&lt;N, Fail = never&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: <code>Abs(N)</code>.</p>
 <blockquote>
-<p><code>Max&lt;A, B, Fail=never&gt;</code>: <code>max(A, B)</code></p>
+<p><code>Max&lt;A, B, Fail = never&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: <code>max(A, B)</code></p>
 <blockquote>
-<p><code>GreaterThan&lt;A, B&gt;</code>: <code>A &gt; B</code>.</p>
+<p><code>GreaterThan&lt;A, B&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: <code>A &gt; B</code>.</p>
 <blockquote>
-<p><code>Add&lt;A, B&gt;</code>: <code>A + B</code>.</p>
+<p><code>Add&lt;A, B&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: <code>A + B</code>.</p>
 <blockquote>
-<p><code>Subtract&lt;A, B&gt;</code>: <code>A &gt; B</code>.</p>
+<p><code>Subtract&lt;A, B&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: <code>A &gt; B</code>.</p>
 <blockquote>
-<p><code>Increment&lt;A&gt;</code>: alias of <code>Add&lt;A, 1&gt;</code>.</p>
+<p><code>Increment&lt;A&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: alias of <code>Add&lt;A, 1&gt;</code>.</p>
 <blockquote>
-<p><code>Decrement&lt;A&gt;</code>: alias of <code>Subtract&lt;A, 1&gt;</code>.</p>
+<p><code>Decrement&lt;A&gt;</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: alias of <code>Subtract&lt;A, 1&gt;</code>.</p>
 <blockquote>
-<p><code>Multiply&lt;A, B</code>: <code>A * B</code>.</p>
+<p><code>Multiply&lt;A, B</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: <code>A * B</code>.</p>
 <a id="$utility-functions" class="tsd-anchor"></a><h2><a href="#$utility-functions" style="color:inherit;text-decoration:none">Utility Functions</a></h2><blockquote>
-<p><code>amend(subject)...</code>: amend subject as union or intersect of <code>T</code>.</p>
+<p><code>amend(subject)...</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: amend subject as union or intersect of <code>T</code>.</p>
 <blockquote>
-<p><code>facade(subject, ...props)</code>: create a facade of <code>subject</code>.</p>
+<p><code>facade(subject, ...props)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: create a facade of <code>subject</code>.</p>
 <blockquote>
-<p><code>getField(subject, key, defaultValue)</code>: get a field from a subject. Works against nullable and optional subject.</p>
+<p><code>getField(subject, key, defaultValue)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: get a field from a subject. Works against nullable and optional subject.</p>
 <blockquote>
-<p><code>hasKey()</code>: function of <code>HasKey</code>.</p>
+<p><code>hasKey()</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: function of <code>HasKey</code>.</p>
 <blockquote>
-<p><code>hasProperty(value, prop)</code>: assert <code>value</code> has property <code>prop</code>. This will pick the correct union type.</p>
+<p><code>hasProperty(value, prop)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: assert <code>value</code> has property <code>prop</code>. This will pick the correct union type.</p>
 <blockquote>
-<p><code>isConstructor(subject)</code>: type guard <code>subject</code> is a constructor.</p>
+<p><code>isConstructor(subject)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: type guard <code>subject</code> is a constructor.</p>
 <blockquote>
-<p><code>isSystemError(code, err)</code>: type guard <code>err</code> with NodeJS error code.</p>
+<p><code>isSystemError(code, err)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: type guard <code>err</code> with NodeJS error code.</p>
 <blockquote>
-<p><code>omit(obj, ...props)</code>: omit properties from <code>obj</code>.</p>
+<p><code>omit(obj, ...props)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: omit properties from <code>obj</code>.</p>
 <blockquote>
-<p><code>pick(obj, ...props)</code>: pick properties from <code>obj</code>.</p>
+<p><code>pick(obj, ...props)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: pick properties from <code>obj</code>.</p>
 <blockquote>
-<p><code>record&lt;K, V&gt;(value?)</code>: create a <code>Record&lt;K, V&gt;</code> without extra object prototype.</p>
+<p><code>record&lt;K, V&gt;(value?)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: create a <code>Record&lt;K, V&gt;</code> without extra object prototype.</p>
 <blockquote>
-<p><code>record&lt;R&gt;(value?)</code>: create a record <code>R</code> (e.g. <code>{ a: number }</code>) without extra object prototype.</p>
+<p><code>record&lt;R&gt;(value?)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: create a record <code>R</code> (e.g. <code>{ a: number }</code>) without extra object prototype.</p>
 <blockquote>
-<p><code>required(...)</code>: merge options and remove <code>Partial&lt;T&gt;</code>. From <a href="https://github.com/unional/unpartial"><code>unpartial</code></a></p>
+<p><code>required(...)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: merge options and remove <code>Partial&lt;T&gt;</code>. From <a href="https://github.com/unional/unpartial"><code>unpartial</code></a></p>
 <blockquote>
-<p><code>requiredDeep(...)</code>: merge options deeply and remove <code>Partial&lt;T&gt;</code>. From <a href="https://github.com/unional/unpartial"><code>unpartial</code></a></p>
+<p><code>requiredDeep(...)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: merge options deeply and remove <code>Partial&lt;T&gt;</code>. From <a href="https://github.com/unional/unpartial"><code>unpartial</code></a></p>
 <blockquote>
-<p><code>split(target, ...splitters)</code>: split one object into multiple objects.</p>
+<p><code>split(target, ...splitters)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: split one object into multiple objects.</p>
 <blockquote>
-<p><code>stub&lt;T&gt;(value)</code>: stub a particular type <code>T</code>.</p>
+<p><code>stub&lt;T&gt;(value)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: stub a particular type <code>T</code>.</p>
 <blockquote>
-<p><code>stub.build&lt;T&gt;(init?)</code>: build a stub for particular type <code>T</code>.</p>
+<p><code>stub.build&lt;T&gt;(init?)</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: build a stub for particular type <code>T</code>.</p>
 <blockquote>
-<p><code>typeOverrideIncompatible&lt;T&gt;()</code>: override only the incompatible portion between two types.</p>
+<p><code>typeOverrideIncompatible&lt;T&gt;()</code></p>
 </blockquote>
-<pre><code class="language-ts"><span class="hl-4">type</span><span class="hl-0"> </span><span class="hl-6">A</span><span class="hl-0"> =  {</span><br/><span class="hl-0">  </span><span class="hl-2">foo</span><span class="hl-0">: </span><span class="hl-6">boolean</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-2">bar</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-2">baz</span><span class="hl-0">: </span><span class="hl-6">string</span><br/><span class="hl-0">}</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-7">overrider</span><span class="hl-0"> = </span><span class="hl-3">typeOverrideIncompatible</span><span class="hl-0">&lt;</span><span class="hl-6">A</span><span class="hl-0">&gt;()</span><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-7">source</span><span class="hl-0"> = {</span><br/><span class="hl-0">  </span><span class="hl-2">foo:</span><span class="hl-0"> </span><span class="hl-8">1</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-2">bar:</span><span class="hl-0"> </span><span class="hl-1">&#39;bar&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-2">baz:</span><span class="hl-0"> </span><span class="hl-1">&#39;baz&#39;</span><br/><span class="hl-0">}</span><br/><br/><span class="hl-9">// only the `foo` property is available to override.</span><br/><span class="hl-3">overrider</span><span class="hl-0">(</span><span class="hl-2">source</span><span class="hl-0">, { </span><span class="hl-2">foo:</span><span class="hl-0"> !!</span><span class="hl-2">source</span><span class="hl-0">.</span><span class="hl-2">foo</span><span class="hl-0"> })</span>
+<p>🔨 <code>utilities</code>: override only the incompatible portion between two types.</p>
+<pre><code class="language-ts"><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">A</span><span class="hl-0"> =  {</span><br/><span class="hl-0">  </span><span class="hl-8">foo</span><span class="hl-0">: </span><span class="hl-4">boolean</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-8">bar</span><span class="hl-0">: </span><span class="hl-4">string</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-8">baz</span><span class="hl-0">: </span><span class="hl-4">string</span><br/><span class="hl-0">}</span><br/><br/><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">overrider</span><span class="hl-0"> = </span><span class="hl-7">typeOverrideIncompatible</span><span class="hl-0">&lt;</span><span class="hl-4">A</span><span class="hl-0">&gt;()</span><br/><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">source</span><span class="hl-0"> = {</span><br/><span class="hl-0">  </span><span class="hl-8">foo:</span><span class="hl-0"> </span><span class="hl-5">1</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-8">bar:</span><span class="hl-0"> </span><span class="hl-1">&#39;bar&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-8">baz:</span><span class="hl-0"> </span><span class="hl-1">&#39;baz&#39;</span><br/><span class="hl-0">}</span><br/><br/><span class="hl-6">// only the `foo` property is available to override.</span><br/><span class="hl-7">overrider</span><span class="hl-0">(</span><span class="hl-8">source</span><span class="hl-0">, { </span><span class="hl-8">foo:</span><span class="hl-0"> !!</span><span class="hl-8">source</span><span class="hl-0">.</span><span class="hl-8">foo</span><span class="hl-0"> })</span>
 </code></pre>
 <blockquote>
-<p><code>unpartial()</code>: merge options and remove <code>Partial&lt;T&gt;</code> values. From <a href="https://github.com/unional/unpartial"><code>unpartial</code></a></p>
+<p><code>unpartial()</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: merge options and remove <code>Partial&lt;T&gt;</code> values. From <a href="https://github.com/unional/unpartial"><code>unpartial</code></a></p>
 <blockquote>
-<p><code>context()</code>: a context builder. This is useful to build context for functional programming.<br>  It is a sync version of the <code>AsyncContext</code> from <a href="https://unional/async-fp">async-fp</a>.</p>
+<p><code>context()</code></p>
 </blockquote>
-<pre><code class="language-ts"><span class="hl-5">import</span><span class="hl-0"> { </span><span class="hl-2">context</span><span class="hl-0"> } </span><span class="hl-5">from</span><span class="hl-0"> </span><span class="hl-1">&#39;type-plus&#39;</span><br/><br/><span class="hl-9">// { a: 1, b: 2 }</span><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-7">ctx</span><span class="hl-0"> = </span><span class="hl-3">context</span><span class="hl-0">({ </span><span class="hl-2">a:</span><span class="hl-0"> </span><span class="hl-8">1</span><span class="hl-0"> })</span><br/><span class="hl-0">  .</span><span class="hl-3">extend</span><span class="hl-0">(</span><span class="hl-2">c</span><span class="hl-0"> </span><span class="hl-4">=&gt;</span><span class="hl-0"> ({ </span><span class="hl-2">b:</span><span class="hl-0"> </span><span class="hl-2">c</span><span class="hl-0">.</span><span class="hl-2">a</span><span class="hl-0"> + </span><span class="hl-8">1</span><span class="hl-0"> }))</span><br/><span class="hl-0">  .</span><span class="hl-3">build</span><span class="hl-0">()</span>
+<p>🔨 <code>utilities</code>: a context builder.</p>
+<p>This is useful to build context for functional programming.
+It is a sync version of the <code>AsyncContext</code> from <a href="https://unional/async-fp">async-fp</a>.</p>
+<pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-0"> { </span><span class="hl-8">context</span><span class="hl-0"> } </span><span class="hl-9">from</span><span class="hl-0"> </span><span class="hl-1">&#39;type-plus&#39;</span><br/><br/><span class="hl-6">// { a: 1, b: 2 }</span><br/><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">ctx</span><span class="hl-0"> = </span><span class="hl-7">context</span><span class="hl-0">({ </span><span class="hl-8">a:</span><span class="hl-0"> </span><span class="hl-5">1</span><span class="hl-0"> })</span><br/><span class="hl-0">  .</span><span class="hl-7">extend</span><span class="hl-0">(</span><span class="hl-8">c</span><span class="hl-0"> </span><span class="hl-2">=&gt;</span><span class="hl-0"> ({ </span><span class="hl-8">b:</span><span class="hl-0"> </span><span class="hl-8">c</span><span class="hl-0">.</span><span class="hl-8">a</span><span class="hl-0"> + </span><span class="hl-5">1</span><span class="hl-0"> }))</span><br/><span class="hl-0">  .</span><span class="hl-7">build</span><span class="hl-0">()</span>
 </code></pre>
 <a id="$nominal-types" class="tsd-anchor"></a><h2><a href="#$nominal-types" style="color:inherit;text-decoration:none">Nominal Types</a></h2><p>The TypeScript type system is structural.</p>
 <p>In some cases, we want to express a type with nominal behavior.
@@ -816,32 +1135,35 @@ So you may encounter some weird behavior if your logic is complex.</p>
 <p><code>brand(type, subject?)</code>:</p>
 <p>Branded nominal type is the stronger nominal type of the two.
 It disallows unbranded type assigned to it:</p>
-<pre><code class="language-ts"><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-7">a</span><span class="hl-0"> = </span><span class="hl-3">brand</span><span class="hl-0">(</span><span class="hl-1">&#39;a&#39;</span><span class="hl-0">, { </span><span class="hl-2">a:</span><span class="hl-0"> </span><span class="hl-8">1</span><span class="hl-0"> })</span><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-7">b</span><span class="hl-0"> = { </span><span class="hl-2">a:</span><span class="hl-0"> </span><span class="hl-8">1</span><span class="hl-0"> }</span><br/><span class="hl-2">a</span><span class="hl-0"> = </span><span class="hl-2">b</span><span class="hl-0"> </span><span class="hl-9">// error</span>
+<pre><code class="language-ts"><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">a</span><span class="hl-0"> = </span><span class="hl-7">brand</span><span class="hl-0">(</span><span class="hl-1">&#39;a&#39;</span><span class="hl-0">, { </span><span class="hl-8">a:</span><span class="hl-0"> </span><span class="hl-5">1</span><span class="hl-0"> })</span><br/><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">b</span><span class="hl-0"> = { </span><span class="hl-8">a:</span><span class="hl-0"> </span><span class="hl-5">1</span><span class="hl-0"> }</span><br/><span class="hl-8">a</span><span class="hl-0"> = </span><span class="hl-8">b</span><span class="hl-0"> </span><span class="hl-6">// error</span>
 </code></pre>
 <p><code>subject</code> can be any type, from primitive to strings to objects.</p>
 <p><code>brand(type)</code>:</p>
 <p>If you do not provide <code>subject</code>, <code>brand(type)</code> will return a brand creator,
 so that you can use it to create multiple branded values:</p>
-<pre><code class="language-ts"><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-7">nike</span><span class="hl-0"> = </span><span class="hl-3">brand</span><span class="hl-0">(</span><span class="hl-1">&#39;nike&#39;</span><span class="hl-0">)</span><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-7">shirt</span><span class="hl-0"> = </span><span class="hl-3">nike</span><span class="hl-0">(</span><span class="hl-1">&#39;shirt&#39;</span><span class="hl-0">)</span><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-7">socks</span><span class="hl-0"> = </span><span class="hl-3">nike</span><span class="hl-0">(</span><span class="hl-1">&#39;socks&#39;</span><span class="hl-0">)</span>
+<pre><code class="language-ts"><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">nike</span><span class="hl-0"> = </span><span class="hl-7">brand</span><span class="hl-0">(</span><span class="hl-1">&#39;nike&#39;</span><span class="hl-0">)</span><br/><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">shirt</span><span class="hl-0"> = </span><span class="hl-7">nike</span><span class="hl-0">(</span><span class="hl-1">&#39;shirt&#39;</span><span class="hl-0">)</span><br/><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">socks</span><span class="hl-0"> = </span><span class="hl-7">nike</span><span class="hl-0">(</span><span class="hl-1">&#39;socks&#39;</span><span class="hl-0">)</span>
 </code></pre>
 <p><code>Flavor&lt;F, T&gt;</code>:</p>
 <p><code>flavor(type, subject?)</code>:</p>
 <p>The key difference between <code>Flavor</code> and <code>Brand</code> is that
 unflavored type can be assigned to <code>Flavor</code>:</p>
-<pre><code class="language-ts"><span class="hl-4">let</span><span class="hl-0"> </span><span class="hl-2">f</span><span class="hl-0"> = </span><span class="hl-3">flavor</span><span class="hl-0">(</span><span class="hl-1">&#39;orange&#39;</span><span class="hl-0">, </span><span class="hl-1">&#39;soda&#39;</span><span class="hl-0">)</span><br/><span class="hl-2">f</span><span class="hl-0"> = </span><span class="hl-1">&#39;mist&#39;</span><span class="hl-0"> </span><span class="hl-9">// ok</span>
+<pre><code class="language-ts"><span class="hl-2">let</span><span class="hl-0"> </span><span class="hl-8">f</span><span class="hl-0"> = </span><span class="hl-7">flavor</span><span class="hl-0">(</span><span class="hl-1">&#39;orange&#39;</span><span class="hl-0">, </span><span class="hl-1">&#39;soda&#39;</span><span class="hl-0">)</span><br/><span class="hl-8">f</span><span class="hl-0"> = </span><span class="hl-1">&#39;mist&#39;</span><span class="hl-0"> </span><span class="hl-6">// ok</span>
 </code></pre>
 <p>Also, <code>Brand</code> of the same name can be assigned to <code>Flavor</code>,
 but <code>Flavor</code> of the same name cannot be assigned to <code>Brand</code>.</p>
 <p><code>nominalMatch(a, b)</code>:</p>
-<p><code>nominalMatch()</code> can be used to compare <code>Brand</code> or <code>Flavor</code>.</p>
-<pre><code class="language-ts"><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-7">b1</span><span class="hl-0"> = </span><span class="hl-3">brand</span><span class="hl-0">(</span><span class="hl-1">&#39;x&#39;</span><span class="hl-0">, </span><span class="hl-8">1</span><span class="hl-0">)</span><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-7">b2</span><span class="hl-0"> = </span><span class="hl-3">brand</span><span class="hl-0">(</span><span class="hl-1">&#39;y&#39;</span><span class="hl-0">, </span><span class="hl-8">1</span><span class="hl-0">)</span><br/><br/><span class="hl-3">nominalMatch</span><span class="hl-0">(</span><span class="hl-2">b1</span><span class="hl-0">, </span><span class="hl-2">b2</span><span class="hl-0">) </span><span class="hl-9">// false</span>
+<p>🔨 <code>utilities</code>: compare if the two values are nominally equal.</p>
+<p>Works with both <code>Brand</code> and <code>Flavor</code>.</p>
+<pre><code class="language-ts"><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">b1</span><span class="hl-0"> = </span><span class="hl-7">brand</span><span class="hl-0">(</span><span class="hl-1">&#39;x&#39;</span><span class="hl-0">, </span><span class="hl-5">1</span><span class="hl-0">)</span><br/><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">b2</span><span class="hl-0"> = </span><span class="hl-7">brand</span><span class="hl-0">(</span><span class="hl-1">&#39;y&#39;</span><span class="hl-0">, </span><span class="hl-5">1</span><span class="hl-0">)</span><br/><br/><span class="hl-7">nominalMatch</span><span class="hl-0">(</span><span class="hl-8">b1</span><span class="hl-0">, </span><span class="hl-8">b2</span><span class="hl-0">) </span><span class="hl-6">// false</span>
 </code></pre>
 <a id="$functional-types" class="tsd-anchor"></a><h2><a href="#$functional-types" style="color:inherit;text-decoration:none">Functional Types</a></h2><blockquote>
-<p><code>ChainFn&lt;T&gt;: T</code>: chain function that returns the input type.</p>
+<p><code>ChainFn&lt;T&gt;: T</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: chain function that returns the input type.</p>
 <blockquote>
-<p><code>compose(...fns): F</code>: compose functions</p>
+<p><code>compose(...fns): F</code></p>
 </blockquote>
+<p>🔨 <code>utilities</code>: compose functions</p>
 <a id="$attribution" class="tsd-anchor"></a><h2><a href="#$attribution" style="color:inherit;text-decoration:none">Attribution</a></h2><p>Some code in this library is created by other people in the TypeScript community.
 I&#39;m merely adding them in and maybe making some adjustments.
 Whenever possible, I add attribution to the person who created those <strong>codes</strong> in the file.</p>
@@ -862,7 +1184,7 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li><a href="https://github.com/KiaraGrouwstra/typical">typical</a>: a playground of type-level operations for TypeScript.</li>
 <li><a href="https://github.com/piotrwitek/utility-types">utility-types</a>: collection of utility types, complementing TypeScript build-in mapped types ans aliases.</li>
 </ul>
-<a id="$contribute" class="tsd-anchor"></a><h2><a href="#$contribute" style="color:inherit;text-decoration:none">Contribute</a></h2><pre><code class="language-sh"><span class="hl-9"># after fork and clone</span><br/><span class="hl-0">npm </span><span class="hl-1">install</span><br/><br/><span class="hl-9"># begin making changes</span><br/><span class="hl-0">git </span><span class="hl-1">checkout</span><span class="hl-0"> </span><span class="hl-1">-b</span><span class="hl-0"> &lt;</span><span class="hl-1">branc</span><span class="hl-0">h&gt;</span><br/><span class="hl-0">npm </span><span class="hl-1">run</span><span class="hl-0"> </span><span class="hl-1">watch</span><br/><br/><span class="hl-9"># after making change(s)</span><br/><span class="hl-0">git </span><span class="hl-1">commit</span><span class="hl-0"> </span><span class="hl-1">-m</span><span class="hl-0"> </span><span class="hl-1">&quot;&lt;commit message&gt;&quot;</span><br/><span class="hl-0">git </span><span class="hl-1">push</span><br/><br/><span class="hl-9"># create PR</span>
+<a id="$contribute" class="tsd-anchor"></a><h2><a href="#$contribute" style="color:inherit;text-decoration:none">Contribute</a></h2><pre><code class="language-sh"><span class="hl-6"># after fork and clone</span><br/><span class="hl-0">npm </span><span class="hl-1">install</span><br/><br/><span class="hl-6"># begin making changes</span><br/><span class="hl-0">git </span><span class="hl-1">checkout</span><span class="hl-0"> </span><span class="hl-1">-b</span><span class="hl-0"> &lt;</span><span class="hl-1">branc</span><span class="hl-0">h&gt;</span><br/><span class="hl-0">npm </span><span class="hl-1">run</span><span class="hl-0"> </span><span class="hl-1">watch</span><br/><br/><span class="hl-6"># after making change(s)</span><br/><span class="hl-0">git </span><span class="hl-1">commit</span><span class="hl-0"> </span><span class="hl-1">-m</span><span class="hl-0"> </span><span class="hl-1">&quot;&lt;commit message&gt;&quot;</span><br/><span class="hl-0">git </span><span class="hl-1">push</span><br/><br/><span class="hl-6"># create PR</span>
 </code></pre>
 <a id="$wallabyjs" class="tsd-anchor"></a><h2><a href="#$wallabyjs" style="color:inherit;text-decoration:none">Wallaby.js</a></h2><p><a href="https://wallabyjs.com/oss/"><img src="https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=for-the-badge&logo=github" alt="Wallaby.js"></a></p>
 <p>This repository contributors are welcome to use
@@ -897,6 +1219,9 @@ your editor right next to your code.</p>
 <li><a href="#$table-of-contents"><span>Table of <wbr/>Contents</span></a></li>
 <li><a href="#$installation"><span>Installation</span></a></li>
 <li><a href="#$assertion-function"><span>Assertion <wbr/>Function</span></a></li>
+<li>
+<ul>
+<li><a href="#$asserttype"><span>assert<wbr/>Type</span></a></li></ul></li>
 <li><a href="#$type-guard"><span>Type <wbr/>Guard</span></a></li>
 <li><a href="#$type-utilities"><span>Type <wbr/>Utilities</span></a></li>
 <li><a href="#$type-checking"><span>Type <wbr/>Checking</span></a></li>
@@ -910,6 +1235,7 @@ your editor right next to your code.</p>
 <li><a href="#$never"><span>never</span></a></li>
 <li><a href="#$null"><span>null</span></a></li>
 <li><a href="#$number"><span>number</span></a></li>
+<li><a href="#$numeric"><span>numeric</span></a></li>
 <li><a href="#$object"><span>object</span></a></li>
 <li><a href="#$promise"><span>Promise</span></a></li>
 <li><a href="#$string"><span>string</span></a></li>
@@ -1018,7 +1344,7 @@ your editor right next to your code.</p>
 <li><a href="types/NumberPlus.IsNumeric.html" class="tsd-kind-type-alias tsd-parent-kind-namespace"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Is<wbr/>Numeric</span></a></li>
 <li><a href="types/NumberPlus.IsPositive.html" class="tsd-kind-type-alias tsd-parent-kind-namespace"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Is<wbr/>Positive</span></a></li>
 <li><a href="types/NumberPlus.IsStrictNumber.html" class="tsd-kind-type-alias tsd-parent-kind-namespace"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Is<wbr/>Strict<wbr/>Number</span></a></li>
-<li><a href="types/NumberPlus.IsWhole.html" class="tsd-kind-type-alias tsd-parent-kind-namespace"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Is<wbr/>Whole</span></a></li>
+<li><a href="types/NumberPlus.IsWhole.html" class="deprecated tsd-kind-type-alias tsd-parent-kind-namespace"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Is<wbr/>Whole</span></a></li>
 <li><a href="types/NumberPlus.Negative.html" class="tsd-kind-type-alias tsd-parent-kind-namespace"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Negative</span></a></li>
 <li><a href="types/NumberPlus.NonPositive.html" class="tsd-kind-type-alias tsd-parent-kind-namespace"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Non<wbr/>Positive</span></a></li>
 <li><a href="types/NumberPlus.NotInteger.html" class="tsd-kind-type-alias tsd-parent-kind-namespace"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Not<wbr/>Integer</span></a></li>
