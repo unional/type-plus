@@ -2,7 +2,7 @@ import type { SplitAt } from '../array/array_plus.split_at.js'
 import type { Tail } from '../array/tail.js'
 import type { PadStart } from '../tuple/tuple_plus.pad_start.js'
 import type { ToNegative } from './math_plus.to_negative.js'
-import type { Add as NAdd } from './add.js'
+import type { Add as NumericAdd } from './add.js'
 
 /**
  * Internal numeric representation to perform math operations.
@@ -211,7 +211,9 @@ export namespace DigitsStruct {
 	export type Normalize<
 		N extends DigitsStruct,
 		R extends DigitsStruct = ['+', [], 0]
-	> = `${N[DIGITS][0]}` extends `-${number}` ? Normalize<FlipSign<N>, R> : CarryDigits<N>
+	> = `${N[DIGITS][0]}` extends `-${number}`
+		? Normalize<FlipSign<N>, R>
+		: [N[SIGN], DigitArray.CarryDigits<N[DIGITS]>, N[EXPONENT]]
 
 	type FlipSign<
 		D extends DigitsStruct,
@@ -223,42 +225,6 @@ export namespace DigitsStruct {
 			: ['-', R, D[EXPONENT]]
 		: I extends [infer H extends number, ...infer T extends number[]]
 		? FlipSign<D, T, [...R, Digit.FlipSign<H>]>
-		: never
-
-	type CarryDigits<
-		D extends DigitsStruct,
-		N extends number[] = D[DIGITS],
-		R extends number[] = []
-	> = N extends []
-		? [D[SIGN], DigitArray.TrimLeadingZeros<R>, D[EXPONENT]]
-		: N extends [infer Tail extends number]
-		? `${Tail}` extends `${infer T1 extends number}${infer T2 extends number}`
-			? CarryDigits<D, [], [T1, T2, ...R]>
-			: `${Tail}` extends `-${infer T1 extends number}${infer T2 extends number}`
-			? `-${T1}` extends `${infer NT extends number}`
-				? CarryDigits<D, [], [NT, T2, ...R]>
-				: never
-			: CarryDigits<D, [], [Tail, ...R]>
-		: N extends [infer Head extends number, infer Tail extends number]
-		? `${Tail}` extends `${infer T1 extends number}${infer T2 extends number}`
-			? CarryDigits<D, [Digit.Add<Head, T1>], [T2, ...R]>
-			: `${Tail}` extends `-${infer T1 extends number}${infer T2 extends number}`
-			? `-${T1}` extends `${infer NT extends number}`
-				? CarryDigits<D, [Digit.Add<Head, NT>], [T2, ...R]>
-				: never
-			: `${Tail}` extends `-${number}`
-			? CarryDigits<D, [Digit.Add<Head, -1>], [Digit.Plus10[Tail], ...R]>
-			: CarryDigits<D, [Head], [Tail, ...R]>
-		: N extends [...infer Heads extends number[], infer Head extends number, infer Tail extends number]
-		? `${Tail}` extends `${infer T1 extends number}${infer T2 extends number}`
-			? CarryDigits<D, [...Heads, Digit.Add<Head, T1>], [T2, ...R]>
-			: `${Tail}` extends `-${infer T1 extends number}${infer T2 extends number}`
-			? `-${T1}` extends `${infer NT extends number}`
-				? CarryDigits<D, [...Heads, Digit.Add<Head, NT>], [T2, ...R]>
-				: never
-			: `${Tail}` extends `-${number}`
-			? CarryDigits<D, [...Heads, Digit.Add<Head, -1>], [Digit.Plus10[Tail], ...R]>
-			: CarryDigits<D, [...Heads, Head], [Tail, ...R]>
 		: never
 
 	/**
@@ -297,7 +263,7 @@ export namespace DigitsStruct {
 			: never
 		: never
 
-	export type Multiply<A extends DigitsStruct, B extends DigitsStruct> = NAdd<
+	export type Multiply<A extends DigitsStruct, B extends DigitsStruct> = NumericAdd<
 		A[EXPONENT],
 		B[EXPONENT]
 	> extends infer Exp extends number
@@ -452,20 +418,15 @@ export namespace DigitArray {
 		? Subtract<AH, BH, [Digit.Subtract<AL, BL>, ...R]>
 		: never
 
-	// type Y = Multiply<[1, 3, 5, 7], [9, 7, 5, 3]>
-
 	export type Multiply<A extends number[], B extends number[], R extends number[][] = []> = B extends []
 		? RecursiveAdd<R>
 		: B extends [infer Head extends number, ...infer Tail extends number[]]
-		? Multiply<A, Tail, [...R, CarryDigits<MultiplyEntry<A, Head, Zeros<Tail['length']>>>]>
+		? Multiply<A, Tail, [...R, CarryDigits<MultiplyArray<A, Head, Zeros<Tail['length']>>>]>
 		: never
-	// type R = RecursiveAdd<
-	// 	[[1, 2, 3, 4, 0, 0, 0, 0], [2, 4, 6, 8, 0, 0, 0], [3, 7, 0, 2, 0, 0], [4, 9, 3, 6, 0], [6, 1, 7, 0]]
-	// >
 
 	type Zeros<N extends number, R extends number[] = []> = R['length'] extends N ? R : Zeros<N, [0, ...R]>
 
-	type MultiplyEntry<
+	type MultiplyArray<
 		A extends number[],
 		B extends number,
 		Pad extends number[],
@@ -477,16 +438,21 @@ export namespace DigitArray {
 		: A extends []
 		? [...R, ...Pad]
 		: A extends [infer H extends number, ...infer T extends number[]]
-		? MultiplyEntry<T, B, Pad, [...R, Digit.Multiply<H, B>]>
+		? MultiplyArray<T, B, Pad, [...R, Digit.Multiply<H, B>]>
 		: never
 
+	/**
+	 * Resursively add digit arrays.
+	 *
+	 * This is used in multiplication.
+	 */
 	type RecursiveAdd<E extends number[][], R extends number[] = []> = E extends []
 		? R
 		: E extends [infer H extends number[], ...infer T extends number[][]]
 		? RecursiveAdd<T, CarryDigits<Add<R, H>>>
 		: never
 
-	type CarryDigits<N extends number[], R extends number[] = []> = N extends []
+	export type CarryDigits<N extends number[], R extends number[] = []> = N extends []
 		? TrimLeadingZeros<R>
 		: N extends [infer Tail extends number]
 		? `${Tail}` extends `${infer T1 extends number}${infer T2 extends number}`
