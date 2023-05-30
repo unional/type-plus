@@ -1,23 +1,37 @@
-# Equal
+# IsEqual
 
-`Equal<A, B>` and friends check if `A` and `B` are equal.
+`IsEqual<A, B>` and friends check if `A` and `B` are equal.
 
 It is a type-level version of `===`.
 It handles special types (`any`, `unknown`, `never`, `void`) correctly.
 
 ```ts
-import { type Equal } from 'type-plus'
+import { type IsEqual } from 'type-plus'
 
-type R = Equal<1, 1> // true
-type R = Equal<any, any> // true
-type R = Equal<boolean, boolean> // true
-type R = Equal<true, true> // true
-type R = Equal<[1], [1]> // true
+type R = IsEqual<1, 1> // true
+type R = IsEqual<any, any> // true
+type R = IsEqual<boolean, boolean> // true
+type R = IsEqual<true, true> // true
+type R = IsEqual<[1], [1]> // true
 
-type R = Equal<boolean, true> // false
-type R = Equal<any, 1> // false
-type R = Equal<[any], [1]> // false
-type R = Equal<{ a: 1 }, { a: 1; b: 2 }> // false
+type R = IsEqual<boolean, true> // false
+type R = IsEqual<any, 1> // false
+type R = IsEqual<[any], [1]> // false
+type R = IsEqual<{ a: 1 }, { a: 1; b: 2 }> // false
+```
+
+Note that intersection type checks only works at first level.
+It cannot be check recursively,
+or else will run into infinite recursion if the type includes recursive types.
+
+i.e.
+
+```ts
+// true
+IsEqual<{ a: 1 } & { b: 2 }, { a: 1; b: 2 }>
+
+// false
+IsEqual<{ nested: { a: number; b: string } }, { nested: { a: number } & { b: string } }>
 ```
 
 - [`IsEqual<A, B, Then = true, Else = false>`](equal.ts#L27): check if `A` and `B` are equal.

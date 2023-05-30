@@ -37,6 +37,10 @@ type IdentityEqual<A, B, Then, Else> = (<_>() => _ extends (A & _) | _ ? 1 : 2) 
  * type R = Equal<[any], [1]> // false
  * type R = Equal<{ a: 1 }, { a: 1; b: 2 }> // false
  * ```
+ *
+ * Note that intersection type checks only works at first level.
+ * It cannot be check recursively,
+ * or else will run into infinite recursion if the type includes recursive types.
  */
 export type IsEqual<A, B, Then = true, Else = false> = [A, B] extends [B, A]
 	? BothNever<
@@ -88,6 +92,10 @@ export type IsEqual<A, B, Then = true, Else = false> = [A, B] extends [B, A]
  * type R = NotEqual<[any], [1]> // true
  * type R = NotEqual<{ a: 1 }, { a: 1; b: 2 }> // true
  * ```
+ *
+ * Note that intersection type checks only works at first level.
+ * It cannot be check recursively,
+ * or else will run into infinite recursion if the type includes recursive types.
  */
 export type IsNotEqual<A, B, Then = true, Else = false> = IsEqual<A, B, Else, Then>
 
