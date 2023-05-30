@@ -1,5 +1,11 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 7.0.1
+
+### Patch Changes
+
+- 946c6023: Remove `@internal`. It is causing those types to be skipped from output (cjs/esm/\*.d.ts).
+
 ## 7.0.0
 
 ### Major Changes
