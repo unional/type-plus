@@ -1,8 +1,7 @@
-import type { SplitAt } from '../array/array_plus.split_at.js'
 import type { Tail } from '../array/tail.js'
 import type { PadStart } from '../tuple/tuple_plus.pad_start.js'
-import type { ToNegative } from './math_plus.to_negative.js'
 import type { Add as NumericAdd } from './add.js'
+import type { ToNegative } from './math_plus.to_negative.js'
 
 /**
  * Internal numeric representation to perform math operations.
@@ -179,15 +178,10 @@ export namespace DigitsStruct {
 		PadStart<D[DIGITS], D[EXPONENT], 0> extends infer Padded extends number[]
 			? Padded['length'] extends D[EXPONENT]
 				? DigitArray.ToString<[0, '.', ...DigitArray.TrimTrailingZeros<Padded>]>
-				: SplitAt<Padded, ToNegative<D[EXPONENT]>> extends [
-						infer W extends number[],
-						infer E extends number[]
-				  ]
-				? W extends []
-					? E extends []
-						? '' // both W and E are empty, should be never?
-						: DigitArray.ToString<E>
-					: DigitArray.ToString<[...W, '.', ...DigitArray.TrimTrailingZeros<E>]>
+				: SplitFloat<Padded, D[EXPONENT]> extends [infer W extends number[], infer F extends number[]]
+				? F extends []
+					? DigitArray.ToString<W>
+					: DigitArray.ToString<[...W, '.', ...DigitArray.TrimTrailingZeros<F>]>
 				: never
 			: never
 	) extends infer R
@@ -198,6 +192,19 @@ export namespace DigitsStruct {
 				? `-${R}`
 				: R
 			: never
+		: never
+
+	/**
+	 * Splits DigitArray into the whole number and the fractional part.
+	 *
+	 * @note cannot use `ArrayPlus.SplitAt` as it causes infinite loop.
+	 */
+	type SplitFloat<A extends number[], I extends number, F extends number[] = []> = I extends 0
+		? [A, []]
+		: F['length'] extends I
+		? [A, F]
+		: A extends [...infer H extends number[], infer T extends number]
+		? SplitFloat<H, I, [T, ...F]>
 		: never
 
 	/**
