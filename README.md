@@ -14,6 +14,7 @@ More than 200 type utilities for [TypeScript].
 ## Table of Contents
 
 1. [Assertion Function](#assertion-function)
+   1. [assertType](#asserttype)
 2. [Type Guard](#type-guard)
 3. [Type Utilities](#type-utilities)
 4. [Type Checking](#type-checking)
@@ -25,14 +26,15 @@ More than 200 type utilities for [TypeScript].
    6. [never](#never)
    7. [null](#null)
    8. [number](#number)
-   9. [object](#object)
-   10. [Promise](#promise)
-   11. [string](#string)
-   12. [symbol](#symbol)
-   13. [tuple](#tuple)
-   14. [undefined](#undefined)
-   15. [unknown](#unknown)
-   16. [void](#void)
+   9. [numeric](#numeric)
+   10. [object](#object)
+   11. [Promise](#promise)
+   12. [string](#string)
+   13. [symbol](#symbol)
+   14. [tuple](#tuple)
+   15. [undefined](#undefined)
+   16. [unknown](#unknown)
+   17. [void](#void)
 5. [Constant Types](#constant-types)
 6. [JSON Support](#json-support)
 7. [Type manipulation](#type-manipulation)
@@ -62,96 +64,202 @@ pnpm add type-plus
 
 [Assertion Functions][assertion_functions] are special functions that asserts certain conditions of your program.
 
+It is introduced in TypeScript 3.7.
+
 They throw an error if the condition is not met, and return nothing otherwise.
 
 These assertion functions are typically used in runtime,
 so that that type of the value can be narrowed down.
 
-> [`assertType()`](./ts/assertion/readme.md#asserttype):  💀 deprecated. Use `assertType.as()` instead
+### assertType
+
+[`assertType`](./ts/assertion/assert_type.ts) provides a generic assertion function,
+as well as many assertion functions for builtin types.
+
+> [`assertType<T>(subject)`](./ts/assertion/readme.md#asserttype)
+
+💀 deprecated. Use `assertType.as()` instead.
+
+`assertType<T>(subject, validator)`:
+
+🚦`assertion`: assert the `subject` is type `T` with the specified `validator`.
+
+If `subject` fails the assertion,
+a standard `TypeError` will be thrown and provide better error info.
+For example:
+
+```ts
+const s: unknown = 1
+
+// TypeError: subject fails to satisfy s => typeof s === 'boolean'
+assertType<boolean>(s, s => typeof s === 'boolean')
+```
+
+The message beautification is provided by [`tersify`](https://github.com/unional/tersify).
 
 > [`assertType.isUndefined()`](./ts/assertion/readme.md#asserttype)
 
+🚦`assertion`: assert the `subject` is `undefined`.
+
 > [`assertType.noUndefined()`](./ts/assertion/readme.md#asserttype)
+
+🚦`assertion`: assert the `subject` is not `undefined`.
 
 > [`assertType.isNull()`](./ts/assertion/readme.md#asserttype)
 
+🚦`assertion`: assert the `subject` is `null`.
+
 > [`assertType.noNull()`](./ts/assertion/readme.md#asserttype)
+
+🚦`assertion`: assert the `subject` is not `null`.
 
 > [`assertType.isNumber()`](./ts/assertion/readme.md#asserttype)
 
+🚦`assertion`: assert the `subject` is `number`.
+
 > [`assertType.noNumber()`](./ts/assertion/readme.md#asserttype)
+
+🚦`assertion`: assert the `subject` is not `number`.
 
 > [`assertType.isBoolean()`](./ts/assertion/readme.md#asserttype)
 
+🚦`assertion`: assert the `subject` is `boolean`.
+
 > [`assertType.noBoolean()`](./ts/assertion/readme.md#asserttype)
+
+🚦`assertion`: assert the `subject` is not `boolean`.
 
 > [`assertType.isTrue()`](./ts/assertion/readme.md#asserttype)
 
+🚦`assertion`: assert the `subject` is `true`.
+
 > [`assertType.noTrue()`](./ts/assertion/readme.md#asserttype)
+
+🚦`assertion`: assert the `subject` is not `true`.
 
 > [`assertType.isFalse()`](./ts/assertion/readme.md#asserttype)
 
+🚦`assertion`: assert the `subject` is `false`.
+
 > [`assertType.noFalse()`](./ts/assertion/readme.md#asserttype)
+
+🚦`assertion`: assert the `subject` is not `false`.
 
 > [`assertType.isString()`](./ts/assertion/readme.md#asserttype)
 
+🚦`assertion`: assert the `subject` is `string`.
+
 > [`assertType.noString()`](./ts/assertion/readme.md#asserttype)
+
+🚦`assertion`: assert the `subject` is not `string`.
 
 > [`assertType.isFunction()`](./ts/assertion/readme.md#asserttype)
 
+🚦`assertion`: assert the `subject` is `function`.
+
 > [`assertType.noFunction()`](./ts/assertion/readme.md#asserttype)
+
+🚦`assertion`: assert the `subject` is not `function`.
 
 > [`assertType.isError()`](./ts/assertion/readme.md#asserttype)
 
+🚦`assertion`: assert the `subject` is an `Error`.
+
 > [`assertType.noError()`](./ts/assertion/readme.md#asserttype)
 
-> [`assertType.isConstructor()`](./ts/assertion/readme.md#asserttype): 💀 deprecated. It is not a failsafe test.
+🚦`assertion`: assert the `subject` is not an `Error`.
+
+> [`assertType.isConstructor()`](./ts/assertion/readme.md#asserttype)
+
+💀 deprecated. It does not work in all cases.
+
+It passes for function that can be called with `new`.
+If the subject is an arrow function, it can still return true after compilation.
 
 > [`assertType.isNever()`](./ts/assertion/readme.md#asserttype)
 
+🚦`assertion`: assert the `subject` is `never`.
+
 > [`assertType.custom()`](./ts/assertion/readme.md#asserttype)
 
-> [`assertType.as()`](./ts/assertion/readme.md#asserttype)
+🚦`assertion`: creates a custom assertion function.
+
+Using it to create a custom assertion function that provides better error messages.
+
+The message beautification is provided by [`tersify`](https://github.com/unional/tersify).
+
+> [`assertType.as<T>()`](./ts/assertion/readme.md#asserttype)
+
+🚦`assertion`: assert the `subject` as `T` without validator.
+
+This works similar to manual assertion `;(subject as T)`
 
 ## Type Guard
 
-[User-defined type guard functions][type_guard] is a function which its return type is specified as `x as T`.
+[User-defined type guard functions][type_guard] is a function which its return type is specified as `x is T`.
 
 > [`isType()`](./ts/type-guard/readme.md#istype)
 
-> [`isType.t()`](./ts/type-guard/readme.md#istype): 💀 deprecated. Use `testType.true()` instead.
+🛡️ `guard`: a generic type guard function
 
-> [`isType.f()`](./ts/type-guard/readme.md#istype): 💀 deprecated. Use `testType.false()` instead.
+> [`isType.t()`](./ts/type-guard/readme.md#istype)
 
-> [`isType.never()`](./ts/type-guard/readme.md#istype): 💀 deprecated. Use `testType.never()` instead.
+💀 `deprecated`: use `testType.true()` instead.
 
-> [`isType.equal()`](./ts/type-guard/readme.md#istype): 💀 deprecated. Use `testType.equal()` instead.
+> [`isType.f()`](./ts/type-guard/readme.md#istype)
+
+💀 `deprecated`: use `testType.false()` instead.
+
+> [`isType.never()`](./ts/type-guard/readme.md#istype)
+
+💀 `deprecated`: use `testType.never()` instead.
+
+> [`isType.equal()`](./ts/type-guard/readme.md#istype)
+
+💀 `deprecated`: use `testType.equal()` instead.
 
 ## Type Utilities
 
-> `Equal<A, B>`: 💀 deprecated. use `IsEqual` instead. This will be converted to a `filter`.
+> `Equal<A, B, Then = true, Else = false>`
 
-> `IsEqual<A, B>`: Check if `A` and `B` are the same.
+💀 deprecated. use `IsEqual` instead. This will be converted to a ↪️ `parse`.
 
-> `NotEqual<A, B>`:
+> `IsEqual<A, B, Then = true, Else = false>`
 
-> `IsNotEqual<A, B>`:
+⭕ `predicate`: if `A` and `B` are the same.
 
-> `IsExtend<A, B>`: Check if `A` extends or not extends `B`.
+> `NotEqual<A, B, Then = true, Else = false>`
 
-> `IsNotExtend<A, B>`:
+💀 deprecated. use `IsNotEqual` instead. This will be converted to a ↪️ `parse`.
 
-> `Extendable<A, B>`: `filter` > Check if `A` extends or not extends `B`.
+> `IsNotEqual<A, B, Then = true, Else = false>`:
 
-> `NotExtendable<A, B>`:
+⭕ `predicate`: check if `A` and `B` are not the same.
 
-> `IsAssign<A, B>`: Check if `A` can be assigned to `B`.
+> `Extendable<A, B, Then = A, Else = never>`
 
-> `CanAssign<A, B>`:
+↪️ `parse`: check if `A` extends `B`.
 
-✔️ `logical`
+> `IsExtend<A, B, Then = true, Else = false>`
 
-Check if `A` can be assigned to `B`.
+⭕ `predicate`: check if `A` extends `B`.
+
+> `NotExtendable<A, B, Then = A, Else = never>`:
+
+↪️ `parse`: check if `A` not extends `B`.
+
+> `IsNotExtend<A, B, Then = true, Else = false>`:
+
+⭕ `predicate`: check if `A` not extends `B`.
+
+> `IsAssign<A, B, Then = true, Else = false>`
+
+💀 `deprecated`: use `CanAssign` instead.
+
+> `CanAssign<A, B, Then = true, Else = false>`:
+
+⭕ `predicate`: check can `A` assign to `B`.
+
 A typical usage is using it with `assertType`:
 
 ```ts
@@ -159,9 +267,20 @@ assertType.isFalse(false as CanAssign<boolean, { a: string }>)
 assertType.isTrue(true as CanAssign<{ a:string, b:number }, { a: string }>)
 ```
 
+> `StrictCanAssign<A, B, Then = true, Else = false>`
+
+⭕ `predicate`: can `A` strictly assign to `B`
+
+When `A` is a union, all branches must be assignable to `B`.
+
+```ts
+StrictCanAssign<number | string, number> // false
+StrictCanAssign<number | string, number | string> // true
+```
+
 > `canAssign<T>(): (subject) => true`
 
-✔️ `immediate`, `logical`
+⭕💻 `predicate`, `compile-time`
 
 Returns a compile-time validating function to ensure `subject` is assignable to `T`.
 
@@ -172,7 +291,7 @@ assertType.isTrue(isConfig({ a: 'a' }))
 
 > `canAssign<T>(false): (subject) => false`:
 
-✔️ `immediate`, `logical`
+⭕💻 `predicate`, `compile-time`
 
 Returns a compile-time validating function to ensure `subject` is not assignable to `T`.
 
@@ -212,161 +331,366 @@ You can learn more in their respective sections:
 
 ### any
 
-> [`AnyType<T>`](./ts/any/readme.md#type-checking): `T === any`.
+> [`AnyType<T>`](./ts/any/readme.md#type-checking)
 
-> [`IsAny<T>`](./ts/any/readme.md#type-checking): `T === any`
+↪️ `parse`: `T === any`.
+
+> [`IsAny<T>`](./ts/any/readme.md#type-checking)
+
+⭕ `predicate`: `T === any`.
 
 > [`NotAnyType<T>`](./ts/any/readme.md#type-checking)
 
+↪️ `parse`: `T !== any`.
+
 > [`IsNotAny<T>`](./ts/any/readme.md#type-checking)
+
+⭕ `predicate`: `T !== any`.
 
 > [`IsAnyOrNever<T>`](./ts/any/readme.md#type-utilities)
 
+⭕ `predicate`: `T === any || T === never`.
+
 ### Array
 
-> [`ArrayType<T>`](./ts/array/readme.md#type-checking): Is the type `T` exactly an array and not a tuple.
+> [`ArrayType<T>`](./ts/array/readme.md#type-checking)
+
+↪️ `parse`: is the type `T` exactly an array and not a tuple.
 
 > [`IsArray<T>`](./ts/array/readme.md#type-checking)
 
+⭕ `predicate`: is the type `T` exactly an array and not a tuple.
+
 > [`NotArrayType<T>`](./ts/array/readme.md#type-checking)
+
+↪️ `parse`: is the type `T` not an array or tuple.
 
 > [`IsNotArray<T>`](./ts/array/readme.md#type-checking)
 
-> [`IsArrayOrNever<T>`](./ts/array/readme.md#type-utilities)
+⭕ `predicate`: is the type `T` exactly an array and not a tuple.
 
-> [`At<A, N, Fail = never>`](ts/array_plus/array.ts#L19): gets the element type at index `N` in the array `A`.
+> [`At<A, N, Fail = never>`](ts/array_plus/array.ts#L19)
 
-> `CommonPropKeys<A>`: gets common keys inside the records in the array `A` (deprecate `CommonKeys`).
+🔨 `utilities`: gets the element type at index `N` in the array `A`.
 
-> [`Concat<A, B>`](ts/array_plus/array.ts#L38): `[...A, ...B]`.
+> `CommonPropKeys<A>`
 
-> `CreateTuple<L, T>`: Creates `Tuple<T>` with `L` number of elements.
+🔨 `utilities`: gets common keys inside the records in the array `A` (deprecate `CommonKeys`).
 
-> `drop(array, value)`: drop a particular value from an array.
+> [`Concat<A, B>`](ts/array_plus/array.ts#L38)
 
-> `DropFirst<A>`: drops the first value type of `A`.
+🔨 `utilities`: `[...A, ...B]`.
 
-> `DropLast<A>`: drops the last value type of `A`.
+> `CreateTuple<L, T>`
 
-> `DropMatch<A, Criteria>`: drops entries matching `Criteria` in array or tuple `A`.
+🔨 `utilities`: creates `tuple<T>` with `L` number of elements.
 
-> `DropUndefined<A>`: drop undefined entries from array of tuple `A`.
+> `drop(array, value)`
 
-> `Filter<A, Criteria>`: filter the array or tuple `A`, keeping entries satisfying `Criteria`. **Deprecated. Renaming to `KeepMatch`**
+🔨 `utilities`: drop a particular value from an array.
 
-> `FindFirst<A, Criteria>`: gets the first type satisfying `Criteria`.
+> `DropFirst<A>`
 
-> `FindLast<A, Criteria>`: gets the last type satisfying `Criteria`.
+🔨 `utilities`: drops the first value type of `A`.
 
-> `Head<A>`: gets the first entry in the array.
+> `DropLast<A>`
 
-> `IntersectOfProps<A, K>`: gets the intersect of `A[K]` types (deprecate `MapToProp`)
+🔨 `utilities`: drops the last value type of `A`.
 
-> `KeepMatch<A, Criteria>`: keeps entries satisfying `Criteria` in array or tuple `A`.
+> `DropMatch<A, Criteria>`
 
-> `Last<A>`: gets the last type of array or tuple.
+🔨 `utilities`: drops entries matching `Criteria` in array or tuple `A`.
 
-> `literalArray(...entries)`: return an array whose items are restricted to the provided literals.
+> `DropUndefined<A>`
 
-> `PadLeft<A, Total, PadWith>`: pads `A` with `PadWith` if the length of `A` is less than `L`.
+🔨 `utilities`: drop undefined entries from array of tuple `A`.
 
-> `reduceWhile()`: `reduce()` with predicate for early termination. \
+> `Filter<A, Criteria>`
+
+💀🔨 `deprecated`,`utilities`: filter the array or tuple `A`, keeping entries satisfying `Criteria`. **Deprecated. Renaming to `KeepMatch`**
+
+> `FindFirst<A, Criteria>`
+
+🔨 `utilities`: gets the first type satisfying `Criteria`.
+
+> `FindLast<A, Criteria>`
+
+🔨 `utilities`: gets the last type satisfying `Criteria`.
+
+> `Head<A>`
+
+🔨 `utilities`: gets the first entry in the array.
+
+> `IntersectOfProps<A, K>`
+
+🔨 `utilities`: gets the intersect of `A[K]` types (deprecate `MapToProp`)
+
+> `KeepMatch<A, Criteria>`
+
+🔨 `utilities`: keeps entries satisfying `Criteria` in array or tuple `A`.
+
+> `Last<A>`
+
+🔨 `utilities`: gets the last type of array or tuple.
+
+> `literalArray(...entries)`
+
+🔨 `utilities`: return an array whose items are restricted to the provided literals.
+
+> `PadLeft<A, Total, PadWith>`
+
+🔨 `utilities`: pads `A` with `PadWith` if the length of `A` is less than `L`.
+
+> `reduceWhile()`
+
+🔨 `utilities`: `reduce()` with predicate for early termination. \
   A simple version of the same function in the `ramda` package.
 
-> `Reverse<A>`: reverses the order of `A`.
+> `Reverse<A>`
 
-> `Some<A, Criteria>`: true if some elements in `A` matches `Criteria`.
+🔨 `utilities`: reverses the order of `A`.
 
-> `Tail<A>`: Gets the types of a tuple except the first entry.
+> `Some<A, Criteria>`
 
-> `UnionOfProps<A, K>`: gets the union of `A[K]` types (deprecate `PropUnion`).
+🔨 `utilities`: true if some elements in `A` matches `Criteria`.
 
-> `UnionOfValues<A>`: gets the union of value types in `A` (deprecate `ArrayValue`).
+> `Tail<A>`
 
-> [`ArrayPlus.IndexAt<A, N, Fail = never>`](ts/array_plus/array_plus.ts#L23): gets the normalized index for `A`.
+🔨 `utilities`: Gets the types of a tuple except the first entry.
 
-> [`ArrayPlus.IsIndexOutOfBound<A, N, Then = true, Else = false>`](ts/array_plus/array_plus.ts#L62): Is `N` an out of bound index of `A`. Supports negative numbers.
+> `UnionOfProps<A, K>`
+
+🔨 `utilities`: gets the union of `A[K]` types (deprecate `PropUnion`).
+
+> `UnionOfValues<A>`
+
+🔨 `utilities`: gets the union of value types in `A` (deprecate `ArrayValue`).
+
+> [`ArrayPlus.IndexAt<A, N, Fail = never>`](ts/array_plus/array_plus.ts#L23)
+
+🔨 `utilities`: gets the normalized index for `A`.
+
+> [`ArrayPlus.IsIndexOutOfBound<A, N, Then = true, Else = false>`](ts/array_plus/array_plus.ts#L62)
+
+⭕ `predicate`: is `N` an out of bound index of `A`. Supports negative numbers.
 
 ### bigint
 
-> [`BigintType<T>`](./ts/bigint/readme.md#type-checking): `T === bigint`.
+> [`BigintType<T, Then = T, Else = never>`](./ts/bigint/bigint_type.ts#L15)
 
-> [`IsBigint<T>`](./ts/bigint/readme.md#type-checking): `T === bigint`
+↪️ `parse`: if `T` is `bigint` or bigint literal.
 
-> [`NotBigintType<T>`](./ts/bigint/readme.md#type-checking)
+> [`IsBigint<T, Then = true, Else = false>`](./ts/bigint/bigint_type.ts#L33)
 
-> [`IsNotBigint<T>`](./ts/bigint/readme.md#type-checking)
+⭕ `predicate`: if `T` is `bigint` or bigint literal.
+
+> [`NotBigintType<T, Then = T, Else = never>`](./ts/bigint/bigint_type.ts#L47)
+
+↪️ `parse`: if `T` is not `bigint` or bigint literal.
+
+> [`IsNotBigInt<T, Then = true, Else = false>`](./ts/bigint/bigint_type.ts#L61)
+
+⭕ `predicate`: if `T` is not `bigint` or bigint literal.
+
+> [`StrictBigintType<T, Then = T, Else = never>`](./ts/bigint/strict_bigint_type.ts#L15)
+
+↪️ `parse`: if `T` is exactly `bigint`.
+
+> [`IsStrictBigint<T, Then = true, Else = false>`](./ts/bigint/strict_bigint_type.ts#L33)
+
+⭕ `predicate`: if `T` is exactly `bigint`.
+
+> [`NotStrictBigintType<T, Then = T, Else = never>`](./ts/bigint/strict_bigint_type.ts#L47)
+
+↪️ `parse`: if `T` is not exactly `bigint`.
+
+> [`IsNotStrictBigint<T, Then = true, Else = false>`](./ts/bigint/strict_bigint_type.ts#L61)
+
+⭕ `predicate`: if `T` is not exactly `bigint`.
 
 ### boolean
 
-> [`BooleanType<T>`](./ts/boolean/readme.md#type-checking): `T === boolean`.
+> [`BooleanType<T>`](./ts/boolean/readme.md#type-checking)
 
-> [`IsBoolean<T>`](./ts/boolean/readme.md#type-checking): `T === boolean`
+↪️ `parse`: `T === boolean`.
+
+> [`IsBoolean<T>`](./ts/boolean/readme.md#type-checking)
+
+⭕ `predicate`: `T === boolean`
 
 > [`NotBooleanType<T>`](./ts/boolean/readme.md#type-checking)
 
+↪️ `parse`: `T !== boolean`.
+
 > [`IsNotBoolean<T>`](./ts/boolean/readme.md#type-checking)
+
+⭕ `predicate`: `T !== boolean`
 
 ### function
 
-> [`FunctionType<T>`](./ts/function/readme.md#type-checking): `T === function`.
+> [`FunctionType<T>`](./ts/function/readme.md#type-checking)
 
-> [`IsFunction<T>`](./ts/function/readme.md#type-checking): `T === function`
+↪️ `parse`: `T === function`.
+
+> [`IsFunction<T>`](./ts/function/readme.md#type-checking)
+
+⭕ `predicate`: `T === function`
 
 > [`NotFunctionType<T>`](./ts/function/readme.md#type-checking)
 
+↪️ `parse`: `T !== function`.
+
 > [`IsNotFunction<T>`](./ts/function/readme.md#type-checking)
 
-> `AnyFunction<P, R>`: a generic type for any function
+⭕ `predicate`: `T !== function`
 
-> `ExtractFunction<F>`: extract the function signature from a type `F`.
+> `AnyFunction<P, R>`
 
-> `extractFunction(fn: F)`: adjust type of `fn` to its function signature only.
+🔨 `utilities`: a generic type for any function
 
-> `inspect<T>(value: T, inspector?: (v: T) => void)`: inspect a value and return it.\
-  Inspector defaults to `console.dir()`
+> `ExtractFunction<F>`
+
+🔨 `utilities`: extract the function signature from a type `F`.
+
+> `extractFunction(fn: F)`
+
+🔨 `utilities`: adjust type of `fn` to its function signature only.
+
+> `inspect<T>(value: T, inspector?: (v: T) => void)`
+
+🔨 `utilities`: inspect a value and return it. Inspector defaults to `console.dir()`
 
 ### never
 
-> [`NeverType<T>`](./ts/never/readme.md#type-checking): `T === never`.
+> [`NeverType<T>`](./ts/never/readme.md#type-checking)
 
-> [`IsNever<T>`](./ts/never/readme.md#type-checking): `T === never`
+↪️ `parse`: `T === never`.
+
+> [`IsNever<T>`](./ts/never/readme.md#type-checking)
+
+⭕ `predicate`: `T === never`
 
 > [`NotNeverType<T>`](./ts/never/readme.md#type-checking)
 
+↪️ `parse`: `T !== never`.
+
 > [`IsNotNever<T>`](./ts/never/readme.md#type-checking)
+
+⭕ `predicate`: `T !== never`
 
 ### null
 
-> [`NullType<T>`](ts/null/readme.md#type-checking)
+> [`NullType<T>`](./ts/null/readme.md#type-checking)
 
-> [`IsNull<T>`](ts/null/readme.md#type-checking)
+↪️ `parse`: `T === null`.
 
-> [`NotNullType<T>`](ts/null/readme.md#type-checking)
+> [`IsNull<T>`](./ts/null/readme.md#type-checking)
 
-> [`IsNotNull<T>`](ts/null/readme.md#type-checking)
+⭕ `predicate`: `T === null`
+
+> [`NotNullType<T>`](./ts/null/readme.md#type-checking)
+
+↪️ `parse`: `T !== null`.
+
+> [`IsNotNull<T>`](./ts/null/readme.md#type-checking)
+
+⭕ `predicate`: `T !== null`
 
 ### number
 
-> [`Numeric`](ts/number_plus/number.ts#L4): either `number` or `bigint`.
+> [`NumberType<T, Then = N, Else = never>`](./ts/number/number_type.ts#L14)
 
-> [`Zero`](ts/number_plus/number.ts#L9): `0` in `number` or `bigint`.
+↪️ `parse`: is the type `T` `number`.
 
-> [`Integer<N, Then = N, Else = never>`](ts/number_plus/number.ts#L27): is integer.
+> [`IsNumber<T, Then = true, Else = false>`](./ts/number/number_type.ts#L27)
 
-> [`IsInteger<N, Then = true, Else = false>`](ts/number_plus/number.ts#L46): is integer.
+⭕ `predicate`: is the type `T` `number`.
 
-> [`IsWhole<N, Then = true, Else = false>`](ts/number_plus/number.ts#L62): is integer.
+> [`NotNumberType<T, Then = T, Else = never>`](./ts/number/number_type.ts#L40)
 
-> [`Negative<N, Then = N, Else = never>`](ts/number_plus/number.ts#L77): is negative.
+↪️ `parse`: is the type `T` not `number`.
 
-> [`NonNegative<N, Then = N, Else = never>`](ts/number_plus/number.ts#L96): is non-negative
+> [`IsNotNumber<T, Then = true, Else = false>`](./ts/number/number_type.ts#L53)
 
-> [`NumberType<T, Then = N, Else = never>`](ts/number_plus/number.ts#L108): Is the type `T` exactly `number`.
+⭕ `predicate`: is the type `T` not `number`.
 
-> [`Positive<N, Then = N, Else = never>`](ts/number_plus/number.ts#L124): is positive.
+> [`StrictNumberType<T, Then = N, Else = never>`](./ts/number/strict_number_type.ts#L19)
 
-> [`IsPositive<N, Then = N, Else = never>`](ts/number_plus/number.ts#L144): is positive.
+↪️ `parse`: is the type `T` exactly `number`.
+
+> [`IsStrictNumber<T, Then = true, Else = false>`](./ts/number/strict_number_type.ts#L41)
+
+⭕ `predicate`: is the type `T` exactly `number`.
+
+> [`NotStrictNumberType<T, Then = T, Else = never>`](./ts/number/strict_number_type.ts#L55)
+
+↪️ `parse`: is the type `T` not exactly `number`.
+
+> [`IsNotStrictNumber<T, Then = true, Else = false>`](./ts/number/strict_number_type.ts#L69)
+
+⭕ `predicate`: is the type `T` not exactly `number`.
+
+### numeric
+
+> [`Numeric`](./ts/numeric/number.ts#L4)
+
+↪️ `parse`: either `number` or `bigint`.
+
+> [`Zero`](ts/numeric_plus/number.ts#L9): `0` in `number` or `bigint`.
+
+⭕ `predicate`: `T === number`
+
+> [`Integer<N, Then = N, Else = never>`](./ts/numeric/integer.ts#L15)
+
+↪️ `parse`: is integer.
+
+> [`IsInteger<N, Then = true, Else = false>`](./ts/numeric/integer.ts#L32)
+
+⭕ `predicate`: is integer.
+
+> [`NotInteger<N, Then = N, Else = never>`](./ts/numeric/integer.ts#L45)
+
+↪️ `parse`: is not integer.
+
+> [`IsNotInteger<N, Then = true, Else = false>`](./ts/numeric/integer.ts#L60)
+
+⭕ `predicate`: is not integer.
+
+> [`IsWhole<N, Then = true, Else = false>`](./ts/numeric/integer.ts#L75)
+
+💀⭕ `deprecated`, `predicate`: is integer. Use `IsInteger` instead.
+
+> [`Negative<N, Then = N, Else = never>`](./ts/numeric/negative.ts#L19)
+
+↪️ `parse`: is negative.
+
+> [`IsNegative<N, Then = true, Else = false>`](./ts/numeric/negative.ts#L53)
+
+⭕ `predicate`: is negative.
+
+> [`NonNegative<N, Then = N, Else = never>`](./ts/numeric/negative.ts#L69)
+
+↪️ `parse`: is not negative.
+
+> [`IsNonNegative<N, Then = N, Else = never>`](./ts/numeric/negative.ts#L101)
+
+⭕ `predicate`: is not negative.
+
+> [`Positive<N, Then = N, Else = never>`](./ts/numeric/positive.ts#15)
+
+↪️ `parse`: is positive.
+
+> [`IsPositive<N, Then = true, Else = false>`](./ts/numeric/positive.ts#L36)
+
+⭕ `predicate`: is positive.
+
+> [`NotPositive<N, Then = N, Else = never>`](./ts/numeric/positive.ts#48)
+
+↪️ `parse`: is not positive.
+
+> [`IsNotPositive<N, Then = true, Else = false>`](./ts/numeric/positive.ts#L60)
+
+⭕ `predicate`: is not positive.
 
 ### object
 
@@ -416,61 +740,109 @@ You can learn more in their respective sections:
 
 > [`StringType<T>`](ts/string/readme.md#type-checking)
 
+↪️ `parse`: is `string`.
+
 > [`IsString<T>`](ts/string/readme.md#type-checking)
+
+⭕ `predicate`: is `string`.
 
 > [`NotStringType<T>`](ts/string/readme.md#type-checking)
 
+↪️ `parse`: is not `string`.
+
 > [`IsNotString<T>`](ts/string/readme.md#type-checking)
+
+⭕ `predicate`: is not `string`.
 
 ### symbol
 
 > [`SymbolType<T>`](ts/symbol/readme.md#type-checking)
 
+↪️ `parse`: is `symbol`.
+
 > [`IsSymbol<T>`](ts/symbol/readme.md#type-checking)
+
+⭕ `predicate`: is `symbol`.
 
 > [`NotSymbolType<T>`](ts/symbol/readme.md#type-checking)
 
+↪️ `parse`: is not `symbol`.
+
 > [`IsNotSymbol<T>`](ts/symbol/readme.md#type-checking)
+
+⭕ `predicate`: is not `symbol`.
 
 ### tuple
 
 > [`TupleType<T>`](ts/tuple/readme.md#type-checking)
 
+↪️ `parse`: is a tuple.
+
 > [`IsTuple<T>`](ts/tuple/readme.md#type-checking)
+
+⭕ `predicate`: is a tuple.
 
 > [`NotTupleType<T>`](ts/tuple/readme.md#type-checking)
 
+↪️ `parse`: is not a tuple.
+
 > [`IsNotTuple<T>`](ts/tuple/readme.md#type-checking)
+
+⭕ `predicate`: is not a tuple.
 
 ### undefined
 
-> [`UndefinedType<T>`](./ts/undefined/readme.md#type-checking): `T === undefined`.
+> [`UndefinedType<T>`](./ts/undefined/readme.md#type-checking)
 
-> [`IsUndefined<T>`](./ts/undefined/readme.md#type-checking): `T === undefined`
+↪️ `parse`: `T === undefined`.
+
+> [`IsUndefined<T>`](./ts/undefined/readme.md#type-checking)
+
+⭕ `predicate`: `T === undefined`
 
 > [`NotUndefinedType<T>`](./ts/undefined/readme.md#type-checking)
 
+↪️ `parse`: `T !== undefined`.
+
 > [`IsNotUndefined<T>`](./ts/undefined/readme.md#type-checking)
+
+⭕ `predicate`: `T !== undefined`
 
 ### unknown
 
-> [`UnknownType<T>`](./ts/unknown/readme.md#type-checking): `T === unknown`.
+> [`UnknownType<T>`](./ts/unknown/readme.md#type-checking)
 
-> [`IsUnknown<T>`](./ts/unknown/readme.md#type-checking): `T === unknown`
+↪️ `parse`: `T === unknown`.
+
+> [`IsUnknown<T>`](./ts/unknown/readme.md#type-checking)
+
+⭕ `predicate`: `T === unknown`
 
 > [`NotUnknownType<T>`](./ts/unknown/readme.md#type-checking)
 
+↪️ `parse`: `T !== unknown`.
+
 > [`IsNotUnknown<T>`](./ts/unknown/readme.md#type-checking)
+
+⭕ `predicate`: `T !== unknown`
 
 ### void
 
-> [`VoidType<T>`](./ts/void/readme.md#type-checking): `T === void`.
+> [`VoidType<T>`](./ts/void/readme.md#type-checking)
 
-> [`IsVoid<T>`](./ts/void/readme.md#type-checking): `T === void`
+↪️ `parse`: `T === void`.
+
+> [`IsVoid<T>`](./ts/void/readme.md#type-checking)
+
+⭕ `predicate`: `T === void`
 
 > [`NotVoidType<T>`](./ts/void/readme.md#type-checking)
 
+↪️ `parse`: `T !== void`.
+
 > [`IsNotVoid<T>`](./ts/void/readme.md#type-checking)
+
+⭕ `predicate`: `T !== void`
 
 ## Constant Types
 
@@ -627,19 +999,33 @@ It will cast the type between `number` and `bigint` if needed.
 
 ## Utility Functions
 
-> `amend(subject)...`: amend subject as union or intersect of `T`.
+> `amend(subject)...`
 
-> `facade(subject, ...props)`: create a facade of `subject`.
+🔨 `utilities`: amend subject as union or intersect of `T`.
 
-> `getField(subject, key, defaultValue)`: get a field from a subject. Works against nullable and optional subject.
+> `facade(subject, ...props)`
 
-> `hasKey()`: function of `HasKey`.
+🔨 `utilities`: create a facade of `subject`.
 
-> `hasProperty(value, prop)`: assert `value` has property `prop`. This will pick the correct union type.
+> `getField(subject, key, defaultValue)`
 
-> `isConstructor(subject)`: type guard `subject` is a constructor.
+🔨 `utilities`: get a field from a subject. Works against nullable and optional subject.
 
-> `isSystemError(code, err)`: type guard `err` with NodeJS error code.
+> `hasKey()`
+
+🔨 `utilities`: function of `HasKey`.
+
+> `hasProperty(value, prop)`
+
+🔨 `utilities`: assert `value` has property `prop`. This will pick the correct union type.
+
+> `isConstructor(subject)`
+
+🔨 `utilities`: type guard `subject` is a constructor.
+
+> `isSystemError(code, err)`
+
+🔨 `utilities`: type guard `err` with NodeJS error code.
 
 > `omit(obj, ...props)`: omit properties from `obj`.
 

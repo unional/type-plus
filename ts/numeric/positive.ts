@@ -1,5 +1,5 @@
-import { IsAny } from '../any/any_type.js'
-import { IsNever } from '../index.js'
+import type { IsAny } from '../any/any_type.js'
+import type { IsNever } from '../index.js'
 
 /**
  * Check if `T` is a positive numeric type.

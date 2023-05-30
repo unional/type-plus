@@ -4,45 +4,45 @@
 
 ## Type Checking
 
-The `BigIntType<T>` and friends are used to check if a type is `bigint` or not.
+The `BigintType<T>` and friends are used to check if a type is `bigint` or not.
 
 They are loose type checks, meaning they match `bigint` and bigint literals,
 as well as intersection types.
 
 ```ts
-import type { BigIntType } from 'type-plus'
+import type { BigintType } from 'type-plus'
 
-type R = BigIntType<bigint> // bigint
+type R = BigintType<bigint> // bigint
 
-type R = BigIntType<1n> // bigint
-type R = BigIntType<bigint & { a: 1}> // bigint
+type R = BigintType<1n> // bigint
+type R = BigintType<bigint & { a: 1}> // bigint
 ```
 
-- [`BigIntType<T, Then = T, Else = never>`](bigint_type.ts#L15): check if `T` is `bigint` or bigint literal.
-- [`IsBigInt<T, Then = true, Else = false`](bigint_type.ts#L33): is `T` `bigint`.
-- [`NotBigIntType<T, Then = T, Else = never>`](bigint_type.ts#L47): check if `T` is not `bigint`.
+- [`BigintType<T, Then = T, Else = never>`](bigint_type.ts#L15): check if `T` is `bigint` or bigint literal.
+- [`IsBigint<T, Then = true, Else = false`](bigint_type.ts#L33): is `T` `bigint`.
+- [`NotBigintType<T, Then = T, Else = never>`](bigint_type.ts#L47): check if `T` is not `bigint`.
 - [`IsNotBigInt<T, Then = true, Else = false>`](bigint_type.ts#L61): is `T` not `bigint`.
 
 ---
 
-The `StrictBigIntType<T>` and friends are used to check if a type is exactly `bigint` or not.
+The `StrictBigintType<T>` and friends are used to check if a type is exactly `bigint` or not.
 
 They are strict type checks, meaning they match only the type `bigint`,
 and not bigint literals or intersection types.
 
 ```ts
-import type { StrictBigIntType } from 'type-plus'
+import type { StrictBigintType } from 'type-plus'
 
-type R = StrictBigIntType<bigint> // bigint
+type R = StrictBigintType<bigint> // bigint
 
-type R = StrictBigIntType<1n> // never
-type R = StrictBigIntType<bigint & { a: 1}> // never
+type R = StrictBigintType<1n> // never
+type R = StrictBigintType<bigint & { a: 1}> // never
 ```
 
-- [`StrictBigIntType<T, Then = T, Else = never>`](strict_bigint_type.ts#L15): check if `T` is exactly `bigint`.
-- [`IsStrictBigInt<T, Then = true, Else = false`](strict_bigint_type.ts#L33): is `T` exactly `bigint`.
-- [`NotStrictBigIntType<T, Then = T, Else = never>`](strict_bigint_type.ts#L47): check if `T` is not exactly `bigint`.
-- [`IsNotStrictBigInt<T, Then = true, Else = false>`](strict_bigint_type.ts#L61): is `T` not exactly `bigint`.
+- [`StrictBigintType<T, Then = T, Else = never>`](strict_bigint_type.ts#L15): check if `T` is exactly `bigint`.
+- [`IsStrictBigint<T, Then = true, Else = false`](strict_bigint_type.ts#L33): is `T` exactly `bigint`.
+- [`NotStrictBigintType<T, Then = T, Else = never>`](strict_bigint_type.ts#L47): check if `T` is not exactly `bigint`.
+- [`IsNotStrictBigint<T, Then = true, Else = false>`](strict_bigint_type.ts#L61): is `T` not exactly `bigint`.
 
 ## References
 

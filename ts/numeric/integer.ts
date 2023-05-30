@@ -62,6 +62,8 @@ export type IsNotInteger<T, Then = true, Else = false> = NotInteger<T, Else, The
 /**
  * Check if T is an integer, including bigint.
  *
+ * @deprecated use `IsInteger` instead
+ *
  * ```ts
  * type R = IsWhole<0> // 0
  * type R = IsWhole<1n> // 1n

@@ -52,7 +52,7 @@ it('returns never for other types', () => {
 	testType.never<Integer<() => void>>(true)
 })
 
-it('returns never if T is union of non ineter', () => {
+it('returns never if T is union of non integer', () => {
 	testType.never<Integer<1 | 1.1>>(true)
 })
 

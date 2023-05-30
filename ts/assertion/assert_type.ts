@@ -8,6 +8,9 @@ import { AnyFunction } from '../function/any_function.js'
  */
 export function assertType<T>(subject: T): asserts subject is T
 export function assertType<T>(subject: unknown, validator: (s: T) => boolean): asserts subject is T
+/**
+ * @deprecated this is not a failsafe test
+ */
 export function assertType<T extends new (...args: any) => any>(
 	subject: unknown,
 	constructor: T
