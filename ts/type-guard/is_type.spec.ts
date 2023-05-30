@@ -1,5 +1,5 @@
 import { describe, expect, it, test } from '@jest/globals'
-import { isType, testType, type Equal } from '../index.js'
+import { isType, testType, type IsEqual } from '../index.js'
 
 describe('isType()', () => {
 	describe('without validator', () => {
@@ -64,7 +64,7 @@ describe('isType()', () => {
 describe('isType.t()', () => {
 	test('accept true type but not false or boolean', () => {
 		expect(isType.t<true>()).toBe(true)
-		expect(isType.t<Equal<1, 1>>()).toBe(true)
+		expect(isType.t<IsEqual<1, 1>>()).toBe(true)
 
 		// @ts-expect-error
 		isType.t<false>()
@@ -84,7 +84,7 @@ describe('isType.t()', () => {
 describe('isType.f()', () => {
 	test('accept false type but not true or boolean', () => {
 		expect(isType.f<false>()).toBe(true)
-		expect(isType.f<Equal<1, 2>>()).toBe(true)
+		expect(isType.f<IsEqual<1, 2>>()).toBe(true)
 
 		// @ts-expect-error
 		isType.f<true>()

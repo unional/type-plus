@@ -38,16 +38,7 @@ export type {
 } from './function/strict_function_type.js'
 export * from './functional/index.js'
 export type { JSONArray, JSONObject, JSONPrimitive, JSONTypes } from './json.js'
-export type {
-	Abs,
-	Add,
-	Decrement,
-	GreaterThan,
-	Increment,
-	Max,
-	Multiply,
-	Subtract
-} from './math/index.js'
+export type { Abs, Add, Decrement, GreaterThan, Increment, Max, Multiply, Subtract } from './math/index.js'
 export * as MathPlus from './math/math_plus.js'
 export type { IsNever, IsNotNever, Is_Never, NeverType, NotNeverType, Not_Never } from './never/never_type.js'
 export * from './nodejs/index.js'
@@ -95,6 +86,7 @@ export * from './testing/test_type.js'
 export * from './tuple/create_tuple.js'
 export * as TuplePlus from './tuple/tuple_plus.js'
 export type { IsNotTuple, IsTuple, NotTupleType, TupleType } from './tuple/tuple_type.js'
+export * from './type-guard/is_type.js'
 export type { Failed, FailedT } from './type/failed.js'
 export type { NoInfer } from './type/no_infer.js'
 export type {

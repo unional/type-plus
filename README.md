@@ -13,7 +13,8 @@ Advance type utilities for [TypeScript].
 
 ## Feature Highlights
 
-- [Type assertions](#type-assertions)
+- [Type assertions](./ts/assertion/readme.md)
+- [Type Guard](./ts/type-guard/readme.md)
 - [Type Checking](#type-checking)
 - [Type Utilities](#type-utilities)
 - [Nominal Types](#nominal-types)
@@ -37,62 +38,8 @@ Type assertions can be `immediate` compile time check, or they can have `runtime
 
 There are 4 kinds of type assertions:
 
-- `type guard`: [User-defined type guard functions][type_guard] (`if (isBool(s))`) introduced in TypeScript 1.6.
-- [assertion functions](./ts/assertion/readme.md): introduced in TypeScript 3.7.
 - `logical`: functions or generic types that returns `true` or `false` type to be used in type level programming.
 - `filter`: generic type that returns `never` if the test fails.
-
-`isType<T>(subject: T)`:
-
-✔️ `immediate`
-
-It ensures `subject` satisfies `T`.
-It is identical to `assertType<T>(subject: T)`.
-You need to specify `T`.
-
-`isType<T>(subject, validator)`:
-
-`isType<T>(subject, Class)`:
-
-`isType.t<T>(subject?: T)`:
-
-✔️ `immediate`, `runtime`
-
-It can be used as type check: `isType.t<Equal<A, B>>()`,
-or value type check: `isType.t(valueTypeIsTrue)`.
-It returns `true` when passes (which is the only case when used in TypeScript).
-
-`isType.f<T>(subject?: T)`:
-
-✔️ `immediate`, `runtime`
-
-It can be used as type check: `isType.f<Equal<A, B>>()`,
-or value type check: `isType.f(valueTypeIsFalse)`.
-It returns `true` when passes (which is the only case when used in TypeScript).
-
-`isType.equal<true|false, A, B>()`:
-
-✔️ `immediate`
-
-Slightly easier to use then `isType.t<>()` and `isType.f<>()`,
-when doing type-level only equality comparison as you don't have to import `Equal<>`.
-
-✔️ `type guard`, `runtime`
-
-These overloads of `isType` allow you to specify a `validator`.
-With these overloads, `subject` can be `unknown` or `any`.
-
-[`isType.never<S>()`](ts/predicates/isType.ts#L25):
-
-✔️ `immediate`
-
-Check is the type `never`.
-
-[`isType.never(s)`](ts/predicates/isType.ts#L29):
-
-✔️ `immediate`
-
-Check is the value is type `never`.
 
 `Equal<A, B>`:
 `IsEqual<A, B>`:
