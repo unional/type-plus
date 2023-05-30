@@ -19,14 +19,46 @@
 <p><a href="https://code.visualstudio.com/"><img src="https://img.shields.io/badge/vscode-ready-green.svg" alt="Visual Studio Code"></a>
 <a href="https://wallabyjs.com/oss/"><img src="https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=flat&logo=github" alt="Wallaby.js"></a></p>
 <p>More than 200 type utilities for <a href="https://www.typescriptlang.org">TypeScript</a>.</p>
-<a id="$feature-highlights" class="tsd-anchor"></a><h2><a href="#$feature-highlights" style="color:inherit;text-decoration:none">Feature Highlights</a></h2><blockquote>
-<p><a href="./ts/assertion/readme.md">Type assertions</a>
-<a href="./ts/type-guard/readme.md">Type Guard</a>
-<a href="#type-checking">Type Checking</a>
-<a href="#type-utilities">Type Utilities</a>
-<a href="#nominal-types">Nominal Types</a>
-<a href="#functional-types">Functional Types</a></p>
-</blockquote>
+<a id="$table-of-contents" class="tsd-anchor"></a><h2><a href="#$table-of-contents" style="color:inherit;text-decoration:none">Table of Contents</a></h2><ol>
+<li><a href="#assertion-function">Assertion Function</a></li>
+<li><a href="#type-guard">Type Guard</a></li>
+<li><a href="#type-utilities">Type Utilities</a></li>
+<li><a href="#type-checking">Type Checking</a><ol>
+<li><a href="#any">any</a></li>
+<li><a href="#array">Array</a></li>
+<li><a href="#bigint">bigint</a></li>
+<li><a href="#boolean">boolean</a></li>
+<li><a href="#function">function</a></li>
+<li><a href="#never">never</a></li>
+<li><a href="#null">null</a></li>
+<li><a href="#number">number</a></li>
+<li><a href="#object">object</a></li>
+<li><a href="#promise">Promise</a></li>
+<li><a href="#string">string</a></li>
+<li><a href="#symbol">symbol</a></li>
+<li><a href="#tuple">tuple</a></li>
+<li><a href="#undefined">undefined</a></li>
+<li><a href="#unknown">unknown</a></li>
+<li><a href="#void">void</a></li>
+</ol>
+</li>
+<li><a href="#constant-types">Constant Types</a></li>
+<li><a href="#json-support">JSON Support</a></li>
+<li><a href="#type-manipulation">Type manipulation</a></li>
+<li><a href="#type-predicates">Type Predicates</a><ol>
+<li><a href="#logical">Logical</a></li>
+</ol>
+</li>
+<li><a href="#math">Math</a></li>
+<li><a href="#utility-functions">Utility Functions</a></li>
+<li><a href="#nominal-types">Nominal Types</a></li>
+<li><a href="#functional-types">Functional Types</a></li>
+<li><a href="#attribution">Attribution</a></li>
+<li><a href="#useful-tips">Useful Tips</a></li>
+<li><a href="#similar-projects">Similar projects</a></li>
+<li><a href="#contribute">Contribute</a></li>
+<li><a href="#wallabyjs">Wallaby.js</a></li>
+</ol>
 <a id="$installation" class="tsd-anchor"></a><h2><a href="#$installation" style="color:inherit;text-decoration:none">Installation</a></h2><pre><code class="language-sh"><span class="hl-0">npm </span><span class="hl-1">install</span><span class="hl-0"> </span><span class="hl-1">type-plus</span><br/><br/><span class="hl-0">yarn </span><span class="hl-1">add</span><span class="hl-0"> </span><span class="hl-1">type-plus</span><br/><br/><span class="hl-0">pnpm </span><span class="hl-1">add</span><span class="hl-0"> </span><span class="hl-1">type-plus</span>
 </code></pre>
 <a id="$assertion-function" class="tsd-anchor"></a><h2><a href="#$assertion-function" style="color:inherit;text-decoration:none">Assertion Function</a></h2><p><a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions">Assertion Functions</a> are special functions that asserts certain conditions of your program.</p>
@@ -172,52 +204,24 @@ A typical usage is using it with <code>assertType</code>:</p>
 Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</code>, <code>IsString&lt;T&gt;</code>, <code>NotStringType&lt;T&gt;</code>, and <code>IsNotString&lt;T&gt;</code>.</p>
 <p>Some types will have more checks, such as <code>boolean</code> has <code>StrictBooleanType&lt;T&gt;</code>, <code>TrueType&lt;T&gt;</code>, <code>FalseType&lt;T&gt;</code>.</p>
 <p>You can learn more in their respective sections:</p>
-<blockquote>
-<p><a href="./ts/any/readme.md">any</a></p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/array/readme.md">array</a></p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/bigint/readme.md">bigint</a></p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/boolean/readme.md">boolean</a></p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/function/readme.md">function</a></p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/never/readme.md">never</a></p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/null/readme.md">null</a></p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/number/readme.md">number</a></p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/object/readme.md">object</a></p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/string/readme.md">string</a></p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/symbol/readme.md">symbol</a></p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/tuple/readme.md">tuple</a></p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/undefined/readme.md">undefined</a></p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/unknown/readme.md">unknown</a></p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/void/readme.md">void</a></p>
-</blockquote>
-<a id="$any" class="tsd-anchor"></a><h2><a href="#$any" style="color:inherit;text-decoration:none">any</a></h2><blockquote>
+<ul>
+<li><a href="./ts/any/readme.md">any</a></li>
+<li><a href="./ts/array/readme.md">array</a></li>
+<li><a href="./ts/bigint/readme.md">bigint</a></li>
+<li><a href="./ts/boolean/readme.md">boolean</a></li>
+<li><a href="./ts/function/readme.md">function</a></li>
+<li><a href="./ts/never/readme.md">never</a></li>
+<li><a href="./ts/null/readme.md">null</a></li>
+<li><a href="./ts/number/readme.md">number</a></li>
+<li><a href="./ts/object/readme.md">object</a></li>
+<li><a href="./ts/string/readme.md">string</a></li>
+<li><a href="./ts/symbol/readme.md">symbol</a></li>
+<li><a href="./ts/tuple/readme.md">tuple</a></li>
+<li><a href="./ts/undefined/readme.md">undefined</a></li>
+<li><a href="./ts/unknown/readme.md">unknown</a></li>
+<li><a href="./ts/void/readme.md">void</a></li>
+</ul>
+<a id="$any" class="tsd-anchor"></a><h3><a href="#$any" style="color:inherit;text-decoration:none">any</a></h3><blockquote>
 <p><a href="./ts/any/readme.md#type-checking"><code>AnyType&lt;T&gt;</code></a>: <code>T === any</code>.</p>
 </blockquote>
 <blockquote>
@@ -232,7 +236,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <blockquote>
 <p><a href="./ts/any/readme.md#type-utilities"><code>IsAnyOrNever&lt;T&gt;</code></a></p>
 </blockquote>
-<a id="$array" class="tsd-anchor"></a><h2><a href="#$array" style="color:inherit;text-decoration:none">Array</a></h2><blockquote>
+<a id="$array" class="tsd-anchor"></a><h3><a href="#$array" style="color:inherit;text-decoration:none">Array</a></h3><blockquote>
 <p><a href="./ts/array/readme.md#type-checking"><code>ArrayType&lt;T&gt;</code></a>: Is the type <code>T</code> exactly an array and not a tuple.</p>
 </blockquote>
 <blockquote>
@@ -325,7 +329,109 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <blockquote>
 <p><a href="ts/array_plus/array_plus.ts#L62"><code>ArrayPlus.IsIndexOutOfBound&lt;A, N, Then = true, Else = false&gt;</code></a>: Is <code>N</code> an out of bound index of <code>A</code>. Supports negative numbers.</p>
 </blockquote>
-<a id="$object" class="tsd-anchor"></a><h2><a href="#$object" style="color:inherit;text-decoration:none">object</a></h2><blockquote>
+<a id="$bigint" class="tsd-anchor"></a><h3><a href="#$bigint" style="color:inherit;text-decoration:none">bigint</a></h3><blockquote>
+<p><a href="./ts/bigint/readme.md#type-checking"><code>BigintType&lt;T&gt;</code></a>: <code>T === bigint</code>.</p>
+</blockquote>
+<blockquote>
+<p><a href="./ts/bigint/readme.md#type-checking"><code>IsBigint&lt;T&gt;</code></a>: <code>T === bigint</code></p>
+</blockquote>
+<blockquote>
+<p><a href="./ts/bigint/readme.md#type-checking"><code>NotBigintType&lt;T&gt;</code></a></p>
+</blockquote>
+<blockquote>
+<p><a href="./ts/bigint/readme.md#type-checking"><code>IsNotBigint&lt;T&gt;</code></a></p>
+</blockquote>
+<a id="$boolean" class="tsd-anchor"></a><h3><a href="#$boolean" style="color:inherit;text-decoration:none">boolean</a></h3><blockquote>
+<p><a href="./ts/boolean/readme.md#type-checking"><code>BooleanType&lt;T&gt;</code></a>: <code>T === boolean</code>.</p>
+</blockquote>
+<blockquote>
+<p><a href="./ts/boolean/readme.md#type-checking"><code>IsBoolean&lt;T&gt;</code></a>: <code>T === boolean</code></p>
+</blockquote>
+<blockquote>
+<p><a href="./ts/boolean/readme.md#type-checking"><code>NotBooleanType&lt;T&gt;</code></a></p>
+</blockquote>
+<blockquote>
+<p><a href="./ts/boolean/readme.md#type-checking"><code>IsNotBoolean&lt;T&gt;</code></a></p>
+</blockquote>
+<a id="$function" class="tsd-anchor"></a><h3><a href="#$function" style="color:inherit;text-decoration:none">function</a></h3><blockquote>
+<p><a href="./ts/function/readme.md#type-checking"><code>FunctionType&lt;T&gt;</code></a>: <code>T === function</code>.</p>
+</blockquote>
+<blockquote>
+<p><a href="./ts/function/readme.md#type-checking"><code>IsFunction&lt;T&gt;</code></a>: <code>T === function</code></p>
+</blockquote>
+<blockquote>
+<p><a href="./ts/function/readme.md#type-checking"><code>NotFunctionType&lt;T&gt;</code></a></p>
+</blockquote>
+<blockquote>
+<p><a href="./ts/function/readme.md#type-checking"><code>IsNotFunction&lt;T&gt;</code></a></p>
+</blockquote>
+<blockquote>
+<p><code>AnyFunction&lt;P, R&gt;</code>: a generic type for any function</p>
+</blockquote>
+<blockquote>
+<p><code>ExtractFunction&lt;F&gt;</code>: extract the function signature from a type <code>F</code>.</p>
+</blockquote>
+<blockquote>
+<p><code>extractFunction(fn: F)</code>: adjust type of <code>fn</code> to its function signature only.</p>
+</blockquote>
+<blockquote>
+<p><code>inspect&lt;T&gt;(value: T, inspector?: (v: T) =&gt; void)</code>: inspect a value and return it.<br>  Inspector defaults to <code>console.dir()</code></p>
+</blockquote>
+<a id="$never" class="tsd-anchor"></a><h3><a href="#$never" style="color:inherit;text-decoration:none">never</a></h3><blockquote>
+<p><a href="./ts/never/readme.md#type-checking"><code>NeverType&lt;T&gt;</code></a>: <code>T === never</code>.</p>
+</blockquote>
+<blockquote>
+<p><a href="./ts/never/readme.md#type-checking"><code>IsNever&lt;T&gt;</code></a>: <code>T === never</code></p>
+</blockquote>
+<blockquote>
+<p><a href="./ts/never/readme.md#type-checking"><code>NotNeverType&lt;T&gt;</code></a></p>
+</blockquote>
+<blockquote>
+<p><a href="./ts/never/readme.md#type-checking"><code>IsNotNever&lt;T&gt;</code></a></p>
+</blockquote>
+<a id="$null" class="tsd-anchor"></a><h3><a href="#$null" style="color:inherit;text-decoration:none">null</a></h3><blockquote>
+<p><a href="ts/null/readme.md#type-checking"><code>NullType&lt;T&gt;</code></a></p>
+</blockquote>
+<blockquote>
+<p><a href="ts/null/readme.md#type-checking"><code>IsNull&lt;T&gt;</code></a></p>
+</blockquote>
+<blockquote>
+<p><a href="ts/null/readme.md#type-checking"><code>NotNullType&lt;T&gt;</code></a></p>
+</blockquote>
+<blockquote>
+<p><a href="ts/null/readme.md#type-checking"><code>IsNotNull&lt;T&gt;</code></a></p>
+</blockquote>
+<a id="$number" class="tsd-anchor"></a><h3><a href="#$number" style="color:inherit;text-decoration:none">number</a></h3><blockquote>
+<p><a href="ts/number_plus/number.ts#L4"><code>Numeric</code></a>: either <code>number</code> or <code>bigint</code>.</p>
+</blockquote>
+<blockquote>
+<p><a href="ts/number_plus/number.ts#L9"><code>Zero</code></a>: <code>0</code> in <code>number</code> or <code>bigint</code>.</p>
+</blockquote>
+<blockquote>
+<p><a href="ts/number_plus/number.ts#L27"><code>Integer&lt;N, Then = N, Else = never&gt;</code></a>: is integer.</p>
+</blockquote>
+<blockquote>
+<p><a href="ts/number_plus/number.ts#L46"><code>IsInteger&lt;N, Then = true, Else = false&gt;</code></a>: is integer.</p>
+</blockquote>
+<blockquote>
+<p><a href="ts/number_plus/number.ts#L62"><code>IsWhole&lt;N, Then = true, Else = false&gt;</code></a>: is integer.</p>
+</blockquote>
+<blockquote>
+<p><a href="ts/number_plus/number.ts#L77"><code>Negative&lt;N, Then = N, Else = never&gt;</code></a>: is negative.</p>
+</blockquote>
+<blockquote>
+<p><a href="ts/number_plus/number.ts#L96"><code>NonNegative&lt;N, Then = N, Else = never&gt;</code></a>: is non-negative</p>
+</blockquote>
+<blockquote>
+<p><a href="ts/number_plus/number.ts#L108"><code>NumberType&lt;T, Then = N, Else = never&gt;</code></a>: Is the type <code>T</code> exactly <code>number</code>.</p>
+</blockquote>
+<blockquote>
+<p><a href="ts/number_plus/number.ts#L124"><code>Positive&lt;N, Then = N, Else = never&gt;</code></a>: is positive.</p>
+</blockquote>
+<blockquote>
+<p><a href="ts/number_plus/number.ts#L144"><code>IsPositive&lt;N, Then = N, Else = never&gt;</code></a>: is positive.</p>
+</blockquote>
+<a id="$object" class="tsd-anchor"></a><h3><a href="#$object" style="color:inherit;text-decoration:none">object</a></h3><blockquote>
 <p><code>filterKey()</code>: type adjusted filter by key.</p>
 </blockquote>
 <blockquote>
@@ -361,19 +467,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <blockquote>
 <p><code>SpreadRecord&lt;A, B&gt;</code>: type for <code>{...a, ...b}</code> when both <code>a</code> and <code>b</code> are <code>Record</code><br>  for array, just do <code>[...A, ...B]</code>.</p>
 </blockquote>
-<a id="$function" class="tsd-anchor"></a><h2><a href="#$function" style="color:inherit;text-decoration:none">function</a></h2><blockquote>
-<p><code>AnyFunction&lt;P, R&gt;</code>: a generic type for any function</p>
-</blockquote>
-<blockquote>
-<p><code>ExtractFunction&lt;F&gt;</code>: extract the function signature from a type <code>F</code>.</p>
-</blockquote>
-<blockquote>
-<p><code>extractFunction(fn: F)</code>: adjust type of <code>fn</code> to its function signature only.</p>
-</blockquote>
-<blockquote>
-<p><code>inspect&lt;T&gt;(value: T, inspector?: (v: T) =&gt; void)</code>: inspect a value and return it.<br>  Inspector defaults to <code>console.dir()</code></p>
-</blockquote>
-<a id="$promise" class="tsd-anchor"></a><h2><a href="#$promise" style="color:inherit;text-decoration:none">Promise</a></h2><blockquote>
+<a id="$promise" class="tsd-anchor"></a><h3><a href="#$promise" style="color:inherit;text-decoration:none">Promise</a></h3><blockquote>
 <p><code>AwaitedProp&lt;T, V&gt;</code>: <code>Awaited</code> on specified props <code>P</code> in <code>T</code>.</p>
 </blockquote>
 <blockquote>
@@ -394,49 +488,19 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <blockquote>
 <p><code>transformMaybePromise(value, transformer)</code>: Apply the <code>transformer</code> to the <code>value</code>.<br>  It is also exported under <code>MaybePromise.transform()</code>.</p>
 </blockquote>
-<a id="$null" class="tsd-anchor"></a><h2><a href="#$null" style="color:inherit;text-decoration:none">null</a></h2><blockquote>
-<p><a href="ts/null/readme.md#type-checking"><code>NullType&lt;T&gt;</code></a></p>
+<a id="$string" class="tsd-anchor"></a><h3><a href="#$string" style="color:inherit;text-decoration:none">string</a></h3><blockquote>
+<p><a href="ts/string/readme.md#type-checking"><code>StringType&lt;T&gt;</code></a></p>
 </blockquote>
 <blockquote>
-<p><a href="ts/null/readme.md#type-checking"><code>IsNull&lt;T&gt;</code></a></p>
+<p><a href="ts/string/readme.md#type-checking"><code>IsString&lt;T&gt;</code></a></p>
 </blockquote>
 <blockquote>
-<p><a href="ts/null/readme.md#type-checking"><code>NotNullType&lt;T&gt;</code></a></p>
+<p><a href="ts/string/readme.md#type-checking"><code>NotStringType&lt;T&gt;</code></a></p>
 </blockquote>
 <blockquote>
-<p><a href="ts/null/readme.md#type-checking"><code>IsNotNull&lt;T&gt;</code></a></p>
+<p><a href="ts/string/readme.md#type-checking"><code>IsNotString&lt;T&gt;</code></a></p>
 </blockquote>
-<a id="$number" class="tsd-anchor"></a><h2><a href="#$number" style="color:inherit;text-decoration:none">number</a></h2><blockquote>
-<p><a href="ts/number_plus/number.ts#L4"><code>Numeric</code></a>: either <code>number</code> or <code>bigint</code>.</p>
-</blockquote>
-<blockquote>
-<p><a href="ts/number_plus/number.ts#L9"><code>Zero</code></a>: <code>0</code> in <code>number</code> or <code>bigint</code>.</p>
-</blockquote>
-<blockquote>
-<p><a href="ts/number_plus/number.ts#L27"><code>Integer&lt;N, Then = N, Else = never&gt;</code></a>: is integer.</p>
-</blockquote>
-<blockquote>
-<p><a href="ts/number_plus/number.ts#L46"><code>IsInteger&lt;N, Then = true, Else = false&gt;</code></a>: is integer.</p>
-</blockquote>
-<blockquote>
-<p><a href="ts/number_plus/number.ts#L62"><code>IsWhole&lt;N, Then = true, Else = false&gt;</code></a>: is integer.</p>
-</blockquote>
-<blockquote>
-<p><a href="ts/number_plus/number.ts#L77"><code>Negative&lt;N, Then = N, Else = never&gt;</code></a>: is negative.</p>
-</blockquote>
-<blockquote>
-<p><a href="ts/number_plus/number.ts#L96"><code>NonNegative&lt;N, Then = N, Else = never&gt;</code></a>: is non-negative</p>
-</blockquote>
-<blockquote>
-<p><a href="ts/number_plus/number.ts#L108"><code>NumberType&lt;T, Then = N, Else = never&gt;</code></a>: Is the type <code>T</code> exactly <code>number</code>.</p>
-</blockquote>
-<blockquote>
-<p><a href="ts/number_plus/number.ts#L124"><code>Positive&lt;N, Then = N, Else = never&gt;</code></a>: is positive.</p>
-</blockquote>
-<blockquote>
-<p><a href="ts/number_plus/number.ts#L144"><code>IsPositive&lt;N, Then = N, Else = never&gt;</code></a>: is positive.</p>
-</blockquote>
-<a id="$symbol" class="tsd-anchor"></a><h2><a href="#$symbol" style="color:inherit;text-decoration:none">symbol</a></h2><blockquote>
+<a id="$symbol" class="tsd-anchor"></a><h3><a href="#$symbol" style="color:inherit;text-decoration:none">symbol</a></h3><blockquote>
 <p><a href="ts/symbol/readme.md#type-checking"><code>SymbolType&lt;T&gt;</code></a></p>
 </blockquote>
 <blockquote>
@@ -448,7 +512,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <blockquote>
 <p><a href="ts/symbol/readme.md#type-checking"><code>IsNotSymbol&lt;T&gt;</code></a></p>
 </blockquote>
-<a id="$tuple" class="tsd-anchor"></a><h2><a href="#$tuple" style="color:inherit;text-decoration:none">tuple</a></h2><blockquote>
+<a id="$tuple" class="tsd-anchor"></a><h3><a href="#$tuple" style="color:inherit;text-decoration:none">tuple</a></h3><blockquote>
 <p><a href="ts/tuple/readme.md#type-checking"><code>TupleType&lt;T&gt;</code></a></p>
 </blockquote>
 <blockquote>
@@ -460,19 +524,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <blockquote>
 <p><a href="ts/tuple/readme.md#type-checking"><code>IsNotTuple&lt;T&gt;</code></a></p>
 </blockquote>
-<a id="$never" class="tsd-anchor"></a><h2><a href="#$never" style="color:inherit;text-decoration:none">never</a></h2><blockquote>
-<p><a href="./ts/never/readme.md#type-checking"><code>NeverType&lt;T&gt;</code></a>: <code>T === never</code>.</p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/never/readme.md#type-checking"><code>IsNever&lt;T&gt;</code></a>: <code>T === never</code></p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/never/readme.md#type-checking"><code>NotNeverType&lt;T&gt;</code></a></p>
-</blockquote>
-<blockquote>
-<p><a href="./ts/never/readme.md#type-checking"><code>IsNotNever&lt;T&gt;</code></a></p>
-</blockquote>
-<a id="$undefined" class="tsd-anchor"></a><h2><a href="#$undefined" style="color:inherit;text-decoration:none">undefined</a></h2><blockquote>
+<a id="$undefined" class="tsd-anchor"></a><h3><a href="#$undefined" style="color:inherit;text-decoration:none">undefined</a></h3><blockquote>
 <p><a href="./ts/undefined/readme.md#type-checking"><code>UndefinedType&lt;T&gt;</code></a>: <code>T === undefined</code>.</p>
 </blockquote>
 <blockquote>
@@ -484,7 +536,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <blockquote>
 <p><a href="./ts/undefined/readme.md#type-checking"><code>IsNotUndefined&lt;T&gt;</code></a></p>
 </blockquote>
-<a id="$unknown" class="tsd-anchor"></a><h2><a href="#$unknown" style="color:inherit;text-decoration:none">unknown</a></h2><blockquote>
+<a id="$unknown" class="tsd-anchor"></a><h3><a href="#$unknown" style="color:inherit;text-decoration:none">unknown</a></h3><blockquote>
 <p><a href="./ts/unknown/readme.md#type-checking"><code>UnknownType&lt;T&gt;</code></a>: <code>T === unknown</code>.</p>
 </blockquote>
 <blockquote>
@@ -496,7 +548,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <blockquote>
 <p><a href="./ts/unknown/readme.md#type-checking"><code>IsNotUnknown&lt;T&gt;</code></a></p>
 </blockquote>
-<a id="$void" class="tsd-anchor"></a><h2><a href="#$void" style="color:inherit;text-decoration:none">void</a></h2><blockquote>
+<a id="$void" class="tsd-anchor"></a><h3><a href="#$void" style="color:inherit;text-decoration:none">void</a></h3><blockquote>
 <p><a href="./ts/void/readme.md#type-checking"><code>VoidType&lt;T&gt;</code></a>: <code>T === void</code>.</p>
 </blockquote>
 <blockquote>
@@ -508,7 +560,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <blockquote>
 <p><a href="./ts/void/readme.md#type-checking"><code>IsNotVoid&lt;T&gt;</code></a></p>
 </blockquote>
-<a id="$constant-types" class="tsd-anchor"></a><h3><a href="#$constant-types" style="color:inherit;text-decoration:none">Constant Types</a></h3><blockquote>
+<a id="$constant-types" class="tsd-anchor"></a><h2><a href="#$constant-types" style="color:inherit;text-decoration:none">Constant Types</a></h2><blockquote>
 <p><code>KeyTypes</code>: type of all keys.</p>
 </blockquote>
 <blockquote>
@@ -520,7 +572,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <blockquote>
 <p><code>NonComposableTypes</code>: Types that cannot contain custom properties. i.e. not composable.</p>
 </blockquote>
-<a id="$json-support" class="tsd-anchor"></a><h3><a href="#$json-support" style="color:inherit;text-decoration:none">JSON Support</a></h3><blockquote>
+<a id="$json-support" class="tsd-anchor"></a><h2><a href="#$json-support" style="color:inherit;text-decoration:none">JSON Support</a></h2><blockquote>
 <p><code>JSONPrimitive</code>: primitive types valid in JSON</p>
 </blockquote>
 <blockquote>
@@ -537,7 +589,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 </blockquote>
 <pre><code class="language-ts"><span class="hl-5">import</span><span class="hl-0"> { </span><span class="hl-2">JSONTypes</span><span class="hl-0"> } </span><span class="hl-5">from</span><span class="hl-0"> </span><span class="hl-1">&#39;type-plus&#39;</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-7">someJson</span><span class="hl-0">: </span><span class="hl-6">JSONTypes</span><span class="hl-0"> = { </span><span class="hl-2">a:</span><span class="hl-0"> { </span><span class="hl-2">b:</span><span class="hl-0"> [</span><span class="hl-1">&#39;z&#39;</span><span class="hl-0">, { </span><span class="hl-2">c:</span><span class="hl-0"> </span><span class="hl-1">&#39;miku&#39;</span><span class="hl-0"> }]}}</span><br/><br/><span class="hl-2">JSONTypes</span><span class="hl-0">.</span><span class="hl-3">get</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;(</span><span class="hl-2">someJson</span><span class="hl-0">, </span><span class="hl-1">&#39;a&#39;</span><span class="hl-0">, </span><span class="hl-1">&#39;b&#39;</span><span class="hl-0">, </span><span class="hl-8">1</span><span class="hl-0">, </span><span class="hl-1">&#39;c&#39;</span><span class="hl-0">) </span><span class="hl-9">// miku</span>
 </code></pre>
-<a id="$type-manipulation" class="tsd-anchor"></a><h3><a href="#$type-manipulation" style="color:inherit;text-decoration:none">Type manipulation</a></h3><blockquote>
+<a id="$type-manipulation" class="tsd-anchor"></a><h2><a href="#$type-manipulation" style="color:inherit;text-decoration:none">Type manipulation</a></h2><blockquote>
 <p><code>ANotB&lt;A, B&gt;</code>: get object with properties in <code>A</code> and not in <code>B</code>, including properties with a different value type.</p>
 </blockquote>
 <blockquote>
@@ -624,7 +676,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <blockquote>
 <p>PropType: ...no helper type for this. Just do <code>YourType[&#39;propName&#39;]</code>.</p>
 </blockquote>
-<a id="$type-predicates" class="tsd-anchor"></a><h3><a href="#$type-predicates" style="color:inherit;text-decoration:none">Type Predicates</a></h3><p>Type predicates are type alias that returns <code>true</code> or <code>false</code>.
+<a id="$type-predicates" class="tsd-anchor"></a><h2><a href="#$type-predicates" style="color:inherit;text-decoration:none">Type Predicates</a></h2><p>Type predicates are type alias that returns <code>true</code> or <code>false</code>.
 They can be used to compose complex types.</p>
 <blockquote>
 <p><code>HasKey&lt;T, K&gt;</code>: predicate type checking <code>T</code> has key <code>K</code>.</p>
@@ -644,7 +696,7 @@ They can be used to compose complex types.</p>
 <blockquote>
 <p><code>IsLiteral&lt;T&gt;</code>: is <code>T</code> a literal type (literal string or number).</p>
 </blockquote>
-<a id="$logical" class="tsd-anchor"></a><h4><a href="#$logical" style="color:inherit;text-decoration:none">Logical</a></h4><blockquote>
+<a id="$logical" class="tsd-anchor"></a><h3><a href="#$logical" style="color:inherit;text-decoration:none">Logical</a></h3><blockquote>
 <p><code>If&lt;Condition, Then = true, Else = false&gt;</code>: if statement.</p>
 </blockquote>
 <blockquote>
@@ -669,7 +721,7 @@ e.g.:</p>
 </blockquote>
 <p>There is a problem with generic distribution: <a href="https://github.com/microsoft/TypeScript/issues/41053">https://github.com/microsoft/TypeScript/issues/41053</a>
 So you may encounter some weird behavior if your logic is complex.</p>
-<a id="$math" class="tsd-anchor"></a><h3><a href="#$math" style="color:inherit;text-decoration:none">Math</a></h3><p>The math types in <code>type-plus</code> works with most numeric types.</p>
+<a id="$math" class="tsd-anchor"></a><h2><a href="#$math" style="color:inherit;text-decoration:none">Math</a></h2><p>The math types in <code>type-plus</code> works with most numeric types.</p>
 <p>It works with <code>number</code> and <code>bigint</code>, positive and negative number, including floating point numbers.</p>
 <p>It will cast the type between <code>number</code> and <code>bigint</code> if needed.</p>
 <blockquote>
@@ -696,7 +748,7 @@ So you may encounter some weird behavior if your logic is complex.</p>
 <blockquote>
 <p><code>Multiply&lt;A, B</code>: <code>A * B</code>.</p>
 </blockquote>
-<a id="$utility-functions" class="tsd-anchor"></a><h3><a href="#$utility-functions" style="color:inherit;text-decoration:none">Utility Functions</a></h3><blockquote>
+<a id="$utility-functions" class="tsd-anchor"></a><h2><a href="#$utility-functions" style="color:inherit;text-decoration:none">Utility Functions</a></h2><blockquote>
 <p><code>amend(subject)...</code>: amend subject as union or intersect of <code>T</code>.</p>
 </blockquote>
 <blockquote>
@@ -842,27 +894,30 @@ your editor right next to your code.</p>
 <li><a href="#$type-plus"><span>type-<wbr/>plus</span></a></li>
 <li>
 <ul>
-<li><a href="#$feature-highlights"><span>Feature <wbr/>Highlights</span></a></li>
+<li><a href="#$table-of-contents"><span>Table of <wbr/>Contents</span></a></li>
 <li><a href="#$installation"><span>Installation</span></a></li>
 <li><a href="#$assertion-function"><span>Assertion <wbr/>Function</span></a></li>
 <li><a href="#$type-guard"><span>Type <wbr/>Guard</span></a></li>
 <li><a href="#$type-utilities"><span>Type <wbr/>Utilities</span></a></li>
 <li><a href="#$type-checking"><span>Type <wbr/>Checking</span></a></li>
-<li><a href="#$any"><span>any</span></a></li>
-<li><a href="#$array"><span>Array</span></a></li>
-<li><a href="#$object"><span>object</span></a></li>
-<li><a href="#$function"><span>function</span></a></li>
-<li><a href="#$promise"><span>Promise</span></a></li>
-<li><a href="#$null"><span>null</span></a></li>
-<li><a href="#$number"><span>number</span></a></li>
-<li><a href="#$symbol"><span>symbol</span></a></li>
-<li><a href="#$tuple"><span>tuple</span></a></li>
-<li><a href="#$never"><span>never</span></a></li>
-<li><a href="#$undefined"><span>undefined</span></a></li>
-<li><a href="#$unknown"><span>unknown</span></a></li>
-<li><a href="#$void"><span>void</span></a></li>
 <li>
 <ul>
+<li><a href="#$any"><span>any</span></a></li>
+<li><a href="#$array"><span>Array</span></a></li>
+<li><a href="#$bigint"><span>bigint</span></a></li>
+<li><a href="#$boolean"><span>boolean</span></a></li>
+<li><a href="#$function"><span>function</span></a></li>
+<li><a href="#$never"><span>never</span></a></li>
+<li><a href="#$null"><span>null</span></a></li>
+<li><a href="#$number"><span>number</span></a></li>
+<li><a href="#$object"><span>object</span></a></li>
+<li><a href="#$promise"><span>Promise</span></a></li>
+<li><a href="#$string"><span>string</span></a></li>
+<li><a href="#$symbol"><span>symbol</span></a></li>
+<li><a href="#$tuple"><span>tuple</span></a></li>
+<li><a href="#$undefined"><span>undefined</span></a></li>
+<li><a href="#$unknown"><span>unknown</span></a></li>
+<li><a href="#$void"><span>void</span></a></li></ul></li>
 <li><a href="#$constant-types"><span>Constant <wbr/>Types</span></a></li>
 <li><a href="#$json-support"><span>JSON <wbr/>Support</span></a></li>
 <li><a href="#$type-manipulation"><span>Type manipulation</span></a></li>
@@ -871,7 +926,7 @@ your editor right next to your code.</p>
 <ul>
 <li><a href="#$logical"><span>Logical</span></a></li></ul></li>
 <li><a href="#$math"><span>Math</span></a></li>
-<li><a href="#$utility-functions"><span>Utility <wbr/>Functions</span></a></li></ul></li>
+<li><a href="#$utility-functions"><span>Utility <wbr/>Functions</span></a></li>
 <li><a href="#$nominal-types"><span>Nominal <wbr/>Types</span></a></li>
 <li><a href="#$functional-types"><span>Functional <wbr/>Types</span></a></li>
 <li><a href="#$attribution"><span>Attribution</span></a></li>
