@@ -1,6 +1,6 @@
 import type { IsAny } from '../any/any_type.js'
 import type { IsEqual } from '../equal/equal.js'
-import type { Abs } from '../math/Abs_x.js'
+import type { Abs } from '../math/abs.js'
 import type { GreaterThan } from '../math/greater_than.js'
 import type { Subtract } from '../math/subtract.js'
 import type { IsNever } from '../never/never_type.js'
