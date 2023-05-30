@@ -1,5 +1,83 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 7.0.0
+
+### Major Changes
+
+- 91c954fb: Remove `Digit` and `DigitArray`.
+
+  They are internal types to begin with.
+  They were exported probably to fix the "type cannot be named" error.
+
+- 469c8bd2: Fix array `PadStart`/`PadLeft` that triggers an infinite loop.
+
+  Change default `PadWith` from `any` to `unknown` (breaking).
+
+### Minor Changes
+
+- e11d43c5: Expose `FindLast` also as `ArrayPlus.FindList`.
+
+  Improved its handling of array.
+
+- 25e5fcb2: add `NumericPlus`
+- ee14247c: Add `ArrayPlus.SplitAt`
+- a49abe20: Mark the following code as deprecated:
+
+  - `isType.t()`
+  - `isType.f()`
+  - `isType.never()`
+
+- 4352d514: Add `StringToNumber`, `StringToBigint`, and `StringToNumeric`
+- e93e366d: Add alternative `Partial<T>` type that works with `exactOptionalPropertyTypes`.
+- 10af3634: Add `ArrayPlus.Reverse<A>`
+- 82ffd7d9: Add `NumericToString`
+- 72aca9d0: Add `MathPlus.ToNegative`
+- 09495bec: Add `ArrayPlus.Entries<A>`.
+- 3e0e199b: Add remaining types to `testType.*`.
+
+  `testType` is changed to a proxy to simplify implementation.
+
+- 73bbcf0e: Add `PadStart`, deprecase `PadLeft`
+- 65e84c4b: Expose `FindFirst` also as `ArrayPlus.Find`.
+
+  Improved its handling of array.
+
+- d2997ded: Deprecate `Equal` and `NotEqual`. They are renamed to `IsEqual` and `IsNotEqual`.
+
+  `Equal` and `NotEqual` will be changed to `filter` variant (a.k.a. `parse` variant) in the future.
+
+- 180a455e: Add `TuplePlus.PadStart`.
+- 7bf5d39e: Add `StrictCanAssign<A,B>` and `testType.strictCanAssign()`
+- 010a7880: Deprecate `assertType(subject constructor)`.
+  Add `T/F` to `Extendable` and `NotExtendable`.
+- 74cc6545: Alias `Some` under `ArrayPlus.Some`.
+- 4054c64b: `GreaterThan` and `Max` now support floating point and negative numbers, and `bigint`
+
+### Patch Changes
+
+- 84617522: `At` should return `V | undefined` for tuple when `N` is `number` (or `any` which includes `number`).
+- aaffd23e: fix `Some<Array<number | string>, number>` to return `boolean`.
+  This is because besides `Array<number | string>` can be `[1, 'a']`,
+  it can also be:
+
+  ```ts
+  const v: number | string = 123
+
+  const a: Array<number | string> = [v]
+  ```
+
+  So `Some<Array<number | string>, number>` should distribute and return `boolean`.
+
+- 4878eb07: `At` should return `V | undefined` for array.
+- afc1840c: Add `Upper` and `Lower` for `IndexAt`.
+
+  This allow fine-grained control over the `IndexAt` behavior,
+  when the value is out of bounds.
+
+  This is used in cases where out-of-bounds values are coarsen to the upper and lower bound of the subject array.
+
+- d31ea31f: Improve `Abs` to work with `bigint`
+
 ## 6.8.1
 
 ### Patch Changes
