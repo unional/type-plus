@@ -1,6 +1,6 @@
 import { describe, it } from '@jest/globals'
 import { testType } from '../index.js'
-import type { NumericStruct } from './numeric_struct2.js'
+import type { NumericStruct } from './numeric_struct.js'
 
 describe('FromNumeric', () => {
 	describe('bigint', () => {

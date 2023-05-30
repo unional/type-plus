@@ -1,6 +1,6 @@
 import { describe, it } from '@jest/globals'
 import { testType } from '../index.js'
-import type { DigitArray } from './numeric_struct2.js'
+import type { DigitArray } from './numeric_struct.js'
 
 describe('Subtract', () => {
 	it('A < B', () => {

@@ -1,4 +1,4 @@
-import type { NumericStruct } from './numeric_struct2.js'
+import type { NumericStruct } from './numeric_struct.js'
 
 export type Multiply<A extends number | bigint, B extends number | bigint, Fail = never> = [
 	NumericStruct.FromNumeric<A, Fail>,
