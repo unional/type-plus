@@ -34,6 +34,13 @@
 		"unpartial",
 		"unshift"
 	],
+	"markdown.extension.toc.levels": "2..6",
+	"markdown.extension.toc.omittedFromToc": {
+		"README.md": [
+			"## Table of Contents",
+			"## Installation"
+		]
+	},
 	"eslint.enable": true,
 	"files.watcherExclude": {
 		"**/.git/objects/**": true,

@@ -11,14 +11,42 @@
 
 More than 200 type utilities for [TypeScript].
 
-## Feature Highlights
+## Table of Contents
 
-> [Type assertions](./ts/assertion/readme.md)
-> [Type Guard](./ts/type-guard/readme.md)
-> [Type Checking](#type-checking)
-> [Type Utilities](#type-utilities)
-> [Nominal Types](#nominal-types)
-> [Functional Types](#functional-types)
+1. [Assertion Function](#assertion-function)
+2. [Type Guard](#type-guard)
+3. [Type Utilities](#type-utilities)
+4. [Type Checking](#type-checking)
+   1. [any](#any)
+   2. [Array](#array)
+   3. [bigint](#bigint)
+   4. [boolean](#boolean)
+   5. [function](#function)
+   6. [never](#never)
+   7. [null](#null)
+   8. [number](#number)
+   9. [object](#object)
+   10. [Promise](#promise)
+   11. [string](#string)
+   12. [symbol](#symbol)
+   13. [tuple](#tuple)
+   14. [undefined](#undefined)
+   15. [unknown](#unknown)
+   16. [void](#void)
+5. [Constant Types](#constant-types)
+6. [JSON Support](#json-support)
+7. [Type manipulation](#type-manipulation)
+8. [Type Predicates](#type-predicates)
+   1. [Logical](#logical)
+9. [Math](#math)
+10. [Utility Functions](#utility-functions)
+11. [Nominal Types](#nominal-types)
+12. [Functional Types](#functional-types)
+13. [Attribution](#attribution)
+14. [Useful Tips](#useful-tips)
+15. [Similar projects](#similar-projects)
+16. [Contribute](#contribute)
+17. [Wallaby.js](#wallabyjs)
 
 ## Installation
 
@@ -166,37 +194,23 @@ Some types will have more checks, such as `boolean` has `StrictBooleanType<T>`, 
 
 You can learn more in their respective sections:
 
-> [any](./ts/any/readme.md)
+- [any](./ts/any/readme.md)
+- [array](./ts/array/readme.md)
+- [bigint](./ts/bigint/readme.md)
+- [boolean](./ts/boolean/readme.md)
+- [function](./ts/function/readme.md)
+- [never](./ts/never/readme.md)
+- [null](./ts/null/readme.md)
+- [number](./ts/number/readme.md)
+- [object](./ts/object/readme.md)
+- [string](./ts/string/readme.md)
+- [symbol](./ts/symbol/readme.md)
+- [tuple](./ts/tuple/readme.md)
+- [undefined](./ts/undefined/readme.md)
+- [unknown](./ts/unknown/readme.md)
+- [void](./ts/void/readme.md)
 
-> [array](./ts/array/readme.md)
-
-> [bigint](./ts/bigint/readme.md)
-
-> [boolean](./ts/boolean/readme.md)
-
-> [function](./ts/function/readme.md)
-
-> [never](./ts/never/readme.md)
-
-> [null](./ts/null/readme.md)
-
-> [number](./ts/number/readme.md)
-
-> [object](./ts/object/readme.md)
-
-> [string](./ts/string/readme.md)
-
-> [symbol](./ts/symbol/readme.md)
-
-> [tuple](./ts/tuple/readme.md)
-
-> [undefined](./ts/undefined/readme.md)
-
-> [unknown](./ts/unknown/readme.md)
-
-> [void](./ts/void/readme.md)
-
-## any
+### any
 
 > [`AnyType<T>`](./ts/any/readme.md#type-checking): `T === any`.
 
@@ -208,7 +222,7 @@ You can learn more in their respective sections:
 
 > [`IsAnyOrNever<T>`](./ts/any/readme.md#type-utilities)
 
-## Array
+### Array
 
 > [`ArrayType<T>`](./ts/array/readme.md#type-checking): Is the type `T` exactly an array and not a tuple.
 
@@ -273,7 +287,88 @@ You can learn more in their respective sections:
 
 > [`ArrayPlus.IsIndexOutOfBound<A, N, Then = true, Else = false>`](ts/array_plus/array_plus.ts#L62): Is `N` an out of bound index of `A`. Supports negative numbers.
 
-## object
+### bigint
+
+> [`BigintType<T>`](./ts/bigint/readme.md#type-checking): `T === bigint`.
+
+> [`IsBigint<T>`](./ts/bigint/readme.md#type-checking): `T === bigint`
+
+> [`NotBigintType<T>`](./ts/bigint/readme.md#type-checking)
+
+> [`IsNotBigint<T>`](./ts/bigint/readme.md#type-checking)
+
+### boolean
+
+> [`BooleanType<T>`](./ts/boolean/readme.md#type-checking): `T === boolean`.
+
+> [`IsBoolean<T>`](./ts/boolean/readme.md#type-checking): `T === boolean`
+
+> [`NotBooleanType<T>`](./ts/boolean/readme.md#type-checking)
+
+> [`IsNotBoolean<T>`](./ts/boolean/readme.md#type-checking)
+
+### function
+
+> [`FunctionType<T>`](./ts/function/readme.md#type-checking): `T === function`.
+
+> [`IsFunction<T>`](./ts/function/readme.md#type-checking): `T === function`
+
+> [`NotFunctionType<T>`](./ts/function/readme.md#type-checking)
+
+> [`IsNotFunction<T>`](./ts/function/readme.md#type-checking)
+
+> `AnyFunction<P, R>`: a generic type for any function
+
+> `ExtractFunction<F>`: extract the function signature from a type `F`.
+
+> `extractFunction(fn: F)`: adjust type of `fn` to its function signature only.
+
+> `inspect<T>(value: T, inspector?: (v: T) => void)`: inspect a value and return it.\
+  Inspector defaults to `console.dir()`
+
+### never
+
+> [`NeverType<T>`](./ts/never/readme.md#type-checking): `T === never`.
+
+> [`IsNever<T>`](./ts/never/readme.md#type-checking): `T === never`
+
+> [`NotNeverType<T>`](./ts/never/readme.md#type-checking)
+
+> [`IsNotNever<T>`](./ts/never/readme.md#type-checking)
+
+### null
+
+> [`NullType<T>`](ts/null/readme.md#type-checking)
+
+> [`IsNull<T>`](ts/null/readme.md#type-checking)
+
+> [`NotNullType<T>`](ts/null/readme.md#type-checking)
+
+> [`IsNotNull<T>`](ts/null/readme.md#type-checking)
+
+### number
+
+> [`Numeric`](ts/number_plus/number.ts#L4): either `number` or `bigint`.
+
+> [`Zero`](ts/number_plus/number.ts#L9): `0` in `number` or `bigint`.
+
+> [`Integer<N, Then = N, Else = never>`](ts/number_plus/number.ts#L27): is integer.
+
+> [`IsInteger<N, Then = true, Else = false>`](ts/number_plus/number.ts#L46): is integer.
+
+> [`IsWhole<N, Then = true, Else = false>`](ts/number_plus/number.ts#L62): is integer.
+
+> [`Negative<N, Then = N, Else = never>`](ts/number_plus/number.ts#L77): is negative.
+
+> [`NonNegative<N, Then = N, Else = never>`](ts/number_plus/number.ts#L96): is non-negative
+
+> [`NumberType<T, Then = N, Else = never>`](ts/number_plus/number.ts#L108): Is the type `T` exactly `number`.
+
+> [`Positive<N, Then = N, Else = never>`](ts/number_plus/number.ts#L124): is positive.
+
+> [`IsPositive<N, Then = N, Else = never>`](ts/number_plus/number.ts#L144): is positive.
+
+### object
 
 > `filterKey()`: type adjusted filter by key.
 
@@ -300,18 +395,7 @@ You can learn more in their respective sections:
 > `SpreadRecord<A, B>`: type for `{...a, ...b}` when both `a` and `b` are `Record`\
   for array, just do `[...A, ...B]`.
 
-## function
-
-> `AnyFunction<P, R>`: a generic type for any function
-
-> `ExtractFunction<F>`: extract the function signature from a type `F`.
-
-> `extractFunction(fn: F)`: adjust type of `fn` to its function signature only.
-
-> `inspect<T>(value: T, inspector?: (v: T) => void)`: inspect a value and return it.\
-  Inspector defaults to `console.dir()`
-
-## Promise
+### Promise
 
 > `AwaitedProp<T, V>`: `Awaited` on specified props `P` in `T`.
 
@@ -328,39 +412,17 @@ You can learn more in their respective sections:
 > `transformMaybePromise(value, transformer)`: Apply the `transformer` to the `value`.\
   It is also exported under `MaybePromise.transform()`.
 
-## null
+### string
 
-> [`NullType<T>`](ts/null/readme.md#type-checking)
+> [`StringType<T>`](ts/string/readme.md#type-checking)
 
-> [`IsNull<T>`](ts/null/readme.md#type-checking)
+> [`IsString<T>`](ts/string/readme.md#type-checking)
 
-> [`NotNullType<T>`](ts/null/readme.md#type-checking)
+> [`NotStringType<T>`](ts/string/readme.md#type-checking)
 
-> [`IsNotNull<T>`](ts/null/readme.md#type-checking)
+> [`IsNotString<T>`](ts/string/readme.md#type-checking)
 
-## number
-
-> [`Numeric`](ts/number_plus/number.ts#L4): either `number` or `bigint`.
-
-> [`Zero`](ts/number_plus/number.ts#L9): `0` in `number` or `bigint`.
-
-> [`Integer<N, Then = N, Else = never>`](ts/number_plus/number.ts#L27): is integer.
-
-> [`IsInteger<N, Then = true, Else = false>`](ts/number_plus/number.ts#L46): is integer.
-
-> [`IsWhole<N, Then = true, Else = false>`](ts/number_plus/number.ts#L62): is integer.
-
-> [`Negative<N, Then = N, Else = never>`](ts/number_plus/number.ts#L77): is negative.
-
-> [`NonNegative<N, Then = N, Else = never>`](ts/number_plus/number.ts#L96): is non-negative
-
-> [`NumberType<T, Then = N, Else = never>`](ts/number_plus/number.ts#L108): Is the type `T` exactly `number`.
-
-> [`Positive<N, Then = N, Else = never>`](ts/number_plus/number.ts#L124): is positive.
-
-> [`IsPositive<N, Then = N, Else = never>`](ts/number_plus/number.ts#L144): is positive.
-
-## symbol
+### symbol
 
 > [`SymbolType<T>`](ts/symbol/readme.md#type-checking)
 
@@ -370,7 +432,7 @@ You can learn more in their respective sections:
 
 > [`IsNotSymbol<T>`](ts/symbol/readme.md#type-checking)
 
-## tuple
+### tuple
 
 > [`TupleType<T>`](ts/tuple/readme.md#type-checking)
 
@@ -380,17 +442,7 @@ You can learn more in their respective sections:
 
 > [`IsNotTuple<T>`](ts/tuple/readme.md#type-checking)
 
-## never
-
-> [`NeverType<T>`](./ts/never/readme.md#type-checking): `T === never`.
-
-> [`IsNever<T>`](./ts/never/readme.md#type-checking): `T === never`
-
-> [`NotNeverType<T>`](./ts/never/readme.md#type-checking)
-
-> [`IsNotNever<T>`](./ts/never/readme.md#type-checking)
-
-## undefined
+### undefined
 
 > [`UndefinedType<T>`](./ts/undefined/readme.md#type-checking): `T === undefined`.
 
@@ -400,7 +452,7 @@ You can learn more in their respective sections:
 
 > [`IsNotUndefined<T>`](./ts/undefined/readme.md#type-checking)
 
-## unknown
+### unknown
 
 > [`UnknownType<T>`](./ts/unknown/readme.md#type-checking): `T === unknown`.
 
@@ -410,7 +462,7 @@ You can learn more in their respective sections:
 
 > [`IsNotUnknown<T>`](./ts/unknown/readme.md#type-checking)
 
-## void
+### void
 
 > [`VoidType<T>`](./ts/void/readme.md#type-checking): `T === void`.
 
@@ -420,7 +472,7 @@ You can learn more in their respective sections:
 
 > [`IsNotVoid<T>`](./ts/void/readme.md#type-checking)
 
-### Constant Types
+## Constant Types
 
 > `KeyTypes`: type of all keys.
 
@@ -430,7 +482,7 @@ You can learn more in their respective sections:
 
 > `NonComposableTypes`: Types that cannot contain custom properties. i.e. not composable.
 
-### JSON Support
+## JSON Support
 
 > `JSONPrimitive`: primitive types valid in JSON
 
@@ -450,7 +502,7 @@ const someJson: JSONTypes = { a: { b: ['z', { c: 'miku' }]}}
 JSONTypes.get<string>(someJson, 'a', 'b', 1, 'c') // miku
 ```
 
-### Type manipulation
+## Type manipulation
 
 > `ANotB<A, B>`: get object with properties in `A` and not in `B`, including properties with a different value type.
 
@@ -510,7 +562,7 @@ JSONTypes.get<string>(someJson, 'a', 'b', 1, 'c') // miku
 
 > PropType: ...no helper type for this. Just do `YourType['propName']`.
 
-### Type Predicates
+## Type Predicates
 
 Type predicates are type alias that returns `true` or `false`.
 They can be used to compose complex types.
@@ -527,7 +579,7 @@ They can be used to compose complex types.
 
 > `IsLiteral<T>`: is `T` a literal type (literal string or number).
 
-#### Logical
+### Logical
 
 > `If<Condition, Then = true, Else = false>`: if statement.
 
@@ -549,7 +601,7 @@ e.g.:
 There is a problem with generic distribution: <https://github.com/microsoft/TypeScript/issues/41053>
 So you may encounter some weird behavior if your logic is complex.
 
-### Math
+## Math
 
 The math types in `type-plus` works with most numeric types.
 
@@ -573,7 +625,7 @@ It will cast the type between `number` and `bigint` if needed.
 
 > `Multiply<A, B`: `A * B`.
 
-### Utility Functions
+## Utility Functions
 
 > `amend(subject)...`: amend subject as union or intersect of `T`.
 
