@@ -354,8 +354,10 @@ it('works with intersect types', () => {
 	testType.false<IsEqual<{ a: number } & { c: number }, { a: number; b: number }>>(true)
 	testType.false<IsEqual<{ a: number; b: number }, { a: number } & { c: number }>>(true)
 
-	// @ts-expect-error: Known limitation: nested intersection type properties don't work.
-	testType.true<IsEqual<{nested: { a: number; b: string }}, {nested: { a: number } & { b: string }}>>(true)
+	testType.true<IsEqual<{ nested: { a: number; b: string } }, { nested: { a: number } & { b: string } }>>(
+		// @ts-expect-error: Known limitation: nested intersection type properties don't work.
+		true
+	)
 })
 
 it('works with function overload', () => {
@@ -419,7 +421,10 @@ it('detect redonly', () => {
 
 it('works with deep any', () => {
 	testType.true<
-		IsEqual<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: never; u: unknown; v: void } }>
+		IsEqual<
+			{ a: { a: any; n: never; u: unknown; v: void } },
+			{ a: { a: any; n: never; u: unknown; v: void } }
+		>
 	>(true)
 
 	testType.false<
