@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { isType } from './is_type.js'
+import { isType } from '../index.js'
 
 it('can be used for type-only', () => {
 	isType.never<never>()
