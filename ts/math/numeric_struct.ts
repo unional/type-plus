@@ -319,7 +319,6 @@ export namespace DigitsStruct {
 
 	/**
 	 * This is used to align the `NumberStruct` during `Add/Subtract`.
-	 * @internal
 	 */
 	export type GetMinPadEnd<
 		A extends number,
@@ -382,7 +381,6 @@ export namespace DigitArray {
 	 *
 	 * This is used in various places so that there will be less computation,
 	 * and the sign bit can be handled properly.
-	 * @internal
 	 */
 	export type TrimLeadingZeros<T extends number[]> = T extends [0]
 		? T

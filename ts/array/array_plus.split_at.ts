@@ -33,8 +33,6 @@ export type SplitAt<A extends unknown[], Index extends number> = ArrayType<
 /**
  * Splits an array into two at the specified `Index`.
  * The device does not work on negative index nor out of bound index.
- *
- * @internal
  */
 export type ArraySplitAtDevice<
 	A extends unknown[],
