@@ -1,6 +1,5 @@
-import { it, describe } from '@jest/globals'
-import { testType } from '../index.js'
-import type { Add } from './add.js'
+import { describe, it } from '@jest/globals'
+import { testType, type Add } from '../index.js'
 
 // 123 + 123 = 246
 // => [[1, 2, 3], 0]

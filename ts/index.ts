@@ -4,7 +4,6 @@ export type { AnyType, IsAny, IsNotAny, NotAnyType } from './any/any_type.js'
 export type { At } from './array/array.at.js'
 export type { Concat } from './array/array.concat.js'
 export * as ArrayPlus from './array/array_plus.js'
-export * as TuplePlus from './tuple/tuple_plus.js'
 export type { ArrayType, IsArray, IsNotArray, NotArrayType } from './array/array_type.js'
 export * from './array/index.js'
 export * from './assertion/assert_type.js'
@@ -41,13 +40,14 @@ export * from './functional/index.js'
 export type { JSONArray, JSONObject, JSONPrimitive, JSONTypes } from './json.js'
 export type {
 	Abs,
-	// Add,
+	Add,
 	Decrement,
 	Digit,
 	DigitArray,
 	GreaterThan,
-	// Increment,
+	Increment,
 	Max,
+	Multiply,
 	Subtract
 } from './math/index.js'
 export * as MathPlus from './math/math_plus.js'
@@ -95,6 +95,7 @@ export type { IsNotSymbol, IsSymbol, NotSymbolType, SymbolType } from './symbol/
 export * from './testing/stub.js'
 export * from './testing/test_type.js'
 export * from './tuple/create_tuple.js'
+export * as TuplePlus from './tuple/tuple_plus.js'
 export type { IsNotTuple, IsTuple, NotTupleType, TupleType } from './tuple/tuple_type.js'
 export type { Failed, FailedT } from './type/failed.js'
 export type { NoInfer } from './type/no_infer.js'
@@ -108,4 +109,3 @@ export type { UnionKeys } from './union_keys.js'
 export type { IsNotUnknown, IsUnknown, NotUnknownType, UnknownType } from './unknown/unknown_type.js'
 export * from './utils/index.js'
 export type { IsNotVoid, IsVoid, NotVoidType, VoidType } from './void/void_type.js'
-

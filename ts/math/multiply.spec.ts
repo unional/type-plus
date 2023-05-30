@@ -1,6 +1,5 @@
 import { it } from '@jest/globals'
-import { testType } from '../index.js'
-import type { Multiply } from './multiply.js'
+import { testType, type Multiply } from '../index.js'
 
 it('0 * 0 = 0', () => {
 	testType.equal<Multiply<0, 0>, 0>(true)

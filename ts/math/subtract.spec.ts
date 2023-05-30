@@ -1,6 +1,5 @@
-import { it, describe } from '@jest/globals'
-import { testType } from '../index.js'
-import { Subtract } from './subtract.js'
+import { describe, it } from '@jest/globals'
+import { testType, type Subtract } from '../index.js'
 // 123 - 123 = 0
 // => [[1, 2, 3], 0]
 // -  [[1, 2, 3], 0]
