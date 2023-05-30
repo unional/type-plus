@@ -42,8 +42,6 @@ export type {
 	Abs,
 	Add,
 	Decrement,
-	Digit,
-	DigitArray,
 	GreaterThan,
 	Increment,
 	Max,
