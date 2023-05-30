@@ -1,5 +1,5 @@
 export type { Abs } from './Abs.js'
-export type { Digit, DigitArray } from './Digit.js'
+// export type { Digit, DigitArray } from './Digit.js'
 export type { GreaterThan } from './greater_than.js'
 export type { Max } from './Max.js'
 export type { Add, Increment } from './add.js'

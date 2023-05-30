@@ -449,7 +449,7 @@ export namespace DigitArray {
 		: never
 
 	/**
-	 * Resursively add digit arrays.
+	 * Recursively add digit arrays.
 	 *
 	 * This is used in multiplication.
 	 */
