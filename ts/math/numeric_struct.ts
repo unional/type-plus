@@ -370,6 +370,7 @@ export namespace DigitArray {
 		: S extends `-0${infer L}`
 		? [-0, ...FromString<L>]
 		: []
+
 	export type ToString<A extends Array<number | string>> = number extends A['length']
 		? ''
 		: A['length'] extends 0
@@ -377,7 +378,10 @@ export namespace DigitArray {
 		: `${A[0]}${ToString<Tail<A>>}`
 
 	/**
-	 * ['+', [0, 0, 1], 2] => ['+', [1], 4]
+	 * [0, 0, -1] => [-1]
+	 *
+	 * This is used in various places so that there will be less computation,
+	 * and the sign bit can be handled properly.
 	 * @internal
 	 */
 	export type TrimLeadingZeros<T extends number[]> = T extends [0]
@@ -498,8 +502,6 @@ export namespace Digit {
 	 *
 	 * add: A: 0 - 9, B: 0 - 9
 	 * normalize: [81, 81] -> [81 + 8, 1]
-	 *
-	 * TODO: does it need to support negative?
 	 */
 	export type Add<A extends number, B extends number> = `${A}` extends `-${infer AD extends number}`
 		? `${B}` extends `-${infer BD extends number}`
@@ -600,14 +602,6 @@ export namespace Digit {
 		[79, 80, 81, 82, 83, 84, 85, 86, 87, 88],
 		[80, 81, 82, 83, 84, 85, 86, 87, 88, 89],
 		[81, 82, 83, 84, 85, 86, 87, 88, 89, 90]
-		// [82, 83, 84, 85, 86, 87, 88, 89, 90, 91],
-		// [83, 84, 85, 86, 87, 88, 89, 90, 91, 92],
-		// [84, 85, 86, 87, 88, 89, 90, 91, 92, 93],
-		// [85, 86, 87, 88, 89, 90, 91, 92, 93, 94],
-		// [86, 87, 88, 89, 90, 91, 92, 93, 94, 95],
-		// [87, 88, 89, 90, 91, 92, 93, 94, 95, 96],
-		// [88, 89, 90, 91, 92, 93, 94, 95, 96, 97],
-		// [89, 90, 91, 92, 93, 94, 95, 96, 97, 98]
 	][A][B]
 
 	/**
@@ -615,13 +609,13 @@ export namespace Digit {
 	 * The number range from 0 to 81.
 	 */
 	export type Subtract<A extends number, B extends number> = [`${A}`, `${B}`] extends [
-		`${infer A1 extends number}${infer A2 extends number}`,
-		`${infer B1 extends number}${infer B2 extends number}`
+		`${number}${infer A2 extends number}`,
+		`${number}${infer B2 extends number}`
 	]
 		? Subtract<A2, B2>
-		: `${A}` extends `${infer A1 extends number}${infer A2 extends number}`
+		: `${A}` extends `${number}${infer A2 extends number}`
 		? Subtract<A2, B>
-		: `${B}` extends `${infer B1 extends number}${infer B2 extends number}`
+		: `${B}` extends `${number}${infer B2 extends number}`
 		? Subtract<A, B2>
 		: SingleDigitSubtract<A, B>
 

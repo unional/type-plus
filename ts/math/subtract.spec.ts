@@ -78,6 +78,7 @@ it('bigint A >= B', () => {
 
 	testType.equal<Subtract<10n, 1n>, 9n>(true)
 	testType.equal<Subtract<19n, 1n>, 18n>(true)
+	testType.equal<Subtract<100n, 1n>, 99n>(true)
 	testType.equal<Subtract<97531n, 13579n>, 83952n>(true)
 	testType.equal<Subtract<9007199254740993n, 3n>, 9007199254740990n>(true)
 })
