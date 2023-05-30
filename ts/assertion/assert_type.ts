@@ -78,6 +78,9 @@ assertType.noFunction = function <S>(subject: Exclude<S, AnyFunction>): void {
 	if (typeof subject === 'function') throw TypeError(`subject is function`)
 }
 
+/**
+ * @deprecated
+ */
 assertType.isConstructor = function (subject: AnyConstructor): asserts subject is AnyConstructor {
 	if (!isConstructor(subject)) throw TypeError(`subject is not a constructor`)
 }

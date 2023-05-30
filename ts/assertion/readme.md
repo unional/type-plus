@@ -2,6 +2,8 @@
 
 [Assertion Functions][assertion_functions] are special functions that asserts certain conditions of your program.
 
+It is introduced in TypeScript 3.7.
+
 They throw an error if the condition is not met, and return nothing otherwise.
 
 These assertion functions are typically used in runtime,
