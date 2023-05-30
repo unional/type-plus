@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 import { testType } from '../index.js'
-import type { Digit } from './numeric_struct2.js'
+import type { Digit } from './numeric_struct.js'
 
 it('adds single digit', () => {
 	testType.equal<Digit.Add<0, 0>, 0>(true)

@@ -1,6 +1,6 @@
 import { describe, it } from '@jest/globals'
 import { testType } from '../index.js'
-import type { DigitsStruct } from './numeric_struct2.js'
+import type { DigitsStruct } from './numeric_struct.js'
 
 describe('Normalize', () => {
 	it('remain unchanged if every digits are single digits for bigint', () => {
