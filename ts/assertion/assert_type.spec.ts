@@ -1,36 +1,35 @@
-/* eslint-disable @typescript-eslint/ban-types */
-import { describe, expect, it, test } from '@jest/globals'
+import { describe, expect, it } from '@jest/globals'
 import { a } from 'assertron'
-import { AnyConstructor, AnyFunction, Equal, assertType, isType } from '../index.js'
+import { assertType, testType, type AnyConstructor, type AnyFunction } from '../index.js'
 
 describe('assertType()', () => {
-	test('input satisfies specified type', () => {
+	it('input satisfies specified type', () => {
 		const subject = { a: 1, b: 2 } as const
 		assertType<{ a: 1 }>(subject)
 	})
-	test('Specify T in the validate function', () => {
+	it('Specify T in the validate function', () => {
 		const s: unknown = false
 		assertType(s, (s: boolean) => typeof s === 'boolean')
-		assertType<boolean>(s)
+		testType.boolean<typeof s>(true)
 	})
-	test('Specify T at type declaration', () => {
+	it('Specify T at type declaration', () => {
 		const s: unknown = false
 		assertType<boolean>(s, s => typeof s === 'boolean')
-		assertType<boolean>(s)
+		testType.boolean<typeof s>(true)
 	})
-	test('error message contains info from validator', () => {
+	it('error message contains info from validator', () => {
 		const s: unknown = 1
 		a.throws(
 			() => assertType(s, s => typeof s === 'boolean'),
 			e => /subject fails to satisfy s => typeof s === 'boolean'/.test(e)
 		)
 	})
-	test('Class as validator', () => {
+	it('Class as validator', () => {
 		const s: unknown = new Error()
 		assertType(s, Error)
-		assertType<Error>(s)
+		testType.equal<typeof s, Error>(true)
 	})
-	test('Class as validator fails', () => {
+	it('Class as validator fails', () => {
 		class Foo {}
 		const s: unknown = 1
 		a.throws(
@@ -38,15 +37,15 @@ describe('assertType()', () => {
 			(e: Error) => /subject fails to satisfy class Foo{}/.test(e.message)
 		)
 	})
-	test('subject can be type any', () => {
+	it('subject can be type any', () => {
 		const s: any = false
 		assertType<boolean>(s, s => typeof s === 'boolean')
-		assertType<boolean>(s)
+		testType.boolean<typeof s>(true)
 	})
 })
 
 describe('assertType.isUndefined()', () => {
-	test('ensure the input type is undefined and nothing else', () => {
+	it('ensure the input type is undefined and nothing else', () => {
 		assertType.isUndefined(undefined)
 
 		// @ts-expect-error
@@ -66,18 +65,18 @@ describe('assertType.isUndefined()', () => {
 		// @ts-expect-error
 		assertType.isUndefined(undefined as unknown)
 	})
-	test('not undefined throws TypeError', () => {
+	it('not undefined throws TypeError', () => {
 		a.throws(() => assertType.isUndefined(1 as any), TypeError)
 	})
-	test('narrow any to undefined', () => {
+	it('narrow any to undefined', () => {
 		const x: any = undefined
 		assertType.isUndefined(x)
-		assertType.isTrue(true as Equal<undefined, typeof x>)
+		testType.undefined<typeof x>(true)
 	})
 })
 
 describe('assertType.noUndefined()', () => {
-	test('ensure the input type does not contain undefined', () => {
+	it('ensure the input type does not contain undefined', () => {
 		assertType.noUndefined(null)
 		assertType.noUndefined(1)
 		assertType.noUndefined(true)
@@ -91,13 +90,13 @@ describe('assertType.noUndefined()', () => {
 		// @ts-expect-error
 		assertType.noUndefined(1 as undefined | number)
 	})
-	test('undefined throws TypeError', () => {
+	it('undefined throws TypeError', () => {
 		a.throws(() => assertType.noUndefined(undefined as any), TypeError)
 	})
 })
 
 describe('assertType.isNull()', () => {
-	test('ensure the input type is null and nothing else', () => {
+	it('ensure the input type is null and nothing else', () => {
 		assertType.isNull(null)
 
 		a.throws(() => assertType.isNull(1 as any), TypeError)
@@ -123,18 +122,18 @@ describe('assertType.isNull()', () => {
 		// @ts-expect-error
 		assertType.isNull(null as unknown)
 	})
-	test('not null throws TypeError', () => {
+	it('not null throws TypeError', () => {
 		a.throws(() => assertType.isNull(1 as any), TypeError)
 	})
-	test('narrow any to null', () => {
+	it('narrow any to null', () => {
 		const x: any = null
 		assertType.isNull(x)
-		assertType.isTrue(true as Equal<null, typeof x>)
+		testType.null<typeof x>(true)
 	})
 })
 
 describe('assertType.noNull()', () => {
-	test('ensure the input type does not contain null', () => {
+	it('ensure the input type does not contain null', () => {
 		assertType.noNull(undefined)
 		assertType.noNull(1)
 		assertType.noNull(true)
@@ -147,13 +146,13 @@ describe('assertType.noNull()', () => {
 		// @ts-expect-error
 		assertType.noNull(undefined as undefined | null)
 	})
-	test('null throws TypeError', () => {
+	it('null throws TypeError', () => {
 		a.throws(() => assertType.noNull(null as any), TypeError)
 	})
 })
 
 describe('assertType.isNumber()', () => {
-	test('ensure the input type is number and nothing else', () => {
+	it('ensure the input type is number and nothing else', () => {
 		assertType.isNumber(0)
 
 		// @ts-expect-error
@@ -173,18 +172,18 @@ describe('assertType.isNumber()', () => {
 		// @ts-expect-error
 		assertType.isNumber(1 as unknown)
 	})
-	test('not number throws TypeError', () => {
+	it('not number throws TypeError', () => {
 		a.throws(() => assertType.isNumber(undefined as any), TypeError)
 	})
-	test('narrow any to number', () => {
+	it('narrow any to number', () => {
 		const x: any = 1
 		assertType.isNumber(x)
-		assertType.isTrue(true as Equal<number, typeof x>)
+		testType.number<typeof x>(true)
 	})
 })
 
 describe('assertType.noNumber()', () => {
-	test('ensure the input type does not contain number', () => {
+	it('ensure the input type does not contain number', () => {
 		assertType.noNumber(undefined)
 		assertType.noNumber(null)
 		assertType.noNumber(true)
@@ -197,13 +196,13 @@ describe('assertType.noNumber()', () => {
 		// @ts-expect-error
 		assertType.noNumber('' as number | undefined)
 	})
-	test('number throws TypeError', () => {
+	it('number throws TypeError', () => {
 		a.throws(() => assertType.noNumber(1 as any), TypeError)
 	})
 })
 
 describe('assertType.isBoolean()', () => {
-	test('ensure the input type is boolean and nothing else', () => {
+	it('ensure the input type is boolean and nothing else', () => {
 		assertType.isBoolean(true)
 		assertType.isBoolean(false)
 
@@ -222,18 +221,18 @@ describe('assertType.isBoolean()', () => {
 		// @ts-expect-error
 		assertType.isBoolean(true as boolean | undefined)
 	})
-	test('not boolean throws TypeError', () => {
+	it('not boolean throws TypeError', () => {
 		a.throws(() => assertType.isBoolean(undefined as any), TypeError)
 	})
-	test('narrow any to boolean', () => {
+	it('narrow any to boolean', () => {
 		const x: any = true
 		assertType.isBoolean(x)
-		assertType.isTrue(true as Equal<boolean, typeof x>)
+		testType.boolean<typeof x>(true)
 	})
 })
 
 describe('assertType.noBoolean()', () => {
-	test('ensure the input type does not contain boolean', () => {
+	it('ensure the input type does not contain boolean', () => {
 		assertType.noBoolean(undefined)
 		assertType.noBoolean(null)
 		assertType.noBoolean(1)
@@ -246,13 +245,13 @@ describe('assertType.noBoolean()', () => {
 		// @ts-expect-error
 		assertType.noBoolean(1 as boolean | undefined)
 	})
-	test('boolean throws TypeError', () => {
+	it('boolean throws TypeError', () => {
 		a.throws(() => assertType.noBoolean(true as any), TypeError)
 	})
 })
 
 describe('assertType.isTrue()', () => {
-	test('ensure the input type is true and nothing else', () => {
+	it('ensure the input type is true and nothing else', () => {
 		assertType.isTrue(true)
 
 		// @ts-expect-error
@@ -274,18 +273,18 @@ describe('assertType.isTrue()', () => {
 		// @ts-expect-error
 		assertType.isTrue(true as unknown)
 	})
-	test('not true throws TypeError', () => {
+	it('not true throws TypeError', () => {
 		a.throws(() => assertType.isTrue(undefined as any), TypeError)
 	})
-	test('narrow any to true', () => {
+	it('narrow any to true', () => {
 		const x: any = true
 		assertType.isTrue(x)
-		assertType.isTrue(true as Equal<true, typeof x>)
+		testType.true<typeof x>(true)
 	})
 })
 
 describe('assertType.noTrue()', () => {
-	test('ensure the input type does not contain boolean', () => {
+	it('ensure the input type does not contain boolean', () => {
 		assertType.noTrue(false)
 		assertType.noTrue(undefined)
 		assertType.noTrue(null)
@@ -301,13 +300,13 @@ describe('assertType.noTrue()', () => {
 		// @ts-expect-error
 		assertType.noTrue(1 as boolean | undefined)
 	})
-	test('true throws TypeError', () => {
+	it('true throws TypeError', () => {
 		a.throws(() => assertType.noTrue(true as any), TypeError)
 	})
 })
 
 describe('assertType.isFalse()', () => {
-	test('ensure the input type is false and nothing else', () => {
+	it('ensure the input type is false and nothing else', () => {
 		assertType.isFalse(false)
 
 		a.throws(() => assertType.isFalse(true as any), TypeError)
@@ -336,13 +335,13 @@ describe('assertType.isFalse()', () => {
 		// @ts-expect-error
 		assertType.isFalse(false as unknown)
 	})
-	test('boolean throws TypeError', () => {
+	it('boolean throws TypeError', () => {
 		a.throws(() => assertType.noBoolean(true as any), TypeError)
 	})
 })
 
 describe('assertType.noFalse()', () => {
-	test('ensure the input type does not contain boolean', () => {
+	it('ensure the input type does not contain boolean', () => {
 		assertType.noFalse(true)
 		assertType.noFalse(undefined)
 		assertType.noFalse(null)
@@ -358,13 +357,13 @@ describe('assertType.noFalse()', () => {
 		// @ts-expect-error
 		assertType.noFalse(1 as boolean | undefined)
 	})
-	test('false throws TypeError', () => {
+	it('false throws TypeError', () => {
 		a.throws(() => assertType.noFalse(false as any), TypeError)
 	})
 })
 
 describe('assertType.isString()', () => {
-	test('ensure the input type is string and nothing else', () => {
+	it('ensure the input type is string and nothing else', () => {
 		assertType.isString('a')
 
 		// @ts-expect-error
@@ -384,18 +383,18 @@ describe('assertType.isString()', () => {
 		// @ts-expect-error
 		assertType.isString('a' as unknown)
 	})
-	test('not string throws TypeError', () => {
+	it('not string throws TypeError', () => {
 		a.throws(() => assertType.isString(undefined as any), TypeError)
 	})
-	test('narrow any to string', () => {
+	it('narrow any to string', () => {
 		const x: any = ''
 		assertType.isString(x)
-		assertType.isTrue(true as Equal<string, typeof x>)
+		testType.string<typeof x>(true)
 	})
 })
 
 describe('assertType.noString()', () => {
-	test('ensure the input type does not contain boolean', () => {
+	it('ensure the input type does not contain boolean', () => {
 		assertType.noString(undefined)
 		assertType.noString(null)
 		assertType.noString(1)
@@ -408,13 +407,13 @@ describe('assertType.noString()', () => {
 		// @ts-expect-error
 		assertType.noString(1 as 'a' as string | undefined)
 	})
-	test('string throws TypeError', () => {
+	it('string throws TypeError', () => {
 		a.throws(() => assertType.noString('' as any), TypeError)
 	})
 })
 
 describe('assertType.isFunction()', () => {
-	test('ensure the input type is function and nothing else', () => {
+	it('ensure the input type is function and nothing else', () => {
 		assertType.isFunction(() => {})
 		assertType.isFunction(function () {})
 
@@ -434,18 +433,18 @@ describe('assertType.isFunction()', () => {
 		// @ts-expect-error
 		assertType.isFunction(f as AnyFunction | undefined)
 	})
-	test('not function throws TypeError', () => {
+	it('not function throws TypeError', () => {
 		a.throws(() => assertType.isFunction(undefined as any), TypeError)
 	})
-	test('narrow any to function', () => {
+	it('narrow any to function', () => {
 		const x: any = () => {}
 		assertType.isFunction(x)
-		assertType.isTrue(true as Equal<AnyFunction, typeof x>)
+		testType.function<typeof x>(true)
 	})
 })
 
 describe('assertType.noFunction()', () => {
-	test('ensure the input type does not contain function', () => {
+	it('ensure the input type does not contain function', () => {
 		assertType.noFunction(undefined)
 		assertType.noFunction(null)
 		assertType.noFunction(1)
@@ -458,13 +457,13 @@ describe('assertType.noFunction()', () => {
 		// @ts-expect-error
 		assertType.noFunction(1 as AnyFunction | undefined)
 	})
-	test('function throws TypeError', () => {
+	it('function throws TypeError', () => {
 		a.throws(() => assertType.noFunction((() => {}) as any), TypeError)
 	})
 })
 
 describe('assertType.isConstructor()', () => {
-	test('ensure the input type is constructor and nothing else', () => {
+	it('ensure the input type is constructor and nothing else', () => {
 		class Foo {}
 		assertType.isConstructor(Foo)
 
@@ -485,19 +484,19 @@ describe('assertType.isConstructor()', () => {
 		// @ts-expect-error
 		assertType.isConstructor(Foo as AnyFunction | undefined)
 	})
-	test('not constructor throws TypeError', () => {
+	it('not constructor throws TypeError', () => {
 		a.throws(() => assertType.isConstructor(undefined as any), TypeError)
 	})
-	test('narrow any to constructor', () => {
+	it('narrow any to constructor', () => {
 		class Foo {}
 		const x: any = Foo
 		assertType.isConstructor(x)
-		assertType.isTrue(true as Equal<AnyConstructor, typeof x>)
+		testType.equal<typeof x, AnyConstructor>(true)
 	})
 })
 
 describe('assertType.isError()', () => {
-	test('ensure the input type is instance of Error and nothing else', () => {
+	it('ensure the input type is instance of Error and nothing else', () => {
 		assertType.isError(new Error('x'))
 
 		a.throws(() => assertType.isError(false as any), TypeError)
@@ -526,18 +525,18 @@ describe('assertType.isError()', () => {
 		assertType.isError(x as unknown)
 	})
 
-	test('not error throws TypeError', () => {
+	it('not error throws TypeError', () => {
 		a.throws(() => assertType.isError(undefined as any), TypeError)
 	})
-	test('narrow any to Error', () => {
+	it('narrow any to Error', () => {
 		const x: any = new Error('hello')
 		assertType.isError(x)
-		assertType.isTrue(true as Equal<Error, typeof x>)
+		testType.equal<typeof x, Error>(true)
 	})
 })
 
 describe('assertType.noError()', () => {
-	test('ensure the input type does not contain Error', () => {
+	it('ensure the input type does not contain Error', () => {
 		assertType.noError(undefined)
 		assertType.noError(null)
 		assertType.noError(1)
@@ -550,13 +549,13 @@ describe('assertType.noError()', () => {
 		// @ts-expect-error
 		assertType.noError({} as Error | undefined)
 	})
-	test('error instance throws TypeError', () => {
+	it('error instance throws TypeError', () => {
 		a.throws(() => assertType.noError(new Error('a') as any), TypeError)
 	})
 })
 
 describe('assertType.isNever()', () => {
-	test('ensure the input type is never and nothing else', () => {
+	it('ensure the input type is never and nothing else', () => {
 		const s: never = 0 as never
 		assertType.isNever(s)
 
@@ -581,23 +580,23 @@ describe('assertType.isNever()', () => {
 		// @ts-expect-error
 		assertType.isNever(false as unknown)
 	})
-	test('boolean throws TypeError', () => {
+	it('boolean throws TypeError', () => {
 		a.throws(() => assertType.noBoolean(true as any), TypeError)
 	})
 })
 
 describe('assertType.custom', () => {
-	test('specify T in the validator', () => {
+	it('specify T in the validator', () => {
 		const isBool = assertType.custom((s: boolean) => typeof s === 'boolean')
 		const s: unknown = false
 		expect(isBool(s)).toBe(undefined)
 	})
-	test('specify T at type declaration', () => {
+	it('specify T at type declaration', () => {
 		const isBool = assertType.custom<boolean>(s => typeof s === 'boolean')
 		const s: unknown = false
 		expect(isBool(s)).toBe(undefined)
 	})
-	test('error message contains info from validator', () => {
+	it('error message contains info from validator', () => {
 		const isBool = assertType.custom<boolean>(s => typeof s === 'boolean')
 		const s: unknown = 1
 		a.throws(
@@ -611,13 +610,12 @@ describe('assertType.as<T>()', () => {
 	it('assert the subject as T', () => {
 		let s: string | undefined
 		assertType.as<string>(s)
-		isType.equal<true, string, typeof s>()
+		testType.string<typeof s>(true)
 	})
 
 	it('narrows to literal', () => {
 		const s: number | undefined = 1
 		assertType.as<1>(s)
-		isType.equal<true, 1, typeof s>()
+		testType.equal<typeof s, 1>(true)
 	})
 })
-/* eslint-enable @typescript-eslint/ban-types */
