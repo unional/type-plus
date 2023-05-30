@@ -632,13 +632,13 @@ You can learn more in their respective sections:
 
 ### numeric
 
-> [`Numeric`](./ts/numeric/number.ts#L4)
+> [`Numeric`](./ts/numeric/numeric_type.ts#L4)
 
-↪️ `parse`: either `number` or `bigint`.
+📘 `definition`: `number | bigint`.
 
-> [`Zero`](ts/numeric_plus/number.ts#L9): `0` in `number` or `bigint`.
+> [`Zero`](ts/numeric_plus/numeric_type.ts#L9)
 
-⭕ `predicate`: `T === number`
+📘 `definition`: `0 | 0n`
 
 > [`Integer<N, Then = N, Else = never>`](./ts/numeric/integer.ts#L15)
 
@@ -694,46 +694,86 @@ You can learn more in their respective sections:
 
 ### object
 
-> `filterKey()`: type adjusted filter by key.
+> `filterKey()`
 
-> `findKey()`: type adjusted find by key.
+🔨 `utilities`: type adjusted filter by key.
 
-> `forEachKey()`: type adjusted for each by key.
+> `findKey()`
 
-> `HasKey<T, K>`: predicate type checking `T` has key `K`.
+🔨 `utilities`: type adjusted find by key.
 
-> `hasKey()`: function of `HasKey`.
+> `forEachKey()`
 
-> `IsRecord<T>`: `logical` predicate for `Record`.
+🔨 `utilities`: type adjusted for each by key.
 
-> `KeysWithDiffTypes<A, B>`: gets the keys common in `A` and `B` but with different value type.
+> `HasKey<T, K>`
 
-> `mapKey()`: type adjusted map by key.
+🔨 `utilities`: predicate type checking `T` has key `K`.
 
-> `RecordValue<R>`: gets the value type `T`from `Record<any, T>` [video](https://www.youtube.com/watch?v=1J7xK6FUqPw).
+> `hasKey()`
 
-> `reduceByKey()`: type adjusted reduce by key.
+🔨 `utilities`: function of `HasKey`.
 
-> `someKey()`: type adjusted some by key.
+> `IsRecord<T>`
 
-> `SpreadRecord<A, B>`: type for `{...a, ...b}` when both `a` and `b` are `Record`\
+🔨 `utilities`: `logical` predicate for `Record`.
+
+> `KeysWithDiffTypes<A, B>`
+
+🔨 `utilities`: gets the keys common in `A` and `B` but with different value type.
+
+> `mapKey()`
+
+🔨 `utilities`: type adjusted map by key.
+
+> `RecordValue<R>`
+
+🔨 `utilities`: gets the value type `T`from `Record<any, T>`
+
+[video](https://www.youtube.com/watch?v=1J7xK6FUqPw).
+
+> `reduceByKey()`
+
+🔨 `utilities`: type adjusted reduce by key.
+
+> `someKey()`
+
+🔨 `utilities`: type adjusted some by key.
+
+> `SpreadRecord<A, B>`
+
+🔨 `utilities`: type for `{...a, ...b}` when both `a` and `b` are `Record`\
   for array, just do `[...A, ...B]`.
 
 ### Promise
 
-> `AwaitedProp<T, V>`: `Awaited` on specified props `P` in `T`.
+> `AwaitedProp<T, V>`
 
-> `isPromise<R>(subject: any)`: `isPromise()` type guard.
+🔨 `utilities`: `Awaited` on specified props `P` in `T`.
 
-> `MaybePromise<T>`: Alias of `T | Promise<T>`.
+> `isPromise<R>(subject: any)`
 
-> `PromiseValue<P>`: Gets the type within the Promise.
+🔨 `utilities`: `isPromise()` type guard.
 
-> `PromiseValueMerge<P1, P2, ...P9>`: Merge the values of multiple promises.
+> `MaybePromise<T>`
 
-> `mapSeries()`: Similar to `bluebird.mapSeries()` but works with `async`/`await`.
+🔨 `utilities`: Alias of `T | Promise<T>`.
 
-> `transformMaybePromise(value, transformer)`: Apply the `transformer` to the `value`.\
+> `PromiseValue<P>`
+
+🔨 `utilities`: Gets the type within the Promise.
+
+> `PromiseValueMerge<P1, P2, ...P9>`
+
+🔨 `utilities`: Merge the values of multiple promises.
+
+> `mapSeries()`
+
+🔨 `utilities`: Similar to `bluebird.mapSeries()` but works with `async`/`await`.
+
+> `transformMaybePromise(value, transformer)`
+
+🔨 `utilities`: Apply the `transformer` to the `value`.\
   It is also exported under `MaybePromise.transform()`.
 
 ### string
@@ -846,25 +886,43 @@ You can learn more in their respective sections:
 
 ## Constant Types
 
-> `KeyTypes`: type of all keys.
+> `KeyTypes`
 
-> `PrimitiveTypes`: all primitive types, including `Function`, `symbol`, and `bigint`.
+📘 `definition`: type of all keys.
 
-> `ComposableTypes`: Types that can contain custom properties. i.e. `object`, `array`, `function`.
+> `PrimitiveTypes`
 
-> `NonComposableTypes`: Types that cannot contain custom properties. i.e. not composable.
+📘 `definition`: all primitive types, including `Function`, `symbol`, and `bigint`.
+
+> `ComposableTypes`
+
+📘 `definition`: Types that can contain custom properties. i.e. `object`, `array`, `function`.
+
+> `NonComposableTypes`
+
+📘 `definition`: Types that cannot contain custom properties. i.e. not composable.
 
 ## JSON Support
 
-> `JSONPrimitive`: primitive types valid in JSON
+> `JSONPrimitive`
 
-> `JSONObject`: JSON object
+📘 `definition`: primitive types valid in JSON
 
-> `JSONArray`: JSON array
+> `JSONObject`
 
-> `JSONTypes`: all JSON compatible types.
+📘 `definition`: JSON object
 
-> `JSONTypes.get<T>(obj, ...props)`: get a cast value in JSON
+> `JSONArray`
+
+📘 `definition`: JSON array
+
+> `JSONTypes`
+
+📘 `definition`: all JSON compatible types.
+
+> `JSONTypes.get<T>(obj, ...props)`
+
+🔨 `utilities`: get a cast value in JSON
 
 ```ts
 import { JSONTypes } from 'type-plus'
@@ -876,99 +934,188 @@ JSONTypes.get<string>(someJson, 'a', 'b', 1, 'c') // miku
 
 ## Type manipulation
 
-> `ANotB<A, B>`: get object with properties in `A` and not in `B`, including properties with a different value type.
+> `ANotB<A, B>`
 
-> `BNotA<A, B>`: flip of `ANotB`
+🔨 `utilities`: get object with properties in `A` and not in `B`, including properties with a different value type.
 
-> `as<T>(subject)`: assert `subject` as `T`. Avoid ASI issues such as `;(x as T).abc`
+> `BNotA<A, B>`
 
-> `asAny(subject)`: assert `subject` as `any`. Avoid ASI issue such as `;(x as any).abc`
+🔨 `utilities`: flip of `ANotB`
 
-> `EitherAnd<A, B, [C, D]>`: combines 2 to 4 types as `A | B | (A & B)`. This is useful for combining options. **Deprecated**. Renamed to `EitherOrBoth`.
+> `as<T>(subject)`
 
-> `EitherOrBoth<A, B, [C, D]>`: combines 2 to 4 types as `A | B | (A & B)`. This is useful for combining options [video](https://youtu.be/jBxx03NT4Ik).
+🔨 `utilities`: assert `subject` as `T`. Avoid ASI issues such as `;(x as T).abc`
 
-> `Except<T, K>`: Deprecated. Same as `Omit<T, K>`.
+> `asAny(subject)`
 
-> `ExcludePropType<T, U>`: excludes type `U` from properties in `T`.
+🔨 `utilities`: assert `subject` as `any`. Avoid ASI issue such as `;(x as any).abc`
 
-> `KeyofOptional<T>`: `keyof` that works with `Record<any, any> | undefined`.
+> `EitherAnd<A, B, [C, D]>`
 
-> `KnownKeys<T>`: extract known (defined) keys from type `T`.
+💀🔨 `deprecated`,`utilities`: Renamed to `EitherOrBoth`. combines 2 to 4 types as `A | B | (A & B)`.
 
-> `LeftJoin<A, B>`: left join `A` with `B`
+This is useful for combining options.
 
-> `NonNull<T>`: remove `null`
+> `EitherOrBoth<A, B, [C, D]>`
 
-> `NonUndefined<T>`: remove `undefined`
+🔨 `utilities`: combines 2 to 4 types as `A | B | (A & B)`.
 
-> `Omit<T, K>`: From `T`, pick a set of properties whose keys are not in the union `K`. This is the opposite of `Pick<T, K>`.
+This is useful for combining options [video](https://youtu.be/jBxx03NT4Ik).
 
-> `OptionalKeys<T>`: gets keys of optional properties in `T`.
+> `Except<T, K>`
 
-> `PartialExcept<T, U>`: Deprecated. Same as `PartialOmit<T, U>`.
+💀🔨 `deprecated`,`utilities`: same as `Omit<T, K>`.
 
-> `PartialOmit<T, U>`: makes the properties not specified in `U` becomes optional.
+> `ExcludePropType<T, U>`
 
-> `PartialPick<T, U>`: makes the properties specified in `U` becomes optional.
+🔨 `utilities`: excludes type `U` from properties in `T`.
 
-> `Pick<T, K>`: pick properties `K` from `T`. Works with unions.
+> `KeyofOptional<T>`
 
-> `RecursivePartial<T>`: make type `T` optional recursively.
+🔨 `utilities`: `keyof` that works with `Record<any, any> | undefined`.
 
-> `RecursiveRequired<T>`: make type `T` required recursively.
+> `KnownKeys<T>`
 
-> `ReplaceProperty<T, K, V>`: replace property `K` in `T` with `V`.
+🔨 `utilities`: extract known (defined) keys from type `T`.
 
-> `RequiredKeys<T>`: gets keys of required properties in `T`.
+> `LeftJoin<A, B>`
 
-> `RequiredPick<T, U>`: makes the properties specified in `U` become required.
+🔨 `utilities`: left join `A` with `B`
 
-> `RequiredExcept<T, U>`: makes the properties not specified in `U` become required.
+> `NonNull<T>`
 
-> `RecursiveIntersect<T, U>`: intersect type `U` onto `T` recursively.
+🔨 `utilities`: remove `null`
 
-> `ValueOf<T>`: type of the value of the properties of `T`.
+> `NonNullable<T>` (built-in)
 
-> `Widen<T>`: widen literal types.
+🔨 `utilities`: adjust the type not to nullable
 
-> PropType: ...no helper type for this. Just do `YourType['propName']`.
+> `NonUndefined<T>`
+
+🔨 `utilities`: remove `undefined`
+
+> `Omit<T, K>`
+
+🔨 `utilities`: From `T`, pick a set of properties whose keys are not in the union `K`. This is the opposite of `Pick<T, K>`.
+
+> `OptionalKeys<T>`
+
+🔨 `utilities`: gets keys of optional properties in `T`.
+
+> `PartialExcept<T, U>`
+
+💀🔨 `deprecated`,`utilities`: same as `PartialOmit<T, U>`.
+
+> `PartialOmit<T, U>`
+
+🔨 `utilities`: makes the properties not specified in `U` becomes optional.
+
+> `PartialPick<T, U>`
+
+🔨 `utilities`: makes the properties specified in `U` becomes optional.
+
+> `Pick<T, K>`
+
+🔨 `utilities`: pick properties `K` from `T`. Works with unions.
+
+> `RecursivePartial<T>`
+
+🔨 `utilities`: make type `T` optional recursively.
+
+> `RecursiveRequired<T>`
+
+🔨 `utilities`: make type `T` required recursively.
+
+> `ReplaceProperty<T, K, V>`
+
+🔨 `utilities`: replace property `K` in `T` with `V`.
+
+> `RequiredKeys<T>`
+
+🔨 `utilities`: gets keys of required properties in `T`.
+
+> `RequiredPick<T, U>`
+
+🔨 `utilities`: makes the properties specified in `U` become required.
+
+> `RequiredExcept<T, U>`
+
+🔨 `utilities`: makes the properties not specified in `U` become required.
+
+> `RecursiveIntersect<T, U>`
+
+🔨 `utilities`: intersect type `U` onto `T` recursively.
+
+> `ValueOf<T>`
+
+🔨 `utilities`: type of the value of the properties of `T`.
+
+> `Widen<T>`
+
+🔨 `utilities`: widen literal types.
+
+PropType
+
+💀 ...no helper type for this. Just do `YourType['propName']`.
 
 ## Type Predicates
 
 Type predicates are type alias that returns `true` or `false`.
 They can be used to compose complex types.
 
-> `HasKey<T, K>`: predicate type checking `T` has key `K`.
+> `HasKey<T, K>`
 
-> `IsAny<T>`: `T === any` (updated to impl: [expect-type]).
+🔨 `utilities`: predicate type checking `T` has key `K`.
 
-> `IsBoolean<T>`: check for `boolean`, but not for `true` nor `false`.
+> `IsAny<T>`
 
-> `IsDisjoint<A, B>`: is `A` and `B` is a disjoint set.
+🔨 `utilities`: `T === any` (updated to impl: [expect-type]).
 
-> `IsEmptyObject<T>`: is `T === {}`.
+> `IsBoolean<T>`
 
-> `IsLiteral<T>`: is `T` a literal type (literal string or number).
+🔨 `utilities`: check for `boolean`, but not for `true` nor `false`.
+
+> `IsDisjoint<A, B>`
+
+🔨 `utilities`: is `A` and `B` is a disjoint set.
+
+> `IsEmptyObject<T>`
+
+🔨 `utilities`: is `T === {}`.
+
+> `IsLiteral<T>`
+
+🔨 `utilities`: is `T` a literal type (literal string or number).
 
 ### Logical
 
-> `If<Condition, Then = true, Else = false>`: if statement.
+> `If<Condition, Then = true, Else = false>`
 
-> `And<A, B, Then = true, Else = false>`: logical `AND`.
+🔨 `utilities`: if statement
 
-> `Or<A, B, Then = true, Else = false>`: logical `OR`.
+> `And<A, B, Then = true, Else = false>`
 
-> `Xor<A, B, Then = true, Else = false>`: logical `XOR`.
+🔨 `utilities`: logical `AND`
 
-> `Not<X, Then = true, Else = false>`: logical `NOT`.
+> `Or<A, B, Then = true, Else = false>`
+
+🔨 `utilities`: logical `OR`
+
+> `Xor<A, B, Then = true, Else = false>`
+
+🔨 `utilities`: logical `XOR`
+
+> `Not<X, Then = true, Else = false>`
+
+🔨 `utilities`: logical `NOT`
 
 Note that these types work correctly with the `boolean` type.
 e.g.:
 
-> `And<boolean, true> -> boolean`
-
-> `Not<boolean> -> boolean`
+```ts
+type R = And<boolean, true> // boolean
+type R = Not<boolean>       // boolean`
+```
 
 There is a problem with generic distribution: <https://github.com/microsoft/TypeScript/issues/41053>
 So you may encounter some weird behavior if your logic is complex.
@@ -981,21 +1128,37 @@ It works with `number` and `bigint`, positive and negative number, including flo
 
 It will cast the type between `number` and `bigint` if needed.
 
-> `Abs<N, Fail=never>`: `Abs(N)`.
+> `Abs<N, Fail = never>`
 
-> `Max<A, B, Fail=never>`: `max(A, B)`
+🔨 `utilities`: `Abs(N)`.
 
-> `GreaterThan<A, B>`: `A > B`.
+> `Max<A, B, Fail = never>`
 
-> `Add<A, B>`: `A + B`.
+🔨 `utilities`: `max(A, B)`
 
-> `Subtract<A, B>`: `A > B`.
+> `GreaterThan<A, B>`
 
-> `Increment<A>`: alias of `Add<A, 1>`.
+🔨 `utilities`: `A > B`.
 
-> `Decrement<A>`: alias of `Subtract<A, 1>`.
+> `Add<A, B>`
 
-> `Multiply<A, B`: `A * B`.
+🔨 `utilities`: `A + B`.
+
+> `Subtract<A, B>`
+
+🔨 `utilities`: `A > B`.
+
+> `Increment<A>`
+
+🔨 `utilities`: alias of `Add<A, 1>`.
+
+> `Decrement<A>`
+
+🔨 `utilities`: alias of `Subtract<A, 1>`.
+
+> `Multiply<A, B`
+
+🔨 `utilities`: `A * B`.
 
 ## Utility Functions
 
@@ -1027,25 +1190,45 @@ It will cast the type between `number` and `bigint` if needed.
 
 🔨 `utilities`: type guard `err` with NodeJS error code.
 
-> `omit(obj, ...props)`: omit properties from `obj`.
+> `omit(obj, ...props)`
 
-> `pick(obj, ...props)`: pick properties from `obj`.
+🔨 `utilities`: omit properties from `obj`.
 
-> `record<K, V>(value?)`: create a `Record<K, V>` without extra object prototype.
+> `pick(obj, ...props)`
 
-> `record<R>(value?)`: create a record `R` (e.g. `{ a: number }`) without extra object prototype.
+🔨 `utilities`: pick properties from `obj`.
 
-> `required(...)`: merge options and remove `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
+> `record<K, V>(value?)`
 
-> `requiredDeep(...)`: merge options deeply and remove `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
+🔨 `utilities`: create a `Record<K, V>` without extra object prototype.
 
-> `split(target, ...splitters)`: split one object into multiple objects.
+> `record<R>(value?)`
 
-> `stub<T>(value)`: stub a particular type `T`.
+🔨 `utilities`: create a record `R` (e.g. `{ a: number }`) without extra object prototype.
 
-> `stub.build<T>(init?)`: build a stub for particular type `T`.
+> `required(...)`
 
-> `typeOverrideIncompatible<T>()`: override only the incompatible portion between two types.
+🔨 `utilities`: merge options and remove `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
+
+> `requiredDeep(...)`
+
+🔨 `utilities`: merge options deeply and remove `Partial<T>`. From [`unpartial`](https://github.com/unional/unpartial)
+
+> `split(target, ...splitters)`
+
+🔨 `utilities`: split one object into multiple objects.
+
+> `stub<T>(value)`
+
+🔨 `utilities`: stub a particular type `T`.
+
+> `stub.build<T>(init?)`
+
+🔨 `utilities`: build a stub for particular type `T`.
+
+> `typeOverrideIncompatible<T>()`
+
+🔨 `utilities`: override only the incompatible portion between two types.
 
 ```ts
 type A =  {
@@ -1065,10 +1248,16 @@ const source = {
 overrider(source, { foo: !!source.foo })
 ```
 
-> `unpartial()`: merge options and remove `Partial<T>` values. From [`unpartial`](https://github.com/unional/unpartial)
+> `unpartial()`
 
-> `context()`: a context builder. This is useful to build context for functional programming.\
-  It is a sync version of the `AsyncContext` from [async-fp](https://unional/async-fp).
+🔨 `utilities`: merge options and remove `Partial<T>` values. From [`unpartial`](https://github.com/unional/unpartial)
+
+> `context()`
+
+🔨 `utilities`: a context builder.
+
+This is useful to build context for functional programming.
+It is a sync version of the `AsyncContext` from [async-fp](https://unional/async-fp).
 
 ```ts
 import { context } from 'type-plus'
@@ -1129,7 +1318,9 @@ but `Flavor` of the same name cannot be assigned to `Brand`.
 
 `nominalMatch(a, b)`:
 
-`nominalMatch()` can be used to compare `Brand` or `Flavor`.
+🔨 `utilities`: compare if the two values are nominally equal.
+
+Works with both `Brand` and `Flavor`.
 
 ```ts
 const b1 = brand('x', 1)
@@ -1140,9 +1331,13 @@ nominalMatch(b1, b2) // false
 
 ## Functional Types
 
-> `ChainFn<T>: T`: chain function that returns the input type.
+> `ChainFn<T>: T`
 
-> `compose(...fns): F`: compose functions
+🔨 `utilities`: chain function that returns the input type.
+
+> `compose(...fns): F`
+
+🔨 `utilities`: compose functions
 
 ## Attribution
 
