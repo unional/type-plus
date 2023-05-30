@@ -10,3 +10,5 @@ export type Add<A extends number | bigint, B extends number | bigint, Fail = nev
 			: Fail
 		: Fail
 	: never
+
+export type Increment<N extends number | bigint> = Add<N, 1>

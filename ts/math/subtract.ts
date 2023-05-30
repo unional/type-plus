@@ -10,3 +10,5 @@ export type Subtract<A extends number | bigint, B extends number | bigint, Fail 
 			: Fail
 		: Fail
 	: never
+
+export type Decrement<N extends number | bigint> = Subtract<N, 1>
