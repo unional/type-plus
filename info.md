@@ -11,6 +11,21 @@
 
 Advance type utilities for [TypeScript].
 
+## Legend
+
+Each type and function has an icon associated with it.
+They indicate what kind of feature they offer:
+
+- 🦴 *utilities*: provide various functionalities (other icons considered: 🔧🔨).
+- 🐾 *parse*: a.k.a. *filter* or *pipe*. These types perform some kind of test. If the input passes the test, the input is returned. Otherwise, it returns `never` (other icons considered: ↪️👉🧵⛓️🚋📨⏩).
+- 🎭 *validate*: a.k.a. *predicate* or *logical*. These types perform some kind of test. If the input passes the test, it returns `true` or `false` (other icons considered: ⭕).
+- 🏃 *runtime*: The function has runtime effect
+- 💥 *immediate*: The effect of the type can be observed immediately during development.
+- 🧪 *testing*: The type or function are designed for test.
+- 🛡️ *guard*: type guard function
+- 💀 *deprecated*: deprecated and will be removed soon
+- 🚦 *assertion*: assertion function
+
 ## Feature Highlights
 
 - [Type assertions](./ts/assertion/readme.md)

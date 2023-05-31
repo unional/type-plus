@@ -34,13 +34,6 @@
 		"unpartial",
 		"unshift"
 	],
-	"markdown.extension.toc.levels": "2..6",
-	"markdown.extension.toc.omittedFromToc": {
-		"README.md": [
-			"## Table of Contents",
-			"## Installation"
-		]
-	},
 	"eslint.enable": true,
 	"files.watcherExclude": {
 		"**/.git/objects/**": true,
@@ -68,7 +61,19 @@
 			"url": "http://json.schemastore.org/tsconfig"
 		}
 	],
+	"markdown.extension.list.toggle.candidate-markers": [
+		"-",
+		"1."
+	],
+	"markdown.extension.toc.levels": "2..6",
+	"markdown.extension.toc.omittedFromToc": {
+		"README.md": [
+			"## Table of Contents",
+			"## Installation"
+		]
+	},
 	"markdown.extension.toc.orderedList": true,
+	"markdown.extension.toc.unorderedList.marker": "-",
 	"tsimporter.filesToExclude": [
 		"**/cjs",
 		"**/esm",

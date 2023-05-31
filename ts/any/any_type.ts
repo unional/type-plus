@@ -1,7 +1,10 @@
 
 /**
- * Check if the type `T` is exactly `any`.
+ * Parse `T` to ensure it is exactly `any`.
  *
+ * 🐾 *parse*
+ *
+ * @example
  * ```ts
  * type R = AnyType<any> // any
  *
@@ -13,8 +16,11 @@
 export type AnyType<T, Then = T, Else = never> = 0 extends 1 & T ? Then : Else
 
 /**
- * Is the type `T` exactly `any`.
+ * Validate if `T` is exactly `any`.
  *
+ * 🎭 *validate*
+ *
+ * @example
  * ```ts
  * type R = IsAny<any> // true
  *
@@ -26,11 +32,12 @@ export type AnyType<T, Then = T, Else = never> = 0 extends 1 & T ? Then : Else
 export type IsAny<T, Then = true, Else = false> = AnyType<T, Then, Else>
 
 /**
- * Check if the type `T` is not `any`.
+ * Parse `T` to ensure it is not exactly `any`.
  *
- * ```
- * import type { NotAnyType } from 'type-plus'
+ * 🐾 *parse*
  *
+ * @example
+ * ```ts
  * type R = NotAnyType<any> // never
  *
  * type R = NotAnyType<never> // never
@@ -41,9 +48,12 @@ export type IsAny<T, Then = true, Else = false> = AnyType<T, Then, Else>
 export type NotAnyType<T, Then = T, Else = never> = AnyType<T, Else, Then>
 
 /**
- * Is the type `T` not `any`.
+ * Validate if `T` is not exactly `any`.
  *
- * ```
+ * 🎭 *validate*
+ *
+ * @example
+ * ```ts
  * import type { IsNotAny } from 'type-plus'
  *
  * type R = IsNotAny<any> // false

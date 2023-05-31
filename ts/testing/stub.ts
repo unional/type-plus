@@ -5,7 +5,10 @@ import type { NoInfer } from '../type/no_infer.js'
 
 /**
  * stub a value.
+ *
  * If the value is a function, it will be passed through as-is.
+ *
+ * 🦴 `utilities`
  */
 export function stub<T extends AnyFunction>(stub: T): T
 export function stub<T>(stub: RecursivePartial<NoInfer<T>>): T

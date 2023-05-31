@@ -82,7 +82,10 @@ assertType.noFunction = function <S>(subject: Exclude<S, AnyFunction>): void {
 }
 
 /**
- * @deprecated
+ * 💀 deprecated. It does not work in all cases.
+ *
+ * It passes for function that can be called with `new`.
+ * If the subject is an arrow function, it can still return true after compilation.
  */
 assertType.isConstructor = function (subject: AnyConstructor): asserts subject is AnyConstructor {
 	if (!isConstructor(subject)) throw TypeError(`subject is not a constructor`)

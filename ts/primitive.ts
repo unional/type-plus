@@ -1,3 +1,6 @@
+/**
+ * 📘 Definition of all primitive types.
+ */
 export type PrimitiveTypes =
 	| boolean
 	| number

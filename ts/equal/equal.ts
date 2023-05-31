@@ -26,16 +26,16 @@ type IdentityEqual<A, B, Then, Else> = (<_>() => _ extends (A & _) | _ ? 1 : 2) 
  * Checks `A` and `B` are equal.
  *
  * ```ts
- * type R = Equal<1, 1> // true
- * type R = Equal<any, any> // true
- * type R = Equal<boolean, boolean> // true
- * type R = Equal<true, true> // true
- * type R = Equal<[1], [1]> // true
+ * type R = IsEqual<1, 1> // true
+ * type R = IsEqual<any, any> // true
+ * type R = IsEqual<boolean, boolean> // true
+ * type R = IsEqual<true, true> // true
+ * type R = IsEqual<[1], [1]> // true
  *
- * type R = Equal<boolean, true> // false
- * type R = Equal<any, 1> // false
- * type R = Equal<[any], [1]> // false
- * type R = Equal<{ a: 1 }, { a: 1; b: 2 }> // false
+ * type R = IsEqual<boolean, true> // false
+ * type R = IsEqual<any, 1> // false
+ * type R = IsEqual<[any], [1]> // false
+ * type R = IsEqual<{ a: 1 }, { a: 1; b: 2 }> // false
  * ```
  *
  * Note that intersection type checks only works at first level.
@@ -81,16 +81,16 @@ export type IsEqual<A, B, Then = true, Else = false> = [A, B] extends [B, A]
  * Checks `A` and `B` are not equal.
  *
  * ```ts
- * type R = NotEqual<1, 1> // false
- * type R = NotEqual<any, any> // false
- * type R = NotEqual<boolean, boolean> // false
- * type R = NotEqual<true, true> // false
- * type R = NotEqual<[1], [1]> // false
+ * type R = IsNotEqual<1, 1> // false
+ * type R = IsNotEqual<any, any> // false
+ * type R = IsNotEqual<boolean, boolean> // false
+ * type R = IsNotEqual<true, true> // false
+ * type R = IsNotEqual<[1], [1]> // false
  *
- * type R = NotEqual<boolean, true> // true
- * type R = NotEqual<any, 1> // true
- * type R = NotEqual<[any], [1]> // true
- * type R = NotEqual<{ a: 1 }, { a: 1; b: 2 }> // true
+ * type R = IsNotEqual<boolean, true> // true
+ * type R = IsNotEqual<any, 1> // true
+ * type R = IsNotEqual<[any], [1]> // true
+ * type R = IsNotEqual<{ a: 1 }, { a: 1; b: 2 }> // true
  * ```
  *
  * Note that intersection type checks only works at first level.

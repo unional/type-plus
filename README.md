@@ -17,7 +17,7 @@ More than 200 type utilities for [TypeScript].
    1. [assertType](#asserttype)
 2. [Type Guard](#type-guard)
 3. [Type Utilities](#type-utilities)
-4. [Type Checking](#type-checking)
+4. [Type Specific Utilities](#type-specific-utilities)
    1. [any](#any)
    2. [Array](#array)
    3. [bigint](#bigint)
@@ -302,7 +302,7 @@ assertType.isTrue(notA({ a: 1 }))
 notA({ a: '' }) // TypeScript complains
 ```
 
-## Type Checking
+## Type Specific Utilities
 
 [type-plus](./README.md) privides type checking utilities for every type.
 
