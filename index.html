@@ -26,7 +26,7 @@
 </li>
 <li><a href="#type-guard">Type Guard</a></li>
 <li><a href="#type-utilities">Type Utilities</a></li>
-<li><a href="#type-checking">Type Checking</a><ol>
+<li><a href="#type-specific-utilities">Type Specific Utilities</a><ol>
 <li><a href="#any">any</a></li>
 <li><a href="#array">Array</a></li>
 <li><a href="#bigint">bigint</a></li>
@@ -262,7 +262,7 @@ If the subject is an arrow function, it can still return true after compilation.
 <p>Returns a compile-time validating function to ensure <code>subject</code> is not assignable to <code>T</code>.</p>
 <pre><code class="language-ts"><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">notA</span><span class="hl-0"> = </span><span class="hl-7">canAssign</span><span class="hl-0">&lt;{ </span><span class="hl-8">a</span><span class="hl-0">: </span><span class="hl-4">string</span><span class="hl-0"> }&gt;(</span><span class="hl-2">false</span><span class="hl-0">)</span><br/><span class="hl-8">assertType</span><span class="hl-0">.</span><span class="hl-7">isTrue</span><span class="hl-0">(</span><span class="hl-7">notA</span><span class="hl-0">({ </span><span class="hl-8">a:</span><span class="hl-0"> </span><span class="hl-5">1</span><span class="hl-0"> }))</span><br/><br/><span class="hl-7">notA</span><span class="hl-0">({ </span><span class="hl-8">a:</span><span class="hl-0"> </span><span class="hl-1">&#39;&#39;</span><span class="hl-0"> }) </span><span class="hl-6">// TypeScript complains</span>
 </code></pre>
-<a id="$type-checking" class="tsd-anchor"></a><h2><a href="#$type-checking" style="color:inherit;text-decoration:none">Type Checking</a></h2><p><a href="./README.md">type-plus</a> privides type checking utilities for every type.</p>
+<a id="$type-specific-utilities" class="tsd-anchor"></a><h2><a href="#$type-specific-utilities" style="color:inherit;text-decoration:none">Type Specific Utilities</a></h2><p><a href="./README.md">type-plus</a> privides type checking utilities for every type.</p>
 <p>Each type has at least 4 type checks.
 Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</code>, <code>IsString&lt;T&gt;</code>, <code>NotStringType&lt;T&gt;</code>, and <code>IsNotString&lt;T&gt;</code>.</p>
 <p>Some types will have more checks, such as <code>boolean</code> has <code>StrictBooleanType&lt;T&gt;</code>, <code>TrueType&lt;T&gt;</code>, <code>FalseType&lt;T&gt;</code>.</p>
@@ -1224,7 +1224,7 @@ your editor right next to your code.</p>
 <li><a href="#$asserttype"><span>assert<wbr/>Type</span></a></li></ul></li>
 <li><a href="#$type-guard"><span>Type <wbr/>Guard</span></a></li>
 <li><a href="#$type-utilities"><span>Type <wbr/>Utilities</span></a></li>
-<li><a href="#$type-checking"><span>Type <wbr/>Checking</span></a></li>
+<li><a href="#$type-specific-utilities"><span>Type <wbr/>Specific <wbr/>Utilities</span></a></li>
 <li>
 <ul>
 <li><a href="#$any"><span>any</span></a></li>
@@ -1458,6 +1458,7 @@ your editor right next to your code.</p>
 <li><a href="types/And.html" class="tsd-kind-type-alias"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>And</span></a></li>
 <li><a href="types/AnyConstructor.html" class="tsd-kind-type-alias"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Any<wbr/>Constructor</span></a></li>
 <li><a href="types/AnyFunction.html" class="tsd-kind-type-alias"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Any<wbr/>Function</span></a></li>
+<li><a href="types/AnyOrNeverType.html" class="tsd-kind-type-alias"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Any<wbr/>Or<wbr/>Never<wbr/>Type</span></a></li>
 <li><a href="types/AnyRecord.html" class="tsd-kind-type-alias"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Any<wbr/>Record</span></a></li>
 <li><a href="types/AnyType.html" class="tsd-kind-type-alias"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Any<wbr/>Type</span></a></li>
 <li><a href="types/ArrayType.html" class="tsd-kind-type-alias"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Array<wbr/>Type</span></a></li>
