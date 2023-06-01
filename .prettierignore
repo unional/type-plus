@@ -1,9 +1,9 @@
-cjs/
-coverage/
-esm/
+*/cjs/
+*/coverage/
+*/esm/
 fixtures/
-node_modules/
-tslib/
+*/node_modules/
+*/tslib/
 *.json
 *.md
 *.mdx

@@ -1,0 +1,81 @@
+{
+	"name": "type-plus",
+	"version": "7.0.1",
+	"description": "Provides additional types for TypeScript.",
+	"homepage": "https://github.com/unional/type-plus",
+	"bugs": {
+		"url": "https://github.com/unional/type-plus/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/unional/type-plus.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Homa Wong (unional)",
+		"email": "homawong@gmail.com"
+	},
+	"sideEffects": false,
+	"type": "module",
+	"exports": {
+		"import": "./esm/index.js",
+		"require": "./cjs/index.js"
+	},
+	"main": "./cjs/index.js",
+	"module": "./esm/index.js",
+	"types": "./cjs/index.d.ts",
+	"files": [
+		"cjs",
+		"esm",
+		"ts",
+		"!ts/types",
+		"!ts/type-checker",
+		"!**/*.{spec,test,unit,accept,integrate,system}.*"
+	],
+	"scripts": {
+		"build": "run-p build:cjs build:esm build:tslib",
+		"build:cjs": "tsc -p tsconfig.cjs.json && ncp package.cjs.json cjs/package.json",
+		"build:esm": "tsc -p tsconfig.esm.json",
+		"build:tslib": "tsc -p tsconfig.tslib.json && ncp package.cjs.json tslib/package.json",
+		"clean": "rimraf cjs coverage esm lib libm tslib",
+		"coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --coverage",
+		"depcheck": "depcheck",
+		"lint": "eslint --ext=ts,js .",
+		"nuke": "pnpm clean && rimraf node_modules",
+		"size": "size-limit",
+		"test": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest",
+		"test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watch",
+		"verify": "npm-run-all clean -p build depcheck lint coverage -p size",
+		"watch": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watch",
+		"w": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watch"
+	},
+	"dependencies": {
+		"tersify": "^3.11.1",
+		"unpartial": "^1.0.4"
+	},
+	"devDependencies": {
+		"@jest/globals": "^29.5.0",
+		"@repobuddy/jest": "^3.4.0",
+		"@size-limit/esbuild-why": "^8.2.4",
+		"@size-limit/preset-small-lib": "^8.2.4",
+		"@types/node": "^18.0.0",
+		"@unional/fixture": "^3.0.0",
+		"assertron": "^11.0.1",
+		"cross-env": "^7.0.3",
+		"depcheck": "^1.4.3",
+		"jest": "^29.5.0",
+		"jest-watch-suspend": "^1.1.2",
+		"jest-watch-toggle-config-2": "^2.1.0",
+		"jest-watch-typeahead": "^2.2.2",
+		"ncp": "^2.0.0",
+		"npm-run-all": "^4.1.5",
+		"rimraf": "^5.0.0",
+		"satisfier": "^5.2.2",
+		"size-limit": "^8.2.4",
+		"ts-jest": "^29.1.0",
+		"tslib": "^2.4.0",
+		"typedoc": "^0.24.7",
+		"typedoc-plugin-extras": "^2.3.3",
+		"typescript": "^5.0.4"
+	}
+}
