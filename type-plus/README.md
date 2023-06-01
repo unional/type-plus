@@ -47,8 +47,6 @@ More than 200 type utilities for [TypeScript].
 13. [Attribution](#attribution)
 14. [Useful Tips](#useful-tips)
 15. [Similar projects](#similar-projects)
-16. [Contribute](#contribute)
-17. [Wallaby.js](#wallabyjs)
 
 ## Installation
 
@@ -1364,32 +1362,6 @@ Whenever possible, I add attribution to the person who created those **codes** i
 - [typical]: a playground of type-level operations for TypeScript.
 - [utility-types]: collection of utility types, complementing TypeScript build-in mapped types ans aliases.
 
-## Contribute
-
-```sh
-# after fork and clone
-npm install
-
-# begin making changes
-git checkout -b <branch>
-npm run watch
-
-# after making change(s)
-git commit -m "<commit message>"
-git push
-
-# create PR
-```
-
-## Wallaby.js
-
-[![Wallaby.js][wallaby_image_lg]][wallaby_url]
-
-This repository contributors are welcome to use
-[Wallaby.js OSS License][wallaby_url] to get
-test results immediately as you type, and see the results in
-your editor right next to your code.
-
 [@gcanti]: https://github.com/gcanti
 [codecov_image]: https://codecov.io/gh/unional/type-plus/branch/master/graph/badge.svg
 [codecov_url]: https://codecov.io/gh/unional/type-plus
@@ -1414,7 +1386,6 @@ your editor right next to your code.
 [vscode_image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode_url]: https://code.visualstudio.com/
 [wallaby_image]: https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=flat&logo=github
-[wallaby_image_lg]: https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=for-the-badge&logo=github
 [wallaby_url]: https://wallabyjs.com/oss/
 [assertion_functions]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions
 [type_guard]: https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates

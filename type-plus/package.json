@@ -2,7 +2,7 @@
   "name": "type-plus",
   "version": "7.0.1",
   "description": "Provides additional types for TypeScript.",
-  "homepage": "https://github.com/unional/type-plus",
+  "homepage": "https://github.com/unional/type-plus/tree/main/type-plus",
   "bugs": {
     "url": "https://github.com/unional/type-plus/issues"
   },
