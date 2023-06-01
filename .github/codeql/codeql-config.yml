@@ -1,4 +1,4 @@
 paths:
-  - ts
+  - type-plus/ts
 paths-ignore:
   - '**/*.spec.ts'
