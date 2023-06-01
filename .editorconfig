@@ -17,3 +17,7 @@ max_line_length = off
 
 [*.{yml,yaml}]
 indent_style = space
+
+[*.json]
+indent_style = space
+insert_final_newline = false
