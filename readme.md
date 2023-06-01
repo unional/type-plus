@@ -11,7 +11,7 @@
 
 More than 200 type utilities for [TypeScript].
 
-[type-plus readme](./type-plus/readme.md)
+[type-plus readme](./type-plus/README.md)
 
 ## Contribute
 

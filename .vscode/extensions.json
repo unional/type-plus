@@ -13,6 +13,7 @@
     "pflannery.vscode-versionlens",
     "unional.vscode-sort-package-json",
     "valentjn.vscode-ltex",
-    "yzhang.markdown-all-in-one"
+    "yzhang.markdown-all-in-one",
+    "astro-build.astro-vscode"
   ]
 }
