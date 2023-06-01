@@ -74,8 +74,6 @@
 		"size-limit": "^8.2.4",
 		"ts-jest": "^29.1.0",
 		"tslib": "^2.4.0",
-		"typedoc": "^0.24.7",
-		"typedoc-plugin-extras": "^2.3.3",
 		"typescript": "^5.0.4"
 	}
 }

@@ -4,5 +4,15 @@
 		{
 			"path": "type-plus"
 		}
-	]
+	],
+  "typedocOptions": {
+    "customTitle": "Additional types and utils for TypeScript",
+    "customTitleLink": "https://github.com/unional/type-plus",
+		"entryPointStrategy": "packages",
+		"includeVersion": true,
+    "entryPoints": [
+      "type-plus"
+    ],
+    "out": "docs"
+  }
 }
