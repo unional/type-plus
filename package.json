@@ -5,7 +5,7 @@
     "build": "turbo run build",
     "build:doc": "typedoc --plugin typedoc-plugin-extras",
     "clean": "turbo run clean",
-    "lint": "turbo run lint",
+    "lint": "eslint .",
     "cs": "changeset",
     "prepare": "husky install",
     "prepack": "pinst --disable",
