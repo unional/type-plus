@@ -27,6 +27,6 @@ export interface Failed<Msg extends string> {
  *
  * It's recommended to create custom failed types instead of using this to provide better message.
  */
-export interface FailedT<Msg extends string, T> {
+export interface FailedT<Msg extends string, _T> {
 	[uniSym]: Msg
 }

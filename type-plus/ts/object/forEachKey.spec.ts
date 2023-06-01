@@ -1,10 +1,9 @@
-import { test } from '@jest/globals'
-import t from 'assert'
+import { expect, it } from '@jest/globals'
 import { forEachKey } from '../index.js'
 
-test('predicate key can be used as indexer of the subject', () => {
+it('predicate key can be used as indexer of the subject', () => {
 	const subject = { a: 1, b: 2, c: 3 }
 	let actual = 0
 	forEachKey(subject, key => (actual += subject[key]))
-	t.strictEqual(actual, 6)
+	expect(actual).toEqual( 6)
 })

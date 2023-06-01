@@ -1,22 +1,8 @@
 {
+  "extends": "@repobuddy/typescript/tsconfig/monorepo",
   "compilerOptions": {
-    "declaration": true,
-    "declarationMap": true,
-    "esModuleInterop": true,
     "exactOptionalPropertyTypes": true,
-    "isolatedModules": true,
-    "lib": [
-      "ES2015",
-      "ES2021.Promise"
-    ],
-    "newLine": "LF",
-    "noUnusedLocals": true,
-    "noUnusedParameters": false,
-    "sourceMap": true,
-    "strict": true,
-    "stripInternal": true,
-    "target": "ES2020",
-    "useDefineForClassFields": true
+    "rootDir": "ts"
   },
   "exclude": [
 		"node_modules",

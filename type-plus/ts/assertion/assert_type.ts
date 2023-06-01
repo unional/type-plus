@@ -98,7 +98,7 @@ assertType.noError = function <S>(subject: Exclude<S, Error>): void {
 	if (subject instanceof Error) throw TypeError(`subject is an Error`)
 }
 
-assertType.isNever = function (subject: never): asserts subject is never {}
+assertType.isNever = function (_subject: never): asserts _subject is never {}
 
 /**
  * creates a custom assertion function with standard TypeError.
@@ -113,4 +113,4 @@ assertType.custom = function <T>(validator: (s: T) => boolean): (subject: unknow
 	}
 }
 
-assertType.as = function <T>(subject: unknown): asserts subject is T {}
+assertType.as = function <T>(_subject: unknown): asserts _subject is T {}

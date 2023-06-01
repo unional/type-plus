@@ -36,7 +36,7 @@ function isNever<S extends never>(): unknown
  * @deprecated use `isType<T>()` or `testType.never<T>()` instead
  */
 function isNever(subject: never): subject is never
-function isNever(subject?: unknown): subject is never {
+function isNever(_subject?: unknown): _subject is never {
 	return true
 }
 
@@ -49,4 +49,4 @@ isType.never = isNever
  *
  * @deprecated use `testType.equal()` instead
  */
-isType.equal = function <C extends IsEqual<A, B>, A, B>() {}
+isType.equal = function <_C extends IsEqual<A, B>, A, B>() {}

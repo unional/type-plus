@@ -56,7 +56,7 @@ it('can be used to control which param to infer from', () => {
 		woof() {}
 	}
 
-	function inferred<T>(value: T, fn: () => T) {
+	function inferred<T>(value: T, _fn: () => T) {
 		return value
 	}
 	// Wanted an error here - getDefault() ought to return same type as 'value'
@@ -64,7 +64,7 @@ it('can be used to control which param to infer from', () => {
 	testType.equal<typeof notWeWant, Animal>(true)
 	testType.equal<typeof notWeWant, Dog>(false)
 
-	function notInferred<T>(value: T, fn: () => NoInfer<T>) {}
+	function notInferred<T>(_value: T, _fn: () => NoInfer<T>) {}
 	// Wanted an error here - getDefault() ought to return same type as 'value'
 	// @ts-expect-error
 	notInferred(new Dog(), () => new Animal())
@@ -118,8 +118,8 @@ it('', () => {
 	type K<T> = T extends any ? { [k in keyof T]: string } : never
 
 	function doSomethingNoInferAjafff<T extends Dog | Cat>(
-		getDefault: (x: any) => T,
-		value: UnionToIntersection<K<NoInfer<T>>>
+		_getDefault: (x: any) => T,
+		_value: UnionToIntersection<K<NoInfer<T>>>
 	) {}
 
 	// TODO: This should pass
@@ -127,7 +127,7 @@ it('', () => {
 	// @ts-expect-error
 	doSomethingNoInferAjafff(x => new Dog(), { woof: '', move: '' })
 
-	doSomethingNoInferAjafff((x: any) => new Dog(), { woof: '', move: '' })
+	doSomethingNoInferAjafff((_x: any) => new Dog(), { woof: '', move: '' })
 
 	// Do not use a function param
 	doSomethingNoInferAjafff(() => new Dog(), { woof: '', move: '' })

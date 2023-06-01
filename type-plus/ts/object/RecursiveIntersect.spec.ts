@@ -18,11 +18,11 @@ test('add object type to types', () => {
 	const comObj = addU({ array: ['a'] })
 	acceptU(comObj)
 	acceptU(comObj.array)
-	acceptU(comObj.array[0])
+	acceptU(comObj.array[0]!)
 
 	const arr = addU(['1'])
 	acceptU(arr)
-	acceptU(arr[0])
+	acceptU(arr[0]!)
 
 	// Not supported
 	// const comArr = addU([{ x: 1 }])

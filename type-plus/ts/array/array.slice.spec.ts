@@ -31,7 +31,7 @@ it.todo(' tests for Slice<A>')
  * type R = Slice<[1, 2, 3], -2, 3> // [2, 3]
  * ```
  */
-export type Slice<A extends unknown[], Start extends number, End extends number = number, Fail = never> = A
+// export type Slice<A extends unknown[], Start extends number, End extends number = number, Fail = never> = A
 
 // import { isType, type Slice } from '../index.js'
 

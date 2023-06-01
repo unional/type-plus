@@ -6,3 +6,4 @@
 /lib*
 /out*
 /tslib
+*.tsbuildinfo

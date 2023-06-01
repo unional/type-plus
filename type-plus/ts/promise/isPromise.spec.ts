@@ -1,22 +1,21 @@
-import { test } from '@jest/globals'
-import t from 'assert'
+import { expect, test } from '@jest/globals'
 import { isPromise } from '../index.js'
 
 test('false if subject is falsy value or non-object', () => {
-	t.strictEqual(isPromise(undefined), false)
-	t.strictEqual(isPromise(null), false)
-	t.strictEqual(isPromise(0), false)
-	t.strictEqual(isPromise(true), false)
-	t.strictEqual(isPromise('a'), false)
-	t.strictEqual(isPromise([]), false)
+	expect(isPromise(undefined)).toBe(false)
+	expect(isPromise(null)).toBe(false)
+	expect(isPromise(0)).toBe(false)
+	expect(isPromise(true)).toBe(false)
+	expect(isPromise('a')).toBe(false)
+	expect(isPromise([])).toBe(false)
 })
 
 test('false if subject does not have a then function', () => {
-	t.strictEqual(isPromise({}), false)
+	expect(isPromise({})).toBe(false)
 })
 
 test('false if subject.then is not a function', () => {
-	t.strictEqual(isPromise({ then: true }), false)
+	expect(isPromise({ then: true })).toBe(false)
 })
 
 test('type guard as promise', () => {
@@ -26,6 +25,6 @@ test('type guard as promise', () => {
 		}
 	}
 	if (isPromise(subject)) {
-		t.strictEqual(subject.then(), true)
+		expect(subject.then()).toBe(true)
 	}
 })

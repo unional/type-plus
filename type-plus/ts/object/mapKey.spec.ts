@@ -10,6 +10,6 @@ test('predicate key can be used as indexer of the subject', () => {
 
 it('includes subject in callback', () => {
 	const subject = { a: 1, b: 2, c: 3 }
-	const actual = mapKey(subject, (key, i, a, s) => s[key] + 1)
+	const actual = mapKey(subject, (key, _i, _a, s) => s[key] + 1)
 	a.satisfies(actual, [2, 3, 4])
 })

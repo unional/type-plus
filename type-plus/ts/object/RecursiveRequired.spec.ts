@@ -1,5 +1,4 @@
-import { test } from '@jest/globals'
-import t from 'assert'
+import { expect, test } from '@jest/globals'
 import type { RecursiveRequired } from '../index.js'
 
 test('simple optional property becomes required', () => {
@@ -8,7 +7,7 @@ test('simple optional property becomes required', () => {
 	}
 
 	const actual: RecursiveRequired<SimpleOptional> = { x: '' }
-	t.strictEqual(actual.x.length, 0)
+	expect(actual.x.length).toStrictEqual(0)
 })
 
 test('deep optional object property becomes required', () => {
@@ -19,31 +18,32 @@ test('deep optional object property becomes required', () => {
 	}
 
 	const actual: RecursiveRequired<DeepOptonal> = { x: { y: '' } }
-	t.strictEqual(actual.x.y.length, 0)
+	expect(actual.x.y.length).toStrictEqual(0)
 })
 
 test('deep optional array property becomes required', () => {
-	type DeepArrayOptonal = {
+	type DeepArrayOptional = {
 		x: {
 			y?: string
 		}[]
 	}
 
-	const actual: RecursiveRequired<DeepArrayOptonal> = { x: [{ y: '' }] }
-	t.strictEqual(actual.x[0].y.length, 0)
+	const actual: RecursiveRequired<DeepArrayOptional> = { x: [{ y: '' }] }
+	// The array element is optional because there is no way to determine if the element at the index exists or not
+	expect(actual.x[0]?.y.length).toStrictEqual(0)
 })
 
 // Not supported
 
 // test('simple optional array property becomes required', () => {
-//   type SimpleArrayOptonal = Array<{ y?: string }>
+//   type DeepArrayOptional = Array<{ y?: string }>
 
-//   let actual: RecursiveRequired<SimpleArrayOptonal> = [{ y: '' }]
+//   let actual: RecursiveRequired<DeepArrayOptional> = [{ y: '' }]
 //   t.strictEqual(actual[0].y.length, 0)
 // })
 
 // test('deep optional tuple property becomes required', () => {
-//   type DeepArrayOptonal = {
+//   type DeepArrayOptional = {
 //     x: [{
 //       y?: string
 //     }, {
@@ -51,7 +51,7 @@ test('deep optional array property becomes required', () => {
 //     }]
 //   }
 
-//   let actual: RecursiveRequired<DeepArrayOptonal> = { x: [{ y: '' }, { z: '' }] }
+//   let actual: RecursiveRequired<DeepArrayOptional> = { x: [{ y: '' }, { z: '' }] }
 //   t.strictEqual(actual.x[0].y.length, 0)
 //   t.strictEqual(actual.x[1].z.length, 0)
 // })

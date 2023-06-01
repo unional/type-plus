@@ -62,6 +62,7 @@
   "devDependencies": {
     "@jest/globals": "^29.5.0",
     "@repobuddy/jest": "^3.4.0",
+    "@repobuddy/typescript": "^1.2.0",
     "@size-limit/esbuild-why": "^8.2.4",
     "@size-limit/preset-small-lib": "^8.2.4",
     "@types/node": "^18.0.0",

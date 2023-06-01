@@ -1,18 +1,11 @@
 ignores:
-  - '@commitlint/*'
   - '@jest/globals'
-  - '@repobuddy/jest'
-  - '@semantic-release/*'
+  - '@repobuddy/*'
   - '@size-limit/esbuild-why'
   - '@size-limit/preset-small-lib'
   - '@types/node'
-  - '@types/jest'
-  - '@typescript-eslint/parser'
-  - babel-jest
+  - eslint-*
   - jest-*
   - rimraf
-  - semantic-release
   - ts-jest
   - tslib
-  - typedoc
-  - typedoc-plugin-extras
