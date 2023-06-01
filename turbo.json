@@ -1,0 +1,52 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "ts/**/*.tsx?",
+        "!ts/**/*.spec.tsx?",
+        "!ts/**/*.stories.tsx?"
+      ],
+      "outputs": [
+        "lib/**"
+      ]
+    },
+    "build:doc": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "clean": {
+      "cache": false
+    },
+    "coverage": {
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "ts/**/*.tsx?"
+      ]
+    },
+    "depcheck": {},
+    "dev": {
+      "cache": false
+    },
+    "lint": {},
+    "size": {
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "test": {
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "ts/**/*.tsx?"
+      ]
+    }
+  }
+}

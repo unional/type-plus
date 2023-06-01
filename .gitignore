@@ -49,12 +49,3 @@ node_modules
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-
-# project folders
-/cjs
-/dist*
-/docs
-/esm
-/lib*
-/out*
-/tslib
