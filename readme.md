@@ -7,7 +7,6 @@
 [![Codecov][codecov_image]][codecov_url]
 
 [![Visual Studio Code][vscode_image]][vscode_url]
-[![Wallaby.js][wallaby_image]][wallaby_url]
 
 More than 200 type utilities for [TypeScript].
 
@@ -30,15 +29,6 @@ git push
 # create PR
 ```
 
-## Wallaby.js
-
-[![Wallaby.js][wallaby_image_lg]][wallaby_url]
-
-This repository contributors are welcome to use
-[Wallaby.js OSS License][wallaby_url] to get
-test results immediately as you type, and see the results in
-your editor right next to your code.
-
 [codecov_image]: https://codecov.io/gh/unional/type-plus/branch/master/graph/badge.svg
 [codecov_url]: https://codecov.io/gh/unional/type-plus
 [downloads_image]: https://img.shields.io/npm/dm/type-plus.svg?style=flat
@@ -49,6 +39,3 @@ your editor right next to your code.
 [TypeScript]: https://www.typescriptlang.org
 [vscode_image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode_url]: https://code.visualstudio.com/
-[wallaby_image]: https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=flat&logo=github
-[wallaby_image_lg]: https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=for-the-badge&logo=github
-[wallaby_url]: https://wallabyjs.com/oss/

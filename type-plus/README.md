@@ -7,7 +7,6 @@
 [![Codecov][codecov_image]][codecov_url]
 
 [![Visual Studio Code][vscode_image]][vscode_url]
-[![Wallaby.js][wallaby_image]][wallaby_url]
 
 More than 200 type utilities for [TypeScript].
 
@@ -1385,7 +1384,5 @@ Whenever possible, I add attribution to the person who created those **codes** i
 [utility-types]: https://github.com/piotrwitek/utility-types
 [vscode_image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode_url]: https://code.visualstudio.com/
-[wallaby_image]: https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=flat&logo=github
-[wallaby_url]: https://wallabyjs.com/oss/
 [assertion_functions]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions
 [type_guard]: https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates
