@@ -1360,11 +1360,13 @@ Whenever possible, I add attribution to the person who created those **codes** i
 - [typelevel-ts]: a type lib by [@gcanti], author of several FP libraries in TS.
 - [typical]: a playground of type-level operations for TypeScript.
 - [utility-types]: collection of utility types, complementing TypeScript build-in mapped types ans aliases.
+- [earl]: Ergonomic, modern and type-safe assertion library for TypeScript
 
 [@gcanti]: https://github.com/gcanti
 [codecov_image]: https://codecov.io/gh/unional/type-plus/branch/master/graph/badge.svg
 [codecov_url]: https://codecov.io/gh/unional/type-plus
 [downloads_image]: https://img.shields.io/npm/dm/type-plus.svg?style=flat
+[earl]: https://github.com/l2beat/earl
 [expect-type]: https://github.com/mmkal/expect-type
 [github_action_url]: https://github.com/unional/type-plus/actions
 [github_release]: https://github.com/unional/type-plus/workflows/release/badge.svg
