@@ -41,5 +41,5 @@
     "typedoc-plugin-extras": "^2.3.3",
     "typescript": "^5.0.4"
   },
-  "packageManager": "pnpm@8.6.2"
+  "packageManager": "pnpm@8.6.3"
 }
