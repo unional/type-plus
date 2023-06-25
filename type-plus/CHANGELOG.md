@@ -1,5 +1,19 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 7.1.0
+
+### Minor Changes
+
+- aacb1ff4: Add `AnyOrNeverType` for parity.
+
+  Update some code's JSDocs.
+
+### Patch Changes
+
+- ede34c22: Improve `exports` field
+- 74a71e35: remove extra empty `{}` for `LeftJoin`
+- 2d74ff0b: Support `verbatimModuleSyntax`
+
 ## 7.0.1
 
 ### Patch Changes
