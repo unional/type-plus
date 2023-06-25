@@ -1,5 +1,11 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 7.2.0
+
+### Minor Changes
+
+- a52cce02: Add `testType.inspect<T>(fn)` for easy type inspection.
+
 ## 7.1.1
 
 ### Patch Changes
