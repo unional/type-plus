@@ -15,4 +15,8 @@ export type LeftJoin<A extends AnyRecord, B extends AnyRecord> = IsEqual<A, B> e
 	? A
 	: IsDisjoint<A, B> extends true
 	? A & B
-	: { [k in Exclude<keyof A, keyof B>]: A[k] } & { [k in keyof B]: B[k] }
+	: [{ [k in Exclude<keyof A, keyof B>]: A[k] }, { [k in keyof B]: B[k] }] extends [infer L, infer R]
+	? keyof L extends never
+		? R
+		: L & R
+	: never

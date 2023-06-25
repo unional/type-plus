@@ -1,5 +1,6 @@
 import { describe, test } from '@jest/globals'
-import { ANotB, assertType, BNotA, IsDisjoint, LeftJoin } from '../index.js'
+import { ANotB, assertType, BNotA, IsDisjoint, LeftJoin, testType } from '../index.js'
+import { it } from 'node:test'
 
 describe('ANotB<A, B>', () => {
 	test('same type returns never', () => {
@@ -75,5 +76,14 @@ describe('LeftJoin', () => {
 		type Orig = { type: 'a' | 'b'; value: string }
 		const actual = {} as LeftJoin<Orig, { value: number }>
 		assertType<{ type: 'a' | 'b'; value: number }>(actual)
+	})
+
+	it('removes extra empty {}', () => {
+		testType.equal<
+			LeftJoin<{ leaf: { boo(): number } }, { leaf: { foo(): number } }>,
+			{ leaf: { foo(): number } }
+		>(true)
+
+		testType.equal<LeftJoin<{ leaf: { boo(): number } }, {}>, { leaf: { boo(): number } }>(true)
 	})
 })
