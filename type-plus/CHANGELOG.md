@@ -1,5 +1,12 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 7.1.1
+
+### Patch Changes
+
+- 26537d8e: Improve `RecursivePartial` to work with function type.
+  Also add `| undefined` to make it compliant with `exactOptionalPropertyTypes`.
+
 ## 7.1.0
 
 ### Minor Changes
