@@ -2,6 +2,7 @@ import type { IsEqual } from '../equal/equal.js'
 import type { AnyRecord } from './AnyRecord.js'
 import type { IsDisjoint } from './IsDisjoint.js'
 import type { KeysWithDiffType } from './KeysWithDiffType.js'
+import { Properties } from './properties.js'
 
 export type ANotB<A extends AnyRecord, B extends AnyRecord> = IsEqual<A, B> extends true
 	? never
@@ -15,8 +16,4 @@ export type LeftJoin<A extends AnyRecord, B extends AnyRecord> = IsEqual<A, B> e
 	? A
 	: IsDisjoint<A, B> extends true
 	? A & B
-	: [{ [k in Exclude<keyof A, keyof B>]: A[k] }, { [k in keyof B]: B[k] }] extends [infer L, infer R]
-	? keyof L extends never
-		? R
-		: L & R
-	: never
+	: Properties<{ [k in Exclude<keyof A, keyof B>]: A[k] } & { [k in keyof B]: B[k] }>
