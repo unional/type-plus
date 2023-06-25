@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals'
-import { KeyTypes, RecordValue, isType, record } from '../index.js'
+import { isType, record, testType, type KeyTypes, type RecordValue } from '../index.js'
 
 describe(`${record.name}()`, () => {
 	it('creates an empty record with value default to unknown', () => {
@@ -7,7 +7,7 @@ describe(`${record.name}()`, () => {
 		a[1] = 2
 		a['a'] = 'b'
 		a[Symbol()] = true
-		isType.equal<true, Record<KeyTypes, unknown>, typeof a>()
+		testType.equal<typeof a, Record<KeyTypes, unknown>>(true)
 	})
 
 	it('can specify key and value types', () => {

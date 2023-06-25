@@ -1,5 +1,5 @@
 import { test } from '@jest/globals'
-import { AnyFunction, testType } from '../index.js'
+import { testType, type AnyFunction } from '../index.js'
 import type { Last } from './last.js'
 
 test('any array', () => {

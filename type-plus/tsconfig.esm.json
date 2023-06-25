@@ -4,5 +4,6 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "outDir": "esm",
+    "verbatimModuleSyntax": true
   }
 }

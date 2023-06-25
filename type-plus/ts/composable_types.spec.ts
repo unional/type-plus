@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { assertType, canAssign, ComposableTypes, NonComposableTypes } from './index.js'
+import { assertType, canAssign, type ComposableTypes, type NonComposableTypes } from './index.js'
 
 it('includes object, array, and function', () => {
 	assertType<ComposableTypes>({})

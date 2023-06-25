@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals'
-import { AnyConstructor, assertType, isConstructor, isInstanceof } from '../index.js'
+import { assertType, isConstructor, isInstanceof, type AnyConstructor } from '../index.js'
 
 test('check constructor', () => {
 	const x: unknown = Error

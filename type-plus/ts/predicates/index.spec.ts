@@ -1,5 +1,5 @@
 import { describe, test } from '@jest/globals'
-import { IsLiteral, IsStrictBoolean, isType } from '../index.js'
+import { isType, type IsLiteral, type IsStrictBoolean } from '../index.js'
 
 describe('IsLiteral<T>', () => {
 	test('`number` is not literal', () => {

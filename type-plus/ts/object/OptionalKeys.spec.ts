@@ -1,24 +1,24 @@
 import { test } from '@jest/globals'
-import { assertType, Equal, OptionalKeys } from '../index.js'
+import { testType, type OptionalKeys } from '../index.js'
 
 test('extract optional keys from object', () => {
 	type X = { a?: string; b: string }
 
-	assertType.isTrue(true as Equal<'a', OptionalKeys<X>>)
+	testType.equal<'a', OptionalKeys<X>>(true)
 })
 test('work with union type', () => {
 	type X = { a?: string; b: string } | { c: string; d?: string }
 
 	type A = OptionalKeys<X>
-	assertType.isTrue(true as Equal<'a' | 'd', A>)
+	testType.equal<'a' | 'd', A>(true)
 })
 test('no optional keys returns never', () => {
 	type X = { b: string }
 
-	assertType.isTrue(true as Equal<never, OptionalKeys<X>>)
+	testType.never<OptionalKeys<X>>(true)
 })
 test('keys with undefined value is not optional', () => {
 	type X = { a: string | undefined }
 
-	assertType.isTrue(true as Equal<never, OptionalKeys<X>>)
+	testType.never<OptionalKeys<X>>(true)
 })

@@ -1,5 +1,5 @@
 import { describe, it, test } from '@jest/globals'
-import { AwaitedProp, PromiseValue, assertType, isType } from '../index.js'
+import { assertType, isType, type AwaitedProp, type PromiseValue } from '../index.js'
 
 test('extract value from Promise', () => {
 	const y: PromiseValue<Promise<string>> = ''

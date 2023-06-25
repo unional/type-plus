@@ -1,60 +1,60 @@
 import { describe, test } from '@jest/globals'
-import { And, Equal, Not, Or, Xor, assertType } from '../index.js'
+import { testType, type And, type IsEqual, type Not, type Or, type Xor } from '../index.js'
 
 describe('And<A,B>', () => {
 	test('basic', () => {
-		assertType.isTrue(true as And<true, true>)
-		assertType.isFalse(false as And<true, false>)
-		assertType.isFalse(false as And<false, true>)
-		assertType.isFalse(false as And<false, false>)
+		testType.true<And<true, true>>(true)
+		testType.false<And<true, false>>(true)
+		testType.false<And<false, true>>(true)
+		testType.false<And<false, false>>(true)
 	})
 	test('boolean special handling', () => {
-		assertType.isTrue(true as Equal<And<boolean, true>, boolean>)
-		assertType.isFalse(false as And<boolean, false>)
-		assertType.isTrue(true as Equal<And<true, boolean>, boolean>)
-		assertType.isFalse(false as And<false, boolean>)
-		assertType.isTrue(true as Equal<And<boolean, boolean>, boolean>)
+		testType.true<IsEqual<And<boolean, true>, boolean>>(true)
+		testType.false<And<boolean, false>>(true)
+		testType.true<IsEqual<And<true, boolean>, boolean>>(true)
+		testType.false<And<false, boolean>>(true)
+		testType.true<IsEqual<And<boolean, boolean>, boolean>>(true)
 	})
 })
 
 describe('Or<A,B>', () => {
 	test('basic', () => {
-		assertType.isTrue(true as Or<true, true>)
-		assertType.isTrue(true as Or<true, false>)
-		assertType.isTrue(true as Or<false, true>)
-		assertType.isFalse(false as Or<false, false>)
+		testType.true<Or<true, true>>(true)
+		testType.true<Or<true, false>>(true)
+		testType.true<Or<false, true>>(true)
+		testType.false<Or<false, false>>(true)
 	})
 	test('boolean special handling', () => {
-		assertType.isTrue(true as Or<boolean, true>)
-		assertType.isTrue(true as Equal<Or<boolean, false>, boolean>)
-		assertType.isTrue(true as Or<true, boolean>)
-		assertType.isTrue(true as Equal<Or<false, boolean>, boolean>)
-		assertType.isTrue(true as Equal<Or<boolean, boolean>, boolean>)
+		testType.true<Or<boolean, true>>(true)
+		testType.true<IsEqual<Or<boolean, false>, boolean>>(true)
+		testType.true<Or<true, boolean>>(true)
+		testType.true<IsEqual<Or<false, boolean>, boolean>>(true)
+		testType.true<IsEqual<Or<boolean, boolean>, boolean>>(true)
 	})
 })
 
 describe('Xor<A,B>', () => {
 	test('basic', () => {
-		assertType.isFalse(false as Xor<true, true>)
-		assertType.isTrue(true as Xor<true, false>)
-		assertType.isTrue(true as Xor<false, true>)
-		assertType.isFalse(false as Xor<false, false>)
+		testType.false<Xor<true, true>>(true)
+		testType.true<Xor<true, false>>(true)
+		testType.true<Xor<false, true>>(true)
+		testType.false<Xor<false, false>>(true)
 	})
 	test('boolean special handling', () => {
-		assertType.isTrue(true as Equal<Xor<boolean, true>, boolean>)
-		assertType.isTrue(true as Equal<Xor<boolean, false>, boolean>)
-		assertType.isTrue(true as Equal<Xor<true, boolean>, boolean>)
-		assertType.isTrue(true as Equal<Xor<false, boolean>, boolean>)
-		assertType.isTrue(true as Equal<Xor<boolean, boolean>, boolean>)
+		testType.true<IsEqual<Xor<boolean, true>, boolean>>(true)
+		testType.true<IsEqual<Xor<boolean, false>, boolean>>(true)
+		testType.true<IsEqual<Xor<true, boolean>, boolean>>(true)
+		testType.true<IsEqual<Xor<false, boolean>, boolean>>(true)
+		testType.true<IsEqual<Xor<boolean, boolean>, boolean>>(true)
 	})
 })
 
 describe('Not<X>', () => {
 	test('basic', () => {
-		assertType.isTrue(true as Not<false>)
-		assertType.isFalse(false as Not<true>)
+		testType.true<Not<false>>(true)
+		testType.false<Not<true>>(true)
 	})
 	test('boolean special handling', () => {
-		assertType.isTrue(true as Equal<Not<boolean>, boolean>)
+		testType.true<IsEqual<Not<boolean>, boolean>>(true)
 	})
 })

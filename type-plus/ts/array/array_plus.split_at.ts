@@ -1,5 +1,5 @@
 import type { IndexAt } from './array_index.js'
-import { ArrayType } from './array_type.js'
+import type { ArrayType } from './array_type.js'
 
 /**
  * Splits an array into two at the specified `Index`.

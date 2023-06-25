@@ -1,6 +1,6 @@
 import { describe, test } from '@jest/globals'
-import { ANotB, assertType, BNotA, IsDisjoint, LeftJoin, testType } from '../index.js'
 import { it } from 'node:test'
+import { assertType, testType, type ANotB, type BNotA, type IsDisjoint, type LeftJoin } from '../index.js'
 
 describe('ANotB<A, B>', () => {
 	test('same type returns never', () => {

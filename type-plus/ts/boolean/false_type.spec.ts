@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { FalseType, testType } from '../index.js'
+import { testType, type FalseType } from '../index.js'
 
 it('returns T if T is false', () => {
 	testType.equal<FalseType<false>, false>(true)

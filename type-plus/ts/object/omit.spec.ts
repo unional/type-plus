@@ -1,5 +1,5 @@
 import { describe, expect, it, test } from '@jest/globals'
-import { Equal, Except, Omit, assertType, isType, omit, record } from '../index.js'
+import { assertType, isType, omit, record, testType, type Except, type Omit } from '../index.js'
 
 describe('Omit<T, K>', () => {
 	test('work with primitive types', () => {
@@ -99,7 +99,7 @@ describe(`${omit.name}()`, () => {
 		const actual = omit({ a: 1, b: 1, c: 1 }, 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'b')
 
 		expect(actual).toEqual({ c: 1 })
-		assertType.isTrue(true as Equal<keyof typeof actual, 'c'>)
+		testType.equal<keyof typeof actual, 'c'>(true)
 	})
 
 	it('maintains the prototype null-ness', () => {

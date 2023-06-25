@@ -1,5 +1,5 @@
 import { describe, expect, it, test } from '@jest/globals'
-import { Equal, Pick, assertType, canAssign, isType, pick, record } from '../index.js'
+import { assertType, isType, pick, record, testType, type Pick } from '../index.js'
 
 describe(`Pick<T, K>`, () => {
 	test('distributive pick', () => {
@@ -53,14 +53,14 @@ describe(`Pick<T, K>`, () => {
 	test('optional property remains optional', () => {
 		type Foo = { a?: string; b: string }
 		type A = Pick<Foo, 'a'>
-		assertType.isTrue(canAssign<A>()({}))
+		testType.canAssign<A, {}>(true)
 	})
 
 	test('pick never gets empty object', () => {
 		type A = { a: number }
 		type S = Pick<A, never>
 		type K = keyof S
-		assertType.isTrue(true as Equal<K, never>)
+		testType.never<K>(true)
 	})
 })
 

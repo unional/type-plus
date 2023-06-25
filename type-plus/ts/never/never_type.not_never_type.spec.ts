@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { Is_Never, testType, type NotNeverType } from '../index.js'
+import { testType, type Is_Never, type NotNeverType } from '../index.js'
 
 it('returns `is_never` if T is never', () => {
 	testType.equal<NotNeverType<never>, Is_Never>(true)

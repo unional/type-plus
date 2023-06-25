@@ -1,5 +1,5 @@
 import { test } from '@jest/globals'
-import { isType, ValueOf } from '../index.js'
+import { isType, type ValueOf } from '../index.js'
 
 test('work with primitive type', () => {
 	type A = ValueOf<string>

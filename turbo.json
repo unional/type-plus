@@ -8,7 +8,8 @@
       "inputs": [
         "ts/**/*.tsx?",
         "!ts/**/*.spec.tsx?",
-        "!ts/**/*.stories.tsx?"
+        "!ts/**/*.stories.tsx?",
+        "tsconfig.*"
       ],
       "outputs": [
         "lib/**"
