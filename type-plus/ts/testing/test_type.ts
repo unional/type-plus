@@ -208,6 +208,25 @@ interface TestType {
 	 * @return `expected` as `T` for type inspection.
 	 */
 	void<T>(expected: IsVoid<T>): T
+	/**
+	 * A quick way to inspect a type.
+	 *
+	 * The handler is not being call.
+	 *
+	 * It just make it easy to inspect a specific type.
+	 *
+	 * @example
+	 * ```ts
+	 * testType.inspect<SomeType>(t => ...try out the `t` which is `SomeType` here...)
+	 *
+	 * // instead of
+	 * const r: SomeType = {} as any
+	 * ...try out the `r` which is `SomeType` here...
+	 * ```
+	 *
+	 * After trying out the type, remove the line.
+	 */
+	inspect<T>(handler: (t: T) => unknown): (t: T) => unknown
 }
 
 /**
