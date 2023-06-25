@@ -1,6 +1,6 @@
 import { tersify } from 'tersify'
 import { isConstructor, type AnyConstructor } from '../class/index.js'
-import { AnyFunction } from '../function/any_function.js'
+import { type AnyFunction } from '../function/any_function.js'
 
 /**
  * assert the subject satisfies the specified type T

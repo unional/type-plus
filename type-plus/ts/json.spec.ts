@@ -1,6 +1,6 @@
 import { describe, expect, test } from '@jest/globals'
 import { assertType } from './assertion/assert_type.js'
-import { JSONObject, JSONTypes } from './json.js'
+import { type JSONObject, JSONTypes } from './json.js'
 import { isType } from './type-guard/is_type.js'
 
 test('empty object', () => {

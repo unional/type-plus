@@ -1,4 +1,4 @@
-import { KeyTypes } from './KeyTypes.js'
+import type { KeyTypes } from './KeyTypes.js'
 
 export function forEachKey<S extends Record<KeyTypes, any>, T = any>(
 	subject: S,
