@@ -21,18 +21,3 @@ export type PartialExcept<T, U extends UnionKeys<T>> = T extends T ? Pick<T, U> 
  * Apply `Partial<>` on all not selected properties.
  */
 export type PartialOmit<T, U extends UnionKeys<T>> = T extends T ? Pick<T, U> & Partial<Omit<T, U>> : never
-
-/**
- * Validate `T[K]` is partial.
- *
- * @example
- * ```ts
- * IsPartialProp({ a: 1 }, 'a') // false
- * IsPartialProp({ a?: 1 }, 'a') // true
- * ```
- */
-export type IsPartialProp<T, K extends keyof T, Then = true, Else = false> = { [k in K]?: T[k] } extends {
-	[k in K]: T[k]
-}
-	? Then
-	: Else

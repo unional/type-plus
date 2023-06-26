@@ -34,6 +34,18 @@ type R = IsPartialProp<{ a?: number }, 'a'> // true
 type R = IsPartialProp<{ a: number }, 'a'> // false
 ```
 
+## PartialPropKeys
+
+> `PartialPropKeys<T>`
+
+Gets the keys of `T` that are a partial property.
+
+```ts
+import type { PartialPropKeys } from 'type-plus'
+
+type R = PartialPropKeys<{ a?: number }> // 'a'
+```
+
 ## References
 
 - [Handbook]
