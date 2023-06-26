@@ -1,5 +1,12 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 7.2.1
+
+### Patch Changes
+
+- 6be5fa7b0: Improve `IsLiteral` type to support `boolean`, `bigint`, and `symbol`.
+- 0f0b9f8e0: Improve `LeftJoin` type behavior.
+
 ## 7.2.0
 
 ### Minor Changes
