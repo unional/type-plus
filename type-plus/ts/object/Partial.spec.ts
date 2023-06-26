@@ -1,7 +1,9 @@
 import { it, test } from '@jest/globals'
+import { describe } from 'node:test'
 import {
 	assertType,
 	testType,
+	type IsPartialProp,
 	type Partial,
 	type PartialExcept,
 	type PartialOmit,
@@ -57,4 +59,21 @@ test('make not specified properties optional', () => {
 
 it('expose Partial', () => {
 	testType.equal<Partial<{ a: number }>, { a?: number | undefined }>(true)
+})
+
+describe('IsPartialProp', () => {
+	it('returns true for partial prop', () => {
+		testType.true<IsPartialProp<{ a?: number }, 'a'>>(true)
+		testType.true<IsPartialProp<{ a?: number; b: number }, 'a'>>(true)
+	})
+
+	it('returns false for non-partial prop', () => {
+		testType.false<IsPartialProp<{ a: number }, 'a'>>(true)
+		testType.false<IsPartialProp<{ a: number; b?: number }, 'a'>>(true)
+	})
+
+	it('supports override', () => {
+		testType.equal<IsPartialProp<{ a?: number; b: number }, 'a', 'yes', 'no'>, 'yes'>(true)
+		testType.equal<IsPartialProp<{ a?: number; b: number }, 'b', 'yes', 'no'>, 'no'>(true)
+	})
 })

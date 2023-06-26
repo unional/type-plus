@@ -21,6 +21,19 @@ type R = ObjectType<1> // never
 - [`NotObjectType<T, Then = T, Else = never>`](object_type.ts#L48): check if `T` is not `object`.
 - [`IsNotObject<T, Then = true, Else = false>`](object_type.ts#L65): is `T` not `object`.
 
+## IsPartialProp
+
+> `IsPartialProp<T, K, Then = true, Else = false>`
+
+Validate if `T[K]` is a partial property.
+
+```ts
+import type { IsPartialProp } from 'type-plus'
+
+type R = IsPartialProp<{ a?: number }, 'a'> // true
+type R = IsPartialProp<{ a: number }, 'a'> // false
+```
+
 ## References
 
 - [Handbook]
