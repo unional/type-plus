@@ -18,7 +18,7 @@
     "release": "changeset publish",
     "size": "turbo run size",
     "test": "turbo run test",
-    "ts": "pnpm --filter type-plus",
+    "tp": "pnpm --filter type-plus",
     "verify": "turbo run lint build build:doc depcheck coverage size",
     "version": "changeset version"
   },
