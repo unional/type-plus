@@ -1,11 +1,11 @@
 {
-	"[markdown]": {
-		"editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
-	},
-	"[typescript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
-	"cSpell.words": [
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "cSpell.words": [
     "ajafff",
     "astro",
     "astrojs",
@@ -42,50 +42,50 @@
   // "cSpell.ignoreRegExpList": [
   //   "&.*;"
   // ],
-	"eslint.enable": true,
-	"files.watcherExclude": {
-		"**/.git/objects/**": true,
-		"**/.git/subtree-cache/**": true,
-		"**/.hg/store/**": true,
-		"**/.progress/**": true,
-		"**/node_modules/*/**": true,
-		".github": true,
-		"cjs": true,
-		"coverage": true,
-		"esm": true,
-		"scripts": true
-	},
-	"json.schemas": [
-		{
-			"fileMatch": [
-				"tslint.json"
-			],
-			"url": "http://json.schemastore.org/tslint"
-		},
-		{
-			"fileMatch": [
-				"tsconfig.*.json"
-			],
-			"url": "http://json.schemastore.org/tsconfig"
-		}
-	],
-	"markdown.extension.list.toggle.candidate-markers": [
-		"-",
-		"1."
-	],
-	"markdown.extension.toc.levels": "2..6",
-	"markdown.extension.toc.omittedFromToc": {
-		"type-plus/README.md": [
-			"## Table of Contents",
-			"## Installation"
-		]
-	},
-	"markdown.extension.toc.orderedList": true,
-	"markdown.extension.toc.unorderedList.marker": "-",
-	"tsimporter.filesToExclude": [
-		"**/cjs",
-		"**/esm",
-		"**/tslib"
-	],
-	"typescript.tsdk": "node_modules/typescript/lib"
+  "eslint.enable": true,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/.hg/store/**": true,
+    "**/.progress/**": true,
+    "**/node_modules/*/**": true,
+    ".github": true,
+    "cjs": true,
+    "coverage": true,
+    "esm": true,
+    "scripts": true
+  },
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "tslint.json"
+      ],
+      "url": "http://json.schemastore.org/tslint"
+    },
+    {
+      "fileMatch": [
+        "tsconfig.*.json"
+      ],
+      "url": "http://json.schemastore.org/tsconfig"
+    }
+  ],
+  "markdown.extension.list.toggle.candidate-markers": [
+    "-",
+    "1."
+  ],
+  "markdown.extension.toc.levels": "2..6",
+  "markdown.extension.toc.omittedFromToc": {
+    "type-plus/README.md": [
+      "## Table of Contents",
+      "## Installation"
+    ]
+  },
+  "markdown.extension.toc.orderedList": true,
+  "markdown.extension.toc.unorderedList.marker": "-",
+  "tsimporter.filesToExclude": [
+    "**/cjs",
+    "**/esm",
+    "**/tslib"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
