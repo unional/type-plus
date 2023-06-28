@@ -2,4 +2,4 @@
 'type-plus': minor
 ---
 
-Add `PartialPropKeys<T>`
+Add `OptionalKeys<T>`

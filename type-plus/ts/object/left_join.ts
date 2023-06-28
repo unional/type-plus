@@ -4,7 +4,7 @@ import type { AnyRecord } from './AnyRecord.js'
 import type { IsDisjoint } from './IsDisjoint.js'
 import type { KeyTypes } from './KeyTypes.js'
 import type { Partial } from './Partial.js'
-import type { PartialPropKeys } from './partial_prop.js'
+import type { OptionalKeys } from './partial_prop.js'
 import type { Properties } from './properties.js'
 
 
@@ -21,7 +21,7 @@ export type LeftJoin<A, B> = [A, B] extends [NonComposableTypes, unknown] | [unk
 	: ([keyof A, keyof B] extends [infer KA extends KeyTypes, infer KB extends KeyTypes]
 		? (IsLiteral<KA> extends true
 			? (IsLiteral<KB> extends true
-				? ([PartialPropKeys<A>, PartialPropKeys<B>] extends [infer PKA extends KeyTypes, infer PKB extends KeyTypes]
+				? ([OptionalKeys<A>, OptionalKeys<B>] extends [infer PKA extends KeyTypes, infer PKB extends KeyTypes]
 					// property is optional when both A[k] and B[k] are optional
 					? { [k in PKA & PKB]?: A[k] | B[k] | undefined } &
 					{ [k in Exclude<KA & KB, PKA | PKB>]: LeftJoin<A[k], B[k]>

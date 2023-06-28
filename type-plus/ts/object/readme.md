@@ -21,29 +21,29 @@ type R = ObjectType<1> // never
 - [`NotObjectType<T, Then = T, Else = never>`](object_type.ts#L48): check if `T` is not `object`.
 - [`IsNotObject<T, Then = true, Else = false>`](object_type.ts#L65): is `T` not `object`.
 
-## IsPartialProp
+## IsOptionalKey
 
-> `IsPartialProp<T, K, Then = true, Else = false>`
+> `IsOptionalKey<T, K, Then = true, Else = false>`
 
-Validate if `T[K]` is a partial property.
+Validate if the key `K` in `T` is optional.
 
 ```ts
-import type { IsPartialProp } from 'type-plus'
+import type { IsOptionalKey } from 'type-plus'
 
-type R = IsPartialProp<{ a?: number }, 'a'> // true
-type R = IsPartialProp<{ a: number }, 'a'> // false
+type R = IsOptionalKey<{ a?: number }, 'a'> // true
+type R = IsOptionalKey<{ a: number }, 'a'> // false
 ```
 
-## PartialPropKeys
+## OptionalKeys
 
-> `PartialPropKeys<T>`
+> `OptionalKeys<T>`
 
-Gets the keys of `T` that are a partial property.
+Gets the optional keys of `T`.
 
 ```ts
-import type { PartialPropKeys } from 'type-plus'
+import type { OptionalKeys } from 'type-plus'
 
-type R = PartialPropKeys<{ a?: number }> // 'a'
+type R = OptionalKeys<{ a?: number }> // 'a'
 ```
 
 ## References

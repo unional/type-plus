@@ -2,4 +2,5 @@
 'type-plus': minor
 ---
 
-Add `IsPartialProp<T, K>`.
+Add `IsOptionalKey<T, K>`.
+

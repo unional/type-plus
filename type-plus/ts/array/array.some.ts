@@ -11,7 +11,7 @@ import type { UnionOfValues } from './union_of_values.js'
  *
  * You can also change it to `strict` mode.
  *
- * 🔧 *utilities*
+ * 🦴 *utilities*
  *
  * @example
  * ```ts
