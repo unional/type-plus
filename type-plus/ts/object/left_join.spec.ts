@@ -9,6 +9,9 @@ describe('LeftJoin', () => {
 
 	test('disjoint returns A & B', () => {
 		testType.equal<LeftJoin<{ a: 1 }, { b: 1 }>, { a: 1; b: 1 }>(true)
+		testType.equal<LeftJoin<{ a: 1 }, { b?: 1 }>, { a: 1; b?: 1 }>(true)
+		testType.equal<LeftJoin<{ a?: 1 }, { b: 1 }>, { a?: 1; b: 1 }>(true)
+		testType.equal<LeftJoin<{ a?: 1 }, { b?: 1 }>, { a?: 1; b?: 1 }>(true)
 	})
 
 	test('replaces property in A with property in B', () => {
@@ -32,6 +35,24 @@ describe('LeftJoin', () => {
 
 	it('appends types of required prop to optional prop', () => {
 		testType.equal<LeftJoin<{ a?: string | undefined }, { a: number }>, { a: number }>(true)
+	})
+
+	it('combines type with required and optional props', () => {
+		testType.equal<LeftJoin<{ a: number }, { b?: string }>, { a: number; b?: string }>(true)
+
+		type R = LeftJoin<
+			{ a: { c: number } },
+			{
+				a?: { d: string }
+			}
+		>
+
+		testType.inspect<R>(t => t)
+		testType.equal<R['a'], { c: number } | { d?: string | undefined }>(true)
+	})
+
+	it('both optional', () => {
+		testType.equal<LeftJoin<{ a?: number }, { a?: string }>, { a?: number | string | undefined }>(true)
 	})
 })
 
