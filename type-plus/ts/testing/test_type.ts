@@ -211,22 +211,27 @@ interface TestType {
 	/**
 	 * A quick way to inspect a type.
 	 *
-	 * The handler is not being call.
+	 * The handler receives a `InspectedType` object.
+	 * It contains `value` which is typed to `T`,
+	 * and many other properties to inspect the behavior of `T`.
 	 *
-	 * It just make it easy to inspect a specific type.
+	 * The handler is not being call,
+	 * it is use to hold the type in value for inspection.
+	 *
+	 * 🧪 *testing*
+	 * 🦴 *utilities*
 	 *
 	 * @example
 	 * ```ts
-	 * testType.inspect<SomeType>(t => ...try out the `t` which is `SomeType` here...)
-	 *
-	 * // instead of
-	 * const r: SomeType = {} as any
-	 * ...try out the `r` which is `SomeType` here...
+	 * testType.inspect<SomeType>(t => {
+	 *   type T = typeof t.value // resolve and inspect the type `T`
+	 *   t.extend_boolean // result of `T extends boolean`
+	 * })
 	 * ```
 	 *
 	 * After trying out the type, remove the line.
 	 */
-	inspect<T>(handler: (t: T) => unknown): (t: T) => unknown
+	inspect<T>(handler: (t: InspectedType<T>) => unknown): T
 }
 
 /**
@@ -241,3 +246,27 @@ export const testType = new Proxy({} as TestType, {
 		return (expected: unknown) => expected
 	}
 })
+
+export type InspectedType<T> = {
+	value: T
+	extends_any: T extends any ? true : false
+	extends_unknown: T extends unknown ? true : false
+	extends_void: T extends void ? true : false
+	extends_never: T extends never ? true : false
+	extends_undefined: T extends undefined ? true : false
+	extends_null: T extends null ? true : false
+	extends_boolean: T extends boolean ? true : false
+	extends_true: T extends true ? true : false
+	extends_false: T extends false ? true : false
+	extends_number: T extends number ? true : false
+	extends_1: T extends 1 ? true : false
+	extends_bigint: T extends bigint ? true : false
+	extends_1n: T extends 1n ? true : false
+	extends_string: T extends string ? true : false
+	extends_a: T extends 'a' ? true : false
+	extends_symbol: T extends symbol ? true : false
+	extends_object: T extends object ? true : false
+	extends_function: T extends Function ? true : false
+	extends_array_unknown: T extends unknown[] ? true : false
+	extends_tuple_empty: T extends [] ? true : false
+}
