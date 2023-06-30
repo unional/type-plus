@@ -1,5 +1,6 @@
 import { test } from '@jest/globals'
-import { testType, type OptionalKeys } from '../index.js'
+import { testType } from '../index.js'
+import type { OptionalKeys } from './optional_key.js'
 
 test('extract optional keys from object', () => {
 	type X = { a?: string; b: string }

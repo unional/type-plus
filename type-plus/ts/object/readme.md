@@ -43,7 +43,19 @@ Gets the optional keys of `T`.
 ```ts
 import type { OptionalKeys } from 'type-plus'
 
-type R = OptionalKeys<{ a?: number }> // 'a'
+type R = OptionalKeys<{ a?: number; b: string }> // 'a'
+```
+
+## OptionalProps
+
+> `OptionalProps<T>`
+
+Gets the optional properties of `T`.
+
+```ts
+import type { OptionalProps } from 'type-plus'
+
+type R = OptionalProps<{ a?: number; b: string }> // { a?: number }
 ```
 
 ## References

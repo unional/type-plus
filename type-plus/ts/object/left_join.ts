@@ -4,9 +4,8 @@ import type { AnyRecord } from './AnyRecord.js'
 import type { IsDisjoint } from './IsDisjoint.js'
 import type { KeyTypes } from './KeyTypes.js'
 import type { Partial } from './Partial.js'
-import type { OptionalKeys } from './partial_prop.js'
+import type { OptionalKeys } from './optional_key.js'
 import type { Properties } from './properties.js'
-
 
 /**
  * Left join type `A` with type `B`.
