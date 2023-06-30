@@ -1,1 +1,3 @@
-export type AnyRecord = Record<keyof any, any>
+import type { KeyTypes } from './KeyTypes.js'
+
+export type AnyRecord = Record<KeyTypes, any>
