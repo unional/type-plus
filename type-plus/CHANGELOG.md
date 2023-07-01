@@ -1,5 +1,20 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 7.3.0
+
+### Minor Changes
+
+- e8547eb88: Add `IsOptionalKey<T, K>`.
+- bd6c695a2: Add `OptionalProps<T>`.
+  Improve `OptionalKeys<T>` and `IsOptionalKey<T, K>`
+- d3faa0bff: Add `OptionalKeys<T>`
+
+### Patch Changes
+
+- d214ce6d7: Improve `testType.inspect<T>(fn)` to provide more information about `T`.
+
+  Not consider as breaking change as the function is not expected to be use in any code.
+
 ## 7.2.1
 
 ### Patch Changes
@@ -101,9 +116,9 @@
   it can also be:
 
   ```ts
-  const v: number | string = 123
+  const v: number | string = 123;
 
-  const a: Array<number | string> = [v]
+  const a: Array<number | string> = [v];
   ```
 
   So `Some<Array<number | string>, number>` should distribute and return `boolean`.
