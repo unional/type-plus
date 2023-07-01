@@ -248,7 +248,8 @@ export const testType = new Proxy({} as TestType, {
 })
 
 export type InspectedType<T> = {
-	value: T
+	type: T
+	extends<R>(): T extends R ? true : false
 	extends_any: T extends any ? true : false
 	extends_unknown: T extends unknown ? true : false
 	extends_void: T extends void ? true : false
@@ -269,4 +270,46 @@ export type InspectedType<T> = {
 	extends_function: T extends Function ? true : false
 	extends_array_unknown: T extends unknown[] ? true : false
 	extends_tuple_empty: T extends [] ? true : false
+	union<R>(): T | R
+	union_any: T | any
+	union_unknown: T | unknown
+	union_void: T | void
+	union_never: T | never
+	union_undefined: T | undefined
+	union_null: T | null
+	union_boolean: T | boolean
+	union_true: T | true
+	union_false: T | false
+	union_number: T | number
+	union_1: T | 1
+	union_bigint: T | bigint
+	union_1n: T | 1n
+	union_string: T | string
+	union_a: T | 'a'
+	union_symbol: T | symbol
+	union_object: T | object
+	union_function: T | Function
+	union_array_unknown: T | unknown[]
+	union_tuple_empty: T | []
+	intersect<R>(): T & R
+	intersect_any: T & any
+	intersect_unknown: T & unknown
+	intersect_void: T & void
+	intersect_never: T & never
+	intersect_undefined: T & undefined
+	intersect_null: T & null
+	intersect_boolean: T & boolean
+	intersect_true: T & true
+	intersect_false: T & false
+	intersect_number: T & number
+	intersect_1: T & 1
+	intersect_bigint: T & bigint
+	intersect_1n: T & 1n
+	intersect_string: T & string
+	intersect_a: T & 'a'
+	intersect_symbol: T & symbol
+	intersect_object: T & object
+	intersect_function: T & Function
+	intersect_array_unknown: T & unknown[]
+	intersect_tuple_empty: T & []
 }
