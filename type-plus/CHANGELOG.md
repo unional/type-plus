@@ -1,5 +1,11 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 7.3.1
+
+### Patch Changes
+
+- 90eb2a492: Update package.json try fixing readme references
+
 ## 7.3.0
 
 ### Minor Changes
