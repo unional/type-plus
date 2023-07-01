@@ -1,6 +1,11 @@
 # Array
 
-`Array<T>` or `T[]` is a type that represents an array of `T`.
+In TypeScript, the type of an JavaScript array can be an [array](#array) or a [tuple](../tuple/readme.md).
+
+`Array<T>` or `T[]` is a type that represents an array of `T`
+
+There is no length limitation to an `Array`,
+and each element has the same type `T`.
 
 ## Type Checking
 
@@ -23,6 +28,21 @@ type R = ArrayType<number[] & { a: 1 }> // never
 - [`IsArray<T, Then = true, Else = false`](array_type.ts#L33): is `T` an array and not a tuple.
 - [`NotArrayType<T, Then = T, Else = never>`](array_type.ts#L47): check if `T` is not an array (can be a tuple).
 - [`IsNotArray<T, Then = true, Else = false>`](array_type.ts#L61): is `T` not an array (can be a tuple).
+
+## [CommonPropKeys](./common_prop_keys.ts)
+
+`CommonPropKeys<A extends Record<>`
+
+Gets the common property keys of the elements in tuple `T`.
+
+🐾 *parse*
+
+```ts
+import { CommonPropKeys } from 'type-plus'
+
+type R = CommonPropKeys<[{ a: number }, { b: number }]> // never
+type R = CommonPropKeys<[{ a: number, c: 1 }, { b: number, c: 2 }]> // 'c'
+```
 
 ## ArrayPlus
 
