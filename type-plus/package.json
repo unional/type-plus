@@ -2,13 +2,14 @@
   "name": "type-plus",
   "version": "7.3.0",
   "description": "Provides additional types for TypeScript.",
-  "homepage": "https://github.com/unional/type-plus/tree/main/type-plus",
+  "homepage": "https://github.com/unional/type-plus/tree/main/type-plus#readme",
   "bugs": {
     "url": "https://github.com/unional/type-plus/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/unional/type-plus.git"
+    "url": "https://github.com/unional/type-plus.git",
+    "directory": "type-plus"
   },
   "license": "MIT",
   "author": {
