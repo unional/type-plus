@@ -35,7 +35,7 @@ type R = ArrayType<number[] & { a: 1 }> // never
 
 Gets the common property keys of the elements in tuple `T`.
 
-🐾 *parse*
+⚗️ *transform*
 
 ```ts
 import { CommonPropKeys } from 'type-plus'

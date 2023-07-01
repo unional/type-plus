@@ -16,15 +16,16 @@ Advance type utilities for [TypeScript].
 Each type and function has an icon associated with it.
 They indicate what kind of feature they offer:
 
-- 🦴 *utilities*: provide various functionalities (other icons considered: 🔧🔨).
-- 🐾 *parse*: a.k.a. *filter* or *pipe*. These types perform some kind of test. If the input passes the test, the input is returned. Otherwise, it returns `never` (other icons considered: ↪️👉🧵⛓️🚋📨⏩).
-- 🎭 *validate*: a.k.a. *predicate* or *logical*. These types perform some kind of test. If the input passes the test, it returns `true` or `false` (other icons considered: ⭕).
-- 🏃 *runtime*: The function has runtime effect
-- 💥 *immediate*: The effect of the type can be observed immediately during development.
-- 🧪 *testing*: The type or function are designed for test.
-- 🛡️ *guard*: type guard function
-- 💀 *deprecated*: deprecated and will be removed soon
-- 🚦 *assertion*: assertion function
+- 🚦 *assertion* (:vertical_traffic_light:): assertion function
+- 💀 *deprecated* (:skull:): deprecated and will be removed soon
+- 🛡️ *guard* (:shield:): type guard function
+- 💥 *immediate* (:boom:): The effect of the type can be observed immediately during development.
+- 🐾 *parse* (:paw_prints:): a.k.a. *filter* or *pipe*. These types perform some kind of test. If the input passes the test, the input is returned. Otherwise, it returns `never` (other icons considered: ↪️👉🧵⛓️🚋📨⏩).
+- 🏃 *runtime* (:runner:): The function has runtime effect
+- 🧪 *testing* (:test_tube:): The type or function are designed for test.
+- ⚗️ *transform* (:alembic:): These types transforms the input to another category.
+- 🦴 *utilities* (:bone:): provide various functionalities (other icons considered: 🔧🔨).
+- 🎭 *validate* (:performing_arts:): a.k.a. *predicate* or *logical*. These types perform some kind of test. If the input passes the test, it returns `true` or `false` (other icons considered: ⭕).
 
 ## Feature Highlights
 
@@ -44,9 +45,6 @@ yarn add type-plus
 
 pnpm add type-plus
 ```
-
-## Type Assertions
-
 
 ## Type Assertions
 
@@ -544,7 +542,6 @@ your editor right next to your code.
 [ts-essentials]: https://github.com/ts-essentials/ts-essentials
 [ts-expect]: https://github.com/TypeStrong/ts-expect
 [ts-toolbelt]: https://github.com/millsp/ts-toolbelt
-[type_guard]: https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates
 [type-fest]: https://github.com/sindresorhus/type-fest
 [type-zoo]: https://github.com/pelotom/type-zoo
 [typelevel-ts]: https://github.com/gcanti/typelevel-ts

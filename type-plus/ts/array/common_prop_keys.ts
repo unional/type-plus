@@ -5,7 +5,7 @@ import type { Tail } from './tail.js'
 /**
  * Gets the common property keys of the elements in tuple `T`.
  *
- * 🐾 *parse*
+ * ⚗️ *transform*
  *
  * ```ts
  * import { CommonPropKeys } from 'type-plus'
