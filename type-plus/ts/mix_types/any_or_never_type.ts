@@ -1,22 +1,30 @@
-import type { IsNever } from '../never/never_type.js'
-import type { IsAny } from '../any/any_type.js'
+import type { AnyType } from '../any/any_type.js'
+import type { NeverType } from '../never/never_type.js'
 
 /**
- * 🐾 Parse `T` to ensure it is either exactly `any` or exactly `never`.
+ * Parse `T` to ensure it is either exactly `any` or exactly `never`.
+ *
+ * 🐾 *parse*
+ * 🩳 *shortcut*
  *
  * @example
  * ```ts
- * type R = AnyType<any> // any
+ * type R = AnyOrNeverType<any> // any
+ * type R = AnyOrNeverType<never> // never
+ * type R = AnyOrNeverType<never, 1, 2> // 1
  *
- * type R = AnyType<never> // never
- * type R = AnyType<unknown> // never
- * type R = AnyType<string | boolean> // never
+ * type R = AnyOrNeverType<unknown> // never
+ * type R = AnyOrNeverType<unknown, 1, 2> // 2
+ * type R = AnyOrNeverType<string | boolean> // never
  * ```
  */
-export type AnyOrNeverType<T, Then = T, Else = never> = IsNever<T, Then, IsAny<T, Then, Else>>
+export type AnyOrNeverType<T, Then = T, Else = never> = NeverType<T, Then, AnyType<T, Then, Else>>
 
 /**
- * 🎭 Validate if `T` is either exactly `any` or exactly `never`.
+ * Validate if `T` is either exactly `any` or exactly `never`.
+ *
+ * 🎭 *validate*
+ * 🩳 *shortcut*
  *
  * @example
  * ```ts
@@ -27,4 +35,4 @@ export type AnyOrNeverType<T, Then = T, Else = never> = IsNever<T, Then, IsAny<T
  * type R = IsAnyOrNever<unknown> // false
  * ```
  */
-export type IsAnyOrNever<T, Then = true, Else = false> = IsNever<T, Then, IsAny<T, Then, Else>>
+export type IsAnyOrNever<T, Then = true, Else = false> = NeverType<T, Then, AnyType<T, Then, Else>>

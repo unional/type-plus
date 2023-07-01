@@ -1,6 +1,8 @@
 # Any
 
-`any` is one of the two top type in TypeScript. It is the supertype of all types. It is a way to opt-out of type checking and let the values pass through compile-time checks.
+`any` is one of the two top types in TypeScript.
+It is a supertype of all types.
+It is a way to opt-out of type checking and let the values pass through compile-time checks.
 
 ## Type Checking
 
@@ -15,9 +17,24 @@ except `any & never` which is `never`.
 - [`NotAnyType<T, Then = T, Else = never>`](any_type.ts#L45): check if `T` is not exactly `any`.
 - [`IsNotAny<T, Then = true, Else = false>`](any_type.ts#L60): is `T` not exactly `any`.
 
-## Type Utilities
+## Trivia
 
-- [`IsAnyOrNever<T, Then = true, Else = false>`](any_or_never.ts#L17)]: is `T` type `any` or `never`.
+> Both `any` and `unknown` are top types?
+
+Well, yeah:
+
+```ts
+type A = any extends unknown ? 1 : 2 // 1
+type B = unknown extends any ? 1 : 2 // 1
+```
+
+> Aren't using `any` is bad?
+
+If you use it to simply tell TypeScript to shut up because you are lazy, then yes.
+
+But it is ok to use `any` in many cases, as the type system of TypeScript is not sounded.
+
+There are many cases it is not possible to induce the type correctly.
 
 ## References
 

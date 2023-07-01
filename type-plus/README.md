@@ -325,6 +325,7 @@ You can learn more in their respective sections:
 - [undefined](./ts/undefined/readme.md)
 - [unknown](./ts/unknown/readme.md)
 - [void](./ts/void/readme.md)
+- [mix types](./ts/mix-types/readme.md)
 
 ### any
 
