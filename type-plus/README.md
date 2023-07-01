@@ -1351,6 +1351,7 @@ Whenever possible, I add attribution to the person who created those **codes** i
 - [expect-type]: Compile-time tests for types
 - [hotscript]: Higher-order TypeScript
 - [spec.ts]: write tests for your types!
+- [ts-calc]: compute with typescript type system, part of [hotscript]
 - [ts-essentials]: all essential TypeScript types in one place.
 - [ts-expect]: Checks values in TypeScript match expectations.
 - [ts-toolbelt]: TypeScript's largest utility library.
@@ -1374,6 +1375,7 @@ Whenever possible, I add attribution to the person who created those **codes** i
 [npm_image]: https://img.shields.io/npm/v/type-plus.svg?style=flat
 [npm_url]: https://npmjs.org/package/type-plus
 [spec.ts]: https://github.com/aleclarson/spec.ts
+[ts-calc]: https://github.com/ecyrbe/ts-calc
 [ts-essentials]: https://github.com/ts-essentials/ts-essentials
 [ts-expect]: https://github.com/TypeStrong/ts-expect
 [ts-toolbelt]: https://github.com/millsp/ts-toolbelt
