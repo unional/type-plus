@@ -28,15 +28,15 @@ export type ToTuple<R extends any[], S extends number[], X = any> = S['length'] 
 type DigitToTuple<T = 1> = {
 	[k in number]: any[]
 } & {
-	0: []
-	1: [T]
-	2: [T, T]
-	3: [T, T, T]
-	4: [T, T, T, T]
-	5: [T, T, T, T, T]
-	6: [T, T, T, T, T, T]
-	7: [T, T, T, T, T, T, T]
-	8: [T, T, T, T, T, T, T, T]
+	0: [],
+	1: [T],
+	2: [T, T],
+	3: [T, T, T],
+	4: [T, T, T, T],
+	5: [T, T, T, T, T],
+	6: [T, T, T, T, T, T],
+	7: [T, T, T, T, T, T, T],
+	8: [T, T, T, T, T, T, T, T],
 	9: [T, T, T, T, T, T, T, T, T]
 }
 type Multi10<C extends any[]> = [...C, ...C, ...C, ...C, ...C, ...C, ...C, ...C, ...C, ...C]

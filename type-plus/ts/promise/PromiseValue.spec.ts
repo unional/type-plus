@@ -8,25 +8,25 @@ test('extract value from Promise', () => {
 
 describe('AwaitedProp<T, V>', () => {
 	it('awaits one of the props', () => {
-		type E = { a: number; p: Promise<number> }
+		type E = { a: number, p: Promise<number> }
 		type R = AwaitedProp<E, 'p'>
-		isType.equal<true, { a: number; p: number }, R>()
+		isType.equal<true, { a: number, p: number }, R>()
 	})
 
 	it('awaits multiple props', () => {
 		type E = {
-			a: number
-			p1: Promise<number>
-			p2: Promise<number>
+			a: number,
+			p1: Promise<number>,
+			p2: Promise<number>,
 			p3: Promise<number>
 		}
 		type R = AwaitedProp<E, 'p1' | 'p2'>
 		isType.equal<
 			true,
 			{
-				a: number
-				p1: number
-				p2: number
+				a: number,
+				p1: number,
+				p2: number,
 				p3: Promise<number>
 			},
 			R

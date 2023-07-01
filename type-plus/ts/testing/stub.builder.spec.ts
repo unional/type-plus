@@ -15,14 +15,14 @@ it('creates a stub builder with init function', () => {
 })
 
 it('can add init object to builder', () => {
-	const s = stub.builder<{ a: number; b?: string }>({ a: 1 }).with({ b: '1' }).create()
+	const s = stub.builder<{ a: number, b?: string }>({ a: 1 }).with({ b: '1' }).create()
 	const r = s()
 	expect(r).toEqual({ a: 1, b: '1' })
 })
 
 it('can add init function to builder', () => {
 	const s = stub
-		.builder<{ a: number; b?: string }>(input => ({
+		.builder<{ a: number, b?: string }>(input => ({
 			...input,
 			a: (input?.a ?? 0) + 1
 		}))
@@ -37,7 +37,7 @@ it('can add init function to builder', () => {
 })
 
 it('can be use to create multiple builders', () => {
-	const s = stub.builder<{ a: number; b: number; c: number }>({ a: 1 })
+	const s = stub.builder<{ a: number, b: number, c: number }>({ a: 1 })
 	const s1 = s.with({ b: 2 })
 	const s2 = s.with({ b: 3 })
 	const b1 = s1.create()

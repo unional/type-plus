@@ -16,8 +16,8 @@ test('work on primitive type', () => {
 
 test('make picked properties optional', () => {
 	type Foo = {
-		a: number
-		b: number
+		a: number,
+		b: number,
 		c: number
 	}
 
@@ -30,8 +30,8 @@ test('make picked properties optional', () => {
 
 test('make not specified properties optional', () => {
 	type Foo = {
-		a: number
-		b: number
+		a: number,
+		b: number,
 		c: number
 	}
 
@@ -43,8 +43,8 @@ test('make not specified properties optional', () => {
 
 test('make not specified properties optional', () => {
 	type Foo = {
-		a: number
-		b: number
+		a: number,
+		b: number,
 		c: number
 	}
 

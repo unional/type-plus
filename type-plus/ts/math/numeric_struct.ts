@@ -631,14 +631,14 @@ export namespace Digit {
 	][A][B]
 
 	export type Plus10 = { [k in number]: number } & {
-		'-1': 9
-		'-2': 8
-		'-3': 7
-		'-4': 6
-		'-5': 5
-		'-6': 4
-		'-7': 3
-		'-8': 2
+		'-1': 9,
+		'-2': 8,
+		'-3': 7,
+		'-4': 6,
+		'-5': 5,
+		'-6': 4,
+		'-7': 3,
+		'-8': 2,
 		'-9': 1
 	}
 	export type Multiply<A extends number, B extends number> = [

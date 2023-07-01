@@ -22,10 +22,10 @@ describe('CanAssign<A, B>', () => {
 		testType.false<CanAssign<boolean, true>>(true)
 	})
 	test('super set to sub set', () => {
-		testType.true<CanAssign<{ a: string; b: number }, { a: string }>>(true)
+		testType.true<CanAssign<{ a: string, b: number }, { a: string }>>(true)
 	})
 	test('sub set to super set fail', () => {
-		testType.false<CanAssign<{ a: string }, { a: string; b: number }>>(true)
+		testType.false<CanAssign<{ a: string }, { a: string, b: number }>>(true)
 	})
 
 	it('distributes union types to return boolean if only part of the union is assignable', () => {

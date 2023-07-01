@@ -41,7 +41,7 @@ it('returns false if T is union of function', () => {
 })
 
 it('returns false if T is function overloads', () => {
-	testType.false<IsStrictFunction<{ (): void; (x: number): number }>>(true)
+	testType.false<IsStrictFunction<{ (): void, (x: number): number }>>(true)
 })
 
 it('returns false if T is intersection of function', () => {

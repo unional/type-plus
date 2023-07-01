@@ -11,7 +11,7 @@ it('returns T if T is function signature', () => {
 })
 
 it('returns T if T is function overloads', () => {
-	testType.equal<NotStrictFunctionType<{ (): void; (x: number): number }>, { (): void; (x: number): number }>(
+	testType.equal<NotStrictFunctionType<{ (): void, (x: number): number }>, { (): void, (x: number): number }>(
 		true
 	)
 })

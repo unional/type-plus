@@ -42,7 +42,7 @@ it('no match gets never', () => {
 
 it('pick object', () => {
 	type Actual = FindFirst<
-		[{ name: 'a'; type: 1 }, { name: 'b'; type: 2 }, { name: 'c'; type: 3 }, { name: 'b'; type: 4 }],
+		[{ name: 'a', type: 1 }, { name: 'b', type: 2 }, { name: 'c', type: 3 }, { name: 'b', type: 4 }],
 		{ name: 'b' }
 	>['type']
 	testType.equal<Actual, 2>(true)

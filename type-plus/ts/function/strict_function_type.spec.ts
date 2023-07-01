@@ -11,8 +11,8 @@ it('returns never if T is a function signature', () => {
 })
 
 it('returns never if T is function overloads', () => {
-	testType.never<StrictFunctionType<{ (): void; (x: number): number }>>(true)
-	testType.never<StrictFunctionType<{ (): void; a: 1 }>>(true)
+	testType.never<StrictFunctionType<{ (): void, (x: number): number }>>(true)
+	testType.never<StrictFunctionType<{ (): void, a: 1 }>>(true)
 })
 
 it('returns never for special types', () => {

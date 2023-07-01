@@ -3,8 +3,8 @@ import { assertType, testType, type RequiredExcept, type RequiredPick } from '..
 
 test('make picked properties required', () => {
 	type Foo = {
-		a?: number | undefined
-		b?: number | undefined
+		a?: number | undefined,
+		b?: number | undefined,
 		c: number
 	}
 
@@ -17,8 +17,8 @@ test('make picked properties required', () => {
 
 test('make not picked properties required', () => {
 	type Foo = {
-		a?: number | undefined
-		b?: number | undefined
+		a?: number | undefined,
+		b?: number | undefined,
 		c: number
 	}
 

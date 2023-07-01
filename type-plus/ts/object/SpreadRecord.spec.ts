@@ -8,8 +8,8 @@ test('records are combined as intersection', () => {
 
 test('Property in B overrides A', () => {
 	type A = { a: number }
-	type B = { a: string; b: string }
+	type B = { a: string, b: string }
 	type S = SpreadRecord<A, B>
 
-	testType.equal<S, { a: string; b: string }>(true)
+	testType.equal<S, { a: string, b: string }>(true)
 })

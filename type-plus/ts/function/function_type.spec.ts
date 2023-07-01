@@ -39,8 +39,8 @@ it('returns never if T is union of function and other types', () => {
 })
 
 it('returns T if T is function overloads', () => {
-	testType.equal<FunctionType<{ (): void; (x: number): number }>, { (): void; (x: number): number }>(true)
-	testType.equal<FunctionType<{ (): void; a: 1 }>, { (): void; a: 1 }>(true)
+	testType.equal<FunctionType<{ (): void, (x: number): number }>, { (): void, (x: number): number }>(true)
+	testType.equal<FunctionType<{ (): void, a: 1 }>, { (): void, a: 1 }>(true)
 })
 
 it('returns T if T is intersection of function', () => {

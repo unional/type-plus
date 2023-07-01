@@ -4,16 +4,16 @@ import { testType, type IsOptionalKey, type OptionalKeys, type OptionalProps } f
 describe('IsOptionalKey', () => {
 	it('returns true for optional prop', () => {
 		testType.true<IsOptionalKey<{ a?: number }, 'a'>>(true)
-		testType.true<IsOptionalKey<{ a?: number; b: number }, 'a'>>(true)
+		testType.true<IsOptionalKey<{ a?: number, b: number }, 'a'>>(true)
 	})
 
 	it('returns false for non-optional prop', () => {
 		testType.false<IsOptionalKey<{ a: number }, 'a'>>(true)
-		testType.false<IsOptionalKey<{ a: number; b?: number }, 'a'>>(true)
+		testType.false<IsOptionalKey<{ a: number, b?: number }, 'a'>>(true)
 	})
 
 	it('works with union type', () => {
-		type X = { a?: string; b: string } | { c: string; d?: string }
+		type X = { a?: string, b: string } | { c: string, d?: string }
 
 		testType.true<IsOptionalKey<X, 'a'>>(true)
 		testType.false<IsOptionalKey<X, 'b'>>(true)
@@ -22,15 +22,15 @@ describe('IsOptionalKey', () => {
 	})
 
 	it('supports override', () => {
-		testType.equal<IsOptionalKey<{ a?: number; b: number }, 'a', 'yes', 'no'>, 'yes'>(true)
-		testType.equal<IsOptionalKey<{ a?: number; b: number }, 'b', 'yes', 'no'>, 'no'>(true)
+		testType.equal<IsOptionalKey<{ a?: number, b: number }, 'a', 'yes', 'no'>, 'yes'>(true)
+		testType.equal<IsOptionalKey<{ a?: number, b: number }, 'b', 'yes', 'no'>, 'no'>(true)
 	})
 })
 
 describe('OptionalKeys', () => {
 	it('gets the keys of the optional properties', () => {
-		testType.equal<OptionalKeys<{ a?: number; b?: number }>, 'a' | 'b'>(true)
-		testType.equal<OptionalKeys<{ a?: number; b?: number; c: number }>, 'a' | 'b'>(true)
+		testType.equal<OptionalKeys<{ a?: number, b?: number }>, 'a' | 'b'>(true)
+		testType.equal<OptionalKeys<{ a?: number, b?: number, c: number }>, 'a' | 'b'>(true)
 	})
 
 	it('gets never if T has no optional properties', () => {
@@ -52,12 +52,12 @@ describe('OptionalProps<T>', () => {
 	it('returns only the optional properties', () => {
 		testType.equal<OptionalProps<{ a?: number }>, { a?: number }>(true)
 		testType.equal<OptionalProps<{ a?: number | undefined }>, { a?: number | undefined }>(true)
-		testType.equal<OptionalProps<{ a?: number; b: number | undefined }>, { a?: number }>(true)
+		testType.equal<OptionalProps<{ a?: number, b: number | undefined }>, { a?: number }>(true)
 	})
 
 	it('extracts optional properties from composite function', () => {
 		testType.equal<OptionalProps<{
-			(): void
+			(): void,
 			a?: number
 		}>, { a?: number }>(true)
 		testType.equal<OptionalProps<(() => void) & {

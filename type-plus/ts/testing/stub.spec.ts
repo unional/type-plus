@@ -2,7 +2,7 @@ import { expect, it } from '@jest/globals'
 import { stub, testType } from '../index.js'
 
 it('accepts a partial of the requested type', () => {
-	function foo(_v: { a: number; b: string }) {}
+	function foo(_v: { a: number, b: string }) {}
 
 	foo(stub({ a: 1 }))
 })

@@ -41,7 +41,7 @@ it('returns true if T is union of function and other types', () => {
 })
 
 it('returns false if T is function overloads', () => {
-	testType.false<IsNotFunction<{ (): void; (x: number): number }>>(true)
+	testType.false<IsNotFunction<{ (): void, (x: number): number }>>(true)
 })
 
 it('returns false if T is intersection of function', () => {

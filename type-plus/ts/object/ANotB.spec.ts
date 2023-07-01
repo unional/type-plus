@@ -14,8 +14,8 @@ describe('ANotB<A, B>', () => {
 	})
 
 	test('remove properties in B from A', () => {
-		type A = { a: 1; b: 2; c: 3 }
-		type B = { c: 3; d: 4 }
+		type A = { a: 1, b: 2, c: 3 }
+		type B = { c: 3, d: 4 }
 		const actual = { a: 1 } as ANotB<A, B>
 
 		assertType<Pick<A, 'a' | 'b'>>(actual)
@@ -44,8 +44,8 @@ describe('BNotA<A, B>', () => {
 	})
 
 	test('remove properties in A from B', () => {
-		type A = { c: 3; d: 4 }
-		type B = { a: 1; b: 2; c: 3 }
+		type A = { c: 3, d: 4 }
+		type B = { a: 1, b: 2, c: 3 }
 		const actual = { a: 1 } as BNotA<A, B>
 
 		assertType<Pick<B, 'a' | 'b'>>(actual)

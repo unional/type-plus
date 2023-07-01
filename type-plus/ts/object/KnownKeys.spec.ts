@@ -3,8 +3,8 @@ import { assertType, type KnownKeys } from '../index.js'
 
 test('pick out only known keys', () => {
 	type A = {
-		a?: boolean
-		b?: number
+		a?: boolean,
+		b?: number,
 		[k: string]: any
 	}
 

@@ -6,14 +6,14 @@ describe(`Pick<T, K>`, () => {
 		type Action = InvokeAction | ReturnAction
 
 		type InvokeAction = {
-			type: 'invoke'
-			id: string
+			type: 'invoke',
+			id: string,
 			payload: string[]
 		}
 
 		type ReturnAction = {
-			type: 'return'
-			id: string
+			type: 'return',
+			id: string,
 			payload: string
 		}
 
@@ -27,12 +27,12 @@ describe(`Pick<T, K>`, () => {
 	test('distributive pick with disjoined keys', () => {
 		type Union =
 			| {
-					type: 'A'
+					type: 'A',
 					foo: string
 			  }
 			| {
-					type: 'B'
-					foo: string
+					type: 'B',
+					foo: string,
 					bar: string
 			  }
 		type Id<T> = { [P in keyof T]: T[P] }
@@ -43,7 +43,7 @@ describe(`Pick<T, K>`, () => {
 	})
 
 	test('intersection types with generic', () => {
-		type Foo = { a: string; b: string }
+		type Foo = { a: string, b: string }
 		function foo<T>(input: Pick<Foo & T, 'a'>): void {
 			assertType.isString(input.a)
 		}
@@ -51,7 +51,7 @@ describe(`Pick<T, K>`, () => {
 	})
 
 	test('optional property remains optional', () => {
-		type Foo = { a?: string; b: string }
+		type Foo = { a?: string, b: string }
 		type A = Pick<Foo, 'a'>
 		testType.canAssign<A, {}>(true)
 	})

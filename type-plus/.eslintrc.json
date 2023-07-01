@@ -1,27 +1,38 @@
 {
-	"env": {
-		"jest": true
-	},
-	"ignorePatterns": [
-		"cjs",
-		"esm",
-		"node_modules",
-		"ts/type-checker",
-		"ts/types",
-		"tslib"
-	],
-	"overrides": [
-		{
-			"extends": "plugin:harmony/ts-prettier",
-			"files": [
-				"*.ts",
-				"*.tsx"
-			],
-			"rules": {
-				"@typescript-eslint/ban-types": "off",
-				"@typescript-eslint/no-unused-vars": "off",
-				"no-use-before-define": "off"
-			}
-		}
-	]
+  "env": {
+    "jest": true
+  },
+  "ignorePatterns": [
+    "cjs",
+    "esm",
+    "node_modules",
+    "ts/type-checker",
+    "ts/types",
+    "tslib"
+  ],
+  "overrides": [
+    {
+      "extends": "plugin:harmony/ts-prettier",
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "rules": {
+        "@typescript-eslint/ban-types": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "no-use-before-define": "off",
+        "harmony/ts-member-delimiter-style": [
+          "error",
+          {
+            "multiline": {
+              "delimiter": "comma"
+            },
+            "singleline": {
+              "delimiter": "comma"
+            }
+          }
+        ]
+      }
+    }
+  ]
 }

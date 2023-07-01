@@ -29,7 +29,7 @@ describe(`${context.name}()`, () => {
 			})
 			.build()
 
-		testType.equal<typeof r, { a: number; b: number }>(true)
+		testType.equal<typeof r, { a: number, b: number }>(true)
 		expect(r).toEqual({ a: 1, b: 2 })
 	})
 
@@ -39,7 +39,7 @@ describe(`${context.name}()`, () => {
 			.extend(ctx => ({ c: ctx.a + ctx.b }))
 			.build()
 
-		testType.equal<typeof r, { a: number; b: number; c: number }>(true)
+		testType.equal<typeof r, { a: number, b: number, c: number }>(true)
 		expect(r).toEqual({ a: 1, b: 2, c: 3 })
 	})
 
@@ -49,7 +49,7 @@ describe(`${context.name}()`, () => {
 		}
 		const r = context({ a: 1, b: 2 }).extend(foo).build()
 
-		testType.equal<typeof r, { a: number; b: number; c: number }>(true)
+		testType.equal<typeof r, { a: number, b: number, c: number }>(true)
 		expect(r).toEqual({ a: 1, b: 2, c: 3 })
 	})
 
@@ -58,7 +58,7 @@ describe(`${context.name}()`, () => {
 			.extend<{ b: number | undefined }>(ctx => ({ b: ctx.a + 1 }))
 			.build()
 
-		testType.equal<typeof r, { a: number; b: number | undefined }>(true)
+		testType.equal<typeof r, { a: number, b: number | undefined }>(true)
 		expect(r).toEqual({ a: 1, b: 2 })
 	})
 

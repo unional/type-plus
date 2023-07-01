@@ -2,14 +2,14 @@ import { test } from '@jest/globals'
 import { testType, type RequiredKeys } from '../index.js'
 
 test('extract required keys from object', () => {
-	type X = { a?: string; b: string }
+	type X = { a?: string, b: string }
 
 	type A = RequiredKeys<X>
 	testType.equal<A, 'b'>(true)
 })
 
 test('work with union type', () => {
-	type X = { a?: string; b: string } | { c: string; d?: string }
+	type X = { a?: string, b: string } | { c: string, d?: string }
 
 	type A = RequiredKeys<X>
 	testType.equal<A, 'b' | 'c'>(true)

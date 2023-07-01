@@ -17,7 +17,7 @@ export type Brand<B extends string, T = never> = [T] extends [null] | [undefined
  * A branded type of `B` with value of `T`.
  */
 export interface Branded<B extends string, T> {
-	[typeSym]: B
+	[typeSym]: B,
 	[valueSym]: T
 }
 

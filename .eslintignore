@@ -1,0 +1,8 @@
+.*/
+cjs/
+coverage/
+dist/
+docs/
+esm/
+node_modules/
+

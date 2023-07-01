@@ -18,7 +18,7 @@ test('can specify default with the same type', () => {
 })
 
 test('specifying default removes undefined and null from the type', () => {
-	type S = { a?: number | null; b: number }
+	type S = { a?: number | null, b: number }
 	const s: S = { b: 2 }
 
 	const [{ a }] = split(s, { a: 1 })
@@ -90,7 +90,7 @@ test('can specify default as one of the intersect types', () => {
 test('get remaining props in the last entry', () => {
 	const [, r] = split(target, { a: undefined })
 
-	isType.equal<true, typeof r, { b: string; c: boolean }>()
+	isType.equal<true, typeof r, { b: string, c: boolean }>()
 	expect(r).toEqual({ b: '', c: false })
 })
 
@@ -102,7 +102,7 @@ test('work with simple Record', () => {
 })
 
 test('can specify multiple splitters', () => {
-	const t = { r: 'r' } as { a?: string; b?: string; c?: string; r?: string }
+	const t = { r: 'r' } as { a?: string, b?: string, c?: string, r?: string }
 	const [a, b, c, r] = split(t, { a: 'a' }, { b: 'b' }, { c: 'c' })
 	testType.equal<typeof a, { a: string }>(true)
 	testType.equal<typeof b, { b: string }>(true)

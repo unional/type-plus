@@ -39,7 +39,7 @@ it('returns T if T is union of function and other types', () => {
 })
 
 it('returns never if T is function overloads', () => {
-	testType.never<NotFunctionType<{ (): void; (x: number): number }>>(true)
+	testType.never<NotFunctionType<{ (): void, (x: number): number }>>(true)
 })
 
 it('returns never if T is intersection of function', () => {

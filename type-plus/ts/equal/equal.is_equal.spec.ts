@@ -269,11 +269,11 @@ test('object with any', () => {
 })
 
 test('A subset of B is false', () => {
-	testType.false<IsEqual<{ a: 1 }, { a: 1; b: 1 }>>(true)
+	testType.false<IsEqual<{ a: 1 }, { a: 1, b: 1 }>>(true)
 })
 
 test('B subset of A is false', () => {
-	testType.false<IsEqual<{ a: 1; b: 1 }, { a: 1 }>>(true)
+	testType.false<IsEqual<{ a: 1, b: 1 }, { a: 1 }>>(true)
 })
 
 test('disjoin is false', () => {
@@ -281,7 +281,7 @@ test('disjoin is false', () => {
 })
 
 test('overlap is false', () => {
-	testType.false<IsEqual<{ a: 1; b: 1 }, { a: 1; c: 2 }>>(true)
+	testType.false<IsEqual<{ a: 1, b: 1 }, { a: 1, c: 2 }>>(true)
 })
 
 it('works against tuple', () => {
@@ -346,15 +346,15 @@ it('detects literal and widen type are different', () => {
 })
 
 it('works with intersect types', () => {
-	testType.true<IsEqual<{ a: number; b: string }, { a: number } & { b: string }>>(true)
-	testType.true<IsEqual<{ a: number } & { b: number }, { a: number; b: number }>>(true)
-	testType.true<IsEqual<{ a: number; b?: string }, { a: number } & { b?: string }>>(true)
-	testType.true<IsEqual<{ a: number } & { b?: string }, { a: number; b?: string }>>(true)
+	testType.true<IsEqual<{ a: number, b: string }, { a: number } & { b: string }>>(true)
+	testType.true<IsEqual<{ a: number } & { b: number }, { a: number, b: number }>>(true)
+	testType.true<IsEqual<{ a: number, b?: string }, { a: number } & { b?: string }>>(true)
+	testType.true<IsEqual<{ a: number } & { b?: string }, { a: number, b?: string }>>(true)
 
-	testType.false<IsEqual<{ a: number } & { c: number }, { a: number; b: number }>>(true)
-	testType.false<IsEqual<{ a: number; b: number }, { a: number } & { c: number }>>(true)
+	testType.false<IsEqual<{ a: number } & { c: number }, { a: number, b: number }>>(true)
+	testType.false<IsEqual<{ a: number, b: number }, { a: number } & { c: number }>>(true)
 
-	testType.true<IsEqual<{ nested: { a: number; b: string } }, { nested: { a: number } & { b: string } }>>(
+	testType.true<IsEqual<{ nested: { a: number, b: string } }, { nested: { a: number } & { b: string } }>>(
 		// @ts-expect-error: Known limitation: nested intersection type properties don't work.
 		true
 	)
@@ -368,8 +368,8 @@ it('works with function overload', () => {
 	}
 	type F = typeof foo
 
-	testType.true<IsEqual<F, { (v: string): string; (v: number): number }>>(true)
-	testType.false<IsEqual<F, { (v: string): string; (v: number): string }>>(true)
+	testType.true<IsEqual<F, { (v: string): string, (v: number): number }>>(true)
+	testType.false<IsEqual<F, { (v: string): string, (v: number): string }>>(true)
 
 	testType.false<IsEqual<F, { (v: number): number }>>(true)
 	testType.false<IsEqual<F, { (v: string): number }>>(true)
@@ -422,23 +422,23 @@ it('detect redonly', () => {
 it('works with deep any', () => {
 	testType.true<
 		IsEqual<
-			{ a: { a: any; n: never; u: unknown; v: void } },
-			{ a: { a: any; n: never; u: unknown; v: void } }
+			{ a: { a: any, n: never, u: unknown, v: void } },
+			{ a: { a: any, n: never, u: unknown, v: void } }
 		>
 	>(true)
 
 	testType.false<
-		IsEqual<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: 1; n: never; u: unknown; v: void } }>
+		IsEqual<{ a: { a: any, n: never, u: unknown, v: void } }, { a: { a: 1, n: never, u: unknown, v: void } }>
 	>(true)
 
 	testType.false<
-		IsEqual<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: 2; u: unknown; v: void } }>
+		IsEqual<{ a: { a: any, n: never, u: unknown, v: void } }, { a: { a: any, n: 2, u: unknown, v: void } }>
 	>(true)
 	testType.false<
-		IsEqual<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: never; u: 3; v: void } }>
+		IsEqual<{ a: { a: any, n: never, u: unknown, v: void } }, { a: { a: any, n: never, u: 3, v: void } }>
 	>(true)
 	testType.false<
-		IsEqual<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: never; u: unknown; v: 4 } }>
+		IsEqual<{ a: { a: any, n: never, u: unknown, v: void } }, { a: { a: any, n: never, u: unknown, v: 4 } }>
 	>(true)
 })
 

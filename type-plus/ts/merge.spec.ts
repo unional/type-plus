@@ -9,16 +9,16 @@ describe('Merge', () => {
 	})
 
 	test('disjoint returns A & B', () => {
-		testType.equal<Merge<{ a: 1 }, { b: 1 }>, { a: 1; b: 1 }>(true)
-		testType.equal<Merge<{ a: 1 }, { b?: 1 }>, { a: 1; b?: 1 }>(true)
-		testType.equal<Merge<{ a?: 1 }, { b: 1 }>, { a?: 1; b: 1 }>(true)
-		testType.equal<Merge<{ a?: 1 }, { b?: 1 }>, { a?: 1; b?: 1 }>(true)
+		testType.equal<Merge<{ a: 1 }, { b: 1 }>, { a: 1, b: 1 }>(true)
+		testType.equal<Merge<{ a: 1 }, { b?: 1 }>, { a: 1, b?: 1 }>(true)
+		testType.equal<Merge<{ a?: 1 }, { b: 1 }>, { a?: 1, b: 1 }>(true)
+		testType.equal<Merge<{ a?: 1 }, { b?: 1 }>, { a?: 1, b?: 1 }>(true)
 	})
 
 	test('replaces property in A with property in B', () => {
 		testType.equal<
-			Merge<{ type: 'a' | 'b'; value: string }, { value: number }>,
-			{ type: 'a' | 'b'; value: number }
+			Merge<{ type: 'a' | 'b', value: string }, { value: number }>,
+			{ type: 'a' | 'b', value: number }
 		>(true)
 	})
 
@@ -39,7 +39,7 @@ describe('Merge', () => {
 	})
 
 	it('combines type with required and optional props', () => {
-		testType.equal<Merge<{ a: number }, { b?: string }>, { a: number; b?: string }>(true)
+		testType.equal<Merge<{ a: number }, { b?: string }>, { a: number, b?: string }>(true)
 
 		type R = Merge<
 			{ a: { c: number } },

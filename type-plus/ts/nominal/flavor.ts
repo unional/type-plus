@@ -26,7 +26,7 @@ export interface Flavored<F extends string> {
  * A special flavored type for special types.
  */
 export interface FlavoredUnit<F extends string, T> {
-	[typeSym]?: F
+	[typeSym]?: F,
 	[valueSym]: T
 }
 

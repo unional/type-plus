@@ -24,7 +24,7 @@ it('marks function props partial', () => {
 })
 
 it('marks function complex type partial', () => {
-	type F = { (): void; b: { c: number } }
+	type F = { (): void, b: { c: number } }
 
 	type R = RecursivePartial<{ f: F }>
 	const r: R = { f() {} } as any
