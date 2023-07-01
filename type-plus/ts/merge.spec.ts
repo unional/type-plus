@@ -1,5 +1,4 @@
-import { describe, expect, test } from '@jest/globals'
-import { it } from 'node:test'
+import { describe, expect, it, test } from '@jest/globals'
 import { testType } from './index.js'
 import { merge, type Merge } from './merge.js'
 
