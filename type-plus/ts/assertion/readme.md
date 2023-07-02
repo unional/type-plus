@@ -9,11 +9,11 @@ They throw an error if the condition is not met, and return nothing otherwise.
 These assertion functions are typically used in runtime,
 so that that type of the value can be narrowed down.
 
-## assertType
+## [assertType](./assert_type.ts)
 
-`assertType<T>(subject)`:
+`assertType<T>(subject)`
 
-✔️ `immediate`
+💥 `immediate`
 
 It ensures `subject` satisfies `T`.
 It is similar to `const x: T = subject` without introducing an unused variable.

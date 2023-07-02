@@ -1,10 +1,10 @@
-import type { CanAssign } from '../index.js'
-import type { CreateTuple } from '../tuple/create_tuple.js'
-import type { PadStart as TuplePadStart } from '../tuple/tuple_plus.pad_start.js'
-import type { UnionOfValues } from './union_of_values.js'
+import type { PadStart as PadStartTuple } from '../tuple/tuple_plus.pad_start.js'
+import type { PadStart as PadStartArray } from './array_plus.pad_start.js'
 
 /**
  * Pads the start of an array or tuple with `PadWith`.
+ *
+ * ⚗️ *transform*
  *
  * @example
  * ```ts
@@ -30,12 +30,8 @@ export type PadStart<
 	MaxLength extends number,
 	PadWith = unknown
 > = number extends A['length']
-	? MaxLength extends 0
-		? A
-		: CanAssign<PadWith, UnionOfValues<A>> extends true
-		? A
-		: PadStart<[...CreateTuple<MaxLength, PadWith>, ...A], MaxLength, PadWith>
-	: TuplePadStart<A, MaxLength, PadWith>
+	? PadStartArray<A, MaxLength, PadWith>
+	: PadStartTuple<A, MaxLength, PadWith>
 
 /**
  * @deprecated use PadStart instead

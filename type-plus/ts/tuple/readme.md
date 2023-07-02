@@ -96,6 +96,46 @@ type R = DropMatch<Array<string>, string> // never[]
 type R = DropMatch<Array<1 | 2>, number> // never[]
 ```
 
+## [TuplePlus](./tuple_plus.ts)
+
+`TuplePlus` contains type utilities specific for *tuple*.
+The input type are not checked and assumed to be *tuple*.
+
+### [TuplePlus.Filter](./tuple_plus.filter.ts)
+
+`TuplePlus.Filter<T, Criteria>`
+
+Filter entries matching `Criteria` in tuple `T`.
+
+⚗️ *transform*
+
+```ts
+import { TuplePlus } from 'type-plus'
+
+type R = TuplePlus.Filter<[1, 2, '3'], number> // [1, 2]
+```
+
+### [TuplePlus.PadStart](./tuple_plus.pad_start.ts)
+
+`TuplePlus.PadStart<T, MaxLength, PadWith>`
+
+Pad `T` with `PadWith` at the start of the tuple.
+
+If the `MaxLength` is less than the length of the tuple,
+the `Tuple` will be returned unchanged.
+
+⚗️ *transform*
+
+```ts
+PadStart<[1, 2, 3], 5, 0> // [0, 0, 1, 2, 3]
+
+// Ignore if MaxLength is less than the length of the tuple
+PadStart<[1, 2, 3], 2> // [1, 2, 3]
+
+// Default to unknown
+PadStart<[1, 2, 3], 5> // [unknown, unknown, 1, 2, 3]
+```
+
 ## References
 
 - [Handbook]

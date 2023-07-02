@@ -1,27 +1,15 @@
+import type { Filter as FilterTuple } from '../tuple/tuple_plus.filter.js'
+import type { Filter as FilterArray } from './array_plus.filter.js'
+
 /**
  * filter the array or tuple `A`, keeping entries satisfying `Criteria`.
  */
-export type Filter<A extends Array<any>, Criteria> = number extends A['length']
-	? // array
-	  A[0] extends Criteria
-		? A
-		: Criteria extends A[0]
-		? Array<Criteria>
-		: never[]
-	: // tuple
-	A['length'] extends 0
-	? never
-	: A extends [infer Head, ...infer Tail]
-	? Tail['length'] extends 0
-		? Head extends Criteria
-			? [Head]
-			: never[]
-		: Head extends Criteria
-		? [Head, ...Filter<Tail, Criteria>]
-		: Filter<Tail, Criteria>
-	: never
+export type Filter<A extends unknown[], Criteria> = number extends A['length']
+	? FilterArray<A, Criteria>
+	: FilterTuple<A, Criteria>
+
 
 /**
  * keeps entries satisfying `Criteria` in array or tuple `A`.
  */
-export type KeepMatch<A extends Array<any>, Criteria> = Filter<A, Criteria>
+export type KeepMatch<A extends unknown[], Criteria> = Filter<A, Criteria>

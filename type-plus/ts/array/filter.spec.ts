@@ -1,53 +1,50 @@
-import { describe, test } from '@jest/globals'
+import { describe, it } from '@jest/globals'
 import { testType, type Filter, type KeepMatch } from '../index.js'
 
 describe('Filter<A, C>', () => {
 	describe('A is array', () => {
-		test('array matching criteria gets itself', () => {
-			type Actual = Filter<string[], string>
-			testType.equal<string[], Actual>(true)
+		it('returns A when criteria matches the type of the entries', () => {
+			testType.equal<Filter<string[], string>, string[]>(true)
 		})
 
-		test('array not matching criteria gets never[]', () => {
-			type Actual = Filter<string[], number>
-			testType.equal<never[], Actual>(true)
+		it('returns never[] when criteria does not match the type of the entries', () => {
+			testType.equal<Filter<string[], number>, never[]>(true)
 		})
 
-		test('remove unmatched type form array', () => {
-			type Actual = Filter<Array<string | number>, string>
-
-			testType.equal<string[], Actual>(true)
+		it('removes unmatched type form array', () => {
+			testType.equal<Filter<Array<string | number>, string>, string[]>(true)
 		})
 
-		test('remove undefined and null', () => {
-			type Actual = Filter<Array<string | undefined | null>, string>
-			testType.equal<string[], Actual>(true)
+		it('removes unmatched undefined and null as expected', () => {
+			testType.equal<Filter<Array<string | undefined | null>, string>, string[]>(true)
 		})
 
-		test('can filter with undefined and null', () => {
-			type Actual = Filter<Array<string | undefined | null>, undefined | null>
+		it('can filter with undefined and null', () => {
 			// Array<undefined | null> is destructured to undefined[] | null[] by TypeScript
-			testType.equal<undefined[] | null[], Actual>(true)
+			testType.equal<Filter<Array<string | undefined | null>, undefined | null>, undefined[] | null[]>(true)
 		})
 
-		test('work with never[]', () => {
-			type Actual = Filter<never[], undefined>
-			testType.equal<never[], Actual>(true)
+		it('work with never[]', () => {
+			testType.equal<Filter<never[], undefined>, never[]>(true)
 		})
 	})
 
 	describe(`A is Tuple`, () => {
-		test('matching criteria', () => {
-			type Actual = Filter<[1, 2, 3, 4], 2 | 4>
-			testType.equal<[2, 4], Actual>(true)
+		it('matching criteria', () => {
+			testType.equal<Filter<[1, 2, 3, 4], 2 | 4>, [2, 4]>(true)
+			testType.equal<Filter<[1, 2, '3'], number>, [1, 2]>(true)
 		})
 
-		test('no match gets never[]', () => {
+		it('no match gets []', () => {
 			type Actual = Filter<[1, 2, 3, 4], 5>
-			testType.equal<never[], Actual>(true)
+			testType.equal<[], Actual>(true)
 		})
 
-		test('matching undefined and null', () => {
+		it('empty tuple gets empty tuple', () => {
+			testType.equal<Filter<[], number>, []>(true)
+		})
+
+		it('matching undefined and null', () => {
 			type Actual = Filter<[1, undefined, 3, null], undefined | null>
 			testType.equal<[undefined, null], Actual>(true)
 		})
@@ -56,51 +53,51 @@ describe('Filter<A, C>', () => {
 
 describe('KeepMatch<A, C>', () => {
 	describe('A is array', () => {
-		test('array matching criteria gets itself', () => {
+		it('array matching criteria gets itself', () => {
 			type Actual = KeepMatch<string[], string>
 			testType.equal<string[], Actual>(true)
 		})
 
-		test('array not matching criteria gets never[]', () => {
+		it('array not matching criteria gets never[]', () => {
 			type Actual = KeepMatch<string[], number>
 			testType.equal<never[], Actual>(true)
 		})
 
-		test('remove unmatched type form array', () => {
+		it('remove unmatched type form array', () => {
 			type Actual = KeepMatch<Array<string | number>, string>
 
 			testType.equal<string[], Actual>(true)
 		})
 
-		test('remove undefined and null', () => {
+		it('remove undefined and null', () => {
 			type Actual = KeepMatch<Array<string | undefined | null>, string>
 			testType.equal<string[], Actual>(true)
 		})
 
-		test('can filter with undefined and null', () => {
+		it('can filter with undefined and null', () => {
 			type Actual = KeepMatch<Array<string | undefined | null>, undefined | null>
 			// Array<undefined | null> is destructured to undefined[] | null[] by TypeScript
 			testType.equal<undefined[] | null[], Actual>(true)
 		})
 
-		test('work with never[]', () => {
+		it('work with never[]', () => {
 			type Actual = KeepMatch<never[], undefined>
 			testType.equal<never[], Actual>(true)
 		})
 	})
 
 	describe(`A is Tuple`, () => {
-		test('matching criteria', () => {
+		it('matching criteria', () => {
 			type Actual = KeepMatch<[1, 2, 3, 4], 2 | 4>
 			testType.equal<[2, 4], Actual>(true)
 		})
 
-		test('no match gets never[]', () => {
+		it('no match gets []', () => {
 			type Actual = KeepMatch<[1, 2, 3, 4], 5>
-			testType.equal<never[], Actual>(true)
+			testType.equal<[], Actual>(true)
 		})
 
-		test('matching undefined and null', () => {
+		it('matching undefined and null', () => {
 			type Actual = KeepMatch<[1, undefined, 3, null], undefined | null>
 			testType.equal<[undefined, null], Actual>(true)
 		})
