@@ -1,5 +1,5 @@
-import { describe, expect, test } from '@jest/globals'
-import { testType, type DropMatch, type DropNull, type DropNullable, type DropUndefined, drop } from '../index.js'
+import { describe, test } from '@jest/globals'
+import { testType, type DropMatch, type DropNull, type DropNullable, type DropUndefined } from '../index.js'
 
 describe('DropMatch<A, C>', () => {
 	describe('A is array', () => {
@@ -55,7 +55,7 @@ describe('DropMatch<A, C>', () => {
 			// type C = DropMatch<Array<string | 'foo'>, 'foo' | 'boo'>
 			// Here `string[] | string[]` literal collapses to `string[]`
 			// commenting this out as it will likely be improved in future versions of TypeScript
-			// type.equal<string[] | string[], C>(true)
+			// testType.equal<C, string[] | string[]>(true)
 		})
 	})
 
@@ -209,24 +209,5 @@ describe('DropNullable<A>', () => {
 	test('drop from tuple type', () => {
 		type A = DropNullable<[string, undefined, number, null]>
 		testType.equal<[string, number], A>(true)
-	})
-})
-
-describe('drop()', () => {
-	test('array', () => {
-		const a = drop([1, 'a', 3, 4], 'a')
-		expect(a).toEqual([1, 3, 4])
-		testType.equal<number[], typeof a>(true)
-	})
-	test('tuple', () => {
-		const a = drop([1, 2, 3, 4] as const, 1 as const)
-		expect(a).toEqual([2, 3, 4])
-		testType.equal<[2, 3, 4], typeof a>(true)
-	})
-
-	test('drop undefined from tuple', () => {
-		const a = drop([1, undefined, 3, undefined, 4] as const, undefined)
-		expect(a).toEqual([1, 3, 4])
-		testType.equal<[1, 3, 4], typeof a>(true)
 	})
 })

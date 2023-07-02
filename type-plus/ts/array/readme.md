@@ -31,7 +31,7 @@ type R = ArrayType<number[] & { a: 1 }> // never
 
 ## [CommonPropKeys](./common_prop_keys.ts)
 
-`CommonPropKeys<A extends Record<>`
+`CommonPropKeys<T extends Record[], Cases = { array, no_common_keys }>`
 
 Gets the common property keys of the elements in tuple `T`.
 
@@ -42,6 +42,63 @@ import { CommonPropKeys } from 'type-plus'
 
 type R = CommonPropKeys<[{ a: number }, { b: number }]> // never
 type R = CommonPropKeys<[{ a: number, c: 1 }, { b: number, c: 2 }]> // 'c'
+```
+
+Overridable cases:
+
+- `array`: if `T` is array, it returns the key of the record type in the array.
+- `no_common_keys`: if there are no common keys, it returns `never`.
+
+## [DropFirst](./drop.ts)
+
+`DropFirst<T extends unknown[], Cases = { array, empty_tuple }>`
+
+Drops the first entry in the tuple `T`.
+
+⚗️ *transform*
+
+```ts
+import { DropFirst } from 'type-plus'
+
+type R = DropFirst<[1, 2, 3]> // [2, 3]
+```
+
+Overridable cases:
+
+- `array`: if `T` is array, it returns `T`.
+- `empty_tuple`: if `T` is `[]`, it returns `[]`.
+
+## [DropLast](./drop.ts)
+
+`DropLast<T extends unknown[], Cases = { array, empty_tuple }>`
+
+Drops the last entry in the tuple `T`.
+
+⚗️ *transform*
+
+```ts
+import { DropLast } from 'type-plus'
+
+type R = DropLast<[1, 2, 3]> // [1, 2]
+```
+
+Overridable cases:
+
+- `array`: if `T` is array, it returns `T`.
+- `empty_tuple`: if `T` is `[]`, it returns `[]`.
+
+## [DropMatch](./drop.ts)
+
+`DropMatch<A extends Readonly<Array<unknown>>, Criteria>`
+
+Drops entries matching `Criteria` in array or tuple `A`.
+
+⚗️ *transform*
+
+```ts
+type R = DropMatch<Array<string | undefined>, undefined> // string[]
+type R = DropMatch<Array<string>, string> // never[]
+type R = DropMatch<Array<1 | 2>, number> // never[]
 ```
 
 ## ArrayPlus

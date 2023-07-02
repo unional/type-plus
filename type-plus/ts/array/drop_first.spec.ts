@@ -1,22 +1,23 @@
-import { test } from '@jest/globals'
+import { it } from '@jest/globals'
 import { testType, type DropFirst } from '../index.js'
 
-test('drop from empty gets itself', () => {
+it('returns the input type if input is an array', () => {
 	testType.equal<DropFirst<string[]>, string[]>(true)
-})
 
-test('drop first value type from tuple', () => {
-	type Actual = DropFirst<[true, 1, 'x', 3]>
-	testType.equal<Actual, [1, 'x', 3]>(true)
-})
-
-test('drop only value gets never[]', () => {
-	type Actual = DropFirst<['x']>
-	testType.equal<Actual, never[]>(true)
-})
-
-test('array type gets itself', () => {
 	const s: string[] = ['a', 'b', 'c']
 	type Actual = DropFirst<typeof s>
 	testType.equal<Actual, string[]>(true)
 })
+
+it('drops the first type from a tuple', () => {
+	testType.equal<DropFirst<[true, 1, 'x', 3]>, [1, 'x', 3]>(true)
+})
+
+it('returns empty tuple [] when dropping from single entry tuple', () => {
+	testType.equal<DropFirst<['x']>, []>(true)
+})
+
+it('returns empty tuple [] if input is empty tuple', () => {
+	testType.equal<DropFirst<[]>, []>(true)
+})
+

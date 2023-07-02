@@ -1,16 +1,16 @@
 import { it } from '@jest/globals'
 import { testType, type CommonPropKeys } from '../index.js'
 
-it('does not support array', () => {
+it('returns all keys from record entry in array', () => {
 	testType.equal<
 		CommonPropKeys<Array<{ a: number }>>,
-		'CommonPropKeys only work on tuple and not array.'
+		'a'
 	>(true)
 })
 
 it('can override array behavior', () => {
 	testType.equal<
-		CommonPropKeys<Array<{ a: number }>, { 'array_not_supported': 123 }>,
+		CommonPropKeys<Array<{ a: number }>, { 'array': 123 }>,
 		123
 	>(true)
 })

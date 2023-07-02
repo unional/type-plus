@@ -16,18 +16,18 @@ import type { Tail } from './tail.js'
  */
 export type CommonPropKeys<
 	T extends Record<KeyTypes, unknown>[],
-	Fail extends {
-		'array_not_supported'?: unknown,
-		'no_common_keys'?: unknown
+	Cases extends {
+		array?: unknown,
+		no_common_keys?: unknown
 	} = {
-		'array_not_supported': 'CommonPropKeys only work on tuple and not array.',
-		'no_common_keys': never
+		array: T extends Array<infer R extends Record<KeyTypes, unknown>> ? keyof R : never,
+		no_common_keys: never
 	}
 > = number extends T['length']
-	? Fail['array_not_supported']
+	? Cases['array']
 	: (
 		T['length'] extends 0
-		? Fail['no_common_keys']
+		? Cases['no_common_keys']
 		: (
 			T['length'] extends 1
 			? keyof T[0]
@@ -35,12 +35,12 @@ export type CommonPropKeys<
 				T['length'] extends 2
 				? (
 					keyof T[0] & keyof T[1] extends infer R
-					? NotNeverType<R, R, Fail['no_common_keys']>
+					? NotNeverType<R, R, Cases['no_common_keys']>
 					: never
 				)
 				: (
 					keyof T[0] & keyof T[1] & CommonPropKeys<Tail<Tail<T>>> extends infer R
-					? NotNeverType<R, R, Fail['no_common_keys']>
+					? NotNeverType<R, R, Cases['no_common_keys']>
 					: never
 				)
 			)
