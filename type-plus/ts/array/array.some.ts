@@ -1,6 +1,6 @@
 import type { IsEqual } from '../equal/equal.js'
 import type { CanAssign } from '../index.js'
-import type { Tail } from './tail.js'
+import type { Tail } from '../tuple/tail.js'
 import type { UnionOfValues } from './union_of_values.js'
 
 /**

@@ -1,5 +1,5 @@
 import type { KeyTypes } from '../object/index.js'
-import type { Tail } from './tail.js'
+import type { Tail } from '../tuple/tail.js'
 
 /**
  * Gets the intersect of properties of the elements in `A`

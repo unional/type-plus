@@ -1,4 +1,4 @@
-import type { Tail } from '../array/tail.js'
+import type { Tail } from '../tuple/tail.js'
 import type { PadStart } from '../tuple/tuple_plus.pad_start.js'
 import type { Add as NumericAdd } from './add.js'
 import type { ToNegative } from './math_plus.to_negative.js'
