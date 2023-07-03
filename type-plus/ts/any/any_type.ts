@@ -1,8 +1,7 @@
-
 /**
- * Parse `T` to ensure it is exactly `any`.
+ * 🌪️ *filter*
  *
- * 🐾 *parse*
+ * Filter `T` to ensure it is exactly `any`.
  *
  * @example
  * ```ts
@@ -16,9 +15,9 @@
 export type AnyType<T, Then = T, Else = never> = 0 extends 1 & T ? Then : Else
 
 /**
- * Validate if `T` is exactly `any`.
- *
  * 🎭 *validate*
+ *
+ * Validate if `T` is exactly `any`.
  *
  * @example
  * ```ts
@@ -32,9 +31,9 @@ export type AnyType<T, Then = T, Else = never> = 0 extends 1 & T ? Then : Else
 export type IsAny<T, Then = true, Else = false> = AnyType<T, Then, Else>
 
 /**
- * Parse `T` to ensure it is not exactly `any`.
+ * 🌪️ *filter*
  *
- * 🐾 *parse*
+ * Filter `T` to ensure it is not exactly `any`.
  *
  * @example
  * ```ts
@@ -48,9 +47,9 @@ export type IsAny<T, Then = true, Else = false> = AnyType<T, Then, Else>
 export type NotAnyType<T, Then = T, Else = never> = AnyType<T, Else, Then>
 
 /**
- * Validate if `T` is not exactly `any`.
- *
  * 🎭 *validate*
+ *
+ * Validate if `T` is not exactly `any`.
  *
  * @example
  * ```ts

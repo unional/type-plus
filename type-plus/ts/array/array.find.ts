@@ -1,7 +1,9 @@
 import type { TupleType } from '../tuple/tuple_type.js'
 
 /**
- * Returns the first type in the array or tuple that matches the `Criteria`.
+ * 🦴 *utilities*
+ *
+ * Gets the first type in the array or tuple that matches the `Criteria`.
  *
  * If the `Criteria` is not met, it will return `never'.
  *

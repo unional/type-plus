@@ -6,7 +6,10 @@ This folder contains types and utilities that work across multiple types.
 
 `AnyOrNeverType<T, Then = T, Else = never>` 🎭 🩳
 
-Parse `T` to ensure it is either exactly `any` or exactly `never`.
+Filter `T` to ensure it is either exactly `any` or exactly `never`.
+
+🌪️ *filter*
+🩳 *shortcut*
 
 ```ts
 import type { AnyOrNeverType } from 'type-plus'
@@ -23,6 +26,9 @@ type R = AnyOrNeverType<unknown, 1, 2> // 2
 `IsAnyOrNever<T, Then = true, Else = false>` 🎭 🩳
 
 Validate if `T` is either exactly `any` or exactly `never`.
+
+🎭 *validate*
+🩳 *shortcut*
 
 ```ts
 import type { IsAnyOrNever } from 'type-plus'

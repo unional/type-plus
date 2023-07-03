@@ -12,10 +12,77 @@ They are strict type checks, meaning they match only the type `any`.
 Union and intersections are not a factor here they are resolved to `any`,
 except `any & never` which is `never`.
 
-- [`AnyType<T, Then = T, Else = never>`](any_type.ts#L15): check if `T` is exactly `any`.
-- [`IsAny<T, Then = true, Else = false`](any_type.ts#L30): is `T` exactly `any`.
-- [`NotAnyType<T, Then = T, Else = never>`](any_type.ts#L45): check if `T` is not exactly `any`.
-- [`IsNotAny<T, Then = true, Else = false>`](any_type.ts#L60): is `T` not exactly `any`.
+### [AnyType](./any.spec.ts#15)
+
+`AnyType<T, Then = T, Else = never>`
+
+🌪️ *filter*
+
+Filter `T` to ensure it is exactly `any`.
+
+```ts
+import type { AnyType } from 'type-plus'
+
+type R = AnyType<any> // any
+
+type R = AnyType<never> // never
+type R = AnyType<unknown> // never
+type R = AnyType<string | boolean> // never
+```
+
+### [IsAny](./any.spec.ts#31)
+
+`IsAny<T, Then = true, Else = false>`
+
+🎭 *validate*
+
+Validate if `T` is exactly `any`.
+
+```ts
+import type { IsAny } from 'type-plus'
+
+type R = IsAny<any> // true
+
+type R = IsAny<never> // false
+type R = IsAny<unknown> // false
+type R = IsAny<string | boolean> // false
+```
+
+### [NotAnyType](./any.spec.ts#47)
+
+`NotAnyType<T, Then = T, Else = never>`
+
+🌪️ *filter*
+
+Filter `T` to ensure it is not exactly `any`.
+
+```ts
+import type { NotAnyType } from 'type-plus'
+
+type R = NotAnyType<any> // never
+
+type R = NotAnyType<never> // never
+type R = NotAnyType<unknown> // never
+type R = NotAnyType<string | boolean> // string | boolean
+```
+
+### [IsNotAny](./any.spec.ts#65)
+
+`IsNotAny<T, Then = true, Else = false>`
+
+🎭 *validate*
+
+Validate if `T` is not exactly `any`.
+
+```ts
+import type { IsNotAny } from 'type-plus'
+
+type R = IsNotAny<any> // false
+
+type R = IsNotAny<never> // true
+type R = IsNotAny<unknown> // true
+type R = IsNotAny<string | boolean> // true
+```
 
 ## Trivia
 

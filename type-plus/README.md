@@ -8,15 +8,18 @@
 
 [![Visual Studio Code][vscode_image]][vscode_url]
 
-More than 200 type utilities for [TypeScript].
+More than 200 type utilities for [TypeScript] for applications, library, and type-level programming.
 
 ## Table of Contents
 
-1. [Assertion Function](#assertion-function)
+1. [What's in the package?](#whats-in-the-package)
+   1. [Update organization](#update-organization)
+   2. [Update documentation](#update-documentation)
+2. [Assertion Function](#assertion-function)
    1. [assertType](#asserttype)
-2. [Type Guard](#type-guard)
-3. [Type Utilities](#type-utilities)
-4. [Type Specific Utilities](#type-specific-utilities)
+3. [Type Guard](#type-guard)
+4. [Type Utilities](#type-utilities)
+5. [Type Specific Utilities](#type-specific-utilities)
    1. [any](#any)
    2. [Array](#array)
    3. [bigint](#bigint)
@@ -34,18 +37,18 @@ More than 200 type utilities for [TypeScript].
    15. [undefined](#undefined)
    16. [unknown](#unknown)
    17. [void](#void)
-5. [Constant Types](#constant-types)
-6. [JSON Support](#json-support)
-7. [Type manipulation](#type-manipulation)
-8. [Type Predicates](#type-predicates)
+6. [Constant Types](#constant-types)
+7. [JSON Support](#json-support)
+8. [Type manipulation](#type-manipulation)
+9. [Type Predicates](#type-predicates)
    1. [Logical](#logical)
-9. [Math](#math)
-10. [Utility Functions](#utility-functions)
-11. [Nominal Types](#nominal-types)
-12. [Functional Types](#functional-types)
-13. [Attribution](#attribution)
-14. [Useful Tips](#useful-tips)
-15. [Similar projects](#similar-projects)
+10. [Math](#math)
+11. [Utility Functions](#utility-functions)
+12. [Nominal Types](#nominal-types)
+13. [Functional Types](#functional-types)
+14. [Attribution](#attribution)
+15. [Useful Tips](#useful-tips)
+16. [Similar projects](#similar-projects)
 
 ## Installation
 
@@ -56,6 +59,51 @@ yarn add type-plus
 
 pnpm add type-plus
 ```
+
+## What's in the package?
+
+With over 200 types in [type-plus],
+it can become difficult to find the types you need.
+
+Also, some of the types need to be updated as TypeScript continue to evolve.
+
+Currently, we are updating [type-plus] with the following objective:
+
+- Update organization
+- Update documentation
+- Clean up and deprecate types
+- Upgrade TypeScript from 5.0.4 to 5.1 (potential breaking changes)
+
+### Update organization
+
+Top-level exports of [type-plus] will contain types and functions that do not expect the input to be a specific type. For example,
+
+- `assertType()`, `isType()`, and `testType()`
+- Type filters and predicates such as `AnyType` or `IsArray`
+
+It can also have types and functions for specific types if it is a common convention,
+or the is no ambiguity, or for backwards compatibility purpose.
+
+Other type specific utilities will be added under their respective `*Plus` namespaces such as `ArrayPlus.At` or `NumberPlus.Positive`.
+
+### Update documentation
+
+Each type and utility function in [type-plus] will be updated to include examples and tags to indicate its category and behavior.
+
+Each tag has an associated icon:
+
+- 👽 *alias* (:alien:): Alias of another type
+- 🚦 *assertion* (:vertical_traffic_light:): assertion function
+- 💀 *deprecated* (:skull:): deprecated and will be removed soon
+- 🌪️ *filter* (:tornado:): a.k.a. *parse* These types perform some kind of test. If the input passes the test, the input is returned. Otherwise, it returns `never` (other icons considered: ↪️👉🚋⏩🐾🔑🚪💂🧲🙅‍♂️🪚)
+- 🛡️ *guard* (:shield:): type guard function
+- 💥 *immediate* (:boom:): The effect of the type can be observed immediately during development
+- 🏃 *runtime* (:runner:): The function has runtime effect
+- 🩳 *shortcut* (:shorts:): Shortcut or convenient types
+- 🧪 *testing* (:test_tube:): The type or function are designed for test
+- ⚗️ *transform* (:alembic:): These types transforms the input to another category
+- 🦴 *utilities* (:bone:): provide various functionalities (other icons considered: 🔧🔨)
+- 🎭 *validate* (:performing_arts:): a.k.a. *predicate* or *logical*. These types perform some kind of test. If the input passes the test, it returns `true` or `false` (other icons considered: ⭕)
 
 ## Assertion Function
 
@@ -327,150 +375,47 @@ You can learn more in their respective sections:
 - [void](./ts/void/readme.md)
 - [mix types](./ts/mix-types/readme.md)
 
-### any
+### [any](./ts/any/readme.md)
 
-> [`AnyType<T>`](./ts/any/readme.md#type-checking)
-
-↪️ `parse`: `T === any`.
-
-> [`IsAny<T>`](./ts/any/readme.md#type-checking)
-
-⭕ `predicate`: `T === any`.
-
-> [`NotAnyType<T>`](./ts/any/readme.md#type-checking)
-
-↪️ `parse`: `T !== any`.
-
-> [`IsNotAny<T>`](./ts/any/readme.md#type-checking)
-
-⭕ `predicate`: `T !== any`.
-
-> [`IsAnyOrNever<T>`](./ts/any/readme.md#type-utilities)
-
-⭕ `predicate`: `T === any || T === never`.
+- [`AnyType<T>`](./ts/any/readme.md#anytype)
+- [`IsAny<T>`](./ts/any/readme.md#isany)
+- [`NotAnyType<T>`](./ts/any/readme.md#notanytype)
+- [`IsNotAny<T>`](./ts/any/readme.md#isnotany)
+- [`AnyOrNeverType<T>`](./ts/mix_types/readme.md#anyornevertype)
+- [`IsAnyOrNever<T>`](./ts/mix_types/readme.md#isanyornever)
 
 ### Array
 
-> [`ArrayType<T>`](./ts/array/readme.md#type-checking)
-
-↪️ `parse`: is the type `T` exactly an array and not a tuple.
-
-> [`IsArray<T>`](./ts/array/readme.md#type-checking)
-
-⭕ `predicate`: is the type `T` exactly an array and not a tuple.
-
-> [`NotArrayType<T>`](./ts/array/readme.md#type-checking)
-
-↪️ `parse`: is the type `T` not an array or tuple.
-
-> [`IsNotArray<T>`](./ts/array/readme.md#type-checking)
-
-⭕ `predicate`: is the type `T` exactly an array and not a tuple.
-
-> [`At<A, N, Fail = never>`](ts/array_plus/array.ts#L19)
-
-🔨 `utilities`: gets the element type at index `N` in the array `A`.
-
-> `CommonPropKeys<A>`
-
-🔨 `utilities`: gets common keys inside the records in the array `A` (deprecate `CommonKeys`).
-
-> [`Concat<A, B>`](ts/array_plus/array.ts#L38)
-
-🔨 `utilities`: `[...A, ...B]`.
-
-> `CreateTuple<L, T>`
-
-🔨 `utilities`: creates `tuple<T>` with `L` number of elements.
-
-> `drop(array, value)`
-
-🔨 `utilities`: drop a particular value from an array.
-
-> `DropFirst<A>`
-
-🔨 `utilities`: drops the first value type of `A`.
-
-> `DropLast<A>`
-
-🔨 `utilities`: drops the last value type of `A`.
-
-> `DropMatch<A, Criteria>`
-
-🔨 `utilities`: drops entries matching `Criteria` in array or tuple `A`.
-
-> `DropUndefined<A>`
-
-🔨 `utilities`: drop undefined entries from array of tuple `A`.
-
-> `Filter<A, Criteria>`
-
-💀🔨 `deprecated`,`utilities`: filter the array or tuple `A`, keeping entries satisfying `Criteria`. **Deprecated. Renaming to `KeepMatch`**
-
-> `FindFirst<A, Criteria>`
-
-🔨 `utilities`: gets the first type satisfying `Criteria`.
-
-> `FindLast<A, Criteria>`
-
-🔨 `utilities`: gets the last type satisfying `Criteria`.
-
-> `Head<A>`
-
-🔨 `utilities`: gets the first entry in the array.
-
-> `IntersectOfProps<A, K>`
-
-🔨 `utilities`: gets the intersect of `A[K]` types (deprecate `MapToProp`)
-
-> `KeepMatch<A, Criteria>`
-
-🔨 `utilities`: keeps entries satisfying `Criteria` in array or tuple `A`.
-
-> `Last<A>`
-
-🔨 `utilities`: gets the last type of array or tuple.
-
-> `literalArray(...entries)`
-
-🔨 `utilities`: return an array whose items are restricted to the provided literals.
-
-> `PadLeft<A, Total, PadWith>`
-
-🔨 `utilities`: pads `A` with `PadWith` if the length of `A` is less than `L`.
-
-> `reduceWhile()`
-
-🔨 `utilities`: `reduce()` with predicate for early termination. \
-  A simple version of the same function in the `ramda` package.
-
-> `Reverse<A>`
-
-🔨 `utilities`: reverses the order of `A`.
-
-> `Some<A, Criteria>`
-
-🔨 `utilities`: true if some elements in `A` matches `Criteria`.
-
-> `Tail<A>`
-
-🔨 `utilities`: Gets the types of a tuple except the first entry.
-
-> `UnionOfProps<A, K>`
-
-🔨 `utilities`: gets the union of `A[K]` types (deprecate `PropUnion`).
-
-> `UnionOfValues<A>`
-
-🔨 `utilities`: gets the union of value types in `A` (deprecate `ArrayValue`).
-
-> [`ArrayPlus.IndexAt<A, N, Fail = never>`](ts/array_plus/array_plus.ts#L23)
-
-🔨 `utilities`: gets the normalized index for `A`.
-
-> [`ArrayPlus.IsIndexOutOfBound<A, N, Then = true, Else = false>`](ts/array_plus/array_plus.ts#L62)
-
-⭕ `predicate`: is `N` an out of bound index of `A`. Supports negative numbers.
+- [`ArrayType<T>`](./ts/array/readme.md#arraytype)
+- [`IsArray<T>`](./ts/array/readme.md#isarray)
+- [`NotArrayType<T>`](./ts/array/readme.md#notarraytype)
+- [`IsNotArrayType<T>`](./ts/array/readme.md#isnotarraytype)
+- [`At<T>`](./ts/array/readme.md#at)
+- [`Concat<T>`](./ts/array/readme.md#concat)
+- [`FindFirst<T>`](./ts/array/readme.md#findfirst)
+- [`FindLast<T>`](./ts/array/readme.md#findlast)
+- [`Some<T>`](./ts/array/readme.md#some)
+- [`Filter<T>`](./ts/array/readme.md#filter)
+- [`KeepMatch<T>`](./ts/array/readme.md#keepmatch)
+- [`Head<T>`](./ts/array/readme.md#head)
+- [`IntersectOfProps<T>`](./ts/array/readme.md#intersectofprops)
+- [`MapToProp<T>`](./ts/array/readme.md#maptoprop)
+- [`Last<T>`](./ts/array/readme.md#last)
+- [`literalArray<T>`](./ts/array/readme.md#literalarray)
+- [`PadStart<T>`](./ts/array/readme.md#padstart)
+- [`reduceWhile`](./ts/array/readme.md#reducewhile)
+- [`Reverse<T>`](./ts/array/readme.md#reverse)
+- [`PropUnion<T>`](./ts/array/readme.md#propunion)
+- [`UnionOfProps<T>`](./ts/array/readme.md#unionofprops)
+- [`UnionOfValues<T>`](./ts/array/readme.md#unionofvalues)
+- [`ArrayPlus.At<T>`](./ts/array/readme.md#arrayplusat)
+- [`ArrayPlus.Concat<T>`](./ts/array/readme.md#arrayplusconcat)
+- [`ArrayPlus.Entries<T>`](./ts/array/readme.md#arrayplusentries)
+- [`ArrayPlus.Find<T>`](./ts/array/readme.md#arrayplusfind)
+- [`ArrayPlus.FindLast<T>`](./ts/array/readme.md#arrayplusfindlast)
+- [`ArrayPlus.Reverse<T>`](./ts/array/readme.md#arrayplusreverse)
+- [`ArrayPlus.SplitAt<T>`](./ts/array/readme.md#arrayplussplitat)
+- [`ArrayPlus.Some<T>`](./ts/array/readme.md#arrayplussome)
 
 ### bigint
 
@@ -827,6 +772,34 @@ You can learn more in their respective sections:
 > [`IsNotTuple<T>`](ts/tuple/readme.md#type-checking)
 
 ⭕ `predicate`: is not a tuple.
+
+> `CommonPropKeys<A>`
+
+🔨 `utilities`: gets common keys inside the records in the array `A` (deprecate `CommonKeys`).
+
+> `CreateTuple<L, T>`
+
+🔨 `utilities`: creates `tuple<T>` with `L` number of elements.
+
+> `drop(array, value)`
+
+🔨 `utilities`: drop a particular value from an array.
+
+> `DropFirst<A>`
+
+🔨 `utilities`: drops the first value type of `A`.
+
+> `DropLast<A>`
+
+🔨 `utilities`: drops the last value type of `A`.
+
+> `DropMatch<A, Criteria>`
+
+🔨 `utilities`: drops entries matching `Criteria` in array or tuple `A`.
+
+> `DropUndefined<A>`
+
+🔨 `utilities`: drop undefined entries from array of tuple `A`.
 
 ### undefined
 
@@ -1381,6 +1354,7 @@ Whenever possible, I add attribution to the person who created those **codes** i
 [ts-expect]: https://github.com/TypeStrong/ts-expect
 [ts-toolbelt]: https://github.com/millsp/ts-toolbelt
 [type-fest]: https://github.com/sindresorhus/type-fest
+[type-plus]: https://github.com/unional/type-plus
 [type-zoo]: https://github.com/pelotom/type-zoo
 [typelevel-ts]: https://github.com/gcanti/typelevel-ts
 [typepark]: https://github.com/kgtkr/typepark

@@ -1,3 +1,8 @@
+/**
+ * ⚗️ *transform*
+ *
+ * reverses the order of `A`.
+ */
 export type Reverse<A extends unknown[]> = number extends A['length']
 	? A
 	: A['length'] extends 0

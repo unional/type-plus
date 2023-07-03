@@ -2,12 +2,17 @@ import type { IsNever } from '../never/never_type.js'
 import type { StrictNumberType } from '../number/strict_number_type.js'
 
 /**
- * Check if the type `T` is an array and not a tuple.
+ * 🌪️ *filter*
  *
+ * Filter `T` to ensure it is an array, excluding tuple.
+ *
+ * @example
  * ```ts
  * type R = ArrayType<number[]> // number[]
  *
  * type R = ArrayType<[1]> // never
+ * type R = ArrayType<number[] | 1> // never
+ * type R = ArrayType<number[] & { a: 1 }> // never
  * ```
  */
 export type ArrayType<T, Then = T, Else = never> = IsNever<
@@ -17,20 +22,11 @@ export type ArrayType<T, Then = T, Else = never> = IsNever<
 >
 
 /**
- * Check if the type `T` is not an array.
+ * 🎭 *validate*
  *
- * ```ts
- * type R = NotArrayType<number[]> // never
+ * Validate that `T` is an array, excluding tuple.
  *
- * type R = NotArrayType<number> // number
- * type R = NotArrayType<[1]> // [1]
- * ```
- */
-export type NotArrayType<T, Then = T, Else = never> = ArrayType<T, Else, Then>
-
-/**
- * Is `T` an array?
- *
+ * @example
  * ```ts
  * type R = IsArray<number[]> // true
  *
@@ -41,8 +37,30 @@ export type NotArrayType<T, Then = T, Else = never> = ArrayType<T, Else, Then>
 export type IsArray<T, Then = true, Else = false> = ArrayType<T, Then, Else>
 
 /**
- * Is `T` not an array?
+ * 🌪️ *filter*
  *
+ * Filter `T` to ensure it is not an array, excluding tuple.
+ *
+ * i.e. *tuple* will pass through this filter.
+ *
+ * @example
+ * ```ts
+ * type R = NotArrayType<number[]> // never
+ *
+ * type R = NotArrayType<number> // number
+ * type R = NotArrayType<[1]> // [1]
+ * ```
+ */
+export type NotArrayType<T, Then = T, Else = never> = ArrayType<T, Else, Then>
+
+/**
+ * 🎭 *validate*
+ *
+ * Validate that `T` is not an array, excluding tuple.
+ *
+ * i.e. *tuple* will pass through this filter.
+ *
+ * @example
  * ```ts
  * type R = IsNotArray<number[]> // false
  *

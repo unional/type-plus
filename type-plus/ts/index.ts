@@ -1,10 +1,22 @@
 export type { AnyType, IsAny, IsNotAny, NotAnyType } from './any/any_type.js'
 export type { At } from './array/array.at.js'
-export type { Concat } from './array/array.concat.js'
+export type { FindFirst } from './array/array.find.js'
+export type { FindLast } from './array/array.find_last.js'
+export type { Some } from './array/array.some.js'
+export type { Concat } from './array/array_plus.concat.js'
 export * as ArrayPlus from './array/array_plus.js'
 export type { ArrayType, IsArray, IsNotArray, NotArrayType } from './array/array_type.js'
-export * from './array/index.js'
-export * from './assertion/assert_type.js'
+export type { Filter, KeepMatch } from './array/filter.js'
+export type { Head } from './array/head.js'
+export type { IntersectOfProps, MapToProp } from './array/intersect_of_props.js'
+export type { Last } from './array/last.js'
+export { literalArray } from './array/literal_array.js'
+export type { PadStart } from './array/pad_start.js'
+export { reduceWhile } from './array/reduce_while.js'
+export type { Reverse } from './array/reverse.js'
+export type { PropUnion, UnionOfProps } from './array/union_of_props.js'
+export type { UnionOfValues } from './array/union_of_values.js'
+export { assertType } from './assertion/assert_type.js'
 export type { BigintType, IsBigint, IsNotBigint, NotBigintType } from './bigint/bigint_type.js'
 export type { StringToBigint } from './bigint/cast.js'
 export type {
@@ -103,4 +115,7 @@ export type { IsNotUnknown, IsUnknown, NotUnknownType, UnknownType } from './unk
 export * from './unpartial.js'
 export * from './utils/index.js'
 export type { IsNotVoid, IsVoid, NotVoidType, VoidType } from './void/void_type.js'
+
+
+
 

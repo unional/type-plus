@@ -1,33 +1,22 @@
-import { test } from '@jest/globals'
-import { testType, type AnyFunction } from '../index.js'
-import type { Last } from './last.js'
+import { it } from '@jest/globals'
+import { testType, type AnyFunction, type Last } from '../index.js'
 
-test('any array', () => {
-	type A = Last<any[]>
-	testType.equal<A, any>(true)
+it('gets the type of an array', () => {
+	testType.equal<Last<any[]>, any>(true)
+	testType.equal<Last<never[]>, never>(true)
+	testType.equal<Last<string[]>, string>(true)
+	testType.equal<Last<AnyFunction[]>, AnyFunction>(true)
+	testType.equal<Last<Array<string | number>>, string | number>(true)
 })
 
-test('never array', () => {
-	type A = Last<never[]>
-	testType.equal<A, never>(true)
+it('gets never for empty tuple', () => {
+	testType.equal<Last<[]>, never>(true)
 })
 
-test('typed array', () => {
-	type A = Last<string[]>
-	testType.equal<A, string>(true)
+it('gets the last entry of a tuple', () => {
+	testType.equal<Last<[number, AnyFunction]>, AnyFunction>(true)
 })
 
-test('function array', () => {
-	type A = Last<AnyFunction[]>
-	testType.equal<A, AnyFunction>(true)
-})
-
-test('empty tuple gets undefined', () => {
-	type A = Last<[]>
-	testType.equal<A, undefined>(true)
-})
-
-test('tuple with function', () => {
-	type A = Last<[number, AnyFunction]>
-	testType.equal<A, AnyFunction>(true)
+it('can override empty tuple behavior', () => {
+	testType.equal<Last<[], { empty_tuple: undefined }>, undefined>(true)
 })

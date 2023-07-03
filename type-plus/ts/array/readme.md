@@ -14,6 +14,14 @@ The `ArrayType<T>` and friends are used to check if a type is exactly `Array<T>`
 They are strict type checks, meaning they match only the type `Array<T>`,
 and not [tuple], union, or intersection types.
 
+### [ArrayType](./array_type.ts#18)
+
+`ArrayType<T, Then = T, Else = never>`
+
+🌪️ *filter*
+
+Filter `T` to ensure it is an array, excluding tuple.
+
 ```ts
 import type { ArrayType } from 'type-plus'
 
@@ -24,25 +32,64 @@ type R = ArrayType<number[] | 1> // never
 type R = ArrayType<number[] & { a: 1 }> // never
 ```
 
-- [`ArrayType<T, Then = T, Else = never>`](array_type.ts#L15): check if `T` is an array and not a tuple.
-- [`IsArray<T, Then = true, Else = false`](array_type.ts#L33): is `T` an array and not a tuple.
-- [`NotArrayType<T, Then = T, Else = never>`](array_type.ts#L47): check if `T` is not an array (can be a tuple).
-- [`IsNotArray<T, Then = true, Else = false>`](array_type.ts#L61): is `T` not an array (can be a tuple).
+### [IsArray](./array_type.ts#37)
 
-## ArrayPlus
+`IsArray<T, Then = true, Else = false>`
 
-`ArrayPlus` contains all types and type utilities related to array.
-Whenever possible, these types and type utilities also work with *tuples*,
-as *tuples* is a subset of array.
+🎭 *validate*
 
-For *tuple* specific types and type utilities,
-please check [`TuplePlus`](../tuple/readme.md#TuplePlus).
+Validate that `T` is an array, excluding tuple.
 
-### [`ArrayPlus.At`](./array.at.ts#L18)
+```ts
+import type { IsArray } from 'type-plus'
 
-> `ArrayPlus.At<A, N, Fail = never>`
+type R = IsArray<number[]> // true
 
-Gets the type of the array or tuple `A` at index `N`.
+type R = IsArray<number> // false
+type R = IsArray<[1]> // false
+```
+
+### [NotArrayType](./array_type.ts#54)
+
+`NotArrayType<T, Then = T, Else = never>`
+
+🌪️ *filter*
+
+Filter `T` to ensure it is not an array, excluding tuple.
+
+```ts
+import type { NotArrayType } from 'type-plus'
+
+type R = NotArrayType<number[]> // never
+
+type R = NotArrayType<number> // number
+type R = NotArrayType<[1]> // [1]
+```
+
+### [IsNotArrayType](./array_type.ts#71)
+
+`IsNotArrayType<T, Then = true, Else = false>`
+
+🎭 *validate*
+
+Validate that `T` is not an array, excluding tuple.
+
+```ts
+import type { IsNotArrayType } from 'type-plus'
+
+type R = IsNotArrayType<number[]> // false
+
+type R = IsNotArrayType<number> // true
+type R = IsNotArrayType<[1]> // true
+```
+
+## [At](./array.at.ts)
+
+`At<A, N, Fail = never>`
+
+🦴 *utilities*
+
+Gets the type of the array or tuple at positive or negative index `N`.
 
 For array, it will return the union of the type of the array value and `undefined`,
 as there is no way to guarantee the array has value at `N`.
@@ -66,9 +113,12 @@ If the `N` is out of bound,
 or `N` is not a valid index,
 `ArrayPlus.At` will return the `Fail` case, which defaults to `never`.
 
-### [`ArrayPlus.Concat`](./array.concat.ts#L12)
+## [`Concat`](./array.concat.ts#L12)
 
-> `ArrayPlus.Concat<A, B>`
+`Concat<A, B>`
+
+🦴 *utilities*
+💀 *deprecated* Will be available only as `ArrayPlus.Concat` in the next version
 
 Concats two arrays or tuples.
 
@@ -76,6 +126,116 @@ It is just an alias of `[...A, ...B]`.
 It is added for completeness.
 
 You are encouraged to use `[...A, ...B]` directly.
+
+## [`FindFirst`](./array.find.ts)
+
+## [`FineLast`](./array.find_last.ts)
+
+## [`Some`](./array.some.ts)
+
+## [`Filter`](./filter.ts#l17)
+
+`Filter<A, Criteria>`
+
+⚗️ *transform*
+
+Filter the array or tuple `A`, keeping entries satisfying `Criteria`.
+
+```ts
+import type { Filter } from 'type-plus'
+
+type R = Filter<[1, 2, '3'], number> // [1, 2]
+type R = Filter<Array<string | undefined>, string> // string[]
+```
+
+## [`KeepMatch`](./filter.ts)
+
+`KeepMatch<A, Criteria>`
+
+⚗️ *transform*
+👽 *alias* of [`Filter`](#filter)
+
+Keeps entries satisfying `Criteria` in array or tuple `A`.
+
+```ts
+import type { KeepMatch } from 'type-plus'
+
+type R = KeepMatch<[1, 2, '3'], number> // [1, 2]
+type R = KeepMatch<Array<string | undefined>, string> // string[]
+```
+
+## [`Head`](./head.ts#l14)
+
+`Head<T, Cases = { empty_tuple }>`
+
+🦴 *utilities*
+
+Gets the first entry in the tuple or the type of array.
+
+```ts
+import type { Head } from 'type-plus'
+
+type R = Head<[1, 2, 3]> // 1
+type R = Head<string[]> // string
+
+type R = Head<[]> // never
+```
+
+## [`IntersectOfProps`](./intersect_of_props.ts)
+
+## [`MapToProp`](./intersect_of_props.ts)
+
+## [`Last`](./last.ts)
+
+`Last<T, Cases = { empty_tuple }>`
+
+🦴 *utilities*
+
+Gets the last entry in the tuple or the type of array.
+
+```ts
+import type { Last } from 'type-plus'
+
+type R = Last<[1, 2, 3]> // 3
+type R = Last<string[]> // string
+
+type R = Last<[]> // never
+```
+
+## [`literalArray`](./literal_array.ts)
+
+## [`PadStart`](./pad_start.ts)
+
+## [`reduceWhile`](./reduce_while.ts)
+
+## [`Reverse`](./reverse.ts)
+
+## [`PropUnion`](./union_of_props.ts)
+
+## [`UnionOfProps`](./union_of_props.ts)
+
+## [`UnionOfValues`](./union_of_values.ts)
+
+## ArrayPlus
+
+`ArrayPlus` contains all types and type utilities related to array.
+Whenever possible, these types and type utilities also work with *tuples*,
+as *tuples* is a subset of array.
+
+For *tuple* specific types and type utilities,
+please check [`TuplePlus`](../tuple/readme.md#TuplePlus).
+
+### [`ArrayPlus.At`](./array.at.ts#L18)
+
+`ArrayPlus.At<A, N, Fail = never>`
+
+Alias of [At](#at).
+
+### [`ArrayPlus.Concat`](./array.concat.ts#L12)
+
+`ArrayPlus.Concat<A, B>`
+
+Alias of [Concat](#concat).
 
 ### [`ArrayPlus.Entries`](./array.entries.ts#L14)
 

@@ -3,7 +3,9 @@ import type { TupleType } from '../tuple/tuple_type.js'
 import type { IndexAt } from './array_index.js'
 
 /**
- * Gets the type of the array or tuple at index `N`.
+ * 🦴 *utilities*
+ *
+ * Gets the type of the array or tuple at positive or negative index `N`.
  *
  * Like `Array.at()`, this type supports negative numbers.
  *

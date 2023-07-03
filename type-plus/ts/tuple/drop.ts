@@ -119,6 +119,6 @@ export type DropUndefined<A extends Array<any>> = DropMatch<A, undefined>
  *
  * 💀 *deprecated* the type does not sufficiently cover the use cases.
  */
-export function drop<A extends Readonly<unknown[]>, const C>(array: A, value: C): DropMatch<A, C> {
+export function drop<A extends Readonly<unknown[]>, const C> (array: A, value: C): DropMatch < A, C > {
 	return array.filter(v => v !== value) as DropMatch<A, C>
 }

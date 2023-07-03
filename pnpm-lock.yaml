@@ -57,7 +57,7 @@ importers:
         specifier: ^2.3.3
         version: 2.3.3(typedoc@0.24.7)
       typescript:
-        specifier: ^5.0.4
+        specifier: ~5.0.4
         version: 5.0.4
 
   pages:
@@ -144,9 +144,6 @@ importers:
       tslib:
         specifier: ^2.4.0
         version: 2.4.1
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
 
 packages:
 

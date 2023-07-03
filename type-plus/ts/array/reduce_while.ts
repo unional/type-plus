@@ -1,3 +1,9 @@
+/**
+ * 🦴 *utilities*
+ *
+ * `reduce()` with predicate for early termination.
+ * A simple version of the same function in the `ramda` package.
+ */
 export function reduceWhile<T, R>(
 	predicate: (acc: R, currentValue: T) => boolean,
 	callbackfn: (previousValue: R, currentValue: T, currentIndex: number, array: T[]) => R,

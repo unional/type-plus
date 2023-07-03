@@ -3,9 +3,9 @@ import type { KeyTypes } from '../object/KeyTypes.js'
 import type { Tail } from './tail.js'
 
 /**
- * Gets the common property keys of the elements in tuple `T`.
- *
  * ⚗️ *transform*
+ *
+ * Gets the common property keys of the elements in tuple `T`.
  *
  * ```ts
  * import { CommonPropKeys } from 'type-plus'

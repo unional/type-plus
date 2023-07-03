@@ -1,5 +1,5 @@
 export type { At } from './array.at.js'
-export type { Concat } from './array.concat.js'
+export type { Concat } from './array_plus.concat.js'
 export type { Entries } from './array.entries.js'
 export type { FindFirst as Find } from './array.find.js'
 export type { FindLast } from './array.find_last.js'

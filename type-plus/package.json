@@ -85,7 +85,6 @@
     "satisfier": "^5.2.2",
     "size-limit": "^8.2.4",
     "ts-jest": "^29.1.0",
-    "tslib": "^2.4.0",
-    "typescript": "^5.0.4"
+    "tslib": "^2.4.0"
   }
 }

@@ -1,4 +1,5 @@
-import type { Head, Last } from '../array/index.js'
+import type { Head } from '../array/head.js'
+import type { Last } from '../array/last.js'
 import type { AnyFunction } from '../function/any_function.js'
 
 /**

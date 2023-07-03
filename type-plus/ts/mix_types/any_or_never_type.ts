@@ -4,7 +4,7 @@ import type { NeverType } from '../never/never_type.js'
 /**
  * Parse `T` to ensure it is either exactly `any` or exactly `never`.
  *
- * 🐾 *parse*
+ * 🌪️ *filter*
  * 🩳 *shortcut*
  *
  * @example

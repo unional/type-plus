@@ -1,22 +1,18 @@
-import { test } from '@jest/globals'
+import { it } from '@jest/globals'
 import { testType, type Head } from '../index.js'
 
-test('get first type', () => {
-	type S = [1, 'a', 'b']
-	type A = Head<S>
-
-	testType.equal<A, 1>(true)
+it('gets the type of an array', () => {
+	testType.equal<Head<string[]>, string>(true)
 })
 
-test('empty tuple gets never', () => {
-	type S = []
-	type A = Head<S>
-
-	testType.equal<A, never>(true)
+it('returns the first type of a tuple', () => {
+	testType.equal<Head<[1, 'a', 'b']>, 1>(true)
 })
 
-test('array gets same type', () => {
-	type A = Head<string[]>
+it('returns never for empty tuple', () => {
+	testType.equal<Head<[]>, never>(true)
+})
 
-	testType.equal<A, string>(true)
+it('can override empty tuple behavior', () => {
+	testType.equal<Head<[], { empty_tuple: undefined }>, undefined>(true)
 })

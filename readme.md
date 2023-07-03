@@ -8,7 +8,7 @@
 
 [![Visual Studio Code][vscode_image]][vscode_url]
 
-More than 200 type utilities for [TypeScript].
+More than 200 type utilities for [TypeScript] for applications, library, and type-level programming.
 
 [type-plus readme](./type-plus/README.md)
 

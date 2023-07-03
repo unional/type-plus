@@ -28,9 +28,9 @@ type R = TupleType<number> // never
 
 `CommonPropKeys<T extends Record[], Cases = { array, no_common_keys }>`
 
-Gets the common property keys of the elements in tuple `T`.
-
 ⚗️ *transform*
+
+Gets the common property keys of the elements in tuple `T`.
 
 ```ts
 import { CommonPropKeys } from 'type-plus'
