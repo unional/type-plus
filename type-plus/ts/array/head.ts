@@ -11,7 +11,7 @@
  * type R = Head<[]> // never
  * ```
  */
-export type Head<T extends any[], Cases extends {
+export type Head<T extends unknown[], Cases extends {
 	empty_tuple?: unknown
 } = {
 	empty_tuple: never
