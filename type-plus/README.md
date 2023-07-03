@@ -22,21 +22,22 @@ More than 200 type utilities for [TypeScript] for applications, library, and typ
 5. [Type Specific Utilities](#type-specific-utilities)
    1. [any](#any)
    2. [Array](#array)
-   3. [bigint](#bigint)
-   4. [boolean](#boolean)
-   5. [function](#function)
-   6. [never](#never)
-   7. [null](#null)
-   8. [number](#number)
-   9. [numeric](#numeric)
-   10. [object](#object)
-   11. [Promise](#promise)
-   12. [string](#string)
-   13. [symbol](#symbol)
-   14. [tuple](#tuple)
-   15. [undefined](#undefined)
-   16. [unknown](#unknown)
-   17. [void](#void)
+   3. [union](#union)
+   4. [bigint](#bigint)
+   5. [boolean](#boolean)
+   6. [function](#function)
+   7. [never](#never)
+   8. [null](#null)
+   9. [number](#number)
+   10. [numeric](#numeric)
+   11. [object](#object)
+   12. [Promise](#promise)
+   13. [string](#string)
+   14. [symbol](#symbol)
+   15. [tuple](#tuple)
+   16. [undefined](#undefined)
+   17. [unknown](#unknown)
+   18. [void](#void)
 6. [Constant Types](#constant-types)
 7. [JSON Support](#json-support)
 8. [Type manipulation](#type-manipulation)
@@ -384,7 +385,7 @@ You can learn more in their respective sections:
 - [`AnyOrNeverType<T>`](./ts/mix_types/readme.md#anyornevertype)
 - [`IsAnyOrNever<T>`](./ts/mix_types/readme.md#isanyornever)
 
-### Array
+### [Array](./ts/array/readme.md)
 
 - [`ArrayType<T>`](./ts/array/readme.md#arraytype)
 - [`IsArray<T>`](./ts/array/readme.md#isarray)
@@ -416,6 +417,11 @@ You can learn more in their respective sections:
 - [`ArrayPlus.Reverse<T>`](./ts/array/readme.md#arrayplusreverse)
 - [`ArrayPlus.SplitAt<T>`](./ts/array/readme.md#arrayplussplitat)
 - [`ArrayPlus.Some<T>`](./ts/array/readme.md#arrayplussome)
+
+### [union](./ts/union/readme.md)
+
+- [`IsUnion<T>`](./ts/union//readme.md#isunion)
+- [`UnionType<T>`](./ts/union/readme.md#uniontype)
 
 ### bigint
 
