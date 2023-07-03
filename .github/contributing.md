@@ -1,4 +1,4 @@
-# Contribution
+# Contributing Guide
 
 ## Icons
 
