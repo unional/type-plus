@@ -1,5 +1,21 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 7.4.0
+
+### Minor Changes
+
+- b55a61de3: Deprecate `drop()` as it does not sufficiently support the needed types.
+- cb2c68694: Add `extends()`, `union()`, `intersect()`, `union_*`, `intersect_*` to `InspectedType`.
+
+### Patch Changes
+
+- 81158731b: Separate `Filter` and `PadStart` for array and tuple
+- 9f08f5635: Improve `Head` and `Last` to support empty_tuple override
+- 9f08f5635: Improve `IntersectOfProps` to work with array just for completeness.
+- 810181628: Improve `DropFirst` and `DropLast` to support overriding cases.
+- 58da4b3ee: Update export field to export `./package.json`.
+- 2454ab228: Improve `CommonPropKeys`
+
 ## 7.3.1
 
 ### Patch Changes
