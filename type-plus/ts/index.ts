@@ -1,6 +1,6 @@
 export type { AnyType, IsAny, IsNotAny, NotAnyType } from './any/any_type.js'
 export type { At } from './array/array.at.js'
-export type { FindFirst } from './array/array.find.js'
+export type { FindFirst } from './array/find_first.js'
 export type { FindLast } from './array/array.find_last.js'
 export type { Some } from './array/array.some.js'
 export type { Concat } from './array/array_plus.concat.js'
@@ -116,7 +116,3 @@ export type { IsNotUnknown, IsUnknown, NotUnknownType, UnknownType } from './unk
 export * from './unpartial.js'
 export * from './utils/index.js'
 export type { IsNotVoid, IsVoid, NotVoidType, VoidType } from './void/void_type.js'
-
-
-
-

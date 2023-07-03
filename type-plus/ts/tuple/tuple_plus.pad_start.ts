@@ -17,39 +17,42 @@
  * PadStart<[1, 2, 3], 5> // [unknown, unknown, 1, 2, 3]
  * ```
  */
-export type PadStart<Tuple extends unknown[], MaxLength extends number, PadWith = unknown> = PadStartDevice<
+export type PadStart<Tuple extends unknown[], MaxLength extends number, PadWith = unknown> = PadStart.Device<
 	Tuple,
 	MaxLength,
 	PadWith,
 	[]
 >
 
-type PadStartDevice<
-	Source extends unknown[],
-	MaxLength extends number,
-	PadWith,
-	Result extends unknown[]
-> =
-	Result['length'] extends MaxLength
-	? (
-		Source extends []
-		? Result
-		: (
-			Source extends [...infer Head, infer Tail]
-			? (
-				[Tail, ...Result] extends infer R extends unknown[]
-				? PadStartDevice<Head, R['length'], PadWith, R>
+export namespace PadStart {
+	export type Device<
+		Source extends unknown[],
+		MaxLength extends number,
+		PadWith,
+		Result extends unknown[]
+	> =
+		Result['length'] extends MaxLength
+		? (
+			Source extends []
+			? Result
+			: (
+				Source extends [...infer Head, infer Tail]
+				? (
+					[Tail, ...Result] extends infer R extends unknown[]
+					? Device<Head, R['length'], PadWith, R>
+					: never
+				)
 				: never
 			)
-			: never
 		)
-	)
-	: (
-		Source extends []
-		? PadStartDevice<Source, MaxLength, PadWith, [PadWith, ...Result]>
 		: (
-			Source extends [...infer Head, infer Tail]
-			? PadStartDevice<Head, MaxLength, PadWith, [Tail, ...Result]>
-			: Source
+			Source extends []
+			? Device<Source, MaxLength, PadWith, [PadWith, ...Result]>
+			: (
+				Source extends [...infer Head, infer Tail]
+				? Device<Head, MaxLength, PadWith, [Tail, ...Result]>
+				: Source
+			)
 		)
-	)
+
+}

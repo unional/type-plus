@@ -129,6 +129,19 @@ You are encouraged to use `[...A, ...B]` directly.
 
 ## [`FindFirst`](./array.find.ts)
 
+`FindFirst<A, Criteria, Cases = { empty_tuple, widen }>`
+
+🦴 *utilities*
+
+Gets the first type in the array or tuple that matches the `Criteria`.
+
+```ts
+import type { FindFirst } from 'type-plus'
+
+FindFirst<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
+FindFirst<[true, 1, 'x', 3], string> // 'x'
+```
+
 ## [`FineLast`](./array.find_last.ts)
 
 ## [`Some`](./array.some.ts)
