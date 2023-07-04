@@ -1,8 +1,13 @@
 import type { IsNever } from '../never/never_type.js'
 
 /**
- * Check if `T` is a tuple and not an array.
+ * 🌪️ *filter*
  *
+ * Filter `T` to ensure it is a tuple, excluding array.
+ *
+ * @typeParam Cases['never'] Return type when `T` is `never`. Default to `Else`.
+ *
+ * @example
  * ```ts
  * type R = TupleType<[]>       // []
  * type R = TupleType<[1]>      // [1]
@@ -13,14 +18,44 @@ import type { IsNever } from '../never/never_type.js'
  * type R = TupleType<unknown>  // never
  * ```
  */
-export type TupleType<T, Then = T, Else = never> = IsNever<
+export type TupleType<
 	T,
-	Else,
+	Then = T,
+	Else = never,
+	Cases extends { never?: unknown } = { never: Else }
+> = IsNever<
+	T,
+	Cases['never'],
 	[T] extends [any[]] ? (number extends T['length'] ? Else : Then) : Else
 >
 
+
 /**
- * Check if `T` is not a tuple.
+ * 🎭 *validate*
+ *
+ * Validate that `T` is a tuple, excluding array.
+ *
+ * ```ts
+ * type R = IsTuple<[]>       // true
+ *
+ * type R = IsTuple<number[]> // false
+ * type R = IsTuple<string>   // false
+ * type R = IsTuple<never>    // false
+ * type R = IsTuple<unknown>  // false
+ * ```
+ */
+export type IsTuple<
+	T,
+	Then = true,
+	Else = false,
+	Cases extends { never?: unknown } = { never: Else }
+> = TupleType<T, Then, Else, Cases>
+
+
+/**
+ * 🌪️ *filter*
+ *
+ * Filter `T` to ensure it is not an tuple, excluding array.
  *
  * ```ts
  * type R = NotTupleType<[]>       // never
@@ -32,33 +67,31 @@ export type TupleType<T, Then = T, Else = never> = IsNever<
  * type R = NotTupleType<unknown>  // unknown
  * ```
  */
-export type NotTupleType<T, Then = T, Else = never> = TupleType<T, Else, Then>
+export type NotTupleType<
+	T,
+	Then = T,
+	Else = never,
+	Cases extends { never?: unknown } = { never: Then }
+> = TupleType<T, Else, Then, Cases>
 
 /**
- * Is `T` a tuple and not an array.
+ * 🎭 *validate*
  *
- * ```ts
- * type R = IsTuple<[]>       // true
- *
- * type R = IsTuple<number[]> // false
- * type R = IsTuple<string>   // false
- * type R = IsTuple<never>    // false
- * type R = IsTuple<unknown>  // false
- * ```
- */
-export type IsTuple<T, Then = true, Else = false> = TupleType<T, Then, Else>
-
-/**
- * Is `T` not a tuple.
+ * Validate that `T` is not a tuple, excluding array.
  *
  * ```ts
  * type R = IsNotTuple<[]>       // false
  * type R = IsNotTuple<[1]>      // false
  *
- * type R = IsNotTuple<number[]> // false
- * type R = IsNotTuple<string>   // false
- * type R = IsNotTuple<never>    // false
- * type R = IsNotTuple<unknown>  // false
+ * type R = IsNotTuple<number[]> // true
+ * type R = IsNotTuple<string>   // true
+ * type R = IsNotTuple<never>    // true
+ * type R = IsNotTuple<unknown>  // true
  * ```
  */
-export type IsNotTuple<T, Then = true, Else = false> = TupleType<T, Else, Then>
+export type IsNotTuple<
+	T,
+	Then = true,
+	Else = false,
+	Cases extends { never?: unknown } = { never: Then }
+> = TupleType<T, Else, Then, Cases>

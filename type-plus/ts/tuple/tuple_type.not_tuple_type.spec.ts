@@ -57,3 +57,7 @@ it('can override Then/Else', () => {
 	testType.equal<NotTupleType<never, 1, 2>, 1>(true)
 	testType.equal<NotTupleType<void, 1, 2>, 1>(true)
 })
+
+it('can override never case', () => {
+	testType.equal<NotTupleType<never, 1, 2, { never: 3 }>, 3>(true)
+})

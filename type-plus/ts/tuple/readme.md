@@ -9,22 +9,102 @@ Each entry in the *tuple* is specified explicitly.
 
 The `TupleType<T>` and friends are used to check if `T` is a tuple, excluding array.
 
+### [TupleType](./tuple_type.ts#l21)
+
+`TupleType<T, Then = T, Else = never, Cases = { never }>`
+
+🌪️ *filter*
+
+Filter `T` to ensure it is an array, excluding tuple.
+
 ```ts
 import type { TupleType } from 'type-plus'
 
-type R = TupleType<[]> // []
-type R = TupleType<[1]> // [1]
+ type R = TupleType<[]>       // []
+ type R = TupleType<[1]>      // [1]
 
-type R = TupleType<number[]> // never
-type R = TupleType<number> // never
+ type R = TupleType<number[]> // never
+ type R = TupleType<string>   // never
+ type R = TupleType<never>    // never
+ type R = TupleType<unknown>  // never
 ```
 
-- [`TupleType<T, Then = T, Else = never>`](tuple_type.ts#L16): check if `T` is a *tuple*.
-- [`IsTuple<T, Then = true, Else = false`](tuple_type.ts#L35): is `T` *tuple*.
-- [`NotTupleType<T, Then = T, Else = never>`](tuple_type.ts#L50): check if `T` is not *tuple*.
-- [`IsNotTuple<T, Then = true, Else = false>`](tuple_type.ts#L65): is `T` not *tuple*.
+Overridable cases:
 
-## [CommonPropKeys](./common_prop_keys.ts)
+- `never`: if `T` is `never`, it returns `Else`.
+
+### [IsTuple](./array_type.ts#l47)
+
+`IsTuple<T, Then = true, Else = false, Cases = { never }>`
+
+🎭 *validate*
+
+Validate that `T` is an array, excluding tuple.
+
+```ts
+import type { IsTuple } from 'type-plus'
+
+type R = IsTuple<[]>       // true
+
+type R = IsTuple<number[]> // false
+type R = IsTuple<string>   // false
+type R = IsTuple<never>    // false
+type R = IsTuple<unknown>  // false
+```
+
+Overridable cases:
+
+- `never`: if `T` is `never`, it returns `Else`.
+
+### [NotTupleType](./tuple_type.ts#l70)
+
+`NotArrayType<T, Then = T, Else = never, Cases = { never }>`
+
+🌪️ *filter*
+
+Filter `T` to ensure it is not an tuple, excluding array.
+
+```ts
+import type { NotArrayType } from 'type-plus'
+
+type R = NotTupleType<[]>       // never
+type R = NotTupleType<[1]>      // never
+
+type R = NotTupleType<number[]> // number[]
+type R = NotTupleType<string>   // string
+type R = NotTupleType<never>    // never
+type R = NotTupleType<unknown>  // unknown
+```
+
+Overridable cases:
+
+- `never`: if `T` is `never`, it returns `Else`.
+
+### [IsNotTupleType](./tuple_type.ts#l92)
+
+`IsNotTupleType<T, Then = true, Else = false, Cases = { never }>`
+
+🎭 *validate*
+
+Validate that `T` is not a tuple, excluding array.
+
+```ts
+import type { IsNotTupleType } from 'type-plus'
+
+type R = IsNotTuple<[]>       // false
+type R = IsNotTuple<[1]>      // false
+
+type R = IsNotTuple<number[]> // true
+type R = IsNotTuple<string>   // true
+type R = IsNotTuple<never>    // true
+type R = IsNotTuple<unknown>  // true
+```
+
+Overridable cases:
+
+- `never`: if `T` is `never`, it returns `Else`.
+
+## [CommonPropKeys](./common_prop_keys.ts#l17)
 
 `CommonPropKeys<T extends Record[], Cases = { array, no_common_keys }>`
 
@@ -44,13 +124,13 @@ Overridable cases:
 - `array`: if `T` is array, it returns the key of the record type in the array.
 - `no_common_keys`: if there are no common keys, it returns `never`.
 
-## [DropFirst](./drop.ts)
+## [DropFirst](./drop.ts#l19)
 
 `DropFirst<T extends unknown[], Cases = { array, empty_tuple }>`
 
-Drops the first entry in the tuple `T`.
-
 ⚗️ *transform*
+
+Drops the first entry in the tuple `T`.
 
 ```ts
 import { DropFirst } from 'type-plus'
@@ -63,13 +143,13 @@ Overridable cases:
 - `array`: if `T` is array, it returns `T`.
 - `empty_tuple`: if `T` is `[]`, it returns `[]`.
 
-## [DropLast](./drop.ts)
+## [DropLast](./drop.ts#l50)
 
 `DropLast<T extends unknown[], Cases = { array, empty_tuple }>`
 
-Drops the last entry in the tuple `T`.
-
 ⚗️ *transform*
+
+Drops the last entry in the tuple `T`.
 
 ```ts
 import { DropLast } from 'type-plus'
@@ -86,9 +166,9 @@ Overridable cases:
 
 `DropMatch<A extends Readonly<Array<unknown>>, Criteria>`
 
-Drops entries matching `Criteria` in array or tuple `A`.
-
 ⚗️ *transform*
+
+Drops entries matching `Criteria` in array or tuple `A`.
 
 ```ts
 type R = DropMatch<Array<string | undefined>, undefined> // string[]
@@ -105,9 +185,9 @@ The input type are not checked and assumed to be *tuple*.
 
 `TuplePlus.Filter<T, Criteria>`
 
-Filter entries matching `Criteria` in tuple `T`.
-
 ⚗️ *transform*
+
+Filter entries matching `Criteria` in tuple `T`.
 
 ```ts
 import { TuplePlus } from 'type-plus'
@@ -119,12 +199,12 @@ type R = TuplePlus.Filter<[1, 2, '3'], number> // [1, 2]
 
 `TuplePlus.PadStart<T, MaxLength, PadWith>`
 
+⚗️ *transform*
+
 Pad `T` with `PadWith` at the start of the tuple.
 
 If the `MaxLength` is less than the length of the tuple,
 the `Tuple` will be returned unchanged.
-
-⚗️ *transform*
 
 ```ts
 PadStart<[1, 2, 3], 5, 0> // [0, 0, 1, 2, 3]
