@@ -1,35 +1,55 @@
-import type { IsTuple } from '../tuple/tuple_type.js'
+import type { IsNever } from '../never/never_type.js'
+import type { TupleType } from '../tuple/tuple_type.js'
 import type { IsUnion } from '../union/union.js'
 
 /**
  * 🦴 *utilities*
  *
- * Gets the first type in the array that matches the `Criteria`.
+ * Finds the type in array `A` that matches the `Criteria`.
  *
- *
- * For `Array<T>`, it will return `T | undefined` if `T` satisfies `Criteria`.
+ * @typeParam Cases['never'] return type when `A` is `never`. Default to `never`.
+ * @typeParam Cases['tuple'] return type when `A` is a tuple. Default to `not supported` message.
+ * @typeParam Cases['widen'] return type when `T` in `A` is a widen type of `Criteria`.
+ * Default to `Criteria | undefined`.
+ * Set it to `never` for a more type-centric behavior
+ * @typeParam Cases['union_miss'] additional type to return when `T` in `A` is a union type,
+ * and it partially match `Criteria`.
+ * Meaning this type represent the case when the `Criteria` is not met.
+ * Default to `undefined`.
  *
  * @example
  * ```ts
- * ArrayPlus.Find<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
+ * ArrayPlus.Find<Array<string>, string> // string
+ * ArrayPlus.Find<Array<string | number>, string> // string | undefined
+ * ArrayPlus.Find<Array<number>, 1> // 1 | undefined
  *
- * ArrayPlus.Find<[true, 1, 'x', 3], string> // 'x'
+ * ArrayPlus.Find<Array<number>, string> // never
  * ```
  */
 export type Find<A extends unknown[], Criteria, Cases extends {
+	never?: unknown,
 	tuple?: unknown,
-	widen?: unknown
+	widen?: unknown,
+	union_miss?: unknown
 } = {
+	never: never,
 	tuple: 'does not support tuple. Please use `FindFirst` or `TuplePlus.Find` instead.',
-	widen: Criteria | undefined
+	widen: Criteria | undefined,
+	union_miss: undefined
 }> =
-	IsTuple<
+	TupleType<
 		A,
 		Cases['tuple'],
 		A extends Array<infer T>
-		? (T extends Criteria
+		? ([T] extends [Criteria]
 			? T
-			: Criteria extends T ? Cases['widen'] : never) extends infer R
-		? IsUnion<T, R | undefined, R> : never
-		: never
+			: ((T extends Criteria
+				? T
+				: (Criteria extends T
+					? Cases['widen']
+					: never)) extends infer R
+				? IsUnion<T, IsNever<R, R, R | Cases['union_miss']>, R>
+				: never))
+		: never,
+		{ never: Cases['never'] }
 	>

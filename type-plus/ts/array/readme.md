@@ -12,7 +12,7 @@ and each element has the same type `T`.
 The `ArrayType<T>` and friends are used to check if a type is exactly `Array<T>` or not.
 
 They are strict type checks, meaning they match only the type `Array<T>`,
-and not [tuple], union, or intersection types.
+and not [tuple], [union], or intersection types.
 
 ### [ArrayType](./array_type.ts#18)
 
@@ -264,20 +264,23 @@ ArrayPlus.Entries<Array<string | number>> // Array<[number, string | number]>
 ArrayPlus.Entries<[1, 2, 3]> // [[0, 1], [1, 2], [2, 3]]
 ```
 
-### [`ArrayPlus.Find`](./array.find.ts#L17)
+### [`ArrayPlus.Find`](./array_plus.find.ts#l29)
 
-> `ArrayPlus.Find<A, Criteria>
+`ArrayPlus.Find<A, Criteria, Cases { never, tuple, widen, union_miss }>`
 
-Returns the first type in the array or tuple that matches the `Criteria`.
+🦴 *utilities*
 
-If the `Criteria` is not met, it will return `never'.
-
-For `Array<T>`, it will return `T | undefined` if `T` satisfies `Criteria`.
+Finds the type in array `A` that matches the `Criteria`.
 
 ```ts
-ArrayPlus.Find<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
+import type { ArrayPlus } from 'type-plus'
 
-ArrayPlus.Find<[true, 1, 'x', 3], string> // 'x'
+ArrayPlus.Find<string[], number> // never
+ArrayPlus.Find<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
+ArrayPlus.Find<Array<string | number>, number | string> // number | string
+
+ArrayPlus.Find<number[], 1> // widen: 1 | undefined
+ArrayPlus.Find<Array<string | number>, number> // union_miss: number | undefined
 ```
 
 ### [`ArrayPlus.FindLast`](./array.find_last.ts#L17)
@@ -388,3 +391,4 @@ Here are the list of array methods and their corresponding type-level functions,
 
 [handbook]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#arrays
 [tuple]: ../tuple/readme.md
+[union]: ../union/readme.md

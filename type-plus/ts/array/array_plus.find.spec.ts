@@ -7,12 +7,21 @@ test('behavior of array.find()', () => {
 	testType.equal<typeof r, number | string | undefined>(true)
 })
 
+it('returns never if input is never', () => {
+	testType.equal<ArrayPlus.Find<never, number>, never>(true)
+})
+
+it('can override the never case', () => {
+	testType.equal<ArrayPlus.Find<never, 1, { never: 2 }>, 2>(true)
+})
+
 it('returns never if the type in the array does not satisfy the criteria', () => {
 	testType.equal<ArrayPlus.Find<string[], number>, never>(true)
 })
 
 it('returns T if T satisfies the Criteria', () => {
 	testType.equal<ArrayPlus.Find<number[], number>, number>(true)
+	testType.equal<ArrayPlus.Find<Array<string | number>, number | string>, number | string>(true)
 })
 
 it('returns Criteria | undefined if T is a widen type of Criteria', () => {
@@ -21,14 +30,18 @@ it('returns Criteria | undefined if T is a widen type of Criteria', () => {
 	testType.equal<ArrayPlus.Find<Array<{ a: number } | { b: number }>, { a: 1 }>, { a: 1 } | undefined>(true)
 })
 
+it('can override widen case', () => {
+	testType.equal<ArrayPlus.Find<number[], 1, { widen: never }>, never>(true)
+})
+
 it('does not support tuple', () => {
 	testType.equal<
 		ArrayPlus.Find<[true, 1, 'x', 3], number>,
 		'does not support tuple. Please use `FindFirst` or `TuplePlus.Find` instead.'>(true)
 })
 
-it('can override widen case', () => {
-	testType.equal<ArrayPlus.Find<number[], 1, { widen: never }>, never>(true)
+it('returns never if the union type does not satisfy the Criteria', () => {
+	testType.equal<ArrayPlus.Find<Array<string | number>, boolean>, never>(true)
 })
 
 it('returns T | undefined for T[] if T is a union satisfies the Criteria', () => {
@@ -37,4 +50,11 @@ it('returns T | undefined for T[] if T is a union satisfies the Criteria', () =>
 	// so `Find<Array<string | number>, string>` returns `string | undefined`.
 	testType.equal<ArrayPlus.Find<Array<string | number>, number>, number | undefined>(true)
 	testType.equal<ArrayPlus.Find<Array<1 | 2 | 'x'>, number>, 1 | 2 | undefined>(true)
+})
+
+it('can override the not_found case', () => {
+	testType.equal<
+		ArrayPlus.Find<Array<string | number>, number, { union_miss: never }>,
+		number
+	>(true)
 })

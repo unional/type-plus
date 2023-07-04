@@ -19,11 +19,15 @@ import type { Find as ArrayFind } from './array_plus.find.js'
  * ```
  */
 export type FindFirst<A extends unknown[], Criteria, Cases extends {
+	never?: unknown,
 	empty_tuple?: unknown,
-	widen?: unknown
+	widen?: unknown,
+	union_miss?: unknown
 } = {
+	never: never,
 	empty_tuple: never,
-	widen: Criteria | undefined
+	widen: Criteria | undefined,
+	union_miss: undefined
 }> = TupleType<
 	A,
 	TupleFind<A, Criteria, Cases>,
