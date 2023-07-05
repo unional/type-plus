@@ -83,7 +83,7 @@ type R = IsNotArrayType<number> // true
 type R = IsNotArrayType<[1]> // true
 ```
 
-## [At](./array.at.ts)
+## [At](./array.at.ts#l20)
 
 `At<A, N, Fail = never>`
 
@@ -97,7 +97,7 @@ as there is no way to guarantee the array has value at `N`.
 ```ts
 type A = Array<string | number>
 
-ArrayPlus.At<A, 0> // string | number | undefined
+type R = ArrayPlus.At<A, 0> // string | number | undefined
 ```
 
 For tuple, it will return the type of the tuple value at index `N`.
@@ -105,8 +105,8 @@ For tuple, it will return the type of the tuple value at index `N`.
 ```ts
 type T = [number, string, 1, 2, 3]
 
-ArrayPlus.At<T, 0> // number
-ArrayPlus.At<T, -1> // 3
+type R = ArrayPlus.At<T, 0> // number
+type R = ArrayPlus.At<T, -1> // 3
 ```
 
 If the `N` is out of bound,
@@ -127,19 +127,38 @@ It is added for completeness.
 
 You are encouraged to use `[...A, ...B]` directly.
 
-## [`FindFirst`](./array.find.ts)
+## [`FindFirst`](./find_first.ts#l52)
 
-`FindFirst<A, Criteria, Cases = { empty_tuple, widen }>`
+`FindFirst<A, Criteria, Options = { widen, caseEmptyTuple, caseNever, caseNoMatch, caseWiden, caseUnionMiss }>`
 
 🦴 *utilities*
+🔢 *customizable*
 
-Gets the first type in the array or tuple that matches the `Criteria`.
+Find the first type in the array or tuple `A` that matches `Criteria`.
 
 ```ts
 import type { FindFirst } from 'type-plus'
 
-FindFirst<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
-FindFirst<[true, 1, 'x', 3], string> // 'x'
+type R = FindFirst<[true, 1, 'x', 3], string> // 'x'
+type R = FindFirst<[true, 1, 'x', 3], number> // 1
+type R = FindFirst<[string, number, 1], 1> // widen: 1 | undefined
+type R = FindFirst<[true, number | string], string> // unionMiss: string | undefined
+type R = FindFirst<Array<string>, string> // string
+type R = FindFirst<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
+type R = FindFirst<Array<string | number>, number | string> // string | number
+type R = FindFirst<Array<number>, 1> // widen: 1 | undefined
+type R = FindFirst<Array<string | number>, number> // unionMiss: number | undefined
+
+type R = FindFirst<[true, 1, 'x'], 2> // never
+type R = FindFirst<string[], number> // never
+
+// customization
+type R = FindFirst<[number], 1, { widen: false }> // never
+type R = FindFirst<[], 1, { caseEmptyTuple: 2 }> // 2
+type R = FindFirst<never, 1, { caseNever: 2 }> // 2
+type R = FindFirst<[string], number, { caseNoMatch: 2 }> // 2
+type R = FindFirst<[number], 1, { caseWiden: never }> // never
+type R = FindFirst<[string | number], number, { caseUnionMiss: never }> // number
 ```
 
 ## [`FineLast`](./array.find_last.ts)
@@ -260,27 +279,37 @@ Note that this is not the same as `Array.entries(A)`,
 which returns an iterable interator.
 
 ```ts
-ArrayPlus.Entries<Array<string | number>> // Array<[number, string | number]>
-ArrayPlus.Entries<[1, 2, 3]> // [[0, 1], [1, 2], [2, 3]]
+type R = ArrayPlus.Entries<Array<string | number>> // Array<[number, string | number]>
+type R = ArrayPlus.Entries<[1, 2, 3]> // [[0, 1], [1, 2], [2, 3]]
 ```
 
-### [`ArrayPlus.Find`](./array_plus.find.ts#l29)
+### [`ArrayPlus.Find`](./array_plus.find.ts#l45)
 
-`ArrayPlus.Find<A, Criteria, Cases { never, tuple, widen, union_miss }>`
+`ArrayPlus.Find<A, Criteria, Options { widen, caseNever, caseNoMatch, caseTuple, caseWiden, caseUnionMiss }>`
 
 🦴 *utilities*
+🔢 *customizable*
 
-Finds the type in array `A` that matches the `Criteria`.
+Finds the type in array `A` that matches `Criteria`.
 
 ```ts
 import type { ArrayPlus } from 'type-plus'
 
-ArrayPlus.Find<string[], number> // never
-ArrayPlus.Find<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
-ArrayPlus.Find<Array<string | number>, number | string> // number | string
+type R = ArrayPlus.Find<Array<string>, string> // string
+type R = ArrayPlus.Find<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
+type R = ArrayPlus.Find<Array<string | number>, number | string> // string | number
+type R = ArrayPlus.Find<number[], 1> // widen: 1 | undefined
+type R = ArrayPlus.Find<Array<string | number>, number> // union_miss: number | undefined
 
-ArrayPlus.Find<number[], 1> // widen: 1 | undefined
-ArrayPlus.Find<Array<string | number>, number> // union_miss: number | undefined
+type R = ArrayPlus.Find<string[], number> // never
+
+// customization
+type R = ArrayPlus.Find<number[], 1, { widen: false }> // never
+type R = ArrayPlus.Find<never, 1, { caseNever: 2 }> // 2
+type R = ArrayPlus.Find<string[], number, { caseNoMatch: 2 }> // 2
+type R = ArrayPlus.Find<[], 1, { caseTuple: 2 }> // 2
+type R = ArrayPlus.Find<number[], 1, { caseWiden: never }> // never
+type R = ArrayPlus.Find<Array<string | number>, number, { caseUnionMiss: never }> // number
 ```
 
 ### [`ArrayPlus.FindLast`](./array.find_last.ts#L17)

@@ -95,14 +95,16 @@ Each tag has an associated icon:
 
 - 👽 *alias*: Alias of another type
 - 🚦 *assertion*: assertion function
+- 🔢 *customizable*: the behavior of the type is customizable.
 - 💀 *deprecated*: deprecated and will be removed soon
 - 🌪️ *filter*: a.k.a. *parse* These types perform some kind of test. If the input passes the test, the input is returned. Otherwise, it returns `never`
 - 🛡️ *guard*: type guard function
-- 💥 *immediate*: The effect of the type can be observed immediately during development
-- 🏃 *runtime*: The function has runtime effect
+- 💥 *immediate*: the effect of the type can be observed immediately during development
+- ㊙️ *internal*: the type is internal and should not be used directly
+- 🏃 *runtime*: the function has runtime effect
 - 🩳 *shortcut*: Shortcut or convenient types
-- 🧪 *testing*: The type or function are designed for test
-- ⚗️ *transform*: These types transforms the input to another category
+- 🧪 *testing*: the type or function are designed for test
+- ⚗️ *transform*: these types transforms the input to another category
 - 🦴 *utilities*: provide various functionalities
 - 🎭 *validate*: a.k.a. *predicate* or *logical*. These types perform some kind of test. If the input passes the test, it returns `true` or `false`
 
@@ -378,50 +380,50 @@ You can learn more in their respective sections:
 
 ### [any](./ts/any/readme.md)
 
-- [`AnyType<T>`](./ts/any/readme.md#anytype)
-- [`IsAny<T>`](./ts/any/readme.md#isany)
-- [`NotAnyType<T>`](./ts/any/readme.md#notanytype)
-- [`IsNotAny<T>`](./ts/any/readme.md#isnotany)
-- [`AnyOrNeverType<T>`](./ts/mix_types/readme.md#anyornevertype)
-- [`IsAnyOrNever<T>`](./ts/mix_types/readme.md#isanyornever)
+- [`AnyType`](./ts/any/readme.md#anytype)
+- [`IsAny`](./ts/any/readme.md#isany)
+- [`NotAnyType`](./ts/any/readme.md#notanytype)
+- [`IsNotAny`](./ts/any/readme.md#isnotany)
+- [`AnyOrNeverType`](./ts/mix_types/readme.md#anyornevertype)
+- [`IsAnyOrNever`](./ts/mix_types/readme.md#isanyornever)
 
 ### [Array](./ts/array/readme.md)
 
-- [`ArrayType<T>`](./ts/array/readme.md#arraytype)
-- [`IsArray<T>`](./ts/array/readme.md#isarray)
-- [`NotArrayType<T>`](./ts/array/readme.md#notarraytype)
-- [`IsNotArrayType<T>`](./ts/array/readme.md#isnotarraytype)
-- [`At<T>`](./ts/array/readme.md#at)
-- [`Concat<T>`](./ts/array/readme.md#concat)
-- [`FindFirst<T>`](./ts/array/readme.md#findfirst)
-- [`FindLast<T>`](./ts/array/readme.md#findlast)
-- [`Some<T>`](./ts/array/readme.md#some)
-- [`Filter<T>`](./ts/array/readme.md#filter)
-- [`KeepMatch<T>`](./ts/array/readme.md#keepmatch)
-- [`Head<T>`](./ts/array/readme.md#head)
-- [`IntersectOfProps<T>`](./ts/array/readme.md#intersectofprops)
-- [`MapToProp<T>`](./ts/array/readme.md#maptoprop)
-- [`Last<T>`](./ts/array/readme.md#last)
-- [`literalArray<T>`](./ts/array/readme.md#literalarray)
-- [`PadStart<T>`](./ts/array/readme.md#padstart)
+- [`ArrayType`](./ts/array/readme.md#arraytype): 🌪️ Filter `T` to ensure it is an array, excluding tuple.
+- [`IsArray`](./ts/array/readme.md#isarray): 🎭 Validate that `T` is an array, excluding tuple.
+- [`NotArrayType`](./ts/array/readme.md#notarraytype): 🌪️ Filter `T` to ensure it is not an array, excluding tuple.
+- [`IsNotArrayType`](./ts/array/readme.md#isnotarraytype): 🎭 Validate that `T` is not an array, excluding tuple.
+- [`At`](./ts/array/readme.md#at): 🦴 Gets the type of the array or tuple at positive or negative index `N`.
+- [`Concat`](./ts/array/readme.md#concat): 🦴 💀 Concats two arrays or tuples.
+- [`FindFirst`](./ts/array/readme.md#findfirst): 🦴 🔢 Find the first type in the array or tuple `A` that matches `Criteria`.
+- [`FindLast`](./ts/array/readme.md#findlast)
+- [`Some`](./ts/array/readme.md#some)
+- [`Filter`](./ts/array/readme.md#filter)
+- [`KeepMatch`](./ts/array/readme.md#keepmatch)
+- [`Head`](./ts/array/readme.md#head)
+- [`IntersectOfProps`](./ts/array/readme.md#intersectofprops)
+- [`MapToProp`](./ts/array/readme.md#maptoprop)
+- [`Last`](./ts/array/readme.md#last)
+- [`literalArray`](./ts/array/readme.md#literalarray)
+- [`PadStart`](./ts/array/readme.md#padstart)
 - [`reduceWhile`](./ts/array/readme.md#reducewhile)
-- [`Reverse<T>`](./ts/array/readme.md#reverse)
-- [`PropUnion<T>`](./ts/array/readme.md#propunion)
-- [`UnionOfProps<T>`](./ts/array/readme.md#unionofprops)
-- [`UnionOfValues<T>`](./ts/array/readme.md#unionofvalues)
-- [`ArrayPlus.At<T>`](./ts/array/readme.md#arrayplusat)
-- [`ArrayPlus.Concat<T>`](./ts/array/readme.md#arrayplusconcat)
-- [`ArrayPlus.Entries<T>`](./ts/array/readme.md#arrayplusentries)
-- [`ArrayPlus.Find<T>`](./ts/array/readme.md#arrayplusfind)
-- [`ArrayPlus.FindLast<T>`](./ts/array/readme.md#arrayplusfindlast)
-- [`ArrayPlus.Reverse<T>`](./ts/array/readme.md#arrayplusreverse)
-- [`ArrayPlus.SplitAt<T>`](./ts/array/readme.md#arrayplussplitat)
-- [`ArrayPlus.Some<T>`](./ts/array/readme.md#arrayplussome)
+- [`Reverse`](./ts/array/readme.md#reverse)
+- [`PropUnion`](./ts/array/readme.md#propunion)
+- [`UnionOfProps`](./ts/array/readme.md#unionofprops)
+- [`UnionOfValues`](./ts/array/readme.md#unionofvalues)
+- [`ArrayPlus.At`](./ts/array/readme.md#arrayplusat)
+- [`ArrayPlus.Concat`](./ts/array/readme.md#arrayplusconcat)
+- [`ArrayPlus.Entries`](./ts/array/readme.md#arrayplusentries)
+- [`ArrayPlus.Find`](./ts/array/readme.md#arrayplusfind): 🦴 🔢 Finds the type in array `A` that matches `Criteria`.
+- [`ArrayPlus.FindLast`](./ts/array/readme.md#arrayplusfindlast)
+- [`ArrayPlus.Reverse`](./ts/array/readme.md#arrayplusreverse)
+- [`ArrayPlus.SplitAt`](./ts/array/readme.md#arrayplussplitat)
+- [`ArrayPlus.Some`](./ts/array/readme.md#arrayplussome)
 
 ### [union](./ts/union/readme.md)
 
-- [`IsUnion<T>`](./ts/union//readme.md#isunion)
-- [`UnionType<T>`](./ts/union/readme.md#uniontype)
+- [`IsUnion`](./ts/union//readme.md#isunion)
+- [`UnionType`](./ts/union/readme.md#uniontype)
 
 ### bigint
 
@@ -763,21 +765,10 @@ You can learn more in their respective sections:
 
 ### tuple
 
-> [`TupleType<T>`](ts/tuple/readme.md#type-checking)
-
-↪️ `parse`: is a tuple.
-
-> [`IsTuple<T>`](ts/tuple/readme.md#type-checking)
-
-⭕ `predicate`: is a tuple.
-
-> [`NotTupleType<T>`](ts/tuple/readme.md#type-checking)
-
-↪️ `parse`: is not a tuple.
-
-> [`IsNotTuple<T>`](ts/tuple/readme.md#type-checking)
-
-⭕ `predicate`: is not a tuple.
+- [`TupleType`](./ts/tuple/readme.md#tupletype): 🌪️ Filter `T` to ensure it is a tuple, excluding array.
+- [`IsTuple`](./ts/tuple/readme.md#istuple): 🎭 Validate that `T` is a tuple, excluding array.
+- [`NotTupleType`](./ts/tuple/readme.md#nottupletype): 🌪️ Filter `T` to ensure it is not an tuple, excluding array.
+- [`IsNotTuple`](./ts/tuple/readme.md#isnottupletype): 🎭 Validate that `T` is not an tuple, excluding array.
 
 > `CommonPropKeys<A>`
 

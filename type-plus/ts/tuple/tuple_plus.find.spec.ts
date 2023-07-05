@@ -7,22 +7,43 @@ test('behavior of tuple.find()', () => {
 	testType.equal<typeof r, 1 | 2 | '3' | undefined>(true)
 })
 
+it('returns never if input is never', () => {
+	testType.equal<TuplePlus.Find<never, number>, never>(true)
+})
+
+it('can override the never case', () => {
+	testType.equal<TuplePlus.Find<never, 1, { caseNever: 2 }>, 2>(true)
+})
+
 it('returns never for empty tuple', () => {
 	testType.equal<TuplePlus.Find<[], number>, never>(true)
 })
 
 it('can override empty tuple case', () => {
-	testType.equal<TuplePlus.Find<[], number, { empty_tuple: 1 }>, 1>(true)
+	testType.equal<TuplePlus.Find<[], number, { caseEmptyTuple: 1 }>, 1>(true)
 })
 
 it('does not work with array type', () => {
 	testType.equal<TuplePlus.Find<string[], number>, 'does not support array. Please use `FindFirst` or `ArrayPlus.Find` instead.'>(true)
 })
 
+it('can override array case', () => {
+	testType.equal<TuplePlus.Find<string[], number, { caseArray: 1 }>, 1>(true)
+})
+
+it('no match gets never', () => {
+	testType.equal<TuplePlus.Find<[true, 1, 'x'], 2>, never>(true)
+})
+
+it('can override no_match case', () => {
+	testType.equal<TuplePlus.Find<[true, 1, 'x'], 2, { caseNoMatch: 1 }>, 1>(true)
+})
+
 it('pick first type matching criteria', () => {
 	testType.equal<TuplePlus.Find<[true, 1, 'x', 3], 1>, 1>(true)
 	testType.equal<TuplePlus.Find<[true, 1, 'x', 3], 'x'>, 'x'>(true)
 	testType.equal<TuplePlus.Find<[true, 1, 'x', 3], true>, true>(true)
+	testType.equal<TuplePlus.Find<[true, 1, 'x', 3], false>, never>(true)
 })
 
 it('uses widen type to match literal types', () => {
@@ -31,9 +52,26 @@ it('uses widen type to match literal types', () => {
 	testType.equal<TuplePlus.Find<[true, 1, 'x', 3], boolean>, true>(true)
 })
 
-it('no match gets never', () => {
-	type Actual = TuplePlus.Find<[true, 1, 'x'], 2>
-	testType.equal<Actual, never>(true)
+it('returns Criteria | undefined if T is a widen type of Criteria', () => {
+	testType.equal<TuplePlus.Find<[number, 1, 2], 1>, 1 | undefined>(true)
+	testType.equal<TuplePlus.Find<[string | number], 1>, 1 | undefined>(true)
+	testType.equal<TuplePlus.Find<[{ a: number } | { b: number }], { a: 1 }>, { a: 1 } | undefined>(true)
+})
+
+it('can override widen case', () => {
+	testType.equal<TuplePlus.Find<[number, string], 1, { caseWiden: 12 }>, 12>(true)
+})
+
+it('can disable widen', () => {
+	testType.equal<TuplePlus.Find<[number], 1, { widen: false }>, never>(true)
+})
+
+it('returns T | undefined for element T if T is a union satisfies the Criteria', () => {
+	testType.equal<TuplePlus.Find<[string | number], number>, number | undefined>(true)
+})
+
+it('can override the union_miss case', () => {
+	testType.equal<TuplePlus.Find<[string | number], number, { caseUnionMiss: never }>, number>(true)
 })
 
 it('pick object', () => {

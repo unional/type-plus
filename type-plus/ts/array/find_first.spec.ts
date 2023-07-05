@@ -18,7 +18,7 @@ describe('For Array', () => {
 	})
 
 	it('can override widen case', () => {
-		testType.equal<FindFirst<number[], 1, { widen: never }>, never>(true)
+		testType.equal<FindFirst<number[], 1, { caseWiden: never }>, never>(true)
 	})
 
 	it('returns T | undefined for T[] if T is a union satisfies the Criteria', () => {
@@ -36,7 +36,7 @@ describe('for Tuple', () => {
 	})
 
 	it('can override empty tuple case', () => {
-		testType.equal<FindFirst<[], number, { empty_tuple: 1 }>, 1>(true)
+		testType.equal<FindFirst<[], number, { caseEmptyTuple: 1 }>, 1>(true)
 	})
 
 	it('pick first type matching criteria', () => {

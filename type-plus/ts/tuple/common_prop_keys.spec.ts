@@ -1,18 +1,13 @@
 import { it } from '@jest/globals'
 import { testType, type CommonPropKeys } from '../index.js'
 
-it('returns all keys from record entry in array', () => {
-	testType.equal<
-		CommonPropKeys<Array<{ a: number }>>,
-		'a'
-	>(true)
+it('returns all common keys from record entry in array', () => {
+	testType.equal<CommonPropKeys<Array<{ a: 1 }>>, 'a'>(true)
+	testType.equal<CommonPropKeys<Array<{ a: 1, b: 1 } | { a: 1, c: 1 }>>, 'a'>(true)
 })
 
 it('can override array behavior', () => {
-	testType.equal<
-		CommonPropKeys<Array<{ a: number }>, { 'array': 123 }>,
-		123
-	>(true)
+	testType.equal<CommonPropKeys<Array<{ a: 1 }>, { caseArray: 123 }>, 123>(true)
 })
 
 it('returns never when there is no common keys', () => {
@@ -23,7 +18,7 @@ it('returns never when there is no common keys', () => {
 
 it('can override no common keys behavior', () => {
 	type S = [{ a: number }, { b: number }]
-	testType.equal<CommonPropKeys<S, { no_common_keys: 1 }>, 1>(true)
+	testType.equal<CommonPropKeys<S, { caseNoCommonKeys: 1 }>, 1>(true)
 })
 
 it('gets all keys from single entry', () => {
@@ -66,7 +61,7 @@ it('gets common number keys', () => {
 it('gets common keys from multiple entries', () => {
 	testType.equal<CommonPropKeys<[{ a: number }, { b: number }, { c: number }]>, never>(true)
 	testType.equal<
-		CommonPropKeys<[{ a: number }, { b: number }, { c: number }], { no_common_keys: 1 }>,
+		CommonPropKeys<[{ a: number }, { b: number }, { c: number }], { caseNoCommonKeys: 1 }>,
 		1
 	>(true)
 

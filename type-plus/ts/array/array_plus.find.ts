@@ -1,55 +1,67 @@
-import type { IsNever } from '../never/never_type.js'
+import type { NeverType } from '../never/never_type.js'
 import type { TupleType } from '../tuple/tuple_type.js'
-import type { IsUnion } from '../union/union.js'
+import type { MergeOptions } from '../utils/options.js'
+import type { ElementMatch } from './array_plus.element_match.js'
 
 /**
  * 🦴 *utilities*
+ * 🔢 *customizable*
  *
- * Finds the type in array `A` that matches the `Criteria`.
- *
- * @typeParam Cases['never'] return type when `A` is `never`. Default to `never`.
- * @typeParam Cases['tuple'] return type when `A` is a tuple. Default to `not supported` message.
- * @typeParam Cases['widen'] return type when `T` in `A` is a widen type of `Criteria`.
- * Default to `Criteria | undefined`.
- * Set it to `never` for a more type-centric behavior
- * @typeParam Cases['union_miss'] additional type to return when `T` in `A` is a union type,
- * and it partially match `Criteria`.
- * Meaning this type represent the case when the `Criteria` is not met.
- * Default to `undefined`.
+ * Finds the type in array `A` that matches `Criteria`.
  *
  * @example
  * ```ts
- * ArrayPlus.Find<Array<string>, string> // string
- * ArrayPlus.Find<Array<string | number>, string> // string | undefined
- * ArrayPlus.Find<Array<number>, 1> // 1 | undefined
+ * type R = ArrayPlus.Find<Array<string>, string> // string
+ * type R = ArrayPlus.Find<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
+ * type R = ArrayPlus.Find<Array<string | number>, number | string> // string | number
+ * type R = ArrayPlus.Find<Array<number>, 1> // widen: 1 | undefined
+ * type R = ArrayPlus.Find<Array<string | number>, number> // unionMiss: number | undefined
  *
- * ArrayPlus.Find<Array<number>, string> // never
+ * type R = ArrayPlus.Find<string[], number> // never
  * ```
+ *
+ * @typeParam Options['widen'] performs widen match.
+ * Default to `true`.
+ * With widen match, a narrowed type will match its widen type.
+ * e.g. matching `1` against `number` yields `1 | undefined`
+ *
+ * The widen behavior can be customized by `Options['caseWiden']`
+ *
+ * @typeParam Options['caseNever'] return type when `A` is `never`. Default to `never`.
+ *
+ * @typeParam Options['caseNoMatch'] Return value when `T` does not match `Criteria`.
+ * Default to `never`.
+ *
+ * @typeParam Options['caseTuple'] return type when `A` is a tuple. Default to `not supported` message.
+ *
+ * @typeParam Options['caseWiden'] return type when `T` in `A` is a widen type of `Criteria`.
+ * Default to `Criteria | undefined`.
+ * Set it to `never` for a more type-centric behavior
+ *
+ * @typeParam Options['caseUnionMiss'] Return value when a branch of the union `T` does not match `Criteria`.
+ * Default to `undefined`.
+ * Since it is a union, the result will be join to the matched branch as union.
  */
-export type Find<A extends unknown[], Criteria, Cases extends {
-	never?: unknown,
-	tuple?: unknown,
-	widen?: unknown,
-	union_miss?: unknown
-} = {
-	never: never,
-	tuple: 'does not support tuple. Please use `FindFirst` or `TuplePlus.Find` instead.',
-	widen: Criteria | undefined,
-	union_miss: undefined
-}> =
-	TupleType<
+export type Find<
+	A extends unknown[],
+	Criteria,
+	Options extends Find.Options = Find.DefaultOptions<Criteria>
+> =
+	MergeOptions<Options, Find.DefaultOptions<Criteria>> extends infer O extends Find.Options
+	? TupleType<
 		A,
-		Cases['tuple'],
-		A extends Array<infer T>
-		? ([T] extends [Criteria]
-			? T
-			: ((T extends Criteria
-				? T
-				: (Criteria extends T
-					? Cases['widen']
-					: never)) extends infer R
-				? IsUnion<T, IsNever<R, R, R | Cases['union_miss']>, R>
-				: never))
-		: never,
-		{ never: Cases['never'] }
+		O['caseTuple'],
+		A extends Array<infer T> ? ElementMatch<T, Criteria, O> : never,
+		O
 	>
+	: never
+
+export namespace Find {
+	export interface Options extends ElementMatch.Options, NeverType.Options {
+		caseTuple?: unknown,
+	}
+
+	export interface DefaultOptions<Criteria> extends ElementMatch.DefaultOptions<Criteria>, NeverType.DefaultOptions {
+		caseTuple: 'does not support tuple. Please use `FindFirst` or `TuplePlus.Find` instead.',
+	}
+}

@@ -53,3 +53,16 @@ export type NotUnknownType<T, Then = T, Else = never> = UnknownType<T, Else, The
  * ```
  */
 export type IsNotUnknown<T, Then = true, Else = false> = UnknownType<T, Else, Then>
+
+/**
+ * 🌪️ *filter*
+ *
+ * Returns `T` if `T` is not `unknown`, otherwise `Else`.
+ *
+ * @example
+ * ```ts
+ * type R = NotUnknownOr<number, string> // number
+ * type R = NotUnknownOr<unknown, number> // number
+ * ```
+ */
+export type NotUnknownOr<T, Else> = UnknownType<T, Else, T>

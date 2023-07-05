@@ -12,11 +12,15 @@ it('returns never if input is never', () => {
 })
 
 it('can override the never case', () => {
-	testType.equal<ArrayPlus.Find<never, 1, { never: 2 }>, 2>(true)
+	testType.equal<ArrayPlus.Find<never, 1, { caseNever: 2 }>, 2>(true)
 })
 
 it('returns never if the type in the array does not satisfy the criteria', () => {
 	testType.equal<ArrayPlus.Find<string[], number>, never>(true)
+})
+
+it('can override no_match case', () => {
+	testType.equal<ArrayPlus.Find<number[], string, { caseNoMatch: 'a' }>, 'a'>(true)
 })
 
 it('returns T if T satisfies the Criteria', () => {
@@ -31,7 +35,7 @@ it('returns Criteria | undefined if T is a widen type of Criteria', () => {
 })
 
 it('can override widen case', () => {
-	testType.equal<ArrayPlus.Find<number[], 1, { widen: never }>, never>(true)
+	testType.equal<ArrayPlus.Find<number[], 1, { caseWiden: never }>, never>(true)
 })
 
 it('does not support tuple', () => {
@@ -52,9 +56,21 @@ it('returns T | undefined for T[] if T is a union satisfies the Criteria', () =>
 	testType.equal<ArrayPlus.Find<Array<1 | 2 | 'x'>, number>, 1 | 2 | undefined>(true)
 })
 
-it('can override the not_found case', () => {
-	testType.equal<
-		ArrayPlus.Find<Array<string | number>, number, { union_miss: never }>,
-		number
-	>(true)
+it('handles union_miss and widen cases separately', () => {
+	testType.equal<ArrayPlus.Find<Array<string | number>, 1, {
+		caseWiden: 234,
+		caseUnionMiss: 123
+	}>, 123 | 234>(true)
+})
+
+it('can override the union_miss case', () => {
+	testType.equal<ArrayPlus.Find<Array<string | number>, number, { caseUnionMiss: never }>, number>(true)
+})
+
+it('will not affect other cases', () => {
+	testType.equal<ArrayPlus.Find<Array<string | number>, number, { caseNever: 123 }>, number | ArrayPlus.Find.DefaultOptions<unknown>['caseUnionMiss']>(true)
+	testType.equal<ArrayPlus.Find<never, 1, { caseNoMatch: 123 }>, ArrayPlus.Find.DefaultOptions<unknown>['caseNever']>(true)
+	testType.equal<ArrayPlus.Find<number[], string, { caseTuple: 123 }>, ArrayPlus.Find.DefaultOptions<unknown>['caseNoMatch']>(true)
+	testType.equal<ArrayPlus.Find<[], 1, { caseWiden: 123 }>, ArrayPlus.Find.DefaultOptions<unknown>['caseTuple']>(true)
+	testType.equal<ArrayPlus.Find<number[], 1, { caseUnionMiss: 123 }>, ArrayPlus.Find.DefaultOptions<1>['caseWiden']>(true)
 })

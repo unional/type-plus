@@ -15,7 +15,7 @@ The `TupleType<T>` and friends are used to check if `T` is a tuple, excluding ar
 
 🌪️ *filter*
 
-Filter `T` to ensure it is an array, excluding tuple.
+Filter `T` to ensure it is a tuple, excluding array.
 
 ```ts
 import type { TupleType } from 'type-plus'
@@ -39,7 +39,7 @@ Overridable cases:
 
 🎭 *validate*
 
-Validate that `T` is an array, excluding tuple.
+Validate that `T` is a tuple, excluding array.
 
 ```ts
 import type { IsTuple } from 'type-plus'
@@ -104,31 +104,34 @@ Overridable cases:
 
 - `never`: if `T` is `never`, it returns `Else`.
 
-## [CommonPropKeys](./common_prop_keys.ts#l17)
+## [CommonPropKeys](./common_prop_keys.ts#l25)
 
-`CommonPropKeys<T extends Record[], Cases = { array, no_common_keys }>`
+`CommonPropKeys<T extends Record[], Options = { caseArray, caseNoCommonKeys }>`
 
 ⚗️ *transform*
+🔢 *customizable*
 
 Gets the common property keys of the elements in tuple `T`.
 
 ```ts
 import { CommonPropKeys } from 'type-plus'
 
-type R = CommonPropKeys<[{ a: number }, { b: number }]> // never
-type R = CommonPropKeys<[{ a: number, c: 1 }, { b: number, c: 2 }]> // 'c'
+type R = CommonPropKeys<[{ a: 1, c: 1 }, { b: 1, c: 2 }]> // 'c'
+type R = CommonPropKeys<[{ a: 1 }, { b: 1 }]> // never
+type R = CommonPropKeys<Array<{ a: 1, b: 1 } | { a: 1, c: 1 }>> // caseArray: 'a'
+type R = CommonPropKeys<[{ a: 1 }, { b: 1 }]> // caseNoCommonKeys: never
+
+// customization
+type R = CommonPropKeys<Array<{ a: 1, b: 1 } | { a: 1, c: 1 }>, { caseArray: 1 }> // 1
+type R = CommonPropKeys<[{ a: 1 }, { b: 1 }], { caseNoCommonKeys: 1 }> // 1
 ```
 
-Overridable cases:
+## [DropFirst](./drop.ts#l26)
 
-- `array`: if `T` is array, it returns the key of the record type in the array.
-- `no_common_keys`: if there are no common keys, it returns `never`.
-
-## [DropFirst](./drop.ts#l19)
-
-`DropFirst<T extends unknown[], Cases = { array, empty_tuple }>`
+`DropFirst<T extends unknown[], Options = { caseArray, caseEmptyTuple }>`
 
 ⚗️ *transform*
+🔢 *customizable*
 
 Drops the first entry in the tuple `T`.
 
@@ -136,31 +139,36 @@ Drops the first entry in the tuple `T`.
 import { DropFirst } from 'type-plus'
 
 type R = DropFirst<[1, 2, 3]> // [2, 3]
+type R = DropFirst<[string]> // []
+type R = DropFirst<string[]> // caseArray: string[]
+type R = DropFirst<[]> // caseEmptyTuple: []
+
+// customization
+type R = DropFirst<string[], { caseArray: 1 }> // 1
+type R = DropFirst<[], { caseEmptyTuple: 1 }> // 1
 ```
 
-Overridable cases:
+## [DropLast](./drop.ts#l72)
 
-- `array`: if `T` is array, it returns `T`.
-- `empty_tuple`: if `T` is `[]`, it returns `[]`.
-
-## [DropLast](./drop.ts#l50)
-
-`DropLast<T extends unknown[], Cases = { array, empty_tuple }>`
+`DropLast<T extends unknown[], Options = { array, empty_tuple }>`
 
 ⚗️ *transform*
+🔢 *customizable*
 
 Drops the last entry in the tuple `T`.
 
 ```ts
 import { DropLast } from 'type-plus'
 
-type R = DropLast<[1, 2, 3]> // [1, 2]
+type R = DropLast<[1, 2, 3]> // [2, 3]
+type R = DropLast<[string]> // []
+type R = DropLast<string[]> // caseArray: string[]
+type R = DropLast<[]> // caseEmptyTuple: []
+
+// customization
+type R = DropLast<string[], { caseArray: 1 }> // 1
+type R = DropLast<[], { caseEmptyTuple: 1 }> // 1
 ```
-
-Overridable cases:
-
-- `array`: if `T` is array, it returns `T`.
-- `empty_tuple`: if `T` is `[]`, it returns `[]`.
 
 ## [DropMatch](./drop.ts)
 
@@ -193,6 +201,35 @@ Filter entries matching `Criteria` in tuple `T`.
 import { TuplePlus } from 'type-plus'
 
 type R = TuplePlus.Filter<[1, 2, '3'], number> // [1, 2]
+```
+
+### [`TuplePlus.Find`](./tuple_plus.find.ts#l47)
+
+`TuplePlus.Find<A, Criteria, Options { widen, caseArray, caseEmptyTuple, caseNever, caseNoMatch, caseWiden, caseUnionMiss }>`
+
+🦴 *utilities*
+🔢 *customizable*
+
+Finds the type in tuple `A` that matches `Criteria`.
+
+```ts
+import type { TuplePlus } from 'type-plus'
+
+type R = TuplePlus.Find<[true, 1, 'x', 3], string> // 'x'
+type R = TuplePlus.Find<[true, 1, 'x', 3], number> // 1
+type R = TuplePlus.Find<[string, number, 1], 1> // widen: 1 | undefined
+type R = TuplePlus.Find<[true, number | string], string> // unionMiss: string | undefined
+
+type R = TuplePlus.Find<[true, 1, 'x'], 2> // never
+
+// customization
+type R = TuplePlus.Find<[number], 1, { widen: false }> // never
+type R = TuplePlus.Find<string[], 1, { caseArray: 2 }> // 2
+type R = TuplePlus.Find<[], 1, { caseEmptyTuple: 2 }> // 2
+type R = TuplePlus.Find<never, 1, { caseNever: 2 }> // 2
+type R = TuplePlus.Find<[string], number, { caseNoMatch: 2 }> // 2
+type R = TuplePlus.Find<[number], 1, { caseWiden: never }> // never
+type R = TuplePlus.Find<[string | number], number, { caseUnionMiss: never }> // number
 ```
 
 ### [TuplePlus.PadStart](./tuple_plus.pad_start.ts)

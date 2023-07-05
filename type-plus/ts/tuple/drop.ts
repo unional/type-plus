@@ -2,11 +2,12 @@ import type { IsEqual } from '../equal/equal.js'
 import type { NonNull, NonUndefined } from '../utils/index.js'
 
 /**
+ * ⚗️ *transform*
+ * 🔢 *customizable*
+ *
  * Drops the first entry in the tuple `T`.
  *
  * If the type is an array, the same array will be returned.
- *
- * ⚗️ *transform*
  *
  * @example
  * ```ts
@@ -15,29 +16,44 @@ import type { NonNull, NonUndefined } from '../utils/index.js'
  * type R = DropFirst<[]> // []
  * type R = DropFirst<string[]> // string[]
  * ```
+ *
+ * @typeParam Options['caseArray'] Return type when `T` is `Array`.
+ * Default to `T`.
+ *
+ * @typeParam Options['caseEmptyTuple'] Return type when `T` is an empty tuple.
+ * Default to `[]`.
  */
-export type DropFirst<T extends unknown[], Cases extends {
-	'array'?: unknown,
-	'empty_tuple'?: unknown,
-} = {
-	'array': T,
-	'empty_tuple': [],
-}> = number extends T['length']
-	? Cases['array']
+export type DropFirst<
+	T extends unknown[],
+	Options extends DropFirst.Options = DropFirst.DefaultOptions<T>
+> = number extends T['length']
+	? Options['caseArray']
 	: T['length'] extends 0
-	? Cases['empty_tuple']
+	? Options['caseEmptyTuple']
 	: T['length'] extends 1
 	? []
 	: T extends [any, ...infer Tail]
 	? Tail
 	: never
 
+export namespace DropFirst {
+	export interface Options {
+		caseArray?: unknown,
+		caseEmptyTuple?: unknown,
+	}
+	export interface DefaultOptions<T> {
+		caseArray: T,
+		caseEmptyTuple: []
+	}
+}
+
 /**
+ * ⚗️ *transform*
+ * 🔢 *customizable*
+ *
  * Drops the last entry in the tuple `T`.
  *
  * If the type is an array, the same array will be returned.
- *
- * ⚗️ *transform*
  *
  * @example
  * ```ts
@@ -46,29 +62,44 @@ export type DropFirst<T extends unknown[], Cases extends {
  * type R = DropLast<[]> // []
  * type R = DropLast<string[]> // string[]
  * ```
+ *
+ * @typeParam Options['caseArray'] Return type when `T` is `Array`.
+ * Default to `T`.
+ *
+ * @typeParam Options['caseEmptyTuple'] Return type when `T` is an empty tuple.
+ * Default to `[]`.
  */
-export type DropLast<T extends unknown[], Cases extends {
-	'array'?: unknown,
-	'empty_tuple'?: unknown,
-} = {
-	'array': T,
-	'empty_tuple': [],
-}> = number extends T['length']
-	? Cases['array']
+export type DropLast<
+	T extends unknown[],
+	Cases extends DropLast.Options = DropLast.DefaultOptions<T>
+> = number extends T['length']
+	? Cases['caseArray']
 	: T['length'] extends 0
-	? Cases['empty_tuple']
+	? Cases['caseEmptyTuple']
 	: T['length'] extends 1
 	? []
 	: T extends [...infer Heads, any]
 	? Heads
 	: never
 
+
+export namespace DropLast {
+	export interface Options {
+		caseArray?: unknown,
+		caseEmptyTuple?: unknown,
+	}
+	export interface DefaultOptions<T> {
+		caseArray: T,
+		caseEmptyTuple: []
+	}
+}
+
 type ExcludeUnionOfEmptyTuple<A> = IsEqual<A, []> extends true ? A : Exclude<A, []>
 
 /**
- * drops entries matching `Criteria` in array or tuple `A`.
- *
  * ⚗️ *transform*
+ *
+ * Drops entries matching `Criteria` in array or tuple `A`.
  *
  * @example
  * ```ts
@@ -119,6 +150,6 @@ export type DropUndefined<A extends Array<any>> = DropMatch<A, undefined>
  *
  * 💀 *deprecated* the type does not sufficiently cover the use cases.
  */
-export function drop<A extends Readonly<unknown[]>, const C> (array: A, value: C): DropMatch < A, C > {
+export function drop<A extends Readonly<unknown[]>, const C>(array: A, value: C): DropMatch<A, C> {
 	return array.filter(v => v !== value) as DropMatch<A, C>
 }

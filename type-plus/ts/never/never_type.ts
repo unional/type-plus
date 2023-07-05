@@ -55,3 +55,16 @@ export type IsNever<T, Then = true, Else = false> = NeverType<T, Then, Else>
  * type R = IsNotNever<never> // false
  */
 export type IsNotNever<T, Then = true, Else = false> = NeverType<T, Else, Then>
+
+export namespace NeverType {
+	/**
+	 * Type options when input type is `never`.
+	 */
+	export interface Options {
+		caseNever?: unknown
+	}
+
+	export interface DefaultOptions {
+		caseNever: never
+	}
+}
