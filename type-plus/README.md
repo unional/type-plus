@@ -389,13 +389,13 @@ You can learn more in their respective sections:
 
 ### [Array](./ts/array/readme.md)
 
-- [`ArrayType`](./ts/array/readme.md#arraytype): 🌪️ Filter `T` to ensure it is an array, excluding tuple.
-- [`IsArray`](./ts/array/readme.md#isarray): 🎭 Validate that `T` is an array, excluding tuple.
-- [`NotArrayType`](./ts/array/readme.md#notarraytype): 🌪️ Filter `T` to ensure it is not an array, excluding tuple.
-- [`IsNotArrayType`](./ts/array/readme.md#isnotarraytype): 🎭 Validate that `T` is not an array, excluding tuple.
-- [`At`](./ts/array/readme.md#at): 🦴 Gets the type of the array or tuple at positive or negative index `N`.
-- [`Concat`](./ts/array/readme.md#concat): 🦴 💀 Concats two arrays or tuples.
-- [`FindFirst`](./ts/array/readme.md#findfirst): 🦴 🔢 Find the first type in the array or tuple `A` that matches `Criteria`.
+- 🌪️[`ArrayType`](./ts/array/readme.md#arraytype): Filter `T` to ensure it is an array, excluding tuple.
+- 🎭[`IsArray`](./ts/array/readme.md#isarray): Validate that `T` is an array, excluding tuple.
+- 🌪️[`NotArrayType`](./ts/array/readme.md#notarraytype): Filter `T` to ensure it is not an array, excluding tuple.
+- 🎭[`IsNotArrayType`](./ts/array/readme.md#isnotarraytype): Validate that `T` is not an array, excluding tuple.
+- 🦴[`At`](./ts/array/readme.md#at): Gets the type of the array or tuple at positive or negative index `N`.
+- 🦴💀[`Concat`](./ts/array/readme.md#concat): Concats two arrays or tuples.
+- 🦴🔢[`FindFirst`](./ts/array/readme.md#findfirst): Find the first type in the array or tuple `A` that matches `Criteria`.
 - [`FindLast`](./ts/array/readme.md#findlast)
 - [`Some`](./ts/array/readme.md#some)
 - [`Filter`](./ts/array/readme.md#filter)
@@ -414,7 +414,7 @@ You can learn more in their respective sections:
 - [`ArrayPlus.At`](./ts/array/readme.md#arrayplusat)
 - [`ArrayPlus.Concat`](./ts/array/readme.md#arrayplusconcat)
 - [`ArrayPlus.Entries`](./ts/array/readme.md#arrayplusentries)
-- [`ArrayPlus.Find`](./ts/array/readme.md#arrayplusfind): 🦴 🔢 Finds the type in array `A` that matches `Criteria`.
+- 🦴🔢[`ArrayPlus.Find`](./ts/array/readme.md#arrayplusfind): Finds the type in array `A` that matches `Criteria`.
 - [`ArrayPlus.FindLast`](./ts/array/readme.md#arrayplusfindlast)
 - [`ArrayPlus.Reverse`](./ts/array/readme.md#arrayplusreverse)
 - [`ArrayPlus.SplitAt`](./ts/array/readme.md#arrayplussplitat)
@@ -765,14 +765,14 @@ You can learn more in their respective sections:
 
 ### tuple
 
-- [`TupleType`](./ts/tuple/readme.md#tupletype): 🌪️ Filter `T` to ensure it is a tuple, excluding array.
-- [`IsTuple`](./ts/tuple/readme.md#istuple): 🎭 Validate that `T` is a tuple, excluding array.
-- [`NotTupleType`](./ts/tuple/readme.md#nottupletype): 🌪️ Filter `T` to ensure it is not an tuple, excluding array.
-- [`IsNotTuple`](./ts/tuple/readme.md#isnottupletype): 🎭 Validate that `T` is not an tuple, excluding array.
-
-> `CommonPropKeys<A>`
-
-🔨 `utilities`: gets common keys inside the records in the array `A` (deprecate `CommonKeys`).
+- 🌪️ [`TupleType`](./ts/tuple/readme.md#tupletype): Filter `T` to ensure it is a tuple, excluding array.
+- 🎭 [`IsTuple`](./ts/tuple/readme.md#istuple): Validate that `T` is a tuple, excluding array.
+- 🌪️ [`NotTupleType`](./ts/tuple/readme.md#nottupletype): Filter `T` to ensure it is not an tuple, excluding array.
+- 🎭 [`IsNotTuple`](./ts/tuple/readme.md#isnottupletype): Validate that `T` is not an tuple, excluding array.
+- ⚗️🔢[`CommonPropKeys`](./ts/tuple/readme.md#commonpropkeys): Gets the common property keys of the elements in tuple `T`.
+- ⚗️💀`CommonKeys`: Deprecated. Please use `CommonPropKeys` instead.
+- ⚗️🔢[`DropFirst`](./ts/tuple/readme.md#dropfirst): Drops the first entry in the tuple`T`.
+- ⚗️🔢[`DropLast`](./ts/tuple/readme.md#droplast): Drops the last entry in the tuple`T`.
 
 > `CreateTuple<L, T>`
 
@@ -781,14 +781,6 @@ You can learn more in their respective sections:
 > `drop(array, value)`
 
 🔨 `utilities`: drop a particular value from an array.
-
-> `DropFirst<A>`
-
-🔨 `utilities`: drops the first value type of `A`.
-
-> `DropLast<A>`
-
-🔨 `utilities`: drops the last value type of `A`.
 
 > `DropMatch<A, Criteria>`
 
