@@ -21,14 +21,19 @@ describe('For Array', () => {
 		testType.equal<FindFirst<number[], 1, { caseWiden: never }>, never>(true)
 	})
 
-	it('returns T | undefined for T[] if T is a union satisfies the Criteria', () => {
+	it('returns Criteria if T is a union partially satisfies the Criteria', () => {
+		testType.equal<FindFirst<Array<string | number>, number>, number>(true)
+		testType.equal<FindFirst<Array<1 | 2 | 'x'>, number>, 1 | 2>(true)
+	})
+
+	it('can override unionNotMach to `undefined`', () => {
 		// adding `undefined` to the result better match the behavior in JavaScript,
 		// as an array of `Array<string | number>` can contains only `string` or `number`.
 		// so `Find<Array<string | number>, string>` returns `string | undefined`.
-		testType.equal<FindFirst<Array<string | number>, number>, number | undefined>(true)
-		testType.equal<FindFirst<Array<1 | 2 | 'x'>, number>, 1 | 2 | undefined>(true)
+		testType.equal<FindFirst<Array<string | number>, number, { caseUnionNotMatch: undefined }>, number | undefined>(true)
+		testType.equal<FindFirst<Array<1 | 2 | 'x'>, number, { caseUnionNotMatch: undefined }>, 1 | 2 | undefined>(true)
 	})
-})
+	})
 
 describe('for Tuple', () => {
 	it('returns never for empty tuple', () => {
