@@ -13,12 +13,14 @@ import type { IsTuple } from '../tuple/tuple_type.js'
  */
 export type Entries<A extends unknown[]> = IsTuple<
 	A,
-	Device<A, []>,
+	Entries.Device<A, []>,
 	A extends Array<infer T> ? Array<[number, T]> : never
 >
 
-type Device<A extends unknown[], R extends unknown[]> = A['length'] extends 0
+export namespace Entries {
+	export type Device<A extends unknown[], R extends unknown[]> = A['length'] extends 0
 	? R
 	: A extends [...infer F, infer N]
 	? Device<F, [[F['length'], N], ...R]>
 	: never
+}

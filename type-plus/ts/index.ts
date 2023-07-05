@@ -77,6 +77,7 @@ export type {
 	Zero
 } from './numeric/numeric_type.js'
 export type { IsNotPositive, IsPositive, NonPositive, Positive } from './numeric/positive.js'
+export type { Required, RequiredExcept, RequiredPick } from './object/Required.js'
 export * from './object/index.js'
 export type { IsNotObject, IsObject, NotObjectType, ObjectType } from './object/object_type.js'
 export * from './predicates/index.js'
@@ -114,6 +115,7 @@ export type { IsUnion, UnionType } from './union/union.js'
 export type { UnionKeys } from './union_keys.js'
 export type { IsNotUnknown, IsUnknown, NotUnknownType, UnknownType } from './unknown/unknown_type.js'
 export * from './unpartial.js'
-export type { MergeOptions as MergeCases } from './utils/options.js'
 export * from './utils/index.js'
+export type { MergeOptions as MergeCases } from './utils/options.js'
 export type { IsNotVoid, IsVoid, NotVoidType, VoidType } from './void/void_type.js'
+

@@ -12,7 +12,6 @@ export type { Partial, PartialExcept, PartialOmit, PartialPick } from './Partial
 export type * from './optional_key.js'
 export type { RecursiveIntersect } from './RecursiveIntersect.js'
 export type { RecursiveRequired } from './RecursiveRequired.js'
-export type { RequiredExcept, RequiredPick } from './Required.js'
 export type { RequiredKeys } from './RequiredKeys.js'
 export type { SpreadRecord } from './SpreadRecord.js'
 export type { ValueOf } from './ValueOf.js'
