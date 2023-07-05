@@ -1,6 +1,14 @@
 import { it } from '@jest/globals'
 import { testType, type AnyFunction, type Last } from '../index.js'
 
+it('returns never for empty tuple', () => {
+	testType.equal<Last<never>, never>(true)
+})
+
+it('can override never case', () => {
+	testType.equal<Last<never, { caseNever: 1 }>, 1>(true)
+})
+
 it('gets the type of an array', () => {
 	testType.equal<Last<any[]>, any>(true)
 	testType.equal<Last<never[]>, never>(true)
@@ -18,5 +26,5 @@ it('gets the last entry of a tuple', () => {
 })
 
 it('can override empty tuple behavior', () => {
-	testType.equal<Last<[], { empty_tuple: undefined }>, undefined>(true)
+	testType.equal<Last<[], { caseEmptyTuple: undefined }>, undefined>(true)
 })

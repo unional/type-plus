@@ -196,42 +196,56 @@ type R = KeepMatch<[1, 2, '3'], number> // [1, 2]
 type R = KeepMatch<Array<string | undefined>, string> // string[]
 ```
 
-## [`Head`](./head.ts#l14)
+## [`Head`](./head.ts#l23)
 
-`Head<T, Cases = { empty_tuple }>`
+`Head<T, Options = { caseNever, caseEmptyTuple }>`
 
 🦴 *utilities*
+🔢 *customizable*
 
-Gets the first entry in the tuple or the type of array.
+Gets the first entry in the tuple or the type of array `T`.
 
 ```ts
 import type { Head } from 'type-plus'
 
 type R = Head<[1, 2, 3]> // 1
 type R = Head<string[]> // string
+type R = Head<never> // caseNever: never
+type R = Head<[]> // caseEmptyTuple: never
 
-type R = Head<[]> // never
+// customization
+type R = Head<never, { caseNever: 1 }> // 1
+type R = Head<[], { caseEmptyTuple: undefined }> // undefined
+
+
+type R = Head<[]> // caseEmptyTuple: never
+type R = Head<[], { caseEmptyTuple: undefined }> // undefined
 ```
 
 ## [`IntersectOfProps`](./intersect_of_props.ts)
 
 ## [`MapToProp`](./intersect_of_props.ts)
 
-## [`Last`](./last.ts)
+## [`Last`](./last.ts#l23)
 
-`Last<T, Cases = { empty_tuple }>`
+`Last<T, Options = { caseNever, caseEmptyTuple }>`
 
 🦴 *utilities*
+🔢 *customizable*
 
-Gets the last entry in the tuple or the type of array.
+Gets the last entry in the tuple or the type of array `T`.
 
 ```ts
 import type { Last } from 'type-plus'
 
 type R = Last<[1, 2, 3]> // 3
 type R = Last<string[]> // string
+type R = Last<never> // caseNever: never
+type R = Last<[]> // caseEmptyTuple: never
 
-type R = Last<[]> // never
+// customization
+type R = Last<never, { caseNever: 1 }> // 1
+type R = Last<[], { caseEmptyTuple: undefined }> // undefined
 ```
 
 ## [`literalArray`](./literal_array.ts)
@@ -403,7 +417,7 @@ or with reduced capability.
 They are exposed under the `ArrayPlus` namespace,
 while some common ones are exposed at top-level.
 
-Here are the list of array methods and their corresponding type-level functions, if availableL
+Here are the list of array methods and their corresponding type-level functions, if available.
 
 - ✅ `at`: [`ArrayPlus.At`](#arrayplusat)
 - ✅ `concat`: [`Concat` | `ArrayPlus.Concat`](#arrayplusconcat) (`[...A, ...B]`)
