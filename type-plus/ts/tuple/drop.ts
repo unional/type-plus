@@ -1,5 +1,5 @@
-import type { IsEqual } from '../equal/equal.js'
-import type { NonNull, NonUndefined } from '../utils/index.js'
+import type { DropMatch as ArrayDropMatch } from '../array/array_plus.drop_match.js'
+import type { DropMatch as TupleDropMatch } from './tuple_plus.drop_match.js'
 
 /**
  * ⚗️ *transform*
@@ -94,7 +94,6 @@ export namespace DropLast {
 	}
 }
 
-type ExcludeUnionOfEmptyTuple<A> = IsEqual<A, []> extends true ? A : Exclude<A, []>
 
 /**
  * ⚗️ *transform*
@@ -108,38 +107,9 @@ type ExcludeUnionOfEmptyTuple<A> = IsEqual<A, []> extends true ? A : Exclude<A, 
  * type R = DropMatch<Array<1 | 2>, number> // never[]
  * ```
  */
-export type DropMatch<A extends Readonly<Array<unknown>>, Criteria> = number extends A['length']
-	? // array
-	A[0] extends Criteria
-	? // criteria matches: DropAll<string[], string>
-	never[]
-	: undefined extends Criteria
-	? null extends Criteria
-	? Array<NonNullable<A[0]>>
-	: Array<NonUndefined<A[0]>>
-	: null extends Criteria
-	? Array<NonNull<A[0]>>
-	: Criteria extends A[0]
-	? Array<Exclude<A[0], Criteria>>
-	: A[0] extends Criteria
-	? A
-	: Array<Exclude<A[0], Criteria>>
-	: DropMatchTuple<A, Criteria>
-
-type DropMatchTuple<A extends Readonly<Array<any>>, Criteria> = A['length'] extends 0
-	? // empty tuple
-	A
-	: A extends readonly [infer Head, ...infer Tail]
-	? Tail['length'] extends 0
-	? // single element tuple
-	undefined extends Criteria
-	? ExcludeUnionOfEmptyTuple<Head extends Criteria ? [] : [Head]>
-	: ExcludeUnionOfEmptyTuple<Head extends Criteria ? [] : [Head]>
-	: // multiple elements
-	Exclude<Head, Criteria> extends never
-	? DropMatch<Tail, Criteria>
-	: [Exclude<Head, Criteria>, ...DropMatch<Tail, Criteria>]
-	: never[]
+export type DropMatch<A extends Readonly<Array<unknown>>, Criteria> =	number extends A['length']
+	? ArrayDropMatch<A, Criteria>
+	: TupleDropMatch<A, Criteria>
 
 export type DropNull<A extends Array<any>> = DropMatch<A, null>
 export type DropNullable<A extends Array<any>> = DropMatch<A, null | undefined>
