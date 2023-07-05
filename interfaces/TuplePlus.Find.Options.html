@@ -31,7 +31,7 @@
 <li><a href="../modules/FindFirst.html" class="tsd-signature-type tsd-kind-namespace">FindFirst</a><span class="tsd-signature-symbol">.</span><a href="FindFirst.Options.html" class="tsd-signature-type tsd-kind-interface">Options</a></li>
 <li><a href="../modules/FindFirst.html" class="tsd-signature-type tsd-kind-namespace">FindFirst</a><span class="tsd-signature-symbol">.</span><a href="FindFirst.Options.html" class="tsd-signature-type tsd-kind-interface">Options</a></li></ul></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/ae99a6824/type-plus/ts/tuple/tuple_plus.find.ts#L75">type-plus/ts/tuple/tuple_plus.find.ts:75</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/71892249e/type-plus/ts/tuple/tuple_plus.find.ts#L79">type-plus/ts/tuple/tuple_plus.find.ts:79</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -42,8 +42,8 @@
 <div class="tsd-index-list"><a href="TuplePlus.Find.Options.html#caseArray" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="#FF984D" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12" id="icon-1024-path"></rect><path d="M9.354 16V7.24H12.174C12.99 7.24 13.638 7.476 14.118 7.948C14.606 8.412 14.85 9.036 14.85 9.82C14.85 10.604 14.606 11.232 14.118 11.704C13.638 12.168 12.99 12.4 12.174 12.4H10.434V16H9.354ZM10.434 11.428H12.174C12.646 11.428 13.022 11.284 13.302 10.996C13.59 10.7 13.734 10.308 13.734 9.82C13.734 9.324 13.59 8.932 13.302 8.644C13.022 8.356 12.646 8.212 12.174 8.212H10.434V11.428Z" fill="var(--color-text)" id="icon-1024-text"></path></svg><span>case<wbr/>Array?</span></a>
 <a href="TuplePlus.Find.Options.html#caseEmptyTuple" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>case<wbr/>Empty<wbr/>Tuple?</span></a>
 <a href="TuplePlus.Find.Options.html#caseNever" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>case<wbr/>Never?</span></a>
-<a href="TuplePlus.Find.Options.html#caseNoMatch" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>case<wbr/>No<wbr/>Match?</span></a>
-<a href="TuplePlus.Find.Options.html#caseUnionMiss" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>case<wbr/>Union<wbr/>Miss?</span></a>
+<a href="TuplePlus.Find.Options.html#caseNotMatch" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>case<wbr/>Not<wbr/>Match?</span></a>
+<a href="TuplePlus.Find.Options.html#caseUnionNotMatch" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>case<wbr/>Union<wbr/>Not<wbr/>Match?</span></a>
 <a href="TuplePlus.Find.Options.html#caseWiden" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>case<wbr/>Widen?</span></a>
 <a href="TuplePlus.Find.Options.html#widen" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>widen?</span></a>
 </div></section></div></details></section></section>
@@ -53,42 +53,42 @@
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>case<wbr/>Array</span><a href="#caseArray" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" id="icon-anchor-a"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" id="icon-anchor-b"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" id="icon-anchor-c"></path></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">case<wbr/>Array</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">unknown</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/ae99a6824/type-plus/ts/tuple/tuple_plus.find.ts#L76">type-plus/ts/tuple/tuple_plus.find.ts:76</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/71892249e/type-plus/ts/tuple/tuple_plus.find.ts#L80">type-plus/ts/tuple/tuple_plus.find.ts:80</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="caseEmptyTuple" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>case<wbr/>Empty<wbr/>Tuple</span><a href="#caseEmptyTuple" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">case<wbr/>Empty<wbr/>Tuple</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">unknown</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/ae99a6824/type-plus/ts/tuple/tuple_plus.find.ts#L77">type-plus/ts/tuple/tuple_plus.find.ts:77</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/71892249e/type-plus/ts/tuple/tuple_plus.find.ts#L81">type-plus/ts/tuple/tuple_plus.find.ts:81</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="caseNever" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>case<wbr/>Never</span><a href="#caseNever" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">case<wbr/>Never</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">unknown</span></div><aside class="tsd-sources">
 <p>Inherited from <a href="NeverType.Options.html">Options</a>.<a href="NeverType.Options.html#caseNever">caseNever</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/ae99a6824/type-plus/ts/never/never_type.ts#L64">type-plus/ts/never/never_type.ts:64</a></li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-is-inherited"><a id="caseNoMatch" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>case<wbr/>No<wbr/>Match</span><a href="#caseNoMatch" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">case<wbr/>No<wbr/>Match</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">unknown</span></div><aside class="tsd-sources">
-<p>Inherited from <a href="ArrayPlus.ElementMatch.Options.html">Options</a>.<a href="ArrayPlus.ElementMatch.Options.html#caseNoMatch">caseNoMatch</a></p>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/71892249e/type-plus/ts/never/never_type.ts#L64">type-plus/ts/never/never_type.ts:64</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited"><a id="caseNotMatch" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>case<wbr/>Not<wbr/>Match</span><a href="#caseNotMatch" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">case<wbr/>Not<wbr/>Match</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">unknown</span></div><aside class="tsd-sources">
+<p>Inherited from <a href="ArrayPlus.ElementMatch.Options.html">Options</a>.<a href="ArrayPlus.ElementMatch.Options.html#caseNotMatch">caseNotMatch</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/ae99a6824/type-plus/ts/array/array_plus.element_match.ts#L48">type-plus/ts/array/array_plus.element_match.ts:48</a></li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-is-inherited"><a id="caseUnionMiss" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>case<wbr/>Union<wbr/>Miss</span><a href="#caseUnionMiss" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">case<wbr/>Union<wbr/>Miss</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">unknown</span></div><aside class="tsd-sources">
-<p>Inherited from <a href="ArrayPlus.ElementMatch.Options.html">Options</a>.<a href="ArrayPlus.ElementMatch.Options.html#caseUnionMiss">caseUnionMiss</a></p>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/71892249e/type-plus/ts/array/array_plus.element_match.ts#L51">type-plus/ts/array/array_plus.element_match.ts:51</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited"><a id="caseUnionNotMatch" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>case<wbr/>Union<wbr/>Not<wbr/>Match</span><a href="#caseUnionNotMatch" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">case<wbr/>Union<wbr/>Not<wbr/>Match</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">unknown</span></div><aside class="tsd-sources">
+<p>Inherited from <a href="ArrayPlus.ElementMatch.Options.html">Options</a>.<a href="ArrayPlus.ElementMatch.Options.html#caseUnionNotMatch">caseUnionNotMatch</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/ae99a6824/type-plus/ts/array/array_plus.element_match.ts#L50">type-plus/ts/array/array_plus.element_match.ts:50</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/71892249e/type-plus/ts/array/array_plus.element_match.ts#L53">type-plus/ts/array/array_plus.element_match.ts:53</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="caseWiden" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>case<wbr/>Widen</span><a href="#caseWiden" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">case<wbr/>Widen</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">unknown</span></div><aside class="tsd-sources">
 <p>Inherited from <a href="ArrayPlus.ElementMatch.Options.html">Options</a>.<a href="ArrayPlus.ElementMatch.Options.html#caseWiden">caseWiden</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/ae99a6824/type-plus/ts/array/array_plus.element_match.ts#L49">type-plus/ts/array/array_plus.element_match.ts:49</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/71892249e/type-plus/ts/array/array_plus.element_match.ts#L52">type-plus/ts/array/array_plus.element_match.ts:52</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="widen" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>widen</span><a href="#widen" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">widen</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">boolean</span></div><aside class="tsd-sources">
 <p>Inherited from <a href="ArrayPlus.ElementMatch.Options.html">Options</a>.<a href="ArrayPlus.ElementMatch.Options.html#widen">widen</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/ae99a6824/type-plus/ts/array/array_plus.element_match.ts#L47">type-plus/ts/array/array_plus.element_match.ts:47</a></li></ul></aside></section></section></div>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/71892249e/type-plus/ts/array/array_plus.element_match.ts#L50">type-plus/ts/array/array_plus.element_match.ts:50</a></li></ul></aside></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -111,8 +111,8 @@
 <li><a href="#caseArray" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>case<wbr/>Array</span></a></li>
 <li><a href="#caseEmptyTuple" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>case<wbr/>Empty<wbr/>Tuple</span></a></li>
 <li><a href="#caseNever" class="tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>case<wbr/>Never</span></a></li>
-<li><a href="#caseNoMatch" class="tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>case<wbr/>No<wbr/>Match</span></a></li>
-<li><a href="#caseUnionMiss" class="tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>case<wbr/>Union<wbr/>Miss</span></a></li>
+<li><a href="#caseNotMatch" class="tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>case<wbr/>Not<wbr/>Match</span></a></li>
+<li><a href="#caseUnionNotMatch" class="tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>case<wbr/>Union<wbr/>Not<wbr/>Match</span></a></li>
 <li><a href="#caseWiden" class="tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>case<wbr/>Widen</span></a></li>
 <li><a href="#widen" class="tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>widen</span></a></li></ul></div></details></div>
 <div class="site-menu">

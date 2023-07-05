@@ -45,8 +45,10 @@ Default to <code>Criteria | undefined</code>.
 Set it to <code>never</code> for a more type-centric behavior</p>
 
 <h3>Type Param</h3><p>Return value when a branch of the union <code>T</code> does not match <code>Criteria</code>.
-Default to <code>undefined</code>.
-Since it is a union, the result will be join to the matched branch as union.</p>
+Default to <code>never</code>.</p>
+<p>If you want the type to behave more like JavaScript,
+you can override it to return <code>undefined</code>.</p>
+<p>Since it is a union, the result will be joined to the matched branch as union.</p>
 </div>
 <section class="tsd-panel">
 <h4>Type Parameters</h4>
@@ -58,8 +60,8 @@ Since it is a union, the result will be join to the matched branch as union.</p>
 <li>
 <h4><span class="tsd-kind-type-parameter">Options</span><span class="tsd-signature-symbol"> extends </span><a href="../modules/TuplePlus.html" class="tsd-signature-type tsd-kind-namespace">TuplePlus</a><span class="tsd-signature-symbol">.</span><a href="../modules/TuplePlus.Find.html" class="tsd-signature-type tsd-kind-namespace">Find</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/TuplePlus.Find.Options.html" class="tsd-signature-type tsd-kind-interface">Options</a> = <a href="../modules/TuplePlus.html" class="tsd-signature-type tsd-kind-namespace">TuplePlus</a><span class="tsd-signature-symbol">.</span><a href="../modules/TuplePlus.Find.html" class="tsd-signature-type tsd-kind-namespace">Find</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/TuplePlus.Find.DefaultOptions.html" class="tsd-signature-type tsd-kind-interface">DefaultOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">Criteria</span><span class="tsd-signature-symbol">&gt;</span></h4></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/ae99a6824/type-plus/ts/tuple/tuple_plus.find.ts#L47">type-plus/ts/tuple/tuple_plus.find.ts:47</a></li>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/ae99a6824/type-plus/ts/tuple/tuple_plus.find.ts#L61">type-plus/ts/tuple/tuple_plus.find.ts:61</a></li></ul></aside></div>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/71892249e/type-plus/ts/tuple/tuple_plus.find.ts#L51">type-plus/ts/tuple/tuple_plus.find.ts:51</a></li>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/71892249e/type-plus/ts/tuple/tuple_plus.find.ts#L65">type-plus/ts/tuple/tuple_plus.find.ts:65</a></li></ul></aside></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
