@@ -2,6 +2,17 @@
   "name": "type-plus",
   "version": "7.5.0",
   "description": "Provides additional types for TypeScript.",
+  "keywords": [
+    "assert",
+    "test",
+    "testing",
+    "type-check",
+    "type",
+    "types",
+    "typescript",
+    "typings",
+    "utils"
+  ],
   "homepage": "https://github.com/unional/type-plus/tree/main/type-plus#readme",
   "bugs": {
     "url": "https://github.com/unional/type-plus/issues"
