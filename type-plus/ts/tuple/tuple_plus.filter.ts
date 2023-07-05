@@ -1,7 +1,7 @@
 /**
- * Filter entries matching `Criteria` in tuple `T`.
- *
  * ⚗️ *transform*
+ *
+ * Filter entries matching `Criteria` in tuple `T`.
  *
  * @example
  * ```ts

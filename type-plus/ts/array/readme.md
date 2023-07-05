@@ -161,7 +161,7 @@ type R = FindFirst<[number], 1, { caseWiden: never }> // never
 type R = FindFirst<[string | number], number, { caseUnionMiss: never }> // number
 ```
 
-## [`FineLast`](./array.find_last.ts)
+## [`FindLast`](./array.find_last.ts)
 
 ## [`Some`](./array.some.ts)
 
@@ -215,10 +215,6 @@ type R = Head<[]> // caseEmptyTuple: never
 
 // customization
 type R = Head<never, { caseNever: 1 }> // 1
-type R = Head<[], { caseEmptyTuple: undefined }> // undefined
-
-
-type R = Head<[]> // caseEmptyTuple: never
 type R = Head<[], { caseEmptyTuple: undefined }> // undefined
 ```
 

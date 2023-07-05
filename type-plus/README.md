@@ -398,12 +398,12 @@ You can learn more in their respective sections:
 - 🦴🔢[`FindFirst`](./ts/array/readme.md#findfirst): Find the first type in the array or tuple `A` that matches `Criteria`.
 - [`FindLast`](./ts/array/readme.md#findlast)
 - [`Some`](./ts/array/readme.md#some)
-- [`Filter`](./ts/array/readme.md#filter)
-- [`KeepMatch`](./ts/array/readme.md#keepmatch)
-- [`Head`](./ts/array/readme.md#head)
+- ⚗️[`Filter`](./ts/array/readme.md#filter): Filter the array or tuple `A`, keeping entries satisfying `Criteria`.
+- ⚗️👽[`KeepMatch`](./ts/array/readme.md#keepmatch): Keeps entries satisfying `Criteria` in array or tuple `A`.
+- 🦴🔢[`Head`](./ts/array/readme.md#head): Gets the first entry in the tuple or the type of array `T`.
 - [`IntersectOfProps`](./ts/array/readme.md#intersectofprops)
 - [`MapToProp`](./ts/array/readme.md#maptoprop)
-- [`Last`](./ts/array/readme.md#last)
+- 🦴🔢[`Last`](./ts/array/readme.md#last): Gets the last entry in the tuple or the type of array `T`.
 - [`literalArray`](./ts/array/readme.md#literalarray)
 - [`PadStart`](./ts/array/readme.md#padstart)
 - [`reduceWhile`](./ts/array/readme.md#reducewhile)
