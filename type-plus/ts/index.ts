@@ -95,7 +95,7 @@ export type { IsNotString, IsString, NotStringType, StringType } from './string/
 export type { IsNotSymbol, IsSymbol, NotSymbolType, SymbolType } from './symbol/symbol_type.js'
 export * from './testing/stub.js'
 export * from './testing/test_type.js'
-export type { CommonPropKeys } from './tuple/common_prop_keys.js'
+export type { CommonKeys, CommonPropKeys } from './tuple/common_prop_keys.js'
 export * from './tuple/create_tuple.js'
 export { drop } from './tuple/drop.js'
 export type { DropFirst, DropLast, DropMatch, DropNull, DropNullable, DropUndefined } from './tuple/drop.js'

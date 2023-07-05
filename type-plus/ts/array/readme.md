@@ -263,6 +263,25 @@ please check [`TuplePlus`](../tuple/readme.md#TuplePlus).
 
 Alias of [At](#at).
 
+## [ArrayPlus.CommonPropKeys](./array_plus.common_prop_keys.ts#l21)
+
+`ArrayPlus.CommonPropKeys<T extends Record[], Options = { caseNever }>`
+
+⚗️ *transform*
+🔢 *customizable*
+
+Gets the common property keys of the elements in array `A`.
+
+```ts
+import { type ArrayPlus } from 'type-plus'
+
+type R = ArrayPlus.CommonPropKeys<Array<{ a: 1 }>> // 'a'
+type R = ArrayPlus.CommonPropKeys<Array<{ a: 1, b: 1 } | { a: 1, c: 1 }>> // 'a'
+
+// customization
+type R = ArrayPlus.CommonPropKeys<never, { caseNever: 1 }> // 1
+```
+
 ### [`ArrayPlus.Concat`](./array.concat.ts#L12)
 
 `ArrayPlus.Concat<A, B>`

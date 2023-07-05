@@ -104,26 +104,26 @@ Overridable cases:
 
 - `never`: if `T` is `never`, it returns `Else`.
 
-## [CommonPropKeys](./common_prop_keys.ts#l25)
+## [CommonPropKeys](./common_prop_keys.ts#l22)
 
-`CommonPropKeys<T extends Record[], Options = { caseArray, caseNoCommonKeys }>`
+`CommonPropKeys<T extends Record[], Options = { caseNever }>`
 
 ⚗️ *transform*
 🔢 *customizable*
 
-Gets the common property keys of the elements in tuple `T`.
+Gets the common property keys of the elements in tuple or array `T`.
 
 ```ts
 import { CommonPropKeys } from 'type-plus'
 
 type R = CommonPropKeys<[{ a: 1, c: 1 }, { b: 1, c: 2 }]> // 'c'
 type R = CommonPropKeys<[{ a: 1 }, { b: 1 }]> // never
-type R = CommonPropKeys<Array<{ a: 1, b: 1 } | { a: 1, c: 1 }>> // caseArray: 'a'
-type R = CommonPropKeys<[{ a: 1 }, { b: 1 }]> // caseNoCommonKeys: never
+type R = CommonPropKeys<Array<{ a: 1, b: 1 } | { a: 1, c: 1 }>> // 'a'
+type R = CommonPropKeys<[{ a: 1 }, { b: 1 }]> // never
+type R = CommonPropKeys<never> // caseNever: never
 
 // customization
-type R = CommonPropKeys<Array<{ a: 1, b: 1 } | { a: 1, c: 1 }>, { caseArray: 1 }> // 1
-type R = CommonPropKeys<[{ a: 1 }, { b: 1 }], { caseNoCommonKeys: 1 }> // 1
+type R = CommonPropKeys<never, { caseNever: 1 }> // 1
 ```
 
 ## [DropFirst](./drop.ts#l26)
@@ -188,6 +188,28 @@ type R = DropMatch<Array<1 | 2>, number> // never[]
 
 `TuplePlus` contains type utilities specific for *tuple*.
 The input type are not checked and assumed to be *tuple*.
+
+## [TuplePlus.CommonPropKeys](./tuple_plus.common_prop_keys.ts#l22)
+
+`TuplePlus.CommonPropKeys<T extends Record[], Options = { caseNever }>`
+
+⚗️ *transform*
+🔢 *customizable*
+
+Gets the common property keys of the elements in tuple `T`.
+
+```ts
+import { type TuplePlus } from 'type-plus'
+
+type R = TuplePlus.CommonPropKeys<[{ a: 1, c: 1 }, { b: 1, c: 2 }]> // 'c'
+type R = TuplePlus.CommonPropKeys<[{ a: 1 }, { b: 1 }]> // never
+type R = TuplePlus.CommonPropKeys<Array<{ a: 1, b: 1 } | { a: 1, c: 1 }>> // 'a'
+type R = TuplePlus.CommonPropKeys<[{ a: 1 }, { b: 1 }]> // never
+type R = TuplePlus.CommonPropKeys<never> // caseNever: never
+
+// customization
+type R = TuplePlus.CommonPropKeys<never, { caseNever: 1 }> // 1
+```
 
 ### [TuplePlus.Filter](./tuple_plus.filter.ts)
 
