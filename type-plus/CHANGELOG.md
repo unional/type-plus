@@ -1,5 +1,42 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 7.5.0
+
+### Minor Changes
+
+- 4f1e6e813: Add `UnionType` and `IsUnion`
+- 1bee3922b: Improve `FindFirst` and `ArrayPlus.Find` to support `union_miss` and `never` cases,
+  and some bug fixes.
+- b3d0af0d2: Export the improved `Required` type.
+- bc535d4dd: Support customization for `Head` and `Tail`
+- d2f97ca18: Add options support for:
+
+  - `TupleType`, `IsTuple`, `NotTupleType`, `IsNotTuple`
+  - `DropFirst`, `DropLast`,
+  - `FindFirst`, `ArrayPlus.FindFirst`, `TuplePlus.FindFirst`
+
+  Add `MergeOptions`.
+  Add `NotUnknownOr` (all use cases are handled by `MergeOptions` at the moment)
+
+- 94bb1c00c: Improve `FindFirst`,
+  add `ArrayPlus.Find` and `TuplePlus.Find`
+- 4e7e31098: Clean up `CommonPropKeys`.
+
+  Add `ArrayPlus.CommonPropKeys` and `TuplePlus.CommonPropKeys`.
+  Add support of `caseNever`.
+
+- 7a647ca41: Support override `never` case for `TupleType`, `IsTuple`, `IsNotTuple`, and `NotTupleType`
+
+### Patch Changes
+
+- 91211c9b5: Rename `caseNoMatch` to `caseNotMatch`.
+  Rename `caseUnionMiss` to `caseUnionNotMatch`.
+
+  Change `caseUnionNotMatch` default from `undefined` to `never`,
+  making it defaults to the type behavior instead of JavaScript behavior.
+
+- 8a60488be: Move TestType under `testType` so that it is exported
+
 ## 7.4.0
 
 ### Minor Changes
