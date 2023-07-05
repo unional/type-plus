@@ -142,23 +142,23 @@ import type { FindFirst } from 'type-plus'
 type R = FindFirst<[true, 1, 'x', 3], string> // 'x'
 type R = FindFirst<[true, 1, 'x', 3], number> // 1
 type R = FindFirst<[string, number, 1], 1> // widen: 1 | undefined
-type R = FindFirst<[true, number | string], string> // unionMiss: string | undefined
+type R = FindFirst<[true, number | string], string> // unionNotMatch: string
 type R = FindFirst<Array<string>, string> // string
 type R = FindFirst<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
 type R = FindFirst<Array<string | number>, number | string> // string | number
 type R = FindFirst<Array<number>, 1> // widen: 1 | undefined
-type R = FindFirst<Array<string | number>, number> // unionMiss: number | undefined
+type R = FindFirst<Array<string | number>, number> // unionNotMatch: number
 
 type R = FindFirst<[true, 1, 'x'], 2> // never
 type R = FindFirst<string[], number> // never
 
 // customization
 type R = FindFirst<[number], 1, { widen: false }> // never
+type R = FindFirst<[number], 1, { caseWiden: never }> // never
 type R = FindFirst<[], 1, { caseEmptyTuple: 2 }> // 2
 type R = FindFirst<never, 1, { caseNever: 2 }> // 2
-type R = FindFirst<[string], number, { caseNoMatch: 2 }> // 2
-type R = FindFirst<[number], 1, { caseWiden: never }> // never
-type R = FindFirst<[string | number], number, { caseUnionMiss: never }> // number
+type R = FindFirst<[string], number, { caseNotMatch: 2 }> // 2
+type R = FindFirst<[string | number], number, { caseUnionNotMatch: undefined }> // number | undefined
 ```
 
 ## [`FindLast`](./array.find_last.ts)
@@ -292,11 +292,36 @@ type R = ArrayPlus.CommonPropKeys<Array<{ a: 1, b: 1 } | { a: 1, c: 1 }>> // 'a'
 type R = ArrayPlus.CommonPropKeys<never, { caseNever: 1 }> // 1
 ```
 
-### [`ArrayPlus.Concat`](./array.concat.ts#L12)
+### [`ArrayPlus.Concat`](./array.concat.ts#l12)
 
 `ArrayPlus.Concat<A, B>`
 
 Alias of [Concat](#concat).
+
+### [`ArrayPlus.ElementMatch`](./array_plus.element_match.ts#l30)
+
+`ArrayPlus.ElementMatch<T, Criteria, Options = { widen, caseNotMatch, caseWiden, caseUnionNotMatch }>`
+
+🌪️ *filter*
+🔢 *customizable*
+
+Filter the element `T` in an array or tuple to match `Criteria`.
+
+```ts
+import type { ArrayPlus } from 'type-plus'
+
+type R = ArrayPlus.ElementMatch<number, number> // number
+type R = ArrayPlus.ElementMatch<1, number> // 1
+type R = ArrayPlus.ElementMatch<number, string> // notMatch: never
+type R = ArrayPlus.ElementMatch<number, 1> // widen: 1
+type R = ArrayPlus.ElementMatch<number | string, number> // unionNotMatch: number
+
+// customization
+type R = ArrayPlus.ElementMatch<number, string, { caseNotMatch: 1 }> // 1
+type R = ArrayPlus.ElementMatch<number, 1, { widen: false }> // never
+type R = ArrayPlus.ElementMatch<number, 1, { caseWiden: never }> // never
+type R = ArrayPlus.ElementMatch<number | string, number, { caseUnionNotMatch: undefined }> // number | undefined
+```
 
 ### [`ArrayPlus.Entries`](./array.entries.ts#L14)
 
@@ -312,9 +337,9 @@ type R = ArrayPlus.Entries<Array<string | number>> // Array<[number, string | nu
 type R = ArrayPlus.Entries<[1, 2, 3]> // [[0, 1], [1, 2], [2, 3]]
 ```
 
-### [`ArrayPlus.Find`](./array_plus.find.ts#l45)
+### [`ArrayPlus.Find`](./array_plus.find.ts#l49)
 
-`ArrayPlus.Find<A, Criteria, Options { widen, caseNever, caseNoMatch, caseTuple, caseWiden, caseUnionMiss }>`
+`ArrayPlus.Find<A, Criteria, Options { widen, caseNever, caseNotMatch, caseTuple, caseWiden, caseUnionNotMatch }>`
 
 🦴 *utilities*
 🔢 *customizable*
@@ -328,17 +353,17 @@ type R = ArrayPlus.Find<Array<string>, string> // string
 type R = ArrayPlus.Find<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
 type R = ArrayPlus.Find<Array<string | number>, number | string> // string | number
 type R = ArrayPlus.Find<number[], 1> // widen: 1 | undefined
-type R = ArrayPlus.Find<Array<string | number>, number> // union_miss: number | undefined
+type R = ArrayPlus.Find<Array<string | number>, number> // unionNotMatch: number
 
 type R = ArrayPlus.Find<string[], number> // never
 
 // customization
 type R = ArrayPlus.Find<number[], 1, { widen: false }> // never
-type R = ArrayPlus.Find<never, 1, { caseNever: 2 }> // 2
-type R = ArrayPlus.Find<string[], number, { caseNoMatch: 2 }> // 2
-type R = ArrayPlus.Find<[], 1, { caseTuple: 2 }> // 2
 type R = ArrayPlus.Find<number[], 1, { caseWiden: never }> // never
-type R = ArrayPlus.Find<Array<string | number>, number, { caseUnionMiss: never }> // number
+type R = ArrayPlus.Find<never, 1, { caseNever: 2 }> // 2
+type R = ArrayPlus.Find<string[], number, { caseNotMatch: 2 }> // 2
+type R = ArrayPlus.Find<[], 1, { caseTuple: 2 }> // 2
+type R = ArrayPlus.Find<Array<string | number>, number, { caseUnionNotMatch: undefined }> // number | undefined
 ```
 
 ### [`ArrayPlus.FindLast`](./array.find_last.ts#L17)

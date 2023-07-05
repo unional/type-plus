@@ -36,7 +36,7 @@ it('no match gets never', () => {
 })
 
 it('can override no_match case', () => {
-	testType.equal<TuplePlus.Find<[true, 1, 'x'], 2, { caseNoMatch: 1 }>, 1>(true)
+	testType.equal<TuplePlus.Find<[true, 1, 'x'], 2, { caseNotMatch: 1 }>, 1>(true)
 })
 
 it('pick first type matching criteria', () => {
@@ -66,12 +66,15 @@ it('can disable widen', () => {
 	testType.equal<TuplePlus.Find<[number], 1, { widen: false }>, never>(true)
 })
 
-it('returns T | undefined for element T if T is a union satisfies the Criteria', () => {
-	testType.equal<TuplePlus.Find<[string | number], number>, number | undefined>(true)
+it('returns Criteria if T is a union partially satisfies the Criteria', () => {
+	testType.equal<TuplePlus.Find<[string | number], number>, number>(true)
 })
 
-it('can override the union_miss case', () => {
-	testType.equal<TuplePlus.Find<[string | number], number, { caseUnionMiss: never }>, number>(true)
+it('can return T | undefined by overriding unionNotMach to `undefined`', () => {
+	// adding `undefined` to the result better match the behavior in JavaScript,
+	// as an array of `Array<string | number>` can contains only `string` or `number`.
+	// so `Find<Array<string | number>, string>` returns `string | undefined`.
+	testType.equal<TuplePlus.Find<[string | number], number, { caseUnionNotMatch: undefined }>, number | undefined>(true)
 })
 
 it('pick object', () => {

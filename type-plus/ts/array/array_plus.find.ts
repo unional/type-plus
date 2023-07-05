@@ -29,7 +29,7 @@ import type { ElementMatch } from './array_plus.element_match.js'
  *
  * @typeParam Options['caseNever'] return type when `A` is `never`. Default to `never`.
  *
- * @typeParam Options['caseNoMatch'] Return value when `T` does not match `Criteria`.
+ * @typeParam Options['caseNotMatch'] Return value when `T` does not match `Criteria`.
  * Default to `never`.
  *
  * @typeParam Options['caseTuple'] return type when `A` is a tuple. Default to `not supported` message.
@@ -38,9 +38,13 @@ import type { ElementMatch } from './array_plus.element_match.js'
  * Default to `Criteria | undefined`.
  * Set it to `never` for a more type-centric behavior
  *
- * @typeParam Options['caseUnionMiss'] Return value when a branch of the union `T` does not match `Criteria`.
- * Default to `undefined`.
- * Since it is a union, the result will be join to the matched branch as union.
+ * @typeParam Options['caseUnionNotMatch'] Return value when a branch of the union `T` does not match `Criteria`.
+ * Default to `never`.
+ *
+ * If you want the type to behave more like JavaScript,
+ * you can override it to return `undefined`.
+ *
+ * Since it is a union, the result will be joined to the matched branch as union.
  */
 export type Find<
 	A extends unknown[],

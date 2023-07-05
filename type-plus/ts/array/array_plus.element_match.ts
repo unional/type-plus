@@ -4,24 +4,27 @@ import type { MergeOptions } from '../utils/options.js'
 
 /**
  * 🦴 *utilities*
- * ㊙️ *internal*
  * 🔢 *customizable*
  *
- * Match element in an array or tuple.
+ * Filter the element `T` in an array or tuple to match `Criteria`.
  *
  * @typeParam Options['widen'] Allow using narrow type to match widen type.
  * e.g. `number, 1` -> `1 | undefined`.
  * Default to `true`.
  *
- * @typeParam Options['caseNoMatch'] Return value when `T` does not match `Criteria`.
+ * @typeParam Options['caseNotMatch'] Return value when `T` does not match `Criteria`.
  * Default to `never`.
  *
  * @typeParam Options['caseWiden'] Return value when `widen` is true.
  * Default to `Criteria | undefined`.
  *
- * @typeParam Options['caseUnionMiss'] Return value when a branch of the union `T` does not match `Criteria`.
- * Default to `undefined`.
- * Since it is a union, the result will be join to the matched branch as union.
+ * @typeParam Options['caseUnionNotMatch'] Return value when a branch of the union `T` does not match `Criteria`.
+ * Default to `never`.
+ *
+ * If you want the type to behave more like JavaScript,
+ * you can override it to return `undefined`.
+ *
+ * Since it is a union, the result will be joined to the matched branch as union.
  * e.g. `ElementMatch<1 | 2, 1>` -> `1 | undefined`
  */
 export type ElementMatch<
@@ -36,23 +39,23 @@ export type ElementMatch<
 			: (C['widen'] extends true
 				? (Criteria extends T
 					? C['caseWiden']
-					: C['caseNoMatch'])
-				: C['caseNoMatch'])) extends infer R
-			? IsUnion<T, IsNever<R, R, R | C['caseUnionMiss']>, R>
-			: C['caseNoMatch'])
+					: C['caseNotMatch'])
+				: C['caseNotMatch'])) extends infer R
+			? IsUnion<T, IsNever<R, R, R | C['caseUnionNotMatch']>, R>
+			: C['caseNotMatch'])
 		: never)
 
 export namespace ElementMatch {
 	export interface Options {
 		widen?: boolean | undefined,
-		caseNoMatch?: unknown,
+		caseNotMatch?: unknown,
 		caseWiden?: unknown,
-		caseUnionMiss?: unknown
+		caseUnionNotMatch?: unknown
 	}
 	export interface DefaultOptions<Criteria> {
 		widen: true,
-		caseNoMatch: never,
+		caseNotMatch: never,
 		caseWiden: Criteria | undefined,
-		caseUnionMiss: undefined
+		caseUnionNotMatch: never
 	}
 }

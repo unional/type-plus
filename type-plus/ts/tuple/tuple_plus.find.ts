@@ -33,16 +33,20 @@ import type { TupleType } from './tuple_type.js'
  *
  * @typeParam Options['caseNever'] return type when `A` is `never`. Default to `never`.
  *
- * @typeParam Options['caseNoMatch'] Return value when `T` does not match `Criteria`.
+ * @typeParam Options['caseNotMatch'] Return value when `T` does not match `Criteria`.
  * Default to `never`.
  *
  * @typeParam Options['caseWiden'] return type when `T` in `A` is a widen type of `Criteria`.
  * Default to `Criteria | undefined`.
  * Set it to `never` for a more type-centric behavior
  *
- * @typeParam Options['caseUnionMiss'] Return value when a branch of the union `T` does not match `Criteria`.
- * Default to `undefined`.
- * Since it is a union, the result will be join to the matched branch as union.
+ * @typeParam Options['caseUnionNotMatch'] Return value when a branch of the union `T` does not match `Criteria`.
+ * Default to `never`.
+ *
+ * If you want the type to behave more like JavaScript,
+ * you can override it to return `undefined`.
+ *
+ * Since it is a union, the result will be joined to the matched branch as union.
  */
 export type Find<
 	A extends unknown[],
@@ -64,12 +68,12 @@ export namespace Find {
 		Criteria,
 		Options extends Find.Options
 	> = A['length'] extends 0
-		? Options['caseNoMatch']
+		? Options['caseNotMatch']
 		: (A extends [infer Head, ...infer Tail]
 			? ElementMatch<
 				Head,
 				Criteria,
-				MergeOptions<{ caseNoMatch: Device<Tail, Criteria, Options> }, Options>
+				MergeOptions<{ caseNotMatch: Device<Tail, Criteria, Options> }, Options>
 			>
 			: never)
 	export interface Options extends ElementMatch.Options, NeverType.Options {

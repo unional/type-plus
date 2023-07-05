@@ -3,7 +3,10 @@ import { isConstructor, type AnyConstructor } from '../class/index.js'
 import { type AnyFunction } from '../function/any_function.js'
 
 /**
- * assert the subject satisfies the specified type T
+ * 💥 *immediate*
+ * 🚦 *assertion*
+ *
+ * Assert the subject satisfies the specified type T
  * @type T the type to check against.
  */
 export function assertType<T>(subject: T): asserts subject is T

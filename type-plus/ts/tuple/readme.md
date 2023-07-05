@@ -225,9 +225,9 @@ import { TuplePlus } from 'type-plus'
 type R = TuplePlus.Filter<[1, 2, '3'], number> // [1, 2]
 ```
 
-### [`TuplePlus.Find`](./tuple_plus.find.ts#l47)
+### [`TuplePlus.Find`](./tuple_plus.find.ts#l51)
 
-`TuplePlus.Find<A, Criteria, Options { widen, caseArray, caseEmptyTuple, caseNever, caseNoMatch, caseWiden, caseUnionMiss }>`
+`TuplePlus.Find<A, Criteria, Options { widen, caseArray, caseEmptyTuple, caseNever, caseNotMatch, caseWiden, caseUnionNotMatch }>`
 
 🦴 *utilities*
 🔢 *customizable*
@@ -240,18 +240,18 @@ import type { TuplePlus } from 'type-plus'
 type R = TuplePlus.Find<[true, 1, 'x', 3], string> // 'x'
 type R = TuplePlus.Find<[true, 1, 'x', 3], number> // 1
 type R = TuplePlus.Find<[string, number, 1], 1> // widen: 1 | undefined
-type R = TuplePlus.Find<[true, number | string], string> // unionMiss: string | undefined
+type R = TuplePlus.Find<[true, number | string], string> // unionNotMatch: string
 
 type R = TuplePlus.Find<[true, 1, 'x'], 2> // never
 
 // customization
 type R = TuplePlus.Find<[number], 1, { widen: false }> // never
+type R = TuplePlus.Find<[number], 1, { caseWiden: never }> // never
 type R = TuplePlus.Find<string[], 1, { caseArray: 2 }> // 2
 type R = TuplePlus.Find<[], 1, { caseEmptyTuple: 2 }> // 2
 type R = TuplePlus.Find<never, 1, { caseNever: 2 }> // 2
-type R = TuplePlus.Find<[string], number, { caseNoMatch: 2 }> // 2
-type R = TuplePlus.Find<[number], 1, { caseWiden: never }> // never
-type R = TuplePlus.Find<[string | number], number, { caseUnionMiss: never }> // number
+type R = TuplePlus.Find<[string], number, { caseNotMatch: 2 }> // 2
+type R = TuplePlus.Find<[string | number], number, { caseUnionNotMatch: undefined }> // number | undefined
 ```
 
 ### [TuplePlus.PadStart](./tuple_plus.pad_start.ts)
