@@ -91,14 +91,16 @@ or the is no ambiguity, or for backwards compatibility purpose.</p>
 <ul>
 <li>👽 <em>alias</em>: Alias of another type</li>
 <li>🚦 <em>assertion</em>: assertion function</li>
+<li>🔢 <em>customizable</em>: the behavior of the type is customizable.</li>
 <li>💀 <em>deprecated</em>: deprecated and will be removed soon</li>
 <li>🌪️ <em>filter</em>: a.k.a. <em>parse</em> These types perform some kind of test. If the input passes the test, the input is returned. Otherwise, it returns <code>never</code></li>
 <li>🛡️ <em>guard</em>: type guard function</li>
-<li>💥 <em>immediate</em>: The effect of the type can be observed immediately during development</li>
-<li>🏃 <em>runtime</em>: The function has runtime effect</li>
+<li>💥 <em>immediate</em>: the effect of the type can be observed immediately during development</li>
+<li>㊙️ <em>internal</em>: the type is internal and should not be used directly</li>
+<li>🏃 <em>runtime</em>: the function has runtime effect</li>
 <li>🩳 <em>shortcut</em>: Shortcut or convenient types</li>
-<li>🧪 <em>testing</em>: The type or function are designed for test</li>
-<li>⚗️ <em>transform</em>: These types transforms the input to another category</li>
+<li>🧪 <em>testing</em>: the type or function are designed for test</li>
+<li>⚗️ <em>transform</em>: these types transforms the input to another category</li>
 <li>🦴 <em>utilities</em>: provide various functionalities</li>
 <li>🎭 <em>validate</em>: a.k.a. <em>predicate</em> or <em>logical</em>. These types perform some kind of test. If the input passes the test, it returns <code>true</code> or <code>false</code></li>
 </ul>
@@ -323,48 +325,48 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <li><a href="./ts/mix-types/readme.md">mix types</a></li>
 </ul>
 <a id="md:any" class="tsd-anchor"></a><h3><a href="#md:any"><a href="./ts/any/readme.md">any</a></a></h3><ul>
-<li><a href="./ts/any/readme.md#anytype"><code>AnyType&lt;T&gt;</code></a></li>
-<li><a href="./ts/any/readme.md#isany"><code>IsAny&lt;T&gt;</code></a></li>
-<li><a href="./ts/any/readme.md#notanytype"><code>NotAnyType&lt;T&gt;</code></a></li>
-<li><a href="./ts/any/readme.md#isnotany"><code>IsNotAny&lt;T&gt;</code></a></li>
-<li><a href="./ts/mix_types/readme.md#anyornevertype"><code>AnyOrNeverType&lt;T&gt;</code></a></li>
-<li><a href="./ts/mix_types/readme.md#isanyornever"><code>IsAnyOrNever&lt;T&gt;</code></a></li>
+<li><a href="./ts/any/readme.md#anytype"><code>AnyType</code></a></li>
+<li><a href="./ts/any/readme.md#isany"><code>IsAny</code></a></li>
+<li><a href="./ts/any/readme.md#notanytype"><code>NotAnyType</code></a></li>
+<li><a href="./ts/any/readme.md#isnotany"><code>IsNotAny</code></a></li>
+<li><a href="./ts/mix_types/readme.md#anyornevertype"><code>AnyOrNeverType</code></a></li>
+<li><a href="./ts/mix_types/readme.md#isanyornever"><code>IsAnyOrNever</code></a></li>
 </ul>
 <a id="md:array" class="tsd-anchor"></a><h3><a href="#md:array"><a href="./ts/array/readme.md">Array</a></a></h3><ul>
-<li><a href="./ts/array/readme.md#arraytype"><code>ArrayType&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#isarray"><code>IsArray&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#notarraytype"><code>NotArrayType&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#isnotarraytype"><code>IsNotArrayType&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#at"><code>At&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#concat"><code>Concat&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#findfirst"><code>FindFirst&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#findlast"><code>FindLast&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#some"><code>Some&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#filter"><code>Filter&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#keepmatch"><code>KeepMatch&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#head"><code>Head&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#intersectofprops"><code>IntersectOfProps&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#maptoprop"><code>MapToProp&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#last"><code>Last&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#literalarray"><code>literalArray&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#padstart"><code>PadStart&lt;T&gt;</code></a></li>
+<li><a href="./ts/array/readme.md#arraytype"><code>ArrayType</code></a>: 🌪️ Filter <code>T</code> to ensure it is an array, excluding tuple.</li>
+<li><a href="./ts/array/readme.md#isarray"><code>IsArray</code></a>: 🎭 Validate that <code>T</code> is an array, excluding tuple.</li>
+<li><a href="./ts/array/readme.md#notarraytype"><code>NotArrayType</code></a>: 🌪️ Filter <code>T</code> to ensure it is not an array, excluding tuple.</li>
+<li><a href="./ts/array/readme.md#isnotarraytype"><code>IsNotArrayType</code></a>: 🎭 Validate that <code>T</code> is not an array, excluding tuple.</li>
+<li><a href="./ts/array/readme.md#at"><code>At</code></a>: 🦴 Gets the type of the array or tuple at positive or negative index <code>N</code>.</li>
+<li><a href="./ts/array/readme.md#concat"><code>Concat</code></a>: 🦴 💀 Concats two arrays or tuples.</li>
+<li><a href="./ts/array/readme.md#findfirst"><code>FindFirst</code></a>: 🦴 🔢 Find the first type in the array or tuple <code>A</code> that matches <code>Criteria</code>.</li>
+<li><a href="./ts/array/readme.md#findlast"><code>FindLast</code></a></li>
+<li><a href="./ts/array/readme.md#some"><code>Some</code></a></li>
+<li><a href="./ts/array/readme.md#filter"><code>Filter</code></a></li>
+<li><a href="./ts/array/readme.md#keepmatch"><code>KeepMatch</code></a></li>
+<li><a href="./ts/array/readme.md#head"><code>Head</code></a></li>
+<li><a href="./ts/array/readme.md#intersectofprops"><code>IntersectOfProps</code></a></li>
+<li><a href="./ts/array/readme.md#maptoprop"><code>MapToProp</code></a></li>
+<li><a href="./ts/array/readme.md#last"><code>Last</code></a></li>
+<li><a href="./ts/array/readme.md#literalarray"><code>literalArray</code></a></li>
+<li><a href="./ts/array/readme.md#padstart"><code>PadStart</code></a></li>
 <li><a href="./ts/array/readme.md#reducewhile"><code>reduceWhile</code></a></li>
-<li><a href="./ts/array/readme.md#reverse"><code>Reverse&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#propunion"><code>PropUnion&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#unionofprops"><code>UnionOfProps&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#unionofvalues"><code>UnionOfValues&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#arrayplusat"><code>ArrayPlus.At&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#arrayplusconcat"><code>ArrayPlus.Concat&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#arrayplusentries"><code>ArrayPlus.Entries&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#arrayplusfind"><code>ArrayPlus.Find&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#arrayplusfindlast"><code>ArrayPlus.FindLast&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#arrayplusreverse"><code>ArrayPlus.Reverse&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#arrayplussplitat"><code>ArrayPlus.SplitAt&lt;T&gt;</code></a></li>
-<li><a href="./ts/array/readme.md#arrayplussome"><code>ArrayPlus.Some&lt;T&gt;</code></a></li>
+<li><a href="./ts/array/readme.md#reverse"><code>Reverse</code></a></li>
+<li><a href="./ts/array/readme.md#propunion"><code>PropUnion</code></a></li>
+<li><a href="./ts/array/readme.md#unionofprops"><code>UnionOfProps</code></a></li>
+<li><a href="./ts/array/readme.md#unionofvalues"><code>UnionOfValues</code></a></li>
+<li><a href="./ts/array/readme.md#arrayplusat"><code>ArrayPlus.At</code></a></li>
+<li><a href="./ts/array/readme.md#arrayplusconcat"><code>ArrayPlus.Concat</code></a></li>
+<li><a href="./ts/array/readme.md#arrayplusentries"><code>ArrayPlus.Entries</code></a></li>
+<li><a href="./ts/array/readme.md#arrayplusfind"><code>ArrayPlus.Find</code></a>: 🦴 🔢 Finds the type in array <code>A</code> that matches <code>Criteria</code>.</li>
+<li><a href="./ts/array/readme.md#arrayplusfindlast"><code>ArrayPlus.FindLast</code></a></li>
+<li><a href="./ts/array/readme.md#arrayplusreverse"><code>ArrayPlus.Reverse</code></a></li>
+<li><a href="./ts/array/readme.md#arrayplussplitat"><code>ArrayPlus.SplitAt</code></a></li>
+<li><a href="./ts/array/readme.md#arrayplussome"><code>ArrayPlus.Some</code></a></li>
 </ul>
 <a id="md:union" class="tsd-anchor"></a><h3><a href="#md:union"><a href="./ts/union/readme.md">union</a></a></h3><ul>
-<li><a href="./ts/union//readme.md#isunion"><code>IsUnion&lt;T&gt;</code></a></li>
-<li><a href="./ts/union/readme.md#uniontype"><code>UnionType&lt;T&gt;</code></a></li>
+<li><a href="./ts/union//readme.md#isunion"><code>IsUnion</code></a></li>
+<li><a href="./ts/union/readme.md#uniontype"><code>UnionType</code></a></li>
 </ul>
 <a id="md:bigint" class="tsd-anchor"></a><h3><a href="#md:bigint">bigint</a></h3><blockquote>
 <p><a href="./ts/bigint/bigint_type.ts#L15"><code>BigintType&lt;T, Then = T, Else = never&gt;</code></a></p>
@@ -679,22 +681,12 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <p><a href="ts/symbol/readme.md#type-checking"><code>IsNotSymbol&lt;T&gt;</code></a></p>
 </blockquote>
 <p>⭕ <code>predicate</code>: is not <code>symbol</code>.</p>
-<a id="md:tuple" class="tsd-anchor"></a><h3><a href="#md:tuple">tuple</a></h3><blockquote>
-<p><a href="ts/tuple/readme.md#type-checking"><code>TupleType&lt;T&gt;</code></a></p>
-</blockquote>
-<p>↪️ <code>parse</code>: is a tuple.</p>
-<blockquote>
-<p><a href="ts/tuple/readme.md#type-checking"><code>IsTuple&lt;T&gt;</code></a></p>
-</blockquote>
-<p>⭕ <code>predicate</code>: is a tuple.</p>
-<blockquote>
-<p><a href="ts/tuple/readme.md#type-checking"><code>NotTupleType&lt;T&gt;</code></a></p>
-</blockquote>
-<p>↪️ <code>parse</code>: is not a tuple.</p>
-<blockquote>
-<p><a href="ts/tuple/readme.md#type-checking"><code>IsNotTuple&lt;T&gt;</code></a></p>
-</blockquote>
-<p>⭕ <code>predicate</code>: is not a tuple.</p>
+<a id="md:tuple" class="tsd-anchor"></a><h3><a href="#md:tuple">tuple</a></h3><ul>
+<li><a href="./ts/tuple/readme.md#tupletype"><code>TupleType</code></a>: 🌪️ Filter <code>T</code> to ensure it is a tuple, excluding array.</li>
+<li><a href="./ts/tuple/readme.md#istuple"><code>IsTuple</code></a>: 🎭 Validate that <code>T</code> is a tuple, excluding array.</li>
+<li><a href="./ts/tuple/readme.md#nottupletype"><code>NotTupleType</code></a>: 🌪️ Filter <code>T</code> to ensure it is not an tuple, excluding array.</li>
+<li><a href="./ts/tuple/readme.md#isnottupletype"><code>IsNotTuple</code></a>: 🎭 Validate that <code>T</code> is not an tuple, excluding array.</li>
+</ul>
 <blockquote>
 <p><code>CommonPropKeys&lt;A&gt;</code></p>
 </blockquote>
@@ -1267,14 +1259,51 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li><a href="modules/ArrayPlus.html#Concat"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg><span>Concat</span></a></li>
 <li><a href="modules/ArrayPlus.html#FindLast"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg><span>Find<wbr/>Last</span></a></li>
 <li><a href="modules/ArrayPlus.html#Some"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg><span>Some</span></a></li>
-<li><a href="types/ArrayPlus.Entries.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-type-alias)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-4194304-path"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)" id="icon-4194304-text"></path></svg><span>Entries</span></a></li>
+<li>
+<details class="tsd-index-accordion" data-key="ArrayPlus.ElementMatch"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg><a href="modules/ArrayPlus.ElementMatch.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4-path"></use><use href="#icon-4-text"></use></svg><span>Element<wbr/>Match</span></a></summary>
+<div class="tsd-accordion-details">
+<ul class="tsd-nested-navigation">
+<li><a href="interfaces/ArrayPlus.ElementMatch.DefaultOptions.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-interface)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-256-path"></rect><path d="M9.51 16V15.016H11.298V8.224H9.51V7.24H14.19V8.224H12.402V15.016H14.19V16H9.51Z" fill="var(--color-text)" id="icon-256-text"></path></svg><span>Default<wbr/>Options</span></a></li>
+<li><a href="interfaces/ArrayPlus.ElementMatch.Options.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Options</span></a></li></ul></div></details></li>
+<li>
+<details class="tsd-index-accordion" data-key="ArrayPlus.Find"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg><a href="modules/ArrayPlus.Find.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4-path"></use><use href="#icon-4-text"></use></svg><span>Find</span></a></summary>
+<div class="tsd-accordion-details">
+<ul class="tsd-nested-navigation">
+<li><a href="interfaces/ArrayPlus.Find.DefaultOptions.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Default<wbr/>Options</span></a></li>
+<li><a href="interfaces/ArrayPlus.Find.Options.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Options</span></a></li></ul></div></details></li>
+<li><a href="types/ArrayPlus.ElementMatch-1.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-type-alias)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-4194304-path"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)" id="icon-4194304-text"></path></svg><span>Element<wbr/>Match</span></a></li>
+<li><a href="types/ArrayPlus.Entries.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Entries</span></a></li>
 <li><a href="types/ArrayPlus.Filter.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Filter</span></a></li>
-<li><a href="types/ArrayPlus.Find.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Find</span></a></li>
+<li><a href="types/ArrayPlus.Find-1.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Find</span></a></li>
 <li><a href="types/ArrayPlus.IndexAt.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Index<wbr/>At</span></a></li>
 <li><a href="types/ArrayPlus.IsIndexOutOfBound.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Is<wbr/>Index<wbr/>Out<wbr/>Of<wbr/>Bound</span></a></li>
 <li><a href="types/ArrayPlus.PadStart.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Pad<wbr/>Start</span></a></li>
 <li><a href="types/ArrayPlus.Reverse.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Reverse</span></a></li>
 <li><a href="types/ArrayPlus.SplitAt.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Split<wbr/>At</span></a></li></ul></div></details></li>
+<li>
+<details class="tsd-index-accordion" data-key="CommonPropKeys"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg><a href="modules/CommonPropKeys.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4-path"></use><use href="#icon-4-text"></use></svg><span>Common<wbr/>Prop<wbr/>Keys</span></a></summary>
+<div class="tsd-accordion-details">
+<ul class="tsd-nested-navigation">
+<li><a href="interfaces/CommonPropKeys.DefaultOptions.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Default<wbr/>Options</span></a></li>
+<li><a href="interfaces/CommonPropKeys.Options.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Options</span></a></li></ul></div></details></li>
+<li>
+<details class="tsd-index-accordion" data-key="DropFirst"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg><a href="modules/DropFirst.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4-path"></use><use href="#icon-4-text"></use></svg><span>Drop<wbr/>First</span></a></summary>
+<div class="tsd-accordion-details">
+<ul class="tsd-nested-navigation">
+<li><a href="interfaces/DropFirst.DefaultOptions.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Default<wbr/>Options</span></a></li>
+<li><a href="interfaces/DropFirst.Options.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Options</span></a></li></ul></div></details></li>
+<li>
+<details class="tsd-index-accordion" data-key="DropLast"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg><a href="modules/DropLast.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4-path"></use><use href="#icon-4-text"></use></svg><span>Drop<wbr/>Last</span></a></summary>
+<div class="tsd-accordion-details">
+<ul class="tsd-nested-navigation">
+<li><a href="interfaces/DropLast.DefaultOptions.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Default<wbr/>Options</span></a></li>
+<li><a href="interfaces/DropLast.Options.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Options</span></a></li></ul></div></details></li>
+<li>
+<details class="tsd-index-accordion" data-key="FindFirst"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg><a href="modules/FindFirst.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4-path"></use><use href="#icon-4-text"></use></svg><span>Find<wbr/>First</span></a></summary>
+<div class="tsd-accordion-details">
+<ul class="tsd-nested-navigation">
+<li><a href="interfaces/FindFirst.DefaultOptions.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Default<wbr/>Options</span></a></li>
+<li><a href="interfaces/FindFirst.Options.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Options</span></a></li></ul></div></details></li>
 <li>
 <details class="tsd-index-accordion" data-key="MathPlus"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg><a href="modules/MathPlus.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4-path"></use><use href="#icon-4-text"></use></svg><span>Math<wbr/>Plus</span></a></summary>
 <div class="tsd-accordion-details">
@@ -1285,6 +1314,12 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li><a href="modules/MathPlus.html#Multiply"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg><span>Multiply</span></a></li>
 <li><a href="modules/MathPlus.html#Subtract"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg><span>Subtract</span></a></li>
 <li><a href="types/MathPlus.ToNegative.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>To<wbr/>Negative</span></a></li></ul></div></details></li>
+<li>
+<details class="tsd-index-accordion" data-key="NeverType"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg><a href="modules/NeverType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4-path"></use><use href="#icon-4-text"></use></svg><span>Never<wbr/>Type</span></a></summary>
+<div class="tsd-accordion-details">
+<ul class="tsd-nested-navigation">
+<li><a href="interfaces/NeverType.DefaultOptions.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Default<wbr/>Options</span></a></li>
+<li><a href="interfaces/NeverType.Options.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Options</span></a></li></ul></div></details></li>
 <li>
 <details class="tsd-index-accordion" data-key="NumberPlus"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg><a href="modules/NumberPlus.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4-path"></use><use href="#icon-4-text"></use></svg><span>Number<wbr/>Plus</span></a></summary>
 <div class="tsd-accordion-details">
@@ -1375,13 +1410,26 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <div class="tsd-accordion-details">
 <ul class="tsd-nested-navigation">
 <li>
+<details class="tsd-index-accordion" data-key="TuplePlus.Find"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg><a href="modules/TuplePlus.Find.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4-path"></use><use href="#icon-4-text"></use></svg><span>Find</span></a></summary>
+<div class="tsd-accordion-details">
+<ul class="tsd-nested-navigation">
+<li><a href="interfaces/TuplePlus.Find.DefaultOptions.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Default<wbr/>Options</span></a></li>
+<li><a href="interfaces/TuplePlus.Find.Options.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Options</span></a></li>
+<li><a href="types/TuplePlus.Find.Device.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Device</span></a></li></ul></div></details></li>
+<li>
 <details class="tsd-index-accordion" data-key="TuplePlus.PadStart"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg><a href="modules/TuplePlus.PadStart.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4-path"></use><use href="#icon-4-text"></use></svg><span>Pad<wbr/>Start</span></a></summary>
 <div class="tsd-accordion-details">
 <ul class="tsd-nested-navigation">
 <li><a href="types/TuplePlus.PadStart.Device.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Device</span></a></li></ul></div></details></li>
 <li><a href="types/TuplePlus.Filter.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Filter</span></a></li>
-<li><a href="types/TuplePlus.Find.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Find</span></a></li>
+<li><a href="types/TuplePlus.Find-1.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Find</span></a></li>
 <li><a href="types/TuplePlus.PadStart-1.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Pad<wbr/>Start</span></a></li></ul></div></details></li>
+<li>
+<details class="tsd-index-accordion" data-key="TupleType"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg><a href="modules/TupleType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4-path"></use><use href="#icon-4-text"></use></svg><span>Tuple<wbr/>Type</span></a></summary>
+<div class="tsd-accordion-details">
+<ul class="tsd-nested-navigation">
+<li><a href="interfaces/TupleType.DefaultOptions.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Default<wbr/>Options</span></a></li>
+<li><a href="interfaces/TupleType.Options.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Options</span></a></li></ul></div></details></li>
 <li>
 <details class="tsd-index-accordion" data-key="UnionType"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg><a href="modules/UnionType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4-path"></use><use href="#icon-4-text"></use></svg><span>Union<wbr/>Type</span></a></summary>
 <div class="tsd-accordion-details">
@@ -1427,7 +1475,7 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <ul class="tsd-nested-navigation">
 <li><a href="variables/stub.build.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>build</span></a></li>
 <li><a href="variables/stub.builder.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>builder</span></a></li></ul></div></details></li>
-<li><a href="interfaces/Branded.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-interface)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-256-path"></rect><path d="M9.51 16V15.016H11.298V8.224H9.51V7.24H14.19V8.224H12.402V15.016H14.19V16H9.51Z" fill="var(--color-text)" id="icon-256-text"></path></svg><span>Branded</span></a></li>
+<li><a href="interfaces/Branded.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Branded</span></a></li>
 <li><a href="interfaces/Failed.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Failed</span></a></li>
 <li><a href="interfaces/FailedT.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>FailedT</span></a></li>
 <li><a href="interfaces/Flavored.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Flavored</span></a></li>
@@ -1450,7 +1498,7 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li><a href="types/Brand.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Brand</span></a></li>
 <li><a href="types/CanAssign.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Can<wbr/>Assign</span></a></li>
 <li><a href="types/ChainFn.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Chain<wbr/>Fn</span></a></li>
-<li><a href="types/CommonPropKeys.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Common<wbr/>Prop<wbr/>Keys</span></a></li>
+<li><a href="types/CommonPropKeys-1.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Common<wbr/>Prop<wbr/>Keys</span></a></li>
 <li><a href="types/ComposableTypes.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Composable<wbr/>Types</span></a></li>
 <li><a href="types/Concat.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Concat</span></a></li>
 <li><a href="types/ContextBaseShape.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Context<wbr/>Base<wbr/>Shape</span></a></li>
@@ -1458,8 +1506,8 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li><a href="types/ContextExtender.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Context<wbr/>Extender</span></a></li>
 <li><a href="types/CreateTuple.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Create<wbr/>Tuple</span></a></li>
 <li><a href="types/Decrement.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Decrement</span></a></li>
-<li><a href="types/DropFirst.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Drop<wbr/>First</span></a></li>
-<li><a href="types/DropLast.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Drop<wbr/>Last</span></a></li>
+<li><a href="types/DropFirst-1.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Drop<wbr/>First</span></a></li>
+<li><a href="types/DropLast-1.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Drop<wbr/>Last</span></a></li>
 <li><a href="types/DropMatch.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Drop<wbr/>Match</span></a></li>
 <li><a href="types/DropNull.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Drop<wbr/>Null</span></a></li>
 <li><a href="types/DropNullable.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Drop<wbr/>Nullable</span></a></li>
@@ -1474,7 +1522,7 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li><a href="types/ExtractFunction.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Extract<wbr/>Function</span></a></li>
 <li><a href="types/FalseType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>False<wbr/>Type</span></a></li>
 <li><a href="types/Filter.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Filter</span></a></li>
-<li><a href="types/FindFirst.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Find<wbr/>First</span></a></li>
+<li><a href="types/FindFirst-1.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Find<wbr/>First</span></a></li>
 <li><a href="types/FindLast.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Find<wbr/>Last</span></a></li>
 <li><a href="types/Flavor.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Flavor</span></a></li>
 <li><a href="types/FunctionType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Function<wbr/>Type</span></a></li>
@@ -1552,8 +1600,9 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li><a href="types/MapToProp.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Map<wbr/>To<wbr/>Prop</span></a></li>
 <li><a href="types/Max.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Max</span></a></li>
 <li><a href="types/MaybePromise.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Maybe<wbr/>Promise</span></a></li>
+<li><a href="types/MergeCases.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Merge<wbr/>Cases</span></a></li>
 <li><a href="types/Multiply.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Multiply</span></a></li>
-<li><a href="types/NeverType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Never<wbr/>Type</span></a></li>
+<li><a href="types/NeverType-1.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Never<wbr/>Type</span></a></li>
 <li><a href="types/NoInfer.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>No<wbr/>Infer</span></a></li>
 <li><a href="types/NonComposableTypes.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Non<wbr/>Composable<wbr/>Types</span></a></li>
 <li><a href="types/NonNull.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Non<wbr/>Null</span></a></li>
@@ -1630,7 +1679,7 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li><a href="types/Tail.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Tail</span></a></li>
 <li><a href="types/ToTuple.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>To<wbr/>Tuple</span></a></li>
 <li><a href="types/TrueType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>True<wbr/>Type</span></a></li>
-<li><a href="types/TupleType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Tuple<wbr/>Type</span></a></li>
+<li><a href="types/TupleType-1.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Tuple<wbr/>Type</span></a></li>
 <li><a href="types/UndefinedType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Undefined<wbr/>Type</span></a></li>
 <li><a href="types/UnionKeys.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Union<wbr/>Keys</span></a></li>
 <li><a href="types/UnionOfProps.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Union<wbr/>Of<wbr/>Props</span></a></li>
