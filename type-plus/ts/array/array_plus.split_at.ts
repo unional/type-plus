@@ -49,7 +49,10 @@ export namespace SplitAt {
 	> = 0 extends A['length']
 		? IsTuple<Insert, [[...Insert, ...B], C], [B, C]>
 		: (Index extends B['length']
-			? _D<A, B, C, DeleteCount, Insert>
+			? NeverType<
+				DeleteCount,
+				[B, A],
+				_D<A, B, C, DeleteCount, Insert>>
 			: (A extends [infer Head, ...infer Tail]
 				? _<Tail, [...B, Head], [], Index, DeleteCount, Insert>
 				: 'unexpected: A does not extends [Head, ...Tail]'))
@@ -60,15 +63,12 @@ export namespace SplitAt {
 		C extends unknown[],
 		DeleteCount,
 		Insert extends unknown[],
-	> = NeverType<
-		DeleteCount,
-		[B, A],
-		DeleteCount extends C['length']
+	> = DeleteCount extends C['length']
 		? IsTuple<Insert, [[...B, ...Insert, ...A], C], [[...B, ...A], C]>
 		: (A extends [infer Head, ...infer Tail]
 			? _D<Tail, B, [...C, Head], DeleteCount, Insert>
 			: IsTuple<Insert, [[...Insert, ...B], C], [B, C]>
 		)
-	>
+
 }
 

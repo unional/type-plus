@@ -9,6 +9,9 @@ import type { Integer } from '../numeric/integer.js'
 import type { Negative } from '../numeric/negative.js'
 
 /**
+ *
+ * 🦴 *utilities*
+ *
  * Gets the normalized index to access the element of an array or tuple.
  *
  * ```ts
