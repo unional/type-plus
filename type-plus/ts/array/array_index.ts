@@ -25,35 +25,45 @@ export type IndexAt<
 	Fail = never,
 	Upper = A['length'],
 	Lower = 0
-> = IsEqual<
-	A['length'],
-	0,
-	Fail,
-	Integer<
-		N,
-		StrictNumberType<
-			A['length'],
-			// A: array
+> = IsNever<A, Fail, IndexAt._<A, N, Fail, Upper, Lower>>
+
+export namespace IndexAt {
+	export type _<
+		A extends Array<unknown>,
+		N extends number,
+		Fail = never,
+		Upper = A['length'],
+		Lower = 0
+	> = IsEqual<
+		A['length'],
+		0,
+		Fail,
+		Integer<
 			N,
-			// A: tuple
-			Negative<
-				N,
-				GreaterThan<Abs<N>, A['length']> extends true ? Lower : Subtract<A['length'], Abs<N>>,
-				GreaterThan<A['length'], N> extends true ? N : Upper
-			>
-		>,
-		// N: number or float
-		IsAny<
-			N,
-			number,
 			StrictNumberType<
+				A['length'],
+				// A: array
 				N,
-				// TODO: handle tuple to union of indexes
-				N
+				// A: tuple
+				Negative<
+					N,
+					GreaterThan<Abs<N>, A['length']> extends true ? Lower : Subtract<A['length'], Abs<N>>,
+					GreaterThan<A['length'], N> extends true ? N : Upper
+				>
+			>,
+			// N: number or float
+			IsAny<
+				N,
+				number,
+				StrictNumberType<
+					N,
+					// TODO: handle tuple to union of indexes
+					N
+				>
 			>
 		>
 	>
->
+}
 
 /**
  * Is N an out of bound index of A.

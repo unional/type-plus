@@ -394,12 +394,28 @@ ArrayPlus.Reverse<[1, 2, 3]> // [3, 2, 1]
 
 ### [`ArrayPlus.SplitAt`](./array_plus.split_at.ts#L22)
 
-> `ArrayPlus.SplitAt<A, Index>`
+`ArrayPlus.SplitAt<A, Index>`
 
-Splits the array or tuple at `Index`.
+⚗️ *transform*
+
+Splits array or tuple `A` into two at the specified `Index`.
+
+If the `Index` is out of bounds,
+it will set to the boundary value.
+
+It is the type level `splice()`.
 
 ```ts
-ArrayPlus.SplitAt<[1, 2, 3], 1> // [[1, 2], [3]]
+SplitAt<[1, 2, 3, 4, 5], 2> // [[1, 2], [3, 4, 5]]
+SplitAt<[1, 2, 3, 4, 5], -3> // [[1, 2], [3, 4, 5]]
+
+SplitAt<[1, 2, 3, 4, 5], 2, 2> // [[1, 2, 5], [3, 4]]
+
+SplitAt<[1, 2, 3, 4, 5], 2, 2, ['a', 'b']> // [[1, 2, 'a', 'b', 5], [3, 4]]
+
+// out of bound resets to boundary
+SplitAt<[1, 2, 3, 4, 5], 6> // [[1, 2, 3, 4, 5], []]
+SplitAt<[1, 2, 3, 4, 5], -6> // [[], [1, 2, 3, 4, 5]]
 ```
 
 ### [`ArrayPlus.Some`](./array.some.ts#L23)
@@ -440,6 +456,10 @@ while some common ones are exposed at top-level.
 
 Here are the list of array methods and their corresponding type-level functions, if available.
 
+✅ means it is implemented.
+✴️ means it is implemented with reduced functionality
+🧬 means there is a built-in mechanism or type for it.
+
 - ✅ `at`: [`ArrayPlus.At`](#arrayplusat)
 - ✅ `concat`: [`Concat` | `ArrayPlus.Concat`](#arrayplusconcat) (`[...A, ...B]`)
 - 🚧 `copyWithin`:  `CopyWithin<A, Target, Start, End>`
@@ -464,7 +484,7 @@ Here are the list of array methods and their corresponding type-level functions,
 - 🚧 `slice`:
 - ✴️ `some`: [`Some` | `ArrayPlus.Some`](#arrayplussome)
 - 🚧 `sort`:
-- 🚧 `splice`:
+- ✴️ `splice`: [`ArrayPlus.SplitAt`](#arrayplussplitat)
 - 🧬 `unshift`: `[T, ...A]`
 - 🧬 `values`: `keyof A`
 
