@@ -1,5 +1,15 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 7.6.0
+
+### Minor Changes
+
+- 036094ba5: Support `Delete` and `Insert` for `SplitAt`.
+
+### Patch Changes
+
+- e76c6895d: Add keywords
+
 ## 7.5.0
 
 ### Minor Changes
