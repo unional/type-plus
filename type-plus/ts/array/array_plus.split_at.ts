@@ -1,6 +1,6 @@
 import type { NeverType } from '../never/never_type.js'
 import type { IsTuple } from '../tuple/tuple_type.js'
-import type { IndexAt } from './array_index.js'
+import type { IndexAt } from './array_plus.index_at.js'
 import type { ArrayType } from './array_type.js'
 
 /**

@@ -1,6 +1,6 @@
 import type { IsStrictNumber } from '../number/strict_number_type.js'
 import type { TupleType } from '../tuple/tuple_type.js'
-import type { IndexAt } from './array_index.js'
+import type { IndexAt } from './array_plus.index_at.js'
 
 /**
  * 🦴 *utilities*

@@ -9,11 +9,11 @@ import type { Integer } from '../numeric/integer.js'
 import type { Negative } from '../numeric/negative.js'
 
 /**
- *
  * 🦴 *utilities*
  *
  * Gets the normalized index to access the element of an array or tuple.
  *
+ * @example
  * ```ts
  * type R = IndexAt<['a', 'b', 'c'], 2> // 2
  * type R = IndexAt<['a', 'b', 'c'], -2> // 1
@@ -67,20 +67,3 @@ export namespace IndexAt {
 		>
 	>
 }
-
-/**
- * Is N an out of bound index of A.
- *
- * ```ts
- * type R = IsIndexOutOfBound<[1], 0> // false
- * type R = IsIndexOutOfBound<[1], -1> // false
-
- * type R = IsIndexOutOfBound<[1], 1> // true
- * type R = IsIndexOutOfBound<[1], -2> // true
- * ```
- */
-export type IsIndexOutOfBound<A extends unknown[], N extends number, Then = true, Else = false> = IsNever<
-	IndexAt<A, N, never, never, never>,
-	Then,
-	Else
->

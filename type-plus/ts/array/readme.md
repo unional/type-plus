@@ -382,7 +382,37 @@ ArrayPlus.FindLast<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
 ArrayPlus.FindLast<[true, 123, 'x', 321], number> // 321
 ```
 
-### [`ArrayPlus.Reverse`](./array.reverse.ts#L14)
+### [`ArrayPlus.IndexAt](./array_plus.index_at.ts#l25)
+
+`ArrayPlus.IndexAt<A, Index>`
+
+🦴 *utilities*
+
+Gets the normalized index to access the element of an array or tuple.
+
+```ts
+type R = IndexAt<['a', 'b', 'c'], 2> // 2
+type R = IndexAt<['a', 'b', 'c'], -2> // 1
+
+type R = IndexAt<['a', 'b', 'c'], 3> // never
+type R = IndexAt<['a', 'b', 'c'], -4> // never
+```
+
+### [`ArrayPlus.IsIndexOutOfBound](./array_plus.is_index_out_of_bound.ts#l18)
+
+🎭 *validate*
+
+Is `N` an out of bound index of `A`.
+
+```ts
+type R = IsIndexOutOfBound<[1], 0> // false
+type R = IsIndexOutOfBound<[1], -1> // false
+
+type R = IsIndexOutOfBound<[1], 1> // true
+type R = IsIndexOutOfBound<[1], -2> // true
+```
+
+### [`ArrayPlus.Reverse`](./array.reverse.ts#l14)
 
 > `ArrayPlus.Reverse<A>`
 
