@@ -49,7 +49,7 @@ import type { TupleType } from './tuple_type.js'
  * Since it is a union, the result will be joined to the matched branch as union.
  */
 export type Find<
-	A extends unknown[],
+	A extends readonly unknown[],
 	Criteria,
 	Options extends Find.Options = Find.DefaultOptions<Criteria>
 > = MergeOptions<Options, Find.DefaultOptions<Criteria>> extends infer O extends Find.Options
@@ -64,12 +64,12 @@ export type Find<
 	: never
 export namespace Find {
 	export type Device<
-		A extends unknown[],
+		A extends readonly unknown[],
 		Criteria,
 		Options extends Find.Options
 	> = A['length'] extends 0
 		? Options['caseNotMatch']
-		: (A extends [infer Head, ...infer Tail]
+		: (A extends readonly [infer Head, ...infer Tail]
 			? ElementMatch<
 				Head,
 				Criteria,

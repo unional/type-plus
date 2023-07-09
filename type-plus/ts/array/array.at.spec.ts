@@ -64,3 +64,7 @@ it(`can override fail case`, () => {
 	testType.equal<ArrayPlus.At<[], any, 'ha'>, 'ha'>(true)
 	testType.equal<ArrayPlus.At<[], never, 'ha'>, 'ha'>(true)
 })
+
+it('supports readonly array', () => {
+	testType.equal<ArrayPlus.At<readonly ['a', 1, string], 1>, 1>(true)
+})

@@ -1,6 +1,9 @@
 import type { NonNull } from '../utils/NonNull.js'
 import type { NonUndefined } from '../utils/NonUndefined.js'
 
+/**
+ * ⚗️ *transform*
+ */
 export type DropMatch<A extends Readonly<Array<unknown>>, Criteria> = A[0] extends Criteria
 	? never[]
 	: (undefined extends Criteria

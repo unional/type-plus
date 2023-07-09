@@ -9,10 +9,10 @@
  * type R = Filter<[1, 2, '3'], true> // []
  * ```
  */
-export type Filter<T extends unknown[], Criteria> = T['length'] extends 0
+export type Filter<T extends readonly unknown[], Criteria> = T['length'] extends 0
 	? []
 	: (
-		T extends [infer Head, ...infer Tail]
+		T extends readonly [infer Head, ...infer Tail]
 		? (
 			Tail['length'] extends 0
 			? (

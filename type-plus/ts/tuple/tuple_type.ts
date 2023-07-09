@@ -26,7 +26,7 @@ export type TupleType<
 > = IsNever<
 	T,
 	Options['caseNever'],
-	[T] extends [any[]] ? (number extends T['length'] ? Else : Then) : Else
+	[T] extends [readonly any[]] ? (number extends T['length'] ? Else : Then) : Else
 >
 
 export namespace TupleType {

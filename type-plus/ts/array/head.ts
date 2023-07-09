@@ -21,7 +21,7 @@ import type { NeverType } from '../never/never_type.js'
  * Default to `never`.
  */
 export type Head<
-	T extends unknown[],
+	T extends readonly unknown[],
 	Options extends Head.Options = Head.DefaultOptions
 > = NeverType<
 	T,

@@ -21,3 +21,8 @@ it('gets property from array', () => {
 			'a'
 		>, number | string>(true)
 })
+
+it('support readonly array', () => {
+	type A = IntersectOfProps<readonly [{ a: { x: number } }, { a: { y: string } }], 'a'>
+	testType.equal<A, { x: number } & { y: string }>(true)
+})

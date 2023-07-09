@@ -55,3 +55,8 @@ it('will not drop widen type', () => {
 	// commenting this out as it will likely be improved in future versions of TypeScript
 	// testType.equal<C, string[] | string[]>(true)
 })
+
+it('supports readonly array', () => {
+	testType.equal<ArrayPlus.DropMatch<Readonly<Array<string | undefined>>, string>, Array<undefined>>(true)
+	testType.equal<ArrayPlus.DropMatch<readonly (1 | 2 | 3 | string)[], number>, Array<string>>(true)
+})

@@ -53,3 +53,7 @@ it('can override Then/Else', () => {
 	testType.equal<NotArrayType<never, 1, 2>, 1>(true)
 	testType.equal<NotArrayType<void, 1, 2>, 1>(true)
 })
+
+it('supports readonly array', () => {
+	testType.equal<NotArrayType<readonly []>, readonly []>(true)
+})

@@ -19,3 +19,8 @@ it('preserves union types', () => {
 	type R = UnionOfValues<typeof t>
 	testType.equal<R, 'a' | 'b' | number | boolean>(true)
 })
+
+it('supports readonly tuple', () => {
+	testType.equal<UnionOfValues<readonly string[]>, string>(true)
+	testType.equal<UnionOfValues<readonly [string, boolean]>, string | boolean>(true)
+})

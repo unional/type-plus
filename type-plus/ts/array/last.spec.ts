@@ -28,3 +28,8 @@ it('gets the last entry of a tuple', () => {
 it('can override empty tuple behavior', () => {
 	testType.equal<Last<[], { caseEmptyTuple: undefined }>, undefined>(true)
 })
+
+it('supports readonly array', () => {
+	testType.equal<Last<readonly string[]>, string>(true)
+	testType.equal<Last<readonly [number, AnyFunction]>, AnyFunction>(true)
+})

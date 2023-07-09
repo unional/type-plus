@@ -71,3 +71,7 @@ it('can override fail case', () => {
 	testType.equal<IndexAt<[1], -2, 'f', 'u', 'l'>, 'l'>(true)
 	testType.equal<IndexAt<[], 0, 'f', 'u', 'l'>, 'f'>(true)
 })
+
+it('supports readonly array', () => {
+	testType.equal<IndexAt<readonly [1, 2, 3], 1>, 1>(true)
+})

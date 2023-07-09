@@ -3,7 +3,7 @@ import type { CreateTuple } from '../tuple/create_tuple.js'
 import type { UnionOfValues } from './union_of_values.js'
 
 export type PadStart<
-	A extends unknown[],
+	A extends readonly unknown[],
 	MaxLength extends number,
 	PadWith = unknown
 > = MaxLength extends 0

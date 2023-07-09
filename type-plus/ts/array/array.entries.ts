@@ -11,16 +11,16 @@ import type { IsTuple } from '../tuple/tuple_type.js'
  * ArrayPlus.Entries<[1, 2, 3]> // [[0, 1], [1, 2], [2, 3]]
  * ```
  */
-export type Entries<A extends unknown[]> = IsTuple<
+export type Entries<A extends readonly unknown[]> = IsTuple<
 	A,
 	Entries.Device<A, []>,
 	A extends Array<infer T> ? Array<[number, T]> : never
 >
 
 export namespace Entries {
-	export type Device<A extends unknown[], R extends unknown[]> = A['length'] extends 0
-	? R
-	: A extends [...infer F, infer N]
-	? Device<F, [[F['length'], N], ...R]>
-	: never
+	export type Device<A extends readonly unknown[], R extends unknown[]> = A['length'] extends 0
+		? R
+		: (A extends readonly [...infer F, infer N]
+			? Device<F, [[F['length'], N], ...R]>
+			: never)
 }

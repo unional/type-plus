@@ -105,3 +105,7 @@ it('support replace', () => {
 
 	testType.equal<SplitAt<[1, 2, 3, 4, 5], 2, 2, ['a', 'b']>, [[1, 2, 'a', 'b', 5], [3, 4]]>(true)
 })
+
+it('supports readonly array', () => {
+	testType.equal<SplitAt<readonly [1, 2, 3, 4, 5], 4, 1>, [[1, 2, 3, 4], [5]]>(true)
+})

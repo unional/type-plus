@@ -22,3 +22,7 @@ it('returns [[0, T1], [1, T2],...[n, Tn]] for tuple', () => {
 	testType.equal<ArrayPlus.Entries<[]>, []>(true)
 	testType.equal<ArrayPlus.Entries<[1, 2, 3]>, [[0, 1], [1, 2], [2, 3]]>(true)
 })
+
+it('supports readonly array', () => {
+	testType.equal<ArrayPlus.Entries<readonly [1, 2, 3]>, [[0, 1], [1, 2], [2, 3]]>(true)
+})

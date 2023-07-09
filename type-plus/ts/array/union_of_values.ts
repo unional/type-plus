@@ -1,7 +1,7 @@
 /**
  * Gets the union of value types in `A`
  */
-export type UnionOfValues<A extends Array<any>> = A extends Array<infer E> ? E : never
+export type UnionOfValues<A extends readonly unknown[]> = A extends Readonly<Array<infer E>> ? E : never
 
 // alternative implementation
 // export type UnionOfValues<A extends readonly any[]> = (A)[number]
@@ -11,4 +11,4 @@ export type UnionOfValues<A extends Array<any>> = A extends Array<infer E> ? E :
  * Gets the union of value types in `A`
  * @deprecated Please use `UnionOfValues` instead.
  */
-export type ArrayValue<A extends any[]> = UnionOfValues<A>
+export type ArrayValue<A extends readonly unknown[]> = UnionOfValues<A>

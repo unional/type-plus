@@ -54,3 +54,7 @@ it('can override Then/Else', () => {
 	testType.equal<IsArray<never, 1, 2>, 2>(true)
 	testType.equal<IsArray<void, 1, 2>, 2>(true)
 })
+
+it('supports readonly array', () => {
+	testType.true<IsArray<readonly string[]>>(true)
+})

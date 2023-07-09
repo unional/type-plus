@@ -12,7 +12,7 @@ import type { Filter as FilterArray } from './array_plus.filter.js'
  * type R = Filter<Array<string | undefined>, string> // string[]
  * ```
  */
-export type Filter<A extends unknown[], Criteria> = number extends A['length']
+export type Filter<A extends readonly unknown[], Criteria> = number extends A['length']
 	? FilterArray<A, Criteria>
 	: FilterTuple<A, Criteria>
 
@@ -29,4 +29,4 @@ export type Filter<A extends unknown[], Criteria> = number extends A['length']
  * type R = KeepMatch<Array<string|undefined>, string> // string[]
  * ```
  */
-export type KeepMatch<A extends unknown[], Criteria> = Filter<A, Criteria>
+export type KeepMatch<A extends readonly unknown[], Criteria> = Filter<A, Criteria>

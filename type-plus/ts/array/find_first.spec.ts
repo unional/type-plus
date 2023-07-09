@@ -1,6 +1,5 @@
-import { it } from '@jest/globals'
+import { describe, it } from '@jest/globals'
 import { testType, type FindFirst } from '../index.js'
-import { describe } from 'node:test'
 
 describe('For Array', () => {
 	it('returns never if the type in the array does not satisfy the criteria', () => {
@@ -33,7 +32,10 @@ describe('For Array', () => {
 		testType.equal<FindFirst<Array<string | number>, number, { caseUnionNotMatch: undefined }>, number | undefined>(true)
 		testType.equal<FindFirst<Array<1 | 2 | 'x'>, number, { caseUnionNotMatch: undefined }>, 1 | 2 | undefined>(true)
 	})
+	it('support readonly array', () => {
+		testType.equal<FindFirst<Readonly<Array<string | number>>, number>, number>(true)
 	})
+})
 
 describe('for Tuple', () => {
 	it('returns never for empty tuple', () => {
@@ -67,5 +69,9 @@ describe('for Tuple', () => {
 			{ name: 'b' }
 		>['type']
 		testType.equal<Actual, 2>(true)
+	})
+
+	it('support readonly array', () => {
+		testType.equal<FindFirst<readonly [true, 1, 'x', 3], number>, 1>(true)
 	})
 })

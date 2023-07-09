@@ -110,3 +110,10 @@ describe('strict mode', () => {
 it('exposes under ArrayPlus.Some', () => {
 	testType.equal<ArrayPlus.Some<[1, 2, 3], number>, true>(true)
 })
+
+it('support readonly array', () => {
+	testType.false<Some<readonly string[], number>>(true)
+	testType.equal<ArrayPlus.Some<readonly [1, 2, 3], number>, true>(true)
+	testType.false<Some<readonly true[], boolean, 'strict'>>(true)
+	testType.true<Some<readonly [boolean], boolean, 'strict'>>(true)
+})

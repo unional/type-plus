@@ -79,3 +79,7 @@ it('will not affect other cases', () => {
 	testType.equal<ArrayPlus.Find<[], 1, { caseWiden: 123 }>, ArrayPlus.Find.DefaultOptions<unknown>['caseTuple']>(true)
 	testType.equal<ArrayPlus.Find<number[], 1, { caseUnionNotMatch: 123 }>, ArrayPlus.Find.DefaultOptions<1>['caseWiden']>(true)
 })
+
+it('support readonly array', () => {
+	testType.equal<ArrayPlus.Find<readonly number[], 1>, 1 | undefined>(true)
+})

@@ -26,7 +26,7 @@ import type { PadStart as PadStartArray } from './array_plus.pad_start.js'
  * ```
  */
 export type PadStart<
-	A extends unknown[],
+	A extends readonly unknown[],
 	MaxLength extends number,
 	PadWith = unknown
 > = number extends A['length']

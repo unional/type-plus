@@ -16,14 +16,14 @@ import type { TupleType } from '../tuple/tuple_type.js'
  * ArrayPlus.Find<[true, 123, 'x', 321], number> // 321
  * ```
  */
-export type FindLast<A extends Array<any>, Criteria> = TupleType<
+export type FindLast<A extends readonly unknown[], Criteria> = TupleType<
 	A,
 	A['length'] extends 0
-		? never
-		: A extends [...infer Heads, infer Last]
-		? Last extends Criteria
+	? never
+	: (A extends readonly [...infer Heads, infer Last]
+		? (Last extends Criteria
 			? Last
-			: FindLast<Heads, Criteria>
-		: never,
-	A extends Array<infer T> ? (T extends Criteria ? T | undefined : never) : never
+			: FindLast<Heads, Criteria>)
+		: never),
+	A extends Readonly<Array<infer T>> ? (T extends Criteria ? T | undefined : never) : never
 >

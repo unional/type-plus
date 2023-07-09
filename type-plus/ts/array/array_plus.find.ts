@@ -47,7 +47,7 @@ import type { ElementMatch } from './array_plus.element_match.js'
  * Since it is a union, the result will be joined to the matched branch as union.
  */
 export type Find<
-	A extends unknown[],
+	A extends readonly unknown[],
 	Criteria,
 	Options extends Find.Options = Find.DefaultOptions<Criteria>
 > =
@@ -55,7 +55,7 @@ export type Find<
 	? TupleType<
 		A,
 		O['caseTuple'],
-		A extends Array<infer T> ? ElementMatch<T, Criteria, O> : never,
+		A extends Readonly<Array<infer T>> ? ElementMatch<T, Criteria, O> : never,
 		O
 	>
 	: never

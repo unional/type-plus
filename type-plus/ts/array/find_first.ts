@@ -50,7 +50,7 @@ import type { Find as ArrayFind } from './array_plus.find.js'
  * Since it is a union, the result will be join to the matched branch as union.
  */
 export type FindFirst<
-	A extends unknown[],
+	A extends readonly unknown[],
 	Criteria, Options extends FindFirst.Options = FindFirst.DefaultOptions<Criteria>
 > = TupleType<
 	A,

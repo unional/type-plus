@@ -26,3 +26,7 @@ it('returns false for in bound index', () => {
 	testType.false<IsIndexOutOfBound<['a'], 0>>(true)
 	testType.false<IsIndexOutOfBound<['a'], -1>>(true)
 })
+
+it('supports readonly array', () => {
+	testType.true<IsIndexOutOfBound<readonly ['a'], 1>>(true)
+})

@@ -23,7 +23,7 @@ import type { Negative } from '../numeric/negative.js'
  * ```
  */
 export type IndexAt<
-	A extends Array<unknown>,
+	A extends readonly unknown[],
 	N extends number,
 	Fail = never,
 	Upper = A['length'],
@@ -32,7 +32,7 @@ export type IndexAt<
 
 export namespace IndexAt {
 	export type _<
-		A extends Array<unknown>,
+		A extends readonly unknown[],
 		N extends number,
 		Fail = never,
 		Upper = A['length'],

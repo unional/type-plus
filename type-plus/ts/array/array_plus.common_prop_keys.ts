@@ -19,11 +19,11 @@ import type { KeyTypes } from '../object/KeyTypes.js'
  * Default to `never`.
  */
 export type CommonPropKeys<
-	A extends Record<KeyTypes, unknown>[],
+	A extends readonly Record<KeyTypes, unknown>[],
 	Options extends CommonPropKeys.Options = CommonPropKeys.DefaultOptions
 > = NeverType<A,
 	Options['caseNever'],
-	A extends Array<infer R extends Record<KeyTypes, unknown>> ? keyof R : never
+	A extends Readonly<Array<infer R extends Record<KeyTypes, unknown>>> ? keyof R : never
 >
 
 export namespace CommonPropKeys {

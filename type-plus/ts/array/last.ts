@@ -20,11 +20,13 @@ import type { NeverType } from '../never/never_type.js'
  * Default to `never`.
  */
 export type Last<
-	T extends unknown[],
+	T extends readonly unknown[],
 	Options extends Last.Options = Last.DefaultOptions
 > = NeverType<T,
 	Options['caseNever'],
-	T['length'] extends 0 ? Options['caseEmptyTuple'] : T extends [...unknown[], infer R] ? R : T[0]
+	T['length'] extends 0
+	? Options['caseEmptyTuple']
+	: T extends readonly [...unknown[], infer R] ? R : T[0]
 >
 
 export namespace Last {

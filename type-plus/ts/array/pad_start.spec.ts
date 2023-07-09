@@ -45,3 +45,8 @@ it('pads the array while keeping intersaction type', () => {
 	// @ts-expect-error
 	testType.equal<PadStart<number[] & { a: string }, 2>, [unknown, unknown, ...number[]] & { a: string }>(true)
 })
+
+it('support readonly array', () => {
+	testType.equal<PadStart<readonly number[], 0>, readonly number[]>(true)
+	testType.equal<PadStart<readonly [1, 2, 3], 5>, [unknown, unknown, 1, 2, 3]>(true)
+})

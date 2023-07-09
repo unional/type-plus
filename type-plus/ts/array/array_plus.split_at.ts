@@ -28,10 +28,10 @@ import type { ArrayType } from './array_type.js'
  * ```
  */
 export type SplitAt<
-	A extends unknown[],
+	A extends readonly unknown[],
 	Index extends number,
 	DeleteCount extends number | never = never,
-	Insert extends unknown[] | never = never
+	Insert extends readonly unknown[] | never = never
 > = ArrayType<
 	A,
 	[A, A],
@@ -40,12 +40,12 @@ export type SplitAt<
 
 export namespace SplitAt {
 	export type _<
-		A extends unknown[],
-		B extends unknown[],
-		C extends unknown[],
+		A extends readonly unknown[],
+		B extends readonly unknown[],
+		C extends readonly unknown[],
 		Index extends number,
 		DeleteCount,
-		Insert extends unknown[],
+		Insert extends readonly unknown[],
 	> = 0 extends A['length']
 		? IsTuple<Insert, [[...Insert, ...B], C], [B, C]>
 		: (Index extends B['length']
@@ -53,19 +53,19 @@ export namespace SplitAt {
 				DeleteCount,
 				[B, A],
 				_D<A, B, C, DeleteCount, Insert>>
-			: (A extends [infer Head, ...infer Tail]
+			: (A extends readonly [infer Head, ...infer Tail]
 				? _<Tail, [...B, Head], [], Index, DeleteCount, Insert>
 				: 'unexpected: A does not extends [Head, ...Tail]'))
 
 	export type _D<
-		A extends unknown[],
-		B extends unknown[],
-		C extends unknown[],
+		A extends readonly unknown[],
+		B extends readonly unknown[],
+		C extends readonly unknown[],
 		DeleteCount,
-		Insert extends unknown[],
+		Insert extends readonly unknown[],
 	> = DeleteCount extends C['length']
 		? IsTuple<Insert, [[...B, ...Insert, ...A], C], [[...B, ...A], C]>
-		: (A extends [infer Head, ...infer Tail]
+		: (A extends readonly [infer Head, ...infer Tail]
 			? _D<Tail, B, [...C, Head], DeleteCount, Insert>
 			: IsTuple<Insert, [[...Insert, ...B], C], [B, C]>
 		)

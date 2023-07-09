@@ -6,7 +6,7 @@ import type { Tail } from '../tuple/tail.js'
  *
  * Gets the intersect of properties of the elements in `A`.
  */
-export type IntersectOfProps<A extends Record<any, unknown>[], P extends KeyTypes> = number extends A['length']
+export type IntersectOfProps<A extends readonly  Record<any, unknown>[], P extends KeyTypes> = number extends A['length']
 	? A[0][P]
 	: A['length'] extends 0
 	? never

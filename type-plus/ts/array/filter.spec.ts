@@ -45,9 +45,13 @@ describe('Filter<A, C>', () => {
 		})
 
 		it('matching undefined and null', () => {
-			type Actual = Filter<[1, undefined, 3, null], undefined | null>
-			testType.equal<[undefined, null], Actual>(true)
+			testType.equal<Filter<[1, undefined, 3, null], undefined | null>, [undefined, null]>(true)
 		})
+	})
+
+	it('support readonly array', () => {
+		testType.equal<Filter<Readonly<Array<string | number>>, string>, string[]>(true)
+		testType.equal<Filter<readonly [1, undefined, 3, null], undefined | null>, [undefined, null]>(true)
 	})
 })
 
@@ -101,5 +105,10 @@ describe('KeepMatch<A, C>', () => {
 			type Actual = KeepMatch<[1, undefined, 3, null], undefined | null>
 			testType.equal<[undefined, null], Actual>(true)
 		})
+	})
+
+	it('support readonly array', () => {
+		testType.equal<KeepMatch<Readonly<Array<string | number>>, string>, string[]>(true)
+		testType.equal<KeepMatch<readonly [1, undefined, 3, null], undefined | null>, [undefined, null]>(true)
 	})
 })

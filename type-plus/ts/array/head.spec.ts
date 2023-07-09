@@ -24,3 +24,8 @@ it('returns never for empty tuple', () => {
 it('can override empty tuple case', () => {
 	testType.equal<Head<[], { caseEmptyTuple: undefined }>, undefined>(true)
 })
+
+it('support readonly tuple', () => {
+	testType.equal<Head<readonly string[]>, string>(true)
+	testType.equal<Head<readonly [1, 'a', 'b']>, 1>(true)
+})

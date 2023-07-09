@@ -59,3 +59,8 @@ it('concats tuple to array', () => {
 	isType<A>([1, 2, 3, 'a'])
 	isType<A>([1, 2, 3, 'a', 'b'])
 })
+
+it('accepts readonly array', () => {
+	type A = ArrayPlus.Concat<readonly [1, 2, 3], readonly string[]>
+	testType.equal<A, [1, 2, 3, ...string[]]>(true)
+})

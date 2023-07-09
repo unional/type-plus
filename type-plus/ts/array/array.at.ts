@@ -17,7 +17,7 @@ import type { IndexAt } from './array_plus.index_at.js'
  * type R = At<[1, 2, 3], -1> // 3
  * ```
  */
-export type At<A extends unknown[], N extends number, Fail = never> = IndexAt<
+export type At<A extends readonly unknown[], N extends number, Fail = never> = IndexAt<
 	A,
 	N,
 	Fail,

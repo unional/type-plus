@@ -12,4 +12,4 @@
  * type R = Concat<[1], [2, 3]> // [1, 2, 3]
  * ```
  */
-export type Concat<A extends unknown[], B extends unknown[]> = [...A, ...B]
+export type Concat<A extends Readonly<unknown[]>, B extends Readonly<unknown[]>> = [...A, ...B]

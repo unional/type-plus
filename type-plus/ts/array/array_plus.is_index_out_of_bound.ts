@@ -15,7 +15,7 @@ import type { IndexAt } from './array_plus.index_at.js'
  * type R = IsIndexOutOfBound<[1], -2> // true
  * ```
  */
-export type IsIndexOutOfBound<A extends unknown[], N extends number, Then = true, Else = false> = IsNever<
+export type IsIndexOutOfBound<A extends readonly unknown[], N extends number, Then = true, Else = false> = IsNever<
 	IndexAt<A, N, never, never, never>,
 	Then,
 	Else

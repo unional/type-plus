@@ -14,7 +14,7 @@ The `ArrayType<T>` and friends are used to check if a type is exactly `Array<T>`
 They are strict type checks, meaning they match only the type `Array<T>`,
 and not [tuple], [union], or intersection types.
 
-### [ArrayType](./array_type.ts#18)
+### [ArrayType](./array_type.ts#l18)
 
 `ArrayType<T, Then = T, Else = never>`
 
@@ -32,7 +32,7 @@ type R = ArrayType<number[] | 1> // never
 type R = ArrayType<number[] & { a: 1 }> // never
 ```
 
-### [IsArray](./array_type.ts#37)
+### [IsArray](./array_type.ts#l41)
 
 `IsArray<T, Then = true, Else = false>`
 
@@ -49,7 +49,7 @@ type R = IsArray<number> // false
 type R = IsArray<[1]> // false
 ```
 
-### [NotArrayType](./array_type.ts#54)
+### [NotArrayType](./array_type.ts#l58)
 
 `NotArrayType<T, Then = T, Else = never>`
 
@@ -66,7 +66,7 @@ type R = NotArrayType<number> // number
 type R = NotArrayType<[1]> // [1]
 ```
 
-### [IsNotArrayType](./array_type.ts#71)
+### [IsNotArrayType](./array_type.ts#l75)
 
 `IsNotArrayType<T, Then = true, Else = false>`
 
@@ -113,7 +113,7 @@ If the `N` is out of bound,
 or `N` is not a valid index,
 `ArrayPlus.At` will return the `Fail` case, which defaults to `never`.
 
-## [`Concat`](./array.concat.ts#L12)
+## [`Concat`](./array_plus.concat.ts#l15)
 
 `Concat<A, B>`
 
@@ -161,7 +161,7 @@ type R = FindFirst<[string], number, { caseNotMatch: 2 }> // 2
 type R = FindFirst<[string | number], number, { caseUnionNotMatch: undefined }> // number | undefined
 ```
 
-## [`FindLast`](./array.find_last.ts)
+## [`FindLast`](./array.find_last.tsl19)
 
 ## [`Some`](./array.some.ts)
 
