@@ -273,7 +273,7 @@ please check [`TuplePlus`](../tuple/readme.md#TuplePlus).
 
 Alias of [At](#at).
 
-## [ArrayPlus.CommonPropKeys](./array_plus.common_prop_keys.ts#l21)
+### [ArrayPlus.CommonPropKeys](./array_plus.common_prop_keys.ts#l21)
 
 `ArrayPlus.CommonPropKeys<T extends Record[], Options = { $never }>`
 
@@ -335,6 +335,23 @@ which returns an iterable interator.
 ```ts
 type R = ArrayPlus.Entries<Array<string | number>> // Array<[number, string | number]>
 type R = ArrayPlus.Entries<[1, 2, 3]> // [[0, 1], [1, 2], [2, 3]]
+```
+
+### [`ArrayPlus.Filter`](./array_plus.filter.ts#l11)
+
+`ArrayPlus.Filter<A, Criteria, Options = { $notArray }>`
+
+⚗️ *transform*
+🔢 *customizable*
+
+Filter the array `A`, keeping entries satisfying `Criteria`.
+
+```ts
+type R = Filter<Array<string | undefined>, string> // string[]
+
+// customization
+type R = Filter<never, string, { caseNever: 1 }> // 1
+type R = Filter<['x'], string, { $notArray: 1 }> // 1
 ```
 
 ### [`ArrayPlus.Find`](./array_plus.find.ts#l49)

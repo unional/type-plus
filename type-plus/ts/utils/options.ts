@@ -22,4 +22,8 @@ export namespace TypePlusOptions {
 		$then?: unknown,
 		$else?: unknown,
 	}
+
+	export interface NotArray {
+		$notArray?: unknown
+	}
 }

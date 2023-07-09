@@ -34,9 +34,8 @@ export type IsReadonly<
 	: never
 
 export namespace IsReadonly {
-	export interface Options extends NeverType.Options, TypePlusOptions.Selection {
-		$notArray?: unknown
-	}
+	export interface Options
+		extends NeverType.Options, TypePlusOptions.Selection, TypePlusOptions.NotArray { }
 
 	export interface DefaultOptions {
 		$then: true,
