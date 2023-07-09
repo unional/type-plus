@@ -1,6 +1,6 @@
 import type { ElementMatch } from '../array/array_plus.element_match.js'
 import type { NeverType } from '../never/never_type.js'
-import type { MergeOptions } from '../utils/options.js'
+import type { TypePlusOptions } from '../utils/options.js'
 import type { TupleType } from './tuple_type.js'
 
 /**
@@ -52,7 +52,7 @@ export type Find<
 	A extends readonly unknown[],
 	Criteria,
 	Options extends Find.Options = Find.DefaultOptions<Criteria>
-> = MergeOptions<Options, Find.DefaultOptions<Criteria>> extends infer O extends Find.Options
+> = TypePlusOptions.Merge<Options, Find.DefaultOptions<Criteria>> extends infer O extends Find.Options
 	? TupleType<
 		A,
 		A['length'] extends 0
@@ -73,7 +73,7 @@ export namespace Find {
 			? ElementMatch<
 				Head,
 				Criteria,
-				MergeOptions<{ caseNotMatch: Device<Tail, Criteria, Options> }, Options>
+				TypePlusOptions.Merge<{ caseNotMatch: Device<Tail, Criteria, Options> }, Options>
 			>
 			: never)
 	export interface Options extends ElementMatch.Options, NeverType.Options {

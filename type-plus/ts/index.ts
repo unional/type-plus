@@ -118,6 +118,6 @@ export type { UnionKeys } from './union_keys.js'
 export type { IsNotUnknown, IsUnknown, NotUnknownType, UnknownType } from './unknown/unknown_type.js'
 export * from './unpartial.js'
 export * from './utils/index.js'
-export type { MergeOptions as MergeCases } from './utils/options.js'
+export type { TypePlusOptions } from './utils/options.js'
 export type { IsNotVoid, IsVoid, NotVoidType, VoidType } from './void/void_type.js'
 

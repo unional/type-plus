@@ -1,17 +1,24 @@
-
-/**
- * 🦴 *utilities*
- * ㊙️ *internal*
- *
- * Merge the input Options `I` with the default Options `D`.
- */
-export type MergeOptions<I, D> = {
-	[k in keyof D]: k extends keyof I ? I[k] : D[k]
-}
-
-
 export namespace TypePlusOptions {
-	export interface Predicate {
+	/**
+	 * 🦴 *utilities*
+	 * ㊙️ *internal*
+	 *
+	 * Merge the input Options `I` with the default Options `D`.
+	 */
+	export type Merge<I, D> = {
+		[k in keyof D]: k extends keyof I ? I[k] : D[k]
+	}
+
+	/**
+	 * 🦴 *utilities*
+	 * ㊙️ *internal*
+	 *
+	 * Selection (if-then-else) options.
+	 *
+	 * The word "selection" refers to the basic elements in structural programming:
+	 * sequence, selection, and iteration.
+	 */
+	export interface Selection {
 		caseThen?: unknown,
 		caseElse?: unknown,
 	}

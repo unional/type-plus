@@ -1,6 +1,6 @@
 import type { IsNever } from '../never/never_type.js'
 import type { IsUnion } from '../union/union.js'
-import type { MergeOptions } from '../utils/options.js'
+import type { TypePlusOptions } from '../utils/options.js'
 
 /**
  * 🦴 *utilities*
@@ -33,7 +33,7 @@ export type ElementMatch<
 	Options extends ElementMatch.Options = ElementMatch.DefaultOptions<Criteria>
 > = [T] extends [Criteria]
 	? T
-	: (MergeOptions<Options, ElementMatch.DefaultOptions<Criteria>> extends infer C extends Record<keyof ElementMatch.Options, unknown>
+	: (TypePlusOptions.Merge<Options, ElementMatch.DefaultOptions<Criteria>> extends infer C extends Record<keyof ElementMatch.Options, unknown>
 		? ((T extends Criteria
 			? T
 			: (C['widen'] extends true

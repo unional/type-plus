@@ -412,6 +412,29 @@ type R = IsIndexOutOfBound<[1], 1> // true
 type R = IsIndexOutOfBound<[1], -2> // true
 ```
 
+### [`ArrayPlus.IsReadonly](./array_plus.is_readonly.ts#l19)
+
+`ArrayPlus.IsReadonly<A, Options = { caseThen, caseElse, caseNever, caseNotArray }>`
+
+🎭 *validate*
+🔢 *customizable*
+
+Checks if `A` is a readonly array or tuple.
+
+```ts
+type R = IsReadonly<readonly string[]> // true
+type R = IsReadonly<readonly [1, 2, 3, 4, 5]> // true
+
+type R = IsReadonly<[1, 2, 3, 4, 5]> // false
+type R = IsReadonly<readonly string[] | number> // boolean
+
+// customization
+type R = IsReadonly<readonly string[], { caseThen: 1 }> // 1
+type R = IsReadonly<string[], { caseElse: 1 }> // 1
+type R = IsReadonly<number, { caseNotArray: 1 }> // 1
+type R = IsReadonly<never, { caseNever: 1 }> // 1
+```
+
 ### [`ArrayPlus.Reverse`](./array.reverse.ts#l14)
 
 > `ArrayPlus.Reverse<A>`

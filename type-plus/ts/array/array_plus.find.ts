@@ -1,6 +1,6 @@
 import type { NeverType } from '../never/never_type.js'
 import type { TupleType } from '../tuple/tuple_type.js'
-import type { MergeOptions } from '../utils/options.js'
+import type { TypePlusOptions } from '../utils/options.js'
 import type { ElementMatch } from './array_plus.element_match.js'
 
 /**
@@ -51,7 +51,7 @@ export type Find<
 	Criteria,
 	Options extends Find.Options = Find.DefaultOptions<Criteria>
 > =
-	MergeOptions<Options, Find.DefaultOptions<Criteria>> extends infer O extends Find.Options
+	TypePlusOptions.Merge<Options, Find.DefaultOptions<Criteria>> extends infer O extends Find.Options
 	? TupleType<
 		A,
 		O['caseTuple'],

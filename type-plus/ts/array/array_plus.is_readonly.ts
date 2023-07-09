@@ -1,13 +1,27 @@
 import type { NeverType } from '../never/never_type.js'
-import type { TypePlusOptions, MergeOptions } from '../utils/options.js'
+import type { TypePlusOptions } from '../utils/options.js'
 import type { LooseArrayType } from './loose_array_type.js'
 
-export type IsReadonly<A, Options extends IsReadonly.Options = {
-	caseTrue: true,
-	caseFalse: false,
-	caseNever: false,
-	caseNotArray: false
-}> = MergeOptions<Options, IsReadonly.DefaultOptions> extends infer O extends IsReadonly.Options ?
+/**
+ * 🎭 *validate*
+ * 🔢 *customizable*
+ *
+ * Checks if `A` is a readonly array or tuple
+ *
+ * @example
+ * ```ts
+ * type R = IsReadonly<readonly string[]> // true
+ * type R = IsReadonly<readonly [1, 2, 3, 4, 5]> // true
+ *
+ * type R = IsReadonly<[1, 2, 3, 4, 5]> // false
+ * type R = IsReadonly<readonly string[] | number> // boolean
+ * ```
+ */
+export type IsReadonly<
+	A,
+	Options extends IsReadonly.Options = IsReadonly.DefaultOptions
+> =
+	TypePlusOptions.Merge<Options, IsReadonly.DefaultOptions> extends infer O extends IsReadonly.Options ?
 	NeverType<
 		A,
 		O['caseNever'],
@@ -20,7 +34,7 @@ export type IsReadonly<A, Options extends IsReadonly.Options = {
 	: never
 
 export namespace IsReadonly {
-	export interface Options extends NeverType.Options, TypePlusOptions.Predicate {
+	export interface Options extends NeverType.Options, TypePlusOptions.Selection {
 		caseNotArray?: unknown
 	}
 
