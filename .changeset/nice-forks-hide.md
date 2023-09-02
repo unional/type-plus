@@ -2,7 +2,7 @@
 "type-plus": minor
 ---
 
-accept `readonly` for array.
+Accept `readonly` for array.
 Add `ArrayPlus.IsReadonly`.
 
-Fix `ArrayPlus.Reverse` to support `readonly`
+Fix `ArrayPlus.Reverse` to support `readonly`.
