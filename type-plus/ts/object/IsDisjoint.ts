@@ -1,5 +1,5 @@
 import type { And, Not } from '../predicates/index.js'
-import type { AnyRecord } from './AnyRecord.js'
+import type { AnyRecord } from './any_record.js'
 import type { HasKey } from './hasKey.js'
 
 /**

@@ -1,4 +1,4 @@
-import type { AnyRecord } from './AnyRecord.js'
+import type { AnyRecord } from './any_record.js'
 
 /**
  * Intersect type recursively.

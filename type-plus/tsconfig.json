@@ -1,5 +1,10 @@
 {
   "extends": "./tsconfig.esm.json",
+  "exclude": [
+		"node_modules",
+    "ts/type-checker",
+    "ts/types"
+  ],
   "typedocOptions": {
     "entryPoints": [
       "ts/index.ts"

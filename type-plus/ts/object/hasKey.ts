@@ -1,4 +1,4 @@
-import type { AnyRecord } from './AnyRecord.js'
+import type { AnyRecord } from './any_record.js'
 
 export type HasKey<T, K, Then = true, Else = false> = K extends keyof T ? Then : Else
 

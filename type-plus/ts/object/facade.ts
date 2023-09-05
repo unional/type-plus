@@ -1,4 +1,4 @@
-import type { AnyRecord } from './AnyRecord.js'
+import type { AnyRecord } from './any_record.js'
 
 /**
  * creates a facade of the subject.

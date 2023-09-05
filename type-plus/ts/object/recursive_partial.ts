@@ -2,7 +2,7 @@
 
 import type { AnyFunction } from '../function/any_function.js'
 import type { ExtractFunction } from '../index.js'
-import type { AnyRecord } from './AnyRecord.js'
+import type { AnyRecord } from './any_record.js'
 import type { Properties } from './properties.js'
 
 /**

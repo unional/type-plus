@@ -1,5 +1,5 @@
 export type { ANotB, BNotA } from './ANotB.js'
-export type { AnyRecord } from './AnyRecord.js'
+export type { AnyRecord } from './any_record.js'
 export type { ExcludePropType } from './ExcludePropType.js'
 export type { IsDisjoint } from './IsDisjoint.js'
 export type { IsRecord } from './IsRecord.js'

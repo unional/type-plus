@@ -1,4 +1,4 @@
-import type { AnyRecord } from './AnyRecord.js'
+import type { AnyRecord } from './any_record.js'
 
 export type ReplaceProperty<T extends AnyRecord, K extends keyof T, V> = Omit<T, K> & { [P in K]: V }
 

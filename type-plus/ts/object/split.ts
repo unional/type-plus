@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import type { AnyRecord } from './AnyRecord.js'
+import type { AnyRecord } from './any_record.js'
 import type { Omit } from './omit.js'
 import { reduceByKey } from './reduceKey.js'
 import type { Partial } from './Partial.js'

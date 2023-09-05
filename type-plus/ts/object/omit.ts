@@ -1,5 +1,5 @@
 import type { UnionKeys } from '../union_keys.js'
-import type { AnyRecord } from './AnyRecord.js'
+import type { AnyRecord } from './any_record.js'
 import type { Pick } from './pick.js'
 import { record } from './record.js'
 import { reduceByKey } from './reduceKey.js'

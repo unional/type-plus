@@ -1,5 +1,5 @@
 import type { NonComposableTypes } from './composable_types.js'
-import type { AnyRecord } from './object/AnyRecord.js'
+import type { AnyRecord } from './object/any_record.js'
 import type { IsDisjoint } from './object/IsDisjoint.js'
 import type { KeyTypes } from './object/KeyTypes.js'
 import type { OptionalKeys } from './object/OptionalKeys.js'
