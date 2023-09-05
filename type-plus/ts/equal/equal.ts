@@ -44,37 +44,37 @@ type IdentityEqual<A, B, Then, Else> = (<_>() => _ extends (A & _) | _ ? 1 : 2) 
  */
 export type IsEqual<A, B, Then = true, Else = false> = [A, B] extends [B, A]
 	? BothNever<
+		A,
+		B,
+		Then,
+		Else,
+		BothAny<
 			A,
 			B,
 			Then,
 			Else,
-			BothAny<
+			IdentityEqual<
 				A,
 				B,
 				Then,
-				Else,
-				IdentityEqual<
-					A,
-					B,
-					Then,
-					And<
-						IsObject<A>,
-						IsObject<B>,
-						IdentityEqual<
-							Properties<A>,
-							Properties<B>,
-							[A, B] extends [(...args: infer P1) => any, (...args: infer P2) => any]
-								? IsEqual<P1, P2, Then, Else>
-								: Then,
-							Else
-						>,
-						// `A` and `B` are narrowed, need to check again.
-						// This is fixed in TS 5.0.2, but keeping it to support older versions.
-						[A, B] extends [B, A] ? Then : Else
-					>
+				And<
+					IsObject<A>,
+					IsObject<B>,
+					IdentityEqual<
+						Properties<A>,
+						Properties<B>,
+						[A, B] extends [(...args: infer P1) => any, (...args: infer P2) => any]
+						? IsEqual<P1, P2, Then, Else>
+						: Then,
+						Else
+					>,
+					// `A` and `B` are narrowed, need to check again.
+					// This is fixed in TS 5.0.2, but keeping it to support older versions.
+					[A, B] extends [B, A] ? Then : Else
 				>
 			>
-	  >
+		>
+	>
 	: And<IsSymbol<A>, IsSymbol<B>, Then, Else>
 
 /**

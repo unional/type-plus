@@ -1,8 +1,5 @@
 {
   "extends": "./tsconfig.esm.json",
-  "compilerOptions": {
-    "noEmit": true
-  },
   "typedocOptions": {
     "entryPoints": [
       "ts/index.ts"

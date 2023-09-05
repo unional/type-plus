@@ -126,9 +126,6 @@ importers:
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
-      repobuddy:
-        specifier: ^1.0.2
-        version: 1.0.2
       rimraf:
         specifier: ^5.0.0
         version: 5.0.0
@@ -141,9 +138,6 @@ importers:
       ts-jest:
         specifier: ^29.1.0
         version: 29.1.0(@babel/core@7.22.1)(jest@29.5.0)(typescript@5.0.4)
-      tslib:
-        specifier: ^2.4.0
-        version: 2.4.1
 
 packages:
 
@@ -8174,13 +8168,6 @@ packages:
   /repeat-string@1.6.1:
     resolution: {integrity: sha512-PV0dzCYDNfRi1jCDbJzpW7jNNDRuCOG/jI5ctQcGKt/clZD+YcPS3yIlWuTJMmESC8aevCFmWJy5wjAFgNqN6w==}
     engines: {node: '>=0.10'}
-    dev: true
-
-  /repobuddy@1.0.2:
-    resolution: {integrity: sha512-Asv1QRhk1/t+XlYjcaaom9lV8YzGDl7yKhWuY+3cx6Nj4ubk7fBHV5okimroRrfGkGS9oV9F2I6CbK1hRInBGA==}
-    hasBin: true
-    dependencies:
-      clibuilder: 8.0.17
     dev: true
 
   /require-directory@2.1.1:

@@ -49,14 +49,14 @@ describe('Omit<T, K>', () => {
 	test('distributive Omit with disjoined keys', () => {
 		type Union =
 			| {
-					type: 'A',
-					foo: string
-			  }
+				type: 'A',
+				foo: string
+			}
 			| {
-					type: 'B',
-					foo: string,
-					bar: string
-			  }
+				type: 'B',
+				foo: string,
+				bar: string
+			}
 		// eslint-disable-next-line @typescript-eslint/ban-types
 		type Id<T> = {} & { [P in keyof T]: T[P] }
 		let x: Id<Omit<Union, 'bar'>> = { type: 'A', foo: 'foo' }

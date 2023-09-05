@@ -35,19 +35,13 @@
         "types": "./esm/index.d.ts",
         "default": "./esm/index.js"
       },
-      "require": {
-        "types": "./cjs/index.d.ts",
-        "default": "./cjs/index.js"
-      },
       "default": "./esm/index.js"
     },
     "./package.json": "./package.json"
   },
-  "main": "./cjs/index.js",
   "module": "./esm/index.js",
-  "types": "./cjs/index.d.ts",
+  "types": "./esm/index.d.ts",
   "files": [
-    "cjs",
     "esm",
     "ts",
     "!ts/types",
@@ -55,10 +49,7 @@
     "!**/*.{spec,test,unit,accept,integrate,system,perf,stress}.*"
   ],
   "scripts": {
-    "build": "run-p build:cjs build:esm build:tslib",
-    "build:cjs": "buddy ts build cjs",
-    "build:esm": "tsc -p tsconfig.esm.json",
-    "build:tslib": "buddy ts build tslib",
+    "build": "tsc -p tsconfig.esm.json",
     "clean": "rimraf cjs coverage esm lib libm tslib --glob *.tsbuildinfo",
     "coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --coverage",
     "depcheck": "depcheck",
@@ -91,11 +82,9 @@
     "jest-watch-toggle-config-2": "^2.1.0",
     "jest-watch-typeahead": "^2.2.2",
     "npm-run-all": "^4.1.5",
-    "repobuddy": "^1.0.2",
     "rimraf": "^5.0.0",
     "satisfier": "^5.2.2",
     "size-limit": "^8.2.4",
-    "ts-jest": "^29.1.0",
-    "tslib": "^2.4.0"
+    "ts-jest": "^29.1.0"
   }
 }

@@ -27,7 +27,7 @@ it('marks function complex type partial', () => {
 	type F = { (): void, b: { c: number } }
 
 	type R = RecursivePartial<{ f: F }>
-	const r: R = { f() {} } as any
+	const r: R = { f() { } } as any
 
 	// @ts-expect-error
 	r.f()
@@ -39,8 +39,8 @@ it('marks function complex type partial', () => {
 	testType.equal<
 		R['f'],
 		| ((() => void) & {
-				b?: { c?: number | undefined } | undefined
-		  })
+			b?: { c?: number | undefined } | undefined
+		})
 		| undefined
 	>(true)
 })

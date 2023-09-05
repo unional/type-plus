@@ -27,14 +27,14 @@ describe(`Pick<T, K>`, () => {
 	test('distributive pick with disjoined keys', () => {
 		type Union =
 			| {
-					type: 'A',
-					foo: string
-			  }
+				type: 'A',
+				foo: string
+			}
 			| {
-					type: 'B',
-					foo: string,
-					bar: string
-			  }
+				type: 'B',
+				foo: string,
+				bar: string
+			}
 		type Id<T> = { [P in keyof T]: T[P] }
 		let x: Id<Pick<Union, 'type' | 'bar'>> = { type: 'A' }
 		x = { type: 'B', bar: 'bar' }

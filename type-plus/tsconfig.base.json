@@ -1,13 +1,20 @@
 {
   "extends": "@repobuddy/typescript/tsconfig/monorepo",
   "compilerOptions": {
-    "exactOptionalPropertyTypes": true,
     "rootDir": "ts"
   },
   "exclude": [
 		"node_modules",
     "ts/type-checker",
-    "ts/types"
+    "ts/types",
+    "ts/**/*.spec.*",
+    "ts/**/*.unit.*",
+    "ts/**/*.accept.*",
+    "ts/**/*.integrate.*",
+    "ts/**/*.system.*",
+    "ts/**/*.pert.*",
+    "ts/**/*.test.*",
+    "ts/**/*.stress.*"
   ],
   "include": [
     "ts",
