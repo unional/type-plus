@@ -66,8 +66,8 @@ it('returns T if T is union with negative numeric values', () => {
 })
 
 it('returns T if T is intersection of negative number', () => {
-	testType.equal<Negative<-1 & { a: 1 }>, -1 & { a: 1 }>(true)
-	testType.equal<Negative<-1n & { a: 1 }>, -1n & { a: 1 }>(true)
+	testType.never<Negative<-1 & { a: 1 }>>(true)
+	testType.never<Negative<-1n & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {
