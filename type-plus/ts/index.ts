@@ -82,6 +82,7 @@ export type {
 export type { IsNotPositive, IsPositive, NonPositive, Positive } from './numeric/positive.js'
 export type { Required, RequiredExcept, RequiredPick } from './object/Required.js'
 export * from './object/index.js'
+export * as ObjectPlus from './object/object_plus.js'
 export type { IsNotObject, IsObject, NotObjectType, ObjectType } from './object/object_type.js'
 export * from './predicates/index.js'
 export type { PrimitiveTypes } from './primitive.js'

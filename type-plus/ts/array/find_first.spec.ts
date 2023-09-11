@@ -17,7 +17,7 @@ describe('For Array', () => {
 	})
 
 	it('can override widen case', () => {
-		testType.equal<FindFirst<number[], 1, { caseWiden: never }>, never>(true)
+		testType.equal<FindFirst<number[], 1, { $widen: never }>, never>(true)
 	})
 
 	it('returns Criteria if T is a union partially satisfies the Criteria', () => {
@@ -29,8 +29,8 @@ describe('For Array', () => {
 		// adding `undefined` to the result better match the behavior in JavaScript,
 		// as an array of `Array<string | number>` can contains only `string` or `number`.
 		// so `Find<Array<string | number>, string>` returns `string | undefined`.
-		testType.equal<FindFirst<Array<string | number>, number, { caseUnionNotMatch: undefined }>, number | undefined>(true)
-		testType.equal<FindFirst<Array<1 | 2 | 'x'>, number, { caseUnionNotMatch: undefined }>, 1 | 2 | undefined>(true)
+		testType.equal<FindFirst<Array<string | number>, number, { $unionNotMatch: undefined }>, number | undefined>(true)
+		testType.equal<FindFirst<Array<1 | 2 | 'x'>, number, { $unionNotMatch: undefined }>, 1 | 2 | undefined>(true)
 	})
 	it('support readonly array', () => {
 		testType.equal<FindFirst<Readonly<Array<string | number>>, number>, number>(true)

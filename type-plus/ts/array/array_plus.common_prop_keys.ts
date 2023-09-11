@@ -15,14 +15,14 @@ import type { KeyTypes } from '../object/KeyTypes.js'
  * type R = ArrayPlus.CommonPropKeys<Array<{ a: 1, b: 1 } | { a: 1, c: 1 }>> // 'a'
  * ```
  *
- * @typeParam Options['caseNever'] Return type when `T` is `never`.
+ * @typeParam Options['$never'] Return type when `T` is `never`.
  * Default to `never`.
  */
 export type CommonPropKeys<
 	A extends readonly Record<KeyTypes, unknown>[],
 	Options extends CommonPropKeys.Options = CommonPropKeys.DefaultOptions
 > = NeverType<A,
-	Options['caseNever'],
+	Options['$never'],
 	A extends Readonly<Array<infer R extends Record<KeyTypes, unknown>>> ? keyof R : never
 >
 

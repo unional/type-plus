@@ -12,7 +12,7 @@ it('returns never if input is never', () => {
 })
 
 it('can override the never case', () => {
-	testType.equal<ArrayPlus.Find<never, 1, { caseNever: 2 }>, 2>(true)
+	testType.equal<ArrayPlus.Find<never, 1, { $never: 2 }>, 2>(true)
 })
 
 it('returns never if the type in the array does not satisfy the criteria', () => {
@@ -20,7 +20,7 @@ it('returns never if the type in the array does not satisfy the criteria', () =>
 })
 
 it('can override no_match case', () => {
-	testType.equal<ArrayPlus.Find<number[], string, { caseNotMatch: 'a' }>, 'a'>(true)
+	testType.equal<ArrayPlus.Find<number[], string, { $notMatch: 'a' }>, 'a'>(true)
 })
 
 it('returns T if T satisfies the Criteria', () => {
@@ -35,7 +35,7 @@ it('returns Criteria | undefined if T is a widen type of Criteria', () => {
 })
 
 it('can override widen case', () => {
-	testType.equal<ArrayPlus.Find<number[], 1, { caseWiden: never }>, never>(true)
+	testType.equal<ArrayPlus.Find<number[], 1, { $widen: never }>, never>(true)
 })
 
 it('does not support tuple', () => {
@@ -57,27 +57,27 @@ it('can override unionNotMach to `undefined`', () => {
 	// adding `undefined` to the result better match the behavior in JavaScript,
 	// as an array of `Array<string | number>` can contains only `string` or `number`.
 	// so `Find<Array<string | number>, string>` returns `string | undefined`.
-	testType.equal<ArrayPlus.Find<Array<string | number>, number, { caseUnionNotMatch: undefined }>, number | undefined>(true)
-	testType.equal<ArrayPlus.Find<Array<1 | 2 | 'x'>, number, { caseUnionNotMatch: undefined }>, 1 | 2 | undefined>(true)
+	testType.equal<ArrayPlus.Find<Array<string | number>, number, { $unionNotMatch: undefined }>, number | undefined>(true)
+	testType.equal<ArrayPlus.Find<Array<1 | 2 | 'x'>, number, { $unionNotMatch: undefined }>, 1 | 2 | undefined>(true)
 })
 
 it('handles union not match and widen cases separately', () => {
 	testType.equal<ArrayPlus.Find<Array<string | number>, 1, {
-		caseWiden: 234,
-		caseUnionNotMatch: 123
+		$widen: 234,
+		$unionNotMatch: 123
 	}>, 123 | 234>(true)
 })
 
 it('can override the union_miss case', () => {
-	testType.equal<ArrayPlus.Find<Array<string | number>, number, { caseUnionNotMatch: never }>, number>(true)
+	testType.equal<ArrayPlus.Find<Array<string | number>, number, { $unionNotMatch: never }>, number>(true)
 })
 
 it('will not affect other cases', () => {
-	testType.equal<ArrayPlus.Find<Array<string | number>, number, { caseNever: 123 }>, number | ArrayPlus.Find.DefaultOptions<unknown>['caseUnionNotMatch']>(true)
-	testType.equal<ArrayPlus.Find<never, 1, { caseNotMatch: 123 }>, ArrayPlus.Find.DefaultOptions<unknown>['caseNever']>(true)
-	testType.equal<ArrayPlus.Find<number[], string, { caseTuple: 123 }>, ArrayPlus.Find.DefaultOptions<unknown>['caseNotMatch']>(true)
-	testType.equal<ArrayPlus.Find<[], 1, { caseWiden: 123 }>, ArrayPlus.Find.DefaultOptions<unknown>['caseTuple']>(true)
-	testType.equal<ArrayPlus.Find<number[], 1, { caseUnionNotMatch: 123 }>, ArrayPlus.Find.DefaultOptions<1>['caseWiden']>(true)
+	testType.equal<ArrayPlus.Find<Array<string | number>, number, { $never: 123 }>, number | ArrayPlus.Find.DefaultOptions<unknown>['$unionNotMatch']>(true)
+	testType.equal<ArrayPlus.Find<never, 1, { $notMatch: 123 }>, ArrayPlus.Find.DefaultOptions<unknown>['$never']>(true)
+	testType.equal<ArrayPlus.Find<number[], string, { $tuple: 123 }>, ArrayPlus.Find.DefaultOptions<unknown>['$notMatch']>(true)
+	testType.equal<ArrayPlus.Find<[], 1, { $widen: 123 }>, ArrayPlus.Find.DefaultOptions<unknown>['$tuple']>(true)
+	testType.equal<ArrayPlus.Find<number[], 1, { $unionNotMatch: 123 }>, ArrayPlus.Find.DefaultOptions<1>['$widen']>(true)
 })
 
 it('support readonly array', () => {

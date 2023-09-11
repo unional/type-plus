@@ -129,7 +129,7 @@ You are encouraged to use `[...A, ...B]` directly.
 
 ## [`FindFirst`](./find_first.ts#l52)
 
-`FindFirst<A, Criteria, Options = { widen, caseEmptyTuple, caseNever, caseNoMatch, caseWiden, caseUnionMiss }>`
+`FindFirst<A, Criteria, Options = { widen, caseEmptyTuple, $never, $noMatch, $widen, $unionMiss }>`
 
 🦴 *utilities*
 🔢 *customizable*
@@ -154,11 +154,11 @@ type R = FindFirst<string[], number> // never
 
 // customization
 type R = FindFirst<[number], 1, { widen: false }> // never
-type R = FindFirst<[number], 1, { caseWiden: never }> // never
+type R = FindFirst<[number], 1, { $widen: never }> // never
 type R = FindFirst<[], 1, { caseEmptyTuple: 2 }> // 2
-type R = FindFirst<never, 1, { caseNever: 2 }> // 2
-type R = FindFirst<[string], number, { caseNotMatch: 2 }> // 2
-type R = FindFirst<[string | number], number, { caseUnionNotMatch: undefined }> // number | undefined
+type R = FindFirst<never, 1, { $never: 2 }> // 2
+type R = FindFirst<[string], number, { $notMatch: 2 }> // 2
+type R = FindFirst<[string | number], number, { $unionNotMatch: undefined }> // number | undefined
 ```
 
 ## [`FindLast`](./array.find_last.tsl19)
@@ -198,7 +198,7 @@ type R = KeepMatch<Array<string | undefined>, string> // string[]
 
 ## [`Head`](./head.ts#l23)
 
-`Head<T, Options = { caseNever, caseEmptyTuple }>`
+`Head<T, Options = { $never, caseEmptyTuple }>`
 
 🦴 *utilities*
 🔢 *customizable*
@@ -210,11 +210,11 @@ import type { Head } from 'type-plus'
 
 type R = Head<[1, 2, 3]> // 1
 type R = Head<string[]> // string
-type R = Head<never> // caseNever: never
+type R = Head<never> // $never: never
 type R = Head<[]> // caseEmptyTuple: never
 
 // customization
-type R = Head<never, { caseNever: 1 }> // 1
+type R = Head<never, { $never: 1 }> // 1
 type R = Head<[], { caseEmptyTuple: undefined }> // undefined
 ```
 
@@ -224,7 +224,7 @@ type R = Head<[], { caseEmptyTuple: undefined }> // undefined
 
 ## [`Last`](./last.ts#l23)
 
-`Last<T, Options = { caseNever, caseEmptyTuple }>`
+`Last<T, Options = { $never, caseEmptyTuple }>`
 
 🦴 *utilities*
 🔢 *customizable*
@@ -236,11 +236,11 @@ import type { Last } from 'type-plus'
 
 type R = Last<[1, 2, 3]> // 3
 type R = Last<string[]> // string
-type R = Last<never> // caseNever: never
+type R = Last<never> // $never: never
 type R = Last<[]> // caseEmptyTuple: never
 
 // customization
-type R = Last<never, { caseNever: 1 }> // 1
+type R = Last<never, { $never: 1 }> // 1
 type R = Last<[], { caseEmptyTuple: undefined }> // undefined
 ```
 
@@ -275,7 +275,7 @@ Alias of [At](#at).
 
 ## [ArrayPlus.CommonPropKeys](./array_plus.common_prop_keys.ts#l21)
 
-`ArrayPlus.CommonPropKeys<T extends Record[], Options = { caseNever }>`
+`ArrayPlus.CommonPropKeys<T extends Record[], Options = { $never }>`
 
 ⚗️ *transform*
 🔢 *customizable*
@@ -289,7 +289,7 @@ type R = ArrayPlus.CommonPropKeys<Array<{ a: 1 }>> // 'a'
 type R = ArrayPlus.CommonPropKeys<Array<{ a: 1, b: 1 } | { a: 1, c: 1 }>> // 'a'
 
 // customization
-type R = ArrayPlus.CommonPropKeys<never, { caseNever: 1 }> // 1
+type R = ArrayPlus.CommonPropKeys<never, { $never: 1 }> // 1
 ```
 
 ### [`ArrayPlus.Concat`](./array.concat.ts#l12)
@@ -300,7 +300,7 @@ Alias of [Concat](#concat).
 
 ### [`ArrayPlus.ElementMatch`](./array_plus.element_match.ts#l30)
 
-`ArrayPlus.ElementMatch<T, Criteria, Options = { widen, caseNotMatch, caseWiden, caseUnionNotMatch }>`
+`ArrayPlus.ElementMatch<T, Criteria, Options = { widen, $notMatch, $widen, $unionNotMatch }>`
 
 🌪️ *filter*
 🔢 *customizable*
@@ -317,10 +317,10 @@ type R = ArrayPlus.ElementMatch<number, 1> // widen: 1
 type R = ArrayPlus.ElementMatch<number | string, number> // unionNotMatch: number
 
 // customization
-type R = ArrayPlus.ElementMatch<number, string, { caseNotMatch: 1 }> // 1
+type R = ArrayPlus.ElementMatch<number, string, { $notMatch: 1 }> // 1
 type R = ArrayPlus.ElementMatch<number, 1, { widen: false }> // never
-type R = ArrayPlus.ElementMatch<number, 1, { caseWiden: never }> // never
-type R = ArrayPlus.ElementMatch<number | string, number, { caseUnionNotMatch: undefined }> // number | undefined
+type R = ArrayPlus.ElementMatch<number, 1, { $widen: never }> // never
+type R = ArrayPlus.ElementMatch<number | string, number, { $unionNotMatch: undefined }> // number | undefined
 ```
 
 ### [`ArrayPlus.Entries`](./array.entries.ts#L14)
@@ -339,7 +339,7 @@ type R = ArrayPlus.Entries<[1, 2, 3]> // [[0, 1], [1, 2], [2, 3]]
 
 ### [`ArrayPlus.Find`](./array_plus.find.ts#l49)
 
-`ArrayPlus.Find<A, Criteria, Options { widen, caseNever, caseNotMatch, caseTuple, caseWiden, caseUnionNotMatch }>`
+`ArrayPlus.Find<A, Criteria, Options { widen, $never, $notMatch, $tuple, $widen, $unionNotMatch }>`
 
 🦴 *utilities*
 🔢 *customizable*
@@ -359,11 +359,11 @@ type R = ArrayPlus.Find<string[], number> // never
 
 // customization
 type R = ArrayPlus.Find<number[], 1, { widen: false }> // never
-type R = ArrayPlus.Find<number[], 1, { caseWiden: never }> // never
-type R = ArrayPlus.Find<never, 1, { caseNever: 2 }> // 2
-type R = ArrayPlus.Find<string[], number, { caseNotMatch: 2 }> // 2
-type R = ArrayPlus.Find<[], 1, { caseTuple: 2 }> // 2
-type R = ArrayPlus.Find<Array<string | number>, number, { caseUnionNotMatch: undefined }> // number | undefined
+type R = ArrayPlus.Find<number[], 1, { $widen: never }> // never
+type R = ArrayPlus.Find<never, 1, { $never: 2 }> // 2
+type R = ArrayPlus.Find<string[], number, { $notMatch: 2 }> // 2
+type R = ArrayPlus.Find<[], 1, { $tuple: 2 }> // 2
+type R = ArrayPlus.Find<Array<string | number>, number, { $unionNotMatch: undefined }> // number | undefined
 ```
 
 ### [`ArrayPlus.FindLast`](./array.find_last.ts#L17)
@@ -414,7 +414,7 @@ type R = IsIndexOutOfBound<[1], -2> // true
 
 ### [`ArrayPlus.IsReadonly](./array_plus.is_readonly.ts#l19)
 
-`ArrayPlus.IsReadonly<A, Options = { caseThen, caseElse, caseNever, caseNotArray }>`
+`ArrayPlus.IsReadonly<A, Options = { $then, $else, $never, $notArray }>`
 
 🎭 *validate*
 🔢 *customizable*
@@ -429,10 +429,10 @@ type R = IsReadonly<[1, 2, 3, 4, 5]> // false
 type R = IsReadonly<readonly string[] | number> // boolean
 
 // customization
-type R = IsReadonly<readonly string[], { caseThen: 1 }> // 1
-type R = IsReadonly<string[], { caseElse: 1 }> // 1
-type R = IsReadonly<number, { caseNotArray: 1 }> // 1
-type R = IsReadonly<never, { caseNever: 1 }> // 1
+type R = IsReadonly<readonly string[], { $then: 1 }> // 1
+type R = IsReadonly<string[], { $else: 1 }> // 1
+type R = IsReadonly<number, { $notArray: 1 }> // 1
+type R = IsReadonly<never, { $never: 1 }> // 1
 ```
 
 ### [`ArrayPlus.Reverse`](./array.reverse.ts#l14)

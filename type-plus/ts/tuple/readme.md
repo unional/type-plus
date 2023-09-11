@@ -106,7 +106,7 @@ Overridable cases:
 
 ## [CommonPropKeys](./common_prop_keys.ts#l22)
 
-`CommonPropKeys<T extends Record[], Options = { caseNever }>`
+`CommonPropKeys<T extends Record[], Options = { $never }>`
 
 ⚗️ *transform*
 🔢 *customizable*
@@ -120,15 +120,15 @@ type R = CommonPropKeys<[{ a: 1, c: 1 }, { b: 1, c: 2 }]> // 'c'
 type R = CommonPropKeys<[{ a: 1 }, { b: 1 }]> // never
 type R = CommonPropKeys<Array<{ a: 1, b: 1 } | { a: 1, c: 1 }>> // 'a'
 type R = CommonPropKeys<[{ a: 1 }, { b: 1 }]> // never
-type R = CommonPropKeys<never> // caseNever: never
+type R = CommonPropKeys<never> // $never: never
 
 // customization
-type R = CommonPropKeys<never, { caseNever: 1 }> // 1
+type R = CommonPropKeys<never, { $never: 1 }> // 1
 ```
 
 ## [DropFirst](./drop.ts#l26)
 
-`DropFirst<T extends unknown[], Options = { caseArray, caseEmptyTuple }>`
+`DropFirst<T extends unknown[], Options = { $array, caseEmptyTuple }>`
 
 ⚗️ *transform*
 🔢 *customizable*
@@ -140,11 +140,11 @@ import { DropFirst } from 'type-plus'
 
 type R = DropFirst<[1, 2, 3]> // [2, 3]
 type R = DropFirst<[string]> // []
-type R = DropFirst<string[]> // caseArray: string[]
+type R = DropFirst<string[]> // $array: string[]
 type R = DropFirst<[]> // caseEmptyTuple: []
 
 // customization
-type R = DropFirst<string[], { caseArray: 1 }> // 1
+type R = DropFirst<string[], { $array: 1 }> // 1
 type R = DropFirst<[], { caseEmptyTuple: 1 }> // 1
 ```
 
@@ -162,11 +162,11 @@ import { DropLast } from 'type-plus'
 
 type R = DropLast<[1, 2, 3]> // [2, 3]
 type R = DropLast<[string]> // []
-type R = DropLast<string[]> // caseArray: string[]
+type R = DropLast<string[]> // $array: string[]
 type R = DropLast<[]> // caseEmptyTuple: []
 
 // customization
-type R = DropLast<string[], { caseArray: 1 }> // 1
+type R = DropLast<string[], { $array: 1 }> // 1
 type R = DropLast<[], { caseEmptyTuple: 1 }> // 1
 ```
 
@@ -191,7 +191,7 @@ The input type are not checked and assumed to be *tuple*.
 
 ## [TuplePlus.CommonPropKeys](./tuple_plus.common_prop_keys.ts#l22)
 
-`TuplePlus.CommonPropKeys<T extends Record[], Options = { caseNever }>`
+`TuplePlus.CommonPropKeys<T extends Record[], Options = { $never }>`
 
 ⚗️ *transform*
 🔢 *customizable*
@@ -205,10 +205,10 @@ type R = TuplePlus.CommonPropKeys<[{ a: 1, c: 1 }, { b: 1, c: 2 }]> // 'c'
 type R = TuplePlus.CommonPropKeys<[{ a: 1 }, { b: 1 }]> // never
 type R = TuplePlus.CommonPropKeys<Array<{ a: 1, b: 1 } | { a: 1, c: 1 }>> // 'a'
 type R = TuplePlus.CommonPropKeys<[{ a: 1 }, { b: 1 }]> // never
-type R = TuplePlus.CommonPropKeys<never> // caseNever: never
+type R = TuplePlus.CommonPropKeys<never> // $never: never
 
 // customization
-type R = TuplePlus.CommonPropKeys<never, { caseNever: 1 }> // 1
+type R = TuplePlus.CommonPropKeys<never, { $never: 1 }> // 1
 ```
 
 ### [TuplePlus.Filter](./tuple_plus.filter.ts)
@@ -227,7 +227,7 @@ type R = TuplePlus.Filter<[1, 2, '3'], number> // [1, 2]
 
 ### [`TuplePlus.Find`](./tuple_plus.find.ts#l51)
 
-`TuplePlus.Find<A, Criteria, Options { widen, caseArray, caseEmptyTuple, caseNever, caseNotMatch, caseWiden, caseUnionNotMatch }>`
+`TuplePlus.Find<A, Criteria, Options { widen, $array, caseEmptyTuple, $never, $notMatch, $widen, $unionNotMatch }>`
 
 🦴 *utilities*
 🔢 *customizable*
@@ -246,12 +246,12 @@ type R = TuplePlus.Find<[true, 1, 'x'], 2> // never
 
 // customization
 type R = TuplePlus.Find<[number], 1, { widen: false }> // never
-type R = TuplePlus.Find<[number], 1, { caseWiden: never }> // never
-type R = TuplePlus.Find<string[], 1, { caseArray: 2 }> // 2
+type R = TuplePlus.Find<[number], 1, { $widen: never }> // never
+type R = TuplePlus.Find<string[], 1, { $array: 2 }> // 2
 type R = TuplePlus.Find<[], 1, { caseEmptyTuple: 2 }> // 2
-type R = TuplePlus.Find<never, 1, { caseNever: 2 }> // 2
-type R = TuplePlus.Find<[string], number, { caseNotMatch: 2 }> // 2
-type R = TuplePlus.Find<[string | number], number, { caseUnionNotMatch: undefined }> // number | undefined
+type R = TuplePlus.Find<never, 1, { $never: 2 }> // 2
+type R = TuplePlus.Find<[string], number, { $notMatch: 2 }> // 2
+type R = TuplePlus.Find<[string | number], number, { $unionNotMatch: undefined }> // number | undefined
 ```
 
 ### [TuplePlus.PadStart](./tuple_plus.pad_start.ts)

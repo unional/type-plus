@@ -6,7 +6,7 @@ it('never returns never', () => {
 })
 
 it('can override never case', () => {
-	testType.equal<CommonPropKeys<never, { caseNever: 1 }>, 1>(true)
+	testType.equal<CommonPropKeys<never, { $never: 1 }>, 1>(true)
 })
 
 it('returns all common keys from record entry in array', () => {

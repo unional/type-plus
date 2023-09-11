@@ -6,7 +6,7 @@ it('returns never for empty tuple', () => {
 })
 
 it('can override never case', () => {
-	testType.equal<Last<never, { caseNever: 1 }>, 1>(true)
+	testType.equal<Last<never, { $never: 1 }>, 1>(true)
 })
 
 it('gets the type of an array', () => {

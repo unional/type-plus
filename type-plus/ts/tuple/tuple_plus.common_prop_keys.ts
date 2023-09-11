@@ -16,7 +16,7 @@ import type { Tail } from './tail.js'
  * type R = TuplePlus.CommonPropKeys<[{ a: number, c: 1 }, { b: number, c: 2 }]> // 'c'
  * ```
  *
- * @typeParam Options['caseNever'] Return type when `T` is `never`.
+ * @typeParam Options['$never'] Return type when `T` is `never`.
  * Default to `never`.
  */
 export type CommonPropKeys<
@@ -24,7 +24,7 @@ export type CommonPropKeys<
 	Options extends CommonPropKeys.Options = CommonPropKeys.DefaultOptions
 > = NeverType<
 	T,
-	Options['caseNever'],
+	Options['$never'],
 	(T['length'] extends 0
 		? never
 		: (

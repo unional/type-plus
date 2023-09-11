@@ -25,7 +25,7 @@ export type TupleType<
 	Options extends TupleType.Options = TupleType.DefaultOptions<Else>
 > = IsNever<
 	T,
-	Options['caseNever'],
+	Options['$never'],
 	[T] extends [readonly any[]] ? (number extends T['length'] ? Else : Then) : Else
 >
 
@@ -34,7 +34,7 @@ export namespace TupleType {
 	}
 
 	export interface DefaultOptions<Else> {
-		caseNever: Else
+		$never: Else
 	}
 }
 

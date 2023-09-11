@@ -24,23 +24,23 @@ import type { TupleType } from './tuple_type.js'
  * With widen match, a narrowed type will match its widen type.
  * e.g. matching `1` against `number` yields `1 | undefined`
  *
- * The widen behavior can be customized by `Options['caseWiden']`
+ * The widen behavior can be customized by `Options['$widen']`
  *
- * @typeParam Options['caseArray'] return type when `A` is an array. Default to `not supported` message.
+ * @typeParam Options['$array'] return type when `A` is an array. Default to `not supported` message.
  *
  * @typeParam Options['caseEmptyTuple'] return type when `A` is an empty tuple.
  * Default to `never`.
  *
- * @typeParam Options['caseNever'] return type when `A` is `never`. Default to `never`.
+ * @typeParam Options['$never'] return type when `A` is `never`. Default to `never`.
  *
- * @typeParam Options['caseNotMatch'] Return value when `T` does not match `Criteria`.
+ * @typeParam Options['$notMatch'] Return value when `T` does not match `Criteria`.
  * Default to `never`.
  *
- * @typeParam Options['caseWiden'] return type when `T` in `A` is a widen type of `Criteria`.
+ * @typeParam Options['$widen'] return type when `T` in `A` is a widen type of `Criteria`.
  * Default to `Criteria | undefined`.
  * Set it to `never` for a more type-centric behavior
  *
- * @typeParam Options['caseUnionNotMatch'] Return value when a branch of the union `T` does not match `Criteria`.
+ * @typeParam Options['$unionNotMatch'] Return value when a branch of the union `T` does not match `Criteria`.
  * Default to `never`.
  *
  * If you want the type to behave more like JavaScript,
@@ -56,9 +56,9 @@ export type Find<
 	? TupleType<
 		A,
 		A['length'] extends 0
-		? O['caseEmptyTuple']
+		? O['$emptyTuple']
 		: Find.Device<A, Criteria, O>,
-		O['caseArray'],
+		O['$array'],
 		O
 	>
 	: never
@@ -68,21 +68,21 @@ export namespace Find {
 		Criteria,
 		Options extends Find.Options
 	> = A['length'] extends 0
-		? Options['caseNotMatch']
+		? Options['$notMatch']
 		: (A extends readonly [infer Head, ...infer Tail]
 			? ElementMatch<
 				Head,
 				Criteria,
-				TypePlusOptions.Merge<{ caseNotMatch: Device<Tail, Criteria, Options> }, Options>
+				TypePlusOptions.Merge<{ $notMatch: Device<Tail, Criteria, Options> }, Options>
 			>
 			: never)
 	export interface Options extends ElementMatch.Options, NeverType.Options {
-		caseArray?: unknown,
-		caseEmptyTuple?: unknown,
+		$array?: unknown,
+		$emptyTuple?: unknown,
 	}
 
 	export interface DefaultOptions<Criteria> extends ElementMatch.DefaultOptions<Criteria>, NeverType.DefaultOptions {
-		caseArray: 'does not support array. Please use `FindFirst` or `ArrayPlus.Find` instead.',
-		caseEmptyTuple: never,
+		$array: 'does not support array. Please use `FindFirst` or `ArrayPlus.Find` instead.',
+		$emptyTuple: never,
 	}
 }

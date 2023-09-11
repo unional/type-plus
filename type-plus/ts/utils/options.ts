@@ -19,7 +19,7 @@ export namespace TypePlusOptions {
 	 * sequence, selection, and iteration.
 	 */
 	export interface Selection {
-		caseThen?: unknown,
-		caseElse?: unknown,
+		$then?: unknown,
+		$else?: unknown,
 	}
 }

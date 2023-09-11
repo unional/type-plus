@@ -6,7 +6,7 @@ it('never returns never', () => {
 })
 
 it('can override never case', () => {
-	testType.equal<TuplePlus.CommonPropKeys<never, { caseNever: 1 }>, 1>(true)
+	testType.equal<TuplePlus.CommonPropKeys<never, { $never: 1 }>, 1>(true)
 })
 
 it('returns never for empty tuple', () => {

@@ -12,13 +12,13 @@ import type { TypePlusOptions } from '../utils/options.js'
  * e.g. `number, 1` -> `1 | undefined`.
  * Default to `true`.
  *
- * @typeParam Options['caseNotMatch'] Return value when `T` does not match `Criteria`.
+ * @typeParam Options['$notMatch'] Return value when `T` does not match `Criteria`.
  * Default to `never`.
  *
- * @typeParam Options['caseWiden'] Return value when `widen` is true.
+ * @typeParam Options['$widen'] Return value when `widen` is true.
  * Default to `Criteria | undefined`.
  *
- * @typeParam Options['caseUnionNotMatch'] Return value when a branch of the union `T` does not match `Criteria`.
+ * @typeParam Options['$unionNotMatch'] Return value when a branch of the union `T` does not match `Criteria`.
  * Default to `never`.
  *
  * If you want the type to behave more like JavaScript,
@@ -38,24 +38,24 @@ export type ElementMatch<
 			? T
 			: (C['widen'] extends true
 				? (Criteria extends T
-					? C['caseWiden']
-					: C['caseNotMatch'])
-				: C['caseNotMatch'])) extends infer R
-			? IsUnion<T, IsNever<R, R, R | C['caseUnionNotMatch']>, R>
-			: C['caseNotMatch'])
+					? C['$widen']
+					: C['$notMatch'])
+				: C['$notMatch'])) extends infer R
+			? IsUnion<T, IsNever<R, R, R | C['$unionNotMatch']>, R>
+			: C['$notMatch'])
 		: never)
 
 export namespace ElementMatch {
 	export interface Options {
 		widen?: boolean | undefined,
-		caseNotMatch?: unknown,
-		caseWiden?: unknown,
-		caseUnionNotMatch?: unknown
+		$notMatch?: unknown,
+		$widen?: unknown,
+		$unionNotMatch?: unknown
 	}
 	export interface DefaultOptions<Criteria> {
 		widen: true,
-		caseNotMatch: never,
-		caseWiden: Criteria | undefined,
-		caseUnionNotMatch: never
+		$notMatch: never,
+		$widen: Criteria | undefined,
+		$unionNotMatch: never
 	}
 }

@@ -14,7 +14,7 @@ import type { NeverType } from '../never/never_type.js'
  * type R = Head<[]> // never
  * ```
  *
- * @typeParam Options['caseNever'] Return type when `T` is `never`.
+ * @typeParam Options['$never'] Return type when `T` is `never`.
  * Default to `never`.
  *
  * @typeParam Options['caseEmptyTuple'] Return type when `T` is `[]`.
@@ -25,7 +25,7 @@ export type Head<
 	Options extends Head.Options = Head.DefaultOptions
 > = NeverType<
 	T,
-	Options['caseNever'],
+	Options['$never'],
 	T['length'] extends 0 ? Options['caseEmptyTuple'] : T[0]
 >
 

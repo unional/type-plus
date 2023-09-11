@@ -16,7 +16,7 @@ import type { CommonPropKeys as TupleCommonPropKeys } from './tuple_plus.common_
  * type R = CommonPropKeys<[{ a: number, c: 1 }, { b: number, c: 2 }]> // 'c'
  * ```
  *
- * @typeParam Options['caseNever'] Return type when `T` is `never`.
+ * @typeParam Options['$never'] Return type when `T` is `never`.
  * Default to `never`.
  */
 export type CommonPropKeys<

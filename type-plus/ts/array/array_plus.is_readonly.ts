@@ -24,24 +24,24 @@ export type IsReadonly<
 	TypePlusOptions.Merge<Options, IsReadonly.DefaultOptions> extends infer O extends IsReadonly.Options ?
 	NeverType<
 		A,
-		O['caseNever'],
+		O['$never'],
 		A extends any ?
 		LooseArrayType<A,
-			Readonly<A> extends A ? O['caseThen'] : O['caseElse'],
-			O['caseNotArray']
+			Readonly<A> extends A ? O['$then'] : O['$else'],
+			O['$notArray']
 		> : never
 	>
 	: never
 
 export namespace IsReadonly {
 	export interface Options extends NeverType.Options, TypePlusOptions.Selection {
-		caseNotArray?: unknown
+		$notArray?: unknown
 	}
 
 	export interface DefaultOptions {
-		caseThen: true,
-		caseElse: false,
-		caseNever: false,
-		caseNotArray: false
+		$then: true,
+		$else: false,
+		$never: false,
+		$notArray: false
 	}
 }

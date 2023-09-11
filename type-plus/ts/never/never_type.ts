@@ -61,10 +61,10 @@ export namespace NeverType {
 	 * Type options when input type is `never`.
 	 */
 	export interface Options {
-		caseNever?: unknown
+		$never?: unknown
 	}
 
 	export interface DefaultOptions {
-		caseNever: never
+		$never: never
 	}
 }

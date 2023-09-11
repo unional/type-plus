@@ -12,7 +12,7 @@ it('returns never if input is never', () => {
 })
 
 it('can override the never case', () => {
-	testType.equal<TuplePlus.Find<never, 1, { caseNever: 2 }>, 2>(true)
+	testType.equal<TuplePlus.Find<never, 1, { $never: 2 }>, 2>(true)
 })
 
 it('returns never for empty tuple', () => {
@@ -20,7 +20,7 @@ it('returns never for empty tuple', () => {
 })
 
 it('can override empty tuple case', () => {
-	testType.equal<TuplePlus.Find<[], number, { caseEmptyTuple: 1 }>, 1>(true)
+	testType.equal<TuplePlus.Find<[], number, { $emptyTuple: 1 }>, 1>(true)
 })
 
 it('does not work with array type', () => {
@@ -28,7 +28,7 @@ it('does not work with array type', () => {
 })
 
 it('can override array case', () => {
-	testType.equal<TuplePlus.Find<string[], number, { caseArray: 1 }>, 1>(true)
+	testType.equal<TuplePlus.Find<string[], number, { $array: 1 }>, 1>(true)
 })
 
 it('no match gets never', () => {
@@ -36,7 +36,7 @@ it('no match gets never', () => {
 })
 
 it('can override no_match case', () => {
-	testType.equal<TuplePlus.Find<[true, 1, 'x'], 2, { caseNotMatch: 1 }>, 1>(true)
+	testType.equal<TuplePlus.Find<[true, 1, 'x'], 2, { $notMatch: 1 }>, 1>(true)
 })
 
 it('pick first type matching criteria', () => {
@@ -59,7 +59,7 @@ it('returns Criteria | undefined if T is a widen type of Criteria', () => {
 })
 
 it('can override widen case', () => {
-	testType.equal<TuplePlus.Find<[number, string], 1, { caseWiden: 12 }>, 12>(true)
+	testType.equal<TuplePlus.Find<[number, string], 1, { $widen: 12 }>, 12>(true)
 })
 
 it('can disable widen', () => {
@@ -74,7 +74,7 @@ it('can return T | undefined by overriding unionNotMach to `undefined`', () => {
 	// adding `undefined` to the result better match the behavior in JavaScript,
 	// as an array of `Array<string | number>` can contains only `string` or `number`.
 	// so `Find<Array<string | number>, string>` returns `string | undefined`.
-	testType.equal<TuplePlus.Find<[string | number], number, { caseUnionNotMatch: undefined }>, number | undefined>(true)
+	testType.equal<TuplePlus.Find<[string | number], number, { $unionNotMatch: undefined }>, number | undefined>(true)
 })
 
 it('pick object', () => {

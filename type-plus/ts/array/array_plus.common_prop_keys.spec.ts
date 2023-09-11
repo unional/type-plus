@@ -6,7 +6,7 @@ it('never returns never', () => {
 })
 
 it('can override never case', () => {
-	testType.equal<ArrayPlus.CommonPropKeys<never, { caseNever: 1 }>, 1>(true)
+	testType.equal<ArrayPlus.CommonPropKeys<never, { $never: 1 }>, 1>(true)
 })
 
 it('accepts readonly array', () => {

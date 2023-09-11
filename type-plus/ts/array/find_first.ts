@@ -31,21 +31,21 @@ import type { Find as ArrayFind } from './array_plus.find.js'
  * With widen match, a narrowed type will match its widen type.
  * e.g. matching `1` against `number` yields `1 | undefined`
  *
- * The widen behavior can be customized by `Options['caseWiden']`
+ * The widen behavior can be customized by `Options['$widen']`
  *
  * @typeParam Options['caseEmptyTuple'] return type when `A` is an empty tuple.
  * Default to `never`.
  *
- * @typeParam Options['caseNever'] return type when `A` is `never`. Default to `never`.
+ * @typeParam Options['$never'] return type when `A` is `never`. Default to `never`.
  *
- * @typeParam Options['caseNoMatch'] Return value when `T` does not match `Criteria`.
+ * @typeParam Options['$noMatch'] Return value when `T` does not match `Criteria`.
  * Default to `never`.
  *
- * @typeParam Options['caseWiden'] return type when `T` in `A` is a widen type of `Criteria`.
+ * @typeParam Options['$widen'] return type when `T` in `A` is a widen type of `Criteria`.
  * Default to `Criteria | undefined`.
  * Set it to `never` for a more type-centric behavior
  *
- * @typeParam Options['caseUnionMiss'] Return value when a branch of the union `T` does not match `Criteria`.
+ * @typeParam Options['$unionMiss'] Return value when a branch of the union `T` does not match `Criteria`.
  * Default to `undefined`.
  * Since it is a union, the result will be join to the matched branch as union.
  */

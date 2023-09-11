@@ -24,13 +24,13 @@ it('detects regular tuple as not readonly', () => {
 it('', () => {
 	testType.equal<ArrayPlus.IsReadonly<any>, false>(true)
 	testType.equal<ArrayPlus.IsReadonly<unknown>, false>(true)
-	testType.equal<ArrayPlus.IsReadonly<never, { caseNever: 'n' }>, 'n'>(true)
+	testType.equal<ArrayPlus.IsReadonly<never, { $never: 'n' }>, 'n'>(true)
 	testType.equal<ArrayPlus.IsReadonly<void>, false>(true)
 
 })
 
 it('detects non array case', () => {
-	testType.equal<ArrayPlus.IsReadonly<string, { caseNotArray: 'n' }>, 'n'>(true)
+	testType.equal<ArrayPlus.IsReadonly<string, { $notArray: 'n' }>, 'n'>(true)
 })
 
 it('distributes over union', () => {

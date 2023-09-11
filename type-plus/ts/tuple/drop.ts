@@ -17,7 +17,7 @@ import type { DropMatch as TupleDropMatch } from './tuple_plus.drop_match.js'
  * type R = DropFirst<string[]> // string[]
  * ```
  *
- * @typeParam Options['caseArray'] Return type when `T` is `Array`.
+ * @typeParam Options['$array'] Return type when `T` is `Array`.
  * Default to `T`.
  *
  * @typeParam Options['caseEmptyTuple'] Return type when `T` is an empty tuple.
@@ -27,7 +27,7 @@ export type DropFirst<
 	T extends unknown[],
 	Options extends DropFirst.Options = DropFirst.DefaultOptions<T>
 > = number extends T['length']
-	? Options['caseArray']
+	? Options['$array']
 	: T['length'] extends 0
 	? Options['caseEmptyTuple']
 	: T['length'] extends 1
@@ -38,11 +38,11 @@ export type DropFirst<
 
 export namespace DropFirst {
 	export interface Options {
-		caseArray?: unknown,
+		$array?: unknown,
 		caseEmptyTuple?: unknown,
 	}
 	export interface DefaultOptions<T> {
-		caseArray: T,
+		$array: T,
 		caseEmptyTuple: []
 	}
 }
@@ -63,7 +63,7 @@ export namespace DropFirst {
  * type R = DropLast<string[]> // string[]
  * ```
  *
- * @typeParam Options['caseArray'] Return type when `T` is `Array`.
+ * @typeParam Options['$array'] Return type when `T` is `Array`.
  * Default to `T`.
  *
  * @typeParam Options['caseEmptyTuple'] Return type when `T` is an empty tuple.
@@ -73,7 +73,7 @@ export type DropLast<
 	T extends unknown[],
 	Cases extends DropLast.Options = DropLast.DefaultOptions<T>
 > = number extends T['length']
-	? Cases['caseArray']
+	? Cases['$array']
 	: T['length'] extends 0
 	? Cases['caseEmptyTuple']
 	: T['length'] extends 1
@@ -85,11 +85,11 @@ export type DropLast<
 
 export namespace DropLast {
 	export interface Options {
-		caseArray?: unknown,
+		$array?: unknown,
 		caseEmptyTuple?: unknown,
 	}
 	export interface DefaultOptions<T> {
-		caseArray: T,
+		$array: T,
 		caseEmptyTuple: []
 	}
 }
