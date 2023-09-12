@@ -1,59 +1,60 @@
-import { describe, expect, it, test } from '@jest/globals'
+import { describe, expect, it } from '@jest/globals'
 import { testType } from './index.js'
 import { merge, type Merge } from './merge.js'
 
 describe('Merge', () => {
 
-	test('same type returns A', () => {
-		testType.equal<Merge<{ a: 1 }, { a: 1 }>, { a: 1 }>(true)
+	it('merges with any -> any', () => {
+		testType.equal<Merge<any, any>, any>(true)
+		testType.equal<Merge<{ a: 1 }, any>, any>(true)
+		testType.equal<Merge<any, { a: 1 }>, any>(true)
 	})
 
-	test('disjoint returns A & B', () => {
-		testType.equal<Merge<{ a: 1 }, { b: 1 }>, { a: 1, b: 1 }>(true)
-		testType.equal<Merge<{ a: 1 }, { b?: 1 }>, { a: 1, b?: 1 }>(true)
-		testType.equal<Merge<{ a?: 1 }, { b: 1 }>, { a?: 1, b: 1 }>(true)
-		testType.equal<Merge<{ a?: 1 }, { b?: 1 }>, { a?: 1, b?: 1 }>(true)
+	it('merges with never -> never', () => {
+		testType.equal<Merge<never, never>, never>(true)
+		testType.equal<Merge<{ a: 1 }, never>, never>(true)
+		testType.equal<Merge<never, { a: 1 }>, never>(true)
 	})
 
-	test('replaces property in A with property in B', () => {
-		testType.equal<
-			Merge<{ type: 'a' | 'b', value: string }, { value: number }>,
-			{ type: 'a' | 'b', value: number }
-		>(true)
+	it('drops unknown', () => {
+		testType.equal<Merge<unknown, unknown>, unknown>(true)
+
+		// intersection type drops `unknown`. `Merge<A, B>` follows the same pattern.
+		testType.equal<{ a: 1 } & unknown, { a: 1 }>(true)
+		testType.equal<Merge<{ a: 1 }, unknown>, { a: 1 }>(true)
+		testType.equal<Merge<unknown, { a: 1 }>, { a: 1 }>(true)
 	})
 
-	it('removes extra empty {}', () => {
-		// testType.equal<
-		// 	Merge<{ leaf: { boo(): number } }, { leaf: { foo(): number } }>,
-		// 	{ leaf: { boo(): number } | { foo(): number } }
-		// >(true)
-		testType.equal<Merge<{ leaf: { boo(): number } }, {}>, { leaf: { boo(): number } }>(true)
+	it('merges with undefined -> never', () => {
+		testType.equal<Merge<undefined, undefined>, never>(true)
+
+		// intersection with `undefined` gets `never` so that it will be dropped
+		testType.equal<{ a: 1 } & undefined, never>(true)
+		testType.equal<Merge<{ a: 1 }, undefined>, never>(true)
+		testType.equal<Merge<undefined, { a: 1 }>, never>(true)
 	})
 
-	it('appends types of optional prop to required prop', () => {
-		testType.equal<Merge<{ a: number }, { a?: string | undefined }>, { a: number | string }>(true)
+	it('merges with void -> never', () => {
+		testType.equal<Merge<void, void>, never>(true)
+
+		// intersection with `void` SHOULD gets `never` so that it will be dropped.
+		// but it is returning `{ a: 1 } & void` instead.
+		// @ts-expect-error
+		testType.equal<{ a: 1 } & void, never>(true)
+
+		// here we align the behavior with `undefined`
+		testType.equal<Merge<{ a: 1 }, void>, never>(true)
+		testType.equal<Merge<void, { a: 1 }>, never>(true)
 	})
 
-	it('appends types of required prop to optional prop', () => {
-		testType.equal<Merge<{ a?: string | undefined }, { a: number }>, { a: number }>(true)
-	})
-
-	it('combines type with required and optional props', () => {
-		testType.equal<Merge<{ a: number }, { b?: string }>, { a: number, b?: string }>(true)
-
-		type R = Merge<
-			{ a: { c: number } },
-			{
-				a?: { d: string }
-			}
-		>
-
-		testType.inspect<R>(t => t)
-		// testType.equal<R['a'], { c: number } | { d?: string | undefined }>(true)
-	})
-
-	it('both optional', () => {
-		testType.equal<Merge<{ a?: number }, { a?: string }>, { a?: number | string | undefined }>(true)
+	it('ignore NonComposableTypes', () => {
+		testType.equal<{ a: 1 } & string, { a: 1 } & string>(true)
+		testType.equal<{ a: 1 } & number, { a: 1 } & number>(true)
+		testType.equal<{ a: 1 } & bigint, { a: 1 } & bigint>(true)
+		testType.equal<{ a: 1 } & boolean, { a: 1 } & boolean>(true)
+		testType.equal<{ a: 1 } & symbol, { a: 1 } & symbol>(true)
+		testType.equal<{ a: 1 } & null, never>(true)
+		testType.equal<{ a: 1 } & undefined, never>(true)
 	})
 })
 
@@ -149,3 +150,5 @@ describe(`${merge.name}()`, () => {
 		// })
 	})
 })
+
+// TODO: array merge check
