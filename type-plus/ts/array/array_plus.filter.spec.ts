@@ -12,3 +12,12 @@ it('can override never case', () => {
 it('can override not array case', () => {
 	testType.equal<ArrayPlus.Filter<[], string, { $notArray: 1 }>, 1>(true)
 })
+
+it('filter type within the array matching the criteria', () => {
+	testType.equal<ArrayPlus.Filter<Array<string | undefined>, string>, string[]>(true)
+})
+
+it('defaults to match true', () => {
+	testType.equal<ArrayPlus.Filter<Array<string | true | undefined>>, true[]>(true)
+	testType.equal<ArrayPlus.Filter<Array<string | boolean | undefined>>, true[]>(true)
+})
