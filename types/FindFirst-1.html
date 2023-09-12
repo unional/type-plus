@@ -27,16 +27,16 @@
 Default to <code>true</code>.
 With widen match, a narrowed type will match its widen type.
 e.g. matching <code>1</code> against <code>number</code> yields <code>1 | undefined</code></p>
-<p>The widen behavior can be customized by <code>Options[&#39;caseWiden&#39;]</code></p>
+<p>The widen behavior can be customized by <code>Options[&#39;$widen&#39;]</code></p>
 <p>@typeParam Options[&#39;caseEmptyTuple&#39;] return type when <code>A</code> is an empty tuple.
 Default to <code>never</code>.</p>
-<p>@typeParam Options[&#39;caseNever&#39;] return type when <code>A</code> is <code>never</code>. Default to <code>never</code>.</p>
-<p>@typeParam Options[&#39;caseNoMatch&#39;] Return value when <code>T</code> does not match <code>Criteria</code>.
+<p>@typeParam Options[&#39;$never&#39;] return type when <code>A</code> is <code>never</code>. Default to <code>never</code>.</p>
+<p>@typeParam Options[&#39;$noMatch&#39;] Return value when <code>T</code> does not match <code>Criteria</code>.
 Default to <code>never</code>.</p>
-<p>@typeParam Options[&#39;caseWiden&#39;] return type when <code>T</code> in <code>A</code> is a widen type of <code>Criteria</code>.
+<p>@typeParam Options[&#39;$widen&#39;] return type when <code>T</code> in <code>A</code> is a widen type of <code>Criteria</code>.
 Default to <code>Criteria | undefined</code>.
 Set it to <code>never</code> for a more type-centric behavior</p>
-<p>@typeParam Options[&#39;caseUnionMiss&#39;] Return value when a branch of the union <code>T</code> does not match <code>Criteria</code>.
+<p>@typeParam Options[&#39;$unionMiss&#39;] Return value when a branch of the union <code>T</code> does not match <code>Criteria</code>.
 Default to <code>undefined</code>.
 Since it is a union, the result will be join to the matched branch as union.</p>
 </div>
@@ -51,8 +51,8 @@ Since it is a union, the result will be join to the matched branch as union.</p>
 <h4><span class="tsd-kind-type-parameter">Options</span><span class="tsd-signature-symbol"> extends </span><a href="../modules/FindFirst.html" class="tsd-signature-type tsd-kind-namespace">FindFirst</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/FindFirst.Options.html" class="tsd-signature-type tsd-kind-interface">Options</a> = <a href="../modules/FindFirst.html" class="tsd-signature-type tsd-kind-namespace">FindFirst</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/FindFirst.DefaultOptions.html" class="tsd-signature-type tsd-kind-interface">DefaultOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">Criteria</span><span class="tsd-signature-symbol">&gt;</span></h4></li></ul></section>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/4947d6b74/type-plus/ts/array/find_first.ts#L52">type-plus/ts/array/find_first.ts:52</a></li>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/4947d6b74/type-plus/ts/array/find_first.ts#L61">type-plus/ts/array/find_first.ts:61</a></li></ul></aside></div>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/1651b0e63/type-plus/ts/array/find_first.ts#L52">type-plus/ts/array/find_first.ts:52</a></li>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/1651b0e63/type-plus/ts/array/find_first.ts#L61">type-plus/ts/array/find_first.ts:61</a></li></ul></aside></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -109,6 +109,7 @@ Since it is a union, the result will be join to the matched branch as union.</p>
 <li><a href="../modules/NeverType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Never<wbr/>Type</span></a></li>
 <li><a href="../modules/NumberPlus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Number<wbr/>Plus</span></a></li>
 <li><a href="../modules/NumericPlus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Numeric<wbr/>Plus</span></a></li>
+<li><a href="../modules/ObjectPlus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Object<wbr/>Plus</span></a></li>
 <li><a href="../modules/OptionalKeys.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Optional<wbr/>Keys</span></a></li>
 <li><a href="../modules/Pick.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Pick</span></a></li>
 <li><a href="../modules/RequiredKeys.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Required<wbr/>Keys</span></a></li>
@@ -252,6 +253,7 @@ Since it is a union, the result will be join to the matched branch as union.</p>
 <li><a href="MapToProp.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Map<wbr/>To<wbr/>Prop</span></a></li>
 <li><a href="Max.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Max</span></a></li>
 <li><a href="MaybePromise.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Maybe<wbr/>Promise</span></a></li>
+<li><a href="Merge.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Merge</span></a></li>
 <li><a href="Multiply.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Multiply</span></a></li>
 <li><a href="NeverType-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Never<wbr/>Type</span></a></li>
 <li><a href="NoInfer.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>No<wbr/>Infer</span></a></li>
@@ -377,6 +379,7 @@ Since it is a union, the result will be join to the matched branch as union.</p>
 <li><a href="../functions/mapKey.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>map<wbr/>Key</span></a></li>
 <li><a href="../functions/mapProperties.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>map<wbr/>Properties</span></a></li>
 <li><a href="../functions/mapSeries.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>map<wbr/>Series</span></a></li>
+<li><a href="../functions/merge-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>merge</span></a></li>
 <li><a href="../functions/nominalMatch.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>nominal<wbr/>Match</span></a></li>
 <li><a href="../functions/omit-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>omit</span></a></li>
 <li><a href="../functions/pick-2.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>pick</span></a></li>
