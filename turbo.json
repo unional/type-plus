@@ -48,6 +48,14 @@
       "inputs": [
         "ts/**/*.tsx?"
       ]
+    },
+    "test:type": {
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "ts/**/*.tsx?"
+      ]
     }
   }
 }

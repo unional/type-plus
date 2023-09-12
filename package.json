@@ -19,7 +19,7 @@
     "size": "turbo run size",
     "test": "turbo run test",
     "tp": "pnpm --filter type-plus",
-    "verify": "turbo run lint build build:doc depcheck coverage size",
+    "verify": "turbo run lint build build:doc depcheck coverage test:type size",
     "version": "changeset version"
   },
   "devDependencies": {
