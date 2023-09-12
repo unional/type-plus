@@ -67,7 +67,7 @@ it('returns T if T is union of mixing integers of number and bigint', () => {
 })
 
 it('returns T if T is intersection of number', () => {
-	testType.equal<Integer<1 & { a: 1 }>, never>(true)
+	testType.equal<Integer<1 & { a: 1 }>, 1 & { a: 1 }>(true)
 	testType.equal<Integer<number & { a: 1 }>, never>(true)
 })
 

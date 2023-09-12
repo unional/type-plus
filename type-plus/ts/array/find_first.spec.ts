@@ -43,7 +43,7 @@ describe('for Tuple', () => {
 	})
 
 	it('can override empty tuple case', () => {
-		testType.equal<FindFirst<[], number, { caseEmptyTuple: 1 }>, 1>(true)
+		testType.equal<FindFirst<[], number, { $emptyTuple: 1 }>, 1>(true)
 	})
 
 	it('pick first type matching criteria', () => {
