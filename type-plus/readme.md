@@ -12,14 +12,16 @@ More than 200 type utilities for [TypeScript] for applications, library, and typ
 
 ## Table of Contents
 
-1. [What's in the package?](#whats-in-the-package)
+1. [Table of Contents](#table-of-contents)
+2. [Installation](#installation)
+3. [What's in the package?](#whats-in-the-package)
    1. [Update organization](#update-organization)
    2. [Update documentation](#update-documentation)
-2. [Assertion Function](#assertion-function)
+4. [Assertion Function](#assertion-function)
    1. [assertType](#asserttype)
-3. [Type Guard](#type-guard)
-4. [Type Utilities](#type-utilities)
-5. [Type Specific Utilities](#type-specific-utilities)
+5. [Type Guard](#type-guard)
+6. [Type Utilities](#type-utilities)
+7. [Type Specific Utilities](#type-specific-utilities)
    1. [any](#any)
    2. [Array](#array)
    3. [union](#union)
@@ -38,18 +40,19 @@ More than 200 type utilities for [TypeScript] for applications, library, and typ
    16. [undefined](#undefined)
    17. [unknown](#unknown)
    18. [void](#void)
-6. [Constant Types](#constant-types)
-7. [JSON Support](#json-support)
-8. [Type manipulation](#type-manipulation)
-9. [Type Predicates](#type-predicates)
-   1. [Logical](#logical)
-10. [Math](#math)
-11. [Utility Functions](#utility-functions)
-12. [Nominal Types](#nominal-types)
-13. [Functional Types](#functional-types)
-14. [Attribution](#attribution)
-15. [Useful Tips](#useful-tips)
-16. [Similar projects](#similar-projects)
+8. [Testing Utilities](#testing-utilities)
+9. [Constant Types](#constant-types)
+10. [JSON Support](#json-support)
+11. [Type manipulation](#type-manipulation)
+12. [Type Predicates](#type-predicates)
+    1. [Logical](#logical)
+13. [Math](#math)
+14. [Utility Functions](#utility-functions)
+15. [Nominal Types](#nominal-types)
+16. [Functional Types](#functional-types)
+17. [Attribution](#attribution)
+18. [Useful Tips](#useful-tips)
+19. [Similar projects](#similar-projects)
 
 ## Installation
 
@@ -843,6 +846,22 @@ You can learn more in their respective sections:
 > [`IsNotVoid<T>`](./ts/void/readme.md#type-checking)
 
 ⭕ `predicate`: `T !== void`
+
+## Testing Utilities
+
+[type-plus](./README.md) privides some testing utilities to help you test your types.
+
+One of the key utilities is [`testType`](./ts/testing/readme.md#testtype).
+
+```ts
+import { testType } from 'type-plus'
+
+testType.any<T>(true) // T is `any`
+testType.equal<A, B>(true) // A is equal to B
+testType.never<T>(false) // T is not `never`
+```
+
+You can learn more about them in the [docs](./ts/testing/readme.md).
 
 ## Constant Types
 
