@@ -19,6 +19,8 @@
 <p><a href="https://code.visualstudio.com/"><img src="https://img.shields.io/badge/vscode-ready-green.svg" alt="Visual Studio Code"></a></p>
 <p>More than 200 type utilities for <a href="https://www.typescriptlang.org">TypeScript</a> for applications, library, and type-level programming.</p>
 <a id="md:table-of-contents" class="tsd-anchor"></a><h2><a href="#md:table-of-contents">Table of Contents</a></h2><ol>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#installation">Installation</a></li>
 <li><a href="#whats-in-the-package">What&#39;s in the package?</a><ol>
 <li><a href="#update-organization">Update organization</a></li>
 <li><a href="#update-documentation">Update documentation</a></li>
@@ -51,6 +53,7 @@
 <li><a href="#void">void</a></li>
 </ol>
 </li>
+<li><a href="#testing-utilities">Testing Utilities</a></li>
 <li><a href="#constant-types">Constant Types</a></li>
 <li><a href="#json-support">JSON Support</a></li>
 <li><a href="#type-manipulation">Type manipulation</a></li>
@@ -755,6 +758,11 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <p><a href="./ts/void/readme.md#type-checking"><code>IsNotVoid&lt;T&gt;</code></a></p>
 </blockquote>
 <p>⭕ <code>predicate</code>: <code>T !== void</code></p>
+<a id="md:testing-utilities" class="tsd-anchor"></a><h2><a href="#md:testing-utilities">Testing Utilities</a></h2><p><a href="./README.md">type-plus</a> privides some testing utilities to help you test your types.</p>
+<p>One of the key utilities is <a href="./ts/testing/readme.md#testtype"><code>testType</code></a>.</p>
+<pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-0"> { </span><span class="hl-8">testType</span><span class="hl-0"> } </span><span class="hl-9">from</span><span class="hl-0"> </span><span class="hl-1">&#39;type-plus&#39;</span><br/><br/><span class="hl-8">testType</span><span class="hl-0">.</span><span class="hl-7">any</span><span class="hl-0">&lt;</span><span class="hl-4">T</span><span class="hl-0">&gt;(</span><span class="hl-2">true</span><span class="hl-0">) </span><span class="hl-6">// T is `any`</span><br/><span class="hl-8">testType</span><span class="hl-0">.</span><span class="hl-7">equal</span><span class="hl-0">&lt;</span><span class="hl-4">A</span><span class="hl-0">, </span><span class="hl-4">B</span><span class="hl-0">&gt;(</span><span class="hl-2">true</span><span class="hl-0">) </span><span class="hl-6">// A is equal to B</span><br/><span class="hl-8">testType</span><span class="hl-0">.</span><span class="hl-7">never</span><span class="hl-0">&lt;</span><span class="hl-4">T</span><span class="hl-0">&gt;(</span><span class="hl-2">false</span><span class="hl-0">) </span><span class="hl-6">// T is not `never`</span>
+</code><button>Copy</button></pre>
+<p>You can learn more about them in the <a href="./ts/testing/readme.md">docs</a>.</p>
 <a id="md:constant-types" class="tsd-anchor"></a><h2><a href="#md:constant-types">Constant Types</a></h2><blockquote>
 <p><code>KeyTypes</code></p>
 </blockquote>
@@ -1199,6 +1207,7 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <li><a href="#md:undefined"><span>undefined</span></a></li>
 <li><a href="#md:unknown"><span>unknown</span></a></li>
 <li><a href="#md:void"><span>void</span></a></li></ul></li>
+<li><a href="#md:testing-utilities"><span>Testing <wbr/>Utilities</span></a></li>
 <li><a href="#md:constant-types"><span>Constant <wbr/>Types</span></a></li>
 <li><a href="#md:json-support"><span>JSON <wbr/>Support</span></a></li>
 <li><a href="#md:type-manipulation"><span>Type manipulation</span></a></li>
