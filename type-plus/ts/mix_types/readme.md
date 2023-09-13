@@ -38,3 +38,23 @@ type R = IsAnyOrNever<never> // true
 
 type R = IsAnyOrNever<unknown> // false
 ```
+
+## [Box](./box.ts)
+
+`Box<T, Options = { $notBoxable }>`
+
+⚗️ *transform*
+🔢 *customizable*
+
+Converts primitive types to their boxed types.
+
+`$notBoxable`: return type when `T` is not boxable. Defaults to `never`.
+
+```ts
+Box<number> // Number
+Box<object> // Object
+Box<string>  // String
+Box<'abc'>  // String
+
+Box<undefined> // never
+```

@@ -54,6 +54,7 @@ export type { Abs, Add, Decrement, GreaterThan, Increment, Max, Multiply, Subtra
 export * as MathPlus from './math/math_plus.js'
 export * from './merge.js'
 export type { AnyOrNeverType, IsAnyOrNever } from './mix_types/any_or_never_type.js'
+export type * from './mix_types/box.js'
 export type { IsNever, IsNotNever, Is_Never, NeverType, NotNeverType, Not_Never } from './never/never_type.js'
 export * from './nodejs/index.js'
 export * from './nominal/index.js'
