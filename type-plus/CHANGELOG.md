@@ -1,5 +1,35 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 8.0.0-beta.0
+
+### Major Changes
+
+- 2a0d791c6: Rename `case*` to `$*` to make them easier to use.
+- 061640050: Update and release as ESM package only.
+
+### Minor Changes
+
+- afac18a02: Add `IsStrictObject<T>` type.
+- b98ed6d9f: Accept `readonly` for array.
+  Add `ArrayPlus.IsReadonly`.
+
+  Fix `ArrayPlus.Reverse` to support `readonly`.
+
+- 69c540985: Add `Merge<A, B>` and `ObjectPlus.Merge<A, B>`
+- de549578a: Add customize support for `ArrayPlus.Filter`
+- 711639289: Add `Box<T>` to box primitive types to their boxed types.
+
+### Patch Changes
+
+- 3ed4dce5e: Optimize `SplitAt` by moving never check of `DeleteCount` to the top.
+- 5535a4a6d: fix `IsArray<never[]>`
+- d852d76b3: Add docs for `ArrayPlus.IsReadonly`.
+
+  The following are internal changes thus not considered a breaking change:
+
+  - Replace `MergeOptions`/`MergeCases` with `TypePlusOptions.Merge`.
+  - Rename `TypePlusOptions.Predicate` to `TypePlusOptions.Selection`.
+
 ## 7.6.0
 
 ### Minor Changes
