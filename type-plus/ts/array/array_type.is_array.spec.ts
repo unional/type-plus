@@ -2,6 +2,11 @@ import { it } from '@jest/globals'
 import { testType, type IsArray } from '../index.js'
 
 it('returns true if T is array', () => {
+	testType.true<IsArray<any[]>>(true)
+	testType.true<IsArray<unknown[]>>(true)
+	testType.true<IsArray<never[]>>(true)
+	testType.true<IsArray<void[]>>(true)
+
 	testType.true<IsArray<string[]>>(true)
 })
 

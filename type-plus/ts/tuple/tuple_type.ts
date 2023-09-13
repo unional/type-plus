@@ -5,7 +5,7 @@ import type { IsNever, NeverType } from '../never/never_type.js'
  *
  * Filter `T` to ensure it is a tuple, excluding array.
  *
- * @typeParam Cases['never'] Return type when `T` is `never`. Default to `Else`.
+ * @typeParam Cases['$never'] Return type when `T` is `never`. Default to `Else`.
  *
  * @example
  * ```ts

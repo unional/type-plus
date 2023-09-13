@@ -2,7 +2,13 @@ import { it } from '@jest/globals'
 import { testType, type ArrayType } from '../index.js'
 
 it('returns T if T is array', () => {
+	testType.equal<ArrayType<any[]>, any[]>(true)
+	testType.equal<ArrayType<unknown[]>, unknown[]>(true)
+	testType.equal<ArrayType<never[]>, never[]>(true)
+	testType.equal<ArrayType<void[]>, void[]>(true)
+
 	testType.equal<ArrayType<string[]>, string[]>(true)
+	testType.equal<ArrayType<Array<string | number>>, Array<string | number>>(true)
 })
 
 it('returns never if T is tuple', () => {
