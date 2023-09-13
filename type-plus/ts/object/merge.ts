@@ -9,6 +9,17 @@ import type { IsDisjoint } from './IsDisjoint.js'
 import type { KeyTypes } from './KeyTypes.js'
 import type { OptionalKeys } from './OptionalKeys.js'
 
+/**
+ * ⚗️ *transform*
+ * 🔢 *customizable*
+ *
+ * Merges type `A` and type `B`.
+ *
+ * This type performs the same operations as `{ ...a, ...b }` but at the type level.
+ *
+ * It handles cases like A or B are `Record`,
+ * joining between required and optional props, etc.
+ */
 export type Merge<A extends AnyRecord, B extends AnyRecord, Options = Merge.DefaultOptions> = Or<
 	IsAny<A>,
 	IsAny<B>,
@@ -30,11 +41,6 @@ export type Merge<A extends AnyRecord, B extends AnyRecord, Options = Merge.Defa
 							{ [k in PKA & PKB]?: A[k] | B[k] },
 							unknown
 						> &
-						// (NotNeverType<
-						// 	Exclude<KA & KB, PKA | PKB>,
-						// 	{ [k in Exclude<KA & KB, PKA | PKB>]: Merge.JoinProps<A[k], B[k]> },
-						// 	unknown
-						// >) &
 						// properties only in A excluding partials is A[k]
 						NotNeverType<
 							Exclude<KA, PKA | KB>,

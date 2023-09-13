@@ -58,6 +58,20 @@ import type { OptionalProps } from 'type-plus'
 type R = OptionalProps<{ a?: number; b: string }> // { a?: number }
 ```
 
+## [ObjectPlus.Merge](./merge.ts)
+
+`Merge<A, B, Options = { }>`
+
+⚗️ *transform*
+🔢 *customizable*
+
+Merges type `A` and type `B`.
+
+This type performs the same operations as `{ ...a, ...b }` but at the type level.
+
+It handles cases like A or B are `Record`,
+joining between required and optional props, etc.
+
 ## References
 
 - [Handbook]

@@ -1,9 +1,7 @@
 import { describe, expect, it } from '@jest/globals'
-import { testType } from './index.js'
-import { merge, type Merge } from './merge.js'
+import { merge, testType, type Merge } from '../index.js'
 
 describe('Merge', () => {
-
 	it('merges with any -> any', () => {
 		testType.equal<Merge<any, any>, any>(true)
 		testType.equal<Merge<{ a: 1 }, any>, any>(true)
@@ -25,47 +23,67 @@ describe('Merge', () => {
 		testType.equal<Merge<unknown, { a: 1 }>, { a: 1 }>(true)
 	})
 
-	it('merges with undefined -> never', () => {
-		testType.equal<Merge<undefined, undefined>, never>(true)
+	it('drops undefined', () => {
+		testType.equal<Merge<undefined, undefined>, undefined>(true)
 
-		// intersection with `undefined` gets `never` so that it will be dropped
-		testType.equal<{ a: 1 } & undefined, never>(true)
-		testType.equal<Merge<{ a: 1 }, undefined>, never>(true)
-		testType.equal<Merge<undefined, { a: 1 }>, never>(true)
+		// merging X with `undefined` in JavaScript will drop `undefined` as it has no properties.
+		const x = { a: 1 }
+		const y: any = undefined
+		const z = { ...x, ...y }
+		expect(z).toEqual({ a: 1 })
+
+		testType.equal<Merge<{ a: 1 }, undefined>, { a: 1 }>(true)
+		testType.equal<Merge<undefined, { a: 1 }>, { a: 1 }>(true)
 	})
 
-	it('merges with void -> never', () => {
-		testType.equal<Merge<void, void>, never>(true)
+	it('drops null', () => {
+		testType.equal<Merge<null, null>, null>(true)
 
-		// intersection with `void` SHOULD gets `never` so that it will be dropped.
-		// but it is returning `{ a: 1 } & void` instead.
-		// @ts-expect-error
-		testType.equal<{ a: 1 } & void, never>(true)
+		// merging X with `null` in JavaScript will drop `null` as it has no properties.
+		const x = { a: 1 }
+		const y: any = null
+		const z = { ...x, ...y }
+		expect(z).toEqual({ a: 1 })
+
+		testType.equal<Merge<{ a: 1 }, null>, { a: 1 }>(true)
+		testType.equal<Merge<null, { a: 1 }>, { a: 1 }>(true)
+	})
+
+	it('merges with void -> T & void', () => {
+		testType.equal<Merge<void, void>, void>(true)
+
+		// https://github.com/microsoft/TypeScript/issues/55700
+		// intersection with `void` kept the intersection as `T & void`.
+		testType.equal<{ a: 1 } & void, { a: 1 } & void>(true)
 
 		// here we align the behavior with `undefined`
-		testType.equal<Merge<{ a: 1 }, void>, never>(true)
-		testType.equal<Merge<void, { a: 1 }>, never>(true)
+		testType.equal<Merge<{ a: 1 }, void>, { a: 1 } & void>(true)
+		testType.equal<Merge<void, { a: 1 }>, { a: 1 } & void>(true)
 	})
 
-	it('ignore NonComposableTypes', () => {
-		testType.equal<{ a: 1 } & string, { a: 1 } & string>(true)
-		testType.equal<{ a: 1 } & number, { a: 1 } & number>(true)
-		testType.equal<{ a: 1 } & bigint, { a: 1 } & bigint>(true)
-		testType.equal<{ a: 1 } & boolean, { a: 1 } & boolean>(true)
-		testType.equal<{ a: 1 } & symbol, { a: 1 } & symbol>(true)
-		testType.equal<{ a: 1 } & null, never>(true)
-		testType.equal<{ a: 1 } & undefined, never>(true)
+	it('merges primitive types for its properties', () => {
+		testType.equal<Merge<number, boolean>, Merge<Number, Boolean>, {
+			toFixed: (fractionDigits?: number | undefined) => string,
+			toExponential: (fractionDigits?: number | undefined) => string,
+			toPrecision: (precision?: number | undefined) => string,
+			valueOf: (() => Object) & (() => boolean)
+		}>(true)
+
+		testType.equal<Merge<string, symbol>, Merge<String, Symbol>>(true)
+		testType.equal<Merge<() => void, bigint>, Merge<Function, BigInt>>(true)
+	})
+
+	it('merges array', () => {
+		testType.equal<Merge<['a', 'b'], { a: number }>, ['a', 'b'] & { a: number }>(true)
+
+		testType.canAssign<Merge<['a', 'b'], { concat: boolean }>, { concat: boolean }>(true)
 	})
 })
 
 describe(`${merge.name}()`, () => {
-	it('joining primitive types to anything will get the primitive type', () => {
-		merge(1, true)
-		// expect(r).toEqual(true)
-	})
 	it('', () => {
 		const r = merge({ a: 1 } as const, 2)
-		testType.equal<typeof r, { readonly a: 1 }>(true)
+		testType.equal<typeof r, { readonly a: 1 } & Number>(true)
 		expect(r).toEqual({ a: 1 })
 	})
 

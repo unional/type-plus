@@ -1,5 +1,6 @@
 import { expect, it } from '@jest/globals'
-import { ObjectPlus, testType } from '../index.js'
+import { testType, type ObjectPlus } from '../index.js'
+
 
 it('merges with any -> any', () => {
 	testType.equal<ObjectPlus.Merge<any, any>, any>(true)

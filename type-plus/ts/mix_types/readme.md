@@ -58,3 +58,17 @@ Box<'abc'>  // String
 
 Box<undefined> // never
 ```
+
+## [Merge](./merge.ts)
+
+⚗️ *transform*
+🔢 *customizable*
+
+Merges type `A` and type `B`.
+
+This type performs the same operations as `{ ...a, ...b }` but at the type level.
+
+This is a more general type then `ObjectPlus.Merge<A, B>`,
+which constraints `A` and `B` to be `Record`.
+
+This type does not have such restrictions, and tries to handle the other types accordingly.
