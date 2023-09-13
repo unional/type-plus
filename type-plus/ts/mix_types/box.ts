@@ -2,7 +2,7 @@ import type { IsBigint } from '../bigint/bigint_type.js'
 import type { IsBoolean } from '../boolean/boolean_type.js'
 import type { IsFunction } from '../function/function_type.js'
 import type { IsNumber } from '../number/number_type.js'
-import type { IsStrictObject } from '../object/object_type.js'
+import type { IsStrictObject } from '../object/is_strict_object.js'
 import type { IsString } from '../string/string_type.js'
 import type { IsSymbol } from '../symbol/symbol_type.js'
 

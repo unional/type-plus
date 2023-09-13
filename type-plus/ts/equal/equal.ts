@@ -4,6 +4,7 @@ import type { IsObject } from '../object/object_type.js'
 import type { Properties } from '../object/properties.js'
 import type { And, Or } from '../predicates/logical.js'
 import type { IsSymbol } from '../symbol/symbol_type.js'
+import type { IdentityEqual } from './identity_equal.js'
 
 type BothNever<A, B, Both, One, None> = And<
 	IsNever<A>,
@@ -13,14 +14,6 @@ type BothNever<A, B, Both, One, None> = And<
 >
 
 type BothAny<A, B, Both, One, None> = And<IsAny<A>, IsAny<B>, Both, Or<IsAny<A>, IsAny<B>, One, None>>
-
-type IdentityEqual<A, B, Then, Else> = (<_>() => _ extends (A & _) | _ ? 1 : 2) extends <_>() => _ extends
-	| (B & _)
-	| _
-	? 1
-	: 2
-	? Then
-	: Else
 
 /**
  * Checks `A` and `B` are equal.

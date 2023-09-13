@@ -83,6 +83,7 @@ export type {
 export type { IsNotPositive, IsPositive, NonPositive, Positive } from './numeric/positive.js'
 export type { Required, RequiredExcept, RequiredPick } from './object/Required.js'
 export * from './object/index.js'
+export type * from './object/is_strict_object.js'
 export * as ObjectPlus from './object/object_plus.js'
 export type { IsNotObject, IsObject, NotObjectType, ObjectType } from './object/object_type.js'
 export * from './predicates/index.js'
@@ -123,3 +124,4 @@ export * from './unpartial.js'
 export * from './utils/index.js'
 export type { TypePlusOptions } from './utils/options.js'
 export type { IsNotVoid, IsVoid, NotVoidType, VoidType } from './void/void_type.js'
+
