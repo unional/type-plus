@@ -1,4 +1,4 @@
-import { it } from 'node:test'
+import { it } from '@jest/globals'
 import { testType, type IsStrictObject } from '../index.js'
 
 it('returns false for special types', () => {
