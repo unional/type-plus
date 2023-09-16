@@ -1,3 +1,4 @@
+import type { TypePlusOptions } from '../utils/options.js'
 import type { AnyType } from './any_type.js'
 
 /**
@@ -14,4 +15,6 @@ import type { AnyType } from './any_type.js'
  * type R = NotAnyType<string | boolean> // string | boolean
  * ```
  */
-export type NotAnyType<T, Then = T, Else = never> = AnyType<T, { $then: Else, $else: Then }>
+export type NotAnyType<T,
+	Options extends TypePlusOptions.Selection = TypePlusOptions.FilterSelection<T>
+> = AnyType<T, TypePlusOptions.FlipSelection<Options>>

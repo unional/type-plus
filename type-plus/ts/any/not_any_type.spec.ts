@@ -41,10 +41,10 @@ it('returns never for intersection type', () => {
 })
 
 it('can override Then/Else', () => {
-	testType.equal<NotAnyType<any, 1, 2>, 2>(true)
-	testType.equal<NotAnyType<0, 1, 2>, 1>(true)
+	testType.equal<NotAnyType<any, { $then: 1, $else: 2 }>, 2>(true)
+	testType.equal<NotAnyType<0, { $then: 1, $else: 2 }>, 1>(true)
 
-	testType.equal<NotAnyType<never, 1, 2>, 1>(true)
-	testType.equal<NotAnyType<unknown, 1, 2>, 1>(true)
-	testType.equal<NotAnyType<void, 1, 2>, 1>(true)
+	testType.equal<NotAnyType<never, { $then: 1, $else: 2 }>, 1>(true)
+	testType.equal<NotAnyType<unknown, { $then: 1, $else: 2 }>, 1>(true)
+	testType.equal<NotAnyType<void, { $then: 1, $else: 2 }>, 1>(true)
 })
