@@ -36,6 +36,9 @@
       "cache": false
     },
     "lint": {},
+    "nuke": {
+      "cache": false
+    },
     "size": {
       "dependsOn": [
         "build"
