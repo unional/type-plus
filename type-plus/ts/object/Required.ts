@@ -1,6 +1,6 @@
 // Thanks [jack-williams](https://github.com/jack-williams) for the [solution](https://github.com/Microsoft/TypeScript/issues/29269#issuecomment-451602962)
 
-import type { NonUndefined } from '../utils/NonUndefined.js'
+import type { NonUndefined } from '../undefined/non_undefined.js'
 
 export type Required<T> = { [P in keyof T]-?: NonUndefined<T[P]> }
 

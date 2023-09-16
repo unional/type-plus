@@ -1,5 +1,5 @@
-import type { NonNull } from '../utils/NonNull.js'
-import type { NonUndefined } from '../utils/NonUndefined.js'
+import type { NonNull } from '../null/non_null.js'
+import type { NonUndefined } from '../undefined/non_undefined.js'
 
 /**
  * ⚗️ *transform*

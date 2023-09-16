@@ -61,6 +61,7 @@ export * from './mix_types/merge.js'
 export type { IsNever, IsNotNever, Is_Never, NeverType, NotNeverType, Not_Never } from './never/never_type.js'
 export * from './nodejs/index.js'
 export * from './nominal/index.js'
+export type * from './null/non_null.js'
 export type { IsNotNull, IsNull, NotNullType, NullType } from './null/null_type.js'
 export type { StringToNumber } from './number/cast.js'
 export * as NumberPlus from './number/number_plus.js'
@@ -114,6 +115,7 @@ export type { IsNotTuple, IsTuple, NotTupleType, TupleType } from './tuple/tuple
 export * from './type-guard/is_type.js'
 export type { Failed, FailedT } from './type/failed.js'
 export type { NoInfer } from './type/no_infer.js'
+export type * from './undefined/non_undefined.js'
 export type {
 	IsNotUndefined,
 	IsUndefined,
