@@ -1,3 +1,4 @@
+import type { TypePlusOptions } from '../utils/options.js'
 import type { AnyType } from './any_type.js'
 
 /**
@@ -16,4 +17,7 @@ import type { AnyType } from './any_type.js'
  * type R = IsNotAny<string | boolean> // true
  * ```
  */
-export type IsNotAny<T, Then = true, Else = false> = AnyType<T, { $then: Else, $else: Then }>
+export type IsNotAny<
+	T,
+	Options extends TypePlusOptions.Selection = TypePlusOptions.PredicateSelection
+> = AnyType<T, TypePlusOptions.FlipSelection<Options>>
