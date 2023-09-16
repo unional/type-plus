@@ -350,7 +350,7 @@ Filter the array `A`, keeping entries satisfying `Criteria`.
 type R = Filter<Array<string | undefined>, string> // string[]
 
 // customization
-type R = Filter<never, string, { caseNever: 1 }> // 1
+type R = Filter<never, string, { $never: 1 }> // 1
 type R = Filter<['x'], string, { $notArray: 1 }> // 1
 ```
 
