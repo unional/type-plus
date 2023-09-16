@@ -57,12 +57,14 @@ export namespace IndexAt {
 			// N: number or float
 			IsAny<
 				N,
-				number,
-				StrictNumberType<
-					N,
-					// TODO: handle tuple to union of indexes
-					N
-				>
+				{
+					$then: number,
+					$else: StrictNumberType<
+						N,
+						// TODO: handle tuple to union of indexes
+						N
+					>
+				}
 			>
 		>
 	>

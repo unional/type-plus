@@ -18,11 +18,12 @@ import type { Zero } from './numeric_type.js'
  */
 export type Negative<T, Then = T, Else = never> = IsAny<
 	T,
-	Then | Else,
-	IsNever<
-		T,
-		Else,
-		[number, T] extends [T, number]
+	{
+		$then: Then | Else,
+		$else: IsNever<
+			T,
+			Else,
+			[number, T] extends [T, number]
 			? Then
 			: [bigint, T] extends [T, bigint]
 			? Then
@@ -30,10 +31,11 @@ export type Negative<T, Then = T, Else = never> = IsAny<
 			? Else
 			: [T] extends [number | bigint]
 			? `${T}` extends `-${string}`
-				? Then
-				: Else
+			? Then
 			: Else
-	>
+			: Else
+		>
+	}
 >
 
 /**
@@ -68,20 +70,22 @@ export type IsNegative<T, Then = true, Else = false> = Negative<T, Then, Else>
  */
 export type NotNegative<T, Then = T, Else = never> = IsAny<
 	T,
-	Then | Else,
-	IsNever<
-		T,
-		Then,
-		[number, T] extends [T, number]
+	{
+		$then: Then | Else,
+		$else: IsNever<
+			T,
+			Then,
+			[number, T] extends [T, number]
 			? Then
 			: [bigint, T] extends [T, bigint]
 			? Then
 			: [T] extends [number | bigint]
 			? `${T}` extends `-${string}`
-				? Else
-				: Then
+			? Else
 			: Then
-	>
+			: Then
+		>
+	}
 >
 
 /**

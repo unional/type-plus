@@ -11,7 +11,10 @@ import type { IsAny } from '../any/is_any.js'
  * type R = NullType<string | boolean> // never
  * ```
  */
-export type NullType<T, Then = T, Else = never> = IsAny<T, Else, [T, null] extends [null, T] ? Then : Else>
+export type NullType<T, Then = T, Else = never> = IsAny<T, {
+	$then: Else,
+	$else: [T, null] extends [null, T] ? Then : Else
+}>
 
 /**
  * Is the type `T` exactly `null`.

@@ -14,8 +14,10 @@ import type { IsNever } from '../index.js'
  */
 export type Positive<T, Then = T, Else = never> = IsAny<
 	T,
-	Then | Else,
-	IsNever<T, Else, T extends number | bigint ? (`${T}` extends `-${string}` ? Else : Then) : Else>
+	{
+		$then: Then | Else,
+		$else: IsNever<T, Else, T extends number | bigint ? (`${T}` extends `-${string}` ? Else : Then) : Else>
+	}
 >
 
 /**

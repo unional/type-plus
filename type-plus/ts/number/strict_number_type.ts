@@ -18,8 +18,10 @@ import type { IsAny } from '../any/is_any.js'
  */
 export type StrictNumberType<T, Then = T, Else = never> = IsAny<
 	T,
-	Else,
-	[number, T] extends [T, number] ? Then : Else
+	{
+		$then: Else,
+		$else: [number, T] extends [T, number] ? Then : Else
+	}
 >
 
 /**

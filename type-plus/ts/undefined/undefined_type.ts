@@ -12,8 +12,10 @@ import type { IsAny } from '../any/is_any.js'
  */
 export type UndefinedType<T, Then = T, Else = never> = IsAny<
 	T,
-	Else,
-	[T, undefined] extends [undefined, T] ? Then : Else
+	{
+		$then: Else,
+		$else: [T, undefined] extends [undefined, T] ? Then : Else
+	}
 >
 
 /**

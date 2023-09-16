@@ -41,10 +41,10 @@ it('returns true for intersection type', () => {
 })
 
 it('can override Then/Else', () => {
-	testType.equal<IsAny<any, 1, 2>, 1>(true)
-	testType.equal<IsAny<0, 1, 2>, 2>(true)
+	testType.equal<IsAny<any, { $then: 1, $else: 2 }>, 1>(true)
+	testType.equal<IsAny<0, { $then: 1, $else: 2 }>, 2>(true)
 
-	testType.equal<IsAny<unknown, 1, 2>, 2>(true)
-	testType.equal<IsAny<never, 1, 2>, 2>(true)
-	testType.equal<IsAny<void, 1, 2>, 2>(true)
+	testType.equal<IsAny<unknown, { $then: 1, $else: 2 }>, 2>(true)
+	testType.equal<IsAny<never, { $then: 1, $else: 2 }>, 2>(true)
+	testType.equal<IsAny<void, { $then: 1, $else: 2 }>, 2>(true)
 })

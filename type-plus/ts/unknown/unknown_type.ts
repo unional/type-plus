@@ -12,8 +12,10 @@ import type { IsAny } from '../any/is_any.js'
  */
 export type UnknownType<T, Then = T, Else = never> = IsAny<
 	T,
-	Else,
-	[T, unknown] extends [unknown, T] ? Then : Else
+	{
+		$then: Else,
+		$else: [T, unknown] extends [unknown, T] ? Then : Else
+	}
 >
 
 /**
