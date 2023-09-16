@@ -22,8 +22,11 @@ export type { IsNotStrictArray, IsStrictArray, NotStrictArrayType, StrictArrayTy
 export type { PropUnion, UnionOfProps } from './array/union_of_props.js'
 export type { UnionOfValues } from './array/union_of_values.js'
 export { assertType } from './assertion/assert_type.js'
-export type { BigintType, IsBigint, IsNotBigint, NotBigintType } from './bigint/bigint_type.js'
+export type * from './bigint/bigint_type.js'
 export type { StringToBigint } from './bigint/cast.js'
+export type * from './bigint/is_bigint.js'
+export type * from './bigint/is_not_bigint.js'
+export type * from './bigint/not_bigint_type.js'
 export type {
 	IsNotStrictBigint,
 	IsStrictBigint,

@@ -1,4 +1,4 @@
-import type { IsBigint } from '../bigint/bigint_type.js'
+import type { IsBigint } from '../bigint/is_bigint.js'
 import type { IsBoolean } from '../boolean/boolean_type.js'
 import type { IsFunction } from '../function/function_type.js'
 import type { IsNumber } from '../number/number_type.js'
