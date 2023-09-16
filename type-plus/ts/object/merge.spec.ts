@@ -1,5 +1,5 @@
 import { expect, it } from '@jest/globals'
-import { testType, type ObjectPlus } from '../index.js'
+import { testType, ObjectPlus } from '../index.js'
 
 
 it('merges with any -> any', () => {
@@ -116,5 +116,16 @@ it('merges two optional properties', () => {
 		{ a?: number | undefined }, { a?: string | undefined }>,
 		{ a?: number | string | undefined }
 	>(true)
+})
+
+it('spread across unions', () => {
+	testType.equal<ObjectPlus.Merge<{ a: 1 } | { b: 2 }, { c: 3 }>, { a: 1, c: 3 } | { b: 2, c: 3 }>(true)
+	testType.equal<ObjectPlus.Merge<{ c: 3 }, { a: 1 } | { b: 2 }>, { a: 1, c: 3 } | { b: 2, c: 3 }>(true)
+
+	// TODO: currently the merge is not distributive
+	// testType.equal<ObjectPlus.Merge<
+	// 	{ a?: string | undefined } | { b: 2 }, { a: number }>,
+	// 	{ a: number } | { a: number, b: 2 }
+	// >(true)
 })
 
