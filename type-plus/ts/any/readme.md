@@ -12,7 +12,7 @@ They are strict type checks, meaning they match only the type `any`.
 Union and intersections are not a factor here they are resolved to `any`,
 except `any & never` which is `never`.
 
-### [AnyType](./any.spec.ts#15)
+### [AnyType](./any_type.ts)
 
 `AnyType<T, Then = T, Else = never>`
 
@@ -30,7 +30,7 @@ type R = AnyType<unknown> // never
 type R = AnyType<string | boolean> // never
 ```
 
-### [IsAny](./any.spec.ts#31)
+### [IsAny](./is_any.ts)
 
 `IsAny<T, Then = true, Else = false>`
 
@@ -48,7 +48,7 @@ type R = IsAny<unknown> // false
 type R = IsAny<string | boolean> // false
 ```
 
-### [NotAnyType](./any.spec.ts#47)
+### [NotAnyType](./not_any_type.ts)
 
 `NotAnyType<T, Then = T, Else = never>`
 
@@ -66,7 +66,7 @@ type R = NotAnyType<unknown> // never
 type R = NotAnyType<string | boolean> // string | boolean
 ```
 
-### [IsNotAny](./any.spec.ts#65)
+### [IsNotAny](./is_not_any.ts)
 
 `IsNotAny<T, Then = true, Else = false>`
 

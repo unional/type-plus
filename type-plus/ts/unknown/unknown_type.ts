@@ -1,4 +1,4 @@
-import type { IsAny } from '../any/any_type.js'
+import type { IsAny } from '../any/is_any.js'
 
 /**
  * Check if the type `T` is exactly `unknown`.

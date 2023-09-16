@@ -1,4 +1,4 @@
-import type { IsAny } from '../any/any_type.js'
+import type { IsAny } from '../any/is_any.js'
 import type { IsArray } from '../array/array_type.js'
 import type { IsBigint } from '../bigint/bigint_type.js'
 import type { IsStrictBigint } from '../bigint/strict_bigint_type.js'

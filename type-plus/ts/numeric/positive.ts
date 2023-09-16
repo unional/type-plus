@@ -1,4 +1,4 @@
-import type { IsAny } from '../any/any_type.js'
+import type { IsAny } from '../any/is_any.js'
 import type { IsNever } from '../index.js'
 
 /**

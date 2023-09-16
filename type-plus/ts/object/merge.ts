@@ -1,4 +1,4 @@
-import type { IsAny } from '../any/any_type.js'
+import type { IsAny } from '../any/is_any.js'
 import type { NonComposableTypes } from '../composable_types.js'
 import type { IsNever, NotNeverType } from '../never/never_type.js'
 import type { IsLiteral } from '../predicates/literal.js'

@@ -1,4 +1,4 @@
-import type { IsAny } from '../any/any_type.js'
+import type { IsAny } from '../any/is_any.js'
 import type { IsEqual } from '../equal/equal.js'
 import type { Abs } from '../math/abs.js'
 import type { GreaterThan } from '../math/greater_than.js'

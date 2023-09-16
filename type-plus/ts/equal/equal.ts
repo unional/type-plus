@@ -1,4 +1,4 @@
-import type { IsAny } from '../any/any_type.js'
+import type { IsAny } from '../any/is_any.js'
 import type { IsNever } from '../never/never_type.js'
 import type { IsObject } from '../object/object_type.js'
 import type { Properties } from '../object/properties.js'

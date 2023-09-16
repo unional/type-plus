@@ -18,7 +18,7 @@ import type { NeverType } from '../never/never_type.js'
  * type R = AnyOrNeverType<string | boolean> // never
  * ```
  */
-export type AnyOrNeverType<T, Then = T, Else = never> = NeverType<T, Then, AnyType<T, Then, Else>>
+export type AnyOrNeverType<T, Then = T, Else = never> = NeverType<T, Then, AnyType<T, { $then: Then, $else: Else }>>
 
 /**
  * Validate if `T` is either exactly `any` or exactly `never`.
@@ -35,4 +35,4 @@ export type AnyOrNeverType<T, Then = T, Else = never> = NeverType<T, Then, AnyTy
  * type R = IsAnyOrNever<unknown> // false
  * ```
  */
-export type IsAnyOrNever<T, Then = true, Else = false> = NeverType<T, Then, AnyType<T, Then, Else>>
+export type IsAnyOrNever<T, Then = true, Else = false> = NeverType<T, Then, AnyType<T, { $then: Then, $else: Else }>>

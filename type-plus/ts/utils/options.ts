@@ -23,6 +23,21 @@ export namespace TypePlusOptions {
 		$else?: unknown,
 	}
 
+	export interface FilterSelection<T> {
+		$then: T,
+		$else: never
+	}
+
+	export interface PredicateSelection {
+		$then: true,
+		$else: false
+	}
+
+	export interface FlipSelection<O extends Selection> {
+		$then: O['$else'],
+		$else: O['$then']
+	}
+
 	export interface NotArray {
 		$notArray?: unknown
 	}
