@@ -133,6 +133,7 @@ export type {
 	NotUndefinedType,
 	UndefinedType
 } from './undefined/undefined_type.js'
+export type * from './type_plus/infer_error.js'
 export type { IsUnion, UnionType } from './union/union.js'
 export type { UnionKeys } from './union_keys.js'
 export type { IsNotUnknown, IsUnknown, NotUnknownType, UnknownType } from './unknown/unknown_type.js'
