@@ -63,6 +63,7 @@ export type * from './mix_types/box.js'
 export * from './mix_types/merge.js'
 export type * from './never/is_never.js'
 export type * from './never/is_not_never.js'
+export type * from './never/never.js'
 export type * from './never/never_type.js'
 export type * from './never/not_never_type.js'
 export * from './nodejs/index.js'
@@ -121,19 +122,19 @@ export type { IsNotTuple, IsTuple, NotTupleType, TupleType } from './tuple/tuple
 export * from './type-guard/is_type.js'
 export type { Failed, FailedT } from './type/failed.js'
 export type { NoInfer } from './type/no_infer.js'
-export type * from './type_plus/type.js'
 export type * from './type_plus/branch/any.js'
-export type * from './type_plus/branch/selection.js'
 export type * from './type_plus/branch/is_branch.js'
+export type * from './type_plus/branch/selection.js'
+export type * from './type_plus/error.js'
+export type * from './type_plus/infer_error.js'
+export type * from './type_plus/type.js'
 export type * from './undefined/non_undefined.js'
-export type * from './never/never.js'
 export type {
 	IsNotUndefined,
 	IsUndefined,
 	NotUndefinedType,
 	UndefinedType
 } from './undefined/undefined_type.js'
-export type * from './type_plus/infer_error.js'
 export type { IsUnion, UnionType } from './union/union.js'
 export type { UnionKeys } from './union_keys.js'
 export type { IsNotUnknown, IsUnknown, NotUnknownType, UnknownType } from './unknown/unknown_type.js'
@@ -141,3 +142,4 @@ export * from './unpartial.js'
 export * from './utils/index.js'
 export type { TypePlusOptions } from './utils/options.js'
 export type { IsNotVoid, IsVoid, NotVoidType, VoidType } from './void/void_type.js'
+
