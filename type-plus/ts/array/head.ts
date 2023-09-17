@@ -1,4 +1,5 @@
-import type { NeverType } from '../never/never_type.js'
+import type { IsNever } from '../never/is_never.js'
+import type { $NeverDefault, $NeverOptions } from '../never/never_type.js'
 
 /**
  * 🦴 *utilities*
@@ -23,18 +24,18 @@ import type { NeverType } from '../never/never_type.js'
 export type Head<
 	T extends readonly unknown[],
 	Options extends Head.Options = Head.DefaultOptions
-> = NeverType<
+> = IsNever<
 	T,
 	Options['$never'],
 	T['length'] extends 0 ? Options['caseEmptyTuple'] : T[0]
 >
 
 export namespace Head {
-	export interface Options extends NeverType.Options {
+	export interface Options extends $NeverOptions {
 		caseEmptyTuple?: unknown
 	}
 
-	export interface DefaultOptions extends NeverType.DefaultOptions {
+	export interface DefaultOptions extends $NeverDefault {
 		caseEmptyTuple: never
 	}
 }

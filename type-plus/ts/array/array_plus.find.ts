@@ -1,4 +1,4 @@
-import type { NeverType } from '../never/never_type.js'
+import type { $NeverDefault, $NeverOptions } from '../never/never_type.js'
 import type { TupleType } from '../tuple/tuple_type.js'
 import type { TypePlusOptions } from '../utils/options.js'
 import type { ElementMatch } from './array_plus.element_match.js'
@@ -61,11 +61,11 @@ export type Find<
 	: never
 
 export namespace Find {
-	export interface Options extends ElementMatch.Options, NeverType.Options {
+	export interface Options extends ElementMatch.Options, $NeverOptions {
 		$tuple?: unknown,
 	}
 
-	export interface DefaultOptions<Criteria> extends ElementMatch.DefaultOptions<Criteria>, NeverType.DefaultOptions {
+	export interface DefaultOptions<Criteria> extends ElementMatch.DefaultOptions<Criteria>, $NeverDefault {
 		$tuple: 'does not support tuple. Please use `FindFirst` or `TuplePlus.Find` instead.',
 	}
 }

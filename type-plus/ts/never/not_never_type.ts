@@ -1,4 +1,5 @@
-import type { Is_Never, NeverType } from './never_type.js'
+import type { IsNever } from './is_never.js'
+import type { $Never } from './never_type.js'
 
 /**
  * Check if `T` is not `never`.
@@ -11,4 +12,4 @@ import type { Is_Never, NeverType } from './never_type.js'
  * ```
  */
 
-export type NotNeverType<T, Then = T, Else = Is_Never> = NeverType<T, Else, Then>
+export type NotNeverType<T, Then = T, Else = $Never> = IsNever<T, Else, Then>

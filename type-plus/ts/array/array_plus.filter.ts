@@ -6,7 +6,8 @@
 // export type Filter<A extends readonly unknown[], Criteria = true> = Filter._<A, Criteria, []>
 
 import type { IsEqual } from '../equal/equal.js'
-import type { NeverType } from '../never/never_type.js'
+import type { IsNever } from '../never/is_never.js'
+import type { $NeverOptions } from '../never/never_type.js'
 import type { TypePlusOptions } from '../utils/options.js'
 
 /**
@@ -25,7 +26,7 @@ export type Filter<
 	Criteria = true,
 	Options extends Filter.Options = Filter.DefaultOptions
 > = TypePlusOptions.Merge<Options, Filter.DefaultOptions> extends infer O extends Filter.Options
-	? (NeverType<
+	? (IsNever<
 		A,
 		O['$never'],
 		(A[0] extends Criteria
@@ -34,7 +35,7 @@ export type Filter<
 	: never
 
 export namespace Filter {
-	export interface Options extends TypePlusOptions.NotArray, NeverType.Options { }
+	export interface Options extends TypePlusOptions.NotArray, $NeverOptions { }
 
 	export interface DefaultOptions {
 		$never: never,

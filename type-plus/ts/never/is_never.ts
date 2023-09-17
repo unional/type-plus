@@ -10,4 +10,7 @@ import type { NeverType } from './never_type.js'
  * ```
  */
 
-export type IsNever<T, Then = true, Else = false> = NeverType<T, Then, Else>
+export type IsNever<T, Then = true, Else = false> = NeverType<T, {
+	$then: Then,
+	$else: Else
+}>

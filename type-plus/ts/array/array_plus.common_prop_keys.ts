@@ -1,4 +1,5 @@
-import type { NeverType } from '../never/never_type.js'
+import type { IsNever } from '../never/is_never.js'
+import type { $NeverDefault, $NeverOptions } from '../never/never_type.js'
 import type { KeyTypes } from '../object/KeyTypes.js'
 
 /**
@@ -21,15 +22,15 @@ import type { KeyTypes } from '../object/KeyTypes.js'
 export type CommonPropKeys<
 	A extends readonly Record<KeyTypes, unknown>[],
 	Options extends CommonPropKeys.Options = CommonPropKeys.DefaultOptions
-> = NeverType<A,
+> = IsNever<A,
 	Options['$never'],
 	A extends Readonly<Array<infer R extends Record<KeyTypes, unknown>>> ? keyof R : never
 >
 
 export namespace CommonPropKeys {
-	export interface Options extends NeverType.Options {
+	export interface Options extends $NeverOptions {
 	}
 
-	export interface DefaultOptions extends NeverType.DefaultOptions {
+	export interface DefaultOptions extends $NeverDefault {
 	}
 }

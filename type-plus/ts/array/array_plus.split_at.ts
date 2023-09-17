@@ -1,4 +1,4 @@
-import type { NeverType } from '../never/never_type.js'
+import type { IsNever } from '../never/is_never.js'
 import type { IsTuple } from '../tuple/tuple_type.js'
 import type { IndexAt } from './array_plus.index_at.js'
 import type { ArrayType } from './array_type.js'
@@ -49,7 +49,7 @@ export namespace SplitAt {
 	> = 0 extends A['length']
 		? IsTuple<Insert, [[...Insert, ...B], C], [B, C]>
 		: (Index extends B['length']
-			? NeverType<
+			? IsNever<
 				DeleteCount,
 				[B, A],
 				_D<A, B, C, DeleteCount, Insert>>

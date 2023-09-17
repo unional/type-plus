@@ -1,5 +1,5 @@
 import type { IsNever } from '../never/is_never.js'
-import type { NeverType } from '../never/never_type.js'
+import type { $NeverOptions } from '../never/never_type.js'
 
 /**
  * 🌪️ *filter*
@@ -23,7 +23,7 @@ export type TupleType<
 	T,
 	Then = T,
 	Else = never,
-	Options extends TupleType.Options = TupleType.DefaultOptions<Else>
+	Options extends TupleType.$Options = TupleType.DefaultOptions<Else>
 > = IsNever<
 	T,
 	Options['$never'],
@@ -31,7 +31,7 @@ export type TupleType<
 >
 
 export namespace TupleType {
-	export interface Options extends NeverType.Options {
+	export interface $Options extends $NeverOptions {
 	}
 
 	export interface DefaultOptions<Else> {
@@ -58,7 +58,7 @@ export type IsTuple<
 	T,
 	Then = true,
 	Else = false,
-	Options extends TupleType.Options = TupleType.DefaultOptions<Else>
+	Options extends TupleType.$Options = TupleType.DefaultOptions<Else>
 > = TupleType<T, Then, Else, Options>
 
 
@@ -81,7 +81,7 @@ export type NotTupleType<
 	T,
 	Then = T,
 	Else = never,
-	Options extends TupleType.Options = TupleType.DefaultOptions<Then>
+	Options extends TupleType.$Options = TupleType.DefaultOptions<Then>
 > = TupleType<T, Else, Then, Options>
 
 /**
@@ -103,5 +103,5 @@ export type IsNotTuple<
 	T,
 	Then = true,
 	Else = false,
-	Options extends TupleType.Options = TupleType.DefaultOptions<Then>
+	Options extends TupleType.$Options = TupleType.DefaultOptions<Then>
 > = TupleType<T, Else, Then, Options>

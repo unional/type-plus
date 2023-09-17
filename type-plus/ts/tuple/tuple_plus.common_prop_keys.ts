@@ -1,4 +1,5 @@
-import type { NeverType } from '../never/never_type.js'
+import type { IsNever } from '../never/is_never.js'
+import type { $NeverDefault, $NeverOptions } from '../never/never_type.js'
 import type { KeyTypes } from '../object/KeyTypes.js'
 import type { Tail } from './tail.js'
 
@@ -22,7 +23,7 @@ import type { Tail } from './tail.js'
 export type CommonPropKeys<
 	T extends Record<KeyTypes, unknown>[],
 	Options extends CommonPropKeys.Options = CommonPropKeys.DefaultOptions
-> = NeverType<
+> = IsNever<
 	T,
 	Options['$never'],
 	(T['length'] extends 0
@@ -39,9 +40,9 @@ export type CommonPropKeys<
 >
 
 export namespace CommonPropKeys {
-	export interface Options extends NeverType.Options {
+	export interface Options extends $NeverOptions {
 	}
 
-	export interface DefaultOptions extends NeverType.DefaultOptions {
+	export interface DefaultOptions extends $NeverDefault {
 	}
 }
