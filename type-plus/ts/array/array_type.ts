@@ -26,7 +26,7 @@ export type ArrayType<T, Then = T, Else = never> = IsNever<
 >
 
 /**
- * 🎭 *validate*
+ * 🎭 *predicate*
  *
  * Validate that `T` is an array, excluding tuple.
  *
@@ -58,7 +58,7 @@ export type IsArray<T, Then = true, Else = false> = ArrayType<T, Then, Else>
 export type NotArrayType<T, Then = T, Else = never> = ArrayType<T, Else, Then>
 
 /**
- * 🎭 *validate*
+ * 🎭 *predicate*
  *
  * Validate that `T` is not an array, excluding tuple.
  *

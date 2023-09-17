@@ -3,7 +3,7 @@ import type { IsNever } from '../never/is_never.js'
 import type { IsObject } from './object_type.js'
 
 /**
- * 🎭 *validate*
+ * 🎭 *predicate*
  *
  * Validate that `T` is strictly the `object` type.
  */

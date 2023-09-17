@@ -1,9 +1,10 @@
 import type { NeverType } from '../never/never_type.js'
+import type { $SelectionOptions } from '../type_plus/branch/selection.js'
 import type { TypePlusOptions } from '../utils/options.js'
 import type { LooseArrayType } from './loose_array_type.js'
 
 /**
- * 🎭 *validate*
+ * 🎭 *predicate*
  * 🔢 *customizable*
  *
  * Checks if `A` is a readonly array or tuple
@@ -19,9 +20,9 @@ import type { LooseArrayType } from './loose_array_type.js'
  */
 export type IsReadonly<
 	A,
-	Options extends IsReadonly.Options = IsReadonly.DefaultOptions
+	$Options extends IsReadonly.Options = IsReadonly.DefaultOptions
 > =
-	TypePlusOptions.Merge<Options, IsReadonly.DefaultOptions> extends infer O extends IsReadonly.Options ?
+	TypePlusOptions.Merge<$Options, IsReadonly.DefaultOptions> extends infer O extends IsReadonly.Options ?
 	NeverType<
 		A,
 		O['$never'],
@@ -35,7 +36,7 @@ export type IsReadonly<
 
 export namespace IsReadonly {
 	export interface Options
-		extends NeverType.Options, TypePlusOptions.Selection, TypePlusOptions.NotArray { }
+		extends NeverType.Options, $SelectionOptions, TypePlusOptions.NotArray { }
 
 	export interface DefaultOptions {
 		$then: true,

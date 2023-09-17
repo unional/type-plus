@@ -1,8 +1,8 @@
-import type { TypePlusOptions } from '../utils/options.js'
+import type { $SelectionOptions, $SelectionPredicate } from '../type_plus/branch/selection.js'
 import type { AnyType } from './any_type.js'
 
 /**
- * 🎭 *validate*
+ * 🎭 *predicate*
  *
  * Validate if `T` is exactly `any`.
  *
@@ -17,5 +17,5 @@ import type { AnyType } from './any_type.js'
  */
 export type IsAny<
 	T,
-	Options extends TypePlusOptions.Selection = TypePlusOptions.PredicateSelection
-> = AnyType<T, Options>
+	$Options extends $SelectionOptions = $SelectionPredicate
+> = AnyType<T, $Options>

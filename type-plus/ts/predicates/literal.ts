@@ -1,7 +1,7 @@
 /**
  * Validate if specified type is a scalar literal.
  *
- * 🎭 *validate*
+ * 🎭 *predicate*
  *
  * @example
  * ```ts

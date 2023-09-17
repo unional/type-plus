@@ -37,7 +37,7 @@ Overridable cases:
 
 `IsTuple<T, Then = true, Else = false, Cases = { never }>`
 
-🎭 *validate*
+🎭 *predicate*
 
 Validate that `T` is a tuple, excluding array.
 
@@ -84,7 +84,7 @@ Overridable cases:
 
 `IsNotTupleType<T, Then = true, Else = false, Cases = { never }>`
 
-🎭 *validate*
+🎭 *predicate*
 
 Validate that `T` is not a tuple, excluding array.
 

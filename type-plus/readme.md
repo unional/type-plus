@@ -110,7 +110,7 @@ Each tag has an associated icon:
 - ⚗️ *transform*: these types transforms the input to another category
 - 🧰 *type util*: types for building types
 - 🦴 *utilities*: provide various functionalities
-- 🎭 *validate*: a.k.a. *predicate* or *logical*. These types perform some kind of test. If the input passes the test, it returns `true` or `false`
+- 🎭 *predicate*: a.k.a. *predicate* or *logical*. These types perform some kind of test. If the input passes the test, it returns `true` or `false`
 
 ## Assertion Function
 

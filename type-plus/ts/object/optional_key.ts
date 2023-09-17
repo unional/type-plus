@@ -5,7 +5,7 @@ import type { KeyTypes } from './KeyTypes.js'
 /**
  * Validate if the key `K` in `T` is optional.
  *
- * 🎭 *validate*
+ * 🎭 *predicate*
  *
  * @example
  * ```ts

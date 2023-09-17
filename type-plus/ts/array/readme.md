@@ -36,7 +36,7 @@ type R = ArrayType<number[] & { a: 1 }> // never
 
 `IsArray<T, Then = true, Else = false>`
 
-🎭 *validate*
+🎭 *predicate*
 
 Validate that `T` is an array, excluding tuple.
 
@@ -70,7 +70,7 @@ type R = NotArrayType<[1]> // [1]
 
 `IsNotArrayType<T, Then = true, Else = false>`
 
-🎭 *validate*
+🎭 *predicate*
 
 Validate that `T` is not an array, excluding tuple.
 
@@ -417,7 +417,7 @@ type R = IndexAt<['a', 'b', 'c'], -4> // never
 
 ### [`ArrayPlus.IsIndexOutOfBound](./array_plus.is_index_out_of_bound.ts#l18)
 
-🎭 *validate*
+🎭 *predicate*
 
 Is `N` an out of bound index of `A`.
 
@@ -433,7 +433,7 @@ type R = IsIndexOutOfBound<[1], -2> // true
 
 `ArrayPlus.IsReadonly<A, Options = { $then, $else, $never, $notArray }>`
 
-🎭 *validate*
+🎭 *predicate*
 🔢 *customizable*
 
 Checks if `A` is a readonly array or tuple.

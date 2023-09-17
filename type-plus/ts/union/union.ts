@@ -13,7 +13,7 @@
 export type UnionType<T, Then = T, Else = never> = UnionType.Device<T, Then, Else>
 
 /**
- * 🎭 *validate*
+ * 🎭 *predicate*
  *
  * Validate the type `T` is a union.
  *

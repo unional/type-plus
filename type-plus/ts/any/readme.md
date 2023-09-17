@@ -34,7 +34,7 @@ type R = AnyType<string | boolean> // never
 
 `IsAny<T, Then = true, Else = false>`
 
-🎭 *validate*
+🎭 *predicate*
 
 Validate if `T` is exactly `any`.
 
@@ -70,7 +70,7 @@ type R = NotAnyType<string | boolean> // string | boolean
 
 `IsNotAny<T, Then = true, Else = false>`
 
-🎭 *validate*
+🎭 *predicate*
 
 Validate if `T` is not exactly `any`.
 

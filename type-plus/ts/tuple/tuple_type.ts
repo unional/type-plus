@@ -41,7 +41,7 @@ export namespace TupleType {
 
 
 /**
- * 🎭 *validate*
+ * 🎭 *predicate*
  *
  * Validate that `T` is a tuple, excluding array.
  *
@@ -85,7 +85,7 @@ export type NotTupleType<
 > = TupleType<T, Else, Then, Options>
 
 /**
- * 🎭 *validate*
+ * 🎭 *predicate*
  *
  * Validate that `T` is not a tuple, excluding array.
  *

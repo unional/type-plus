@@ -27,7 +27,7 @@ type R = AnyOrNeverType<unknown, 1, 2> // 2
 
 Validate if `T` is either exactly `any` or exactly `never`.
 
-🎭 *validate*
+🎭 *predicate*
 🩳 *shortcut*
 
 ```ts

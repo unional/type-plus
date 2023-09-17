@@ -1,4 +1,4 @@
-import type { TypePlusOptions } from '../utils/options.js'
+import type { $SelectionFilter, $SelectionOptions } from '../type_plus/branch/selection.js'
 
 /**
  * 🌪️ *filter*
@@ -16,5 +16,5 @@ import type { TypePlusOptions } from '../utils/options.js'
  */
 export type AnyType<
 	T,
-	Options extends TypePlusOptions.Selection = TypePlusOptions.FilterSelection<T>
-> = 0 extends 1 & T ? Options['$then'] : Options['$else']
+	$Options extends $SelectionOptions = $SelectionFilter<T>
+> = 0 extends 1 & T ? $Options['$then'] : $Options['$else']

@@ -2,7 +2,7 @@ import type { IsNever } from '../never/is_never.js'
 import type { IndexAt } from './array_plus.index_at.js'
 
 /**
- * 🎭 *validate*
+ * 🎭 *predicate*
  *
  * Is `N` an out of bound index of `A`.
  *

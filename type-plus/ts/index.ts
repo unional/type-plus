@@ -121,8 +121,10 @@ export type { IsNotTuple, IsTuple, NotTupleType, TupleType } from './tuple/tuple
 export * from './type-guard/is_type.js'
 export type { Failed, FailedT } from './type/failed.js'
 export type { NoInfer } from './type/no_infer.js'
-export type * from './type_plus/$any.js'
-export type * from './type_plus/$type.js'
+export type * from './type_plus/type.js'
+export type * from './type_plus/branch/any.js'
+export type * from './type_plus/branch/selection.js'
+export type * from './type_plus/branch/is_branch.js'
 export type * from './undefined/non_undefined.js'
 export type {
 	IsNotUndefined,
@@ -137,4 +139,3 @@ export * from './unpartial.js'
 export * from './utils/index.js'
 export type { TypePlusOptions } from './utils/options.js'
 export type { IsNotVoid, IsVoid, NotVoidType, VoidType } from './void/void_type.js'
-

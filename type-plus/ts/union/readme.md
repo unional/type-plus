@@ -62,7 +62,7 @@ type R = UnionType<number> // never
 
 ## [IsUnion](./union.ts#l30)
 
-🎭 *validate*
+🎭 *predicate*
 
 Validate that `T` is a union.
 

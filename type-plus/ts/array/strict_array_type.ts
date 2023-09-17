@@ -26,7 +26,7 @@ export type StrictArrayType<T, Then = T, Else = never> = IsNever<
 >
 
 /**
- * 🎭 *validate*
+ * 🎭 *predicate*
  *
  * Validate that `T` is an array, excluding tuple.
  *
@@ -58,7 +58,7 @@ export type IsStrictArray<T, Then = true, Else = false> = StrictArrayType<T, The
 export type NotStrictArrayType<T, Then = T, Else = never> = StrictArrayType<T, Else, Then>
 
 /**
- * 🎭 *validate*
+ * 🎭 *predicate*
  *
  * Validate that `T` is not an array, excluding tuple.
  *

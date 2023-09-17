@@ -23,7 +23,7 @@ export type AnyOrNeverType<T, Then = T, Else = never> = NeverType<T, Then, AnyTy
 /**
  * Validate if `T` is either exactly `any` or exactly `never`.
  *
- * 🎭 *validate*
+ * 🎭 *predicate*
  * 🩳 *shortcut*
  *
  * @example

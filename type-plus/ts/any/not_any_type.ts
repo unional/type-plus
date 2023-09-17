@@ -1,4 +1,4 @@
-import type { TypePlusOptions } from '../utils/options.js'
+import type { $FlipSelection, $SelectionFilter, $SelectionOptions } from '../type_plus/branch/selection.js'
 import type { AnyType } from './any_type.js'
 
 /**
@@ -17,5 +17,5 @@ import type { AnyType } from './any_type.js'
  */
 export type NotAnyType<
 	T,
-	Options extends TypePlusOptions.Selection = TypePlusOptions.FilterSelection<T>
-> = AnyType<T, TypePlusOptions.FlipSelection<Options>>
+	$Options extends $SelectionOptions = $SelectionFilter<T>
+> = AnyType<T, $FlipSelection<$Options>>

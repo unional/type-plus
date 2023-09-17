@@ -24,7 +24,7 @@ import type { IsAnyOrNever } from '../mix_types/any_or_never_type.js'
 >
 
 /**
- * 🎭 *validate*
+ * 🎭 *predicate*
  *
  * Validate that `T` is an array or tuple.
  *
@@ -54,7 +54,7 @@ export type IsLooseArray<T, Then = true, Else = false> = LooseArrayType<T, Then,
 export type NotLooseArrayType<T, Then = T, Else = never> = LooseArrayType<T, Else, Then>
 
 /**
- * 🎭 *validate*
+ * 🎭 *predicate*
  *
  * Validate that `T` is not an array nor tuple.
  *
