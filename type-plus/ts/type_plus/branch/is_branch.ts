@@ -1,5 +1,4 @@
-import type { $SelectionPredicate, $SelectionOptions } from './selection.js'
-import type { typeKey } from '../type.js'
+import type { $SelectionOptions, $SelectionPredicate } from './selection.js'
 
 /**
  * 🧰 *type util*
@@ -16,4 +15,4 @@ import type { typeKey } from '../type.js'
 export type $IsBranch<
 	V,
 	$Options extends $SelectionOptions = $SelectionPredicate
-> = V extends { [typeKey]: 'branch' } ? $Options['$then'] : $Options['$else']
+> = V extends { type: 'branch' } ? $Options['$then'] : $Options['$else']
