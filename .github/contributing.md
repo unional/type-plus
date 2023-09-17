@@ -12,5 +12,6 @@
 - 🩳 *shortcut* (:shorts:): Shortcut or convenient types
 - 🧪 *testing* (:test_tube:): The type or function are designed for test
 - ⚗️ *transform* (:alembic:): These types transforms the input to another category
+- 🧰 *type util* (:toolbox:): types for building types
 - 🦴 *utilities* (:bone:): provide various functionalities (other icons considered: 🔧🔨)
 - 🎭 *validate* (:performing_arts:): a.k.a. *predicate* or *logical*. These types perform some kind of test. If the input passes the test, it returns `true` or `false` (other icons considered: ⭕)
