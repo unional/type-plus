@@ -1,5 +1,5 @@
 import type { IsNever } from '../never/is_never.js'
-import type { $NeverDefault, $NeverOptions } from '../never/never_type.js'
+import type { $NeverDefault, $NeverOptions } from '../never/never.js'
 import type { KeyTypes } from '../object/KeyTypes.js'
 
 /**

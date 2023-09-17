@@ -1,8 +1,8 @@
 import { it } from '@jest/globals'
-import { testType, type Is_Never, type NotNeverType } from '../index.js'
+import { testType, type $Never, type NotNeverType } from '../index.js'
 
 it('returns `is_never` if T is never', () => {
-	testType.equal<NotNeverType<never>, Is_Never>(true)
+	testType.equal<NotNeverType<never>, $Never>(true)
 })
 
 it('returns T for other special types', () => {
@@ -33,8 +33,8 @@ it('returns T for union type', () => {
 	testType.equal<NotNeverType<never | 1>, 1>(true)
 })
 
-it('returns Is_Never for intersection type', () => {
-	testType.equal<NotNeverType<never & { a: 1 }>, Is_Never>(true)
+it('returns $Never for intersection type', () => {
+	testType.equal<NotNeverType<never & { a: 1 }>, $Never>(true)
 })
 
 it('can override Then/Else', () => {

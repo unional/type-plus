@@ -34,6 +34,8 @@ it('returns $NotNever for union type', () => {
 })
 
 it('returns never for intersection type', () => {
+	// TypeScript resolve this to `never` automatically,
+	// so `NeverType<>` actually does not do anthing in this case.
 	testType.never<never & { a: 1 }>(true)
 	testType.never<NeverType<never & { a: 1 }>>(true)
 })

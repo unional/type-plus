@@ -126,6 +126,7 @@ export type * from './type_plus/branch/any.js'
 export type * from './type_plus/branch/selection.js'
 export type * from './type_plus/branch/is_branch.js'
 export type * from './undefined/non_undefined.js'
+export type * from './never/never.js'
 export type {
 	IsNotUndefined,
 	IsUndefined,

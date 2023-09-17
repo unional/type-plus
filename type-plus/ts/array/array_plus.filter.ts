@@ -7,7 +7,7 @@
 
 import type { IsEqual } from '../equal/equal.js'
 import type { IsNever } from '../never/is_never.js'
-import type { $NeverOptions } from '../never/never_type.js'
+import type { $NeverOptions } from '../never/never.js'
 import type { TypePlusOptions } from '../utils/options.js'
 
 /**

@@ -1,5 +1,5 @@
 import type { IsNever } from './is_never.js'
-import type { $Never } from './never_type.js'
+import type { $Never } from './never.js'
 
 /**
  * Check if `T` is not `never`.

@@ -1,4 +1,4 @@
-import type { $NeverDefault, $NeverOptions } from '../never/never_type.js'
+import type { $NeverDefault, $NeverOptions } from '../never/never.js'
 import type { TupleType } from '../tuple/tuple_type.js'
 import type { TypePlusOptions } from '../utils/options.js'
 import type { ElementMatch } from './array_plus.element_match.js'
