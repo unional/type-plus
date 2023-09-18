@@ -1,14 +1,14 @@
 import type { IsAny } from '../any/is_any.js'
 import type { NonComposableTypes } from '../composable_types.js'
 import type { IsNever } from '../never/is_never.js'
+import type { $Never } from '../never/never.js'
 import type { NotNeverType } from '../never/not_never_type.js'
 import type { IsLiteral } from '../predicates/literal.js'
 import type { Or } from '../predicates/logical.js'
-import type { $Never } from '../type_plus/cases.js'
-import type { AnyRecord } from './any_record.js'
 import type { IsDisjoint } from './IsDisjoint.js'
 import type { KeyTypes } from './KeyTypes.js'
 import type { OptionalKeys } from './OptionalKeys.js'
+import type { AnyRecord } from './any_record.js'
 
 /**
  * ⚗️ *transform*
