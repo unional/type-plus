@@ -1,3 +1,4 @@
+export type * from './any/any.js'
 export type { AnyType } from './any/any_type.js'
 export type { IsAny } from './any/is_any.js'
 export type { IsNotAny } from './any/is_not_any.js'
@@ -122,7 +123,6 @@ export type { IsNotTuple, IsTuple, NotTupleType, TupleType } from './tuple/tuple
 export * from './type-guard/is_type.js'
 export type { Failed, FailedT } from './type/failed.js'
 export type { NoInfer } from './type/no_infer.js'
-export type * from './type_plus/branch/any.js'
 export type * from './type_plus/branch/is_branch.js'
 export type * from './type_plus/branch/selection.js'
 export type * from './type_plus/error.js'
