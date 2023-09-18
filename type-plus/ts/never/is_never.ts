@@ -1,8 +1,13 @@
+import type { $SelectionOptions, $SelectionPredicate } from '../type_plus/branch/selection.js'
 import type { NeverType } from './never_type.js'
 
 /**
- * Is `T` `never`.
+ * 🎭 *predicate*
+ * 🔢 *customize*
  *
+ * Validate if `T` is exactly `never`.
+ *
+ * @example
  * ```ts
  * type R = IsNever<never> // true
  *
@@ -10,7 +15,7 @@ import type { NeverType } from './never_type.js'
  * ```
  */
 
-export type IsNever<T, Then = true, Else = false> = NeverType<T, {
-	$then: Then,
-	$else: Else
-}>
+export type IsNever<
+	T,
+	$Options extends $SelectionOptions = $SelectionPredicate
+> = NeverType<T, $Options>

@@ -25,18 +25,20 @@ export type CommonPropKeys<
 	Options extends CommonPropKeys.Options = CommonPropKeys.DefaultOptions
 > = IsNever<
 	T,
-	Options['$never'],
-	(T['length'] extends 0
-		? never
-		: (
-			T['length'] extends 1
-			? keyof T[0]
+	{
+		$then: Options['$never'],
+		$else: (T['length'] extends 0
+			? never
 			: (
-				T['length'] extends 2
-				? keyof T[0] & keyof T[1]
-				: keyof T[0] & keyof T[1] & CommonPropKeys<Tail<Tail<T>>>
-			)
-		))
+				T['length'] extends 1
+				? keyof T[0]
+				: (
+					T['length'] extends 2
+					? keyof T[0] & keyof T[1]
+					: keyof T[0] & keyof T[1] & CommonPropKeys<Tail<Tail<T>>>
+				)
+			))
+	}
 >
 
 export namespace CommonPropKeys {

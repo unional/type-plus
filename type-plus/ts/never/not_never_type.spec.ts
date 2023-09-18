@@ -38,10 +38,10 @@ it('returns $Never for intersection type', () => {
 })
 
 it('can override Then/Else', () => {
-	testType.equal<NotNeverType<never, 1, 2>, 2>(true)
-	testType.equal<NotNeverType<0, 1, 2>, 1>(true)
+	testType.equal<NotNeverType<never, { $then: 1, $else: 2 }>, 2>(true)
+	testType.equal<NotNeverType<0, { $then: 1, $else: 2 }>, 1>(true)
 
-	testType.equal<NotNeverType<any, 1, 2>, 1>(true)
-	testType.equal<NotNeverType<unknown, 1, 2>, 1>(true)
-	testType.equal<NotNeverType<void, 1, 2>, 1>(true)
+	testType.equal<NotNeverType<any, { $then: 1, $else: 2 }>, 1>(true)
+	testType.equal<NotNeverType<unknown, { $then: 1, $else: 2 }>, 1>(true)
+	testType.equal<NotNeverType<void, { $then: 1, $else: 2 }>, 1>(true)
 })

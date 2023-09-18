@@ -24,10 +24,12 @@ export type Last<
 	T extends readonly unknown[],
 	Options extends Last.Options = Last.DefaultOptions
 > = IsNever<T,
-	Options['$never'],
-	T['length'] extends 0
-	? Options['caseEmptyTuple']
-	: T extends readonly [...unknown[], infer R] ? R : T[0]
+	{
+		$then: Options['$never'],
+		$else: T['length'] extends 0
+		? Options['caseEmptyTuple']
+		: T extends readonly [...unknown[], infer R] ? R : T[0]
+	}
 >
 
 export namespace Last {

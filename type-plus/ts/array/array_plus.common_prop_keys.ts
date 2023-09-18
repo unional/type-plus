@@ -23,8 +23,10 @@ export type CommonPropKeys<
 	A extends readonly Record<KeyTypes, unknown>[],
 	Options extends CommonPropKeys.Options = CommonPropKeys.DefaultOptions
 > = IsNever<A,
-	Options['$never'],
-	A extends Readonly<Array<infer R extends Record<KeyTypes, unknown>>> ? keyof R : never
+	{
+		$then: Options['$never'],
+		$else: A extends Readonly<Array<infer R extends Record<KeyTypes, unknown>>> ? keyof R : never
+	}
 >
 
 export namespace CommonPropKeys {

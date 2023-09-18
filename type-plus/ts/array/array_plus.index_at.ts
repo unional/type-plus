@@ -28,7 +28,7 @@ export type IndexAt<
 	Fail = never,
 	Upper = A['length'],
 	Lower = 0
-> = IsNever<A, Fail, IndexAt._<A, N, Fail, Upper, Lower>>
+> = IsNever<A, { $then: Fail, $else: IndexAt._<A, N, Fail, Upper, Lower> }>
 
 export namespace IndexAt {
 	export type _<

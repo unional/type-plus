@@ -17,12 +17,14 @@ import type { StrictNumberType } from '../number/strict_number_type.js'
  */
 export type StrictArrayType<T, Then = T, Else = never> = IsNever<
 	T,
-	Else,
-	[any[]] extends [T]
-	? ([T] extends [readonly any[]]
-		? StrictNumberType<T['length'], Then, Else>
-		: Else)
-	: Else
+	{
+		$then: Else,
+		$else: [any[]] extends [T]
+		? ([T] extends [readonly any[]]
+			? StrictNumberType<T['length'], Then, Else>
+			: Else)
+		: Else
+	}
 >
 
 /**

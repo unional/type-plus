@@ -26,8 +26,10 @@ export type TupleType<
 	Options extends TupleType.$Options = TupleType.DefaultOptions<Else>
 > = IsNever<
 	T,
-	Options['$never'],
-	[T] extends [readonly any[]] ? (number extends T['length'] ? Else : Then) : Else
+	{
+		$then: Options['$never'],
+		$else: [T] extends [readonly any[]] ? (number extends T['length'] ? Else : Then) : Else
+	}
 >
 
 export namespace TupleType {

@@ -5,7 +5,7 @@ import type { $NotNever } from './never.js'
  * 🌪️ *filter*
  * 🔢 *customize*
  *
- * Filter to ensure `T` is `never`.
+ * Filter to ensure `T` is exactly `never`.
  *
  * If it is not, returns `$NotNever`.
  *

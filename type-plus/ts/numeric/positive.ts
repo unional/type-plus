@@ -16,7 +16,10 @@ export type Positive<T, Then = T, Else = never> = IsAny<
 	T,
 	{
 		$then: Then | Else,
-		$else: IsNever<T, Else, T extends number | bigint ? (`${T}` extends `-${string}` ? Else : Then) : Else>
+		$else: IsNever<T, {
+			$then: Else,
+			$else: T extends number | bigint ? (`${T}` extends `-${string}` ? Else : Then) : Else
+		}>
 	}
 >
 

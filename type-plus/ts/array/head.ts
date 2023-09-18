@@ -26,8 +26,10 @@ export type Head<
 	Options extends Head.Options = Head.DefaultOptions
 > = IsNever<
 	T,
-	Options['$never'],
-	T['length'] extends 0 ? Options['caseEmptyTuple'] : T[0]
+	{
+		$then: Options['$never'],
+		$else: T['length'] extends 0 ? Options['caseEmptyTuple'] : T[0]
+	}
 >
 
 export namespace Head {

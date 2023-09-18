@@ -26,12 +26,14 @@ export type IsReadonly<
 	TypePlusOptions.Merge<$Options, IsReadonly.DefaultOptions> extends infer O extends IsReadonly.Options ?
 	IsNever<
 		A,
-		O['$never'],
-		A extends any ?
-		LooseArrayType<A,
-			Readonly<A> extends A ? O['$then'] : O['$else'],
-			O['$notArray']
-		> : never
+		{
+			$then: O['$never'],
+			$else: A extends any ?
+			LooseArrayType<A,
+				Readonly<A> extends A ? O['$then'] : O['$else'],
+				O['$notArray']
+			> : never
+		}
 	>
 	: never
 

@@ -22,18 +22,20 @@ export type Negative<T, Then = T, Else = never> = IsAny<
 		$then: Then | Else,
 		$else: IsNever<
 			T,
-			Else,
-			[number, T] extends [T, number]
-			? Then
-			: [bigint, T] extends [T, bigint]
-			? Then
-			: T extends Zero
-			? Else
-			: [T] extends [number | bigint]
-			? `${T}` extends `-${string}`
-			? Then
-			: Else
-			: Else
+			{
+				$then: Else,
+				$else: [number, T] extends [T, number]
+				? Then
+				: [bigint, T] extends [T, bigint]
+				? Then
+				: T extends Zero
+				? Else
+				: [T] extends [number | bigint]
+				? `${T}` extends `-${string}`
+				? Then
+				: Else
+				: Else
+			}
 		>
 	}
 >
@@ -74,16 +76,18 @@ export type NotNegative<T, Then = T, Else = never> = IsAny<
 		$then: Then | Else,
 		$else: IsNever<
 			T,
-			Then,
-			[number, T] extends [T, number]
-			? Then
-			: [bigint, T] extends [T, bigint]
-			? Then
-			: [T] extends [number | bigint]
-			? `${T}` extends `-${string}`
-			? Else
-			: Then
-			: Then
+			{
+				$then: Then,
+				$else: [number, T] extends [T, number]
+				? Then
+				: [bigint, T] extends [T, bigint]
+				? Then
+				: [T] extends [number | bigint]
+				? `${T}` extends `-${string}`
+				? Else
+				: Then
+				: Then
+			}
 		>
 	}
 >

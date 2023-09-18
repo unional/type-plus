@@ -1,3 +1,4 @@
+import type { $FlipSelection, $SelectionOptions, $SelectionPredicate } from '../type_plus/branch/selection.js'
 import type { IsNever } from './is_never.js'
 
 /**
@@ -9,4 +10,7 @@ import type { IsNever } from './is_never.js'
  * type R = IsNotNever<never> // false
  */
 
-export type IsNotNever<T, Then = true, Else = false> = IsNever<T, Else, Then>
+export type IsNotNever<
+	T,
+	$Options extends $SelectionOptions = $SelectionPredicate
+> = IsNever<T, $FlipSelection<$Options>>

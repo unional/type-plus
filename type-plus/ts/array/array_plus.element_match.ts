@@ -41,7 +41,7 @@ export type ElementMatch<
 					? C['$widen']
 					: C['$notMatch'])
 				: C['$notMatch'])) extends infer R
-			? IsUnion<T, IsNever<R, R, R | C['$unionNotMatch']>, R>
+			? IsUnion<T, IsNever<R, { $then: R, $else: R | C['$unionNotMatch'] }>, R>
 			: C['$notMatch'])
 		: never)
 

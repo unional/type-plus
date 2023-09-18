@@ -28,10 +28,12 @@ export type Filter<
 > = TypePlusOptions.Merge<Options, Filter.DefaultOptions> extends infer O extends Filter.Options
 	? (IsNever<
 		A,
-		O['$never'],
-		(A[0] extends Criteria
-			? A
-			: Criteria extends A[0] ? Array<Criteria> : O['$notArray'])>)
+		{
+			$then: O['$never'],
+			$else: (A[0] extends Criteria
+				? A
+				: Criteria extends A[0] ? Array<Criteria> : O['$notArray'])
+		}>)
 	: never
 
 export namespace Filter {

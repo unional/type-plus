@@ -51,8 +51,10 @@ export namespace SplitAt {
 		: (Index extends B['length']
 			? IsNever<
 				DeleteCount,
-				[B, A],
-				_D<A, B, C, DeleteCount, Insert>>
+				{
+					$then: [B, A],
+					$else: _D<A, B, C, DeleteCount, Insert>
+				}>
 			: (A extends readonly [infer Head, ...infer Tail]
 				? _<Tail, [...B, Head], [], Index, DeleteCount, Insert>
 				: 'unexpected: A does not extends [Head, ...Tail]'))

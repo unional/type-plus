@@ -39,43 +39,57 @@ export type Merge<A extends AnyRecord, B extends AnyRecord, Options = Merge.Defa
 						// property is optional when both A[k] and B[k] are optional
 						NotNeverType<
 							PKA & PKB,
-							{ [k in PKA & PKB]?: A[k] | B[k] },
-							unknown
+							{
+								$then: { [k in PKA & PKB]?: A[k] | B[k] },
+								$else: unknown
+							}
 						> &
 						// properties only in A excluding partials is A[k]
 						NotNeverType<
 							Exclude<KA, PKA | KB>,
-							{ [k in Exclude<KA, PKA | KB>]: A[k] },
-							unknown
+							{
+								$then: { [k in Exclude<KA, PKA | KB>]: A[k] },
+								$else: unknown
+							}
 						> &
 						// properties only in B excluding partials is B[k]
 						NotNeverType<
 							Exclude<KB, PKB>,
-							{ [k in Exclude<KB, PKB>]: B[k] },
-							unknown
+							{
+								$then: { [k in Exclude<KB, PKB>]: B[k] },
+								$else: unknown
+							}
 						> &
 						// properties is required in A but optional in B is unionized without undefined
 						NotNeverType<
 							Exclude<KA & PKB, PKA>,
-							{ [k in Exclude<KA & PKB, PKA>]: A[k] | Exclude<B[k], undefined> },
-							unknown
+							{
+								$then: { [k in Exclude<KA & PKB, PKA>]: A[k] | Exclude<B[k], undefined> },
+								$else: unknown
+							}
 						>
 						: never)
 					:
 					NotNeverType<
 						Exclude<KA, KA & KB>,
-						{ [k in Exclude<KA, KA & KB>]: A[k] },
-						unknown
+						{
+							$then: { [k in Exclude<KA, KA & KB>]: A[k] },
+							$else: unknown
+						}
 					> &
 					NotNeverType<
 						Exclude<KB, KA & KB>,
-						{ [k in Exclude<KB, KA & KB>]: B[k] },
-						unknown
+						{
+							$then: { [k in Exclude<KB, KA & KB>]: B[k] },
+							$else: unknown
+						}
 					> &
 					NotNeverType<
 						KA & KB,
-						{ [k in KA & KB]: A[k] | B[k] },
-						unknown
+						{
+							$then: { [k in KA & KB]: A[k] | B[k] },
+							$else: unknown
+						}
 					>
 				)
 				: (
@@ -84,18 +98,24 @@ export type Merge<A extends AnyRecord, B extends AnyRecord, Options = Merge.Defa
 					:
 					NotNeverType<
 						Exclude<KA, KA & KB>,
-						{ [k in Exclude<KA, KA & KB>]: A[k] },
-						unknown
+						{
+							$then: { [k in Exclude<KA, KA & KB>]: A[k] },
+							$else: unknown
+						}
 					> &
 					NotNeverType<
 						Exclude<KB, KA & KB>,
-						{ [k in Exclude<KB, KA & KB>]: B[k] },
-						unknown
+						{
+							$then: { [k in Exclude<KB, KA & KB>]: B[k] },
+							$else: unknown
+						}
 					> &
 					NotNeverType<
 						KA & KB,
-						{ [k in KA & KB]: A[k] | B[k] },
-						unknown
+						{
+							$then: { [k in KA & KB]: A[k] | B[k] },
+							$else: unknown
+						}
 					>
 				))
 			: never)

@@ -9,16 +9,17 @@ It is a way to opt-out of type checking and let the values pass through compile-
 The `AnyType<T>` and friends are used to check if a type is `any` or not.
 
 They are strict type checks, meaning they match only the type `any`.
-Union and intersections are not a factor here they are resolved to `any`,
+Union and intersections are not a factor here as they are resolved to `any`,
 except `any & never` which is `never`.
 
 ### [AnyType](./any_type.ts)
 
-`AnyType<T, Then = T, Else = never>`
+`AnyType<T, $Options = { $then: T, $else: never }>`
 
 🌪️ *filter*
+🔢 *customize*
 
-Filter `T` to ensure it is exactly `any`.
+Filter to ensure `T` is exactly `any`.
 
 ```ts
 import type { AnyType } from 'type-plus'
@@ -32,7 +33,7 @@ type R = AnyType<string | boolean> // never
 
 ### [IsAny](./is_any.ts)
 
-`IsAny<T, Then = true, Else = false>`
+`IsAny<T, $Options = { $then: true, $else: false }>`
 
 🎭 *predicate*
 
@@ -50,7 +51,7 @@ type R = IsAny<string | boolean> // false
 
 ### [NotAnyType](./not_any_type.ts)
 
-`NotAnyType<T, Then = T, Else = never>`
+`NotAnyType<T, $Options = { $then: T, $else: never }>`
 
 🌪️ *filter*
 
@@ -68,7 +69,7 @@ type R = NotAnyType<string | boolean> // string | boolean
 
 ### [IsNotAny](./is_not_any.ts)
 
-`IsNotAny<T, Then = true, Else = false>`
+`IsNotAny<T, $Options = { $then: true, $else: false }>`
 
 🎭 *predicate*
 

@@ -9,6 +9,6 @@ import type { IsObject } from './object_type.js'
  */
 export type IsStrictObject<T, Then = true, Else = false> = IsObject<
 	T,
-	IdentityEqual<T, {}, Else, IsNever<keyof T, Then, Else>>,
+	IdentityEqual<T, {}, Else, IsNever<keyof T, { $then: Then, $else: Else }>>,
 	Else
 >
