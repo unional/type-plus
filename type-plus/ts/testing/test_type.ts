@@ -20,7 +20,7 @@ import type { IsString } from '../string/string_type.js'
 import type { IsSymbol } from '../symbol/symbol_type.js'
 import type { IsTuple } from '../tuple/tuple_type.js'
 import type { IsUndefined } from '../undefined/undefined_type.js'
-import type { IsUnknown } from '../unknown/unknown_type.js'
+import type { IsUnknown } from '../unknown/is_unknown.js'
 import type { IsVoid } from '../void/void_type.js'
 
 export namespace testType {
