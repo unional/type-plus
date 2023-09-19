@@ -12,13 +12,12 @@ import type { $Type } from '../type.js'
  * ```ts
  * type YourType<
  *   T,
- *   $Options extends YourType.$Options = YourType.$Default
+ *   $Options extends YourType.$Options = YourType.$Branch
  * > = ...
  *
  * namespace YourType {
  *   export type $Options = $SelectionOptions
- *   export type $Default = $SelectionFilter
- *   export type $Override = $SelectionOverride
+ *   export type $Branch = $SelectionBranch
  * }
  * ```
  */
@@ -33,29 +32,31 @@ export type $Else = $Type<'branch', 'else'>
 /**
  * 🧰 *type util*
  *
- * Override option for specifically overriding the selection logic.
+ * Branch option for selection logic.
+ * It allows finely customizing the behavior of your type.
  *
- * Use this to finely customize the behavior of your type.
+ * Using this as the default value of your `$Options` is the recommended best practice.
+ *
+ * This encourage consumer of your type to use conditional type to avoid performance issues.
  *
  * ```ts
  * type YourType<
  *   T,
- *   $Options extends YourType.$Options = YourType.$Default
+ *   $Options extends YourType.$Options = YourType.$Branch
  * > = ...
  *
  * namespace YourType {
  *   export type $Options = $SelectionOptions
- *   export type $Default = $SelectionFilter
- *   export type $Override = $SelectionOverride
+ *   export type $Branch = $SelectionBranch
  * }
  *
- * type R = YourType<T, YourType.$Override> extends infer R
+ * type R = YourType<T> extends infer R
  *   ? R extends $Then ? HandleThen
  *   : R extends $Else ? HandleElse
  *   : never
  * ```
  */
-export type $SelectionOverride = {
+export type $SelectionBranch = {
 	$then: $Then,
 	$else: $Else,
 }
