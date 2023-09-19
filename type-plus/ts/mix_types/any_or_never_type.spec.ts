@@ -37,6 +37,7 @@ it('returns never for other types', () => {
 
 it('returns any for union type', () => {
 	testType.any<AnyOrNeverType<any | 1>>(true)
+	testType.equal<AnyOrNeverType<never | 1>, never>(true)
 })
 
 it('returns any for intersection type', () => {
@@ -44,10 +45,10 @@ it('returns any for intersection type', () => {
 })
 
 it('can override Then/Else', () => {
-	testType.equal<AnyOrNeverType<any, 1, 2>, 1>(true)
-	testType.equal<AnyOrNeverType<never, 1, 2>, 1>(true)
+	testType.equal<AnyOrNeverType<any, { $then: 1, $else: 2 }>, 1>(true)
+	testType.equal<AnyOrNeverType<never, { $then: 1, $else: 2 }>, 1>(true)
 
-	testType.equal<AnyOrNeverType<0, 1, 2>, 2>(true)
-	testType.equal<AnyOrNeverType<unknown, 1, 2>, 2>(true)
-	testType.equal<AnyOrNeverType<void, 1, 2>, 2>(true)
+	testType.equal<AnyOrNeverType<0, { $then: 1, $else: 2 }>, 2>(true)
+	testType.equal<AnyOrNeverType<unknown, { $then: 1, $else: 2 }>, 2>(true)
+	testType.equal<AnyOrNeverType<void, { $then: 1, $else: 2 }>, 2>(true)
 })

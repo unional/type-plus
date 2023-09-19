@@ -11,7 +11,10 @@ import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
  * type R = NumberType<unknown> // false
  * ```
  */
-export type NumberType<T, Then = T, Else = never> = IsAnyOrNever<T, Else, [T] extends [number] ? Then : Else>
+export type NumberType<T, Then = T, Else = never> = IsAnyOrNever<T, {
+	$then: Else,
+	$else: [T] extends [number] ? Then : Else
+}>
 
 /**
  * Is the type `T` is `number`.

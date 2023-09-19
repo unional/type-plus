@@ -12,6 +12,8 @@ import type { IsUndefined } from '../undefined/undefined_type.js'
  */
 export type VoidType<T, Then = T, Else = never> = IsAnyOrNever<
 	T,
-	Else,
-	IsUndefined<T, Else, [T] extends [void] ? Then : Else>
+	{
+		$then: Else,
+		$else: IsUndefined<T, Else, [T] extends [void] ? Then : Else>
+	}
 >

@@ -11,7 +11,10 @@ import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
  * type R = SymbolType<symbol | boolean> // never
  * ```
  */
-export type SymbolType<T, Then = T, Else = never> = IsAnyOrNever<T, Else, [T] extends [symbol] ? Then : Else>
+export type SymbolType<T, Then = T, Else = never> = IsAnyOrNever<T, {
+	$then: Else,
+	$else: [T] extends [symbol] ? Then : Else
+}>
 
 /**
  * Is the type `T` exactly `symbol`.

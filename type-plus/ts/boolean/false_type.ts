@@ -12,8 +12,10 @@ import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
  */
 export type FalseType<T, Then = T, Else = never> = IsAnyOrNever<
 	T,
-	Else,
-	[T, false] extends [false, T] ? Then : Else
+	{
+		$then: Else,
+		$else: [T, false] extends [false, T] ? Then : Else
+	}
 >
 
 /**

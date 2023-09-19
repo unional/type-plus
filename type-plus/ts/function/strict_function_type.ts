@@ -12,8 +12,10 @@ import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
  */
 export type StrictFunctionType<T, Then = T, Else = never> = IsAnyOrNever<
 	T,
-	Else,
-	[T, Function] extends [Function, T] ? Then : Else
+	{
+		$then: Else,
+		$else: [T, Function] extends [Function, T] ? Then : Else
+	}
 >
 
 /**

@@ -14,8 +14,10 @@ import type { Numeric } from './numeric_type.js'
  */
 export type Integer<T, Then = T, Else = never> = IsAnyOrNever<
 	T,
-	Else,
-	[T] extends [Numeric] ? (`${T}` extends `${bigint}` ? Then : Else) : Else
+	{
+		$then: Else,
+		$else: [T] extends [Numeric] ? (`${T}` extends `${bigint}` ? Then : Else) : Else
+	}
 >
 
 /**

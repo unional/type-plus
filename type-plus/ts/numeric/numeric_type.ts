@@ -22,7 +22,10 @@ export type Zero = 0 | 0n
  * type R = NumericType<unknown> // never
  * ```
  */
-export type NumericType<T, Then = T, Else = never> = IsAnyOrNever<T, Else, [T] extends [Numeric] ? Then : Else>
+export type NumericType<T, Then = T, Else = never> = IsAnyOrNever<T, {
+	$then: Else,
+	$else: [T] extends [Numeric] ? Then : Else
+}>
 
 /**
  * Is `T` numeric.

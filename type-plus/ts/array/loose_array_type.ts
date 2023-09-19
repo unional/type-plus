@@ -19,8 +19,10 @@ import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
  * ```
  */export type LooseArrayType<T, Then = T, Else = never> = IsAnyOrNever<
 	T,
-	Else,
-	T extends readonly any[] ? Then : Else
+	{
+		$then: Else,
+		$else: T extends readonly any[] ? Then : Else
+	}
 >
 
 /**

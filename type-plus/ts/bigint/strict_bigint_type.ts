@@ -14,8 +14,10 @@ import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
  */
 export type StrictBigintType<T, Then = T, Else = never> = IsAnyOrNever<
 	T,
-	Else,
-	[bigint] extends [T] ? ([T] extends [bigint] ? (`${T}` extends `${number}` ? Else : Then) : Else) : Else
+	{
+		$then: Else,
+		$else: [bigint] extends [T] ? ([T] extends [bigint] ? (`${T}` extends `${number}` ? Else : Then) : Else) : Else
+	}
 >
 
 /**
