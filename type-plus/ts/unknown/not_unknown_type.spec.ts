@@ -65,10 +65,10 @@ it('returns T as unknown & <others> => <others>', () => {
 })
 
 it('can override Then/Else', () => {
-	testType.equal<NotUnknownType<unknown, 1, 2>, 2>(true)
-	testType.equal<NotUnknownType<number, 1, 2>, 1>(true)
+	testType.equal<NotUnknownType<unknown, { $then: 1, $else: 2 }>, 2>(true)
+	testType.equal<NotUnknownType<number, { $then: 1, $else: 2 }>, 1>(true)
 
-	testType.equal<NotUnknownType<any, 1, 2>, 1>(true)
-	testType.equal<NotUnknownType<never, 1, 2>, 1>(true)
-	testType.equal<NotUnknownType<void, 1, 2>, 1>(true)
+	testType.equal<NotUnknownType<any, { $then: 1, $else: 2 }>, 1>(true)
+	testType.equal<NotUnknownType<never, { $then: 1, $else: 2 }>, 1>(true)
+	testType.equal<NotUnknownType<void, { $then: 1, $else: 2 }>, 1>(true)
 })

@@ -36,6 +36,7 @@ type R = AnyType<string | boolean> // never
 `IsAny<T, $Options = { $then: true, $else: false }>`
 
 🎭 *predicate*
+🔢 *customize*
 
 Validate if `T` is exactly `any`.
 
@@ -54,6 +55,7 @@ type R = IsAny<string | boolean> // false
 `NotAnyType<T, $Options = { $then: T, $else: never }>`
 
 🌪️ *filter*
+🔢 *customize*
 
 Filter `T` to ensure it is not exactly `any`.
 
@@ -63,7 +65,7 @@ import type { NotAnyType } from 'type-plus'
 type R = NotAnyType<any> // never
 
 type R = NotAnyType<never> // never
-type R = NotAnyType<unknown> // never
+type R = NotAnyType<unknown> // unknown
 type R = NotAnyType<string | boolean> // string | boolean
 ```
 
@@ -72,6 +74,7 @@ type R = NotAnyType<string | boolean> // string | boolean
 `IsNotAny<T, $Options = { $then: true, $else: false }>`
 
 🎭 *predicate*
+🔢 *customize*
 
 Validate if `T` is not exactly `any`.
 

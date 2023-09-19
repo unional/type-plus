@@ -1,3 +1,4 @@
+import type { $FlipSelection, $SelectionFilter, $SelectionOptions } from '../type_plus/branch/selection.js'
 import { type UnknownType } from './unknown_type.js'
 
 /**
@@ -12,4 +13,7 @@ import { type UnknownType } from './unknown_type.js'
  * ```
  */
 
-export type NotUnknownType<T, Then = T, Else = never> = UnknownType<T, Else, Then>
+export type NotUnknownType<
+	T,
+	$Options extends $SelectionOptions = $SelectionFilter<T>
+> = UnknownType<T, $FlipSelection<$Options>>

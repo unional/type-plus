@@ -1,3 +1,4 @@
+import type { $SelectionOptions, $SelectionPredicate } from '../type_plus/branch/selection.js'
 import { type UnknownType } from './unknown_type.js'
 
 /**
@@ -11,4 +12,7 @@ import { type UnknownType } from './unknown_type.js'
  * ```
  */
 
-export type IsUnknown<T, Then = true, Else = false> = UnknownType<T, Then, Else>
+export type IsUnknown<
+	T,
+	$Options extends $SelectionOptions = $SelectionPredicate
+> = UnknownType<T, $Options>
