@@ -15,36 +15,3 @@ export type VoidType<T, Then = T, Else = never> = IsAnyOrNever<
 	Else,
 	IsUndefined<T, Else, [T] extends [void] ? Then : Else>
 >
-
-/**
- * Check if `T` is not `void`.
- *
- * ```ts
- * type R = VoidType<void> // never
- *
- * type R = VoidType<1> // 1
- * ```
- */
-export type NotVoidType<T, Then = T, Else = never> = VoidType<T, Else, Then>
-
-/**
- * Is `T` `void`.
- *
- * ```ts
- * type R = IsVoid<void> // true
- *
- * type R = IsVoid<1> // false
- * ```
- */
-export type IsVoid<T, Then = true, Else = false> = VoidType<T, Then, Else>
-
-/**
- * Is `T` not `void`.
- *
- * ```ts
- * type R = IsNotVoid<void> // false
- *
- * type R = IsNotVoid<1> // true
- * ```
- */
-export type IsNotVoid<T, Then = true, Else = false> = VoidType<T, Else, Then>

@@ -1,11 +1,11 @@
-import type { Box } from './box.js'
 import type { IsNever } from '../never/is_never.js'
 import type { IsNull } from '../null/null_type.js'
 import type { Merge as ObjectMerge } from '../object/merge.js'
 import type { Or } from '../predicates/logical.js'
 import type { IsUndefined } from '../undefined/undefined_type.js'
 import type { IsUnknown } from '../unknown/is_unknown.js'
-import type { IsVoid } from '../void/void_type.js'
+import type { IsVoid } from '../void/is_void.js'
+import type { Box } from './box.js'
 
 /**
  * ⚗️ *transform*

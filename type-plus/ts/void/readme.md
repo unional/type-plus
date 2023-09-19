@@ -1,6 +1,7 @@
 # void
 
-`void` is a type that represents the absence of a value. It is used as the return type of functions that do not return a value.
+`void` is a type that represents the absence of type information.
+It is typically used as the return type of a function that does not explicitly return a value.
 
 ## Type Checking
 
