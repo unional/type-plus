@@ -1,4 +1,4 @@
-import type { IsAnyOrNever } from '../mix_types/any_or_never_type.js'
+import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
 import type { Numeric } from './numeric_type.js'
 
 /**
