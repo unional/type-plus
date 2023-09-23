@@ -1,13 +1,23 @@
-import { type VoidType } from './void_type.js'
+import type { $FlipSelection, $SelectionBranch, $SelectionOptions } from '../type_plus/branch/selection.js'
+import type { IsVoid } from './is_void.js'
 
 /**
- * Is `T` not `void`.
+ * 🎭 *predicate*
+ * 🔢 *customize*
+ *
+ * Validate if `T` is not exactly `void`.
  *
  * ```ts
- * type R = IsNotVoid<void> // false
+ * type R = IsNotVoid<1> // $Then
  *
- * type R = IsNotVoid<1> // true
+ * type R = IsNotVoid<void> // $Else
+ *
+ * type R = IsNotVoid<1, $SelectionPredicate> // true
+ * type R = IsNotVoid<void, $SelectionPredicate> // false
  * ```
  */
 
-export type IsNotVoid<T, Then = true, Else = false> = VoidType<T, Else, Then>
+export type IsNotVoid<
+	T,
+	$O extends $SelectionOptions = $SelectionBranch
+> = IsVoid<T, $FlipSelection<$O>>

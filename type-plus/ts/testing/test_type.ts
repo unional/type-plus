@@ -19,7 +19,7 @@ import type { IsStrictString } from '../string/strict_string_type.js'
 import type { IsString } from '../string/string_type.js'
 import type { IsSymbol } from '../symbol/symbol_type.js'
 import type { IsTuple } from '../tuple/tuple_type.js'
-import type { IsUndefined } from '../undefined/undefined_type.js'
+import type { IsUndefined } from '../undefined/is_undefined.js'
 import type { IsUnknown } from '../unknown/is_unknown.js'
 import type { IsVoid } from '../void/is_void.js'
 

@@ -1,6 +1,7 @@
 import type { IsNull } from '../null/null_type.js'
 import type { Or } from '../predicates/logical.js'
-import type { IsUndefined } from '../undefined/undefined_type.js'
+import type { $SelectionPredicate } from '../type_plus/branch/selection.js'
+import type { IsUndefined } from '../undefined/is_undefined.js'
 
 /**
  * Prevents inference of a type parameter `T`.
@@ -24,4 +25,4 @@ import type { IsUndefined } from '../undefined/undefined_type.js'
  * A build-in `NoInfer` is coming soon.
  * @see https://github.com/microsoft/TypeScript/pull/52968
  */
-export type NoInfer<T> = Or<IsNull<T>, IsUndefined<T>, T, T & {}>
+export type NoInfer<T> = Or<IsNull<T>, IsUndefined<T, $SelectionPredicate>, T, T & {}>

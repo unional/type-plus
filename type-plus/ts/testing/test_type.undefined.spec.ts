@@ -30,6 +30,10 @@ it('treat all other types as not true', () => {
 	testType.undefined<() => void>(false)
 })
 
+it('is distributive against union', () => {
+	testType.undefined<undefined | 1>(Boolean())
+})
+
 // it('check if the type has undefined', () => {
 // 	testType.hasUndefined<number | undefined>(true)
 // 	testType.hasUndefined<undefined>(true)

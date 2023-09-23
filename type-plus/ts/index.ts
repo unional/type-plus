@@ -130,13 +130,10 @@ export type * from './type_plus/branch/selection.js'
 export type * from './type_plus/error.js'
 export type * from './type_plus/infer_error.js'
 export type * from './type_plus/type.js'
+export type * from './undefined/has_undefined.js'
+export type * from './undefined/is_not_undefined.js'
+export type * from './undefined/is_undefined.js'
 export type * from './undefined/non_undefined.js'
-export type {
-	IsNotUndefined,
-	IsUndefined,
-	NotUndefinedType,
-	UndefinedType
-} from './undefined/undefined_type.js'
 export type { IsUnion, UnionType } from './union/union.js'
 export type { UnionKeys } from './union_keys.js'
 export type * from './unknown/is_not_unknown.js'
@@ -150,6 +147,3 @@ export * from './utils/index.js'
 export type { TypePlusOptions } from './utils/options.js'
 export type * from './void/is_not_void.js'
 export type * from './void/is_void.js'
-export type * from './void/not_void_type.js'
-export type * from './void/void_type.js'
-
