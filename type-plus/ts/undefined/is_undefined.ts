@@ -1,6 +1,6 @@
 import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
 import type { $DistributiveDefault, $DistributiveOptions } from '../type_plus/branch/distributive.js'
-import type { $ResolveBranch } from '../type_plus/branch/resolve_branch.js'
+import type { $ResolveOptions } from '../type_plus/resolve_options.js'
 import type { $SelectionBranch, $SelectionOptions, $SelectionPredicate } from '../type_plus/branch/selection.js'
 
 /**
@@ -35,10 +35,10 @@ export type IsUndefined<
 > = IsAnyOrNever<
 	T,
 	{
-		$then: $ResolveBranch<[$O['$else'], false]>,
-		$else: $ResolveBranch<[$O['distributive'], IsUndefined.$Default['distributive']]> extends true
-		? T extends undefined ? $ResolveBranch<[$O['$then'], true]> : $ResolveBranch<[$O['$else'], false]>
-		: [T] extends [undefined] ? $ResolveBranch<[$O['$then'], true]> : $ResolveBranch<[$O['$else'], false]>
+		$then: $ResolveOptions<[$O['$else'], false]>,
+		$else: $ResolveOptions<[$O['distributive'], IsUndefined.$Default['distributive']]> extends true
+		? T extends undefined ? $ResolveOptions<[$O['$then'], true]> : $ResolveOptions<[$O['$else'], false]>
+		: [T] extends [undefined] ? $ResolveOptions<[$O['$then'], true]> : $ResolveOptions<[$O['$else'], false]>
 	}
 >
 
