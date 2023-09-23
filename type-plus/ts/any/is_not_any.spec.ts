@@ -1,49 +1,51 @@
 import { it } from '@jest/globals'
-import { testType, type IsNotAny } from '../index.js'
+import { testType, type IsNotAny, type $SelectionPredicate } from '../index.js'
 
 it('returns false for any', () => {
-	testType.false<IsNotAny<any>>(true)
+	testType.equal<IsNotAny<any>, false>(true)
 })
 
 it('returns true for other special types', () => {
-	testType.true<IsNotAny<unknown>>(true)
-	testType.true<IsNotAny<void>>(true)
-	testType.true<IsNotAny<never>>(true)
+	testType.equal<IsNotAny<unknown>, true>(true)
+	testType.equal<IsNotAny<void>, true>(true)
+	testType.equal<IsNotAny<never>, true>(true)
 })
 
 it('returns true for other types', () => {
-	testType.true<IsNotAny<undefined>>(true)
-	testType.true<IsNotAny<null>>(true)
-	testType.true<IsNotAny<boolean>>(true)
-	testType.true<IsNotAny<true>>(true)
-	testType.true<IsNotAny<false>>(true)
-	testType.true<IsNotAny<number>>(true)
-	testType.true<IsNotAny<1>>(true)
-	testType.true<IsNotAny<string>>(true)
-	testType.true<IsNotAny<''>>(true)
-	testType.true<IsNotAny<symbol>>(true)
-	testType.true<IsNotAny<bigint>>(true)
-	testType.true<IsNotAny<1n>>(true)
-	testType.true<IsNotAny<{}>>(true)
-	testType.true<IsNotAny<string[]>>(true)
-	testType.true<IsNotAny<[]>>(true)
-	testType.true<IsNotAny<Function>>(true)
-	testType.true<IsNotAny<() => void>>(true)
+	testType.equal<IsNotAny<undefined>, true>(true)
+	testType.equal<IsNotAny<null>, true>(true)
+	testType.equal<IsNotAny<boolean>, true>(true)
+	testType.equal<IsNotAny<true>, true>(true)
+	testType.equal<IsNotAny<false>, true>(true)
+	testType.equal<IsNotAny<number>, true>(true)
+	testType.equal<IsNotAny<1>, true>(true)
+	testType.equal<IsNotAny<string>, true>(true)
+	testType.equal<IsNotAny<''>, true>(true)
+	testType.equal<IsNotAny<symbol>, true>(true)
+	testType.equal<IsNotAny<bigint>, true>(true)
+	testType.equal<IsNotAny<1n>, true>(true)
+	testType.equal<IsNotAny<{}>, true>(true)
+	testType.equal<IsNotAny<string[]>, true>(true)
+	testType.equal<IsNotAny<[]>, true>(true)
+	testType.equal<IsNotAny<Function>, true>(true)
+	testType.equal<IsNotAny<() => void>, true>(true)
 })
 
 it('returns false for union type', () => {
-	testType.false<IsNotAny<any | 1>>(true)
+	testType.equal<any | 1, any>(true)
+	testType.equal<IsNotAny<any | 1>, false>(true)
 })
 
 it('returns false for intersection type', () => {
-	testType.false<IsNotAny<any & 1>>(true)
+	testType.equal<any & 1, any>(true)
+	testType.equal<IsNotAny<any & 1>, false>(true)
 })
 
 it('can override Then/Else', () => {
-	testType.equal<IsNotAny<any, { $then: 1, $else: 2 }>, 2>(true)
-	testType.equal<IsNotAny<0, { $then: 1, $else: 2 }>, 1>(true)
+	testType.equal<IsNotAny<any, $SelectionPredicate>, false>(true)
+	testType.equal<IsNotAny<0, $SelectionPredicate>, true>(true)
 
-	testType.equal<IsNotAny<unknown, { $then: 1, $else: 2 }>, 1>(true)
-	testType.equal<IsNotAny<never, { $then: 1, $else: 2 }>, 1>(true)
-	testType.equal<IsNotAny<void, { $then: 1, $else: 2 }>, 1>(true)
+	testType.equal<IsNotAny<unknown, $SelectionPredicate>, true>(true)
+	testType.equal<IsNotAny<never, $SelectionPredicate>, true>(true)
+	testType.equal<IsNotAny<void, $SelectionPredicate>, true>(true)
 })

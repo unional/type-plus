@@ -1,8 +1,8 @@
 import { it } from '@jest/globals'
-import { testType, type IsAny } from '../index.js'
+import { testType, type $Else, type $SelectionBranch, type $Then, type IsAny } from '../index.js'
 
 it('returns true for any', () => {
-	testType.true<IsAny<any>>(true)
+	testType.equal<IsAny<any>, true>(true)
 })
 
 it('returns false for other special types', () => {
@@ -16,7 +16,7 @@ it('returns false for other types', () => {
 	testType.false<IsAny<null>>(true)
 	testType.false<IsAny<boolean>>(true)
 	testType.false<IsAny<true>>(true)
-	testType.false<IsAny<false>>(true)
+	testType.false<IsAny<never>>(true)
 	testType.false<IsAny<number>>(true)
 	testType.false<IsAny<1>>(true)
 	testType.false<IsAny<string>>(true)
@@ -33,18 +33,20 @@ it('returns false for other types', () => {
 })
 
 it('returns true for union type', () => {
+	testType.equal<any | 1, any>(true)
 	testType.true<IsAny<any | 1>>(true)
 })
 
 it('returns true for intersection type', () => {
+	testType.equal<any & 1, any>(true)
 	testType.true<IsAny<any & 1>>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<IsAny<any, { $then: 1, $else: 2 }>, 1>(true)
-	testType.equal<IsAny<0, { $then: 1, $else: 2 }>, 2>(true)
+it('as branching', () => {
+	testType.equal<IsAny<any, $SelectionBranch>, $Then>(true)
+	testType.equal<IsAny<0, $SelectionBranch>, $Else>(true)
 
-	testType.equal<IsAny<unknown, { $then: 1, $else: 2 }>, 2>(true)
-	testType.equal<IsAny<never, { $then: 1, $else: 2 }>, 2>(true)
-	testType.equal<IsAny<void, { $then: 1, $else: 2 }>, 2>(true)
+	testType.equal<IsAny<unknown, $SelectionBranch>, $Else>(true)
+	testType.equal<IsAny<never, $SelectionBranch>, $Else>(true)
+	testType.equal<IsAny<void, $SelectionBranch>, $Else>(true)
 })
