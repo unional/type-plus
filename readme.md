@@ -10,7 +10,7 @@
 
 More than 200 type utilities for [TypeScript] for applications, library, and type-level programming.
 
-[type-plus readme](./type-plus/README.md)
+[type-plus readme](./type-plus/readme.md)
 
 ## Contribute
 
