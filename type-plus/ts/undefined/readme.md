@@ -4,7 +4,7 @@
 
 ## [IsUndefined](./is_undefined.ts)
 
-`IsUndefined<T, { distributive: true, $then: $Then, $else: $Else }>`
+`IsUndefined<T, { distributive: true, $then: true, $else: false }>`
 
 🎭 *predicate*
 🔢 *customize*
@@ -29,7 +29,7 @@ type R = IsUndefined<undefined | 1, { distributive: false }> // false
 
 ## [IsNotUndefined](./is_not_undefined.ts)
 
-`IsNotUndefined<T, { distributive: true, $then: $Then, $else: $Else }>`
+`IsNotUndefined<T, { distributive: true, $then: true, $else: false }>`
 
 🎭 *predicate*
 🔢 *customize*
@@ -54,7 +54,7 @@ type R = IsNotUndefined<undefined | 1, { distributive: false }> // false
 
 ## [HasUndefined](./has_undefined.ts)
 
-`HasUndefined<T, { $then: $Then, $else: $Else }>`
+`HasUndefined<T, { $then: true, $else: false }>`
 
 🎭 *predicate*
 🔢 *customize*
