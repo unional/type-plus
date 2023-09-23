@@ -16,13 +16,13 @@ import { type IsUndefined } from './is_undefined.js'
  * type R = IsNotUndefined<string | boolean> // true
  * ```
  *
- * customize:
+ * customize: branch logic
  * ```ts
- * type R = IsNotUndefined<undefined, $SelectionBranch> // $Else
  * type R = IsNotUndefined<string, $SelectionBranch> // $Then
+ * type R = IsNotUndefined<undefined, $SelectionBranch> // $Else
  * ```
  *
- * distributive:
+ * customize: disable distribution
  * ```ts
  * type R = IsNotUndefined<undefined | 1> // boolean
  * type R = IsNotUndefined<undefined | 1, { distributive: false }> // false

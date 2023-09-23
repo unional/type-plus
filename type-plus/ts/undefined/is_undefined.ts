@@ -10,23 +10,23 @@ import type { $SelectionBranch, $SelectionOptions, $SelectionPredicate } from '.
  * Validate if `T` is `undefined`.
  *
  * ```ts
- * type R = IsUndefined<undefined> // $Then
+ * type R = IsUndefined<undefined> // true
  *
- * type R = IsUndefined<never> // $Else
- * type R = IsUndefined<unknown> // $Else
- * type R = IsUndefined<string | boolean> // $Else
+ * type R = IsUndefined<never> // false
+ * type R = IsUndefined<unknown> // false
+ * type R = IsUndefined<string | boolean> // false
  * ```
  *
  * customize:
  * ```ts
- * type R = IsUndefined<undefined, $SelectionPredicate> // true
- * type R = IsUndefined<string, $SelectionPredicate> // false
+ * type R = IsUndefined<undefined, $SelectionBranch> // $Then
+ * type R = IsUndefined<string, $SelectionBranch> // $Else
  * ```
  *
- * distributive:
+ * customize: disable distributive
  * ```ts
- * type R = IsUndefined<undefined | 1> // $Then | $Else
- * type R = IsUndefined<undefined | 1, { distributive: false }> // $Else
+ * type R = IsUndefined<undefined | 1> // boolean
+ * type R = IsUndefined<undefined | 1, { distributive: false }> // false
  * ```
  */
 export type IsUndefined<

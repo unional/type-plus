@@ -5,17 +5,18 @@ import type { IsUndefined } from './is_undefined.js'
  * 🎭 *predicate*
  * 🔢 *customize*
  *
- * Validate if `T` is `undefined` or union with `undefined`.
+ * Validate if `T` is `undefined` or an union with `undefined`.
  *
  * @example
  * ```ts
- * type R = HasUndefined<undefined> // $Then
- * type R = HasUndefined<undefined | 1> // $Then
+ * type R = HasUndefined<undefined> // true
+ * type R = HasUndefined<undefined | 1> // true
  *
- * type R = HasUndefined<number> // $Else
+ * type R = HasUndefined<number> // false
  *
- * type R = HasUndefined<undefined, $SelectionPredicate> // true
- * type R = HasUndefined<string, $SelectionPredicate> // false
+ * customize: branch logic
+ * type R = HasUndefined<undefined, $SelectionBranch> // $Then
+ * type R = HasUndefined<string, $SelectionBranch> // $Else
  * ```
  */
 export type HasUndefined<
