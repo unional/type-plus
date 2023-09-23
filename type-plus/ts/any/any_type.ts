@@ -15,12 +15,14 @@ import type { $SelectionFilter, $SelectionOptions } from '../type_plus/branch/se
  * ```
  *
  * 🔢 *customize*: as predicate/validate (= `IsAny`)
+ *
  * ```ts
  * type R = AnyType<any, $SelectionPredicate> // true
  * type R = AnyType<string, $SelectionPredicate> // false
  * ```
  *
  * 🔢 *customize*: branching
+ *
  * ```ts
  * type R = AnyType<any, $SelectionBranch> // $Then
  * type R = AnyType<string, $SelectionBranch> // $Else

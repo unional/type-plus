@@ -14,10 +14,11 @@ import type { $SelectionOptions, $SelectionPredicate } from '../type_plus/branch
  * type R = IsAny<string | boolean> // false
  * ```
  *
- * customize: as predicate/validate
+ * 🔢 *customize*: branching
+ *
  * ```ts
- * type R = IsAny<any, $SelectionPredicate> // true
- * type R = IsAny<string, $SelectionPredicate> // false
+ * type R = IsAny<any, $SelectionBranch> // $Then
+ * type R = IsAny<string, $SelectionBranch> // $Else
  * ```
  */
 export type IsAny<

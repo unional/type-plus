@@ -16,6 +16,7 @@ import type { IsAny } from './is_any.js'
  * ```
  *
  * 🔢 *customize*: branching
+ *
  * ```ts
  * type R = IsNotAny<any, $SelectionBranch> // $Else
  * type R = IsNotAny<string, $SelectionBranch> // $Then

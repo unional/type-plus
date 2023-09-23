@@ -4,6 +4,68 @@
 It is a supertype of all types.
 It is a way to opt-out of type checking and let the values pass through compile-time checks.
 
+## [AnyType](./any_type.ts)
+
+`AnyType<T, $O = { $then: T, $else: never }>`
+
+🌪️ *filter*
+🔢 *customize*
+
+Filter to ensure `T` is exactly `any`.
+
+```ts
+type R = AnyType<any> // any
+
+type R = AnyType<never> // never
+type R = AnyType<unknown> // never
+type R = AnyType<string | boolean> // never
+```
+
+🔢 *customize*: as predicate/validate (= `IsAny`)
+
+```ts
+type R = AnyType<any, $SelectionPredicate> // true
+type R = AnyType<string, $SelectionPredicate> // false
+```
+
+🔢 *customize*: branching
+
+```ts
+type R = AnyType<any, $SelectionBranch> // $Then
+type R = AnyType<string, $SelectionBranch> // $Else
+```
+
+## [NotAnyType](./not_any_type.ts)
+
+`NotAnyType<T, $O = { $then: T, $else: never }>`
+
+🌪️ *filter*
+🔢 *customize*
+
+Filter to ensure `T` is not exactly `any`.
+
+```ts
+type R = NotAnyType<any> // never
+
+type R = NotAnyType<never> // never
+type R = NotAnyType<unknown> // unknown
+type R = NotAnyType<string | boolean> // string | boolean
+```
+
+🔢 *customize*: as predicate/validate (= `IsNotAny`)
+
+```ts
+type R = NotAnyType<string, $SelectionPredicate> // true
+type R = NotAnyType<any, $SelectionPredicate> // false
+```
+
+🔢 *customize*: branching
+
+```ts
+type R = NotAnyType<string, $SelectionBranch> // $Then
+type R = NotAnyType<any, $SelectionBranch> // $Else
+```
+
 ## [IsAny](./is_any.ts)
 
 `IsAny<T, $O = { $then: true, $else: false }>`
@@ -14,15 +76,16 @@ It is a way to opt-out of type checking and let the values pass through compile-
 Validate if `T` is exactly `any`.
 
 ```ts
-import type { IsAny } from 'type-plus'
-
 type R = IsAny<any> // true
 
 type R = IsAny<never> // false
 type R = IsAny<unknown> // false
 type R = IsAny<string | boolean> // false
+```
 
-// customize: branching
+🔢 *customize*: branching
+
+```ts
 type R = IsAny<any, $SelectionBranch> // $Then
 type R = IsAny<string, $SelectionBranch> // $Else
 ```
@@ -37,13 +100,18 @@ type R = IsAny<string, $SelectionBranch> // $Else
 Validate if `T` is not exactly `any`.
 
 ```ts
-import type { IsNotAny } from 'type-plus'
-
 type R = IsNotAny<any> // false
 
 type R = IsNotAny<never> // true
 type R = IsNotAny<unknown> // true
 type R = IsNotAny<string | boolean> // true
+```
+
+🔢 *customize*: branching
+
+```ts
+type R = IsNotAny<any, $SelectionBranch> // $Else
+type R = IsNotAny<string, $SelectionBranch> // $Then
 ```
 
 ## Trivia

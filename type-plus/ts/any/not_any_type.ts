@@ -16,12 +16,14 @@ import type { AnyType } from './any_type.js'
  * ```
  *
  * 🔢 *customize*: as predicate/validate (= `IsNotAny`)
+ *
  * ```ts
  * type R = NotAnyType<string, $SelectionPredicate> // true
  * type R = NotAnyType<any, $SelectionPredicate> // false
  * ```
  *
  * 🔢 *customize*: branching
+ *
  * ```ts
  * type R = NotAnyType<string, $SelectionBranch> // $Then
  * type R = NotAnyType<any, $SelectionBranch> // $Else
