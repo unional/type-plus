@@ -123,6 +123,7 @@ export type { IsNotTuple, IsTuple, NotTupleType, TupleType } from './tuple/tuple
 export * from './type-guard/is_type.js'
 export type { Failed, FailedT } from './type/failed.js'
 export type { NoInfer } from './type/no_infer.js'
+export type * from './type_plus/branch/distributive.js'
 export type * from './type_plus/branch/is_branch.js'
 export type * from './type_plus/branch/resolve_branch.js'
 export type * from './type_plus/branch/selection.js'
