@@ -40,7 +40,7 @@ export type $NeverOptions = {
 /**
  * 🧰 *type util*
  *
- * Override option for specifically overriding the branch for `never`.
+ * Branch option to handle when the value is `never`
  *
  * Use this to finely customize the behavior of your type.
  *
@@ -53,13 +53,13 @@ export type $NeverOptions = {
  * namespace YourType {
  *   export type $Options = $NeverOptions
  *   export type $Default = $NeverDefault
- *   export type $Override = $NeverOverride
+ *   export type $Branch = $NeverBranch
  * }
  *
- * type R = YourType<T, YourType.$Override> extends $Any ? HandleAny : HandleOthers
+ * type R = YourType<T, YourType.$Branch> extends $Never ? HandleAny : HandleOthers
  * ```
  */
-export type $NeverOverride = {
+export type $NeverBranch = {
 	$never: $Never
 }
 
@@ -100,7 +100,7 @@ export type $NotNeverOptions = {
 /**
  * 🧰 *type util*
  *
- * Override option for specifically overriding the branch for `never`.
+ * Branch option to handle when the value is not `never` (while expecting it is).
  *
  * Use this to finely customize the behavior of your type.
  *
@@ -113,13 +113,13 @@ export type $NotNeverOptions = {
  * namespace YourType {
  *   export type $Options = $NeverOptions
  *   export type $Default = $NeverDefault
- *   export type $Override = $NeverOverride
+ *   export type $Branch = $NeverBranch
  * }
  *
- * type R = YourType<T, YourType.$Override> extends $Any ? HandleAny : HandleOthers
+ * type R = YourType<T, YourType.$Branch> extends $Any ? HandleAny : HandleOthers
  * ```
  */
-export type $NotNeverOverride = {
+export type $NotNeverBranch = {
 	$not_never: $NotNever
 }
 
