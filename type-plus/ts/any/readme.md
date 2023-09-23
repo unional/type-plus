@@ -4,36 +4,9 @@
 It is a supertype of all types.
 It is a way to opt-out of type checking and let the values pass through compile-time checks.
 
-## Type Checking
+## [IsAny](./is_any.ts)
 
-The `AnyType<T>` and friends are used to check if a type is `any` or not.
-
-They are strict type checks, meaning they match only the type `any`.
-Union and intersections are not a factor here as they are resolved to `any`,
-except `any & never` which is `never`.
-
-### [AnyType](./any_type.ts)
-
-`AnyType<T, $Options = { $then: T, $else: never }>`
-
-🌪️ *filter*
-🔢 *customize*
-
-Filter to ensure `T` is exactly `any`.
-
-```ts
-import type { AnyType } from 'type-plus'
-
-type R = AnyType<any> // any
-
-type R = AnyType<never> // never
-type R = AnyType<unknown> // never
-type R = AnyType<string | boolean> // never
-```
-
-### [IsAny](./is_any.ts)
-
-`IsAny<T, $Options = { $then: true, $else: false }>`
+`IsAny<T, $O = { $then: true, $else: false }>`
 
 🎭 *predicate*
 🔢 *customize*
@@ -48,30 +21,15 @@ type R = IsAny<any> // true
 type R = IsAny<never> // false
 type R = IsAny<unknown> // false
 type R = IsAny<string | boolean> // false
-```
 
-### [NotAnyType](./not_any_type.ts)
-
-`NotAnyType<T, $Options = { $then: T, $else: never }>`
-
-🌪️ *filter*
-🔢 *customize*
-
-Filter `T` to ensure it is not exactly `any`.
-
-```ts
-import type { NotAnyType } from 'type-plus'
-
-type R = NotAnyType<any> // never
-
-type R = NotAnyType<never> // never
-type R = NotAnyType<unknown> // unknown
-type R = NotAnyType<string | boolean> // string | boolean
+// customize: branching
+type R = IsAny<any, $SelectionBranch> // $Then
+type R = IsAny<string, $SelectionBranch> // $Else
 ```
 
 ### [IsNotAny](./is_not_any.ts)
 
-`IsNotAny<T, $Options = { $then: true, $else: false }>`
+`IsNotAny<T, $O = { $then: true, $else: false }>`
 
 🎭 *predicate*
 🔢 *customize*
