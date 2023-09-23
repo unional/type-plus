@@ -1,5 +1,4 @@
 import type { $SelectionOptions, $SelectionPredicate } from '../type_plus/branch/selection.js'
-import type { AnyType } from './any_type.js'
 
 /**
  * 🎭 *predicate*
@@ -17,5 +16,5 @@ import type { AnyType } from './any_type.js'
  */
 export type IsAny<
 	T,
-	$Options extends $SelectionOptions = $SelectionPredicate
-> = AnyType<T, $Options>
+	$O extends $SelectionOptions = $SelectionPredicate
+> = 0 extends 1 & T ? $O['$then'] : $O['$else']

@@ -28,7 +28,7 @@ export type $Any = $Type<'branch', 'any'>
 /**
  * 🧰 *type util*
  *
- * Override option for specifically overriding the type `any`.
+ * Branch option for specifically handling the type `any`.
  *
  * Use this to finely customize the behavior of your type.
  *
@@ -41,13 +41,13 @@ export type $Any = $Type<'branch', 'any'>
  * namespace YourType {
  *   export type $Options = $AnyOptions
  *   export type $Default = $AnyDefault
- *   export type $Override = $AnyOverride
+ *   export type $Branch = $AnyBranch
  * }
  *
- * type R = YourType<T, YourType.$Override> extends $Any ? HandleAny : HandleOthers
+ * type R = YourType<T, YourType.$Branch> extends $Any ? HandleAny : HandleOthers
  * ```
  */
-export type $AnyOverride = {
+export type $AnyBranch = {
 	$any: $Any
 }
 

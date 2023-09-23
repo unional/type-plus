@@ -1,5 +1,5 @@
 import type { $FlipSelection, $SelectionOptions, $SelectionPredicate } from '../type_plus/branch/selection.js'
-import type { AnyType } from './any_type.js'
+import type { IsAny } from './is_any.js'
 
 /**
  * 🎭 *predicate*
@@ -20,4 +20,4 @@ import type { AnyType } from './any_type.js'
 export type IsNotAny<
 	T,
 	$Options extends $SelectionOptions = $SelectionPredicate
-> = AnyType<T, $FlipSelection<$Options>>
+> = IsAny<T, $FlipSelection<$Options>>

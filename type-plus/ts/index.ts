@@ -1,8 +1,6 @@
 export type * from './any/any.js'
-export type { AnyType } from './any/any_type.js'
 export type { IsAny } from './any/is_any.js'
 export type { IsNotAny } from './any/is_not_any.js'
-export type { NotAnyType } from './any/not_any_type.js'
 export type { At } from './array/array.at.js'
 export type { FindLast } from './array/array.find_last.js'
 export type { Some } from './array/array.some.js'
