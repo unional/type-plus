@@ -1,4 +1,5 @@
-import type { $SelectionFilter, $SelectionOptions } from '../type_plus/branch/selection.js'
+import type { $SelectionOptions } from '../type_plus/branch/selection.js'
+import type { $ResolveOptions } from '../type_plus/resolve_options.js'
 
 /**
  * 🌪️ *filter*
@@ -30,5 +31,5 @@ import type { $SelectionFilter, $SelectionOptions } from '../type_plus/branch/se
  */
 export type AnyType<
 	T,
-	$O extends $SelectionOptions = $SelectionFilter<T>
-> = 0 extends 1 & T ? $O['$then'] : $O['$else']
+	$O extends $SelectionOptions = $SelectionOptions
+> = 0 extends 1 & T ? $ResolveOptions<[$O['$then'], T]> : $ResolveOptions<[$O['$else'], never]>

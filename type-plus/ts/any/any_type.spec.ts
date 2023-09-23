@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type AnyType } from '../index.js'
+import { testType, type $Else, type $SelectionBranch, type $SelectionPredicate, type $Then, type AnyType } from '../index.js'
 
 it('returns any for any', () => {
 	testType.equal<AnyType<any>, any>(true)
@@ -33,18 +33,37 @@ it('returns never for other types', () => {
 })
 
 it('returns any for union type', () => {
+	testType.equal<any | 1, any>(true)
 	testType.any<AnyType<any | 1>>(true)
 })
 
 it('returns any for intersection type', () => {
+	testType.equal<any & 1, any>(true)
 	testType.any<AnyType<any & 1>>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<AnyType<any, { $then: 1, $else: 2 }>, 1>(true)
-	testType.equal<AnyType<0, { $then: 1, $else: 2 }>, 2>(true)
+it('as predicate (same as `IsAny`)', () => {
+	testType.equal<AnyType<any, $SelectionPredicate>, true>(true)
+	testType.equal<AnyType<0, $SelectionPredicate>, false>(true)
 
-	testType.equal<AnyType<never, { $then: 1, $else: 2 }>, 2>(true)
-	testType.equal<AnyType<unknown, { $then: 1, $else: 2 }>, 2>(true)
-	testType.equal<AnyType<void, { $then: 1, $else: 2 }>, 2>(true)
+	testType.equal<AnyType<never, $SelectionPredicate>, false>(true)
+	testType.equal<AnyType<unknown, $SelectionPredicate>, false>(true)
+	testType.equal<AnyType<void, $SelectionPredicate>, false>(true)
+})
+
+it('as branching', () => {
+	testType.equal<AnyType<any, $SelectionBranch>, $Then>(true)
+	testType.equal<AnyType<0, $SelectionBranch>, $Else>(true)
+
+	testType.equal<AnyType<unknown, $SelectionBranch>, $Else>(true)
+	testType.equal<AnyType<never, $SelectionBranch>, $Else>(true)
+	testType.equal<AnyType<void, $SelectionBranch>, $Else>(true)
+})
+
+it('works with partial customization', () => {
+	testType.equal<AnyType<any, { $then: true }>, true>(true)
+	testType.equal<AnyType<0, { $then: true }>, never>(true)
+
+	testType.equal<AnyType<any, { $else: false }>, any>(true)
+	testType.equal<AnyType<0, { $else: false }>, false>(true)
 })

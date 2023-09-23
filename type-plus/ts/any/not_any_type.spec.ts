@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type NotAnyType } from '../index.js'
+import { testType, type $SelectionPredicate, type NotAnyType, type $SelectionBranch, type $Else, type $Then } from '../index.js'
 
 it('returns never for any', () => {
 	testType.never<NotAnyType<any>>(true)
@@ -33,18 +33,37 @@ it('returns T for other types', () => {
 })
 
 it('returns never for union type', () => {
+	testType.equal<any | 1, any>(true)
 	testType.equal<NotAnyType<any | 1>, never>(true)
 })
 
 it('returns never for intersection type', () => {
+	testType.equal<any & 1, any>(true)
 	testType.equal<NotAnyType<any & 1>, never>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<NotAnyType<any, { $then: 1, $else: 2 }>, 2>(true)
-	testType.equal<NotAnyType<0, { $then: 1, $else: 2 }>, 1>(true)
+it('as predicate (same as `IsNotAny`)', () => {
+	testType.equal<NotAnyType<any, $SelectionPredicate>, false>(true)
+	testType.equal<NotAnyType<0, $SelectionPredicate>, true>(true)
 
-	testType.equal<NotAnyType<never, { $then: 1, $else: 2 }>, 1>(true)
-	testType.equal<NotAnyType<unknown, { $then: 1, $else: 2 }>, 1>(true)
-	testType.equal<NotAnyType<void, { $then: 1, $else: 2 }>, 1>(true)
+	testType.equal<NotAnyType<never, $SelectionPredicate>, true>(true)
+	testType.equal<NotAnyType<unknown, $SelectionPredicate>, true>(true)
+	testType.equal<NotAnyType<void, $SelectionPredicate>, true>(true)
+})
+
+it('as branching', () => {
+	testType.equal<NotAnyType<any, $SelectionBranch>, $Else>(true)
+	testType.equal<NotAnyType<0, $SelectionBranch>, $Then>(true)
+
+	testType.equal<NotAnyType<unknown, $SelectionBranch>, $Then>(true)
+	testType.equal<NotAnyType<never, $SelectionBranch>, $Then>(true)
+	testType.equal<NotAnyType<void, $SelectionBranch>, $Then>(true)
+})
+
+it('works with partial customization', () => {
+	testType.equal<NotAnyType<any, { $then: true }>, never>(true)
+	testType.equal<NotAnyType<0, { $then: true }>, true>(true)
+
+	testType.equal<NotAnyType<any, { $else: false }>, false>(true)
+	testType.equal<NotAnyType<0, { $else: false }>, 0>(true)
 })

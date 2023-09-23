@@ -1,5 +1,5 @@
-import type { $FlipSelection, $SelectionFilter, $SelectionOptions } from '../type_plus/branch/selection.js'
-import type { AnyType } from './any_type.js'
+import type { $SelectionOptions } from '../type_plus/branch/selection.js'
+import type { $ResolveOptions } from '../type_plus/resolve_options.js'
 
 /**
  * 🌪️ *filter*
@@ -31,5 +31,5 @@ import type { AnyType } from './any_type.js'
  */
 export type NotAnyType<
 	T,
-	$Options extends $SelectionOptions = $SelectionFilter<T>
-> = AnyType<T, $FlipSelection<$Options>>
+	$O extends $SelectionOptions = $SelectionOptions
+> = 0 extends 1 & T ? $ResolveOptions<[$O['$else'], never]> : $ResolveOptions<[$O['$then'], T]>
