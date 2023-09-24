@@ -3,7 +3,7 @@ import type { $Else, $ResolveSelection, $SelectionOptions, $Then } from '../type
 /**
  * 🎭 *predicate*
  *
- * Validate if `T` is exactly `any`.
+ * Validate if `T` is `any`.
  *
  * @example
  * ```ts
@@ -16,7 +16,7 @@ import type { $Else, $ResolveSelection, $SelectionOptions, $Then } from '../type
  *
  * 🔢 *customize*
  *
- * Filter to ensure `T` is exactly `any`.
+ * Filter to ensure `T` is `any`.
  *
  * @example
  * ```ts

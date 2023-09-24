@@ -1,6 +1,5 @@
-import { it } from '@jest/globals'
-import { testType, type IsNotAny, type $SelectionPredicate } from '../index.js'
-import { describe } from 'node:test'
+import { describe, it } from '@jest/globals'
+import { testType, type $SelectionPredicate, type IsNotAny } from '../index.js'
 
 it('returns false for any', () => {
 	testType.equal<IsNotAny<any>, false>(true)

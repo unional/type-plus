@@ -4,7 +4,7 @@ import type { IsAny } from './is_any.js'
 /**
  * 🎭 *predicate*
  *
- * Validate if `T` is not exactly `any`.
+ * Validate if `T` is not `any`.
  *
  * @example
  * ```ts
@@ -17,7 +17,7 @@ import type { IsAny } from './is_any.js'
  *
  * 🔢 *customize*
  *
- * Filter to ensure `T` is not exactly `any`.
+ * Filter to ensure `T` is not `any`.
  *
  * @example
  * ```ts

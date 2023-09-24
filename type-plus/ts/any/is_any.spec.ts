@@ -1,5 +1,4 @@
-import { it } from '@jest/globals'
-import { describe } from 'node:test'
+import { describe, it } from '@jest/globals'
 import { testType, type $Else, type $SelectionBranch, type $Then, type IsAny } from '../index.js'
 
 it('returns true for any', () => {

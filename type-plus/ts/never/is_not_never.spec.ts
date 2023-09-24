@@ -1,6 +1,5 @@
-import { it } from '@jest/globals'
-import { testType, type IsNotNever, type $Never } from '../index.js'
-import { describe } from 'node:test'
+import { describe, it } from '@jest/globals'
+import { testType, type $Never, type IsNotNever } from '../index.js'
 
 it('returns false for never', () => {
 	testType.false<IsNotNever<never>>(true)

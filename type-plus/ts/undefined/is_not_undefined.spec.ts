@@ -34,7 +34,8 @@ it('is distributive by default', () => {
 })
 
 it('can disable distributive', () => {
-	testType.equal<IsNotUndefined<undefined | 1, { distributive: false }>, false>(true)
+	testType.equal<IsNotUndefined<1>, true>(true)
+	testType.equal<IsNotUndefined<undefined | 1, { distributive: false }>, true>(true)
 })
 
 it('returns true as undefined & any => any', () => {
@@ -73,7 +74,23 @@ it('returns true as undefined & <others> => never', () => {
 	testType.equal<IsNotUndefined<undefined & (() => void)>, true>(true)
 })
 
-it('can override Then/Else', () => {
+it('works as filter', () => {
+	// testType.equal<IsNotUndefined<undefined, { selection: 'filter' }>, never>(true)
+
+	// testType.equal<IsNotUndefined<never, { selection: 'filter' }>, never>(true)
+	// testType.equal<IsNotUndefined<unknown, { selection: 'filter' }>, unknown>(true)
+	// testType.equal<IsNotUndefined<string | boolean, { selection: 'filter' }>, string | boolean>(true)
+
+	// testType.equal<string | never, string>(true)
+	// testType.equal<IsNotUndefined<string | undefined, { selection: 'filter' }>, string>(true)
+
+	testType.equal<IsNotUndefined<string | boolean, { selection: 'filter-unknown' }>, string | boolean>(true)
+
+	testType.equal<string | unknown, unknown>(true)
+	testType.equal<IsNotUndefined<string | undefined, { selection: 'filter-unknown' }>, unknown>(true)
+})
+
+it('works with unique branches', () => {
 	testType.equal<IsNotUndefined<undefined, IsNotUndefined.$Branch>, $Else>(true)
 
 	testType.equal<IsNotUndefined<any, IsNotUndefined.$Branch>, $Then>(true)

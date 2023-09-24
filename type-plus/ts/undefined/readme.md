@@ -4,37 +4,73 @@
 
 ## [IsUndefined](./is_undefined.ts)
 
-`IsUndefined<T, { distributive: true, $then: true, $else: false }>`
+`IsUndefined<T, { distributive: true, selection: 'predicate' | 'filter' | 'filter-unknown', $then: true, $else: false }>`
 
 🎭 *predicate*
-🔢 *customize*
 
-Validate if `T` is exactly `undefined`.
+Validate if `T` is `undefined`.
 
 ```ts
-type R = IsUndefined<undefined> // $Then
+type R = IsUndefined<undefined> // true
 
-type R = IsUndefined<never> // $Else
-type R = IsUndefined<unknown> // $Else
-type R = IsUndefined<string | boolean> // $Else
+type R = IsUndefined<never> // false
+type R = IsUndefined<unknown> // false
+type R = IsUndefined<string | boolean> // false
 
-// customize: branch logic
-type R = IsUndefined<undefined, $SelectionPredicate> // true
-type R = IsUndefined<string, $SelectionPredicate> // false
+type R = IsUndefined<string | undefined> // boolean
+```
 
-// customize: disable distributive
+🔢 *customize*
+
+Filter to ensure `T` is `undefined`, otherwise returns `never`.
+
+```ts
+type R = IsUndefined<undefined, { selection: 'filter' }> // undefined
+
+type R = IsUndefined<never, { selection: 'filter' }> // never
+type R = IsUndefined<unknown, { selection: 'filter' }> // never
+type R = IsUndefined<string | boolean, { selection: 'filter' }> // never
+
+type R = IsUndefined<string | undefined> // undefined
+```
+
+🔢 *customize*
+
+Filter to ensure `T` is `undefined`, otherwise returns `unknown`.
+
+```ts
+type R = IsUndefined<undefined, { selection: 'filter-unknown' }> // undefined
+
+type R = IsUndefined<never, { selection: 'filter-unknown' }> // unknown
+type R = IsUndefined<unknown, { selection: 'filter-unknown' }> // unknown
+type R = IsUndefined<string | boolean, { selection: 'filter-unknown' }> // unknown
+```
+
+🔢 *customize*:
+
+Disable distribution of union types.
+
+```ts
 type R = IsUndefined<undefined | 1> // boolean
 type R = IsUndefined<undefined | 1, { distributive: false }> // false
 ```
 
-## [IsNotUndefined](./is_not_undefined.ts)
-
-`IsNotUndefined<T, { distributive: true, $then: true, $else: false }>`
-
-🎭 *predicate*
 🔢 *customize*
 
-Validate if `T` is not exactly `undefined`.
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
+type R = IsUndefined<undefined, $SelectionBranch> // $Then
+type R = IsUndefined<string, $SelectionBranch> // $Else
+```
+
+## [IsNotUndefined](./is_not_undefined.ts)
+
+`IsNotUndefined<T, { distributive: true, selection: 'predicate' | 'filter' | 'filter-unknown', $then: true, $else: false }>`
+
+🎭 *predicate*
+
+Validate if `T` is not `undefined`.
 
 ```ts
 type R = IsNotUndefined<undefined> // false
@@ -42,14 +78,44 @@ type R = IsNotUndefined<undefined> // false
 type R = IsNotUndefined<never> // true
 type R = IsNotUndefined<unknown> // true
 type R = IsNotUndefined<string | boolean> // true
+```
 
-// customize: branch logic
+🔢 *customize*
+
+Filter to ensure `T` is not `undefined`, otherwise returns `never`.
+
+```ts
+type R = IsNotUndefined<undefined, { selection: 'filter' }> // never
+
+type R = IsNotUndefined<never, { selection: 'filter' }> // never
+type R = IsNotUndefined<unknown, { selection: 'filter' }> // unknown
+type R = IsNotUndefined<string | boolean, { selection: 'filter' }> // string | boolean
+```
+
+🔢 *customize*
+
+Filter to ensure `T` is not `undefined`, otherwise returns `unknown`.
+
+```ts
+type R = IsNotUndefined<undefined, { selection: 'filter-unknown' }> // unknown
+```
+
+🔢 *customize*
+
+Disable distribution of union types.
+
+```ts
+type R = IsNotUndefined<undefined | 1> // boolean
+type R = IsNotUndefined<undefined | 1, { distributive: false }> // true
+```
+
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
 type R = IsNotUndefined<string, $SelectionBranch> // $Then
 type R = IsNotUndefined<undefined, $SelectionBranch> // $Else
-
-// customize: disable distributive
-type R = IsNotUndefined<undefined | 1> // boolean
-type R = IsNotUndefined<undefined | 1, { distributive: false }> // false
 ```
 
 ## [HasUndefined](./has_undefined.ts)

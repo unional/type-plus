@@ -37,14 +37,18 @@ export type Merge<A extends AnyRecord, B extends AnyRecord, Options = Merge.Defa
 					? ([OptionalKeys<A>, OptionalKeys<B>] extends [infer PKA extends KeyTypes, infer PKB extends KeyTypes]
 						?
 						// property is optional when both A[k] and B[k] are optional
+						// IsNotNever<
+						// 	PKA & PKB,
+						// 	{
+						// 		selection: 'filter-unknown',
+						// 		$then: { [k in PKA & PKB]?: A[k] | B[k] },
+						// 		$else: unknown
+						// 	}
+						// > &
 						IsNotNever<
 							PKA & PKB,
-							{
-								selection: 'filter-unknown',
-								$then: { [k in PKA & PKB]?: A[k] | B[k] },
-								$else: unknown
-							}
-						> &
+							{ selection: 'filter' }
+						> extends infer R1 extends KeyTypes ? { [k in R1]?: A[k] | B[k] } : unknown &
 						// properties only in A excluding partials is A[k]
 						IsNotNever<
 							Exclude<KA, PKA | KB>,
@@ -54,6 +58,10 @@ export type Merge<A extends AnyRecord, B extends AnyRecord, Options = Merge.Defa
 								$else: unknown
 							}
 						> &
+						// IsNotNever<
+						// 	Exclude<KA, PKA | KB>,
+						// 	{ selection: 'filter' }
+						// > extends infer R123 extends KeyTypes ? { [k in R123]: A[k] } : unknown &
 						// properties only in B excluding partials is B[k]
 						IsNotNever<
 							Exclude<KB, PKB>,
@@ -63,6 +71,10 @@ export type Merge<A extends AnyRecord, B extends AnyRecord, Options = Merge.Defa
 								$else: unknown
 							}
 						> &
+						// IsNotNever<
+						// 	Exclude<KB, PKB>,
+						// 	{ selection: 'filter' }
+						// > extends infer R2 extends KeyTypes ? { [k in R2]: B[k] } : unknown &
 						// properties is required in A but optional in B is unionized without undefined
 						IsNotNever<
 							Exclude<KA & PKB, PKA>,

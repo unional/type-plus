@@ -1,6 +1,4 @@
-import { it } from '@jest/globals'
-// never intersect with any type is never
-import { describe } from 'node:test'
+import { describe, it } from '@jest/globals'
 import { testType, type $NotNever, type IsNever } from '../index.js'
 
 it('returns true for never', () => {
