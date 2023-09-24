@@ -4,74 +4,11 @@
 It is a supertype of all types.
 It is a way to opt-out of type checking and let the values pass through compile-time checks.
 
-## [AnyType](./any_type.ts)
-
-`AnyType<T, $O = { $then: T, $else: never }>`
-
-🌪️ *filter*
-🔢 *customize*
-
-Filter to ensure `T` is exactly `any`.
-
-```ts
-type R = AnyType<any> // any
-
-type R = AnyType<never> // never
-type R = AnyType<unknown> // never
-type R = AnyType<string | boolean> // never
-```
-
-🔢 *customize*: as predicate/validate (= `IsAny`)
-
-```ts
-type R = AnyType<any, $SelectionPredicate> // true
-type R = AnyType<string, $SelectionPredicate> // false
-```
-
-🔢 *customize*: branching
-
-```ts
-type R = AnyType<any, $SelectionBranch> // $Then
-type R = AnyType<string, $SelectionBranch> // $Else
-```
-
-## [NotAnyType](./not_any_type.ts)
-
-`NotAnyType<T, $O = { $then: T, $else: never }>`
-
-🌪️ *filter*
-🔢 *customize*
-
-Filter to ensure `T` is not exactly `any`.
-
-```ts
-type R = NotAnyType<any> // never
-
-type R = NotAnyType<never> // never
-type R = NotAnyType<unknown> // unknown
-type R = NotAnyType<string | boolean> // string | boolean
-```
-
-🔢 *customize*: as predicate/validate (= `IsNotAny`)
-
-```ts
-type R = NotAnyType<string, $SelectionPredicate> // true
-type R = NotAnyType<any, $SelectionPredicate> // false
-```
-
-🔢 *customize*: branching
-
-```ts
-type R = NotAnyType<string, $SelectionBranch> // $Then
-type R = NotAnyType<any, $SelectionBranch> // $Else
-```
-
 ## [IsAny](./is_any.ts)
 
-`IsAny<T, $O = { $then: true, $else: false }>`
+`IsAny<T, $O = { selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
-🔢 *customize*
 
 Validate if `T` is exactly `any`.
 
@@ -83,7 +20,9 @@ type R = IsAny<unknown> // false
 type R = IsAny<string | boolean> // false
 ```
 
-🔢 *customize*: filter
+🔢 *customize*
+
+Filter to ensure `T` is exactly `any`.
 
 ```ts
 type R = IsAny<any, { selection: 'filter' }> // any
@@ -93,7 +32,9 @@ type R = IsAny<unknown, { selection: 'filter' }> // never
 type R = IsAny<string | boolean, { selection: 'filter' }> // never
 ```
 
-🔢 *customize*: branching
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
 
 ```ts
 type R = IsAny<any, $SelectionBranch> // $Then
@@ -102,10 +43,9 @@ type R = IsAny<string, $SelectionBranch> // $Else
 
 ### [IsNotAny](./is_not_any.ts)
 
-`IsNotAny<T, $O = { $then: true, $else: false }>`
+`IsNotAny<T, $O = { selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
-🔢 *customize*
 
 Validate if `T` is not exactly `any`.
 
@@ -117,7 +57,21 @@ type R = IsNotAny<unknown> // true
 type R = IsNotAny<string | boolean> // true
 ```
 
-🔢 *customize*: branching
+🔢 *customize*
+
+Filter to ensure `T` is not exactly `any`.
+
+```ts
+type R = IsNotAny<any, { selection: 'filter' }> // never
+
+type R = IsNotAny<never, { selection: 'filter' }> // never
+type R = IsNotAny<unknown, { selection: 'filter' }> // unknown
+type R = IsNotAny<string | boolean, { selection: 'filter' }> // string | boolean
+```
+
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
 
 ```ts
 type R = IsNotAny<any, $SelectionBranch> // $Else

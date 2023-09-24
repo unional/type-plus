@@ -1,8 +1,8 @@
 import type { IsAny } from '../any/is_any.js'
 import type { NonComposableTypes } from '../composable_types.js'
 import type { IsNever } from '../never/is_never.js'
+import type { IsNotNever } from '../never/is_not_never.js'
 import type { $Never } from '../never/never.js'
-import type { NotNeverType } from '../never/not_never_type.js'
 import type { IsLiteral } from '../predicates/literal.js'
 import type { Or } from '../predicates/logical.js'
 import type { IsDisjoint } from './IsDisjoint.js'
@@ -37,56 +37,63 @@ export type Merge<A extends AnyRecord, B extends AnyRecord, Options = Merge.Defa
 					? ([OptionalKeys<A>, OptionalKeys<B>] extends [infer PKA extends KeyTypes, infer PKB extends KeyTypes]
 						?
 						// property is optional when both A[k] and B[k] are optional
-						NotNeverType<
+						IsNotNever<
 							PKA & PKB,
 							{
+								selection: 'filter-unknown',
 								$then: { [k in PKA & PKB]?: A[k] | B[k] },
 								$else: unknown
 							}
 						> &
 						// properties only in A excluding partials is A[k]
-						NotNeverType<
+						IsNotNever<
 							Exclude<KA, PKA | KB>,
 							{
+								selection: 'filter-unknown',
 								$then: { [k in Exclude<KA, PKA | KB>]: A[k] },
 								$else: unknown
 							}
 						> &
 						// properties only in B excluding partials is B[k]
-						NotNeverType<
+						IsNotNever<
 							Exclude<KB, PKB>,
 							{
+								selection: 'filter-unknown',
 								$then: { [k in Exclude<KB, PKB>]: B[k] },
 								$else: unknown
 							}
 						> &
 						// properties is required in A but optional in B is unionized without undefined
-						NotNeverType<
+						IsNotNever<
 							Exclude<KA & PKB, PKA>,
 							{
+								selection: 'filter-unknown',
 								$then: { [k in Exclude<KA & PKB, PKA>]: A[k] | Exclude<B[k], undefined> },
 								$else: unknown
 							}
 						>
 						: never)
 					:
-					NotNeverType<
+					IsNotNever<
 						Exclude<KA, KA & KB>,
 						{
+							selection: 'filter-unknown',
 							$then: { [k in Exclude<KA, KA & KB>]: A[k] },
 							$else: unknown
 						}
 					> &
-					NotNeverType<
+					IsNotNever<
 						Exclude<KB, KA & KB>,
 						{
+							selection: 'filter-unknown',
 							$then: { [k in Exclude<KB, KA & KB>]: B[k] },
 							$else: unknown
 						}
 					> &
-					NotNeverType<
+					IsNotNever<
 						KA & KB,
 						{
+							selection: 'filter-unknown',
 							$then: { [k in KA & KB]: A[k] | B[k] },
 							$else: unknown
 						}
@@ -96,23 +103,26 @@ export type Merge<A extends AnyRecord, B extends AnyRecord, Options = Merge.Defa
 					IsLiteral<KB> extends true
 					? { [k in Exclude<KA, KB>]: A[k] } & { [k in keyof B]: B[k] }
 					:
-					NotNeverType<
+					IsNotNever<
 						Exclude<KA, KA & KB>,
 						{
+							selection: 'filter-unknown',
 							$then: { [k in Exclude<KA, KA & KB>]: A[k] },
 							$else: unknown
 						}
 					> &
-					NotNeverType<
+					IsNotNever<
 						Exclude<KB, KA & KB>,
 						{
+							selection: 'filter-unknown',
 							$then: { [k in Exclude<KB, KA & KB>]: B[k] },
 							$else: unknown
 						}
 					> &
-					NotNeverType<
+					IsNotNever<
 						KA & KB,
 						{
+							selection: 'filter-unknown',
 							$then: { [k in KA & KB]: A[k] | B[k] },
 							$else: unknown
 						}

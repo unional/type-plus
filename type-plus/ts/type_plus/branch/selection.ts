@@ -63,6 +63,7 @@ export type $InvertSelection<Branch extends $Then | $Else> =
  *
  * This encourage consumer of your type to use conditional type to avoid performance issues.
  *
+ * @example
  * ```ts
  * type YourType<
  *   T,

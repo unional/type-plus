@@ -3,87 +3,101 @@
 `never` is a bottom type in TypeScript.
 That means it is a subtype of all other types.
 
-## Type Checking
+## [IsNever](./is_never.ts)
 
-The `NeverType<T>` and friends are used to check if a type is exactly `never`.
+`IsNever<T, $Options = { selection: 'predicate' | 'filter' | 'filter-unknown', $then: true, $else: false }>`
+
+🎭 *predicate*
+
+Validate if `T` is `never`.
+
+```ts
+type R = IsNever<never> // true
+
+type R = IsNever<1> // false
+```
+
+🔢 *customize*
+
+Filter to ensure `T` is `never`, otherwise returns `$NotNever`.
 
 Filter normally returns `never` in the `$else` clause.
 But since we are checking for `never` here,
-they have to return something other than `never`.
-
-Therefore, `NeverType<T>` will return the `$NotNever` when `T` is not `never`,
-and `NotNeverType<T>` will return the `$Never` symbol when `T` is `never`.
-
-### [NeverType](./never_type.ts)
-
-`NeverType<T, $Options = { $then: T, $else: $NotNever }>`
-
-🌪️ *filter*
-🔢 *customize*
-
-Filter to ensure `T` is exactly `never`.
-
-If it is not, returns `$NotNever`.
+we have to return `$NotNever` instead.
 
 ```ts
-import type { NeverType } from 'type-plus'
+type R = IsNever<never, { selection: 'filter' }> // never
 
-type R = NeverType<never> // never
-
-type R = NeverType<true> // $NotNever
-type R = NeverType<false> // $NotNever
+type R = IsNever<1, { selection: 'filter' }> // $NotNever
 ```
 
-### [IsNever](./is_never.ts)
-
-`IsNever<T, $Options = { $then: true, $else: false }>`
-
-🎭 *predicate*
 🔢 *customize*
 
-Validate if `T` is exactly `never`.
+Filter to ensure `T` is `never`, otherwise returns `unknown`.
 
 ```ts
-import type { IsNever } from 'type-plus'
-
-type R = IsNever<never> // true
-
-type R = IsNever<true> // false
-type R = IsNever<false> // false
+type R = IsNever<1, { selection: 'filter-unknown' }> // unknown
 ```
 
-### [NotNeverType](./not_never_type.ts)
-
-`NotNeverType<T, $Options = { $then: T, $else: $Never }>`
-
-🌪️ *filter*
 🔢 *customize*
 
-Filter `T` to ensure it is not exactly `never`.
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
+type R = IsNever<never, $SelectionBranch> // $Then
+type R = IsNever<1, $SelectionBranch> // $Else
+```
 
 ### [IsNotNever](./is_not_never.ts)
 
-`IsNotNever<T, $Options = { $then: true, $else: false }>`
+`IsNotNever<T, $Options = { selection: 'predicate' | 'filter' | 'filter-unknown', $then: true, $else: false }>`
 
 🎭 *predicate*
-🔢 *customize*
 
-Validate if `T` is not exactly `never`.
+Validate if `T` not `never`.
 
 ```ts
-import type { IsNotNever } from 'type-plus'
-
-type R = IsNotNever<true> // true
-type R = IsNotNever<false> // true
+type R = IsNotNever<1> // true
 
 type R = IsNotNever<never> // false
+```
+
+🔢 *customize*
+
+Filter to ensure `T` is not `never`, otherwise returns `$Never`.
+
+Filter normally returns `never` in the `$else` clause.
+But since we are checking for `never` here,
+we have to return `$Never` instead.
+
+```ts
+type R = IsNotNever<1, { selection: 'filter' }> // 1
+
+type R = IsNotNever<never, { selection: 'filter' }> // $Never
+```
+
+🔢 *customize*
+
+Filter to ensure `T` is `never`, otherwise returns `unknown`.
+
+```ts
+type R = IsNotNever<never, { selection: 'filter-unknown' }> // unknown
+```
+
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
+type R = IsNotNever<never, $SelectionBranch> // $Else
+type R = IsNotNever<1, $SelectionBranch> // $Then
 ```
 
 ## [$Never](./never.ts)
 
 `$Never` is a special branch type to indicate the type is `never`.
 
-It is used in [`NotNeverType`](#notnevertype).
+It is used in [`IsNotNever`](#isnotnever).
 
 ## [$NeverOptions](./never.ts)
 
@@ -139,7 +153,7 @@ Unsurprisingly, defaulting `$never` to `never`.
 
 `$NotNever` is a special branch type to indicate the type is not `never`.
 
-It is used in [`NeverType`](#nevertype).
+It is used in [`IsNever`](#isnever).
 
 ## References
 

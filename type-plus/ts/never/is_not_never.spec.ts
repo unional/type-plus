@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type IsNotNever } from '../index.js'
+import { testType, type IsNotNever, type $Never } from '../index.js'
+import { describe } from 'node:test'
 
 it('returns false for never', () => {
 	testType.false<IsNotNever<never>>(true)
@@ -46,4 +47,43 @@ it('can override Then/Else', () => {
 	testType.equal<IsNotNever<any, { $then: 1, $else: 2 }>, 1>(true)
 	testType.equal<IsNotNever<unknown, { $then: 1, $else: 2 }>, 1>(true)
 	testType.equal<IsNotNever<void, { $then: 1, $else: 2 }>, 1>(true)
+})
+
+describe('filter', () => {
+
+	it('returns `is_never` if T is never', () => {
+		testType.equal<IsNotNever<never, { selection: 'filter' }>, $Never>(true)
+	})
+
+	it('returns T for other special types', () => {
+		testType.equal<IsNotNever<unknown, { selection: 'filter' }>, unknown>(true)
+		testType.equal<IsNotNever<void, { selection: 'filter' }>, void>(true)
+		testType.equal<IsNotNever<any, { selection: 'filter' }>, any>(true)
+	})
+
+	it('returns T for other types', () => {
+		testType.equal<IsNotNever<undefined, { selection: 'filter' }>, undefined>(true)
+		testType.equal<IsNotNever<null, { selection: 'filter' }>, null>(true)
+		testType.equal<IsNotNever<number, { selection: 'filter' }>, number>(true)
+		testType.equal<IsNotNever<boolean, { selection: 'filter' }>, boolean>(true)
+		testType.equal<IsNotNever<true, { selection: 'filter' }>, true>(true)
+		testType.equal<IsNotNever<false, { selection: 'filter' }>, false>(true)
+		testType.equal<IsNotNever<string, { selection: 'filter' }>, string>(true)
+		testType.equal<IsNotNever<'', { selection: 'filter' }>, ''>(true)
+		testType.equal<IsNotNever<symbol, { selection: 'filter' }>, symbol>(true)
+		testType.equal<IsNotNever<bigint, { selection: 'filter' }>, bigint>(true)
+		testType.equal<IsNotNever<{}, { selection: 'filter' }>, {}>(true)
+		testType.equal<IsNotNever<string[], { selection: 'filter' }>, string[]>(true)
+		testType.equal<IsNotNever<[], { selection: 'filter' }>, []>(true)
+		testType.equal<IsNotNever<Function, { selection: 'filter' }>, Function>(true)
+		testType.equal<IsNotNever<() => void, { selection: 'filter' }>, () => void>(true)
+	})
+
+	it('returns T for union type', () => {
+		testType.equal<IsNotNever<never | 1, { selection: 'filter' }>, 1>(true)
+	})
+
+	it('returns $Never for intersection type', () => {
+		testType.equal<IsNotNever<never & { a: 1 }, { selection: 'filter' }>, $Never>(true)
+	})
 })

@@ -2,10 +2,10 @@ import type { $Else, $ResolveSelection, $SelectionOptions, $Then } from '../type
 
 /**
  * 🎭 *predicate*
- * 🔢 *customize*
  *
  * Validate if `T` is exactly `any`.
  *
+ * @example
  * ```ts
  * type R = IsAny<any> // true
  *
@@ -14,8 +14,11 @@ import type { $Else, $ResolveSelection, $SelectionOptions, $Then } from '../type
  * type R = IsAny<string | boolean> // false
  * ```
  *
- * 🔢 *customize*: filter
+ * 🔢 *customize*
  *
+ * Filter to ensure `T` is exactly `any`.
+ *
+ * @example
  * ```ts
  * type R = IsAny<any, { selection: 'filter' }> // any
  *
@@ -24,8 +27,11 @@ import type { $Else, $ResolveSelection, $SelectionOptions, $Then } from '../type
  * type R = IsAny<string | boolean, { selection: 'filter' }> // never
  * ```
  *
- * 🔢 *customize*: branching
+ * 🔢 *customize*
  *
+ * Use unique branch identifiers to allow precise processing of the result.
+ *
+ * @example
  * ```ts
  * type R = IsAny<any, $SelectionBranch> // $Then
  * type R = IsAny<string, $SelectionBranch> // $Else
