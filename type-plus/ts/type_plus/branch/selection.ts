@@ -1,3 +1,4 @@
+import type { $ResolveOptions } from '../resolve_options.js'
 import type { $Type } from '../type.js'
 
 /**
@@ -22,12 +23,35 @@ import type { $Type } from '../type.js'
  * ```
  */
 export type $SelectionOptions = {
+	/**
+	 * Specifies which default selection logic to use.
+	 *
+	 * `filter` means the logic returns `T` when the condition is met,
+	 * and returns `never` otherwise.
+	 *
+	 * `predicate` means the logic returns boolean depends on the condition.
+	 *
+	 * Note that setting `$then` and `$else` overrides the default selection logic.
+	 */
+	selection?: 'predicate' | 'filter' | undefined,
 	$then?: unknown,
 	$else?: unknown,
 }
 
 export type $Then = $Type<'branch', 'then'>
 export type $Else = $Type<'branch', 'else'>
+
+/**
+ * 🧰 *type util*
+ *
+ * Invert the selection branch.
+ *
+ * i.e.
+ * - `$Then` -> `$Else`
+ * - `$Else` -> `$Then`
+ */
+export type $InvertSelection<Branch extends $Then | $Else> =
+	Branch extends $Then ? $Else : $Then
 
 /**
  * 🧰 *type util*
@@ -85,9 +109,15 @@ export type $SelectionBranch = {
  * ```
  */
 export type $SelectionFilter<T> = {
+	selection: 'filter',
 	$then: T,
 	$else: never,
 }
+
+export type $ResolveSelection<$O extends $SelectionOptions, T, Branch extends $Then | $Else> =
+	Branch extends $Then ? $ResolveOptions<[$O['$then'], $O['selection'] extends 'filter' ? T : true]>
+	: Branch extends $Else ? $ResolveOptions<[$O['$else'], $O['selection'] extends 'filter' ? never : false]>
+	: never
 
 /**
  * 🧰 *type util*

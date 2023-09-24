@@ -1,5 +1,4 @@
-import type { $SelectionOptions, $SelectionPredicate } from '../type_plus/branch/selection.js'
-import type { $ResolveOptions } from '../type_plus/resolve_options.js'
+import type { $Else, $ResolveSelection, $SelectionOptions, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * 🎭 *predicate*
@@ -15,6 +14,16 @@ import type { $ResolveOptions } from '../type_plus/resolve_options.js'
  * type R = IsAny<string | boolean> // false
  * ```
  *
+ * 🔢 *customize*: filter
+ *
+ * ```ts
+ * type R = IsAny<any, { selection: 'filter' }> // any
+ *
+ * type R = IsAny<never, { selection: 'filter' }> // never
+ * type R = IsAny<unknown, { selection: 'filter' }> // never
+ * type R = IsAny<string | boolean, { selection: 'filter' }> // never
+ * ```
+ *
  * 🔢 *customize*: branching
  *
  * ```ts
@@ -24,5 +33,7 @@ import type { $ResolveOptions } from '../type_plus/resolve_options.js'
  */
 export type IsAny<
 	T,
-	$O extends $SelectionOptions = $SelectionPredicate
-> = 0 extends 1 & T ? $ResolveOptions<[$O['$then'], true]> : $ResolveOptions<[$O['$else'], false]>
+	$O extends $SelectionOptions = {}
+> = 0 extends 1 & T
+	? $ResolveSelection<$O, T, $Then>
+	: $ResolveSelection<$O, T, $Else>
