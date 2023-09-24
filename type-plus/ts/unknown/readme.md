@@ -1,82 +1,80 @@
 # unknown
 
-`unknown` is one of the top type in TypeScript.
+`unknown` is one of the top types in TypeScript.
 It is a "safer" variant of `any` that you cannot use the value until there are some type guards or type assertions to the value.
 
-## Type Checking
+`unknown | T => unknown` except `unknown | any => any.
 
-The `UnknownType<T>` and friends are used to check if a type is `unknown` or not.
+`unknown & T => T`
 
-They are strict type checks, meaning they match only the type `unknown`.
-Union are not a factor here as they are resolved to `unknown`,
-Intersection however will almost always resolve the the other type (`unknown & T -> T`).
+## [IsUnknown](./is_unknown.ts)
 
-### [UnknownType](./unknown_type.ts)
+`IsUnknown<T, $Options = { selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
-`UnknownType<T, $Options = { $then: T, $else: never }>`
+🎭 *predicate*
 
-🌪️ *filter*
+Validate if `T` is exactly `unknown`.
+
+```ts
+type R = IsUnknown<unknown> // true
+
+type R = IsUnknown<number> // false
+type R = IsUnknown<never> // false
+```
+
 🔢 *customize*
 
 Filter to ensure `T` is exactly `unknown`.
 
 ```ts
-import type { UnknownType } from 'type-plus'
+type R = IsUnknown<unknown, { selection: 'filter' }> // unknown
 
-type R = UnknownType<unknown> // unknown
-
-type R = UnknownType<1> // never
+type R = IsUnknown<number, { selection: 'filter' }> // never
+type R = IsUnknown<never, { selection: 'filter' }> // never
 ```
 
-### [IsUnknown](./is_unknown.ts)
-
-`IsUnknown<T, $Options = { $then: true, $else: false }>`
-
-🎭 *predicate*
 🔢 *customize*
 
-Validate if `T` is exactly `unknown`.
+Use unique branch identifiers to allow precise processing of the result.
 
 ```ts
-import type { IsUnknown } from 'type-plus'
-
-type R = IsUnknown<unknown> // true
-
-type R = IsUnknown<1> // false
-```
-
-### [NotUnknownType](./not_unknown_type.ts)
-
-`NotUnknownType<T, $Options = { $then: T, $else: never }>`
-
-🌪️ *filter*
-🔢 *customize*
-
-Filter `T` to ensure it is not exactly `unknown`.
-
-```ts
-import type { NotUnknownType } from 'type-plus'
-
-type R = NotUnknownType<unknown> // never
-
-type R = NotUnknownType<1> // 1
+type R = IsUnknown<unknown, $SelectionBranch> // $Then
+type R = IsUnknown<string, $SelectionBranch> // $Else
 ```
 
 ### [IsNotUnknown](./is_not_unknown.ts)
 
-`IsNotUnknown<T, $Options = { $then: true, $else: false }>`
+`IsNotUnknown<T, $Options = { selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
-🔢 *customize*
 
 Validate if `T` is not exactly `unknown`.
 
 ```ts
-import type { IsNotUnknown } from 'type-plus'
+type R = IsNotUnknown<unknown> // false
 
-type R = IsNotUnknown<unknown> // true
+type R = IsNotUnknown<number> // true
+type R = IsNotUnknown<never> // true
+```
 
-type R = IsNotUnknown<1> // false
+🔢 *customize*
+
+Filter to ensure `T` is not exactly `unknown`.
+
+```ts
+type R = IsNotUnknown<unknown, { selection: 'filter' }> // never
+
+type R = IsNotUnknown<number, { selection: 'filter' }> // number
+type R = IsNotUnknown<never, { selection: 'filter' }> // never
+```
+
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
+type R = IsNotUnknown<unknown, $SelectionBranch> // $Else
+type R = IsNotUnknown<string, $SelectionBranch> // $Then
 ```
 
 ### [NotUnknownOr](./not_unknown_or.ts)
@@ -84,17 +82,23 @@ type R = IsNotUnknown<1> // false
 `NotUnknownOr<T, Else>`
 
 🌪️ *filter*
-🔢 *customize*
 
-Returns `T` if `T` is not `unknown`, otherwise `Else`.
+Returns `T` if `T` is not `unknown`, otherwise `$Unknown`.
 
 ```ts
-import type { NotUnknownOr, $Unknown } from 'type-plus'
-
 type R = NotUnknownOr<number> // number
 type R = NotUnknownOr<unknown> // $Unknown
 
-type R = NotUnknownOr<unknown, 1> // 1
+// customize
+type R = NotUnknownOr<unknown, number> // number
+```
+
+🔢 *customize*
+
+Replace `unknown` branch with `Replace`.
+
+```ts
+type R = NotUnknownOr<unknown, number> // number
 ```
 
 ## References

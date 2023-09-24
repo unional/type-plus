@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type IsUnknown } from '../index.js'
+import { testType, type $Else, type $SelectionBranch, type $Then, type IsUnknown } from '../index.js'
 
 it('returns true for unknown', () => {
 	testType.true<IsUnknown<unknown>>(true)
@@ -28,11 +28,13 @@ it('returns false for other types', () => {
 	testType.false<IsUnknown<() => void>>(true)
 })
 
-it('returns false for union type', () => {
-	testType.false<IsUnknown<undefined | 1>>(true)
+it('returns true for union type as unknown | <others> => unknown', () => {
+	testType.equal<unknown | 1, unknown>(true)
+	testType.true<IsUnknown<unknown | 1>>(true)
 })
 
 it('returns false as unknown & any => any', () => {
+	testType.equal<unknown & any, any>(true)
 	testType.false<IsUnknown<unknown & any>>(true)
 })
 
@@ -64,11 +66,23 @@ it('returns false as unknown & <others> => <other>', () => {
 	testType.false<IsUnknown<unknown & (() => void)>>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<IsUnknown<unknown, { $then: 1, $else: 2 }>, 1>(true)
-	testType.equal<IsUnknown<number, { $then: 1, $else: 2 }>, 2>(true)
+it('works as filter', () => {
+	testType.equal<IsUnknown<unknown, { selection: 'filter' }>, unknown>(true)
 
-	testType.equal<IsUnknown<any, { $then: 1, $else: 2 }>, 2>(true)
-	testType.equal<IsUnknown<never, { $then: 1, $else: 2 }>, 2>(true)
-	testType.equal<IsUnknown<void, { $then: 1, $else: 2 }>, 2>(true)
+	testType.equal<IsUnknown<never, { selection: 'filter' }>, never>(true)
+	testType.equal<IsUnknown<undefined, { selection: 'filter' }>, never>(true)
+	testType.equal<IsUnknown<string | boolean, { selection: 'filter' }>, never>(true)
+
+	testType.equal<IsUnknown<string | unknown, { selection: 'filter' }>, unknown>(true)
+
+	testType.equal<IsUnknown<string | boolean, { selection: 'filter-unknown' }>, unknown>(true)
+})
+
+it('works with unique branches', () => {
+	testType.equal<IsUnknown<unknown, $SelectionBranch>, $Then>(true)
+	testType.equal<IsUnknown<number, $SelectionBranch>, $Else>(true)
+
+	testType.equal<IsUnknown<any, $SelectionBranch>, $Else>(true)
+	testType.equal<IsUnknown<never, $SelectionBranch>, $Else>(true)
+	testType.equal<IsUnknown<void, $SelectionBranch>, $Else>(true)
 })

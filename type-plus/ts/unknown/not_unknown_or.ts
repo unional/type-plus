@@ -1,11 +1,10 @@
+import type { IsUnknown } from './is_unknown.js'
 import type { $Unknown } from './unknown.js'
-import { type UnknownType } from './unknown_type.js'
 
 /**
  * 🌪️ *filter*
- * 🔢 *customize*
  *
- * Returns `T` if `T` is not `unknown`, otherwise `Else`.
+ * Returns `T` if `T` is not `unknown`, otherwise `$Unknown`.
  *
  * @example
  * ```ts
@@ -15,7 +14,16 @@ import { type UnknownType } from './unknown_type.js'
  * // customize
  * type R = NotUnknownOr<unknown, number> // number
  * ```
+ *
+ * 🔢 *customize*
+ *
+ * Replace `unknown` branch with `Replace`.
+ *
+ * @example
+ * ```ts
+ * type R = NotUnknownOr<unknown, number> // number
+ * ```
  */
-export type NotUnknownOr<T, Else = $Unknown> = UnknownType<T, {
+export type NotUnknownOr<T, Else = $Unknown> = IsUnknown<T, {
 	$then: Else, $else: T
 }>

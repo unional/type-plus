@@ -1,7 +1,5 @@
 import { it } from '@jest/globals'
-import type { NotUnknownOr } from './not_unknown_or.js'
-import { testType } from '../index.js'
-import type { $Unknown } from './unknown.js'
+import { testType, type $Unknown, type NotUnknownOr } from '../index.js'
 
 it('pass through if not unknown', () => {
 	testType.equal<NotUnknownOr<number>, number>(true)

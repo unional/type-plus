@@ -1,22 +1,53 @@
-import type { $SelectionOptions, $SelectionPredicate } from '../type_plus/branch/selection.js'
-import type { NotUnknownType } from './not_unknown_type.js'
+import type { IsAny } from '../any/is_any.js'
+import type { $Else, $ResolveSelection, $SelectionBranch, $SelectionOptions, $SelectionPredicate, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * 🎭 *predicate*
- * 🔢 *customize*
  *
- * Is the type `T` not exactly `unknown`.
+ * Validate if `T` is not exactly `unknown`.
  *
+ * @example
  * ```ts
  * type R = IsNotUnknown<unknown> // false
  *
- * type R = IsNotUnknown<never> // true
  * type R = IsNotUnknown<number> // true
- * type R = IsNotUnknown<string | boolean> // true
+ * type R = IsNotUnknown<never> // true
+ * ```
+ *
+ * 🔢 *customize*
+ *
+ * Filter to ensure `T` is not exactly `unknown`.
+ *
+ * @example
+ * ```ts
+ * type R = IsNotUnknown<unknown, { selection: 'filter' }> // never
+ *
+ * type R = IsNotUnknown<number, { selection: 'filter' }> // number
+ * type R = IsNotUnknown<never, { selection: 'filter' }> // never
+ * ```
+ *
+ * 🔢 *customize*
+ *
+ * Use unique branch identifiers to allow precise processing of the result.
+ *
+ * @example
+ * ```ts
+ * type R = IsNotUnknown<unknown, $SelectionBranch> // $Else
+ * type R = IsNotUnknown<string, $SelectionBranch> // $Then
  * ```
  */
-
 export type IsNotUnknown<
 	T,
-	$Options extends $SelectionOptions = $SelectionPredicate
-> = NotUnknownType<T, $Options>
+	O extends $SelectionOptions = $SelectionPredicate
+> = IsAny<
+	T,
+	$SelectionBranch> extends infer R
+	? R extends $Then ? $ResolveSelection<O, T, $Then>
+	: (R extends $Else
+		? ([T, unknown] extends [unknown, T]
+			? $ResolveSelection<O, T, $Else>
+			: $ResolveSelection<O, T, $Then>)
+		: never)
+	: never
+
+
