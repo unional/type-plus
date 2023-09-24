@@ -10,7 +10,7 @@ import type { IsEqual } from '../equal/equal.js'
 import type { IsFunction } from '../function/function_type.js'
 import type { IsStrictFunction } from '../function/strict_function_type.js'
 import type { IsNever } from '../never/is_never.js'
-import type { IsNull } from '../null/null_type.js'
+import type { IsNull } from "../null/is_null.js"
 import type { IsNumber } from '../number/number_type.js'
 import type { IsStrictNumber } from '../number/strict_number_type.js'
 import type { IsObject } from '../object/object_type.js'

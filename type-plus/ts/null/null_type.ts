@@ -20,19 +20,6 @@ export type NullType<T, Then = T, Else = never> = IsAny<
 	: never : never
 
 /**
- * Is the type `T` exactly `null`.
- *
- * ```ts
- * type R = IsNull<null> // true
- *
- * type R = IsNull<never> // false
- * type R = IsNull<unknown> // false
- * type R = IsNull<string | boolean> // false
- * ```
- */
-export type IsNull<T, Then = true, Else = false> = NullType<T, Then, Else>
-
-/**
  * Check if the type `T` is not exactly `null`.
  *
  * ```ts
@@ -45,15 +32,4 @@ export type IsNull<T, Then = true, Else = false> = NullType<T, Then, Else>
  */
 export type NotNullType<T, Then = T, Else = never> = NullType<T, Else, Then>
 
-/**
- * Is the type `T` not exactly `null`.
- *
- * ```ts
- * type R = IsNotNull<null> // false
- *
- * type R = IsNotNull<never> // true
- * type R = IsNotNull<unknown> // true
- * type R = IsNotNull<string | boolean> // true
- * ```
- */
-export type IsNotNull<T, Then = true, Else = false> = NullType<T, Else, Then>
+

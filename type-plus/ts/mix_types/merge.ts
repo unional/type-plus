@@ -1,5 +1,5 @@
 import type { IsNever } from '../never/is_never.js'
-import type { IsNull } from '../null/null_type.js'
+import type { IsNull } from "../null/is_null.js"
 import type { Merge as ObjectMerge } from '../object/merge.js'
 import type { Or } from '../predicates/logical.js'
 import type { IsUndefined } from '../undefined/is_undefined.js'
