@@ -1,5 +1,6 @@
 import type { IsAny } from '../any/is_any.js'
-import type { IsNever } from '../index.js'
+import type { IsNever } from '../never/is_never.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * Check if `T` is a positive numeric type.
@@ -12,16 +13,13 @@ import type { IsNever } from '../index.js'
  * type R = Positive<-1> // never
  * ```
  */
-export type Positive<T, Then = T, Else = never> = IsAny<
-	T,
-	{
-		$then: Then | Else,
-		$else: IsNever<T, {
-			$then: Else,
-			$else: T extends number | bigint ? (`${T}` extends `-${string}` ? Else : Then) : Else
-		}>
-	}
->
+export type Positive<T, Then = T, Else = never> = IsAny<T, $SelectionBranch> extends infer R
+	? R extends $Then ? Then | Else
+	: R extends $Else ? (IsNever<T, $SelectionBranch> extends infer R2
+		? R2 extends $Then ? Else
+		: R2 extends $Else ? T extends number | bigint ? (`${T}` extends `-${string}` ? Else : Then) : Else
+		: never : never)
+	: never : never
 
 /**
  * Is `T` a positive numeric type.

@@ -1,5 +1,5 @@
 import type { IsAny } from '../any/is_any.js'
-import type { $SelectionFilter, $SelectionOptions } from '../type_plus/branch/selection.js'
+import type { $Else, $SelectionBranch, $SelectionFilter, $SelectionOptions, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * Check if the type `T` is exactly `unknown`.
@@ -16,8 +16,8 @@ export type UnknownType<
 	$Options extends $SelectionOptions = $SelectionFilter<T>
 > = IsAny<
 	T,
-	{
-		$then: $Options['$else'],
-		$else: [T, unknown] extends [unknown, T] ? $Options['$then'] : $Options['$else']
-	}
->
+	$SelectionBranch> extends infer R
+	? R extends $Then ? $Options['$else']
+	: R extends $Else ? [T, unknown] extends [unknown, T] ? $Options['$then'] : $Options['$else']
+	: never : never
+

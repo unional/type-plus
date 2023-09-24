@@ -1,4 +1,5 @@
 import type { $SelectionOptions, $SelectionPredicate } from '../type_plus/branch/selection.js'
+import type { $ResolveOptions } from '../type_plus/resolve_options.js'
 
 /**
  * 🎭 *predicate*
@@ -24,4 +25,4 @@ import type { $SelectionOptions, $SelectionPredicate } from '../type_plus/branch
 export type IsAny<
 	T,
 	$O extends $SelectionOptions = $SelectionPredicate
-> = 0 extends 1 & T ? $O['$then'] : $O['$else']
+> = 0 extends 1 & T ? $ResolveOptions<[$O['$then'], true]> : $ResolveOptions<[$O['$else'], false]>

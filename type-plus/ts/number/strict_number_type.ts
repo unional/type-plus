@@ -1,4 +1,5 @@
 import type { IsAny } from '../any/is_any.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * Check if the type `T` is exactly the type `number` and not numeric literals.
@@ -18,11 +19,10 @@ import type { IsAny } from '../any/is_any.js'
  */
 export type StrictNumberType<T, Then = T, Else = never> = IsAny<
 	T,
-	{
-		$then: Else,
-		$else: [number, T] extends [T, number] ? Then : Else
-	}
->
+	$SelectionBranch> extends infer R
+	? R extends $Then ? Else
+	: R extends $Else ? [T, number] extends [number, T] ? Then : Else
+	: never : never
 
 /**
  * Is the type `T` exactly the type `number` and not numeric literals.

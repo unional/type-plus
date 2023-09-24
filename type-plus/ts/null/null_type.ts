@@ -1,4 +1,5 @@
 import type { IsAny } from '../any/is_any.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * Check if the type `T` is exactly `null`.
@@ -11,10 +12,12 @@ import type { IsAny } from '../any/is_any.js'
  * type R = NullType<string | boolean> // never
  * ```
  */
-export type NullType<T, Then = T, Else = never> = IsAny<T, {
-	$then: Else,
-	$else: [T, null] extends [null, T] ? Then : Else
-}>
+export type NullType<T, Then = T, Else = never> = IsAny<
+	T,
+	$SelectionBranch> extends infer R
+	? R extends $Then ? Else
+	: R extends $Else ? [T, null] extends [null, T] ? Then : Else
+	: never : never
 
 /**
  * Is the type `T` exactly `null`.

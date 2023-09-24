@@ -50,3 +50,11 @@ it('as branching', () => {
 	testType.equal<IsAny<never, $SelectionBranch>, $Else>(true)
 	testType.equal<IsAny<void, $SelectionBranch>, $Else>(true)
 })
+
+it('works with partial customization', () => {
+	testType.equal<IsAny<any, { $then: 1 }>, 1>(true)
+	testType.equal<IsAny<0, { $then: 1 }>, false>(true)
+
+	testType.equal<IsAny<any, { $else: 2 }>, true>(true)
+	testType.equal<IsAny<0, { $else: 2 }>, 2>(true)
+})

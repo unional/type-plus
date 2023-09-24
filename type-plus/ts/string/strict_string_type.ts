@@ -1,4 +1,5 @@
 import type { IsAny } from '../any/is_any.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * Check if the type `T` is exactly `string`.
@@ -15,11 +16,10 @@ import type { IsAny } from '../any/is_any.js'
  */
 export type StrictStringType<T, Then = T, Else = never> = IsAny<
 	T,
-	{
-		$then: Else,
-		$else: [T, string] extends [string, T] ? Then : Else
-	}
->
+	$SelectionBranch> extends infer R
+	? R extends $Then ? Else
+	: R extends $Else ? [T, string] extends [string, T] ? Then : Else
+	: never : never
 
 /**
  * Is the type `T` exactly `string`.
