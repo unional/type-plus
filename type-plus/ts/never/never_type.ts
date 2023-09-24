@@ -6,17 +6,16 @@ import type { $NotNever } from './never.js'
  * 🌪️ *filter*
  * 🔢 *customize*
  *
- * Filter to ensure `T` is exactly `never`.
- *
- * If it is not, returns `$NotNever`.
+ * Filter to ensure `T` is `never`, otherwise returns `$NotNever`.
  *
  * ```ts
  * type R = NeverType<never> // never
  *
- * type R = NeverType<1> // '$NotNever'
+ * type R = NeverType<1> // $NotNever
  * ```
  *
  * 🔢 *customize*: as predicate/validate (= `IsNever`)
+ *
  * ```ts
  * type R = NeverType<never, $SelectionPredicate> // true
  * type R = NeverType<1, $SelectionPredicate> // false

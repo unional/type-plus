@@ -3,21 +3,18 @@ import type { $Type } from '../type_plus/type.js'
 /**
  * 🧰 *type util*
  *
- * A special branch for `never` check to represent the value is not `never`.
- */
-export type $NotNever = $Type<'branch', 'not_never'>
-
-/**
- * 🧰 *type util*
+ * A special branch type to indicate the type is `never`.
  *
- * A special branch for not `never` check to represent the value is `never`.
+ * It is used in `NotNeverType`.
  */
 export type $Never = $Type<'branch', 'never'>
 
 /**
  * 🧰 *type util*
  *
- * Options for specifically handling the type `never`
+ * `$NeverOptions` enables customizing the behavior of the `$never` branch.
+ *
+ * The `$never` branch is used to handle when the input type is `never`.
  *
  * @example
  * ```ts
@@ -29,7 +26,7 @@ export type $Never = $Type<'branch', 'never'>
  * namespace YourType {
  *   export type $Options = $NeverOptions
  *   export type $Default = $NeverDefault
- *   export type $Override = $NeverOverride
+ *   export type $Branch = $NeverBranch
  * }
  * ```
  */
@@ -40,23 +37,22 @@ export type $NeverOptions = {
 /**
  * 🧰 *type util*
  *
- * Branch option to handle when the value is `never`
+ * `$NeverBranch` is the branch option for the `$never` branch.
  *
- * Use this to finely customize the behavior of your type.
+ * It sets the value to `$Never`,
+ * so that the branch can be uniquely identified and handled.
  *
+ * Use this to allow the consumer to customize the behavior of your type.
+ *
+ * @example
  * ```ts
- * type YourType<
- *   T,
- *   $Options extends YourType.$Options = YourType.$Default
- * > = ...
+ * type YourType<T, $O extends $NeverOptions> = NeverType<T> extends infer R
+ *   ? R extends $Never
+ *     ? $ResolveOptions<[$O['$never'], never]>
+ *     : HandleOtherBranches<R> // R is narrowed
+ *   : never
  *
- * namespace YourType {
- *   export type $Options = $NeverOptions
- *   export type $Default = $NeverDefault
- *   export type $Branch = $NeverBranch
- * }
- *
- * type R = YourType<T, YourType.$Branch> extends $Never ? HandleAny : HandleOthers
+ * type R = YourType<T, $NeverBranch> extends $Never ? HandleNever : HandleOthers
  * ```
  */
 export type $NeverBranch = {
@@ -66,7 +62,7 @@ export type $NeverBranch = {
 /**
  * 🧰 *type util*
  *
- * Default options for `never`.
+ * Default option for the `$never` branch.
  *
  * Unsurprisingly, defaulting `$never` to `never`.
  */
@@ -77,59 +73,8 @@ export type $NeverDefault = {
 /**
  * 🧰 *type util*
  *
- * Options for specifically handling the type `never`
+ * `$NotNever` is a special branch type to indicate the type is not `never`.
  *
- * @example
- * ```ts
- * type YourType<
- *   T,
- *   $Options extends YourType.$Options = YourType.$Default
- * > = ...
- *
- * namespace YourType {
- *   export type $Options = $NeverOptions
- *   export type $Default = $NeverDefault
- *   export type $Override = $NeverOverride
- * }
- * ```
+ * It is used in [`NeverType`](./never_type.ts).
  */
-export type $NotNeverOptions = {
-	$not_never?: unknown
-}
-
-/**
- * 🧰 *type util*
- *
- * Branch option to handle when the value is not `never` (while expecting it is).
- *
- * Use this to finely customize the behavior of your type.
- *
- * ```ts
- * type YourType<
- *   T,
- *   $Options extends YourType.$Options = YourType.$Default
- * > = ...
- *
- * namespace YourType {
- *   export type $Options = $NeverOptions
- *   export type $Default = $NeverDefault
- *   export type $Branch = $NeverBranch
- * }
- *
- * type R = YourType<T, YourType.$Branch> extends $Any ? HandleAny : HandleOthers
- * ```
- */
-export type $NotNeverBranch = {
-	$not_never: $NotNever
-}
-
-/**
- * 🧰 *type util*
- *
- * Default options for `never`.
- *
- * Unsurprisingly, defaulting `$never` to `never`.
- */
-export type $NotNeverDefault<T> = {
-	$not_never: T
-}
+export type $NotNever = $Type<'branch', 'not_never'>

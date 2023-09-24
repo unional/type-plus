@@ -6,17 +6,28 @@ import type { $Never } from './never.js'
  * 🌪️ *filter*
  * 🔢 *customize*
  *
- * Filter to ensure `T` is not exactly `never`.
- *
- * If it is, returns `$Never`.
+ * Filter to ensure `T` is not `never`, otherwise returns `$Never`.
  *
  * ```ts
  * type R = NotNeverType<1> // 1
  *
  * type R = NotNeverType<never> // $Never
  * ```
+ *
+ * 🔢 *customize*: as predicate/validate (= `IsNotNever`)
+ *
+ * ```ts
+ * type R = NotNeverType<1, $SelectionPredicate> // true
+ * type R = NotNeverType<never, $SelectionPredicate> // false
+ * ```
+ *
+ * 🔢 *customize*: branching
+ *
+ * ```ts
+ * type R = NotNeverType<never, $SelectionBranch> // $Else
+ * type R = NotNeverType<1, $SelectionBranch> // $Then
+ * ```
  */
-
 export type NotNeverType<
 	T,
 	$Options extends $SelectionOptions = { $then: T, $else: $Never }

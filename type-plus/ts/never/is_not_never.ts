@@ -2,14 +2,24 @@ import type { $FlipSelection, $SelectionOptions, $SelectionPredicate } from '../
 import type { IsNever } from './is_never.js'
 
 /**
- * Is `T` not `never`.
+ * 🎭 *predicate*
+ * 🔢 *customize*
+ *
+ * Validate if `T` not `never`.
  *
  * ```ts
  * type R = IsNotNever<1> // true
  *
  * type R = IsNotNever<never> // false
+ * ```
+ *
+ * 🔢 *customize*: branching
+ *
+ * ```ts
+ * type R = IsNotNever<never, $SelectionBranch> // $Else
+ * type R = IsNotNever<1, $SelectionBranch> // $Then
+ * ```
  */
-
 export type IsNotNever<
 	T,
 	$Options extends $SelectionOptions = $SelectionPredicate
