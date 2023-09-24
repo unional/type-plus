@@ -48,8 +48,15 @@ it('can override Then/Else', () => {
 	testType.equal<IsNever<void, { $then: 1, $else: 2 }>, 2>(true)
 })
 
-describe('filter', () => {
+it('works with partial customization', () => {
+	testType.equal<IsNever<never, { $then: 1 }>, 1>(true)
+	testType.equal<IsNever<0, { $then: 1 }>, false>(true)
 
+	testType.equal<IsNever<never, { $else: 2 }>, true>(true)
+	testType.equal<IsNever<0, { $else: 2 }>, 2>(true)
+})
+
+describe('filter', () => {
 	it('returns never if T is never', () => {
 		testType.equal<IsNever<never, { selection: 'filter' }>, never>(true)
 	})

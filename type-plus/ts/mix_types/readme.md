@@ -59,6 +59,19 @@ Box<'abc'>  // String
 Box<undefined> // never
 ```
 
+## [Exclude](./exclude.ts)
+
+`Exclude<T, U, R = never>`
+
+A drop-in replacement of the build-in `Exclude<T, U>`.
+
+Also support replacing `U` with `R`.
+
+```ts
+Exclude<'a' | 'b' | 'c', 'a'> // 'b' | 'c'
+Exclude<'a' | 'b' | 'c', 'a', 'd'> // 'b' | 'c' | 'd'
+```
+
 ## [Merge](./merge.ts)
 
 ⚗️ *transform*

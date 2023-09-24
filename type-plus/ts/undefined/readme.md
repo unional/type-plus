@@ -120,10 +120,9 @@ type R = IsNotUndefined<undefined, $SelectionBranch> // $Else
 
 ## [HasUndefined](./has_undefined.ts)
 
-`HasUndefined<T, { $then: true, $else: false }>`
+`HasUndefined<T, { selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
-🔢 *customize*
 
 Validate if `T` is `undefined` or an union with `undefined`.
 
@@ -132,8 +131,24 @@ type R = HasUndefined<undefined> // true
 type R = HasUndefined<undefined | 1> // true
 
 type R = HasUndefined<number> // false
+```
 
-// customize: branching
+🔢 *customize*
+
+Filter to ensure `T` is `undefined` or an union with `undefined`, otherwise returns `never`.
+
+```ts
+type R = HasUndefined<undefined> // undefined
+type R = HasUndefined<undefined | 1> // undefined | 1
+
+type R = HasUndefined<number> // never
+```
+
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
 type R = HasUndefined<undefined, $SelectionBranch> // $Then
 type R = HasUndefined<string, $SelectionBranch> // $Else
 ```
