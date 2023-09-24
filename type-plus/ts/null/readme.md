@@ -1,24 +1,127 @@
 # null
 
-## Type Checking
+`null` is one of the two primitive values in JavaScript to represent the absence of a value.
 
-The `NullType<T>` and friends are used to check if a type is `null` or not.
+Most of the time it is used when working with objects from JSON.
+
+## [IsNull](./is_null.ts)
+
+`IsNull<T, { distributive: true, selection: 'predicate' | 'filter' | 'filter-unknown', $then: true, $else: false }>`
+
+🎭 *predicate*
+
+Validate if `T` is `null`.
 
 ```ts
-import type { NullType } from 'type-plus'
+type R = IsNull<null> // true
 
-type R = NullType<null> // null
+type R = IsNull<never> // false
+type R = IsNull<unknown> // false
+type R = IsNull<string | boolean> // false
 
-type R = NullType<1> // never
+type R = IsNull<string | null> // boolean
 ```
 
-- [`NullType<T, Then = T, Else = never>`](null_type.ts#L16): check if `T` is `null`.
-- [`IsNull<T, Then = true, Else = false`](null_type.ts#L31): is `T` `null`.
-- [`NotNullType<T, Then = T, Else = never>`](null_type.ts#L46): check if `T` is not `null`.
-- [`IsNotNull<T, Then = true, Else = false>`](null_type.ts#L61): is `T` not `null`.
+🔢 *customize*
+
+Filter to ensure `T` is `null`, otherwise returns `never`.
+
+```ts
+type R = IsNull<null, { selection: 'filter' }> // null
+
+type R = IsNull<never, { selection: 'filter' }> // never
+type R = IsNull<unknown, { selection: 'filter' }> // never
+type R = IsNull<string | boolean, { selection: 'filter' }> // never
+
+type R = IsNull<string | null> // null
+```
+
+🔢 *customize*
+
+Filter to ensure `T` is `null`, otherwise returns `unknown`.
+
+```ts
+type R = IsNull<null, { selection: 'filter-unknown' }> // null
+
+type R = IsNull<never, { selection: 'filter-unknown' }> // unknown
+type R = IsNull<unknown, { selection: 'filter-unknown' }> // unknown
+type R = IsNull<string | boolean, { selection: 'filter-unknown' }> // unknown
+```
+
+🔢 *customize*:
+
+Disable distribution of union types.
+
+```ts
+type R = IsNull<null | 1> // boolean
+type R = IsNull<null | 1, { distributive: false }> // false
+```
+
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
+type R = IsNull<null, $SelectionBranch> // $Then
+type R = IsNull<string, $SelectionBranch> // $Else
+```
+
+## [IsNotnull](./is_not_null.ts)
+
+`IsNotnull<T, { distributive: true, selection: 'predicate' | 'filter' | 'filter-unknown', $then: true, $else: false }>`
+
+🎭 *predicate*
+
+Validate if `T` is not `null`.
+
+```ts
+type R = IsNotnull<null> // false
+
+type R = IsNotnull<never> // true
+type R = IsNotnull<unknown> // true
+type R = IsNotnull<string | boolean> // true
+```
+
+🔢 *customize*
+
+Filter to ensure `T` is not `null`, otherwise returns `never`.
+
+```ts
+type R = IsNotnull<null, { selection: 'filter' }> // never
+
+type R = IsNotnull<never, { selection: 'filter' }> // never
+type R = IsNotnull<unknown, { selection: 'filter' }> // unknown
+type R = IsNotnull<string | boolean, { selection: 'filter' }> // string | boolean
+```
+
+🔢 *customize*
+
+Filter to ensure `T` is not `null`, otherwise returns `unknown`.
+
+```ts
+type R = IsNotnull<null, { selection: 'filter-unknown' }> // unknown
+```
+
+🔢 *customize*
+
+Disable distribution of union types.
+
+```ts
+type R = IsNotnull<null | 1> // boolean
+type R = IsNotnull<null | 1, { distributive: false }> // true
+```
+
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
+type R = IsNotnull<string, $SelectionBranch> // $Then
+type R = IsNotnull<null, $SelectionBranch> // $Else
+```
 
 ## References
 
 - [Handbook]
 
-[handbook]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#null-and-undefined
+[handbook]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#null-and-null

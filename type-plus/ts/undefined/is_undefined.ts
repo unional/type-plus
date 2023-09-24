@@ -1,7 +1,4 @@
-import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
-import type { $DistributiveDefault, $DistributiveOptions } from '../type_plus/branch/distributive.js'
-import type { $ResolveOptions } from '../type_plus/resolve_options.js'
-import type { $Else, $ResolveSelection, $SelectionBranch, $SelectionOptions, $SelectionPredicate, $Then } from '../type_plus/branch/selection.js'
+import type { TypePredicate } from '../type_plus/type_predicate.js'
 
 /**
  * 🎭 *predicate*
@@ -66,21 +63,10 @@ import type { $Else, $ResolveSelection, $SelectionBranch, $SelectionOptions, $Se
  * type R = IsUndefined<string, $SelectionBranch> // $Else
  * ```
  */
-export type IsUndefined<
-	T,
-	$O extends IsUndefined.$Options = {}
-> = IsAnyOrNever<
-	T,
-	$SelectionBranch
-> extends infer R
-	? R extends $Then ? $ResolveSelection<$O, T, $Else>
-	: R extends $Else ? ($ResolveOptions<[$O['distributive'], IsUndefined.$Default['distributive']]> extends true
-		? T extends undefined ? $ResolveSelection<$O, T, $Then> : $ResolveSelection<$O, T, $Else>
-		: [T] extends [undefined] ? $ResolveSelection<$O, T, $Then> : $ResolveSelection<$O, T, $Else>)
-	: never : never
+export type IsUndefined<T, $O extends IsUndefined.$Options = {}> = TypePredicate<T, undefined, $O>
 
 export namespace IsUndefined {
-	export type $Options = $SelectionOptions & $DistributiveOptions
-	export type $Default = $SelectionPredicate & $DistributiveDefault
-	export type $Branch = $SelectionBranch & $DistributiveDefault
+	export type $Options = TypePredicate.$Options
+	export type $Default = TypePredicate.$Default
+	export type $Branch = TypePredicate.$Branch
 }

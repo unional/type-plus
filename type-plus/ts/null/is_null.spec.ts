@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type IsNull } from '../index.js'
+import { testType, type IsNull, type $Then, type $Else } from '../index.js'
 
 it('returns true for null', () => {
 	testType.true<IsNull<null>>(true)
@@ -30,15 +30,28 @@ it('returns false for other types', () => {
 	testType.false<IsNull<() => void>>(true)
 })
 
-it('returns false for union type', () => {
-	testType.false<IsNull<null | 1>>(true)
+it('works as filter', () => {
+	testType.equal<IsNull<null, { selection: 'filter' }>, null>(true)
+
+	testType.equal<IsNull<never, { selection: 'filter' }>, never>(true)
+	testType.equal<IsNull<unknown, { selection: 'filter' }>, never>(true)
+	testType.equal<IsNull<string | boolean, { selection: 'filter' }>, never>(true)
+
+	testType.equal<IsNull<string | null, { selection: 'filter' }>, null>(true)
+
+	testType.equal<IsNull<string | boolean, { selection: 'filter-unknown' }>, unknown>(true)
+	testType.equal<IsNull<string | null, { selection: 'filter-unknown' }>, unknown>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<IsNull<null, 1, 2>, 1>(true)
+it('can disable union distribution', () => {
+	testType.false<IsNull<null | 1, { distributive: false }>>(true)
+})
 
-	testType.equal<IsNull<any, 1, 2>, 2>(true)
-	testType.equal<IsNull<unknown, 1, 2>, 2>(true)
-	testType.equal<IsNull<never, 1, 2>, 2>(true)
-	testType.equal<IsNull<void, 1, 2>, 2>(true)
+it('works with unique branches', () => {
+	testType.equal<IsNull<null, IsNull.$Branch>, $Then>(true)
+
+	testType.equal<IsNull<any, IsNull.$Branch>, $Else>(true)
+	testType.equal<IsNull<unknown, IsNull.$Branch>, $Else>(true)
+	testType.equal<IsNull<never, IsNull.$Branch>, $Else>(true)
+	testType.equal<IsNull<void, IsNull.$Branch>, $Else>(true)
 })
