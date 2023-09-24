@@ -15,7 +15,7 @@
 <li><a href="../modules.html">type-plus</a></li>
 <li><a href="_SelectionOptions.html">$SelectionOptions</a></li></ul>
 <h1>Type alias $SelectionOptions</h1></div>
-<div class="tsd-signature"><span class="tsd-kind-type-alias">$<wbr/>Selection<wbr/>Options</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">$else</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">$then</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">selection</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;predicate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;filter&quot;</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
+<div class="tsd-signature"><span class="tsd-kind-type-alias">$<wbr/>Selection<wbr/>Options</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">$else</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">$then</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">selection</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;predicate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;filter&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;filter-unknown&quot;</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
 <div class="tsd-comment tsd-typography"><p>🧰 <em>type util</em></p>
 <p>Options for selection (if-then-else) logic.</p>
 <p>The word &quot;selection&quot; refers to the basic elements in structural programming:
@@ -29,11 +29,13 @@ sequence, selection, and iteration.</p>
 <li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">$then</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span></h5></li>
 <li class="tsd-parameter">
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">selection</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;predicate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;filter&quot;</span></h5>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">selection</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;predicate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;filter&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;filter-unknown&quot;</span></h5>
 <div class="tsd-comment tsd-typography"><p>Specifies which default selection logic to use.</p>
-<p><code>filter</code> means the logic returns <code>T</code> when the condition is met,
+<p><code>filter</code> returns <code>T</code> when the condition is met,
 and returns <code>never</code> otherwise.</p>
-<p><code>predicate</code> means the logic returns boolean depends on the condition.</p>
+<p><code>filter-unknown</code> returns <code>T</code> when the condition is met,
+and returns <code>unknown</code> otherwise.</p>
+<p><code>predicate</code> returns boolean depends on the condition.</p>
 <p>Note that setting <code>$then</code> and <code>$else</code> overrides the default selection logic.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li></ul></div>
@@ -42,7 +44,7 @@ and returns <code>never</code> otherwise.</p>
 </code><button>Copy</button></pre>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/e61d38d9b/type-plus/ts/type_plus/branch/selection.ts#L25">type-plus/ts/type_plus/branch/selection.ts:25</a></li></ul></aside></div>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/819441b5f/type-plus/ts/type_plus/branch/selection.ts#L25">type-plus/ts/type_plus/branch/selection.ts:25</a></li></ul></aside></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -186,6 +188,7 @@ and returns <code>never</code> otherwise.</p>
 <li><a href="EndoFn.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Endo<wbr/>Fn</span></a></li>
 <li><a href="Equal.html" class="deprecated"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Equal</span></a></li>
 <li><a href="Except.html" class="deprecated"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Except</span></a></li>
+<li><a href="Exclude.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Exclude</span></a></li>
 <li><a href="ExcludePropType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Exclude<wbr/>Prop<wbr/>Type</span></a></li>
 <li><a href="Extendable.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Extendable</span></a></li>
 <li><a href="ExtractFunction.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Extract<wbr/>Function</span></a></li>
@@ -278,8 +281,6 @@ and returns <code>never</code> otherwise.</p>
 <li><a href="Multiply.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Multiply</span></a></li>
 <li><a href="NoInfer.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>No<wbr/>Infer</span></a></li>
 <li><a href="NonComposableTypes.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Non<wbr/>Composable<wbr/>Types</span></a></li>
-<li><a href="NonNull.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Non<wbr/>Null</span></a></li>
-<li><a href="NonUndefined.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Non<wbr/>Undefined</span></a></li>
 <li><a href="Not.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not</span></a></li>
 <li><a href="NotArrayType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>Array<wbr/>Type</span></a></li>
 <li><a href="NotBigintType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>Bigint<wbr/>Type</span></a></li>
