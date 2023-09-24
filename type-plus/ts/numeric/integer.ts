@@ -1,4 +1,5 @@
 import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 import type { Numeric } from './numeric_type.js'
 
 /**
@@ -14,11 +15,10 @@ import type { Numeric } from './numeric_type.js'
  */
 export type Integer<T, Then = T, Else = never> = IsAnyOrNever<
 	T,
-	{
-		$then: Else,
-		$else: [T] extends [Numeric] ? (`${T}` extends `${bigint}` ? Then : Else) : Else
-	}
->
+	$SelectionBranch> extends infer R
+	? R extends $Then ? Else
+	: R extends $Else ? [T] extends [Numeric] ? (`${T}` extends `${bigint}` ? Then : Else) : Else
+	: never : never
 
 /**
  * Is T an integer, including bigint.

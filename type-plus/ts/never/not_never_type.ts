@@ -1,4 +1,4 @@
-import type { $SelectionOptions } from '../type_plus/branch/selection.js'
+import type { $Else, $SelectionBranch, $SelectionOptions, $Then } from '../type_plus/branch/selection.js'
 import type { IsNever } from './is_never.js'
 import type { $Never } from './never.js'
 
@@ -20,4 +20,7 @@ import type { $Never } from './never.js'
 export type NotNeverType<
 	T,
 	$Options extends $SelectionOptions = { $then: T, $else: $Never }
-> = IsNever<T, { $then: $Options['$else'], $else: $Options['$then'] }>
+> = IsNever<T, $SelectionBranch> extends infer R
+	? R extends $Then ? $Options['$else']
+	: R extends $Else ? $Options['$then']
+	: never : never

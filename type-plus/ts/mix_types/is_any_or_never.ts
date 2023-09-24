@@ -1,5 +1,5 @@
 import type { IsAny } from '../any/is_any.js'
-import type { NeverType } from '../never/never_type.js'
+import type { IsNever } from '../never/is_never.js'
 import type { $SelectionOptions, $SelectionPredicate } from '../type_plus/branch/selection.js'
 
 /**
@@ -23,8 +23,8 @@ import type { $SelectionOptions, $SelectionPredicate } from '../type_plus/branch
  */
 export type IsAnyOrNever<
 	T,
-	O extends $SelectionOptions = $SelectionPredicate
-> = NeverType<T, {
-	$then: O['$then'],
-	$else: IsAny<T, O>
+	$O extends $SelectionOptions = $SelectionPredicate
+> = IsNever<T, {
+	$then: $O['$then'],
+	$else: IsAny<T, $O>
 }>

@@ -1,5 +1,5 @@
 import type { $SelectionOptions, $SelectionPredicate } from '../type_plus/branch/selection.js'
-import type { NeverType } from './never_type.js'
+import type { $ResolveOptions } from '../type_plus/resolve_options.js'
 
 /**
  * 🎭 *predicate*
@@ -17,5 +17,10 @@ import type { NeverType } from './never_type.js'
 
 export type IsNever<
 	T,
-	$Options extends $SelectionOptions = $SelectionPredicate
-> = NeverType<T, $Options>
+	$O extends $SelectionOptions = $SelectionPredicate
+> = [T, never] extends [never, T]
+	? $O['$then']
+	// ? $ResolveOptions<[$O['$then'], true]>
+	// : $O['$else']
+	: $ResolveOptions<[$O['$else'], false]>
+

@@ -1,5 +1,6 @@
 import type { IsNever } from '../never/is_never.js'
 import type { StrictNumberType } from '../number/strict_number_type.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * 🌪️ *filter*
@@ -17,15 +18,14 @@ import type { StrictNumberType } from '../number/strict_number_type.js'
  */
 export type ArrayType<T, Then = T, Else = never> = IsNever<
 	T,
-	{
-		$then: Else,
-		$else: [never[]] extends [T]
-		? ([T] extends [readonly any[]]
-			? StrictNumberType<T['length'], Then, Else>
-			: Else)
-		: Else
-	}
->
+	$SelectionBranch> extends infer R
+	? R extends $Then ? Else
+	: R extends $Else ? [never[]] extends [T]
+	? ([T] extends [readonly any[]]
+		? StrictNumberType<T['length'], Then, Else>
+		: Else)
+	: Else
+	: never : never
 
 /**
  * 🎭 *predicate*

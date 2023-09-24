@@ -1,5 +1,6 @@
 import type { IsAny } from '../any/is_any.js'
 import type { IsNever } from '../never/is_never.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 import type { Zero } from './numeric_type.js'
 
 /**
@@ -76,19 +77,19 @@ export type NotNegative<T, Then = T, Else = never> = IsAny<
 		$then: Then | Else,
 		$else: IsNever<
 			T,
-			{
-				$then: Then,
-				$else: [number, T] extends [T, number]
-				? Then
-				: [bigint, T] extends [T, bigint]
-				? Then
-				: [T] extends [number | bigint]
-				? `${T}` extends `-${string}`
-				? Else
-				: Then
-				: Then
-			}
-		>
+			$SelectionBranch
+		> extends infer R
+		? R extends $Then ? Then
+		: R extends $Else ? [number, T] extends [T, number]
+		? Then
+		: [bigint, T] extends [T, bigint]
+		? Then
+		: [T] extends [number | bigint]
+		? `${T}` extends `-${string}`
+		? Else
+		: Then
+		: Then
+		: never : never
 	}
 >
 

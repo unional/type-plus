@@ -1,4 +1,5 @@
 import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * Check if `T` is exactly `Function`.
@@ -12,11 +13,10 @@ import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
  */
 export type StrictFunctionType<T, Then = T, Else = never> = IsAnyOrNever<
 	T,
-	{
-		$then: Else,
-		$else: [T, Function] extends [Function, T] ? Then : Else
-	}
->
+	$SelectionBranch> extends infer R
+	? R extends $Then ? Else
+	: R extends $Else ? [T, Function] extends [Function, T] ? Then : Else
+	: never : never
 
 /**
  * Check if `T` is not exactly `Function`.

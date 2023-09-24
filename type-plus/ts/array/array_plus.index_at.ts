@@ -7,6 +7,7 @@ import type { IsNever } from '../never/is_never.js'
 import type { StrictNumberType } from '../number/strict_number_type.js'
 import type { Integer } from '../numeric/integer.js'
 import type { Negative } from '../numeric/negative.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * 🦴 *utilities*
@@ -28,7 +29,12 @@ export type IndexAt<
 	Fail = never,
 	Upper = A['length'],
 	Lower = 0
-> = IsNever<A, { $then: Fail, $else: IndexAt._<A, N, Fail, Upper, Lower> }>
+> = IsNever<
+	A,
+	$SelectionBranch> extends infer R
+	? R extends $Then ? Fail
+	: R extends $Else ? IndexAt._<A, N, Fail, Upper, Lower>
+	: never : never
 
 export namespace IndexAt {
 	export type _<

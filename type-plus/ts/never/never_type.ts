@@ -1,4 +1,5 @@
 import type { $SelectionOptions } from '../type_plus/branch/selection.js'
+import type { $ResolveOptions } from '../type_plus/resolve_options.js'
 import type { $NotNever } from './never.js'
 
 /**
@@ -9,14 +10,28 @@ import type { $NotNever } from './never.js'
  *
  * If it is not, returns `$NotNever`.
  *
- * @example
  * ```ts
  * type R = NeverType<never> // never
  *
  * type R = NeverType<1> // '$NotNever'
  * ```
+ *
+ * 🔢 *customize*: as predicate/validate (= `IsNever`)
+ * ```ts
+ * type R = NeverType<never, $SelectionPredicate> // true
+ * type R = NeverType<1, $SelectionPredicate> // false
+ * ```
+ *
+ * 🔢 *customize*: branching
+ *
+ * ```ts
+ * type R = NeverType<never, $SelectionBranch> // $Then
+ * type R = NeverType<1, $SelectionBranch> // $Else
+ * ```
  */
 export type NeverType<
 	T,
-	$Options extends $SelectionOptions = { $then: never, $else: $NotNever }
-> = [T, never] extends [never, T] ? $Options['$then'] : $Options['$else']
+	$O extends $SelectionOptions = { $then: T, $else: $NotNever }
+> = [T, never] extends [never, T]
+? $ResolveOptions<[$O['$then'], T]>
+: $ResolveOptions<[$O['$else'], $NotNever]>

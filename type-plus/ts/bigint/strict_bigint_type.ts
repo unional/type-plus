@@ -1,4 +1,5 @@
 import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * Check if the type `T` is exactly `bigint`.
@@ -14,11 +15,10 @@ import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
  */
 export type StrictBigintType<T, Then = T, Else = never> = IsAnyOrNever<
 	T,
-	{
-		$then: Else,
-		$else: [bigint] extends [T] ? ([T] extends [bigint] ? (`${T}` extends `${number}` ? Else : Then) : Else) : Else
-	}
->
+	$SelectionBranch> extends infer R
+	? R extends $Then ? Else
+	: R extends $Else ? [bigint] extends [T] ? ([T] extends [bigint] ? (`${T}` extends `${number}` ? Else : Then) : Else) : Else
+	: never : never
 
 /**
  * Is the type `T` exactly `bigint`.

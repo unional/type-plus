@@ -1,4 +1,5 @@
 import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * Check if the type `T` is `number`.
@@ -11,10 +12,10 @@ import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
  * type R = NumberType<unknown> // false
  * ```
  */
-export type NumberType<T, Then = T, Else = never> = IsAnyOrNever<T, {
-	$then: Else,
-	$else: [T] extends [number] ? Then : Else
-}>
+export type NumberType<T, Then = T, Else = never> = IsAnyOrNever<T, $SelectionBranch> extends infer R
+	? R extends $Then ? Else
+	: R extends $Else ? [T] extends [number] ? Then : Else
+	: never : never
 
 /**
  * Is the type `T` is `number`.

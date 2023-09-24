@@ -1,4 +1,5 @@
 import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * Check if the type `T` is `string` or string literals.
@@ -13,7 +14,11 @@ import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
  * type R = StringType<unknown> // never
  * ```
  */
-export type StringType<T, Then = T, Else = never> = IsAnyOrNever<T, { $then: Else, $else: [T] extends [string] ? Then : Else }>
+export type StringType<T, Then = T, Else = never> = IsAnyOrNever<T, $SelectionBranch> extends infer R
+	? R extends $Then ? Else
+	: R extends $Else ? [T] extends [string] ? Then : Else
+	: never
+	: never
 
 /**
  * Is the type `T` `string` or string literals.

@@ -1,4 +1,5 @@
 import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * Check if the type `T` is exactly `true`.
@@ -12,11 +13,10 @@ import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
  */
 export type TrueType<T, Then = T, Else = never> = IsAnyOrNever<
 	T,
-	{
-		$then: Else,
-		$else: [T, true] extends [true, T] ? Then : Else
-	}
->
+	$SelectionBranch> extends infer R
+	? R extends $Then ? Else
+	: R extends $Else ? [T, true] extends [true, T] ? Then : Else
+	: never : never
 
 /**
  * Check if the type `T` is not exactly `true`.

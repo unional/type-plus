@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type $Never, type NeverType, type $NotNever } from '../index.js'
+import { testType, type $NotNever, type NeverType } from '../index.js'
 
 it('returns never if T is never', () => {
 	testType.equal<NeverType<never>, never>(true)
@@ -49,6 +49,7 @@ it('can override Then/Else', () => {
 	testType.equal<NeverType<void, { $then: 1, $else: 2 }>, 2>(true)
 })
 
-it('$Never and $NotNever is not the same', () => {
-	testType.equal<$Never, $NotNever>(false)
+it('supports partial customization', () => {
+	testType.equal<NeverType<never, { $else: 2 }>, never>(true)
+	testType.equal<NeverType<0, { $then: 1 }>, $NotNever>(true)
 })
