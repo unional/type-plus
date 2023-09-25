@@ -1,4 +1,4 @@
-import type { TypePredicate } from '../type_plus/type_predicate.js'
+import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
 
 /**
  * 🎭 *predicate*
@@ -63,10 +63,10 @@ import type { TypePredicate } from '../type_plus/type_predicate.js'
  * type R = IsNull<string, $SelectionBranch> // $Else
  * ```
  */
-export type IsNull<T, $O extends IsNull.$Options = {}> = TypePredicate<T, null, $O>
+export type IsNull<T, $O extends IsNull.$Options = {}> = SelectWithDistribute<T, null, $O>
 
 export namespace IsNull {
-	export type $Options = TypePredicate.$Options
-	export type $Default = TypePredicate.$Default
-	export type $Branch = TypePredicate.$Branch
+	export type $Options = SelectWithDistribute.$Options
+	export type $Default = SelectWithDistribute.$Default
+	export type $Branch = SelectWithDistribute.$Branch
 }

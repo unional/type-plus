@@ -1,4 +1,4 @@
-import type { TypeNotPredicate } from '../type_plus/type_not_predicate.js'
+import type { SelectInvertWithDistribute } from '../type_plus/branch/select_invert_with_distribute.js'
 
 /**
  * 🎭 *predicate*
@@ -55,10 +55,10 @@ import type { TypeNotPredicate } from '../type_plus/type_not_predicate.js'
  * type R = IsNotUndefined<undefined, $SelectionBranch> // $Else
  * ```
  */
-export type IsNotUndefined<T, $O extends IsNotUndefined.$Options = {}> = TypeNotPredicate<T, undefined, $O>
+export type IsNotUndefined<T, $O extends IsNotUndefined.$Options = {}> = SelectInvertWithDistribute<T, undefined, $O>
 
 export namespace IsNotUndefined {
-	export type $Options = TypeNotPredicate.$Options
-	export type $Default = TypeNotPredicate.$Default
-	export type $Branch = TypeNotPredicate.$Branch
+	export type $Options = SelectInvertWithDistribute.$Options
+	export type $Default = SelectInvertWithDistribute.$Default
+	export type $Branch = SelectInvertWithDistribute.$Branch
 }

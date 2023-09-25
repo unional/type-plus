@@ -1,4 +1,4 @@
-import type { TypePredicate } from '../type_plus/type_predicate.js'
+import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
 
 /**
  * 🎭 *predicate*
@@ -63,10 +63,10 @@ import type { TypePredicate } from '../type_plus/type_predicate.js'
  * type R = IsUndefined<string, $SelectionBranch> // $Else
  * ```
  */
-export type IsUndefined<T, $O extends IsUndefined.$Options = {}> = TypePredicate<T, undefined, $O>
+export type IsUndefined<T, $O extends IsUndefined.$Options = {}> = SelectWithDistribute<T, undefined, $O>
 
 export namespace IsUndefined {
-	export type $Options = TypePredicate.$Options
-	export type $Default = TypePredicate.$Default
-	export type $Branch = TypePredicate.$Branch
+	export type $Options = SelectWithDistribute.$Options
+	export type $Default = SelectWithDistribute.$Default
+	export type $Branch = SelectWithDistribute.$Branch
 }
