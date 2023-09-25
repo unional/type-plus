@@ -31,7 +31,7 @@
 <h4><span class="tsd-kind-type-parameter">Else</span> = <span class="tsd-signature-type">never</span></h4></li></ul></section>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/819441b5f/type-plus/ts/boolean/boolean_type.ts#L35">type-plus/ts/boolean/boolean_type.ts:35</a></li></ul></aside></div>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/3957e3193/type-plus/ts/boolean/boolean_type.ts#L35">type-plus/ts/boolean/boolean_type.ts:35</a></li></ul></aside></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -87,7 +87,9 @@
 <li><a href="../modules/Head.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Head</span></a></li>
 <li><a href="../modules/IsNever.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Never</span></a></li>
 <li><a href="../modules/IsNotNever.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Never</span></a></li>
+<li><a href="../modules/IsNotNull.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Null</span></a></li>
 <li><a href="../modules/IsNotUndefined.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Undefined</span></a></li>
+<li><a href="../modules/IsNull.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Null</span></a></li>
 <li><a href="../modules/IsUndefined.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Undefined</span></a></li>
 <li><a href="../modules/Last.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Last</span></a></li>
 <li><a href="../modules/MathPlus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Math<wbr/>Plus</span></a></li>
@@ -102,6 +104,7 @@
 <li><a href="../modules/TuplePlus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Tuple<wbr/>Plus</span></a></li>
 <li><a href="../modules/TupleType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Tuple<wbr/>Type</span></a></li>
 <li><a href="../modules/TypePlusOptions.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Type<wbr/>Plus<wbr/>Options</span></a></li>
+<li><a href="../modules/TypePredicate.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Type<wbr/>Predicate</span></a></li>
 <li><a href="../modules/UnionType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Union<wbr/>Type</span></a></li>
 <li><a href="../modules/assertType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>assert<wbr/>Type</span></a></li>
 <li><a href="../modules/isType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>is<wbr/>Type</span></a></li>
@@ -217,7 +220,7 @@
 <li><a href="IsNotFunction.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Function</span></a></li>
 <li><a href="IsNotLooseArray.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Loose<wbr/>Array</span></a></li>
 <li><a href="IsNotNever-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Never</span></a></li>
-<li><a href="IsNotNull.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Null</span></a></li>
+<li><a href="IsNotNull-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Null</span></a></li>
 <li><a href="IsNotObject.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Object</span></a></li>
 <li><a href="IsNotStrictArray.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Strict<wbr/>Array</span></a></li>
 <li><a href="IsNotStrictBigint.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Strict<wbr/>Bigint</span></a></li>
@@ -231,7 +234,7 @@
 <li><a href="IsNotUndefined-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Undefined</span></a></li>
 <li><a href="IsNotUnknown.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Unknown</span></a></li>
 <li><a href="IsNotVoid.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Void</span></a></li>
-<li><a href="IsNull.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Null</span></a></li>
+<li><a href="IsNull-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Null</span></a></li>
 <li><a href="IsObject.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Object</span></a></li>
 <li><a href="IsOptionalKey.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Optional<wbr/>Key</span></a></li>
 <li><a href="IsRecord.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Record</span></a></li>
@@ -277,7 +280,6 @@
 <li><a href="NotFalseType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>False<wbr/>Type</span></a></li>
 <li><a href="NotFunctionType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>Function<wbr/>Type</span></a></li>
 <li><a href="NotLooseArrayType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>Loose<wbr/>Array<wbr/>Type</span></a></li>
-<li><a href="NotNullType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>Null<wbr/>Type</span></a></li>
 <li><a href="NotObjectType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>Object<wbr/>Type</span></a></li>
 <li><a href="NotStrictArrayType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>Strict<wbr/>Array<wbr/>Type</span></a></li>
 <li><a href="NotStrictBigintType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>Strict<wbr/>Bigint<wbr/>Type</span></a></li>
@@ -289,8 +291,6 @@
 <li><a href="NotTrueType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>True<wbr/>Type</span></a></li>
 <li><a href="NotTupleType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>Tuple<wbr/>Type</span></a></li>
 <li><a href="NotUnknownOr.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>Unknown<wbr/>Or</span></a></li>
-<li><a href="NotUnknownType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>Unknown<wbr/>Type</span></a></li>
-<li><a href="NullType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Null<wbr/>Type</span></a></li>
 <li><a href="NumericToString.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Numeric<wbr/>To<wbr/>String</span></a></li>
 <li><a href="ObjectType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Object<wbr/>Type</span></a></li>
 <li><a href="Omit.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Omit</span></a></li>
@@ -341,11 +341,11 @@
 <li><a href="ToTuple.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>To<wbr/>Tuple</span></a></li>
 <li><a href="TrueType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>True<wbr/>Type</span></a></li>
 <li><a href="TupleType-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Tuple<wbr/>Type</span></a></li>
+<li><a href="TypePredicate-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Type<wbr/>Predicate</span></a></li>
 <li><a href="UnionKeys.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Union<wbr/>Keys</span></a></li>
 <li><a href="UnionOfProps.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Union<wbr/>Of<wbr/>Props</span></a></li>
 <li><a href="UnionOfValues.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Union<wbr/>Of<wbr/>Values</span></a></li>
 <li><a href="UnionType-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Union<wbr/>Type</span></a></li>
-<li><a href="UnknownType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Unknown<wbr/>Type</span></a></li>
 <li><a href="ValueOf.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Value<wbr/>Of</span></a></li>
 <li><a href="Widen.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Widen</span></a></li>
 <li><a href="Xor.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Xor</span></a></li>
