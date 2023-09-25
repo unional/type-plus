@@ -75,14 +75,14 @@ it('returns true as undefined & <others> => never', () => {
 })
 
 it('works as filter', () => {
-	// testType.equal<IsNotUndefined<undefined, { selection: 'filter' }>, never>(true)
+	testType.equal<IsNotUndefined<undefined, { selection: 'filter' }>, never>(true)
 
-	// testType.equal<IsNotUndefined<never, { selection: 'filter' }>, never>(true)
-	// testType.equal<IsNotUndefined<unknown, { selection: 'filter' }>, unknown>(true)
-	// testType.equal<IsNotUndefined<string | boolean, { selection: 'filter' }>, string | boolean>(true)
+	testType.equal<IsNotUndefined<never, { selection: 'filter' }>, never>(true)
+	testType.equal<IsNotUndefined<unknown, { selection: 'filter' }>, unknown>(true)
+	testType.equal<IsNotUndefined<string | boolean, { selection: 'filter' }>, string | boolean>(true)
 
-	// testType.equal<string | never, string>(true)
-	// testType.equal<IsNotUndefined<string | undefined, { selection: 'filter' }>, string>(true)
+	testType.equal<string | never, string>(true)
+	testType.equal<IsNotUndefined<string | undefined, { selection: 'filter' }>, string>(true)
 
 	testType.equal<IsNotUndefined<string | boolean, { selection: 'filter-unknown' }>, string | boolean>(true)
 
