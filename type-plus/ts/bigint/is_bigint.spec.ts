@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type IsBigint } from '../index.js'
+import { testType, type IsBigint, type $Then, type $Else } from '../index.js'
 
 it('returns true for bigint', () => {
 	testType.true<IsBigint<bigint>>(true)
@@ -35,20 +35,42 @@ it('returns false for other types', () => {
 	testType.false<IsBigint<() => void>>(true)
 })
 
-it('returns false for union type', () => {
-	testType.false<IsBigint<bigint | 1>>(true)
+it('distributes for union type', () => {
+	testType.equal<IsBigint<bigint | 1>, boolean>(true)
+	testType.equal<IsBigint<1n | 1>, boolean>(true)
 })
 
 it('returns true for interaction type', () => {
 	testType.true<IsBigint<bigint & { a: 1 }>>(true)
+	testType.true<IsBigint<1n & { a: 1 }>>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<IsBigint<bigint, 1, 2>, 1>(true)
-	testType.equal<IsBigint<0n, 1, 2>, 1>(true)
+it('works as filter', () => {
+	testType.equal<IsBigint<1n, { selection: 'filter' }>, 1n>(true)
 
-	testType.equal<IsBigint<any, 1, 2>, 2>(true)
-	testType.equal<IsBigint<unknown, 1, 2>, 2>(true)
-	testType.equal<IsBigint<never, 1, 2>, 2>(true)
-	testType.equal<IsBigint<void, 1, 2>, 2>(true)
+	testType.equal<IsBigint<never, { selection: 'filter' }>, never>(true)
+	testType.equal<IsBigint<unknown, { selection: 'filter' }>, never>(true)
+	testType.equal<IsBigint<string | boolean, { selection: 'filter' }>, never>(true)
+
+	testType.equal<IsBigint<string | 1n, { selection: 'filter' }>, 1n>(true)
+
+	testType.equal<IsBigint<string | boolean, { selection: 'filter-unknown' }>, unknown>(true)
+	testType.equal<IsBigint<string | 1n, { selection: 'filter-unknown' }>, unknown>(true)
+})
+
+it('can disable union distribution', () => {
+	testType.equal<IsBigint<1n | 1>, boolean>(true)
+	testType.equal<IsBigint<1n | 1, { distributive: false }>, false>(true)
+})
+
+it('works with unique branches', () => {
+	testType.equal<IsBigint<bigint, IsBigint.$Branch>, $Then>(true)
+	testType.equal<IsBigint<1n, IsBigint.$Branch>, $Then>(true)
+
+	testType.equal<IsBigint<any, IsBigint.$Branch>, $Else>(true)
+	testType.equal<IsBigint<unknown, IsBigint.$Branch>, $Else>(true)
+	testType.equal<IsBigint<never, IsBigint.$Branch>, $Else>(true)
+	testType.equal<IsBigint<void, IsBigint.$Branch>, $Else>(true)
+
+	testType.equal<IsBigint<1n | 1, IsBigint.$Branch>, $Then | $Else>(true)
 })

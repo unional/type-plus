@@ -5,6 +5,7 @@ import type { SelectInvertWithDistribute } from '../type_plus/branch/select_inve
  *
  * Validate if `T` is not `undefined`.
  *
+ * @example
  * ```ts
  * type R = IsNotUndefined<undefined> // false
  *

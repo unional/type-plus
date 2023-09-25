@@ -14,5 +14,8 @@ import type { IsNumber } from '../number/number_type.js'
 export type Abs<N extends number | bigint, Fail = never> = IsNumber<
 	N,
 	[number] extends [N] ? Fail : `${N}` extends `-${infer P extends number}` ? P : N,
-	IsBigint<N, [bigint] extends [N] ? Fail : `${N}` extends `-${infer P extends bigint}` ? P : N, Fail>
+	IsBigint<N> extends infer R
+	? R extends true ? [bigint] extends [N] ? Fail : `${N}` extends `-${infer P extends bigint}` ? P : N
+	: Fail
+	: never
 >

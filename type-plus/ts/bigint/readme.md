@@ -2,26 +2,128 @@
 
 `bigint` is a type to represent integers that are too large to be represented by a `number`.
 
-## Type Checking
+## [IsBigint](./is_bigint.ts)
 
-The `BigintType<T>` and friends are used to check if a type is `bigint` or not.
+`IsBigint<T, { distributive: true, selection: 'predicate' | 'filter' | 'filter-unknown', $then: true, $else: false }>`
 
-They are loose type checks, meaning they match `bigint` and bigint literals,
-as well as intersection types.
+🎭 *predicate*
+
+Validate if `T` is `bigint` or `bigint` literals.
 
 ```ts
-import type { BigintType } from 'type-plus'
+type R = isBigint<bigint> // true
+type R = isBigint<1n> // true
 
-type R = BigintType<bigint> // bigint
+type R = isBigint<never> // false
+type R = isBigint<unknown> // false
+type R = isBigint<string | boolean> // false
 
-type R = BigintType<1n> // bigint
-type R = BigintType<bigint & { a: 1}> // bigint
+type R = isBigint<string | bigint> // boolean
 ```
 
-- [`BigintType<T, Then = T, Else = never>`](bigint_type.ts#L15): check if `T` is `bigint` or bigint literal.
-- [`IsBigint<T, Then = true, Else = false`](bigint_type.ts#L33): is `T` `bigint`.
-- [`NotBigintType<T, Then = T, Else = never>`](bigint_type.ts#L47): check if `T` is not `bigint`.
-- [`IsNotBigInt<T, Then = true, Else = false>`](bigint_type.ts#L61): is `T` not `bigint`.
+🔢 *customize*
+
+Filter to ensure `T` is `bigint` or `bigint` literals, otherwise returns `never`.
+
+```ts
+type R = isBigint<bigint, { selection: 'filter' }> // bigint
+type R = isBigint<1n, { selection: 'filter' }> // bigint
+
+type R = isBigint<never, { selection: 'filter' }> // never
+type R = isBigint<unknown, { selection: 'filter' }> // never
+type R = isBigint<string | boolean, { selection: 'filter' }> // never
+
+type R = isBigint<string | bigint> // bigint
+```
+
+🔢 *customize*
+
+Filter to ensure `T` is `bigint` or `bigint` literals, otherwise returns `unknown`.
+
+```ts
+type R = isBigint<string | boolean, { selection: 'filter-unknown' }> // unknown
+type R = isBigint<string | bigint, { selection: 'filter-unknown' }> // unknown
+```
+
+🔢 *customize*:
+
+Disable distribution of union types.
+
+```ts
+type R = isBigint<bigint | 1> // boolean
+type R = isBigint<bigint | 1, { distributive: false }> // false
+```
+
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
+type R = isBigint<bigint, $SelectionBranch> // $Then
+type R = isBigint<string, $SelectionBranch> // $Else
+```
+
+## [IsNotBigint](./is_not_bigint.ts)
+
+`IsNotBigint<T, { distributive: true, selection: 'predicate' | 'filter' | 'filter-unknown', $then: false, $else: true }>`
+
+🎭 *predicate*
+
+Validate if `T` is not `bigint` nor `bigint` literals.
+
+```ts
+type R = IsNotBigint<bigint> // false
+type R = IsNotBigint<1n> // false
+
+type R = IsNotBigint<never> // true
+type R = IsNotBigint<unknown> // true
+type R = IsNotBigint<string | boolean> // true
+```
+
+🔢 *customize*
+
+Filter to ensure `T` is not `bigint` nor `bigint` literals, otherwise returns `never`.
+
+```ts
+type R = IsNotBigint<bigint, { selection: 'filter' }> // never
+type R = IsNotBigint<1n, { selection: 'filter' }> // never
+
+type R = IsNotBigint<never, { selection: 'filter' }> // never
+type R = IsNotBigint<unknown, { selection: 'filter' }> // unknown
+type R = IsNotBigint<string | boolean, { selection: 'filter' }> // string | boolean
+```
+
+🔢 *customize*
+
+Filter to ensure `T` is not `bigint` nor `bigint` literals, otherwise returns `unknown`.
+
+```ts
+type R = IsNotBigint<bigint, { selection: 'filter-unknown' }> // unknown
+type R = IsNotBigint<1n, { selection: 'filter-unknown' }> // unknown
+
+type R = IsNotBigint<string | boolean, { selection: 'filter-unknown' }> // string | boolean
+type R = IsNotBigint<string | bigint, { selection: 'filter-unknown' }> // unknown
+```
+
+🔢 *customize*
+
+Disable distribution of union types.
+
+```ts
+type R = IsNotBigint<bigint | 1> // boolean
+type R = IsNotBigint<bigint | 1, { distributive: false }> // true
+```
+
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
+type R = IsNotBigint<string, $SelectionBranch> // $Then
+type R = IsNotBigint<bigint, $SelectionBranch> // $Else
+```
+
+## Type Checking
 
 ---
 
