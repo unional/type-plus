@@ -1,36 +1,77 @@
-import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
-import type { $Else, $SelectionBranch, $SelectionOptions, $SelectionPredicate, $Then } from '../type_plus/branch/selection.js'
-import type { $InferError } from '../type_plus/infer_error.js'
+import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
+import type { $Else, $ResolveSelection, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 import type { IsUndefined } from '../undefined/is_undefined.js'
 
 /**
  * 🎭 *predicate*
+ *
+ * Validate if `T` is `void`.
+ *
+ * @example
+ * ```ts
+ * type R = IsVoid<void> // true
+ *
+ * type R = IsVoid<never> // false
+ * type R = IsVoid<unknown> // false
+ * type R = IsVoid<string | boolean> // false
+ *
+ * type R = IsVoid<string | void> // boolean
+ * ```
+ *
  * 🔢 *customize*
  *
- * Validate if `T` is exactly `void`.
+ * Filter to ensure `T` is `void`, otherwise returns `never`.
+ *
+ * @example
+ * ```ts
+ * type R = IsVoid<void, { selection: 'filter' }> // void
+ *
+ * type R = IsVoid<never, { selection: 'filter' }> // never
+ * type R = IsVoid<unknown, { selection: 'filter' }> // never
+ * type R = IsVoid<string | boolean, { selection: 'filter' }> // never
+ *
+ * type R = IsVoid<string | void> // void
+ * ```
+ *
+ * 🔢 *customize*
+ *
+ * Filter to ensure `T` is `void`, otherwise returns `unknown`.
+ *
+ * @example
+ * ```ts
+ * type R = IsVoid<string | boolean, { selection: 'filter-unknown' }> // unknown
+ * type R = IsVoid<string | void, { selection: 'filter-unknown' }> // unknown
+ * ```
+ *
+ * 🔢 *customize*:
+ *
+ * Disable distribution of union types.
  *
  * ```ts
- * type R = IsVoid<void> // $Then
+ * type R = IsVoid<void | 1> // boolean
+ * type R = IsVoid<void | 1, { distributive: false }> // false
+ * ```
  *
- * type R = IsVoid<1> // $Else
+ * 🔢 *customize*
  *
- * type R = IsVoid<void, $SelectionPredicate> // true
- * type R = IsVoid<1, $SelectionPredicate> // false
+ * Use unique branch identifiers to allow precise processing of the result.
+ *
+ * @example
+ * ```ts
+ * type R = IsVoid<void, $SelectionBranch> // $Then
+ * type R = IsVoid<string, $SelectionBranch> // $Else
  * ```
  */
 export type IsVoid<
 	T,
-	$O extends $SelectionOptions = $SelectionPredicate
-> = IsAnyOrNever<T, $SelectionBranch> extends infer R1
-	? (R1 extends $Then
-		? $O['$else']
-		: (R1 extends $Else
-			? (IsUndefined<T, $SelectionBranch> extends infer R2
-				? (R2 extends $Then
-					? $O['$else']
-					: (R2 extends $Else
-						? [T] extends [void] ? $O['$then'] : $O['$else']
-						: $InferError<'IsUndefined result', R2>))
-				: never)
-			: never))
+	$O extends IsVoid.$Options = {}
+> = IsUndefined<T, $SelectionBranch> extends infer R
+	? R extends $Then ? $ResolveSelection<$O, T, $Else>
+	: SelectWithDistribute<T, void, $O>
 	: never
+
+export namespace IsVoid {
+	export type $Options = SelectWithDistribute.$Options
+	export type $Default = SelectWithDistribute.$Default
+	export type $Branch = SelectWithDistribute.$Branch
+}

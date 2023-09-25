@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type $SelectionPredicate, type IsVoid } from '../index.js'
+import { testType, type $Else, type $Then, type IsVoid } from '../index.js'
 
 it('returns true for void', () => {
 	testType.equal<IsVoid<void>, true>(true)
@@ -31,19 +31,42 @@ it('returns false for singular types', () => {
 	testType.equal<IsVoid<() => void>, false>(true)
 })
 
-it('returns false for union type', () => {
-	testType.equal<IsVoid<void | 1>, false>(true)
+it('distributes for union type', () => {
+	testType.equal<IsVoid<void | 1>, true | false>(true)
 })
 
 it('returns true for intersection type', () => {
 	testType.equal<IsVoid<void & { a: 1 }>, true>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<IsVoid<void, $SelectionPredicate>, true>(true)
-	testType.equal<IsVoid<0, $SelectionPredicate>, false>(true)
+it('works as filter', () => {
+	testType.equal<IsVoid<void, { selection: 'filter' }>, void>(true)
 
-	testType.equal<IsVoid<any, $SelectionPredicate>, false>(true)
-	testType.equal<IsVoid<unknown, $SelectionPredicate>, false>(true)
-	testType.equal<IsVoid<never, $SelectionPredicate>, false>(true)
+	testType.equal<IsVoid<never, { selection: 'filter' }>, never>(true)
+	testType.equal<IsVoid<unknown, { selection: 'filter' }>, never>(true)
+	testType.equal<IsVoid<string | boolean, { selection: 'filter' }>, never>(true)
+
+	testType.equal<never | void, void>(true)
+	testType.equal<IsVoid<string | void, { selection: 'filter' }>, void>(true)
+
+	testType.equal<IsVoid<string | boolean, { selection: 'filter-unknown' }>, unknown>(true)
+	testType.equal<unknown | void, unknown>(true)
+	testType.equal<IsVoid<string | void, { selection: 'filter-unknown' }>, unknown>(true)
+})
+
+it('can disable union distribution', () => {
+	testType.equal<IsVoid<void | 1>, boolean>(true)
+	testType.equal<IsVoid<void | 1, { distributive: false }>, false>(true)
+})
+
+it('works with unique branches', () => {
+	testType.equal<IsVoid<void, IsVoid.$Branch>, $Then>(true)
+	testType.equal<IsVoid<undefined, IsVoid.$Branch>, $Else>(true)
+
+	testType.equal<IsVoid<any, IsVoid.$Branch>, $Else>(true)
+	testType.equal<IsVoid<unknown, IsVoid.$Branch>, $Else>(true)
+	testType.equal<IsVoid<never, IsVoid.$Branch>, $Else>(true)
+	testType.equal<IsVoid<undefined, IsVoid.$Branch>, $Else>(true)
+
+	testType.equal<IsVoid<undefined | 1, IsVoid.$Branch>, $Then | $Else>(true)
 })

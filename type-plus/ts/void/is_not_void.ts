@@ -1,5 +1,6 @@
-import type { $FlipSelection, $SelectionBranch, $SelectionOptions } from '../type_plus/branch/selection.js'
-import type { IsVoid } from './is_void.js'
+import type { SelectInvertWithDistribute } from '../type_plus/branch/select_invert_with_distribute.js'
+import type { $ResolveSelection, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
+import type { IsUndefined } from '../undefined/is_undefined.js'
 
 /**
  * 🎭 *predicate*
@@ -16,8 +17,16 @@ import type { IsVoid } from './is_void.js'
  * type R = IsNotVoid<void, $SelectionPredicate> // false
  * ```
  */
-
 export type IsNotVoid<
 	T,
-	$O extends $SelectionOptions = $SelectionBranch
-> = IsVoid<T, $FlipSelection<$O>>
+	$O extends IsNotVoid.$Options = {}
+> = IsUndefined<T, $SelectionBranch> extends infer R
+	? R extends $Then ? $ResolveSelection<$O, T, $Then>
+	: SelectInvertWithDistribute<T, void, $O>
+	: never
+
+export namespace IsNotVoid {
+	export type $Options = SelectInvertWithDistribute.$Options
+	export type $Default = SelectInvertWithDistribute.$Default
+	export type $Branch = SelectInvertWithDistribute.$Branch
+}

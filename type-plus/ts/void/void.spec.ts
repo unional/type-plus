@@ -24,7 +24,7 @@ test('union behavior of void', () => {
 	testType.equal<void | any, any>(true)
 	testType.equal<void | unknown, unknown>(true)
 	testType.equal<void | never, void>(true)
-	testType.equal<void | void, void | void>(true)
+	testType.equal<void | void, void>(true)
 })
 
 test('intersection behavior of void', () => {
