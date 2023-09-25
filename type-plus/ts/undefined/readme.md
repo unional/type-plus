@@ -39,11 +39,8 @@ type R = IsUndefined<string | undefined> // undefined
 Filter to ensure `T` is `undefined`, otherwise returns `unknown`.
 
 ```ts
-type R = IsUndefined<undefined, { selection: 'filter-unknown' }> // undefined
-
-type R = IsUndefined<never, { selection: 'filter-unknown' }> // unknown
-type R = IsUndefined<unknown, { selection: 'filter-unknown' }> // unknown
 type R = IsUndefined<string | boolean, { selection: 'filter-unknown' }> // unknown
+type R = IsUndefined<string | undefined, { selection: 'filter-unknown' }> // unknown
 ```
 
 🔢 *customize*:
@@ -98,6 +95,9 @@ Filter to ensure `T` is not `undefined`, otherwise returns `unknown`.
 
 ```ts
 type R = IsNotUndefined<undefined, { selection: 'filter-unknown' }> // unknown
+
+type R = IsNotUndefined<string | boolean, { selection: 'filter-unknown' }> // string | boolean
+type R = IsNotUndefined<string | undefined, { selection: 'filter-unknown' }> // unknown
 ```
 
 🔢 *customize*

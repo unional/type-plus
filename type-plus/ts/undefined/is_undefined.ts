@@ -37,11 +37,8 @@ import type { SelectWithDistribute } from '../type_plus/branch/select_with_distr
  *
  * @example
  * ```ts
- * type R = IsUndefined<undefined, { selection: 'filter-unknown' }> // undefined
- *
- * type R = IsUndefined<never, { selection: 'filter-unknown' }> // unknown
- * type R = IsUndefined<unknown, { selection: 'filter-unknown' }> // unknown
  * type R = IsUndefined<string | boolean, { selection: 'filter-unknown' }> // unknown
+ * type R = IsUndefined<string | undefined, { selection: 'filter-unknown' }> // unknown
  * ```
  *
  * 🔢 *customize*:
