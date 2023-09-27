@@ -1,7 +1,7 @@
 import type { IsAnyOrNever } from '../../mix_types/is_any_or_never.js'
+import type { $ResolveOptions } from '../resolve_options.js'
 import type { $DistributiveDefault, $DistributiveOptions } from './distributive.js'
 import type { $Else, $ResolveSelection, $SelectionBranch, $SelectionOptions, $SelectionPredicate, $Then } from './selection.js'
-import type { $ResolveOptions } from '../resolve_options.js'
 
 /**
  * 🎭 *predicate*
@@ -76,13 +76,19 @@ export type SelectWithDistribute<
 	$SelectionBranch
 > extends infer R
 	? R extends $Then ? $ResolveSelection<$O, T, $Else>
-	: R extends $Else ? ($ResolveOptions<[$O['distributive'], SelectWithDistribute.$Default['distributive']]> extends true
-		? T extends U ? $ResolveSelection<$O, T, $Then> : $ResolveSelection<$O, T, $Else>
-		: [T] extends [U] ? $ResolveSelection<$O, T, $Then> : $ResolveSelection<$O, T, $Else>)
+	: R extends $Else ? (
+		$ResolveOptions<[$O['distributive'], SelectWithDistribute.$Default['distributive']]> extends true
+		? SelectWithDistribute._D<T, U, $O>
+		: SelectWithDistribute._N<T, U, $O>
+	)
 	: never : never
 
 export namespace SelectWithDistribute {
 	export type $Options = $SelectionOptions & $DistributiveOptions
 	export type $Default = $SelectionPredicate & $DistributiveDefault
 	export type $Branch = $SelectionBranch & $DistributiveDefault
+	export type _D<T, U, $O extends SelectWithDistribute.$Options> =
+		T extends U ? $ResolveSelection<$O, T, $Then> : $ResolveSelection<$O, T, $Else>
+	export type _N<T, U, $O extends SelectWithDistribute.$Options> =
+		[T] extends [U] ? $ResolveSelection<$O, T, $Then> : $ResolveSelection<$O, T, $Else>
 }
