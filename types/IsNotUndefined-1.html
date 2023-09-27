@@ -18,10 +18,6 @@
 <div class="tsd-signature"><span class="tsd-kind-type-alias">Is<wbr/>Not<wbr/>Undefined</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">$O</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">SelectInvertWithDistribute</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">$O</span><span class="tsd-signature-symbol">&gt;</span></div>
 <div class="tsd-comment tsd-typography"><p>🎭 <em>predicate</em></p>
 <p>Validate if <code>T</code> is not <code>undefined</code>.</p>
-<pre><code class="language-ts"><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">IsNotUndefined</span><span class="hl-0">&lt;</span><span class="hl-4">undefined</span><span class="hl-0">&gt; </span><span class="hl-6">// false</span><br/><br/><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">IsNotUndefined</span><span class="hl-0">&lt;</span><span class="hl-4">never</span><span class="hl-0">&gt; </span><span class="hl-6">// true</span><br/><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">IsNotUndefined</span><span class="hl-0">&lt;</span><span class="hl-4">unknown</span><span class="hl-0">&gt; </span><span class="hl-6">// true</span><br/><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">IsNotUndefined</span><span class="hl-0">&lt;</span><span class="hl-4">string</span><span class="hl-0"> | </span><span class="hl-4">boolean</span><span class="hl-0">&gt; </span><span class="hl-6">// true</span>
-</code><button>Copy</button></pre>
-<p>🔢 <em>customize</em></p>
-<p>Filter to ensure <code>T</code> is not <code>undefined</code>, otherwise returns <code>never</code>.</p>
 </div>
 <section class="tsd-panel">
 <h4>Type Parameters</h4>
@@ -31,6 +27,11 @@
 <li>
 <h4><span class="tsd-kind-type-parameter">$O</span><span class="tsd-signature-symbol"> extends </span><a href="../modules/IsNotUndefined.html" class="tsd-signature-type tsd-kind-namespace">IsNotUndefined</a><span class="tsd-signature-symbol">.</span><a href="IsNotUndefined._Options.html" class="tsd-signature-type tsd-kind-type-alias">$Options</a> = <span class="tsd-signature-symbol">{}</span></h4></li></ul></section>
 <div class="tsd-comment tsd-typography">
+<h4>Example</h4><pre><code class="language-ts"><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">IsNotUndefined</span><span class="hl-0">&lt;</span><span class="hl-4">undefined</span><span class="hl-0">&gt; </span><span class="hl-6">// false</span><br/><br/><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">IsNotUndefined</span><span class="hl-0">&lt;</span><span class="hl-4">never</span><span class="hl-0">&gt; </span><span class="hl-6">// true</span><br/><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">IsNotUndefined</span><span class="hl-0">&lt;</span><span class="hl-4">unknown</span><span class="hl-0">&gt; </span><span class="hl-6">// true</span><br/><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">IsNotUndefined</span><span class="hl-0">&lt;</span><span class="hl-4">string</span><span class="hl-0"> | </span><span class="hl-4">boolean</span><span class="hl-0">&gt; </span><span class="hl-6">// true</span>
+</code><button>Copy</button></pre>
+<p>🔢 <em>customize</em></p>
+<p>Filter to ensure <code>T</code> is not <code>undefined</code>, otherwise returns <code>never</code>.</p>
+
 <h4>Example</h4><pre><code class="language-ts"><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">IsNotUndefined</span><span class="hl-0">&lt;</span><span class="hl-4">undefined</span><span class="hl-0">, { </span><span class="hl-8">selection</span><span class="hl-0">: </span><span class="hl-1">&#39;filter&#39;</span><span class="hl-0"> }&gt; </span><span class="hl-6">// never</span><br/><br/><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">IsNotUndefined</span><span class="hl-0">&lt;</span><span class="hl-4">never</span><span class="hl-0">, { </span><span class="hl-8">selection</span><span class="hl-0">: </span><span class="hl-1">&#39;filter&#39;</span><span class="hl-0"> }&gt; </span><span class="hl-6">// never</span><br/><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">IsNotUndefined</span><span class="hl-0">&lt;</span><span class="hl-4">unknown</span><span class="hl-0">, { </span><span class="hl-8">selection</span><span class="hl-0">: </span><span class="hl-1">&#39;filter&#39;</span><span class="hl-0"> }&gt; </span><span class="hl-6">// unknown</span><br/><span class="hl-2">type</span><span class="hl-0"> </span><span class="hl-4">R</span><span class="hl-0"> = </span><span class="hl-4">IsNotUndefined</span><span class="hl-0">&lt;</span><span class="hl-4">string</span><span class="hl-0"> | </span><span class="hl-4">boolean</span><span class="hl-0">, { </span><span class="hl-8">selection</span><span class="hl-0">: </span><span class="hl-1">&#39;filter&#39;</span><span class="hl-0"> }&gt; </span><span class="hl-6">// string | boolean</span>
 </code><button>Copy</button></pre>
 <p>🔢 <em>customize</em></p>
@@ -50,8 +51,8 @@
 </code><button>Copy</button></pre>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/215ca1171/type-plus/ts/undefined/is_not_undefined.ts#L61">type-plus/ts/undefined/is_not_undefined.ts:61</a></li>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/215ca1171/type-plus/ts/undefined/is_not_undefined.ts#L63">type-plus/ts/undefined/is_not_undefined.ts:63</a></li></ul></aside></div>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/de546a296/type-plus/ts/undefined/is_not_undefined.ts#L62">type-plus/ts/undefined/is_not_undefined.ts:62</a></li>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/de546a296/type-plus/ts/undefined/is_not_undefined.ts#L64">type-plus/ts/undefined/is_not_undefined.ts:64</a></li></ul></aside></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -105,7 +106,9 @@
 <li><a href="../modules/DropLast.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Drop<wbr/>Last</span></a></li>
 <li><a href="../modules/FindFirst.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Find<wbr/>First</span></a></li>
 <li><a href="../modules/Head.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Head</span></a></li>
+<li><a href="../modules/IsBigint.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Bigint</span></a></li>
 <li><a href="../modules/IsNever.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Never</span></a></li>
+<li><a href="../modules/IsNotBigint.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Bigint</span></a></li>
 <li><a href="../modules/IsNotNever.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Never</span></a></li>
 <li><a href="../modules/IsNotNull.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Null</span></a></li>
 <li><a href="../modules/IsNotUndefined.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Undefined</span></a></li>
@@ -174,7 +177,6 @@
 <li><a href="At.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>At</span></a></li>
 <li><a href="AwaitedProp.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Awaited<wbr/>Prop</span></a></li>
 <li><a href="BNotA.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>BNotA</span></a></li>
-<li><a href="BigintType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Bigint<wbr/>Type</span></a></li>
 <li><a href="BooleanType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Boolean<wbr/>Type</span></a></li>
 <li><a href="Box-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Box</span></a></li>
 <li><a href="Brand.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Brand</span></a></li>
@@ -221,7 +223,7 @@
 <li><a href="IsAnyOrNever.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Any<wbr/>Or<wbr/>Never</span></a></li>
 <li><a href="IsArray.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Array</span></a></li>
 <li><a href="IsAssign.html" class="deprecated"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Assign</span></a></li>
-<li><a href="IsBigint.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Bigint</span></a></li>
+<li><a href="IsBigint-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Bigint</span></a></li>
 <li><a href="IsBoolean.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Boolean</span></a></li>
 <li><a href="IsDisjoint.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Disjoint</span></a></li>
 <li><a href="IsEmptyObject.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Empty<wbr/>Object</span></a></li>
@@ -234,7 +236,7 @@
 <li><a href="IsNever-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Never</span></a></li>
 <li><a href="IsNotAny.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Any</span></a></li>
 <li><a href="IsNotArray.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Array</span></a></li>
-<li><a href="IsNotBigint.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Bigint</span></a></li>
+<li><a href="IsNotBigint-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Bigint</span></a></li>
 <li><a href="IsNotBoolean.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Boolean</span></a></li>
 <li><a href="IsNotEqual.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Equal</span></a></li>
 <li><a href="IsNotExtend.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Extend</span></a></li>
@@ -295,7 +297,6 @@
 <li><a href="NonComposableTypes.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Non<wbr/>Composable<wbr/>Types</span></a></li>
 <li><a href="Not.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not</span></a></li>
 <li><a href="NotArrayType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>Array<wbr/>Type</span></a></li>
-<li><a href="NotBigintType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>Bigint<wbr/>Type</span></a></li>
 <li><a href="NotBooleanType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>Boolean<wbr/>Type</span></a></li>
 <li><a href="NotEqual.html" class="deprecated"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>Equal</span></a></li>
 <li><a href="NotExtendable.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Not<wbr/>Extendable</span></a></li>
