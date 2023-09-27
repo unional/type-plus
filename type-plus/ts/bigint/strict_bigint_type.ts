@@ -32,7 +32,13 @@ export type StrictBigintType<T, Then = T, Else = never> = IsAnyOrNever<
  * type R = IsStrictBigint<unknown> // false
  * ```
  */
-export type IsStrictBigint<T, Then = true, Else = false> = StrictBigintType<T, Then, Else>
+export type IsStrictBigint<T, Then = true, Else = false> = IsAnyOrNever<
+	T,
+	$SelectionBranch> extends infer R
+	? R extends $Then ? Else
+	: R extends $Else ? [bigint] extends [T] ? ([T] extends [bigint] ? (`${T}` extends `${number}` ? Else : Then) : Else) : Else
+	: never : never
+
 
 /**
  * Check if the type `T` is not exactly `bigint`.
@@ -60,4 +66,10 @@ export type NotStrictBigintType<T, Then = T, Else = never> = StrictBigintType<T,
  * type R = IsNotStrictBigint<unknown> // true
  * ```
  */
-export type IsNotStrictBigint<T, Then = true, Else = false> = StrictBigintType<T, Else, Then>
+export type IsNotStrictBigint<T, Then = true, Else = false> = IsAnyOrNever<
+	T,
+	$SelectionBranch> extends infer R
+	? R extends $Then ? Then
+	: R extends $Else ? [bigint] extends [T] ? ([T] extends [bigint] ? (`${T}` extends `${number}` ? Then : Else) : Then) : Then
+	: never : never
+
