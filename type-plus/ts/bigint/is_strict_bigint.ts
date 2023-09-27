@@ -4,15 +4,55 @@ import type { $Else, $ResolveSelection, $SelectionBranch, $Then } from '../type_
 import type { $ResolveOptions } from '../type_plus/resolve_options.js'
 
 /**
- * Is the type `T` exactly `bigint`.
+ * 🎭 *predicate*
  *
+ * Validate if `T` is `bigint`, excluding bigint literal.
+ *
+ * @example
  * ```ts
  * type R = IsStrictBigint<bigint> // true
  *
  * type R = IsStrictBigint<1n> // false
- * type R = IsStrictBigint<number> // false
- * type R = IsStrictBigint<bigint | boolean> // false
+ * type R = IsStrictBigint<never> // false
  * type R = IsStrictBigint<unknown> // false
+ * type R = IsStrictBigint<string | boolean> // false
+ *
+ * type R = IsStrictBigint<string | bigint> // boolean
+ * ```
+ *
+ * 🔢 *customize*
+ *
+ * Filter to ensure `T` is `bigint`, excluding bigint literal, otherwise returns `never`.
+ *
+ * @example
+ * ```ts
+ * type R = IsStrictBigint<bigint, { selection: 'filter' }> // bigint
+ *
+ * type R = IsStrictBigint<1n, { selection: 'filter' }> // never
+ * type R = IsStrictBigint<never, { selection: 'filter' }> // never
+ * type R = IsStrictBigint<unknown, { selection: 'filter' }> // never
+ * type R = IsStrictBigint<string | boolean, { selection: 'filter' }> // never
+ *
+ * type R = IsStrictBigint<string | bigint> // bigint
+ * ```
+ *
+ * 🔢 *customize*:
+ *
+ * Disable distribution of union types.
+ *
+ * ```ts
+ * type R = IsStrictBigint<bigint | 1> // boolean
+ * type R = IsStrictBigint<bigint | 1, { distributive: false }> // false
+ * ```
+ *
+ * 🔢 *customize*
+ *
+ * Use unique branch identifiers to allow precise processing of the result.
+ *
+ * @example
+ * ```ts
+ * type R = IsStrictBigint<bigint, $SelectionBranch> // $Then
+ * type R = IsStrictBigint<string, $SelectionBranch> // $Else
  * ```
  */
 export type IsStrictBigint<

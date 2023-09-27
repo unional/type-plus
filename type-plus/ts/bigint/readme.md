@@ -11,14 +11,14 @@
 Validate if `T` is `bigint` or `bigint` literals.
 
 ```ts
-type R = isBigint<bigint> // true
-type R = isBigint<1n> // true
+type R = IsBigint<bigint> // true
+type R = IsBigint<1n> // true
 
-type R = isBigint<never> // false
-type R = isBigint<unknown> // false
-type R = isBigint<string | boolean> // false
+type R = IsBigint<never> // false
+type R = IsBigint<unknown> // false
+type R = IsBigint<string | boolean> // false
 
-type R = isBigint<string | bigint> // boolean
+type R = IsBigint<string | bigint> // boolean
 ```
 
 🔢 *customize*
@@ -26,14 +26,14 @@ type R = isBigint<string | bigint> // boolean
 Filter to ensure `T` is `bigint` or `bigint` literals, otherwise returns `never`.
 
 ```ts
-type R = isBigint<bigint, { selection: 'filter' }> // bigint
-type R = isBigint<1n, { selection: 'filter' }> // bigint
+type R = IsBigint<bigint, { selection: 'filter' }> // bigint
+type R = IsBigint<1n, { selection: 'filter' }> // bigint
 
-type R = isBigint<never, { selection: 'filter' }> // never
-type R = isBigint<unknown, { selection: 'filter' }> // never
-type R = isBigint<string | boolean, { selection: 'filter' }> // never
+type R = IsBigint<never, { selection: 'filter' }> // never
+type R = IsBigint<unknown, { selection: 'filter' }> // never
+type R = IsBigint<string | boolean, { selection: 'filter' }> // never
 
-type R = isBigint<string | bigint> // bigint
+type R = IsBigint<string | bigint> // bigint
 ```
 
 🔢 *customize*:
@@ -41,8 +41,8 @@ type R = isBigint<string | bigint> // bigint
 Disable distribution of union types.
 
 ```ts
-type R = isBigint<bigint | 1> // boolean
-type R = isBigint<bigint | 1, { distributive: false }> // false
+type R = IsBigint<bigint | 1> // boolean
+type R = IsBigint<bigint | 1, { distributive: false }> // false
 ```
 
 🔢 *customize*
@@ -50,8 +50,8 @@ type R = isBigint<bigint | 1, { distributive: false }> // false
 Use unique branch identifiers to allow precise processing of the result.
 
 ```ts
-type R = isBigint<bigint, $SelectionBranch> // $Then
-type R = isBigint<string, $SelectionBranch> // $Else
+type R = IsBigint<bigint, $SelectionBranch> // $Then
+type R = IsBigint<string, $SelectionBranch> // $Else
 ```
 
 ## [IsNotBigint](./is_not_bigint.ts)
@@ -102,28 +102,106 @@ type R = IsNotBigint<string, $SelectionBranch> // $Then
 type R = IsNotBigint<bigint, $SelectionBranch> // $Else
 ```
 
-## Type Checking
+## [IsStrictBigint](./is_strict_bigint.ts)
 
----
+`IsStrictBigint<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
-The `StrictBigintType<T>` and friends are used to check if a type is exactly `bigint` or not.
+🎭 *predicate*
 
-They are strict type checks, meaning they match only the type `bigint`,
-and not bigint literals or intersection types.
+Validate if `T` is `bigint`, excluding bigint literal.
 
 ```ts
-import type { StrictBigintType } from 'type-plus'
+type R = IsStrictBigint<bigint> // true
 
-type R = StrictBigintType<bigint> // bigint
+type R = IsStrictBigint<1n> // false
+type R = IsStrictBigint<never> // false
+type R = IsStrictBigint<unknown> // false
+type R = IsStrictBigint<string | boolean> // false
 
-type R = StrictBigintType<1n> // never
-type R = StrictBigintType<bigint & { a: 1}> // never
+type R = IsStrictBigint<string | bigint> // boolean
 ```
 
-- [`StrictBigintType<T, Then = T, Else = never>`](strict_bigint_type.ts#L15): check if `T` is exactly `bigint`.
-- [`IsStrictBigint<T, Then = true, Else = false`](strict_bigint_type.ts#L33): is `T` exactly `bigint`.
-- [`NotStrictBigintType<T, Then = T, Else = never>`](strict_bigint_type.ts#L47): check if `T` is not exactly `bigint`.
-- [`IsNotStrictBigint<T, Then = true, Else = false>`](strict_bigint_type.ts#L61): is `T` not exactly `bigint`.
+🔢 *customize*
+
+Filter to ensure `T` is `bigint`, excluding bigint literal, otherwise returns `never`.
+
+```ts
+type R = IsStrictBigint<bigint, { selection: 'filter' }> // bigint
+
+type R = IsStrictBigint<1n, { selection: 'filter' }> // never
+type R = IsStrictBigint<never, { selection: 'filter' }> // never
+type R = IsStrictBigint<unknown, { selection: 'filter' }> // never
+type R = IsStrictBigint<string | boolean, { selection: 'filter' }> // never
+
+type R = IsStrictBigint<string | bigint> // bigint
+```
+
+🔢 *customize*:
+
+Disable distribution of union types.
+
+```ts
+type R = IsStrictBigint<bigint | 1> // boolean
+type R = IsStrictBigint<bigint | 1, { distributive: false }> // false
+```
+
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
+type R = IsStrictBigint<bigint, $SelectionBranch> // $Then
+type R = IsStrictBigint<string, $SelectionBranch> // $Else
+```
+
+## [IsNotStrictBigint](./is_not_strict_bigint.ts)
+
+`IsNotStrictBigint<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
+
+/**
+🎭 *predicate*
+
+Validate if `T` is not strictly `bigint`, but accept `bigint` literal.
+
+```ts
+type R = IsNotStrictBigint<bigint> // false
+type R = IsNotStrictBigint<1n> // true
+
+type R = IsNotStrictBigint<never> // true
+type R = IsNotStrictBigint<unknown> // true
+type R = IsNotStrictBigint<string | boolean> // true
+```
+
+🔢 *customize*
+
+Filter to ensure `T` is not strictly `bigint`, but accept `bigint` literal, otherwise returns `never`.
+
+```ts
+type R = IsNotStrictBigint<bigint, { selection: 'filter' }> // never
+type R = IsNotStrictBigint<1n, { selection: 'filter' }> // 1n
+
+type R = IsNotStrictBigint<never, { selection: 'filter' }> // never
+type R = IsNotStrictBigint<unknown, { selection: 'filter' }> // unknown
+type R = IsNotStrictBigint<string | boolean, { selection: 'filter' }> // string | boolean
+```
+
+🔢 *customize*
+
+Disable distribution of union types.
+
+```ts
+type R = IsNotStrictBigint<bigint | 1> // boolean
+type R = IsNotStrictBigint<bigint | 1, { distributive: false }> // true
+```
+
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
+type R = IsNotStrictBigint<string, $SelectionBranch> // $Then
+type R = IsNotStrictBigint<bigint, $SelectionBranch> // $Else
+```
 
 ## References
 

@@ -7,14 +7,14 @@ import type { SelectWithDistribute } from '../type_plus/branch/select_with_distr
  *
  * @example
  * ```ts
- * type R = isBigint<bigint> // true
- * type R = isBigint<1n> // true
+ * type R = IsBigint<bigint> // true
+ * type R = IsBigint<1n> // true
  *
- * type R = isBigint<never> // false
- * type R = isBigint<unknown> // false
- * type R = isBigint<string | boolean> // false
+ * type R = IsBigint<never> // false
+ * type R = IsBigint<unknown> // false
+ * type R = IsBigint<string | boolean> // false
  *
- * type R = isBigint<string | bigint> // boolean
+ * type R = IsBigint<string | bigint> // boolean
  * ```
  *
  * 🔢 *customize*
@@ -23,14 +23,14 @@ import type { SelectWithDistribute } from '../type_plus/branch/select_with_distr
  *
  * @example
  * ```ts
- * type R = isBigint<bigint, { selection: 'filter' }> // bigint
- * type R = isBigint<1n, { selection: 'filter' }> // bigint
+ * type R = IsBigint<bigint, { selection: 'filter' }> // bigint
+ * type R = IsBigint<1n, { selection: 'filter' }> // bigint
  *
- * type R = isBigint<never, { selection: 'filter' }> // never
- * type R = isBigint<unknown, { selection: 'filter' }> // never
- * type R = isBigint<string | boolean, { selection: 'filter' }> // never
+ * type R = IsBigint<never, { selection: 'filter' }> // never
+ * type R = IsBigint<unknown, { selection: 'filter' }> // never
+ * type R = IsBigint<string | boolean, { selection: 'filter' }> // never
  *
- * type R = isBigint<string | bigint> // bigint
+ * type R = IsBigint<string | bigint> // bigint
  * ```
  *
  * 🔢 *customize*:
@@ -38,8 +38,8 @@ import type { SelectWithDistribute } from '../type_plus/branch/select_with_distr
  * Disable distribution of union types.
  *
  * ```ts
- * type R = isBigint<bigint | 1> // boolean
- * type R = isBigint<bigint | 1, { distributive: false }> // false
+ * type R = IsBigint<bigint | 1> // boolean
+ * type R = IsBigint<bigint | 1, { distributive: false }> // false
  * ```
  *
  * 🔢 *customize*
@@ -48,8 +48,8 @@ import type { SelectWithDistribute } from '../type_plus/branch/select_with_distr
  *
  * @example
  * ```ts
- * type R = isBigint<bigint, $SelectionBranch> // $Then
- * type R = isBigint<string, $SelectionBranch> // $Else
+ * type R = IsBigint<bigint, $SelectionBranch> // $Then
+ * type R = IsBigint<string, $SelectionBranch> // $Else
  * ```
  */
 export type IsBigint<T, $O extends IsBigint.$Options = {}> = SelectWithDistribute<T, bigint, $O>
