@@ -35,19 +35,6 @@ import type { $Else, $ResolveSelection, $SelectionBranch, $SelectionOptions, $Se
  * type R = SelectInvertWithDistribute<string | undefined, undefined> // undefined
  * ```
  *
- * 🔢 *customize*
- *
- * Filter to ensure `T` is `U`, otherwise returns `unknown`.
- *
- * @example
- * ```ts
- * type R = SelectInvertWithDistribute<undefined, undefined, { selection: 'filter-unknown' }> // undefined
- *
- * type R = SelectInvertWithDistribute<never, undefined, { selection: 'filter-unknown' }> // unknown
- * type R = SelectInvertWithDistribute<unknown, undefined, { selection: 'filter-unknown' }> // unknown
- * type R = SelectInvertWithDistribute<string | boolean, undefined, { selection: 'filter-unknown' }> // unknown
- * ```
- *
  * 🔢 *customize*:
  *
  * Disable distribution of union types.

@@ -31,15 +31,6 @@ import type { $NotNever } from './never.js'
  *
  * 🔢 *customize*
  *
- * Filter to ensure `T` is `never`, otherwise returns `unknown`.
- *
- * @example
- * ```ts
- * type R = IsNever<1, { selection: 'filter-unknown' }> // unknown
- * ```
- *
- * 🔢 *customize*
- *
  * Use unique branch identifiers to allow precise processing of the result.
  *
  * @example
@@ -52,21 +43,9 @@ export type IsNever<
 	T,
 	$O extends IsNever.$Options = {}
 > = [T, never] extends [never, T]
-	? $ResolveOptions<[$O['$then'], $O['selection'] extends 'filter' | 'filter-unknown' ? T : true]>
-	: $ResolveOptions<[$O['$else'], $O['selection'] extends 'filter'
-		? $NotNever
-		: $O['selection'] extends 'filter-unknown' ? unknown : false]>
-
+	? $ResolveOptions<[$O['$then'], $O['selection'] extends 'filter' ? T : true]>
+	: $ResolveOptions<[$O['$else'], $O['selection'] extends 'filter' ? $NotNever : false]>
 
 export namespace IsNever {
-	export type $Options = Omit<$SelectionOptions, 'selection'> & {
-		/**
-		 * On top of `selection` values from `$SelectionOptions`,
-		 *
-		 * it also support:
-		 *
-		 * `filter-unknown` which returns `unknown` when `T` is `never`
-		 */
-		selection?: 'predicate' | 'filter' | 'filter-unknown' | undefined
-	}
+	export type $Options = $SelectionOptions
 }

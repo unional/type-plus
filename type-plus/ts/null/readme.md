@@ -6,7 +6,7 @@ Most of the time it is used when working with objects from JSON.
 
 ## [IsNull](./is_null.ts)
 
-`IsNull<T, { distributive: true, selection: 'predicate' | 'filter' | 'filter-unknown', $then: true, $else: false }>`
+`IsNull<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
 
@@ -36,18 +36,6 @@ type R = IsNull<string | boolean, { selection: 'filter' }> // never
 type R = IsNull<string | null> // null
 ```
 
-🔢 *customize*
-
-Filter to ensure `T` is `null`, otherwise returns `unknown`.
-
-```ts
-type R = IsNull<null, { selection: 'filter-unknown' }> // null
-
-type R = IsNull<never, { selection: 'filter-unknown' }> // unknown
-type R = IsNull<unknown, { selection: 'filter-unknown' }> // unknown
-type R = IsNull<string | boolean, { selection: 'filter-unknown' }> // unknown
-```
-
 🔢 *customize*:
 
 Disable distribution of union types.
@@ -68,7 +56,7 @@ type R = IsNull<string, $SelectionBranch> // $Else
 
 ## [IsNotnull](./is_not_null.ts)
 
-`IsNotnull<T, { distributive: true, selection: 'predicate' | 'filter' | 'filter-unknown', $then: true, $else: false }>`
+`IsNotnull<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
 
@@ -92,14 +80,6 @@ type R = IsNotnull<null, { selection: 'filter' }> // never
 type R = IsNotnull<never, { selection: 'filter' }> // never
 type R = IsNotnull<unknown, { selection: 'filter' }> // unknown
 type R = IsNotnull<string | boolean, { selection: 'filter' }> // string | boolean
-```
-
-🔢 *customize*
-
-Filter to ensure `T` is not `null`, otherwise returns `unknown`.
-
-```ts
-type R = IsNotnull<null, { selection: 'filter-unknown' }> // unknown
 ```
 
 🔢 *customize*

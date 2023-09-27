@@ -29,14 +29,11 @@ export type $SelectionOptions = {
 	 * `filter` returns `T` when the condition is met,
 	 * and returns `never` otherwise.
 	 *
-	 * `filter-unknown` returns `T` when the condition is met,
-	 * and returns `unknown` otherwise.
-	 *
 	 * `predicate` returns boolean depends on the condition.
 	 *
 	 * Note that setting `$then` and `$else` overrides the default selection logic.
 	 */
-	selection?: 'predicate' | 'filter' | 'filter-unknown' | undefined,
+	selection?: 'predicate' | 'filter' | undefined,
 	$then?: unknown,
 	$else?: unknown,
 }
@@ -119,10 +116,10 @@ export type $SelectionFilter<T> = {
 }
 
 export type $ResolveSelection<$O extends $SelectionOptions, T, Branch extends $Then | $Else> =
-	Branch extends $Then ? $ResolveOptions<[$O['$then'], $O['selection'] extends 'filter' | 'filter-unknown' ? T : true]>
+	Branch extends $Then ? $ResolveOptions<[$O['$then'], $O['selection'] extends 'filter' ? T : true]>
 	: Branch extends $Else ? ($ResolveOptions<[$O['$else'], $O['selection'] extends 'filter'
 		? never
-		: $O['selection'] extends 'filter-unknown' ? unknown : false]>)
+		: false]>)
 	: never
 
 /**

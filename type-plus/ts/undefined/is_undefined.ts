@@ -31,16 +31,6 @@ import type { SelectWithDistribute } from '../type_plus/branch/select_with_distr
  * type R = IsUndefined<string | undefined> // undefined
  * ```
  *
- * 🔢 *customize*
- *
- * Filter to ensure `T` is `undefined`, otherwise returns `unknown`.
- *
- * @example
- * ```ts
- * type R = IsUndefined<string | boolean, { selection: 'filter-unknown' }> // unknown
- * type R = IsUndefined<string | undefined, { selection: 'filter-unknown' }> // unknown
- * ```
- *
  * 🔢 *customize*:
  *
  * Disable distribution of union types.

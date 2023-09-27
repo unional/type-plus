@@ -4,7 +4,7 @@
 
 ## [IsUndefined](./is_undefined.ts)
 
-`IsUndefined<T, { distributive: true, selection: 'predicate' | 'filter' | 'filter-unknown', $then: true, $else: false }>`
+`IsUndefined<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
 
@@ -34,15 +34,6 @@ type R = IsUndefined<string | boolean, { selection: 'filter' }> // never
 type R = IsUndefined<string | undefined> // undefined
 ```
 
-🔢 *customize*
-
-Filter to ensure `T` is `undefined`, otherwise returns `unknown`.
-
-```ts
-type R = IsUndefined<string | boolean, { selection: 'filter-unknown' }> // unknown
-type R = IsUndefined<string | undefined, { selection: 'filter-unknown' }> // unknown
-```
-
 🔢 *customize*:
 
 Disable distribution of union types.
@@ -63,7 +54,7 @@ type R = IsUndefined<string, $SelectionBranch> // $Else
 
 ## [IsNotUndefined](./is_not_undefined.ts)
 
-`IsNotUndefined<T, { distributive: true, selection: 'predicate' | 'filter' | 'filter-unknown', $then: true, $else: false }>`
+`IsNotUndefined<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
 
@@ -87,17 +78,6 @@ type R = IsNotUndefined<undefined, { selection: 'filter' }> // never
 type R = IsNotUndefined<never, { selection: 'filter' }> // never
 type R = IsNotUndefined<unknown, { selection: 'filter' }> // unknown
 type R = IsNotUndefined<string | boolean, { selection: 'filter' }> // string | boolean
-```
-
-🔢 *customize*
-
-Filter to ensure `T` is not `undefined`, otherwise returns `unknown`.
-
-```ts
-type R = IsNotUndefined<undefined, { selection: 'filter-unknown' }> // unknown
-
-type R = IsNotUndefined<string | boolean, { selection: 'filter-unknown' }> // string | boolean
-type R = IsNotUndefined<string | undefined, { selection: 'filter-unknown' }> // unknown
 ```
 
 🔢 *customize*

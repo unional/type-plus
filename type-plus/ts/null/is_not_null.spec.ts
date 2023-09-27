@@ -38,9 +38,6 @@ it('works as filter', () => {
 	testType.equal<IsNotNull<string | boolean, { selection: 'filter' }>, string | boolean>(true)
 
 	testType.equal<IsNotNull<string | null, { selection: 'filter' }>, string>(true)
-
-	testType.equal<IsNotNull<string | boolean, { selection: 'filter-unknown' }>, string | boolean>(true)
-	testType.equal<IsNotNull<string | null, { selection: 'filter-unknown' }>, unknown>(true)
 })
 
 it('can disable union distribution', () => {

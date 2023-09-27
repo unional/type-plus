@@ -72,8 +72,6 @@ it('works as filter', () => {
 	testType.equal<IsNotUnknown<string | boolean, { selection: 'filter' }>, string | boolean>(true)
 
 	testType.equal<IsNotUnknown<string | unknown, { selection: 'filter' }>, never>(true)
-
-	testType.equal<IsNotUnknown<string | boolean, { selection: 'filter-unknown' }>, string | boolean>(true)
 })
 
 it('works with unique branches', () => {

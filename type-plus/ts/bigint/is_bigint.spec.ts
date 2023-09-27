@@ -53,9 +53,6 @@ it('works as filter', () => {
 	testType.equal<IsBigint<string | boolean, { selection: 'filter' }>, never>(true)
 
 	testType.equal<IsBigint<string | 1n, { selection: 'filter' }>, 1n>(true)
-
-	testType.equal<IsBigint<string | boolean, { selection: 'filter-unknown' }>, unknown>(true)
-	testType.equal<IsBigint<string | 1n, { selection: 'filter-unknown' }>, unknown>(true)
 })
 
 it('can disable union distribution', () => {

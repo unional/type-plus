@@ -33,16 +33,6 @@ import type { SelectWithDistribute } from '../type_plus/branch/select_with_distr
  * type R = isBigint<string | bigint> // bigint
  * ```
  *
- * 🔢 *customize*
- *
- * Filter to ensure `T` is `bigint` or `bigint` literals, otherwise returns `unknown`.
- *
- * @example
- * ```ts
- * type R = isBigint<string | boolean, { selection: 'filter-unknown' }> // unknown
- * type R = isBigint<string | bigint, { selection: 'filter-unknown' }> // unknown
- * ```
- *
  * 🔢 *customize*:
  *
  * Disable distribution of union types.

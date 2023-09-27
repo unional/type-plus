@@ -29,18 +29,6 @@ import type { SelectInvertWithDistribute } from '../type_plus/branch/select_inve
  *
  * 🔢 *customize*
  *
- * Filter to ensure `T` is not `undefined`, otherwise returns `unknown`.
- *
- * @example
- * ```ts
- * type R = IsNotUndefined<undefined, { selection: 'filter-unknown' }> // unknown
- *
- * type R = IsNotUndefined<string | boolean, { selection: 'filter-unknown' }> // string | boolean
- * type R = IsNotUndefined<string | undefined, { selection: 'filter-unknown' }> // unknown
- * ```
- *
- * 🔢 *customize*
- *
  * Disable distribution of union types.
  *
  * @example

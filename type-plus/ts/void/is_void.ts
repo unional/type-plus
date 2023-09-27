@@ -33,16 +33,6 @@ import type { IsUndefined } from '../undefined/is_undefined.js'
  * type R = IsVoid<string | void> // void
  * ```
  *
- * 🔢 *customize*
- *
- * Filter to ensure `T` is `void`, otherwise returns `unknown`.
- *
- * @example
- * ```ts
- * type R = IsVoid<string | boolean, { selection: 'filter-unknown' }> // unknown
- * type R = IsVoid<string | void, { selection: 'filter-unknown' }> // unknown
- * ```
- *
  * 🔢 *customize*:
  *
  * Disable distribution of union types.

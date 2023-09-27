@@ -46,10 +46,6 @@ it('works as filter', () => {
 
 	testType.equal<string | never, string>(true)
 	testType.equal<IsNotVoid<string | void, { selection: 'filter' }>, string>(true)
-
-	testType.equal<IsNotVoid<string | boolean, { selection: 'filter-unknown' }>, string | boolean>(true)
-	testType.equal<string | unknown, unknown>(true)
-	testType.equal<IsNotVoid<string | void, { selection: 'filter-unknown' }>, unknown>(true)
 })
 
 it('can disable union distribution', () => {

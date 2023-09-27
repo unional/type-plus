@@ -31,19 +31,6 @@ import type { SelectWithDistribute } from '../type_plus/branch/select_with_distr
  * type R = IsNull<string | null> // null
  * ```
  *
- * 🔢 *customize*
- *
- * Filter to ensure `T` is `null`, otherwise returns `unknown`.
- *
- * @example
- * ```ts
- * type R = IsNull<null, { selection: 'filter-unknown' }> // null
- *
- * type R = IsNull<never, { selection: 'filter-unknown' }> // unknown
- * type R = IsNull<unknown, { selection: 'filter-unknown' }> // unknown
- * type R = IsNull<string | boolean, { selection: 'filter-unknown' }> // unknown
- * ```
- *
  * 🔢 *customize*:
  *
  * Disable distribution of union types.

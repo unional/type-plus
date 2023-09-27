@@ -55,9 +55,6 @@ it('works as filter', () => {
 	testType.equal<IsNotStrictBigint<string | boolean, { selection: 'filter' }>, string | boolean>(true)
 
 	testType.equal<IsNotStrictBigint<string | bigint, { selection: 'filter' }>, string>(true)
-
-	testType.equal<IsNotStrictBigint<string | boolean, { selection: 'filter-unknown' }>, string | boolean>(true)
-	testType.equal<IsNotStrictBigint<string | bigint, { selection: 'filter-unknown' }>, unknown>(true)
 })
 
 it('works with unique branches', () => {

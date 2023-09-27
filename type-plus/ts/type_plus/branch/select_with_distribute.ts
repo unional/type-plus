@@ -35,19 +35,6 @@ import type { $Else, $ResolveSelection, $SelectionBranch, $SelectionOptions, $Se
  * type R = SelectWithDistribute<string | undefined, undefined> // undefined
  * ```
  *
- * 🔢 *customize*
- *
- * Filter to ensure `T` is `U`, otherwise returns `unknown`.
- *
- * @example
- * ```ts
- * type R = SelectWithDistribute<undefined, undefined, { selection: 'filter-unknown' }> // undefined
- *
- * type R = SelectWithDistribute<never, undefined, { selection: 'filter-unknown' }> // unknown
- * type R = SelectWithDistribute<unknown, undefined, { selection: 'filter-unknown' }> // unknown
- * type R = SelectWithDistribute<string | boolean, undefined, { selection: 'filter-unknown' }> // unknown
- * ```
- *
  * 🔢 *customize*:
  *
  * Disable distribution of union types.

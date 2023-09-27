@@ -5,7 +5,7 @@ That means it is a subtype of all other types.
 
 ## [IsNever](./is_never.ts)
 
-`IsNever<T, $Options = { selection: 'predicate' | 'filter' | 'filter-unknown', $then: true, $else: false }>`
+`IsNever<T, $Options = { selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
 
@@ -33,14 +33,6 @@ type R = IsNever<1, { selection: 'filter' }> // $NotNever
 
 🔢 *customize*
 
-Filter to ensure `T` is `never`, otherwise returns `unknown`.
-
-```ts
-type R = IsNever<1, { selection: 'filter-unknown' }> // unknown
-```
-
-🔢 *customize*
-
 Use unique branch identifiers to allow precise processing of the result.
 
 ```ts
@@ -50,7 +42,7 @@ type R = IsNever<1, $SelectionBranch> // $Else
 
 ### [IsNotNever](./is_not_never.ts)
 
-`IsNotNever<T, $Options = { selection: 'predicate' | 'filter' | 'filter-unknown', $then: true, $else: false }>`
+`IsNotNever<T, $Options = { selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
 
@@ -74,14 +66,6 @@ we have to return `$Never` instead.
 type R = IsNotNever<1, { selection: 'filter' }> // 1
 
 type R = IsNotNever<never, { selection: 'filter' }> // $Never
-```
-
-🔢 *customize*
-
-Filter to ensure `T` is `never`, otherwise returns `unknown`.
-
-```ts
-type R = IsNotNever<never, { selection: 'filter-unknown' }> // unknown
 ```
 
 🔢 *customize*

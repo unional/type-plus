@@ -31,19 +31,6 @@ import type { SelectInvertWithDistribute } from '../type_plus/branch/select_inve
  *
  * 🔢 *customize*
  *
- * Filter to ensure `T` is not `bigint` nor `bigint` literals, otherwise returns `unknown`.
- *
- * @example
- * ```ts
- * type R = IsNotBigint<bigint, { selection: 'filter-unknown' }> // unknown
- * type R = IsNotBigint<1n, { selection: 'filter-unknown' }> // unknown
- *
- * type R = IsNotBigint<string | boolean, { selection: 'filter-unknown' }> // string | boolean
- * type R = IsNotBigint<string | bigint, { selection: 'filter-unknown' }> // unknown
- * ```
- *
- * 🔢 *customize*
- *
  * Disable distribution of union types.
  *
  * @example

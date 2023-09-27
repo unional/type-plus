@@ -28,15 +28,6 @@ import type { SelectInvertWithDistribute } from '../type_plus/branch/select_inve
  *
  * 🔢 *customize*
  *
- * Filter to ensure `T` is not `null`, otherwise returns `unknown`.
- *
- * @example
- * ```ts
- * type R = IsNotNull<null, { selection: 'filter-unknown' }> // unknown
- * ```
- *
- * 🔢 *customize*
- *
  * Disable distribution of union types.
  *
  * @example

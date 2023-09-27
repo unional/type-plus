@@ -83,11 +83,6 @@ it('works as filter', () => {
 
 	testType.equal<string | never, string>(true)
 	testType.equal<IsNotUndefined<string | undefined, { selection: 'filter' }>, string>(true)
-
-	testType.equal<IsNotUndefined<string | boolean, { selection: 'filter-unknown' }>, string | boolean>(true)
-
-	testType.equal<string | unknown, unknown>(true)
-	testType.equal<IsNotUndefined<string | undefined, { selection: 'filter-unknown' }>, unknown>(true)
 })
 
 it('works with unique branches', () => {

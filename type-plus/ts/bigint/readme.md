@@ -4,7 +4,7 @@
 
 ## [IsBigint](./is_bigint.ts)
 
-`IsBigint<T, { distributive: true, selection: 'predicate' | 'filter' | 'filter-unknown', $then: true, $else: false }>`
+`IsBigint<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
 
@@ -36,15 +36,6 @@ type R = isBigint<string | boolean, { selection: 'filter' }> // never
 type R = isBigint<string | bigint> // bigint
 ```
 
-🔢 *customize*
-
-Filter to ensure `T` is `bigint` or `bigint` literals, otherwise returns `unknown`.
-
-```ts
-type R = isBigint<string | boolean, { selection: 'filter-unknown' }> // unknown
-type R = isBigint<string | bigint, { selection: 'filter-unknown' }> // unknown
-```
-
 🔢 *customize*:
 
 Disable distribution of union types.
@@ -65,7 +56,7 @@ type R = isBigint<string, $SelectionBranch> // $Else
 
 ## [IsNotBigint](./is_not_bigint.ts)
 
-`IsNotBigint<T, { distributive: true, selection: 'predicate' | 'filter' | 'filter-unknown', $then: false, $else: true }>`
+`IsNotBigint<T, { distributive: true, selection: 'predicate' | 'filter', $then: false, $else: true }>`
 
 🎭 *predicate*
 
@@ -91,18 +82,6 @@ type R = IsNotBigint<1n, { selection: 'filter' }> // never
 type R = IsNotBigint<never, { selection: 'filter' }> // never
 type R = IsNotBigint<unknown, { selection: 'filter' }> // unknown
 type R = IsNotBigint<string | boolean, { selection: 'filter' }> // string | boolean
-```
-
-🔢 *customize*
-
-Filter to ensure `T` is not `bigint` nor `bigint` literals, otherwise returns `unknown`.
-
-```ts
-type R = IsNotBigint<bigint, { selection: 'filter-unknown' }> // unknown
-type R = IsNotBigint<1n, { selection: 'filter-unknown' }> // unknown
-
-type R = IsNotBigint<string | boolean, { selection: 'filter-unknown' }> // string | boolean
-type R = IsNotBigint<string | bigint, { selection: 'filter-unknown' }> // unknown
 ```
 
 🔢 *customize*

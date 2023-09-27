@@ -5,7 +5,7 @@ It is typically used as the return type of a function that does not explicitly r
 
 ## [IsVoid](./is_void.ts)
 
-`IsVoid<T, { distributive: true, selection: 'predicate' | 'filter' | 'filter-unknown', $then: true, $else: false }>`
+`IsVoid<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
 
@@ -35,15 +35,6 @@ type R = IsVoid<string | boolean, { selection: 'filter' }> // never
 type R = IsVoid<string | void> // void
 ```
 
-🔢 *customize*
-
-Filter to ensure `T` is `void`, otherwise returns `unknown`.
-
-```ts
-type R = IsVoid<string | boolean, { selection: 'filter-unknown' }> // unknown
-type R = IsVoid<string | void, { selection: 'filter-unknown' }> // unknown
-```
-
 🔢 *customize*:
 
 Disable distribution of union types.
@@ -64,7 +55,7 @@ type R = IsVoid<string, $SelectionBranch> // $Else
 
 ## [IsNotVoid](./is_not_void.ts)
 
-`IsNotVoid<T, { distributive: true, selection: 'predicate' | 'filter' | 'filter-unknown', $then: true, $else: false }>`
+`IsNotVoid<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
 
@@ -88,15 +79,6 @@ type R = IsNotUndefined<undefined, { selection: 'filter' }> // never
 type R = IsNotUndefined<never, { selection: 'filter' }> // never
 type R = IsNotUndefined<unknown, { selection: 'filter' }> // unknown
 type R = IsNotUndefined<string | boolean, { selection: 'filter' }> // string | boolean
-```
-
-🔢 *customize*
-
-Filter to ensure `T` is not `undefined`, otherwise returns `unknown`.
-
-```ts
-type R = IsNotUndefined<string | boolean, { selection: 'filter-unknown' }> // string | boolean
-type R = IsNotUndefined<string | undefined, { selection: 'filter-unknown' }> // unknown
 ```
 
 🔢 *customize*
