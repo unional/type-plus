@@ -37,108 +37,56 @@ export type Merge<A extends AnyRecord, B extends AnyRecord, Options = Merge.Defa
 					? ([OptionalKeys<A>, OptionalKeys<B>] extends [infer PKA extends KeyTypes, infer PKB extends KeyTypes]
 						?
 						// property is optional when both A[k] and B[k] are optional
-						// IsNotNever<
-						// 	PKA & PKB,
-						// 	{
-						// 		selection: 'filter-unknown',
-						// 		$then: { [k in PKA & PKB]?: A[k] | B[k] },
-						// 		$else: unknown
-						// 	}
-						// > &
-						IsNotNever<
+						(IsNotNever<
 							PKA & PKB,
 							{ selection: 'filter' }
-						> extends infer R1 extends KeyTypes ? { [k in R1]?: A[k] | B[k] } : unknown &
+						> extends infer R extends KeyTypes ? { [k in R]?: A[k] | B[k] } : unknown) &
 						// properties only in A excluding partials is A[k]
-						IsNotNever<
+						(IsNotNever<
 							Exclude<KA, PKA | KB>,
-							{
-								selection: 'filter-unknown',
-								$then: { [k in Exclude<KA, PKA | KB>]: A[k] },
-								$else: unknown
-							}
-						> &
-						// IsNotNever<
-						// 	Exclude<KA, PKA | KB>,
-						// 	{ selection: 'filter' }
-						// > extends infer R123 extends KeyTypes ? { [k in R123]: A[k] } : unknown &
+							{ selection: 'filter' }
+						> extends infer R extends KeyTypes ? { [k in R]: A[k] } : unknown) &
 						// properties only in B excluding partials is B[k]
-						IsNotNever<
+						(IsNotNever<
 							Exclude<KB, PKB>,
-							{
-								selection: 'filter-unknown',
-								$then: { [k in Exclude<KB, PKB>]: B[k] },
-								$else: unknown
-							}
-						> &
-						// IsNotNever<
-						// 	Exclude<KB, PKB>,
-						// 	{ selection: 'filter' }
-						// > extends infer R2 extends KeyTypes ? { [k in R2]: B[k] } : unknown &
+							{ selection: 'filter' }
+						> extends infer R extends KeyTypes ? { [k in R]: B[k] } : unknown) &
 						// properties is required in A but optional in B is unionized without undefined
-						IsNotNever<
+						(IsNotNever<
 							Exclude<KA & PKB, PKA>,
-							{
-								selection: 'filter-unknown',
-								$then: { [k in Exclude<KA & PKB, PKA>]: A[k] | Exclude<B[k], undefined> },
-								$else: unknown
-							}
-						>
+							{ selection: 'filter' }
+						> extends infer R extends KeyTypes ? { [k in R]: A[k] | Exclude<B[k], undefined> } : unknown)
 						: never)
 					:
-					IsNotNever<
+					(IsNotNever<
 						Exclude<KA, KA & KB>,
-						{
-							selection: 'filter-unknown',
-							$then: { [k in Exclude<KA, KA & KB>]: A[k] },
-							$else: unknown
-						}
-					> &
-					IsNotNever<
+						{ selection: 'filter' }
+					> extends infer R extends KeyTypes ? { [k in R]: A[k] } : unknown) &
+					(IsNotNever<
 						Exclude<KB, KA & KB>,
-						{
-							selection: 'filter-unknown',
-							$then: { [k in Exclude<KB, KA & KB>]: B[k] },
-							$else: unknown
-						}
-					> &
-					IsNotNever<
+						{ selection: 'filter' }
+					> extends infer R extends KeyTypes ? { [k in R]: B[k] } : unknown) &
+					(IsNotNever<
 						KA & KB,
-						{
-							selection: 'filter-unknown',
-							$then: { [k in KA & KB]: A[k] | B[k] },
-							$else: unknown
-						}
-					>
+						{ selection: 'filter' }
+					> extends infer R extends KeyTypes ? { [k in R]: A[k] | B[k] } : unknown)
 				)
 				: (
 					IsLiteral<KB> extends true
 					? { [k in Exclude<KA, KB>]: A[k] } & { [k in keyof B]: B[k] }
 					:
-					IsNotNever<
+					(IsNotNever<
 						Exclude<KA, KA & KB>,
-						{
-							selection: 'filter-unknown',
-							$then: { [k in Exclude<KA, KA & KB>]: A[k] },
-							$else: unknown
-						}
-					> &
-					IsNotNever<
+						{ selection: 'filter' }
+					> extends infer R extends KeyTypes ? { [k in R]: A[k] } : unknown) &
+					(IsNotNever<
 						Exclude<KB, KA & KB>,
-						{
-							selection: 'filter-unknown',
-							$then: { [k in Exclude<KB, KA & KB>]: B[k] },
-							$else: unknown
-						}
-					> &
-					IsNotNever<
+						{ selection: 'filter' }
+					> extends infer R extends KeyTypes ? { [k in R]: B[k] } : unknown) &
+					(IsNotNever<
 						KA & KB,
-						{
-							selection: 'filter-unknown',
-							$then: { [k in KA & KB]: A[k] | B[k] },
-							$else: unknown
-						}
-					>
+						{ selection: 'filter' }
+					> extends infer R extends KeyTypes ? { [k in R]: A[k] | B[k] } : unknown)
 				))
 			: never)
 	>
