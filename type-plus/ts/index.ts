@@ -24,12 +24,8 @@ export { assertType } from './assertion/assert_type.js'
 export type { StringToBigint } from './bigint/cast.js'
 export type * from './bigint/is_bigint.js'
 export type * from './bigint/is_not_bigint.js'
-export type {
-	IsNotStrictBigint,
-	IsStrictBigint,
-	NotStrictBigintType,
-	StrictBigintType
-} from './bigint/strict_bigint_type.js'
+export type * from './bigint/is_strict_bigint.js'
+export type * from './bigint/is_not_strict_bigint.js'
 export type { BooleanType, IsBoolean, IsNotBoolean, NotBooleanType } from './boolean/boolean_type.js'
 export type { FalseType, IsFalse, IsNotFalse, NotFalseType } from './boolean/false_type.js'
 export type {

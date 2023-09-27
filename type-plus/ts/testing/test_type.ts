@@ -1,7 +1,7 @@
 import type { IsAny } from '../any/is_any.js'
 import type { IsArray } from '../array/array_type.js'
 import type { IsBigint } from '../bigint/is_bigint.js'
-import type { IsStrictBigint } from '../bigint/strict_bigint_type.js'
+import type { IsStrictBigint } from '../bigint/is_strict_bigint.js'
 import type { IsBoolean } from '../boolean/boolean_type.js'
 import type { IsFalse } from '../boolean/false_type.js'
 import type { IsStrictBoolean } from '../boolean/strict_boolean_type.js'
