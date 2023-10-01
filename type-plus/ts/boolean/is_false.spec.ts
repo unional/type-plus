@@ -41,6 +41,8 @@ it('returns false for other types', () => {
 
 it('distributes over union type', () => {
 	testType.equal<IsFalse<false | 1>, boolean>(true)
+	testType.equal<IsFalse<boolean | 1>, boolean>(true)
+	testType.equal<IsFalse<string | boolean>, boolean>(true)
 })
 
 it('can disable union distribution', () => {
@@ -61,11 +63,13 @@ it('works as filter', () => {
 	testType.equal<IsFalse<unknown, { selection: 'filter' }>, never>(true)
 	testType.equal<IsFalse<string | false, { selection: 'filter' }>, false>(true)
 
+	testType.equal<IsFalse<string | boolean, { selection: 'filter' }>, false>(true)
 	testType.equal<IsFalse<string | true, { selection: 'filter' }>, never>(true)
 })
 
 it('works with unique branches', () => {
 	testType.equal<IsFalse<false, IsFalse.$Branch>, $Then>(true)
+	testType.equal<IsFalse<boolean, IsFalse.$Branch>, $Then | $Else>(true)
 
 	testType.equal<IsFalse<any, IsFalse.$Branch>, $Else>(true)
 	testType.equal<IsFalse<unknown, IsFalse.$Branch>, $Else>(true)

@@ -44,6 +44,7 @@ it('returns true for other types', () => {
 it('distributes over union type', () => {
 	testType.equal<IsNotFalse<boolean>, boolean>(true)
 	testType.equal<IsNotFalse<boolean | 1>, boolean>(true)
+	testType.equal<IsNotFalse<false | 1>, boolean>(true)
 })
 
 it('can disable union distribution', () => {
@@ -63,9 +64,11 @@ it('returns distribute over intersection type', () => {
 })
 
 it('works as filter', () => {
-	testType.equal<IsNotFalse<false, { selection: 'filter' }>, never>(true)
+	testType.equal<IsNotFalse<boolean, { selection: 'filter' }>, true>(true)
 	testType.equal<IsNotFalse<true, { selection: 'filter' }>, true>(true)
+	testType.equal<IsNotFalse<false, { selection: 'filter' }>, never>(true)
 
+	testType.equal<IsNotFalse<number, { selection: 'filter' }>, number>(true)
 	testType.equal<IsNotFalse<never, { selection: 'filter' }>, never>(true)
 	testType.equal<IsNotFalse<unknown, { selection: 'filter' }>, unknown>(true)
 	testType.equal<IsNotFalse<string | boolean, { selection: 'filter' }>, string | true>(true)

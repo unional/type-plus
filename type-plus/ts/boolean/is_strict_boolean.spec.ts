@@ -2,38 +2,37 @@ import { it } from '@jest/globals'
 import { testType, type IsStrictBoolean, type $Then, type $Else } from '../index.js'
 
 it('returns true if T is boolean', () => {
-
-	testType.true<IsStrictBoolean<boolean>>(true)
+	testType.equal<IsStrictBoolean<boolean>, true>(true)
 })
 
 it('returns false it T is true or false literal', () => {
-	testType.false<IsStrictBoolean<true>>(true)
-	testType.false<IsStrictBoolean<false>>(true)
+	testType.equal<IsStrictBoolean<true>, false>(true)
+	testType.equal<IsStrictBoolean<false>, false>(true)
 })
 
 it('returns false for special types', () => {
-	testType.false<IsStrictBoolean<void>>(true)
-	testType.false<IsStrictBoolean<unknown>>(true)
+	testType.equal<IsStrictBoolean<void>, false>(true)
+	testType.equal<IsStrictBoolean<unknown>, false>(true)
 	testType.equal<IsStrictBoolean<any>, false>(true)
-	testType.false<IsStrictBoolean<never>>(true)
+	testType.equal<IsStrictBoolean<never>, false>(true)
 })
 
 it('returns false for other types', () => {
-	testType.false<IsStrictBoolean<undefined>>(true)
-	testType.false<IsStrictBoolean<null>>(true)
-	testType.false<IsStrictBoolean<number>>(true)
-	testType.false<IsStrictBoolean<1>>(true)
-	testType.false<IsStrictBoolean<string>>(true)
-	testType.false<IsStrictBoolean<''>>(true)
-	testType.false<IsStrictBoolean<symbol>>(true)
-	testType.false<IsStrictBoolean<bigint>>(true)
-	testType.false<IsStrictBoolean<1n>>(true)
-	testType.false<IsStrictBoolean<{}>>(true)
-	testType.false<IsStrictBoolean<{ a: 1 }>>(true)
-	testType.false<IsStrictBoolean<string[]>>(true)
-	testType.false<IsStrictBoolean<[]>>(true)
-	testType.false<IsStrictBoolean<Function>>(true)
-	testType.false<IsStrictBoolean<() => void>>(true)
+	testType.equal<IsStrictBoolean<undefined>, false>(true)
+	testType.equal<IsStrictBoolean<null>, false>(true)
+	testType.equal<IsStrictBoolean<number>, false>(true)
+	testType.equal<IsStrictBoolean<1>, false>(true)
+	testType.equal<IsStrictBoolean<string>, false>(true)
+	testType.equal<IsStrictBoolean<''>, false>(true)
+	testType.equal<IsStrictBoolean<symbol>, false>(true)
+	testType.equal<IsStrictBoolean<bigint>, false>(true)
+	testType.equal<IsStrictBoolean<1n>, false>(true)
+	testType.equal<IsStrictBoolean<{}>, false>(true)
+	testType.equal<IsStrictBoolean<{ a: 1 }>, false>(true)
+	testType.equal<IsStrictBoolean<string[]>, false>(true)
+	testType.equal<IsStrictBoolean<[]>, false>(true)
+	testType.equal<IsStrictBoolean<Function>, false>(true)
+	testType.equal<IsStrictBoolean<() => void>, false>(true)
 })
 
 it('distributes over union type', () => {
@@ -62,6 +61,8 @@ it('works as filter', () => {
 
 it('works with unique branches', () => {
 	testType.equal<IsStrictBoolean<boolean, IsStrictBoolean.$Branch>, $Then>(true)
+	testType.equal<IsStrictBoolean<true, IsStrictBoolean.$Branch>, $Else>(true)
+	testType.equal<IsStrictBoolean<false, IsStrictBoolean.$Branch>, $Else>(true)
 
 	testType.equal<IsStrictBoolean<any, IsStrictBoolean.$Branch>, $Else>(true)
 	testType.equal<IsStrictBoolean<unknown, IsStrictBoolean.$Branch>, $Else>(true)

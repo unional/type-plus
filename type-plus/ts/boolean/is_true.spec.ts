@@ -42,6 +42,7 @@ it('returns false for other types', () => {
 
 it('distributes over union type', () => {
 	testType.equal<IsTrue<true | 1>, boolean>(true)
+	testType.equal<IsTrue<boolean | 1>, boolean>(true)
 })
 
 it('can disable union distribution', () => {

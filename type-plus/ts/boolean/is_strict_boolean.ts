@@ -4,17 +4,59 @@ import type { $Else, $ResolveSelection, $SelectionBranch, $Then } from '../type_
 import type { $ResolveOptions } from '../type_plus/resolve_options.js'
 
 /**
- * Is the type `T` exactly `boolean`.
+ * 🎭 *predicate*
  *
+ * Validate if `T` is exactly `boolean`.
+ *
+ * @example
  * ```ts
  * type R = IsStrictBoolean<boolean> // true
- *
  * type R = IsStrictBoolean<true> // false
- * type R = IsStrictBoolean<false> // true
+ * type R = IsStrictBoolean<false> // false
+ *
+ * type R = IsStrictBoolean<number> // false
  * type R = IsStrictBoolean<unknown> // false
+ * type R = IsStrictBoolean<string | boolean> // boolean
+ * ```
+ *
+ * 🔢 *customize*
+ *
+ * Filter to ensure `T` is exactly `boolean`, otherwise returns `never`.
+ *
+ * @example
+ * ```ts
+ * type R = IsStrictBoolean<boolean, { selection: 'filter' }> // boolean
+ * type R = IsStrictBoolean<true, { selection: 'filter' }> // never
+ * type R = IsStrictBoolean<false, { selection: 'filter' }> // never
+ *
+ * type R = IsStrictBoolean<number, { selection: 'filter' }> // never
+ * type R = IsStrictBoolean<unknown, { selection: 'filter' }> // never
+ * type R = IsStrictBoolean<never, { selection: 'filter' }> // never
+ * type R = IsStrictBoolean<string | boolean, { selection: 'filter' }> // boolean
+ * type R = IsStrictBoolean<string | true, { selection: 'filter' }> // never
+ * ```
+ *
+ * 🔢 *customize*:
+ *
+ * Disable distribution of union types.
+ *
+ * ```ts
+ * type R = IsStrictBoolean<boolean | 1> // boolean
+ * type R = IsStrictBoolean<boolean | 1, { distributive: false }> // false
+ * ```
+ *
+ * 🔢 *customize*
+ *
+ * Use unique branch identifiers to allow precise processing of the result.
+ *
+ * @example
+ * ```ts
+ * type R = IsStrictBoolean<boolean, $SelectionBranch> // $Then
+ * type R = IsStrictBoolean<true, $SelectionBranch> // $Else
+ * type R = IsStrictBoolean<false, $SelectionBranch> // $Else
+ * type R = IsStrictBoolean<string, $SelectionBranch> // $Else
  * ```
  */
-
 export type IsStrictBoolean<T, $O extends IsStrictBoolean.$Options = {}> = IsAnyOrNever<
 	T,
 	$SelectionBranch
