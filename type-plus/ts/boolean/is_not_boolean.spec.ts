@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type IsNotBoolean } from '../index.js'
+import { testType, type IsNotBoolean, type $Then, type $Else } from '../index.js'
 
 it('returns false if T is boolean', () => {
 	testType.false<IsNotBoolean<boolean>>(true)
@@ -33,21 +33,35 @@ it('returns true for all other types', () => {
 	testType.true<IsNotBoolean<() => void>>(true)
 })
 
-it('returns true for union type', () => {
-	testType.true<IsNotBoolean<boolean | 1>>(true)
+it('distributes over union type', () => {
+	testType.equal<IsNotBoolean<boolean | 1>, boolean>(true)
 })
 
-it('returns false for intersection type', () => {
+it('can disable union distribution', () => {
+	testType.true<IsNotBoolean<boolean | 1, { distributive: false }>>(true)
+})
+
+it('returns true for intersection type', () => {
 	testType.false<IsNotBoolean<boolean & { a: 1 }>>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<IsNotBoolean<boolean, 1, 2>, 2>(true)
-	testType.equal<IsNotBoolean<true, 1, 2>, 2>(true)
-	testType.equal<IsNotBoolean<false, 1, 2>, 2>(true)
+it('works as filter', () => {
+	testType.equal<IsNotBoolean<boolean, { selection: 'filter' }>, never>(true)
+	testType.equal<IsNotBoolean<true, { selection: 'filter' }>, never>(true)
 
-	testType.equal<IsNotBoolean<any, 1, 2>, 1>(true)
-	testType.equal<IsNotBoolean<unknown, 1, 2>, 1>(true)
-	testType.equal<IsNotBoolean<never, 1, 2>, 1>(true)
-	testType.equal<IsNotBoolean<void, 1, 2>, 1>(true)
+	testType.equal<IsNotBoolean<never, { selection: 'filter' }>, never>(true)
+	testType.equal<IsNotBoolean<unknown, { selection: 'filter' }>, unknown>(true)
+	testType.equal<IsNotBoolean<string | boolean, { selection: 'filter' }>, string>(true)
+	testType.equal<IsNotBoolean<string | boolean, { selection: 'filter', distributive: false }>, string | boolean>(true)
+
+	testType.equal<IsNotBoolean<string | true, { selection: 'filter' }>, string>(true)
+})
+
+it('works with unique branches', () => {
+	testType.equal<IsNotBoolean<boolean, IsNotBoolean.$Branch>, $Else>(true)
+
+	testType.equal<IsNotBoolean<any, IsNotBoolean.$Branch>, $Then>(true)
+	testType.equal<IsNotBoolean<unknown, IsNotBoolean.$Branch>, $Then>(true)
+	testType.equal<IsNotBoolean<never, IsNotBoolean.$Branch>, $Then>(true)
+	testType.equal<IsNotBoolean<void, IsNotBoolean.$Branch>, $Then>(true)
 })

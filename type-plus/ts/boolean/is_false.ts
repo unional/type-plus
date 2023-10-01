@@ -1,5 +1,4 @@
-import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
-import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
+import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
 
 /**
  * Is the type `T` exactly `false`.
@@ -12,10 +11,10 @@ import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selecti
  * ```
  */
 
-export type IsFalse<T, Then = true, Else = false> = IsAnyOrNever<
-T,
-$SelectionBranch
-> extends infer R
-? 	R extends $Then ? Else
-: R extends $Else ? [T, false] extends [false, T] ? Then : Else
-: never : never
+export type IsFalse<T, $O extends IsFalse.$Options = {}> = SelectWithDistribute<T, false, $O>
+
+export namespace IsFalse {
+	export type $Options = SelectWithDistribute.$Options
+	export type $Default = SelectWithDistribute.$Default
+	export type $Branch = SelectWithDistribute.$Branch
+}

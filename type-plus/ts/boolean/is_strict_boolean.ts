@@ -1,5 +1,7 @@
 import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
-import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
+import type { SelectInvertStrictWithDistribute } from '../type_plus/branch/select_invert_strict_with_distribute.js'
+import type { $Else, $ResolveSelection, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
+import type { $ResolveOptions } from '../type_plus/resolve_options.js'
 
 /**
  * Is the type `T` exactly `boolean`.
@@ -13,9 +15,44 @@ import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selecti
  * ```
  */
 
-export type IsStrictBoolean<T, Then = true, Else = false> = IsAnyOrNever<
-T,
-$SelectionBranch> extends infer R
-? R extends $Then ? Else
-: R extends $Else ? [T, boolean] extends [boolean, T] ? Then : Else
-: never : never
+export type IsStrictBoolean<T, $O extends IsStrictBoolean.$Options = {}> = IsAnyOrNever<
+	T,
+	$SelectionBranch
+> extends infer R
+	? R extends $Then ? $ResolveSelection<$O, T, $Else>
+	: R extends $Else ? (
+		$ResolveOptions<[$O['distributive'], SelectInvertStrictWithDistribute.$Default['distributive']]> extends true
+		? (
+			IsStrictBoolean._DistributeMap<T> extends infer R
+			? ['aBcD' | 'AbCd' | 'abcd'] extends [R] ? $ResolveSelection<$O, boolean, $Then> | $ResolveSelection<$O, Exclude<T, boolean>, $Else>
+			: ['aBcD' | 'AbCd'] extends [R] ? $ResolveSelection<$O, T, $Then>
+			: ['aBcd' | 'Abcd'] extends [R] ? $ResolveSelection<$O, T, $Then> : $ResolveSelection<$O, T, $Else>
+			: never
+		)
+		: [T, boolean] extends [boolean, T] ? $ResolveSelection<$O, T, $Then> : $ResolveSelection<$O, T, $Else>
+	)
+	: never : never
+
+export namespace IsStrictBoolean {
+	export type $Options = SelectInvertStrictWithDistribute.$Options
+	export type $Default = SelectInvertStrictWithDistribute.$Default
+	export type $Branch = SelectInvertStrictWithDistribute.$Branch
+
+	export type _DistributeMap<T> = T extends true
+		? (T extends false
+			? (true extends T
+				? (false extends T ? 'ABCD' : 'ABCd')
+				: (false extends T ? 'ABcD' : 'ABcd'))
+			: (true extends T
+				? (false extends T ? 'AbCD' : 'AbCd')
+				: (false extends T ? 'AbcD' : 'Abcd'))
+		)
+		: (T extends false
+			? (true extends T
+				? (false extends T ? 'aBCD' : 'aBCd')
+				: (false extends T ? 'aBcD' : 'aBcd'))
+			: (true extends T
+				? (false extends T ? 'abCD' : 'abCd')
+				: (false extends T ? 'abcD' : 'abcd'))
+		)
+}

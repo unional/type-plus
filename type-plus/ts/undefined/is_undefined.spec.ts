@@ -83,8 +83,11 @@ it('works as filter', () => {
 	testType.equal<IsUndefined<string | undefined, { selection: 'filter' }>, undefined>(true)
 })
 
-it('can disable union distribution', () => {
+it('distributes for union type', () => {
 	testType.equal<IsUndefined<undefined | 1>, boolean>(true)
+})
+
+it('can disable union distribution', () => {
 	testType.equal<IsUndefined<undefined | 1, { distributive: false }>, false>(true)
 })
 

@@ -1,13 +1,15 @@
 import { it } from '@jest/globals'
-import { testType, type IsNotStrictBoolean } from '../index.js'
+import { testType, type IsNotStrictBoolean, type $Else, type $Then } from '../index.js'
 
 it('returns false if T is boolean', () => {
-	testType.false<IsNotStrictBoolean<boolean>>(true)
+	testType.equal<IsNotStrictBoolean<boolean>, false>(true)
 })
 
 it('returns true it T is true or false literal', () => {
-	testType.true<IsNotStrictBoolean<true>>(true)
-	testType.true<IsNotStrictBoolean<false>>(true)
+	testType.equal<IsNotStrictBoolean<true>, true>(true)
+	testType.equal<IsNotStrictBoolean<false>, true>(true)
+	testType.true<IsNotStrictBoolean<true, { distributive: false }>>(true)
+	testType.true<IsNotStrictBoolean<false, { distributive: false }>>(true)
 })
 
 it('returns true for special types', () => {
@@ -35,21 +37,35 @@ it('returns true for all other types', () => {
 	testType.true<IsNotStrictBoolean<() => void>>(true)
 })
 
-it('returns true for union type', () => {
-	testType.true<IsNotStrictBoolean<boolean | 1>>(true)
+it('distributes over union type', () => {
+	testType.equal<IsNotStrictBoolean<boolean | 1>, boolean>(true)
 })
 
-it('returns true for intersection type', () => {
-	testType.true<IsNotStrictBoolean<boolean & { a: 1 }>>(true)
+it('can disable union distribution', () => {
+	testType.true<IsNotStrictBoolean<boolean | 1, { distributive: false }>>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<IsNotStrictBoolean<boolean, 1, 2>, 2>(true)
-	testType.equal<IsNotStrictBoolean<true, 1, 2>, 1>(true)
-	testType.equal<IsNotStrictBoolean<false, 1, 2>, 1>(true)
+it('returns false for intersection type', () => {
+	testType.equal<IsNotStrictBoolean<boolean & { a: 1 }>, false>(true)
+})
 
-	testType.equal<IsNotStrictBoolean<any, 1, 2>, 1>(true)
-	testType.equal<IsNotStrictBoolean<unknown, 1, 2>, 1>(true)
-	testType.equal<IsNotStrictBoolean<never, 1, 2>, 1>(true)
-	testType.equal<IsNotStrictBoolean<void, 1, 2>, 1>(true)
+it('works as filter', () => {
+	testType.equal<IsNotStrictBoolean<boolean, { selection: 'filter' }>, never>(true)
+	testType.equal<IsNotStrictBoolean<true, { selection: 'filter' }>, true>(true)
+
+	testType.equal<IsNotStrictBoolean<never, { selection: 'filter' }>, never>(true)
+	testType.equal<IsNotStrictBoolean<unknown, { selection: 'filter' }>, unknown>(true)
+	testType.equal<IsNotStrictBoolean<string | boolean, { selection: 'filter' }>, string>(true)
+	testType.equal<IsNotStrictBoolean<string | boolean, { selection: 'filter', distributive: false }>, string | boolean>(true)
+
+	testType.equal<IsNotStrictBoolean<string | true, { selection: 'filter' }>, string | true>(true)
+})
+
+it('works with unique branches', () => {
+	testType.equal<IsNotStrictBoolean<boolean, IsNotStrictBoolean.$Branch>, $Else>(true)
+
+	testType.equal<IsNotStrictBoolean<any, IsNotStrictBoolean.$Branch>, $Then>(true)
+	testType.equal<IsNotStrictBoolean<unknown, IsNotStrictBoolean.$Branch>, $Then>(true)
+	testType.equal<IsNotStrictBoolean<never, IsNotStrictBoolean.$Branch>, $Then>(true)
+	testType.equal<IsNotStrictBoolean<void, IsNotStrictBoolean.$Branch>, $Then>(true)
 })

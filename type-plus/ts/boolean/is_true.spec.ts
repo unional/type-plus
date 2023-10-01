@@ -1,57 +1,75 @@
 import { it } from '@jest/globals'
-import { testType, type IsTrue } from '../index.js'
+import { testType, type IsTrue, type $Then, type $Else } from '../index.js'
 
 it('returns true if T is true', () => {
-	testType.true<IsTrue<true>>(true)
+	testType.equal<IsTrue<true>, true>(true)
 })
 
-it('returns false if T is boolean or false', () => {
-	testType.false<IsTrue<boolean>>(true)
-	testType.false<IsTrue<false>>(true)
+it('returns boolean if T is boolean because it is distributive by default', () => {
+	testType.equal<IsTrue<boolean>, boolean>(true)
+	testType.equal<IsTrue<boolean, { distributive: false }>, false>(true)
+})
+
+it('returns false if T is false', () => {
+	testType.equal<IsTrue<false>, false>(true)
 })
 
 it('returns false for special types', () => {
-	testType.false<IsTrue<void>>(true)
-	testType.false<IsTrue<unknown>>(true)
-	testType.false<IsTrue<any>>(true)
-	testType.false<IsTrue<never>>(true)
+	testType.equal<IsTrue<void>, false>(true)
+	testType.equal<IsTrue<unknown>, false>(true)
+	testType.equal<IsTrue<any>, false>(true)
+	testType.equal<IsTrue<never>, false>(true)
 })
 
 it('returns false for other types', () => {
-	testType.false<IsTrue<undefined>>(true)
-	testType.false<IsTrue<null>>(true)
-	testType.false<IsTrue<number>>(true)
-	testType.false<IsTrue<1>>(true)
-	testType.false<IsTrue<boolean>>(true)
-	testType.false<IsTrue<false>>(true)
-	testType.false<IsTrue<string>>(true)
-	testType.false<IsTrue<''>>(true)
-	testType.false<IsTrue<symbol>>(true)
-	testType.false<IsTrue<bigint>>(true)
-	testType.false<IsTrue<1n>>(true)
-	testType.false<IsTrue<{}>>(true)
-	testType.false<IsTrue<{ a: 1 }>>(true)
-	testType.false<IsTrue<string[]>>(true)
-	testType.false<IsTrue<[]>>(true)
-	testType.false<IsTrue<Function>>(true)
-	testType.false<IsTrue<() => void>>(true)
+	testType.equal<IsTrue<undefined>, false>(true)
+	testType.equal<IsTrue<null>, false>(true)
+	testType.equal<IsTrue<number>, false>(true)
+	testType.equal<IsTrue<1>, false>(true)
+	testType.equal<IsTrue<false>, false>(true)
+	testType.equal<IsTrue<string>, false>(true)
+	testType.equal<IsTrue<''>, false>(true)
+	testType.equal<IsTrue<symbol>, false>(true)
+	testType.equal<IsTrue<bigint>, false>(true)
+	testType.equal<IsTrue<1n>, false>(true)
+	testType.equal<IsTrue<{}>, false>(true)
+	testType.equal<IsTrue<{ a: 1 }>, false>(true)
+	testType.equal<IsTrue<string[]>, false>(true)
+	testType.equal<IsTrue<[]>, false>(true)
+	testType.equal<IsTrue<Function>, false>(true)
+	testType.equal<IsTrue<() => void>, false>(true)
 })
 
-it('returns false for union type', () => {
-	testType.false<IsTrue<true | 1>>(true)
-	testType.false<IsTrue<true | boolean>>(true)
+it('distributes over union type', () => {
+	testType.equal<IsTrue<true | 1>, boolean>(true)
 })
 
-it('returns false for intersection type', () => {
-	testType.false<IsTrue<true & { a: 1 }>>(true)
+it('can disable union distribution', () => {
+	testType.equal<IsTrue<true | 1, { distributive: false }>, false>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<IsTrue<true, 1, 2>, 1>(true)
-	testType.equal<IsTrue<0, 1, 2>, 2>(true)
+it('returns true for intersection type', () => {
+	testType.equal<IsTrue<true & { a: 1 }>, true>(true)
+})
 
-	testType.equal<IsTrue<any, 1, 2>, 2>(true)
-	testType.equal<IsTrue<unknown, 1, 2>, 2>(true)
-	testType.equal<IsTrue<never, 1, 2>, 2>(true)
-	testType.equal<IsTrue<void, 1, 2>, 2>(true)
+it('works as filter', () => {
+	testType.equal<IsTrue<true, { selection: 'filter' }>, true>(true)
+	testType.equal<IsTrue<false, { selection: 'filter' }>, never>(true)
+	testType.equal<IsTrue<boolean, { selection: 'filter' }>, true>(true)
+	testType.equal<IsTrue<boolean, { selection: 'filter', distributive: false }>, never>(true)
+
+	testType.equal<IsTrue<never, { selection: 'filter' }>, never>(true)
+	testType.equal<IsTrue<unknown, { selection: 'filter' }>, never>(true)
+	testType.equal<IsTrue<string | true, { selection: 'filter' }>, true>(true)
+
+	testType.equal<IsTrue<string | false, { selection: 'filter' }>, never>(true)
+})
+
+it('works with unique branches', () => {
+	testType.equal<IsTrue<true, IsTrue.$Branch>, $Then>(true)
+
+	testType.equal<IsTrue<any, IsTrue.$Branch>, $Else>(true)
+	testType.equal<IsTrue<unknown, IsTrue.$Branch>, $Else>(true)
+	testType.equal<IsTrue<never, IsTrue.$Branch>, $Else>(true)
+	testType.equal<IsTrue<void, IsTrue.$Branch>, $Else>(true)
 })

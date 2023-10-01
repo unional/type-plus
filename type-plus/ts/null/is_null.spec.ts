@@ -40,6 +40,11 @@ it('works as filter', () => {
 	testType.equal<IsNull<string | null, { selection: 'filter' }>, null>(true)
 })
 
+it('distributes over union type', () => {
+	testType.equal<null | 1, null | 1>(true)
+	testType.equal<IsNull<null | 1>, boolean>(true)
+})
+
 it('can disable union distribution', () => {
 	testType.false<IsNull<null | 1, { distributive: false }>>(true)
 })

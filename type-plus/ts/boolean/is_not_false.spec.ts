@@ -1,57 +1,86 @@
 import { it } from '@jest/globals'
-import { testType, type IsNotFalse } from '../index.js'
+import { testType, type $Else, type $Then, type IsNotFalse } from '../index.js'
 
 it('returns false if T is false', () => {
-	testType.false<IsNotFalse<false>>(true)
+	testType.equal<IsNotFalse<false>, false>(true)
 })
 
-it('returns true if T is boolean or true', () => {
-	testType.true<IsNotFalse<boolean>>(true)
-	testType.true<IsNotFalse<true>>(true)
+it('returns boolean if T is boolean because it is distributive by default', () => {
+	testType.equal<IsNotFalse<boolean>, boolean>(true)
+	testType.equal<IsNotFalse<boolean, { distributive: false }>, true>(true)
+})
+
+
+it('returns true if T is true', () => {
+	testType.equal<IsNotFalse<true>, true>(true)
 })
 
 it('returns true for special types', () => {
-	testType.true<IsNotFalse<void>>(true)
-	testType.true<IsNotFalse<unknown>>(true)
-	testType.true<IsNotFalse<any>>(true)
-	testType.true<IsNotFalse<never>>(true)
+	testType.equal<IsNotFalse<void>, true>(true)
+	testType.equal<IsNotFalse<unknown>, true>(true)
+	testType.equal<IsNotFalse<any>, true>(true)
+	testType.equal<IsNotFalse<never>, true>(true)
 })
 
 it('returns true for other types', () => {
-	testType.true<IsNotFalse<undefined>>(true)
-	testType.true<IsNotFalse<null>>(true)
-	testType.true<IsNotFalse<number>>(true)
-	testType.true<IsNotFalse<1>>(true)
-	testType.true<IsNotFalse<boolean>>(true)
-	testType.true<IsNotFalse<true>>(true)
-	testType.true<IsNotFalse<string>>(true)
-	testType.true<IsNotFalse<''>>(true)
-	testType.true<IsNotFalse<symbol>>(true)
-	testType.true<IsNotFalse<bigint>>(true)
-	testType.true<IsNotFalse<1n>>(true)
-	testType.true<IsNotFalse<{}>>(true)
-	testType.true<IsNotFalse<{ a: 1 }>>(true)
-	testType.true<IsNotFalse<string[]>>(true)
-	testType.true<IsNotFalse<[]>>(true)
-	testType.true<IsNotFalse<Function>>(true)
-	testType.true<IsNotFalse<() => void>>(true)
+	testType.equal<IsNotFalse<undefined>, true>(true)
+	testType.equal<IsNotFalse<null>, true>(true)
+	testType.equal<IsNotFalse<number>, true>(true)
+	testType.equal<IsNotFalse<1>, true>(true)
+	testType.equal<IsNotFalse<true>, true>(true)
+	testType.equal<IsNotFalse<string>, true>(true)
+	testType.equal<IsNotFalse<''>, true>(true)
+	testType.equal<IsNotFalse<symbol>, true>(true)
+	testType.equal<IsNotFalse<bigint>, true>(true)
+	testType.equal<IsNotFalse<1n>, true>(true)
+	testType.equal<IsNotFalse<{}>, true>(true)
+	testType.equal<IsNotFalse<{ a: 1 }>, true>(true)
+	testType.equal<IsNotFalse<string[]>, true>(true)
+	testType.equal<IsNotFalse<[]>, true>(true)
+	testType.equal<IsNotFalse<Function>, true>(true)
+	testType.equal<IsNotFalse<() => void>, true>(true)
 })
 
-it('returns true for union type', () => {
-	testType.true<IsNotFalse<false | 1>>(true)
-	testType.true<IsNotFalse<false | boolean>>(true)
+it('distributes over union type', () => {
+	testType.equal<IsNotFalse<boolean>, boolean>(true)
+	testType.equal<IsNotFalse<boolean | 1>, boolean>(true)
 })
 
-it('returns true for intersection type', () => {
-	testType.true<IsNotFalse<false & { a: 1 }>>(true)
+it('can disable union distribution', () => {
+	testType.equal<IsNotFalse<boolean, { distributive: false }>, true>(true)
+	testType.equal<IsNotFalse<boolean | 1, { distributive: false }>, true>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<IsNotFalse<false, 1, 2>, 2>(true)
-	testType.equal<IsNotFalse<0, 1, 2>, 1>(true)
+it('returns distribute over intersection type', () => {
+	testType.equal<IsNotFalse<false & { a: 1 }>, false>(true)
+	testType.equal<IsNotFalse<true & { a: 1 }>, true>(true)
+	testType.equal<IsNotFalse<boolean & { a: 1 }>, boolean>(true)
 
-	testType.equal<IsNotFalse<any, 1, 2>, 1>(true)
-	testType.equal<IsNotFalse<unknown, 1, 2>, 1>(true)
-	testType.equal<IsNotFalse<never, 1, 2>, 1>(true)
-	testType.equal<IsNotFalse<void, 1, 2>, 1>(true)
+	testType.equal<IsNotFalse<false & { a: 1 }, { distributive: false }>, false>(true)
+	testType.equal<IsNotFalse<(false | 1) & { a: 1 }, { distributive: false }>, true>(true)
+	testType.equal<IsNotFalse<true & { a: 1 }, { distributive: false }>, true>(true)
+	testType.equal<IsNotFalse<boolean & { a: 1 }, { distributive: false }>, true>(true)
+})
+
+it('works as filter', () => {
+	testType.equal<IsNotFalse<false, { selection: 'filter' }>, never>(true)
+	testType.equal<IsNotFalse<true, { selection: 'filter' }>, true>(true)
+
+	testType.equal<IsNotFalse<never, { selection: 'filter' }>, never>(true)
+	testType.equal<IsNotFalse<unknown, { selection: 'filter' }>, unknown>(true)
+	testType.equal<IsNotFalse<string | boolean, { selection: 'filter' }>, string | true>(true)
+	testType.equal<IsNotFalse<string | boolean, { selection: 'filter', distributive: false }>, string | boolean>(true)
+
+	testType.equal<IsNotFalse<string | false, { selection: 'filter' }>, string>(true)
+})
+
+it('works with unique branches', () => {
+	testType.equal<IsNotFalse<false, IsNotFalse.$Branch>, $Else>(true)
+	testType.equal<IsNotFalse<true, IsNotFalse.$Branch>, $Then>(true)
+	testType.equal<IsNotFalse<boolean, IsNotFalse.$Branch>, $Then | $Else>(true)
+
+	testType.equal<IsNotFalse<any, IsNotFalse.$Branch>, $Then>(true)
+	testType.equal<IsNotFalse<unknown, IsNotFalse.$Branch>, $Then>(true)
+	testType.equal<IsNotFalse<never, IsNotFalse.$Branch>, $Then>(true)
+	testType.equal<IsNotFalse<void, IsNotFalse.$Branch>, $Then>(true)
 })

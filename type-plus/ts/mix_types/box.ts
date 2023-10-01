@@ -5,6 +5,7 @@ import type { IsNumber } from '../number/number_type.js'
 import type { IsStrictObject } from '../object/is_strict_object.js'
 import type { IsString } from '../string/string_type.js'
 import type { IsSymbol } from '../symbol/symbol_type.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * ⚗️ *transform*
@@ -34,21 +35,23 @@ export type Box<T, Options extends Box.Options = Box.DefaultOptions> =
 			T extends Record<any, any> ? T :
 			IsBoolean<
 				T,
-				Boolean,
-				IsNumber<
+				$SelectionBranch
+			> extends infer R
+			? R extends $Then ? Boolean
+			: R extends $Else ? IsNumber<
+				T,
+				Number,
+				IsString<
 					T,
-					Number,
-					IsString<
+					String,
+					IsSymbol<
 						T,
-						String,
-						IsSymbol<
-							T,
-							Symbol,
-							IsBigint<T, { $then: BigInt, $else: Options['$notBoxable'] }>
-						>
+						Symbol,
+						IsBigint<T, { $then: BigInt, $else: Options['$notBoxable'] }>
 					>
 				>
 			>
+			: never : never
 		>
 	>
 
