@@ -35,6 +35,10 @@ it('distributes for union type', () => {
 	testType.equal<IsVoid<void | 1>, true | false>(true)
 })
 
+it('can disable distributive', () => {
+	testType.equal<IsVoid<void | 1, { distributive: false }>, false>(true)
+})
+
 it('returns true for intersection type', () => {
 	testType.equal<IsVoid<void & { a: 1 }>, true>(true)
 })

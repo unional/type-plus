@@ -59,35 +59,37 @@ type R = IsVoid<string, $SelectionBranch> // $Else
 
 🎭 *predicate*
 
-Validate if `T` is not `undefined`.
+Validate if `T` is not `void`.
 
 ```ts
-type R = IsNotUndefined<undefined> // false
+type R = IsNotVoid<void> // false
 
-type R = IsNotUndefined<never> // true
-type R = IsNotUndefined<unknown> // true
-type R = IsNotUndefined<string | boolean> // true
+type R = IsNotVoid<never> // true
+type R = IsNotVoid<unknown> // true
+type R = IsNotVoid<string | boolean> // true
+
+type R = IsNotVoid<string | void> // boolean
 ```
 
 🔢 *customize*
 
-Filter to ensure `T` is not `undefined`, otherwise returns `never`.
+Filter to ensure `T` is not `void`, otherwise returns `never`.
 
 ```ts
-type R = IsNotUndefined<undefined, { selection: 'filter' }> // never
+type R = IsNotVoid<void, { selection: 'filter' }> // never
 
-type R = IsNotUndefined<never, { selection: 'filter' }> // never
-type R = IsNotUndefined<unknown, { selection: 'filter' }> // unknown
-type R = IsNotUndefined<string | boolean, { selection: 'filter' }> // string | boolean
+type R = IsNotVoid<never, { selection: 'filter' }> // never
+type R = IsNotVoid<unknown, { selection: 'filter' }> // unknown
+type R = IsNotVoid<string | void, { selection: 'filter' }> // string
 ```
 
-🔢 *customize*
+🔢 *customize*:
 
 Disable distribution of union types.
 
 ```ts
-type R = IsNotUndefined<undefined | 1> // boolean
-type R = IsNotUndefined<undefined | 1, { distributive: false }> // true
+type R = IsNotVoid<void | string> // boolean
+type R = IsNotVoid<void | string, { distributive: false }> // true
 ```
 
 🔢 *customize*
@@ -95,8 +97,8 @@ type R = IsNotUndefined<undefined | 1, { distributive: false }> // true
 Use unique branch identifiers to allow precise processing of the result.
 
 ```ts
-type R = IsNotUndefined<string, $SelectionBranch> // $Then
-type R = IsNotUndefined<undefined, $SelectionBranch> // $Else
+type R = IsNotVoid<void, $SelectionBranch> // $Else
+type R = IsNotVoid<string, $SelectionBranch> // $Then
 ```
 
 ## References

@@ -30,7 +30,11 @@ it('returns true for other types', () => {
 })
 
 it('distributes for union type', () => {
-	testType.equal<IsNotVoid<void | 1>, boolean>(true)
+	testType.equal<IsNotVoid<void | string>, boolean>(true)
+})
+
+it('can disable distributive', () => {
+	testType.equal<IsNotVoid<void | string, { distributive: false }>, true>(true)
 })
 
 it('returns false for intersection type', () => {
@@ -42,7 +46,6 @@ it('works as filter', () => {
 
 	testType.equal<IsNotVoid<never, { selection: 'filter' }>, never>(true)
 	testType.equal<IsNotVoid<unknown, { selection: 'filter' }>, unknown>(true)
-	testType.equal<IsNotVoid<string | boolean, { selection: 'filter' }>, string|boolean>(true)
 
 	testType.equal<string | never, string>(true)
 	testType.equal<IsNotVoid<string | void, { selection: 'filter' }>, string>(true)
