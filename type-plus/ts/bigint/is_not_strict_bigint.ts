@@ -6,13 +6,13 @@ import type { $ResolveOptions } from '../type_plus/resolve_options.js'
 /**
  * 🎭 *predicate*
  *
- * Validate if `T` is not strictly `bigint`, but accept `bigint` literal.
+ * Validate if `T` is not exactly `bigint`, returns true for bigint literals or other types.
  *
  * @example
  * ```ts
  * type R = IsNotStrictBigint<bigint> // false
- * type R = IsNotStrictBigint<1n> // true
  *
+ * type R = IsNotStrictBigint<1n> // true
  * type R = IsNotStrictBigint<never> // true
  * type R = IsNotStrictBigint<unknown> // true
  * type R = IsNotStrictBigint<string | boolean> // true
@@ -20,7 +20,7 @@ import type { $ResolveOptions } from '../type_plus/resolve_options.js'
  *
  * 🔢 *customize*
  *
- * Filter to ensure `T` is not strictly `bigint`, but accept `bigint` literal, otherwise returns `never`.
+ * Filter to ensure `T` is not exactly `bigint`, returns `T` for bigint literals or other types.
  *
  * @example
  * ```ts

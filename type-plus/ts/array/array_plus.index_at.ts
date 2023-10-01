@@ -4,7 +4,7 @@ import type { Abs } from '../math/abs.js'
 import type { GreaterThan } from '../math/greater_than.js'
 import type { Subtract } from '../math/subtract.js'
 import type { IsNever } from '../never/is_never.js'
-import type { StrictNumberType } from '../number/strict_number_type.js'
+import type { IsStrictNumber } from '../number/is_strict_number.js'
 import type { Integer } from '../numeric/integer.js'
 import type { Negative } from '../numeric/negative.js'
 import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
@@ -49,27 +49,29 @@ export namespace IndexAt {
 		Fail,
 		Integer<
 			N,
-			StrictNumberType<
+			IsStrictNumber<
 				A['length'],
-				// A: array
+				IsStrictNumber.$Branch
+			> extends infer R
+			// A: array
+			? R extends $Then ? N
+			// A: tuple
+			: R extends $Else ? Negative<
 				N,
-				// A: tuple
-				Negative<
-					N,
-					GreaterThan<Abs<N>, A['length']> extends true ? Lower : Subtract<A['length'], Abs<N>>,
-					GreaterThan<A['length'], N> extends true ? N : Upper
-				>
-			>,
+				GreaterThan<Abs<N>, A['length']> extends true ? Lower : Subtract<A['length'], Abs<N>>,
+				GreaterThan<A['length'], N> extends true ? N : Upper
+			>
+			: never : never,
 			// N: number or float
 			IsAny<
 				N,
 				{
 					$then: number,
-					$else: StrictNumberType<
+					$else: IsStrictNumber<
 						N,
-						// TODO: handle tuple to union of indexes
-						N
-					>
+						IsStrictNumber.$Branch
+					> extends infer R
+					? R extends $Then ? N : never : never
 				}
 			>
 		>

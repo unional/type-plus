@@ -9,12 +9,8 @@ export type {
 	Zero
 } from '../numeric/numeric_type.js'
 export type { IsNotPositive, IsPositive, NonPositive, Positive } from '../numeric/positive.js'
+export type * from './is_not_number.js'
+export type * from './is_not_strict_number.js'
+export type * from './is_number.js'
+export type * from './is_strict_number.js'
 // export type { Sum } from './number_array.js'
-export type { IsNotNumber, IsNumber, NotNumberType, NumberType } from './number_type.js'
-export type {
-	IsNotStrictNumber,
-	IsStrictNumber,
-	NotStrictNumberType,
-	StrictNumberType
-} from './strict_number_type.js'
-

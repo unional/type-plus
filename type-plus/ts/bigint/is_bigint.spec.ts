@@ -40,7 +40,7 @@ it('distributes for union type', () => {
 	testType.equal<IsBigint<1n | 1>, boolean>(true)
 })
 
-it('returns true for interaction type', () => {
+it('returns true for intersection type', () => {
 	testType.true<IsBigint<bigint & { a: 1 }>>(true)
 	testType.true<IsBigint<1n & { a: 1 }>>(true)
 })

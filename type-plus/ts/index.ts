@@ -62,14 +62,11 @@ export * from './nominal/index.js'
 export type * from './null/is_not_null.js'
 export type * from './null/is_null.js'
 export type { StringToNumber } from './number/cast.js'
+export type * from './number/is_not_number.js'
+export type * from './number/is_not_strict_number.js'
+export type * from './number/is_number.js'
+export type * from './number/is_strict_number.js'
 export * as NumberPlus from './number/number_plus.js'
-export type { IsNotNumber, IsNumber, NotNumberType, NumberType } from './number/number_type.js'
-export type {
-	IsNotStrictNumber,
-	IsStrictNumber,
-	NotStrictNumberType,
-	StrictNumberType
-} from './number/strict_number_type.js'
 export type { NumericToString, StringToNumeric } from './numeric/cast.js'
 export type { Integer, IsInteger, IsNotInteger, IsWhole, NotInteger } from './numeric/integer.js'
 export type { IsNegative, IsNotNegative, Negative, NotNegative } from './numeric/negative.js'

@@ -6,7 +6,7 @@ import type { $ResolveOptions } from '../type_plus/resolve_options.js'
 /**
  * 🎭 *predicate*
  *
- * Validate if `T` is `bigint`, excluding bigint literal.
+ * Validate if `T` is `bigint`, returns false for bigint literals or other types.
  *
  * @example
  * ```ts
@@ -22,7 +22,7 @@ import type { $ResolveOptions } from '../type_plus/resolve_options.js'
  *
  * 🔢 *customize*
  *
- * Filter to ensure `T` is `bigint`, excluding bigint literal, otherwise returns `never`.
+ * Filter to ensure `T` is `bigint`, returns `never` for bigint literals or other types.
  *
  * @example
  * ```ts

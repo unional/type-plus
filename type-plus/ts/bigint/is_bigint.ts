@@ -24,7 +24,7 @@ import type { SelectWithDistribute } from '../type_plus/branch/select_with_distr
  * @example
  * ```ts
  * type R = IsBigint<bigint, { selection: 'filter' }> // bigint
- * type R = IsBigint<1n, { selection: 'filter' }> // bigint
+ * type R = IsBigint<1n, { selection: 'filter' }> // 1n
  *
  * type R = IsBigint<never, { selection: 'filter' }> // never
  * type R = IsBigint<unknown, { selection: 'filter' }> // never

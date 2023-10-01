@@ -11,8 +11,8 @@ import type { IsFunction } from '../function/function_type.js'
 import type { IsStrictFunction } from '../function/strict_function_type.js'
 import type { IsNever } from '../never/is_never.js'
 import type { IsNull } from '../null/is_null.js'
-import type { IsNumber } from '../number/number_type.js'
-import type { IsStrictNumber } from '../number/strict_number_type.js'
+import type { IsNumber } from '../number/is_number.js'
+import type { IsStrictNumber } from '../number/is_strict_number.js'
 import type { IsObject } from '../object/object_type.js'
 import type { CanAssign, StrictCanAssign } from '../predicates/CanAssign.js'
 import type { IsStrictString } from '../string/strict_string_type.js'
@@ -115,13 +115,13 @@ export namespace testType {
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		true<T>(expected: IsTrue<T>): T,
+		true<T>(expected: IsTrue<T, { distributive: false }>): T,
 		/**
 		 * Check if type `T` is exactly `false`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		false<T>(expected: IsFalse<T>): T,
+		false<T>(expected: IsFalse<T, { distributive: false }>): T,
 		/**
 		 * Check if type `T` is exactly `boolean`.
 		 *
