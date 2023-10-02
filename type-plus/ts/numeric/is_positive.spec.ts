@@ -1,9 +1,12 @@
 import { it } from '@jest/globals'
-import { testType, type IsPositive } from '../index.js'
+import { testType, type IsPositive, type $Then, type $Else } from '../index.js'
 
-it('returns true if T is number or bigint', () => {
-	testType.true<IsPositive<number>>(true)
-	testType.true<IsPositive<bigint>>(true)
+it('returns boolean if T is number or bigint', () => {
+	// `number` and `bigint` includes positive and negative numbers,
+	// unlike `boolean -> true | false`.
+	// So in predicate form, it returns `boolean`,
+	testType.equal<IsPositive<number>, boolean>(true)
+	testType.equal<IsPositive<bigint>, boolean>(true)
 })
 
 it('returns true if T is 0 or positive literals', () => {
@@ -21,15 +24,11 @@ it('returns true if T is 0 or positive literals', () => {
 it('returns false if T is negative', () => {
 	testType.false<IsPositive<-1>>(true)
 	testType.false<IsPositive<-2>>(true)
-})
-
-it('returns boolean if T is any', () => {
-	// as `any` is a union of all types,
-	// including positive and negative numeric types.
-	testType.equal<IsPositive<any>, boolean>(true)
+	testType.false<IsPositive<-1n>>(true)
 })
 
 it('returns false if T is a special type', () => {
+	testType.equal<IsPositive<any>, false>(true)
 	testType.false<IsPositive<unknown>>(true)
 	testType.false<IsPositive<never>>(true)
 	testType.false<IsPositive<void>>(true)
@@ -53,7 +52,7 @@ it('returns false for other types', () => {
 
 it('returns true if T is union of positive numeric values', () => {
 	testType.true<IsPositive<1 | 1.1>>(true)
-	testType.true<IsPositive<1 | 1n>>(true)
+	testType.equal<IsPositive<1 | 1n>, true>(true)
 	testType.true<IsPositive<1.1 | 1n>>(true)
 })
 
@@ -63,7 +62,7 @@ it('returns boolean if T is union of mixing positive and negative value', () => 
 
 it('returns false if T is union with negative numeric values', () => {
 	testType.false<IsPositive<-1 | -2>>(true)
-	testType.false<IsPositive<-1 | -2n>>(true)
+	testType.boolean<IsPositive<-1 | -2n>>(true)
 	testType.false<IsPositive<-1n | -2n>>(true)
 })
 
@@ -72,15 +71,43 @@ it('returns true if T is intersection of number', () => {
 	testType.true<IsPositive<1n & { a: 1 }>>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<IsPositive<1, 1, 2>, 1>(true)
-	testType.equal<IsPositive<1.1, 1, 2>, 1>(true)
-	testType.equal<IsPositive<1n, 1, 2>, 1>(true)
+it('distributes over union type', () => {
+	testType.equal<IsPositive<1 | string>, boolean>(true)
+	testType.equal<IsPositive<-1 | string>, false>(true)
+})
 
-	testType.equal<IsPositive<any, 1, 2>, 1 | 2>(true)
+it('can disable union distribution', () => {
+	testType.equal<IsPositive<number | string, { distributive: false }>, false>(true)
+	testType.equal<IsPositive<1 | string, { distributive: false }>, false>(true)
+})
 
-	testType.equal<IsPositive<-2, 1, 2>, 2>(true)
-	testType.equal<IsPositive<unknown, 1, 2>, 2>(true)
-	testType.equal<IsPositive<never, 1, 2>, 2>(true)
-	testType.equal<IsPositive<void, 1, 2>, 2>(true)
+it('works as filter', () => {
+	// `number` includes positive and negative numbers,
+	// unlike `boolean -> true | false`.
+	// So in predicate form, it returns `boolean`,
+	// and here, `IsPositive<number>` -> `number | never` -> `number`
+	testType.equal<IsPositive<number, { selection: 'filter' }>, number>(true)
+	testType.equal<IsPositive<bigint, { selection: 'filter' }>, bigint>(true)
+	testType.equal<IsPositive<1, { selection: 'filter' }>, 1>(true)
+	testType.equal<IsPositive<1n, { selection: 'filter' }>, 1n>(true)
+
+	testType.equal<IsPositive<-1, { selection: 'filter' }>, never>(true)
+	testType.equal<IsPositive<never, { selection: 'filter' }>, never>(true)
+	testType.equal<IsPositive<unknown, { selection: 'filter' }>, never>(true)
+
+	// `IsPositive<string | number>` -> `never | number` -> `number`
+	testType.equal<IsPositive<string | number, { selection: 'filter' }>, number>(true)
+
+	testType.equal<IsPositive<string | 1, { selection: 'filter' }>, 1>(true)
+})
+
+it('works with unique branches', () => {
+	testType.equal<IsPositive<number, IsPositive.$Branch>, $Then | $Else>(true)
+	testType.equal<IsPositive<1, IsPositive.$Branch>, $Then>(true)
+	testType.equal<IsPositive<1n, IsPositive.$Branch>, $Then>(true)
+
+	testType.equal<IsPositive<any, IsPositive.$Branch>, $Else>(true)
+	testType.equal<IsPositive<unknown, IsPositive.$Branch>, $Else>(true)
+	testType.equal<IsPositive<never, IsPositive.$Branch>, $Else>(true)
+	testType.equal<IsPositive<void, IsPositive.$Branch>, $Else>(true)
 })
