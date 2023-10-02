@@ -1,4 +1,4 @@
-import type { IsPositive } from '../numeric/positive.js'
+import type { IsPositive } from '../numeric/is_positive.js'
 import type { Subtract } from './subtract.js'
 
 export type GreaterThan<A extends number | bigint, B extends number | bigint, Fail = never> = Subtract<

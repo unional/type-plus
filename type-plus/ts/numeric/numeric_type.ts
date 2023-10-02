@@ -28,19 +28,6 @@ export type NumericType<T, Then = T, Else = never> = IsAnyOrNever<T, {
 }>
 
 /**
- * Is `T` numeric.
- *
- * ```ts
- * type R = IsNumeric<1> // true
- * type R = IsNumeric<1.1> // true
- *
- * type R = IsNumeric<string> // false
- * type R = IsNumeric<unknown> // false
- * ```
- */
-export type IsNumeric<T, Then = true, Else = false> = NumericType<T, Then, Else>
-
-/**
  * Check if `T` is not numeric.
  *
  * ```ts
@@ -52,16 +39,3 @@ export type IsNumeric<T, Then = true, Else = false> = NumericType<T, Then, Else>
  * ```
  */
 export type NotNumericType<T, Then = T, Else = never> = NumericType<T, Else, Then>
-
-/**
- * Is `T` not numeric.
- *
- * ```ts
- * type R = IsNotNumeric<1> // false
- * type R = IsNotNumeric<1.1> // false
- *
- * type R = IsNotNumeric<string> // true
- * type R = IsNotNumeric<unknown> // true
- * ```
- */
-export type IsNotNumeric<T, Then = true, Else = false> = NumericType<T, Else, Then>

@@ -40,22 +40,6 @@ export type Negative<T, Then = T, Else = never> = IsAny<
 	: never : never
 
 /**
- * Is 'T' a negative numeric type.
- *
- * ```ts
- * type R = IsNegative<-1> // true
- * type R = IsNegative<-1n> // true
- *
- * type R = IsNegative<number> // boolean
- * type R = IsNegative<any> // boolean
- *
- * type R = IsNegative<0> // false
- * type R = IsNegative<1> // false
- * ```
- */
-export type IsNegative<T, Then = true, Else = false> = Negative<T, Then, Else>
-
-/**
  * Check if 'T' is not a negative numeric type.
  *
  * ```ts
@@ -90,19 +74,3 @@ export type NotNegative<T, Then = T, Else = never> = IsAny<
 		: never : never
 	)
 	: never : never
-
-/**
- * Is 'T' not a negative numeric type.
- *
- * ```ts
- * type R = IsNotNegative<-1> // false
- * type R = IsNotNegative<-1n> // false
- *
- * type R = IsNotNegative<number> // boolean
- * type R = IsNotNegative<any> // boolean
- *
- * type R = IsNotNegative<0> // true
- * type R = IsNotNegative<1> // true
- * ```
- */
-export type IsNotNegative<T, Then = true, Else = false> = NotNegative<T, Then, Else>

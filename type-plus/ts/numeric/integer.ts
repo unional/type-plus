@@ -21,19 +21,6 @@ export type Integer<T, Then = T, Else = never> = IsAnyOrNever<
 	: never : never
 
 /**
- * Is T an integer, including bigint.
- *
- * ```ts
- * type R = IsInteger<0> // true
- * type R = IsInteger<1n> // true
- *
- * type R = IsInteger<1.1> // false
- * type R = IsInteger<number> // false as it contains non-integer
- * ```
- */
-export type IsInteger<T, Then = true, Else = false> = Integer<T, Then, Else>
-
-/**
  * Check if T is not an integer, including bigint.
  *
  * ```ts
@@ -45,21 +32,6 @@ export type IsInteger<T, Then = true, Else = false> = Integer<T, Then, Else>
  * ```
  */
 export type NotInteger<T, Then = T, Else = never> = Integer<T, Else, Then>
-
-/**
- * Is T not an integer, including bigint.
- *
- * ```ts
- * import type { IsNotInteger } from 'type-plus'
- *
- * type R = IsNotInteger<1.1> // true
- * type R = IsNotInteger<number> // true as it contains non-integer
- *
- * type R = IsNotInteger<0> // false
- * type R = IsNotInteger<1n> // false
- * ```
- */
-export type IsNotInteger<T, Then = true, Else = false> = NotInteger<T, Else, Then>
 
 /**
  * Check if T is an integer, including bigint.

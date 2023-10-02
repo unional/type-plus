@@ -1,6 +1,6 @@
 import type { DigitArray } from '../math/numeric_struct.js'
-import type { IsInteger } from '../numeric/integer.js'
-import type { IsPositive } from '../numeric/positive.js'
+import type { IsInteger } from '../numeric/is_integer.js'
+import type { IsPositive } from '../numeric/is_positive.js'
 
 /**
  * Creates `Tuple<T>` with `L` number of elements.

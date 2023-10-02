@@ -22,23 +22,6 @@ export type Positive<T, Then = T, Else = never> = IsAny<T, $SelectionBranch> ext
 	: never : never
 
 /**
- * Is `T` a positive numeric type.
- *
- * ```ts
- * type R = IsPositive<1> // true
- * type R = IsPositive<0> // true
- * type R = IsPositive<1n> // true
- *
- * type R = IsPositive<number> // boolean
- * type R = IsPositive<bigint> // boolean
- * type R = IsPositive<any> // boolean
- *
- * type R = IsPositive<-1> // false
- * ```
- */
-export type IsPositive<T, Then = true, Else = false> = Positive<T, Then, Else>
-
-/**
  * Check if `T` is not a positive numeric type.
  *
  * ```ts
@@ -49,15 +32,3 @@ export type IsPositive<T, Then = true, Else = false> = Positive<T, Then, Else>
  * ```
  */
 export type NonPositive<T, Then = T, Else = never> = Positive<T, Else, Then>
-
-/**
- * Is `T` not a positive numeric type.
- *
- * ```ts
- * type R = IsNotPositive<-1> // true
- *
- * type R = IsNotPositive<0> // false
- * type R = IsNotPositive<1> // false
- * ```
- */
-export type IsNotPositive<T, Then = true, Else = false> = Positive<T, Else, Then>
