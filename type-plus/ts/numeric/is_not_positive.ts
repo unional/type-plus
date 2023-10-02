@@ -29,7 +29,7 @@ export type IsNotPositive<T, $O extends IsNotPositive.$Options = {}> = IsBigint<
 		? (
 			R extends $Then
 			? IsNotPositive._Negative<T, number, $O>
-			: $ResolveSelection<$O, T, $Then>
+			: $ResolveSelection<$O, Exclude<T, number | bigint>, $Then>
 		)
 		: never
 	)

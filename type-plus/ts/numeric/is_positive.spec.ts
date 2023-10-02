@@ -97,8 +97,11 @@ it('works as filter', () => {
 
 	// `IsPositive<string | number>` -> `never | number` -> `number`
 	testType.equal<IsPositive<string | number, { selection: 'filter' }>, number>(true)
-
 	testType.equal<IsPositive<string | 1, { selection: 'filter' }>, 1>(true)
+	testType.equal<IsPositive<string | 1n, { selection: 'filter' }>, 1n>(true)
+
+	testType.equal<IsPositive<string | -1, { selection: 'filter' }>, never>(true)
+	testType.equal<IsPositive<string | -1n, { selection: 'filter' }>, never>(true)
 })
 
 it('works with unique branches', () => {

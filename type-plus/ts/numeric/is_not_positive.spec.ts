@@ -9,7 +9,7 @@ it('returns boolean if T is number or bigint', () => {
 	testType.equal<IsNotPositive<bigint>, boolean>(true)
 })
 
-it('returns true if T is 0 or positive literals', () => {
+it('returns false if T is 0 or positive literals', () => {
 	testType.equal<IsNotPositive<-0>, false>(true)
 	testType.equal<IsNotPositive<0>, false>(true)
 	testType.equal<IsNotPositive<1>, false>(true)
@@ -21,20 +21,20 @@ it('returns true if T is 0 or positive literals', () => {
 	testType.equal<IsNotPositive<1n>, false>(true)
 })
 
-it('returns false if T is negative', () => {
+it('returns true if T is negative', () => {
 	testType.equal<IsNotPositive<-1>, true>(true)
 	testType.equal<IsNotPositive<-2>, true>(true)
 	testType.equal<IsNotPositive<-1n>, true>(true)
 })
 
-it('returns false if T is a special type', () => {
+it('returns true if T is a special type', () => {
 	testType.equal<IsNotPositive<any>, true>(true)
 	testType.equal<IsNotPositive<unknown>, true>(true)
 	testType.equal<IsNotPositive<never>, true>(true)
 	testType.equal<IsNotPositive<void>, true>(true)
 })
 
-it('returns false for other types', () => {
+it('returns true for other types', () => {
 	testType.equal<IsNotPositive<undefined>, true>(true)
 	testType.equal<IsNotPositive<null>, true>(true)
 	testType.equal<IsNotPositive<boolean>, true>(true)
@@ -51,19 +51,19 @@ it('returns false for other types', () => {
 })
 
 it('returns false if T is union of positive numeric values', () => {
-	testType.false<IsNotPositive<1 | 1.1>>(true)
+	testType.equal<IsNotPositive<1 | 1.1>, false>(true)
 	testType.equal<IsNotPositive<1 | 1n>, false>(true)
-	testType.false<IsNotPositive<1.1 | 1n>>(true)
-})
-
-it('returns boolean if T is union of mixing positive and negative value', () => {
-	testType.strictBoolean<IsNotPositive<1 | -1>>(true)
+	testType.equal<IsNotPositive<1.1 | 1n>, false>(true)
 })
 
 it('returns true if T is union with negative numeric values', () => {
 	testType.equal<IsNotPositive<-1 | -2>, true>(true)
 	testType.boolean<IsNotPositive<-1 | -2n>>(true)
 	testType.equal<IsNotPositive<-1n | -2n>, true>(true)
+})
+
+it('returns boolean if T is union of mixing positive and negative value', () => {
+	testType.strictBoolean<IsNotPositive<1 | -1>>(true)
 })
 
 it('returns true if T is intersection of negative number', () => {
@@ -97,6 +97,8 @@ it('works as filter', () => {
 
 	// `IsNotPositive<string | number>` -> `string | number`
 	testType.equal<IsNotPositive<string | number, { selection: 'filter' }>, string | number>(true)
+	testType.equal<IsNotPositive<string | 1, { selection: 'filter' }>, string>(true)
+	testType.equal<IsNotPositive<string | 1n, { selection: 'filter' }>, string>(true)
 
 	testType.equal<IsNotPositive<string | -1, { selection: 'filter' }>, string | -1>(true)
 })

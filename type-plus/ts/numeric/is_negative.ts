@@ -1,41 +1,49 @@
-import type { IsAny } from '../any/is_any.js'
-import type { IsNever } from '../never/is_never.js'
-import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
-import type { Zero } from './numeric_type.js'
+import type { IsBigint } from '../bigint/is_bigint.js'
+import type { IsNumber } from '../number/is_number.js'
+import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
+import type { $Else, $ResolveSelection, $Then } from '../type_plus/branch/selection.js'
 
 /**
- * Is 'T' a negative numeric type.
+ * Is `T` a positive numeric type.
  *
  * ```ts
- * type R = IsNegative<-1> // true
- * type R = IsNegative<-1n> // true
+ * type R = IsNegative<1> // true
+ * type R = IsNegative<0> // true
+ * type R = IsNegative<1n> // true
  *
  * type R = IsNegative<number> // boolean
+ * type R = IsNegative<bigint> // boolean
  * type R = IsNegative<any> // boolean
  *
- * type R = IsNegative<0> // false
- * type R = IsNegative<1> // false
+ * type R = IsNegative<-1> // false
  * ```
  */
+export type IsNegative<T, $O extends IsNegative.$Options = {}> = IsBigint<T, {
+	distributive: $O['distributive'],
+	$then: $Then,
+	$else: $Else
+}> extends infer R
+	? R extends $Then ? IsNegative._Negative<T, bigint, $O>
+	: (
+		IsNumber<Exclude<T, bigint>, { distributive: $O['distributive'], $then: $Then, $else: $Else }> extends infer R
+		? (
+			R extends $Then
+			? IsNegative._Negative<T, number, $O>
+			: $ResolveSelection<$O, T, $Else>
+		)
+		: never
+	)
+	: never
 
-export type IsNegative<T, Then = true, Else = false> = IsAny<
-T,
-$SelectionBranch> extends infer R
-? R extends $Then ? Then | Else
-: R extends $Else ? (IsNever<
-	T,
-	$SelectionBranch> extends infer R2
-	? R2 extends $Then ? Else
-	: R2 extends $Else ? ([number, T] extends [T, number]
-		? Then
-		: ([bigint, T] extends [T, bigint]
-			? Then
-			: T extends Zero
-			? Else
-			: [T] extends [number | bigint]
-			? `${T}` extends `-${string}`
-			? Then
-			: Else
-			: Else))
-	: never : never)
-: never : never
+export namespace IsNegative {
+	export type $Options = SelectWithDistribute.$Options
+	export type $Default = SelectWithDistribute.$Default
+	export type $Branch = SelectWithDistribute.$Branch
+	export type _Negative<T, U extends number | bigint, $O extends IsNegative.$Options> = T extends U
+		? (
+			`${T}` extends `-${string}`
+			? $ResolveSelection<$O, T, $Then>
+			: U extends T ? $ResolveSelection<$O, T, $Then> | $ResolveSelection<$O, T, $Else> : $ResolveSelection<$O, T, $Else>
+		)
+		: never
+}
