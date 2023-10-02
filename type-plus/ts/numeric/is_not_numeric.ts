@@ -1,5 +1,4 @@
-import type { IsAnyOrNever } from '../index.js'
-import { type Numeric } from './numeric_type.js'
+import type { SelectInvertWithDistribute } from '../type_plus/branch/select_invert_with_distribute.js'
 
 /**
  * Is `T` not numeric.
@@ -13,7 +12,10 @@ import { type Numeric } from './numeric_type.js'
  * ```
  */
 
-export type IsNotNumeric<T, Then = true, Else = false> = IsAnyOrNever<T, {
-	$then: Then,
-	$else: [T] extends [Numeric] ? Else : Then
-}>
+export type IsNotNumeric<T, $O extends IsNotNumeric.$Options = {}> = SelectInvertWithDistribute<T, number | bigint, $O>
+
+export namespace IsNotNumeric {
+	export type $Options = SelectInvertWithDistribute.$Options
+	export type $Default = SelectInvertWithDistribute.$Default
+	export type $Branch = SelectInvertWithDistribute.$Branch
+}

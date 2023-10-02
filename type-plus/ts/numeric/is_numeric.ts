@@ -1,5 +1,4 @@
-import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
-import { type Numeric } from './numeric_type.js'
+import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
 
 /**
  * Is `T` numeric.
@@ -12,8 +11,10 @@ import { type Numeric } from './numeric_type.js'
  * type R = IsNumeric<unknown> // false
  * ```
  */
+export type IsNumeric<T, $O extends IsNumeric.$Options = {}> = SelectWithDistribute<T, number | bigint, $O>
 
-export type IsNumeric<T, Then = true, Else = false> = IsAnyOrNever<T, {
-	$then: Else,
-	$else: [T] extends [Numeric] ? Then : Else
-}>
+export namespace IsNumeric {
+	export type $Options = SelectWithDistribute.$Options
+	export type $Default = SelectWithDistribute.$Default
+	export type $Branch = SelectWithDistribute.$Branch
+}
