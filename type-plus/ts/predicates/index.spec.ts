@@ -8,7 +8,7 @@ describe('IsBoolean<T>', () => {
 		isType.equal<true, false, IsStrictBoolean<true>>()
 	})
 	test('override Then/Else', () => {
-		isType.equal<true, 'yes', IsStrictBoolean<boolean, 'yes'>>()
-		isType.equal<true, 'no', IsStrictBoolean<1, 'yes', 'no'>>()
+		isType.equal<true, 'yes', IsStrictBoolean<boolean, { $then: 'yes' }>>()
+		isType.equal<true, 'no', IsStrictBoolean<1, { $then: 'yes', $else: 'no' }>>()
 	})
 })
