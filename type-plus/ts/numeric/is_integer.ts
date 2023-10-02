@@ -1,6 +1,7 @@
-import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
-import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
-import type { Numeric } from './numeric_type.js'
+import type { IsBigint } from '../bigint/is_bigint.js'
+import type { IsNumber } from '../number/is_number.js'
+import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
+import type { $Else, $ResolveSelection, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * Is T an integer, including bigint.
@@ -13,10 +14,34 @@ import type { Numeric } from './numeric_type.js'
  * type R = IsInteger<number> // false as it contains non-integer
  * ```
  */
-
-export type IsInteger<T, Then = true, Else = false> = IsAnyOrNever<
-T,
-$SelectionBranch> extends infer R
-? R extends $Then ? Else
-: R extends $Else ? [T] extends [Numeric] ? (`${T}` extends `${bigint}` ? Then : Else) : Else
-: never : never
+export type IsInteger<T, $O extends IsInteger.$Options = {}> = IsNumber<T, {
+	distributive: $O['distributive'],
+	$then: $Then,
+	$else: $Else
+}> extends infer R
+	? R extends $Then ? (
+		number extends T
+		? $ResolveSelection<$O, number, $Then> | $ResolveSelection<$O, T, $Else>
+		: T extends number ? (
+			`${T}` extends `${number}.${number}`
+			? $ResolveSelection<$O, T, $Else>
+			: $ResolveSelection<$O, T, $Then>
+		)
+		: never
+	)
+	: R extends $Else ? (
+		IsBigint<T, {
+			distributive: $O['distributive'],
+			$then: $Then,
+			$else: $Else
+		}> extends infer R
+		? R extends $Then ? $ResolveSelection<$O, T, $Then>
+		: $ResolveSelection<$O, T, $Else>
+		: never
+	)
+	: never : never
+export namespace IsInteger {
+	export type $Options = SelectWithDistribute.$Options
+	export type $Default = SelectWithDistribute.$Default
+	export type $Branch = SelectWithDistribute.$Branch
+}
