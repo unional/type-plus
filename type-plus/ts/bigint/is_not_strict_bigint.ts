@@ -63,17 +63,16 @@ export type IsNotStrictBigint<
 		: IsNotStrictBigint._N<T, $O>)
 	: never : never
 
-	export namespace IsNotStrictBigint {
+export namespace IsNotStrictBigint {
 	export type $Options = SelectWithDistribute.$Options
 	export type $Default = SelectWithDistribute.$Default
 	export type $Branch = SelectWithDistribute.$Branch
-	export type _D<T, $O extends IsNotStrictBigint.$Options> = (bigint extends T
-		? (T extends bigint
-			? (`${T}` extends `${number}`
-				? $ResolveSelection<$O, T, $Then>
-				: $ResolveSelection<$O, T, $Else>)
-			: $ResolveSelection<$O, T, $Then>)
-		: $ResolveSelection<$O, T, $Then>)
+	export type _D<T, $O extends IsNotStrictBigint.$Options> =
+		T extends bigint
+		? (`${T}` extends `${number}`
+			? $ResolveSelection<$O, T, $Then>
+			: $ResolveSelection<$O, T, $Else>)
+		: $ResolveSelection<$O, T, $Then>
 	export type _N<T, $O extends IsNotStrictBigint.$Options> = ([bigint, T] extends [T, bigint]
 		? (T extends bigint
 			? (`${T}` extends `${number}`

@@ -43,8 +43,8 @@ it('can disable union distribution', () => {
 	testType.equal<IsStrictBigint<bigint | 1, { distributive: false }>, false>(true)
 })
 
-it('consider intersection type as not strict', () => {
-	testType.false<IsStrictBigint<bigint & { a: 1 }>>(true)
+it('consider intersection type as strict', () => {
+	testType.true<IsStrictBigint<bigint & { a: 1 }>>(true)
 	testType.false<IsStrictBigint<1n & { a: 1 }>>(true)
 })
 

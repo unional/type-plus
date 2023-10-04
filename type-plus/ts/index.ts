@@ -39,13 +39,10 @@ export type { ComposableTypes, NonComposableTypes } from './composable_types.js'
 export type { Equal, IsEqual, IsNotEqual, NotEqual } from './equal/equal.js'
 export type { AnyFunction } from './function/any_function.js'
 export * from './function/extract_function.js'
-export type { FunctionType, IsFunction, IsNotFunction, NotFunctionType } from './function/function_type.js'
-export type {
-	IsNotStrictFunction,
-	IsStrictFunction,
-	NotStrictFunctionType,
-	StrictFunctionType
-} from './function/strict_function_type.js'
+export type * from './function/is_function.js'
+export type * from './function/is_not_function.js'
+export type * from './function/is_not_strict_function.js'
+export type * from './function/is_strict_function.js'
 export * from './functional/index.js'
 export type { JSONArray, JSONObject, JSONPrimitive, JSONTypes } from './json.js'
 export type { Abs, Add, Decrement, GreaterThan, Increment, Max, Multiply, Subtract } from './math/index.js'

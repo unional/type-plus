@@ -70,14 +70,16 @@ export namespace IsStrictBigint {
 	export type $Options = SelectWithDistribute.$Options
 	export type $Default = SelectWithDistribute.$Default
 	export type $Branch = SelectWithDistribute.$Branch
-	export type _D<T, $O extends IsStrictBigint.$Options> = (bigint extends T
-		? (T extends bigint
-			? (`${T}` extends `${number}`
-				? $ResolveSelection<$O, T, $Else>
-				: $ResolveSelection<$O, T, $Then>)
-			: $ResolveSelection<$O, T, $Else>)
-		: $ResolveSelection<$O, T, $Else>)
-	export type _N<T, $O extends IsStrictBigint.$Options> = ([bigint, T] extends [T, bigint]
+	export type _D<T, $O extends IsStrictBigint.$Options> =
+		T extends bigint
+		? (
+			`${T}` extends `${number}`
+			? $ResolveSelection<$O, T, $Else>
+			: $ResolveSelection<$O, T, $Then>
+		)
+		: $ResolveSelection<$O, T, $Else>
+	export type _N<T, $O extends IsStrictBigint.$Options> = (
+		[bigint, T] extends [T, bigint]
 		? (T extends bigint
 			? (`${T}` extends `${number}`
 				? $ResolveSelection<$O, T, $Else>

@@ -1,6 +1,6 @@
 import type { IsBigint } from '../bigint/is_bigint.js'
 import type { IsBoolean } from '../boolean/is_boolean.js'
-import type { IsFunction } from '../function/function_type.js'
+import type { IsFunction } from '../function/is_function.js'
 import type { IsNumber } from '../number/is_number.js'
 import type { IsStrictObject } from '../object/is_strict_object.js'
 import type { IsString } from '../string/string_type.js'
@@ -28,34 +28,36 @@ import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selecti
 export type Box<T, Options extends Box.Options = Box.DefaultOptions> =
 	IsFunction<
 		T,
-		Function,
-		IsStrictObject<
+		IsFunction.$Branch
+	> extends infer R
+	? R extends $Then ? Function
+	: IsStrictObject<
+		T,
+		Object,
+		T extends Record<any, any> ? T :
+		IsBoolean<
 			T,
-			Object,
-			T extends Record<any, any> ? T :
-			IsBoolean<
+			$SelectionBranch
+		> extends infer R
+		? R extends $Then ? Boolean
+		: R extends $Else ? IsNumber<
+			T,
+			IsNumber.$Branch
+		> extends infer R
+		? R extends $Then ? Number
+		: R extends $Else ? IsString<
+			T,
+			String,
+			IsSymbol<
 				T,
-				$SelectionBranch
-			> extends infer R
-			? R extends $Then ? Boolean
-			: R extends $Else ? IsNumber<
-				T,
-				IsNumber.$Branch
-			> extends infer R
-			? R extends $Then ? Number
-			: R extends $Else ? IsString<
-				T,
-				String,
-				IsSymbol<
-					T,
-					Symbol,
-					IsBigint<T, { $then: BigInt, $else: Options['$notBoxable'] }>
-				>
+				Symbol,
+				IsBigint<T, { $then: BigInt, $else: Options['$notBoxable'] }>
 			>
-			: never : never
-			: never : never
 		>
+		: never : never
+		: never : never
 	>
+	: never
 
 export namespace Box {
 	export type Options = {

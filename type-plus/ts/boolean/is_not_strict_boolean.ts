@@ -18,7 +18,7 @@ import type { IsStrictBoolean } from './is_strict_boolean.js'
  * type R = IsNotStrictBoolean<number> // true
  * type R = IsNotStrictBoolean<unknown> // true
  * type R = IsNotStrictBoolean<string | boolean> // boolean
-  * ```
+	* ```
  *
  * 🔢 *customize*
  *
@@ -71,7 +71,7 @@ export type IsNotStrictBoolean<T, $O extends IsNotStrictBoolean.$Options = {}> =
 			: ['aBcd' | 'Abcd'] extends [R] ? $ResolveSelection<$O, T, $Else> : $ResolveSelection<$O, T, $Then>
 			: never
 		)
-		: [T, boolean] extends [boolean, T] ? $ResolveSelection<$O, T, $Else> : $ResolveSelection<$O, T, $Then>
+		: SelectInvertStrictWithDistribute._N<T, boolean, $O>
 	)
 	: never : never
 

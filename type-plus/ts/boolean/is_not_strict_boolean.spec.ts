@@ -46,6 +46,7 @@ it('can disable union distribution', () => {
 })
 
 it('returns false for intersection type', () => {
+	// `boolean & { a: 1 }` is considered as strict boolean
 	testType.equal<IsNotStrictBoolean<boolean & { a: 1 }>, false>(true)
 })
 
