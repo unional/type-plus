@@ -7,8 +7,8 @@ import type { IsFalse } from '../boolean/is_false.js'
 import type { IsStrictBoolean } from '../boolean/is_strict_boolean.js'
 import type { IsTrue } from '../boolean/is_true.js'
 import type { IsEqual } from '../equal/equal.js'
-import type { IsFunction } from '../function/function_type.js'
-import type { IsStrictFunction } from '../function/strict_function_type.js'
+import type { IsFunction } from '../function/is_function.js'
+import type { IsStrictFunction } from '../function/is_strict_function.js'
 import type { IsNever } from '../never/is_never.js'
 import type { IsNull } from '../null/is_null.js'
 import type { IsNumber } from '../number/is_number.js'
@@ -91,25 +91,25 @@ export namespace testType {
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		strictBigint<T>(expected: IsStrictBigint<T>): T,
+		strictBigint<T>(expected: IsStrictBigint<T, { distributive: false }>): T,
 		/**
 		 * Check if type `T` is `bigint` or bigint literals.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		bigint<T>(expected: IsBigint<T>): T,
+		bigint<T>(expected: IsBigint<T, { distributive: false }>): T,
 		/**
 		 * Check if type `T` is exactly `boolean`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		strictBoolean<T>(expected: IsStrictBoolean<T>): T,
+		strictBoolean<T>(expected: IsStrictBoolean<T, { distributive: false }>): T,
 		/**
 		 * Check if type `T` is `boolean` and boolean literals.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		boolean<T>(expected: IsBoolean<T>): T,
+		boolean<T>(expected: IsBoolean<T, { distributive: false }>): T,
 		/**
 		 * Check if type `T` is exactly `true`.
 		 *
@@ -127,13 +127,13 @@ export namespace testType {
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		strictFunction<T>(expected: IsStrictFunction<T>): T,
+		strictFunction<T>(expected: IsStrictFunction<T, { distributive: false }>): T,
 		/**
 		 * Check if type `T` is `boolean` and boolean literals.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		function<T>(expected: IsFunction<T>): T,
+		function<T>(expected: IsFunction<T, { distributive: false }>): T,
 		/**
 		 * Check if type `T` is exactly `never`.
 		 *
@@ -145,19 +145,19 @@ export namespace testType {
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		null<T>(expected: IsNull<T>): T,
+		null<T>(expected: IsNull<T, { distributive: false }>): T,
 		/**
 		 * Check if type `T` is exactly `number`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		strictNumber<T>(expected: IsStrictNumber<T>): T,
+		strictNumber<T>(expected: IsStrictNumber<T, { distributive: false }>): T,
 		/**
 		 * Check if type `T` is `number` or number literals.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		number<T>(expected: IsNumber<T>): T,
+		number<T>(expected: IsNumber<T, { distributive: false }>): T,
 		/**
 		 * Check if type `T` is `object`.
 		 *
@@ -195,7 +195,7 @@ export namespace testType {
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		undefined<T>(expected: IsUndefined<T>): T,
+		undefined<T>(expected: IsUndefined<T, { distributive: false }>): T,
 		// hasUndefined<T>(expected: CanAssign<T, undefined>): T
 		/**
 		 * Check if type `T` is exactly `unknown`.
@@ -208,7 +208,7 @@ export namespace testType {
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		void<T>(expected: IsVoid<T>): T,
+		void<T>(expected: IsVoid<T, { distributive: false }>): T,
 		/**
 		 * A quick way to inspect a type.
 		 *
