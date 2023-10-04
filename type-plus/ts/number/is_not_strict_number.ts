@@ -57,24 +57,28 @@ export type IsNotStrictNumber<
 	$O extends IsNotStrictNumber.$Options = {}
 > =
 	IsAnyOrNever<T, $SelectionBranch> extends infer R
-		? R extends $Then ? $ResolveSelection<$O, T, $Then>
-			: R extends $Else ? ($ResolveOptions<[$O['distributive'], SelectWithDistribute.$Default['distributive']]> extends true
-				? IsNotStrictNumber._D<T, $O>
-				: IsNotStrictNumber._N<T, $O>)
-	: never: never
+	? R extends $Then ? $ResolveSelection<$O, T, $Then>
+	: R extends $Else ? ($ResolveOptions<[$O['distributive'], SelectWithDistribute.$Default['distributive']]> extends true
+		? IsNotStrictNumber._D<T, $O>
+		: IsNotStrictNumber._N<T, $O>)
+	: never : never
 
 export namespace IsNotStrictNumber {
 	export type $Options = SelectWithDistribute.$Options
 	export type $Default = SelectWithDistribute.$Default
 	export type $Branch = SelectWithDistribute.$Branch
-	export type _D<T, $O extends IsNotStrictNumber.$Options> = (number extends T
-		? (T extends number
-			? (`${T}` extends `${bigint}`
+	export type _D<T, $O extends IsNotStrictNumber.$Options> =
+		T extends number
+		? (
+			`${T}` extends `${bigint}`
+			? $ResolveSelection<$O, T, $Then>
+			: (
+				`${T}` extends `${number}.${number}`
 				? $ResolveSelection<$O, T, $Then>
 				: $ResolveSelection<$O, T, $Else>
 			)
-			: $ResolveSelection<$O, T, $Then>)
-		: $ResolveSelection<$O, T, $Then>)
+		)
+		: $ResolveSelection<$O, T, $Then>
 	export type _N<T, $O extends IsNotStrictNumber.$Options> = ([number, T] extends [T, number]
 		? (T extends number
 			? (`${T}` extends `${bigint}`

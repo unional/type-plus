@@ -48,7 +48,7 @@ it('can disable union distribution', () => {
 })
 
 it('returns true for intersection type', () => {
-	testType.equal<IsStrictNumber<number & { a: 1 }>, false>(true)
+	testType.equal<IsStrictNumber<number & { a: 1 }>, true>(true)
 })
 
 it('works as filter', () => {

@@ -70,13 +70,18 @@ export namespace IsStrictNumber {
 	export type $Options = SelectWithDistribute.$Options
 	export type $Default = SelectWithDistribute.$Default
 	export type $Branch = SelectWithDistribute.$Branch
-	export type _D<T, $O extends IsStrictNumber.$Options> = (number extends T
-		? (T extends number
-			? (`${T}` extends `${bigint}`
+	export type _D<T, $O extends IsStrictNumber.$Options> =
+		T extends number
+		? (
+			`${T}` extends `${bigint}`
+			? $ResolveSelection<$O, T, $Else>
+			: (
+				`${T}` extends `${number}.${number}`
 				? $ResolveSelection<$O, T, $Else>
-				: $ResolveSelection<$O, T, $Then>)
-			: $ResolveSelection<$O, T, $Else>)
-		: $ResolveSelection<$O, T, $Else>)
+				: $ResolveSelection<$O, T, $Then>
+			)
+		)
+		: $ResolveSelection<$O, T, $Else>
 	export type _N<T, $O extends IsStrictNumber.$Options> = ([number, T] extends [T, number]
 		? (T extends number
 			? (`${T}` extends `${bigint}`
