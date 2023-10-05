@@ -1,6 +1,6 @@
 import type { IsAny } from '../any/is_any.js'
 import type { IsNever } from '../never/is_never.js'
-import type { IsObject } from '../object/object_type.js'
+import type { IsObject } from '../object/is_object.js'
 import type { Properties } from '../object/properties.js'
 import type { And, Or } from '../predicates/logical.js'
 import type { IsSymbol } from '../symbol/symbol_type.js'

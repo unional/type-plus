@@ -1,6 +1,6 @@
 import type { IdentityEqual } from '../equal/identity_equal.js'
 import type { IsNever } from '../never/is_never.js'
-import type { IsObject } from './object_type.js'
+import type { IsObject } from './is_object.js'
 
 /**
  * 🎭 *predicate*
