@@ -1,4 +1,4 @@
-import type { ObjectType } from './object_type.js'
+import type { SelectInvertWithDistribute } from '../type_plus/branch/select_invert_with_distribute.js'
 
 /**
  * Is `T` not an `object`.
@@ -14,4 +14,10 @@ import type { ObjectType } from './object_type.js'
  * ```
  */
 
-export type IsNotObject<T, Then = true, Else = false> = ObjectType<T, Else, Then>
+export type IsNotObject<T, $O extends IsNotObject.$Options = {}> = SelectInvertWithDistribute<T, object, $O>
+
+export namespace IsNotObject {
+	export type $Options = SelectInvertWithDistribute.$Options
+	export type $Default = SelectInvertWithDistribute.$Default
+	export type $Branch = SelectInvertWithDistribute.$Branch
+}

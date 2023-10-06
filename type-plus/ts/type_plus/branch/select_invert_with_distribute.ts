@@ -65,11 +65,14 @@ export type SelectInvertWithDistribute<
 	? R extends $Then ? $ResolveSelection<$O, T, $Then>
 	: R extends $Else ? ($ResolveOptions<[$O['distributive'], SelectInvertWithDistribute.$Default['distributive']]> extends true
 		? T extends U ? $ResolveSelection<$O, T, $Else> : $ResolveSelection<$O, T, $Then>
-		: [T] extends [U] ? $ResolveSelection<$O, T, $Else> : $ResolveSelection<$O, T, $Then>)
+		: SelectInvertWithDistribute._N<T, U, $O>)
 	: never : never
 
 export namespace SelectInvertWithDistribute {
 	export type $Options = $SelectionOptions & $DistributiveOptions
 	export type $Default = $SelectionPredicate & $DistributiveDefault
 	export type $Branch = $SelectionBranch & $DistributiveDefault
+	export type _N<T, U, $O extends SelectInvertWithDistribute.$Options> =
+		[T] extends [U] ? $ResolveSelection<$O, T, $Else> : $ResolveSelection<$O, T, $Then>
+
 }

@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type IsObject } from '../index.js'
+import { testType, type IsObject, type $Then, type $Else } from '../index.js'
 
 it('returns true if T is object', () => {
 	testType.true<IsObject<object>>(true)
@@ -43,20 +43,40 @@ it('returns false for all other types', () => {
 	testType.false<IsObject<1n>>(true)
 })
 
-it('returns false if T is union of object', () => {
-	testType.false<IsObject<object | 1>>(true)
+it('distributes for union type', () => {
+	testType.equal<IsObject<object | 1>, boolean>(true)
+	testType.equal<IsObject<{ a: 1 } | 1>, boolean>(true)
 })
 
-it('returns true if T is intersection of object', () => {
-	testType.true<IsObject<object & { a: 1 }>>(true)
+it('can disable union distribution', () => {
+	testType.equal<IsObject<{ a: 1 } | 1>, boolean>(true)
+	testType.equal<IsObject<{ a: 1 } | 1, { distributive: false }>, false>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<IsObject<object, 1, 2>, 1>(true)
-	testType.equal<IsObject<0, 1, 2>, 2>(true)
+it('returns true for intersection type', () => {
+	testType.equal<object & [], object & []>(true)
+	testType.true<IsObject<object & []>>(true)
+	testType.true<IsObject<{ a: 1 } & []>>(true)
+})
 
-	testType.equal<IsObject<any, 1, 2>, 2>(true)
-	testType.equal<IsObject<unknown, 1, 2>, 2>(true)
-	testType.equal<IsObject<never, 1, 2>, 2>(true)
-	testType.equal<IsObject<void, 1, 2>, 2>(true)
+it('works as filter', () => {
+	testType.equal<IsObject<object, { selection: 'filter' }>, object>(true)
+	testType.equal<IsObject<{ a: 1 }, { selection: 'filter' }>, { a: 1 }>(true)
+
+	testType.equal<IsObject<never, { selection: 'filter' }>, never>(true)
+	testType.equal<IsObject<unknown, { selection: 'filter' }>, never>(true)
+	testType.equal<IsObject<object | boolean, { selection: 'filter' }>, object>(true)
+	testType.equal<IsObject<{ a: 1 } | boolean, { selection: 'filter' }>, { a: 1 }>(true)
+})
+
+it('works with unique branches', () => {
+	testType.equal<IsObject<object, IsObject.$Branch>, $Then>(true)
+	testType.equal<IsObject<{ a: 1 }, IsObject.$Branch>, $Then>(true)
+
+	testType.equal<IsObject<any, IsObject.$Branch>, $Else>(true)
+	testType.equal<IsObject<unknown, IsObject.$Branch>, $Else>(true)
+	testType.equal<IsObject<never, IsObject.$Branch>, $Else>(true)
+	testType.equal<IsObject<void, IsObject.$Branch>, $Else>(true)
+
+	testType.equal<IsObject<object | 1, IsObject.$Branch>, $Then | $Else>(true)
 })
