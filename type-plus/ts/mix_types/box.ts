@@ -33,30 +33,31 @@ export type Box<T, Options extends Box.Options = Box.DefaultOptions> =
 	? R extends $Then ? Function
 	: IsStrictObject<
 		T,
-		Object,
-		T extends Record<any, any> ? T :
-		IsBoolean<
+		IsStrictObject.$Branch> extends infer R
+	? R extends $Then ? Object :
+	T extends Record<any, any> ? T :
+	IsBoolean<
+		T,
+		$SelectionBranch
+	> extends infer R
+	? R extends $Then ? Boolean
+	: R extends $Else ? IsNumber<
+		T,
+		IsNumber.$Branch
+	> extends infer R
+	? R extends $Then ? Number
+	: R extends $Else ? IsString<
+		T,
+		String,
+		IsSymbol<
 			T,
-			$SelectionBranch
-		> extends infer R
-		? R extends $Then ? Boolean
-		: R extends $Else ? IsNumber<
-			T,
-			IsNumber.$Branch
-		> extends infer R
-		? R extends $Then ? Number
-		: R extends $Else ? IsString<
-			T,
-			String,
-			IsSymbol<
-				T,
-				Symbol,
-				IsBigint<T, { $then: BigInt, $else: Options['$notBoxable'] }>
-			>
+			Symbol,
+			IsBigint<T, { $then: BigInt, $else: Options['$notBoxable'] }>
 		>
-		: never : never
-		: never : never
 	>
+	: never : never
+	: never : never
+	: never
 	: never
 
 export namespace Box {
