@@ -3,7 +3,7 @@ import type { IsBoolean } from '../boolean/is_boolean.js'
 import type { IsFunction } from '../function/is_function.js'
 import type { IsNumber } from '../number/is_number.js'
 import type { IsStrictObject } from '../object/is_strict_object.js'
-import type { IsString } from '../string/string_type.js'
+import type { IsString } from '../string/is_string.js'
 import type { IsSymbol } from '../symbol/symbol_type.js'
 import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
@@ -48,12 +48,14 @@ export type Box<T, Options extends Box.Options = Box.DefaultOptions> =
 	? R extends $Then ? Number
 	: R extends $Else ? IsString<
 		T,
-		String,
-		IsSymbol<
-			T,
-			Symbol,
-			IsBigint<T, { $then: BigInt, $else: Options['$notBoxable'] }>
-		>
+		{
+			$then: String,
+			$else: IsSymbol<
+				T,
+				Symbol,
+				IsBigint<T, { $then: BigInt, $else: Options['$notBoxable'] }>
+			>
+		}
 	>
 	: never : never
 	: never : never

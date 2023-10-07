@@ -85,15 +85,12 @@ export * as ObjectPlus from './object/object_plus.js'
 export * from './predicates/index.js'
 export type { PrimitiveTypes } from './primitive.js'
 export * from './promise/index.js'
-export type {
-	IsNotStrictString,
-	IsStrictString,
-	NotStrictStringType,
-	StrictStringType
-} from './string/strict_string_type.js'
+export type * from './string/is_not_strict_string.js'
+export type * from './string/is_not_string.js'
+export type * from './string/is_strict_string.js'
+export type * from './string/is_string.js'
 export type { StringIncludes, StringSplit } from './string/string.js'
 export type { StringPlus } from './string/string_plus.js'
-export type { IsNotString, IsString, NotStringType, StringType } from './string/string_type.js'
 export type { IsNotSymbol, IsSymbol, NotSymbolType, SymbolType } from './symbol/symbol_type.js'
 export * from './testing/stub.js'
 export * from './testing/test_type.js'
@@ -129,5 +126,6 @@ export * from './utils/index.js'
 export type { TypePlusOptions } from './utils/options.js'
 export type * from './void/is_not_void.js'
 export type * from './void/is_void.js'
+
 
 
