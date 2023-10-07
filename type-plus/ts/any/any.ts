@@ -1,4 +1,4 @@
-import type { $Type } from '../type_plus/type.js'
+import type { $Type } from '../type_plus/$type.js'
 
 /**
  * 🧰 *type util*

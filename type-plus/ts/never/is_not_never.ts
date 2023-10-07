@@ -1,5 +1,5 @@
 import type { $SelectionOptions } from '../type_plus/branch/selection.js'
-import type { $ResolveOptions } from '../type_plus/resolve_options.js'
+import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
 import type { $Never } from './never.js'
 
 /**

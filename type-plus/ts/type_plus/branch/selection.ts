@@ -1,5 +1,5 @@
-import type { $ResolveOptions } from '../resolve_options.js'
-import type { $Type } from '../type.js'
+import type { $ResolveOptions } from '../$resolve_options.js'
+import type { $Type } from '../$type.js'
 
 /**
  * 🧰 *type util*

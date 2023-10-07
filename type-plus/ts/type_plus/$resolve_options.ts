@@ -1,5 +1,5 @@
-import type { $Error } from './error.js'
-import type { $InferError } from './infer_error.js'
+import type { $Error } from './$error.js'
+import type { $InferError } from './$infer_error.js'
 
 /**
  * 🧰 *type util*
