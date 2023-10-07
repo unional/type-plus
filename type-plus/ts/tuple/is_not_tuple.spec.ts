@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type IsNotTuple } from '../index.js'
+import { testType, type IsNotTuple, type $Then, type $Else } from '../index.js'
 
 it('returns false if T is a tuple', () => {
 	testType.false<IsNotTuple<[]>>(true)
@@ -36,28 +36,40 @@ it('returns true if T for other types', () => {
 	testType.true<IsNotTuple<() => void>>(true)
 })
 
-it('returns true if T is an union of tuple and other types', () => {
-	testType.true<IsNotTuple<[1] | string>>(true)
+it('distributes over union type', () => {
+	testType.equal<IsNotTuple<[1] | number>, boolean>(true)
+})
+
+it('can disable union distribution', () => {
+	testType.equal<IsNotTuple<[] | number, { distributive: false }>, true>(true)
 })
 
 it('returns false if T is union of tuples', () => {
-	testType.false<IsNotTuple<[] | [1]>>(true)
+	testType.equal<IsNotTuple<[] | [1]>, false>(true)
 })
 
 it('returns false if T is intersection of tuples', () => {
 	testType.equal<IsNotTuple<[] & { a: 1 }>, false>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<IsNotTuple<[], 1, 2>, 2>(true)
-	testType.equal<IsNotTuple<string[], 1, 2>, 1>(true)
+// TODO: add $never support back to the system
+// it('can override never case', () => {
+// 	testType.equal<IsNotTuple<never, 1, 2, { $never: 3 }>, 3>(true)
+// })
 
-	testType.equal<IsNotTuple<any, 1, 2>, 1>(true)
-	testType.equal<IsNotTuple<unknown, 1, 2>, 1>(true)
-	testType.equal<IsNotTuple<never, 1, 2>, 1>(true)
-	testType.equal<IsNotTuple<void, 1, 2>, 1>(true)
+it('works as filter', () => {
+	testType.equal<IsNotTuple<[], { selection: 'filter' }>, never>(true)
+
+	testType.equal<IsNotTuple<never, { selection: 'filter' }>, never>(true)
+	testType.equal<IsNotTuple<unknown, { selection: 'filter' }>, unknown>(true)
+	testType.equal<IsNotTuple<[] | number, { selection: 'filter' }>, number>(true)
 })
 
-it('can override never case', () => {
-	testType.equal<IsNotTuple<never, 1, 2, { $never: 3 }>, 3>(true)
+it('works with unique branches', () => {
+	testType.equal<IsNotTuple<[], IsNotTuple.$Branch>, $Else>(true)
+
+	testType.equal<IsNotTuple<any, IsNotTuple.$Branch>, $Then>(true)
+	testType.equal<IsNotTuple<unknown, IsNotTuple.$Branch>, $Then>(true)
+	testType.equal<IsNotTuple<never, IsNotTuple.$Branch>, $Then>(true)
+	testType.equal<IsNotTuple<void, IsNotTuple.$Branch>, $Then>(true)
 })

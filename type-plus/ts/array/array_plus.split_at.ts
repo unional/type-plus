@@ -1,5 +1,5 @@
 import type { IsNever } from '../never/is_never.js'
-import type { IsTuple } from '../tuple/tuple_type.js'
+import type { IsTuple } from '../tuple/is_tuple.js'
 import type { IndexAt } from './array_plus.index_at.js'
 import type { ArrayType } from './array_type.js'
 

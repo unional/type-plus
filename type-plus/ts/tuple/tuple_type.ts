@@ -38,29 +38,6 @@ export namespace TupleType {
 	}
 }
 
-
-/**
- * 🎭 *predicate*
- *
- * Validate that `T` is a tuple, excluding array.
- *
- * ```ts
- * type R = IsTuple<[]>       // true
- *
- * type R = IsTuple<number[]> // false
- * type R = IsTuple<string>   // false
- * type R = IsTuple<never>    // false
- * type R = IsTuple<unknown>  // false
- * ```
- */
-export type IsTuple<
-	T,
-	Then = true,
-	Else = false,
-	Options extends TupleType.$Options = TupleType.DefaultOptions<Else>
-> = TupleType<T, Then, Else, Options>
-
-
 /**
  * 🌪️ *filter*
  *
@@ -80,27 +57,5 @@ export type NotTupleType<
 	T,
 	Then = T,
 	Else = never,
-	Options extends TupleType.$Options = TupleType.DefaultOptions<Then>
-> = TupleType<T, Else, Then, Options>
-
-/**
- * 🎭 *predicate*
- *
- * Validate that `T` is not a tuple, excluding array.
- *
- * ```ts
- * type R = IsNotTuple<[]>       // false
- * type R = IsNotTuple<[1]>      // false
- *
- * type R = IsNotTuple<number[]> // true
- * type R = IsNotTuple<string>   // true
- * type R = IsNotTuple<never>    // true
- * type R = IsNotTuple<unknown>  // true
- * ```
- */
-export type IsNotTuple<
-	T,
-	Then = true,
-	Else = false,
 	Options extends TupleType.$Options = TupleType.DefaultOptions<Then>
 > = TupleType<T, Else, Then, Options>

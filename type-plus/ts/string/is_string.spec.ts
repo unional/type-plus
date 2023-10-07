@@ -34,7 +34,6 @@ it('returns false for other types', () => {
 	testType.false<IsString<() => void>>(true)
 })
 
-
 it('distributes over union type', () => {
 	testType.equal<IsString<string | number>, boolean>(true)
 	testType.equal<IsString<'' | number>, boolean>(true)
