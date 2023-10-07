@@ -1,5 +1,5 @@
 import type { IsNever } from '../never/is_never.js'
-import type { IsTuple } from '../tuple/is_tuple.js'
+import type { TupleType } from '../tuple/tuple_type.js'
 import type { IndexAt } from './array_plus.index_at.js'
 import type { ArrayType } from './array_type.js'
 
@@ -47,7 +47,7 @@ export namespace SplitAt {
 		DeleteCount,
 		Insert extends readonly unknown[],
 	> = 0 extends A['length']
-		? IsTuple<Insert, [[...Insert, ...B], C], [B, C]>
+		? TupleType<Insert, [[...Insert, ...B], C], [B, C]>
 		: (Index extends B['length']
 			? IsNever<
 				DeleteCount,
@@ -66,10 +66,10 @@ export namespace SplitAt {
 		DeleteCount,
 		Insert extends readonly unknown[],
 	> = DeleteCount extends C['length']
-		? IsTuple<Insert, [[...B, ...Insert, ...A], C], [[...B, ...A], C]>
+		? TupleType<Insert, [[...B, ...Insert, ...A], C], [[...B, ...A], C]>
 		: (A extends readonly [infer Head, ...infer Tail]
 			? _D<Tail, B, [...C, Head], DeleteCount, Insert>
-			: IsTuple<Insert, [[...Insert, ...B], C], [B, C]>
+			: TupleType<Insert, [[...Insert, ...B], C], [B, C]>
 		)
 
 }

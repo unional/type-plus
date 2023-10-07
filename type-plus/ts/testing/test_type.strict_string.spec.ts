@@ -10,8 +10,8 @@ it('rejects string literal', () => {
 	testType.strictString<'a'>(false)
 })
 
-it('rejects intersection with string', () => {
-	testType.strictString<string & { a: 1 }>(false)
+it('consider string intersection type as strict string', () => {
+	testType.strictString<string & { a: 1 }>(true)
 })
 
 it('rejects others', () => {

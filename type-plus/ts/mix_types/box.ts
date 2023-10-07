@@ -52,8 +52,10 @@ export type Box<T, Options extends Box.Options = Box.DefaultOptions> =
 			$then: String,
 			$else: IsSymbol<
 				T,
-				Symbol,
-				IsBigint<T, { $then: BigInt, $else: Options['$notBoxable'] }>
+				{
+					$then: Symbol,
+					$else: IsBigint<T, { $then: BigInt, $else: Options['$notBoxable'] }>
+				}
 			>
 		}
 	>

@@ -68,7 +68,7 @@ export type IsEqual<A, B, Then = true, Else = false> = [A, B] extends [B, A]
 			>
 		>
 	>
-	: And<IsSymbol<A>, IsSymbol<B>, Then, Else>
+	: And<IsSymbol<A, { distributive: false }>, IsSymbol<B, { distributive: false }>, Then, Else>
 
 /**
  * Checks `A` and `B` are not equal.
