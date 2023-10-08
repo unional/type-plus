@@ -1,4 +1,4 @@
-import type { TupleType } from '../tuple/tuple_type.js'
+import type { IsTuple } from '../tuple/is_tuple.js'
 /**
  * Returns an array of key-value pairs for every entry in the array or tuple.
  *
@@ -11,10 +11,12 @@ import type { TupleType } from '../tuple/tuple_type.js'
  * ArrayPlus.Entries<[1, 2, 3]> // [[0, 1], [1, 2], [2, 3]]
  * ```
  */
-export type Entries<A extends readonly unknown[]> = TupleType<
+export type Entries<A extends readonly unknown[]> = IsTuple<
 	A,
-	Entries.Device<A, []>,
-	A extends Array<infer T> ? Array<[number, T]> : never
+	{
+		$then: Entries.Device<A, []>,
+		$else: A extends Array<infer T> ? Array<[number, T]> : never
+	}
 >
 
 export namespace Entries {

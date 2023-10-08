@@ -1,6 +1,6 @@
+import type { $ResolveOptions } from '../index.js'
 import type { $NeverDefault, $NeverOptions } from '../never/never.js'
-import type { TupleType } from '../tuple/tuple_type.js'
-import type { TypePlusOptions } from '../utils/options.js'
+import type { IsTuple } from '../tuple/is_tuple.js'
 import type { ElementMatch } from './array_plus.element_match.js'
 
 /**
@@ -51,14 +51,14 @@ export type Find<
 	Criteria,
 	Options extends Find.Options = Find.DefaultOptions<Criteria>
 > =
-	TypePlusOptions.Merge<Options, Find.DefaultOptions<Criteria>> extends infer O extends Find.Options
-	? TupleType<
-		A,
-		O['$tuple'],
-		A extends Readonly<Array<infer T>> ? ElementMatch<T, Criteria, O> : never,
-		O
-	>
-	: never
+	IsTuple<A, {
+		$then: $ResolveOptions<[Options['$tuple'], Find.DefaultOptions<Criteria>['$tuple']]>,
+		$else: (
+			A extends Readonly<Array<infer T>>
+			? ElementMatch<T, Criteria, Options>
+			: never
+		)
+	}>
 
 export namespace Find {
 	export interface Options extends ElementMatch.Options, $NeverOptions {

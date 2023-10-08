@@ -1,4 +1,4 @@
-import type { TupleType } from '../tuple/tuple_type.js'
+import type { IsTuple } from '../tuple/is_tuple.js'
 import type { Find as TupleFind } from '../tuple/tuple_plus.find.js'
 import type { Find as ArrayFind } from './array_plus.find.js'
 
@@ -52,10 +52,12 @@ import type { Find as ArrayFind } from './array_plus.find.js'
 export type FindFirst<
 	A extends readonly unknown[],
 	Criteria, Options extends FindFirst.Options = FindFirst.DefaultOptions<Criteria>
-> = TupleType<
+> = IsTuple<
 	A,
-	TupleFind<A, Criteria, Options>,
-	ArrayFind<A, Criteria, Options>
+	{
+		$then: TupleFind<A, Criteria, Options>,
+		$else: ArrayFind<A, Criteria, Options>
+	}
 >
 
 export namespace FindFirst {

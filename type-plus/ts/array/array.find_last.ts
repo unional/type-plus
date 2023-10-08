@@ -1,4 +1,4 @@
-import type { TupleType } from '../tuple/tuple_type.js'
+import type { IsTuple } from '../tuple/is_tuple.js'
 
 /**
  * 🦴 *utilities*
@@ -16,14 +16,16 @@ import type { TupleType } from '../tuple/tuple_type.js'
  * ArrayPlus.Find<[true, 123, 'x', 321], number> // 321
  * ```
  */
-export type FindLast<A extends readonly unknown[], Criteria> = TupleType<
+export type FindLast<A extends readonly unknown[], Criteria> = IsTuple<
 	A,
-	A['length'] extends 0
-	? never
-	: (A extends readonly [...infer Heads, infer Last]
-		? (Last extends Criteria
-			? Last
-			: FindLast<Heads, Criteria>)
-		: never),
-	A extends Readonly<Array<infer T>> ? (T extends Criteria ? T | undefined : never) : never
+	{
+		$then: A['length'] extends 0
+		? never
+		: (A extends readonly [...infer Heads, infer Last]
+			? (Last extends Criteria
+				? Last
+				: FindLast<Heads, Criteria>)
+			: never),
+		$else: A extends Readonly<Array<infer T>> ? (T extends Criteria ? T | undefined : never) : never
+	}
 >

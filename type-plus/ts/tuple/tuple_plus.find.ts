@@ -1,7 +1,7 @@
 import type { ElementMatch } from '../array/array_plus.element_match.js'
 import type { $NeverDefault, $NeverOptions } from '../never/never.js'
 import type { TypePlusOptions } from '../utils/options.js'
-import type { TupleType } from './tuple_type.js'
+import type { IsTuple } from './is_tuple.js'
 
 /**
  * 🦴 *utilities*
@@ -53,13 +53,14 @@ export type Find<
 	Criteria,
 	Options extends Find.Options = Find.DefaultOptions<Criteria>
 > = TypePlusOptions.Merge<Options, Find.DefaultOptions<Criteria>> extends infer O extends Find.Options
-	? TupleType<
+	? IsTuple<
 		A,
-		A['length'] extends 0
-		? O['$emptyTuple']
-		: Find.Device<A, Criteria, O>,
-		O['$array'],
-		O
+		{
+			$then: A['length'] extends 0
+			? O['$emptyTuple']
+			: Find.Device<A, Criteria, O>,
+			$else: O['$array']
+		}
 	>
 	: never
 export namespace Find {
