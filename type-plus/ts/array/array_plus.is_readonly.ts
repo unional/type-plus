@@ -1,6 +1,6 @@
 import type { IsNever } from '../never/is_never.js'
 import type { $NeverOptions } from '../never/never.js'
-import type { $SelectionOptions } from '../type_plus/branch/selection.js'
+import type { $SelectionOptions } from '../type_plus/branch/$selection_options.js'
 import type { TypePlusOptions } from '../utils/options.js'
 import type { LooseArrayType } from './loose_array_type.js'
 

@@ -1,45 +1,9 @@
 import type { $ResolveOptions } from '../$resolve_options.js'
-import type { $Type } from '../$type.js'
+import type { $Branch } from './$branch.js'
+import type { $SelectionOptions } from './$selection_options.js'
 
-/**
- * 🧰 *type util*
- *
- * Options for selection (if-then-else) logic.
- *
- * The word "selection" refers to the basic elements in structural programming:
- * sequence, selection, and iteration.
- *
- * @example
- * ```ts
- * type YourType<
- *   T,
- *   $Options extends YourType.$Options = YourType.$Branch
- * > = ...
- *
- * namespace YourType {
- *   export type $Options = $SelectionOptions
- *   export type $Branch = $SelectionBranch
- * }
- * ```
- */
-export type $SelectionOptions = {
-	/**
-	 * Specifies which default selection logic to use.
-	 *
-	 * `filter` returns `T` when the condition is met,
-	 * and returns `never` otherwise.
-	 *
-	 * `predicate` returns boolean depends on the condition.
-	 *
-	 * Note that setting `$then` and `$else` overrides the default selection logic.
-	 */
-	selection?: 'predicate' | 'filter' | undefined,
-	$then?: unknown,
-	$else?: unknown,
-}
-
-export type $Then = $Type<'branch', 'then'>
-export type $Else = $Type<'branch', 'else'>
+export type $Then = $Branch<'$then'>
+export type $Else = $Branch<'$else'>
 
 /**
  * 🧰 *type util*
