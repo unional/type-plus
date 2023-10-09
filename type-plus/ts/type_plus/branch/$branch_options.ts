@@ -3,7 +3,7 @@ import type { $Branch } from './$branch.js'
 /**
  * 🧰 *type util*
  *
- * Defined branch options.
+ * Define branch options.
  */
-export type $DefineBranchOptions<$B extends $Branch<any>> =
+export type $BranchOptions<$B extends $Branch<any>> =
 	{ [k in $B['value']]: $B extends { value: k } ? $B : never }

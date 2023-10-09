@@ -1,5 +1,5 @@
 import type { IsAny } from '../any/is_any.js'
-import type { IsArray } from "../array/is_array.js"
+import type { IsArray } from '../array/is_array.js'
 import type { IsBigint } from '../bigint/is_bigint.js'
 import type { IsStrictBigint } from '../bigint/is_strict_bigint.js'
 import type { IsBoolean } from '../boolean/is_boolean.js'

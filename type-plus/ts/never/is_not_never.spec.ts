@@ -1,5 +1,5 @@
 import { describe, it } from '@jest/globals'
-import { testType, type $Never, type IsNotNever } from '../index.js'
+import { testType, type $Never, type IsNotNever, type $BranchOptions, type $Then, type $Else, type $Any, type $Unknown } from '../index.js'
 
 it('returns false for never', () => {
 	testType.false<IsNotNever<never>>(true)
@@ -40,6 +40,19 @@ it('returns false for intersection type', () => {
 })
 
 it('can override Then/Else', () => {
+	testType.equal<IsNotNever<never, $BranchOptions<$Else>>, $Else>(true)
+	testType.equal<IsNotNever<never, $BranchOptions<$Then | $Else>>, $Else>(true)
+	testType.equal<IsNotNever<0, $BranchOptions<$Then | $Else>>, $Then>(true)
+
+	testType.equal<IsNotNever<any, $BranchOptions<$Then>>, $Then>(true)
+	testType.equal<IsNotNever<any, $BranchOptions<$Any>>, $Any>(true)
+	testType.equal<IsNotNever<any, $BranchOptions<$Any | $Then>>, $Any>(true)
+	testType.equal<IsNotNever<unknown, $BranchOptions<$Then>>, $Then>(true)
+	testType.equal<IsNotNever<unknown, $BranchOptions<$Unknown>>, $Unknown>(true)
+	testType.equal<IsNotNever<unknown, $BranchOptions<$Unknown | $Then>>, $Unknown>(true)
+})
+
+it('can override Then/Else', () => {
 	testType.equal<IsNotNever<never, { $then: 1, $else: 2 }>, 2>(true)
 	testType.equal<IsNotNever<0, { $then: 1, $else: 2 }>, 1>(true)
 
@@ -49,7 +62,6 @@ it('can override Then/Else', () => {
 })
 
 describe('filter', () => {
-
 	it('returns `is_never` if T is never', () => {
 		testType.equal<IsNotNever<never, { selection: 'filter' }>, $Never>(true)
 	})

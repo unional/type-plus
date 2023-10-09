@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type $Else, type $Then, type IsNotBigint } from '../index.js'
+import { testType, type $Else, type $Then, type IsNotBigint, type $BranchOptions, type $Any, type $Unknown, type $Never } from '../index.js'
 
 it('returns false for bigint', () => {
 	testType.false<IsNotBigint<bigint>>(true)
@@ -63,8 +63,14 @@ it('works with unique branches', () => {
 	testType.equal<IsNotBigint<1n, IsNotBigint.$Branch>, $Else>(true)
 
 	testType.equal<IsNotBigint<any, IsNotBigint.$Branch>, $Then>(true)
+	testType.equal<IsNotBigint<any, $BranchOptions<$Any>>, $Any>(true)
+	testType.equal<IsNotBigint<any, $BranchOptions<$Any | $Then>>, $Any>(true)
 	testType.equal<IsNotBigint<unknown, IsNotBigint.$Branch>, $Then>(true)
+	testType.equal<IsNotBigint<unknown, $BranchOptions<$Unknown>>, $Unknown>(true)
+	testType.equal<IsNotBigint<unknown, $BranchOptions<$Unknown | $Then>>, $Unknown>(true)
 	testType.equal<IsNotBigint<never, IsNotBigint.$Branch>, $Then>(true)
+	testType.equal<IsNotBigint<never, $BranchOptions<$Never>>, $Never>(true)
+	testType.equal<IsNotBigint<never, $BranchOptions<$Never | $Then>>, $Never>(true)
 	testType.equal<IsNotBigint<void, IsNotBigint.$Branch>, $Then>(true)
 
 	testType.equal<IsNotBigint<1n | 1, IsNotBigint.$Branch>, $Then | $Else>(true)

@@ -1,4 +1,3 @@
-import type { $Type } from '../type_plus/$type.js'
 import type { $Branch } from '../type_plus/branch/$branch.js'
 
 /**
@@ -78,4 +77,4 @@ export type $NeverDefault = {
  *
  * It is used in [`NeverType`](./never_type.ts).
  */
-export type $NotNever = $Type<'branch', 'not_never'>
+export type $NotNever = $Branch<'$not_never'>

@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type IsNotStrictBoolean, type $Else, type $Then } from '../index.js'
+import { testType, type $Any, type $BranchOptions, type $Else, type $Then, type IsNotStrictBoolean, type $Unknown, type $Never } from '../index.js'
 
 it('returns false if T is boolean', () => {
 	testType.equal<IsNotStrictBoolean<boolean>, false>(true)
@@ -70,7 +70,13 @@ it('works with unique branches', () => {
 	testType.equal<IsNotStrictBoolean<false, IsNotStrictBoolean.$Branch>, $Then>(true)
 
 	testType.equal<IsNotStrictBoolean<any, IsNotStrictBoolean.$Branch>, $Then>(true)
+	testType.equal<IsNotStrictBoolean<any, $BranchOptions<$Any>>, $Any>(true)
+	testType.equal<IsNotStrictBoolean<any, $BranchOptions<$Any | $Then>>, $Any>(true)
 	testType.equal<IsNotStrictBoolean<unknown, IsNotStrictBoolean.$Branch>, $Then>(true)
+	testType.equal<IsNotStrictBoolean<unknown, $BranchOptions<$Unknown>>, $Unknown>(true)
+	testType.equal<IsNotStrictBoolean<unknown, $BranchOptions<$Unknown | $Then>>, $Unknown>(true)
 	testType.equal<IsNotStrictBoolean<never, IsNotStrictBoolean.$Branch>, $Then>(true)
+	testType.equal<IsNotStrictBoolean<never, $BranchOptions<$Never>>, $Never>(true)
+	testType.equal<IsNotStrictBoolean<never, $BranchOptions<$Never | $Then>>, $Never>(true)
 	testType.equal<IsNotStrictBoolean<void, IsNotStrictBoolean.$Branch>, $Then>(true)
 })

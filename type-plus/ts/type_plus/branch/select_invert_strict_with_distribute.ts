@@ -1,5 +1,12 @@
 import type { $ResolveOptions } from '../$resolve_options.js'
-import type { IsAnyOrNever } from '../../mix_types/is_any_or_never.js'
+import type { $Any } from '../../any/any.js'
+import type { IsAny } from '../../any/is_any.js'
+import type { IsNever } from '../../never/is_never.js'
+import type { $Never } from '../../never/never.js'
+import type { IsUnknown } from '../../unknown/is_unknown.js'
+import type { $Unknown } from '../../unknown/unknown.js'
+import type { $InputOptions } from './$input_options.js'
+import type { $ResolveBranch } from './$resolve_branch.js'
 import type { $ResolveSelection } from './$resolve_selection.js'
 import type { $SelectionOptions } from './$selection_options.js'
 import type { $DistributiveDefault, $DistributiveOptions } from './distributive.js'
@@ -60,25 +67,48 @@ export type SelectInvertStrictWithDistribute<
 	T,
 	U,
 	$O extends SelectInvertStrictWithDistribute.$Options = {}
-> = IsAnyOrNever<
-	T,
-	$SelectionBranch
-> extends infer R
-	? R extends $Then ? $ResolveSelection<$O, T, $Then>
-	: R extends $Else ? (
-		$ResolveOptions<[$O['distributive'], SelectInvertStrictWithDistribute.$Default['distributive']]> extends true
-		? SelectInvertStrictWithDistribute._D<T, U, $O>
-		: SelectInvertStrictWithDistribute._N<T, U, $O>
-	)
-	: never : never
+> =
+	IsAny<
+		T,
+		{
+			$then: $ResolveBranch<
+				$O,
+				[$Any, $Then],
+				$ResolveSelection<$O, T, $Then>
+			>,
+			$else:
+			IsNever<
+				T,
+				{
+					$then: $ResolveBranch<
+						$O,
+						[$Never, $Then],
+						$ResolveSelection<$O, T, $Then>
+					>,
+					$else: IsUnknown<
+						T,
+						{
+							$then: $ResolveBranch<
+								$O,
+								[$Unknown, $Then],
+								$ResolveSelection<$O, T, $Then>
+							>,
+							$else: $ResolveOptions<[$O['distributive'], SelectInvertStrictWithDistribute.$Default['distributive']]> extends true
+							? SelectInvertStrictWithDistribute._D<T, U, $O>
+							: SelectInvertStrictWithDistribute._N<T, U, $O>
+						}
+					>
+				}
+			>
+		}
+	>
 
 export namespace SelectInvertStrictWithDistribute {
-	export type $Options = $SelectionOptions & $DistributiveOptions
+	export type $Options = $SelectionOptions & $DistributiveOptions & $InputOptions<$Any | $Unknown | $Never>
 	export type $Default = $SelectionPredicate & $DistributiveDefault
 	export type $Branch = $SelectionBranch & $DistributiveDefault
 	export type _D<T, U, $O extends SelectInvertStrictWithDistribute.$Options> =
-		T extends U ? $ResolveSelection<$O, T, $Else>
-		: $ResolveSelection<$O, T, $Then>
+		T extends U ? $ResolveSelection<$O, T, $Else> : $ResolveSelection<$O, T, $Then>
 	// T extends U ? U extends T
 	// ? $ResolveSelection<$O, T, $Else>
 	// : $ResolveSelection<$O, T, $Then>

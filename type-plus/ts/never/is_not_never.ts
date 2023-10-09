@@ -1,5 +1,10 @@
-import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
+import type { $Any } from '../any/any.js'
+import type { $InputOptions } from '../type_plus/branch/$input_options.js'
+import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
+import type { $ResolveSelection } from '../type_plus/branch/$resolve_selection.js'
 import type { $SelectionOptions } from '../type_plus/branch/$selection_options.js'
+import type { $Else, $Then } from '../type_plus/branch/selection.js'
+import type { $Unknown } from '../unknown/unknown.js'
 import type { $Never } from './never.js'
 
 /**
@@ -43,10 +48,17 @@ export type IsNotNever<
 	T,
 	$O extends IsNotNever.$Options = {}
 > = [T, never] extends [never, T]
-	? $ResolveOptions<[$O['$else'], $O['selection'] extends 'filter' ? $Never : false]>
-	: $ResolveOptions<[$O['$then'], $O['selection'] extends 'filter' ? T : true]>
-
+	? $ResolveBranch<
+		$O,
+		[$Else],
+		$O['selection'] extends 'filter' ? $Never : false
+	>
+	: $ResolveBranch<
+		$O,
+		[0 extends 1 & T ? $Any : unknown, [unknown] extends [T] ? $Unknown : unknown, $Then],
+		$ResolveSelection<$O, T, $Then>
+	>
 
 export namespace IsNotNever {
-	export type $Options = $SelectionOptions
+	export type $Options = $SelectionOptions & $InputOptions<$Any | $Unknown>
 }

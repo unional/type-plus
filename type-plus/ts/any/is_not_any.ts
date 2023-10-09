@@ -1,5 +1,5 @@
 import type { $Never } from '../never/never.js'
-import type { $DefineInputOptions } from '../type_plus/branch/$define_input_options.js'
+import type { $InputOptions } from '../type_plus/branch/$input_options.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $ResolveSelection } from '../type_plus/branch/$resolve_selection.js'
 import type { $SelectionOptions } from '../type_plus/branch/$selection_options.js'
@@ -59,7 +59,7 @@ export type IsNotAny<
 	>
 
 export namespace IsNotAny {
-	export type $Options = $SelectionOptions & $DefineInputOptions<$Unknown | $Never>
+	export type $Options = $SelectionOptions & $InputOptions<$Unknown | $Never>
 	export type $Default = $SelectionPredicate
 	export type $Branch = $SelectionBranch
 }

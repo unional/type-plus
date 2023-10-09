@@ -1,5 +1,5 @@
 import { describe, it } from '@jest/globals'
-import { testType, type $NotNever, type IsNever } from '../index.js'
+import { testType, type $Any, type $BranchOptions, type $Else, type $NotNever, type $Then, type $Unknown, type IsNever } from '../index.js'
 
 it('returns true for never', () => {
 	testType.true<IsNever<never>>(true)
@@ -31,21 +31,27 @@ it('returns false for other types', () => {
 	testType.false<IsNever<() => void>>(true)
 })
 
-it('returns false for union type', () => {
+it('returns false for union type as it is resolved immediately by TypeScript to T', () => {
+	testType.equal<never | 1, 1>(true)
 	testType.false<IsNever<never | 1>>(true)
 })
 
 it('returns true for intersection type', () => {
+	testType.equal<never & { a: 1 }, never>(true)
 	testType.true<IsNever<never & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {
-	testType.equal<IsNever<never, { $then: 1, $else: 2 }>, 1>(true)
-	testType.equal<IsNever<0, { $then: 1, $else: 2 }>, 2>(true)
+	testType.equal<IsNever<never, $BranchOptions<$Then>>, $Then>(true)
+	testType.equal<IsNever<never, $BranchOptions<$Then | $Else>>, $Then>(true)
+	testType.equal<IsNever<0, $BranchOptions<$Then | $Else>>, $Else>(true)
 
-	testType.equal<IsNever<any, { $then: 1, $else: 2 }>, 2>(true)
-	testType.equal<IsNever<unknown, { $then: 1, $else: 2 }>, 2>(true)
-	testType.equal<IsNever<void, { $then: 1, $else: 2 }>, 2>(true)
+	testType.equal<IsNever<any, $BranchOptions<$Any>>, $Any>(true)
+	testType.equal<IsNever<any, $BranchOptions<$Else>>, $Else>(true)
+	testType.equal<IsNever<any, $BranchOptions<$Any | $Else>>, $Any>(true)
+	testType.equal<IsNever<unknown, $BranchOptions<$Unknown>>, $Unknown>(true)
+	testType.equal<IsNever<unknown, $BranchOptions<$Else>>, $Else>(true)
+	testType.equal<IsNever<unknown, $BranchOptions<$Unknown | $Else>>, $Unknown>(true)
 })
 
 it('works with partial customization', () => {
