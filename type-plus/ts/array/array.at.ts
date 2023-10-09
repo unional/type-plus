@@ -18,19 +18,21 @@ import type { IndexAt } from './array_plus.index_at.js'
  * type R = At<[1, 2, 3], -1> // 3
  * ```
  */
-export type At<A extends readonly unknown[], N extends number, Fail = never> = IndexAt<
-	A,
-	N,
-	Fail,
-	Fail,
-	Fail
-> extends infer I
+export type At<A extends readonly unknown[], N extends number, Fail = never> =
+	IndexAt<
+		A,
+		N,
+		Fail,
+		Fail,
+		Fail
+	> extends infer I
 	? I extends number
 	? IsTuple<A, {
-		$then: IsStrictNumber<I, IsStrictNumber.$Branch> extends infer R
+		$then:
+		IsStrictNumber<I, IsStrictNumber.$Branch> extends infer R
 		? R extends $Then ? A[I] | undefined
-		: R extends $Else ? A[I]
-		: never : never,
+		: R extends $Else ? A[I] : never
+		: never,
 		$else: A[I] | undefined
 	}>
 	: Fail

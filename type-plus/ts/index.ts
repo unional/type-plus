@@ -111,6 +111,9 @@ export type * from './type_plus/$infer_error.js'
 export type * from './type_plus/$resolve_options.js'
 export type * from './type_plus/$type.js'
 export type * from './type_plus/branch/$branch.js'
+export type * from './type_plus/branch/$define_branch_options.js'
+export type * from './type_plus/branch/$define_input_options.js'
+export type * from './type_plus/branch/$resolve_branch.js'
 export type * from './type_plus/branch/$selection_options.js'
 export type * from './type_plus/branch/distributive.js'
 export type * from './type_plus/branch/select_with_distribute.js'
@@ -129,6 +132,3 @@ export * from './utils/index.js'
 export type { TypePlusOptions } from './utils/options.js'
 export type * from './void/is_not_void.js'
 export type * from './void/is_void.js'
-
-
-

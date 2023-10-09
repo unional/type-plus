@@ -1,7 +1,8 @@
 import type { IsBigint } from '../bigint/is_bigint.js'
 import type { IsNumber } from '../number/is_number.js'
+import type { $ResolveSelection } from '../type_plus/branch/$resolve_selection.js'
 import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
-import type { $Else, $ResolveSelection, $Then } from '../type_plus/branch/selection.js'
+import type { $Else, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * Is `T` a positive numeric type.

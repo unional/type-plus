@@ -1,8 +1,9 @@
 import type { $ResolveOptions } from '../$resolve_options.js'
 import type { IsAnyOrNever } from '../../mix_types/is_any_or_never.js'
+import type { $ResolveSelection } from './$resolve_selection.js'
 import type { $SelectionOptions } from './$selection_options.js'
 import type { $DistributiveDefault, $DistributiveOptions } from './distributive.js'
-import type { $Else, $ResolveSelection, $SelectionBranch, $SelectionPredicate, $Then } from './selection.js'
+import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './selection.js'
 
 /**
  * 🎭 *predicate*

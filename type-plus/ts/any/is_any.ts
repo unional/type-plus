@@ -1,5 +1,11 @@
+import type { $Never } from '../never/never.js'
+import type { $DefineInputOptions } from '../type_plus/branch/$define_input_options.js'
+import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
+import type { $ResolveSelection } from '../type_plus/branch/$resolve_selection.js'
 import type { $SelectionOptions } from '../type_plus/branch/$selection_options.js'
-import type { $Else, $ResolveSelection, $Then } from '../type_plus/branch/selection.js'
+import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from '../type_plus/branch/selection.js'
+import type { $Unknown } from '../unknown/unknown.js'
+import type { $Any, $AnyBranch, $AnyDefault } from './any.js'
 
 /**
  * 🎭 *predicate*
@@ -40,7 +46,21 @@ import type { $Else, $ResolveSelection, $Then } from '../type_plus/branch/select
  */
 export type IsAny<
 	T,
-	$O extends $SelectionOptions = {}
+	$O extends IsAny.$Options = {}
 > = 0 extends 1 & T
-	? $ResolveSelection<$O, T, $Then>
-	: $ResolveSelection<$O, T, $Else>
+	? $ResolveBranch<
+		$O,
+		[$Any, $Then],
+		$ResolveSelection<$O, T, $Then>
+	>
+	: $ResolveBranch<
+		$O,
+		[[unknown] extends [T] ? $Unknown : unknown, [never] extends [T] ? $Never : unknown, $Else],
+		$ResolveSelection<$O, T, $Else>
+	>
+
+export namespace IsAny {
+	export type $Options = $SelectionOptions & $DefineInputOptions<$Any | $Unknown | $Never>
+	export type $Default = $SelectionPredicate & $AnyDefault
+	export type $Branch = $SelectionBranch & $AnyBranch
+}

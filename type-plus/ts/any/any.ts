@@ -1,4 +1,4 @@
-import type { $Type } from '../type_plus/$type.js'
+import type { $Branch } from '../type_plus/branch/$branch.js'
 
 /**
  * 🧰 *type util*
@@ -23,7 +23,7 @@ export type $AnyOptions = {
 	$any?: unknown
 }
 
-export type $Any = $Type<'branch', 'any'>
+export type $Any = $Branch<'$any'>
 
 /**
  * 🧰 *type util*

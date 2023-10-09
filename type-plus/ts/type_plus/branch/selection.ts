@@ -1,4 +1,3 @@
-import type { $ResolveOptions } from '../$resolve_options.js'
 import type { $Branch } from './$branch.js'
 import type { $SelectionOptions } from './$selection_options.js'
 
@@ -78,13 +77,6 @@ export type $SelectionFilter<T> = {
 	$then: T,
 	$else: never,
 }
-
-export type $ResolveSelection<$O extends $SelectionOptions, T, Branch extends $Then | $Else> =
-	Branch extends $Then ? $ResolveOptions<[$O['$then'], $O['selection'] extends 'filter' ? T : true]>
-	: Branch extends $Else ? ($ResolveOptions<[$O['$else'], $O['selection'] extends 'filter'
-		? never
-		: false]>)
-	: never
 
 /**
  * 🧰 *type util*

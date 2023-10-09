@@ -1,7 +1,8 @@
 import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
-import type { SelectInvertStrictWithDistribute } from '../type_plus/branch/select_invert_strict_with_distribute.js'
-import type { $Else, $ResolveSelection, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
+import type { $ResolveSelection } from '../type_plus/branch/$resolve_selection.js'
+import type { SelectInvertStrictWithDistribute } from '../type_plus/branch/select_invert_strict_with_distribute.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
  * Is `T` not exactly `Function`.

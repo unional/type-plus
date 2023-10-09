@@ -1,5 +1,6 @@
+import type { $ResolveSelection } from '../type_plus/branch/$resolve_selection.js'
 import type { SelectInvertWithDistribute } from '../type_plus/branch/select_invert_with_distribute.js'
-import type { $ResolveSelection, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
+import type { $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 import type { IsUndefined } from '../undefined/is_undefined.js'
 
 /**

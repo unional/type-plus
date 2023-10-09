@@ -59,6 +59,21 @@ it('works with partial customization', () => {
 	testType.equal<IsAny<0, { $else: 2 }>, 2>(true)
 })
 
+it('can override $any branch', () => {
+	testType.equal<IsAny<any>, true>(true)
+	testType.equal<IsAny<any, { $any: unknown }>, unknown>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsAny<unknown>, false>(true)
+	testType.equal<IsAny<unknown, { $unknown: unknown }>, unknown>(true)
+})
+
+it('can override $never branch', () => {
+	testType.equal<IsAny<never>, false>(true)
+	testType.equal<IsAny<never, { $never: unknown }>, unknown>(true)
+})
+
 describe('filter', () => {
 	it('returns any for any', () => {
 		testType.equal<IsAny<any, { selection: 'filter' }>, any>(true)

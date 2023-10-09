@@ -1,4 +1,5 @@
 import type { $Type } from '../type_plus/$type.js'
+import type { $Branch } from '../type_plus/branch/$branch.js'
 
 /**
  * 🧰 *type util*
@@ -7,7 +8,7 @@ import type { $Type } from '../type_plus/$type.js'
  *
  * It is used in `NotNeverType`.
  */
-export type $Never = $Type<'branch', 'never'>
+export type $Never = $Branch<'$never'>
 
 /**
  * 🧰 *type util*

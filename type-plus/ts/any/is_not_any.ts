@@ -1,5 +1,6 @@
+import type { $ResolveSelection } from '../type_plus/branch/$resolve_selection.js'
 import type { $SelectionOptions } from '../type_plus/branch/$selection_options.js'
-import type { $Else, $InvertSelection, $ResolveSelection, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
+import type { $Else, $InvertSelection, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 import type { IsAny } from './is_any.js'
 
 /**
