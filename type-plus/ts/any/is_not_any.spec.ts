@@ -1,5 +1,5 @@
 import { describe, it } from '@jest/globals'
-import { testType, type $SelectionPredicate, type IsNotAny } from '../index.js'
+import { testType, type $Else, type $Then, type IsNotAny } from '../index.js'
 
 it('returns false for any', () => {
 	testType.equal<IsNotAny<any>, false>(true)
@@ -31,23 +31,23 @@ it('returns true for other types', () => {
 	testType.equal<IsNotAny<() => void>, true>(true)
 })
 
-it('returns false for union type', () => {
+it('returns false for union type as it is resolved immediately by TypeScript to any', () => {
 	testType.equal<any | 1, any>(true)
 	testType.equal<IsNotAny<any | 1>, false>(true)
 })
 
-it('returns false for intersection type', () => {
+it('returns false for intersection type as it is resolved immediately by TypeScript to any', () => {
 	testType.equal<any & 1, any>(true)
 	testType.equal<IsNotAny<any & 1>, false>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<IsNotAny<any, $SelectionPredicate>, false>(true)
-	testType.equal<IsNotAny<0, $SelectionPredicate>, true>(true)
+it('work as branching', () => {
+	testType.equal<IsNotAny<any, IsNotAny.$Branch>, $Else>(true)
+	testType.equal<IsNotAny<0, IsNotAny.$Branch>, $Then>(true)
 
-	testType.equal<IsNotAny<unknown, $SelectionPredicate>, true>(true)
-	testType.equal<IsNotAny<never, $SelectionPredicate>, true>(true)
-	testType.equal<IsNotAny<void, $SelectionPredicate>, true>(true)
+	testType.equal<IsNotAny<unknown, IsNotAny.$Branch>, $Then>(true)
+	testType.equal<IsNotAny<never, IsNotAny.$Branch>, $Then>(true)
+	testType.equal<IsNotAny<void, IsNotAny.$Branch>, $Then>(true)
 })
 
 it('works with partial customization', () => {
@@ -58,8 +58,17 @@ it('works with partial customization', () => {
 	testType.equal<IsNotAny<0, { $else: 2 }>, true>(true)
 })
 
-describe('filter', () => {
+it('can override $unknown branch', () => {
+	testType.equal<IsNotAny<unknown>, true>(true)
+	testType.equal<IsNotAny<unknown, { $unknown: unknown }>, unknown>(true)
+})
 
+it('can override $never branch', () => {
+	testType.equal<IsNotAny<never>, true>(true)
+	testType.equal<IsNotAny<never, { $never: unknown }>, unknown>(true)
+})
+
+describe('filter', () => {
 	it('returns never for any', () => {
 		testType.never<IsNotAny<any, { selection: 'filter' }>>(true)
 	})
