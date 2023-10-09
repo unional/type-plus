@@ -28,21 +28,6 @@ export type StrictArrayType<T, Then = T, Else = never> = IsNever<
 	: never : never
 
 /**
- * 🎭 *predicate*
- *
- * Validate that `T` is an array, excluding tuple.
- *
- * @example
- * ```ts
- * type R = IsStrictArray<number[]> // true
- *
- * type R = IsStrictArray<number> // false
- * type R = IsStrictArray<[1]> // false
- * ```
- */
-export type IsStrictArray<T, Then = true, Else = false> = StrictArrayType<T, Then, Else>
-
-/**
  * 🌪️ *filter*
  *
  * Filter `T` to ensure it is not an array, excluding tuple.
@@ -59,19 +44,4 @@ export type IsStrictArray<T, Then = true, Else = false> = StrictArrayType<T, The
  */
 export type NotStrictArrayType<T, Then = T, Else = never> = StrictArrayType<T, Else, Then>
 
-/**
- * 🎭 *predicate*
- *
- * Validate that `T` is not an array, excluding tuple.
- *
- * i.e. *tuple* will pass through this filter.
- *
- * @example
- * ```ts
- * type R = IsNotStrictArray<number[]> // false
- *
- * type R = IsNotStrictArray<number> // true
- * type R = IsNotStrictArray<[1]> // true
- * ```
- */
-export type IsNotStrictArray<T, Then = true, Else = false> = StrictArrayType<T, Else, Then>
+
