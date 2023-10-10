@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type $Else, type $SelectionBranch, type $Then, type IsUnknown } from '../index.js'
+import { testType, type $Else, type $SelectionBranch, type $Then, type IsUnknown, type $BranchOptions, type $Any, type $Never } from '../index.js'
 
 it('returns true for unknown', () => {
 	testType.true<IsUnknown<unknown>>(true)
@@ -39,11 +39,18 @@ it('returns false as unknown & any => any', () => {
 })
 
 it('returns true as unknown & void => void', () => {
+	testType.equal<unknown & void, void>(true)
 	testType.false<IsUnknown<unknown & void>>(true)
 })
 
 it('returns false as unknown & never => never', () => {
+	testType.equal<unknown & never, never>(true)
 	testType.false<IsUnknown<unknown & never>>(true)
+})
+
+it('returns false for intersection type', () => {
+	testType.equal<unknown & { a: 1 }, { a: 1 }>(true)
+	testType.false<IsUnknown<unknown & { a: 1 }>>(true)
 })
 
 it('returns false as unknown & <others> => <other>', () => {
@@ -77,10 +84,16 @@ it('works as filter', () => {
 })
 
 it('works with unique branches', () => {
-	testType.equal<IsUnknown<unknown, $SelectionBranch>, $Then>(true)
-	testType.equal<IsUnknown<number, $SelectionBranch>, $Else>(true)
+	testType.equal<IsUnknown<unknown, $BranchOptions<$Then>>, $Then>(true)
+	testType.equal<IsUnknown<number, $BranchOptions<$Then | $Else>>, $Else>(true)
 
-	testType.equal<IsUnknown<any, $SelectionBranch>, $Else>(true)
-	testType.equal<IsUnknown<never, $SelectionBranch>, $Else>(true)
+	testType.equal<IsUnknown<any, $BranchOptions<$Else>>, $Else>(true)
+	testType.equal<IsUnknown<any, $BranchOptions<$Any>>, $Any>(true)
+	testType.equal<IsUnknown<any, $BranchOptions<$Any | $Else>>, $Any>(true)
+
+	testType.equal<IsUnknown<never, $BranchOptions<$Else>>, $Else>(true)
+	testType.equal<IsUnknown<never, $BranchOptions<$Never>>, $Never>(true)
+	testType.equal<IsUnknown<never, $BranchOptions<$Never | $Else>>, $Never>(true)
+
 	testType.equal<IsUnknown<void, $SelectionBranch>, $Else>(true)
 })

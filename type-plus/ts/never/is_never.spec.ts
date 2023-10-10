@@ -46,11 +46,11 @@ it('can override Then/Else', () => {
 	testType.equal<IsNever<never, $BranchOptions<$Then | $Else>>, $Then>(true)
 	testType.equal<IsNever<0, $BranchOptions<$Then | $Else>>, $Else>(true)
 
-	testType.equal<IsNever<any, $BranchOptions<$Any>>, $Any>(true)
 	testType.equal<IsNever<any, $BranchOptions<$Else>>, $Else>(true)
+	testType.equal<IsNever<any, $BranchOptions<$Any>>, $Any>(true)
 	testType.equal<IsNever<any, $BranchOptions<$Any | $Else>>, $Any>(true)
-	testType.equal<IsNever<unknown, $BranchOptions<$Unknown>>, $Unknown>(true)
 	testType.equal<IsNever<unknown, $BranchOptions<$Else>>, $Else>(true)
+	testType.equal<IsNever<unknown, $BranchOptions<$Unknown>>, $Unknown>(true)
 	testType.equal<IsNever<unknown, $BranchOptions<$Unknown | $Else>>, $Unknown>(true)
 })
 
