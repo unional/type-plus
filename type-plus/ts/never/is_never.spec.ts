@@ -65,6 +65,7 @@ it('works with partial customization', () => {
 describe('filter', () => {
 	it('returns never if T is never', () => {
 		testType.equal<IsNever<never, { selection: 'filter' }>, never>(true)
+		testType.equal<IsNever<void, { selection: 'filter', $else: $NotNever }>, $NotNever>(true)
 	})
 
 	it('returns $NotNever for other special types', () => {

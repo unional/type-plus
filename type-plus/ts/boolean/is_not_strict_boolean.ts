@@ -68,27 +68,15 @@ export type IsNotStrictBoolean<T, $O extends IsNotStrictBoolean.$Options = {}> =
 	IsAny<
 		T,
 		{
-			$then: $ResolveBranch<
-				$O,
-				[$Any, $Then],
-				$ResolveSelection<$O, T, $Then>
-			>,
+			$then: $ResolveBranch<T, $O, [$Any, $Then]>,
 			$else: IsNever<
 				T,
 				{
-					$then: $ResolveBranch<
-						$O,
-						[$Never, $Then],
-						$ResolveSelection<$O, T, $Then>
-					>,
+					$then: $ResolveBranch<T, $O, [$Never, $Then]>,
 					$else: IsUnknown<
 						T,
 						{
-							$then: $ResolveBranch<
-								$O,
-								[$Unknown, $Then],
-								$ResolveSelection<$O, T, $Then>
-							>,
+							$then: $ResolveBranch<T, $O, [$Unknown, $Then]>,
 							$else:
 							(
 								$ResolveOptions<[$O['distributive'], SelectInvertStrictWithDistribute.$Default['distributive']]> extends true

@@ -1,4 +1,5 @@
 import type { $Branch } from './$branch.js'
+import type { $Else, $Then } from './selection.js'
 
 /**
  * 🧰 *type util*
@@ -14,23 +15,32 @@ import type { $Branch } from './$branch.js'
  * @typeparam $O Should be a Record, not any, unknown, or never
  * @typeparam $B Tuple of branches with at least one entry.
  * @typeparam D The default value if the `$O` does not specify any branches in `$B`.
- */
+*/
 export type $ResolveBranch<
+	T,
 	$O extends Record<string, any>,
 	$B extends Array<$Branch<any> | unknown>,
-	D
 > =
 	$B extends [infer B]
-	? $ResolveBranch._<$O, B, D>
+	? $ResolveBranch._Last<T, $O, B>
 	: (
 		$B extends [infer B, ...infer Bs extends Array<$Branch<any> | unknown>]
-		? $ResolveBranch._<$O, B, $ResolveBranch<$O, Bs, D>>
+		? $ResolveBranch._<$ResolveBranch<T, $O, Bs>, $O, B>
 		: never
 	)
 
 export namespace $ResolveBranch {
-	export type _<$O extends Record<string, any>, $B, D> =
+	export type _<T, $O extends Record<string, any>, $B> =
 		$B extends $Branch<any> ?
-		($B['value'] extends keyof $O ? $O[$B['value']] : D)
-		: D
+		($B['value'] extends keyof $O ? $O[$B['value']] : T)
+		: T
+	export type _Last<T, $O extends Record<string, any>, $B> =
+		$B extends $Then
+		? ('$then' extends keyof $O
+			? $O['$then']
+			: $O['selection'] extends 'filter' ? T : true)
+		: $B extends $Else
+		? ('$else' extends keyof $O ? $O['$else'] :
+			$O['selection'] extends 'filter' ? never : false)
+		: _<T, $O, $B>
 }

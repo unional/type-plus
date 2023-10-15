@@ -7,7 +7,6 @@ import type { IsUnknown } from '../../unknown/is_unknown.js'
 import type { $Unknown } from '../../unknown/unknown.js'
 import type { $InputOptions } from './$input_options.js'
 import type { $ResolveBranch } from './$resolve_branch.js'
-import type { $ResolveSelection } from './$resolve_selection.js'
 import type { $SelectionOptions } from './$selection_options.js'
 import type { $DistributiveDefault, $DistributiveOptions } from './distributive.js'
 import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './selection.js'
@@ -71,28 +70,16 @@ export type SelectInvertStrictWithDistribute<
 	IsAny<
 		T,
 		{
-			$then: $ResolveBranch<
-				$O,
-				[$Any, $Then],
-				$ResolveSelection<$O, T, $Then>
-			>,
+			$then: $ResolveBranch<T, $O, [$Any, $Then]>,
 			$else:
 			IsNever<
 				T,
 				{
-					$then: $ResolveBranch<
-						$O,
-						[$Never, $Then],
-						$ResolveSelection<$O, T, $Then>
-					>,
+					$then: $ResolveBranch<T, $O, [$Never, $Then]>,
 					$else: IsUnknown<
 						T,
 						{
-							$then: $ResolveBranch<
-								$O,
-								[$Unknown, $Then],
-								$ResolveSelection<$O, T, $Then>
-							>,
+							$then: $ResolveBranch<T, $O, [$Unknown, $Then]>,
 							$else: $ResolveOptions<[$O['distributive'], SelectInvertStrictWithDistribute.$Default['distributive']]> extends true
 							? SelectInvertStrictWithDistribute._D<T, U, $O>
 							: SelectInvertStrictWithDistribute._N<T, U, $O>
@@ -108,11 +95,7 @@ export namespace SelectInvertStrictWithDistribute {
 	export type $Default = $SelectionPredicate & $DistributiveDefault
 	export type $Branch = $SelectionBranch & $DistributiveDefault
 	export type _D<T, U, $O extends SelectInvertStrictWithDistribute.$Options> =
-		T extends U ? $ResolveSelection<$O, T, $Else> : $ResolveSelection<$O, T, $Then>
-	// T extends U ? U extends T
-	// ? $ResolveSelection<$O, T, $Else>
-	// : $ResolveSelection<$O, T, $Then>
-	// : $ResolveSelection<$O, T, $Then>
+		T extends U ? $ResolveBranch<T, $O, [$Else]> : $ResolveBranch<T, $O, [$Then]>
 	export type _N<T, U, $O extends SelectInvertStrictWithDistribute.$Options> =
-		[T, U] extends [U, T] ? $ResolveSelection<$O, T, $Else> : $ResolveSelection<$O, T, $Then>
+		[T, U] extends [U, T] ? $ResolveBranch<T, $O, [$Else]> : $ResolveBranch<T, $O, [$Then]>
 }

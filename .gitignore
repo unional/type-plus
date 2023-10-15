@@ -51,4 +51,5 @@ node_modules
 !.yarn/versions
 
 # project
+/.turbo
 docs

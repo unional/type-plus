@@ -46,10 +46,10 @@ export type IsNotUnknown<
 	$O extends IsNotUnknown.$Options = {}
 > =
 	0 extends 1 & T
-	? $ResolveBranch<$O, [$Any], $ResolveSelection<$O, T, $Then>>
+	? $ResolveBranch<$ResolveSelection<$O, T, $Then>, $O, [$Any]>
 	: (
 		[T, never] extends [never, T]
-		? $ResolveBranch<$O, [$Never], $ResolveSelection<$O, T, $Then>>
+		? $ResolveBranch<$ResolveSelection<$O, T, $Then>, $O, [$Never]>
 		: (
 			[T, unknown] extends [unknown, T]
 			? $ResolveSelection<$O, T, $Else>
