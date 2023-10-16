@@ -5,7 +5,7 @@ import type { IsNever } from '../../never/is_never.js'
 import type { $Never } from '../../never/never.js'
 import type { $ResolveBranch } from './$resolve_branch.js'
 import type { $SelectionOptions } from './$selection_options.js'
-import type { $DistributiveDefault, $DistributiveOptions } from './distributive.js'
+import type { $DistributiveDefault, $DistributiveOptions } from './$distributive.js'
 import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './selection.js'
 
 /**
