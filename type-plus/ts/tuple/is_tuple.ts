@@ -1,7 +1,7 @@
 import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
 import type { $NeverOptions } from '../never/never.js'
 import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
-import type { $ResolveSelection } from '../type_plus/branch/$resolve_selection.js'
+import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
 import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
@@ -26,26 +26,26 @@ export type IsTuple<
 	T,
 	$SelectionBranch
 > extends infer R
-	? R extends $Then ? $ResolveSelection<$O, T, $Else>
+	? R extends $Then ? $ResolveBranch<T, $O, [$Else]>
 	: R extends $Else ? (
 		$ResolveOptions<[$O['distributive'], SelectWithDistribute.$Default['distributive']]> extends true
 		? (
 			T extends readonly any[]
 			? (
 				number extends T['length']
-				? $ResolveSelection<$O, T, $Else>
-				: $ResolveSelection<$O, T, $Then>
+				? $ResolveBranch<T, $O, [$Else]>
+				: $ResolveBranch<T, $O, [$Then]>
 			)
-			: $ResolveSelection<$O, T, $Else>
+			: $ResolveBranch<T, $O, [$Else]>
 		)
 		: (
 			[T] extends [readonly any[]]
 			? (
 				number extends T['length']
-				? $ResolveSelection<$O, T, $Else>
-				: $ResolveSelection<$O, T, $Then>
+				? $ResolveBranch<T, $O, [$Else]>
+				: $ResolveBranch<T, $O, [$Then]>
 			)
-			: $ResolveSelection<$O, T, $Else>
+			: $ResolveBranch<T, $O, [$Else]>
 		)
 	)
 	: never : never

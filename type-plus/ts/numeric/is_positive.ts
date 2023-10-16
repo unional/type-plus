@@ -1,6 +1,6 @@
 import type { IsBigint } from '../bigint/is_bigint.js'
 import type { IsNumber } from '../number/is_number.js'
-import type { $ResolveSelection } from '../type_plus/branch/$resolve_selection.js'
+import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
 import type { $Else, $Then } from '../type_plus/branch/selection.js'
 
@@ -30,7 +30,7 @@ export type IsPositive<T, $O extends IsPositive.$Options = {}> = IsBigint<T, {
 		? (
 			R extends $Then
 			? IsPositive._Negative<T, number, $O>
-			: $ResolveSelection<$O, T, $Else>
+			: $ResolveBranch<T, $O, [$Else]>
 		)
 		: never
 	)
@@ -43,8 +43,8 @@ export namespace IsPositive {
 	export type _Negative<T, U extends number | bigint, $O extends IsPositive.$Options> = T extends U
 		? (
 			`${T}` extends `-${string}`
-			? $ResolveSelection<$O, T, $Else>
-			: U extends T ? $ResolveSelection<$O, T, $Then> | $ResolveSelection<$O, T, $Else> : $ResolveSelection<$O, T, $Then>
+			? $ResolveBranch<T, $O, [$Else]>
+			: U extends T ? $ResolveBranch<T, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]> : $ResolveBranch<T, $O, [$Then]>
 		)
 		: never
 }

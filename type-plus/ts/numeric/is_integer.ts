@@ -1,6 +1,6 @@
 import type { IsBigint } from '../bigint/is_bigint.js'
 import type { IsNumber } from '../number/is_number.js'
-import type { $ResolveSelection } from '../type_plus/branch/$resolve_selection.js'
+import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
 import type { $Else, $Then } from '../type_plus/branch/selection.js'
 
@@ -22,11 +22,11 @@ export type IsInteger<T, $O extends IsInteger.$Options = {}> = IsNumber<T, {
 }> extends infer R
 	? R extends $Then ? (
 		number extends T
-		? $ResolveSelection<$O, number, $Then> | $ResolveSelection<$O, T, $Else>
+		? $ResolveBranch<number, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
 		: T extends number ? (
 			`${T}` extends `${number}.${number}`
-			? $ResolveSelection<$O, T, $Else>
-			: $ResolveSelection<$O, T, $Then>
+			? $ResolveBranch<T, $O, [$Else]>
+			: $ResolveBranch<T, $O, [$Then]>
 		)
 		: never
 	)
@@ -36,8 +36,8 @@ export type IsInteger<T, $O extends IsInteger.$Options = {}> = IsNumber<T, {
 			$then: $Then,
 			$else: $Else
 		}> extends infer R
-		? R extends $Then ? $ResolveSelection<$O, T, $Then>
-		: $ResolveSelection<$O, T, $Else>
+		? R extends $Then ? $ResolveBranch<T, $O, [$Then]>
+		: $ResolveBranch<T, $O, [$Else]>
 		: never
 	)
 	: never : never

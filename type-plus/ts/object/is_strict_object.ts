@@ -2,7 +2,7 @@ import type { IdentityEqual } from '../equal/identity_equal.js'
 import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
 import type { IsNever } from '../never/is_never.js'
 import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
-import type { $ResolveSelection } from '../type_plus/branch/$resolve_selection.js'
+import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
 import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
@@ -13,7 +13,7 @@ import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selecti
  */
 export type IsStrictObject<T, $O extends IsStrictObject.$Options = {}> =
 	IsAnyOrNever<T, $SelectionBranch> extends infer R
-	? R extends $Then ? $ResolveSelection<$O, T, $Else>
+	? R extends $Then ? $ResolveBranch<T, $O, [$Else]>
 	: R extends $Else ? ($ResolveOptions<[$O['distributive'], SelectWithDistribute.$Default['distributive']]> extends true
 		? IsStrictObject._D<T, $O>
 		: SelectWithDistribute._N<T, object, $O>)
@@ -26,10 +26,10 @@ export namespace IsStrictObject {
 	export type _D<T, $O extends IsStrictObject.$Options> =
 		T extends object
 		? IdentityEqual<T, {},
-			$ResolveSelection<$O, T, $Else>,
+			$ResolveBranch<T, $O, [$Else]>,
 			IsNever<keyof T, {
-				$then: $ResolveSelection<$O, T, $Then>,
-				$else: $ResolveSelection<$O, T, $Else>
+				$then: $ResolveBranch<T, $O, [$Then]>,
+				$else: $ResolveBranch<T, $O, [$Else]>
 			}>>
-		: $ResolveSelection<$O, T, $Else>
+		: $ResolveBranch<T, $O, [$Else]>
 }

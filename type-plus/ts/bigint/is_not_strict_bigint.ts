@@ -1,6 +1,6 @@
 import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
 import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
-import type { $ResolveSelection } from '../type_plus/branch/$resolve_selection.js'
+import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
 import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
@@ -58,7 +58,7 @@ export type IsNotStrictBigint<
 	$O extends IsNotStrictBigint.$Options = {}
 > =
 	IsAnyOrNever<T, $SelectionBranch> extends infer R
-	? R extends $Then ? $ResolveSelection<$O, T, $Then>
+	? R extends $Then ? $ResolveBranch<T, $O, [$Then]>
 	: R extends $Else ? ($ResolveOptions<[$O['distributive'], SelectWithDistribute.$Default['distributive']]> extends true
 		? IsNotStrictBigint._D<T, $O>
 		: IsNotStrictBigint._N<T, $O>)
@@ -71,14 +71,14 @@ export namespace IsNotStrictBigint {
 	export type _D<T, $O extends IsNotStrictBigint.$Options> =
 		T extends bigint
 		? (`${T}` extends `${number}`
-			? $ResolveSelection<$O, T, $Then>
-			: $ResolveSelection<$O, T, $Else>)
-		: $ResolveSelection<$O, T, $Then>
+			? $ResolveBranch<T, $O, [$Then]>
+			: $ResolveBranch<T, $O, [$Else]>)
+		: $ResolveBranch<T, $O, [$Then]>
 	export type _N<T, $O extends IsNotStrictBigint.$Options> = ([bigint, T] extends [T, bigint]
 		? (T extends bigint
 			? (`${T}` extends `${number}`
-				? $ResolveSelection<$O, T, $Then>
-				: $ResolveSelection<$O, T, $Else>)
-			: $ResolveSelection<$O, T, $Then>)
-		: $ResolveSelection<$O, T, $Then>)
+				? $ResolveBranch<T, $O, [$Then]>
+				: $ResolveBranch<T, $O, [$Else]>)
+			: $ResolveBranch<T, $O, [$Then]>)
+		: $ResolveBranch<T, $O, [$Then]>)
 }

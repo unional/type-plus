@@ -4,7 +4,6 @@ import type { IsNever } from '../never/is_never.js'
 import type { $Never } from '../never/never.js'
 import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
-import type { $ResolveSelection } from '../type_plus/branch/$resolve_selection.js'
 import type { SelectInvertStrictWithDistribute } from '../type_plus/branch/select_invert_strict_with_distribute.js'
 import type { $Else, $Then } from '../type_plus/branch/selection.js'
 import type { IsUnknown } from '../unknown/is_unknown.js'
@@ -82,9 +81,9 @@ export type IsNotStrictBoolean<T, $O extends IsNotStrictBoolean.$Options = {}> =
 								$ResolveOptions<[$O['distributive'], SelectInvertStrictWithDistribute.$Default['distributive']]> extends true
 								? (
 									IsStrictBoolean._DistributeMap<T> extends infer R
-									? ['aBcD' | 'AbCd' | 'abcd'] extends [R] ? $ResolveSelection<$O, T, $Else> | $ResolveSelection<$O, Exclude<T, boolean>, $Then>
-									: ['aBcD' | 'AbCd'] extends [R] ? $ResolveSelection<$O, T, $Else>
-									: ['aBcd' | 'Abcd'] extends [R] ? $ResolveSelection<$O, T, $Else> : $ResolveSelection<$O, T, $Then>
+									? ['aBcD' | 'AbCd' | 'abcd'] extends [R] ? $ResolveBranch<Exclude<T, boolean>, $O, [$Then | $Else]>
+									: ['aBcD' | 'AbCd'] extends [R] ? $ResolveBranch<T, $O, [$Else]>
+									: ['aBcd' | 'Abcd'] extends [R] ? $ResolveBranch<T, $O, [$Else]> : $ResolveBranch<T, $O, [$Then]>
 									: never
 								)
 								: SelectInvertStrictWithDistribute._N<T, boolean, $O>
