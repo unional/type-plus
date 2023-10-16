@@ -1,4 +1,4 @@
-import type { $ResolveSelection } from '../type_plus/branch/$resolve_selection.js'
+import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
 import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 import type { IsUndefined } from '../undefined/is_undefined.js'
@@ -57,7 +57,7 @@ export type IsVoid<
 	T,
 	$O extends IsVoid.$Options = {}
 > = IsUndefined<T, $SelectionBranch> extends infer R
-	? R extends $Then ? $ResolveSelection<$O, T, $Else>
+	? R extends $Then ? $ResolveBranch<T, $O, [$Else]>
 	: SelectWithDistribute<T, void, $O>
 	: never
 

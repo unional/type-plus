@@ -1,4 +1,4 @@
-import type { $ResolveSelection } from '../type_plus/branch/$resolve_selection.js'
+import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $SelectionOptions } from '../type_plus/branch/$selection_options.js'
 import type { $Else, $Then } from '../type_plus/branch/selection.js'
 import type { IsUndefined } from './is_undefined.js'
@@ -41,4 +41,4 @@ import type { IsUndefined } from './is_undefined.js'
 export type HasUndefined<
 	T,
 	$O extends $SelectionOptions = {}
-> = IsUndefined<T> extends false ? $ResolveSelection<$O, T, $Else> : $ResolveSelection<$O, T, $Then>
+> = $ResolveBranch<T, $O, [IsUndefined<T> extends false ? $Else : $Then]>
