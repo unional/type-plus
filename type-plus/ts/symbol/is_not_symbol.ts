@@ -1,4 +1,4 @@
-import type { SelectInvertWithDistribute } from '../type_plus/branch/select_invert_with_distribute.js'
+import type { $SelectInvert } from '../type_plus/branch/$select_invert.js'
 
 /**
  * Is the type `T` not `symbol`.
@@ -12,10 +12,10 @@ import type { SelectInvertWithDistribute } from '../type_plus/branch/select_inve
  * ```
  */
 
-export type IsNotSymbol<T, $O extends IsNotSymbol.$Options = {}> = SelectInvertWithDistribute<T, symbol, $O>
+export type IsNotSymbol<T, $O extends IsNotSymbol.$Options = {}> = $SelectInvert<T, symbol, $O>
 
 export namespace IsNotSymbol {
-	export type $Options = SelectInvertWithDistribute.$Options
-	export type $Default = SelectInvertWithDistribute.$Default
-	export type $Branch = SelectInvertWithDistribute.$Branch
+	export type $Options = $SelectInvert.$Options
+	export type $Default = $SelectInvert.$Default
+	export type $Branch = $SelectInvert.$Branch
 }

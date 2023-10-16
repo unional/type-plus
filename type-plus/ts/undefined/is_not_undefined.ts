@@ -1,4 +1,4 @@
-import type { SelectInvertWithDistribute } from '../type_plus/branch/select_invert_with_distribute.js'
+import type { $SelectInvert } from '../type_plus/branch/$select_invert.js'
 
 /**
  * 🎭 *predicate*
@@ -47,10 +47,10 @@ import type { SelectInvertWithDistribute } from '../type_plus/branch/select_inve
  * type R = IsNotUndefined<undefined, $SelectionBranch> // $Else
  * ```
  */
-export type IsNotUndefined<T, $O extends IsNotUndefined.$Options = {}> = SelectInvertWithDistribute<T, undefined, $O>
+export type IsNotUndefined<T, $O extends IsNotUndefined.$Options = {}> = $SelectInvert<T, undefined, $O>
 
 export namespace IsNotUndefined {
-	export type $Options = SelectInvertWithDistribute.$Options
-	export type $Default = SelectInvertWithDistribute.$Default
-	export type $Branch = SelectInvertWithDistribute.$Branch
+	export type $Options = $SelectInvert.$Options
+	export type $Default = $SelectInvert.$Default
+	export type $Branch = $SelectInvert.$Branch
 }

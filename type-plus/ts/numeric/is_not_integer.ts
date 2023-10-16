@@ -1,7 +1,7 @@
 import type { IsBigint } from '../bigint/is_bigint.js'
 import type { IsNumber } from '../number/is_number.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
-import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
+import type { $Select } from '../type_plus/branch/$select.js'
 import type { $Else, $Then } from '../type_plus/branch/selection.js'
 
 /**
@@ -44,9 +44,9 @@ export type IsNotInteger<T, $O extends IsNotInteger.$Options = {}> = IsNumber<T,
 	)
 	: never : never
 export namespace IsNotInteger {
-	export type $Options = SelectWithDistribute.$Options
-	export type $Default = SelectWithDistribute.$Default
-	export type $Branch = SelectWithDistribute.$Branch
+	export type $Options = $Select.$Options
+	export type $Default = $Select.$Default
+	export type $Branch = $Select.$Branch
 }
 
 // export type IsNotInteger<T, Then = true, Else = false> =  IsAnyOrNever<

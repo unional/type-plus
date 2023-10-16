@@ -19,13 +19,13 @@ import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './sele
  *
  * @example
  * ```ts
- * type R = SelectInvertWithDistribute<undefined, undefined> // true
+ * type R = $SelectInvert<undefined, undefined> // true
  *
- * type R = SelectInvertWithDistribute<never, undefined> // false
- * type R = SelectInvertWithDistribute<unknown, undefined> // false
- * type R = SelectInvertWithDistribute<string | boolean, undefined> // false
+ * type R = $SelectInvert<never, undefined> // false
+ * type R = $SelectInvert<unknown, undefined> // false
+ * type R = $SelectInvert<string | boolean, undefined> // false
  *
- * type R = SelectInvertWithDistribute<string | undefined, undefined> // boolean
+ * type R = $SelectInvert<string | undefined, undefined> // boolean
  * ```
  *
  * 🔢 *customize*
@@ -34,13 +34,13 @@ import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './sele
  *
  * @example
  * ```ts
- * type R = SelectInvertWithDistribute<undefined, undefined, { selection: 'filter' }> // undefined
+ * type R = $SelectInvert<undefined, undefined, { selection: 'filter' }> // undefined
  *
- * type R = SelectInvertWithDistribute<never, undefined, { selection: 'filter' }> // never
- * type R = SelectInvertWithDistribute<unknown, undefined, { selection: 'filter' }> // never
- * type R = SelectInvertWithDistribute<string | boolean, undefined, { selection: 'filter' }> // never
+ * type R = $SelectInvert<never, undefined, { selection: 'filter' }> // never
+ * type R = $SelectInvert<unknown, undefined, { selection: 'filter' }> // never
+ * type R = $SelectInvert<string | boolean, undefined, { selection: 'filter' }> // never
  *
- * type R = SelectInvertWithDistribute<string | undefined, undefined> // undefined
+ * type R = $SelectInvert<string | undefined, undefined> // undefined
  * ```
  *
  * 🔢 *customize*:
@@ -48,8 +48,8 @@ import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './sele
  * Disable distribution of union types.
  *
  * ```ts
- * type R = SelectInvertWithDistribute<undefined | 1, undefined> // boolean
- * type R = SelectInvertWithDistribute<undefined | 1, undefined, { distributive: false }> // false
+ * type R = $SelectInvert<undefined | 1, undefined> // boolean
+ * type R = $SelectInvert<undefined | 1, undefined, { distributive: false }> // false
  * ```
  *
  * 🔢 *customize*
@@ -58,14 +58,14 @@ import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './sele
  *
  * @example
  * ```ts
- * type R = SelectInvertWithDistribute<undefined, undefined, $SelectionBranch> // $Then
- * type R = SelectInvertWithDistribute<string, undefined, $SelectionBranch> // $Else
+ * type R = $SelectInvert<undefined, undefined, $SelectionBranch> // $Then
+ * type R = $SelectInvert<string, undefined, $SelectionBranch> // $Else
  * ```
  */
-export type SelectInvertWithDistribute<
+export type $SelectInvert<
 	T,
 	U,
-	$O extends SelectInvertWithDistribute.$Options = {}
+	$O extends $SelectInvert.$Options = {}
 > =
 	IsAny<
 		T,
@@ -80,9 +80,9 @@ export type SelectInvertWithDistribute<
 						T,
 						{
 							$then: $ResolveBranch<T, $O, [$Unknown, $Then]>,
-							$else: $ResolveOptions<[$O['distributive'], SelectInvertWithDistribute.$Default['distributive']]> extends true
+							$else: $ResolveOptions<[$O['distributive'], $SelectInvert.$Default['distributive']]> extends true
 							? T extends U ? $ResolveBranch<T, $O, [$Else]> : $ResolveBranch<T, $O, [$Then]>
-							: SelectInvertWithDistribute._N<T, U, $O>
+							: $SelectInvert._N<T, U, $O>
 						}
 					>
 				}
@@ -90,11 +90,11 @@ export type SelectInvertWithDistribute<
 		}
 	>
 
-export namespace SelectInvertWithDistribute {
+export namespace $SelectInvert {
 	export type $Options = $SelectionOptions & $DistributiveOptions & $InputOptions<$Any | $Unknown | $Never>
 	export type $Default = $SelectionPredicate & $DistributiveDefault
 	export type $Branch = $SelectionBranch & $DistributiveDefault
-	export type _N<T, U, $O extends SelectInvertWithDistribute.$Options> =
+	export type _N<T, U, $O extends $SelectInvert.$Options> =
 		[T] extends [U] ? $ResolveBranch<T, $O, [$Else]> : $ResolveBranch<T, $O, [$Then]>
 
 }

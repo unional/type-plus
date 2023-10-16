@@ -1,4 +1,4 @@
-import type { SelectInvertWithDistribute } from '../type_plus/branch/select_invert_with_distribute.js'
+import type { $SelectInvert } from '../type_plus/branch/$select_invert.js'
 
 /**
  * Is `T` not numeric.
@@ -12,10 +12,10 @@ import type { SelectInvertWithDistribute } from '../type_plus/branch/select_inve
  * ```
  */
 
-export type IsNotNumeric<T, $O extends IsNotNumeric.$Options = {}> = SelectInvertWithDistribute<T, number | bigint, $O>
+export type IsNotNumeric<T, $O extends IsNotNumeric.$Options = {}> = $SelectInvert<T, number | bigint, $O>
 
 export namespace IsNotNumeric {
-	export type $Options = SelectInvertWithDistribute.$Options
-	export type $Default = SelectInvertWithDistribute.$Default
-	export type $Branch = SelectInvertWithDistribute.$Branch
+	export type $Options = $SelectInvert.$Options
+	export type $Default = $SelectInvert.$Default
+	export type $Branch = $SelectInvert.$Branch
 }

@@ -4,7 +4,7 @@ import type { IsNever } from '../never/is_never.js'
 import type { $Never } from '../never/never.js'
 import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
-import type { SelectInvertStrictWithDistribute } from '../type_plus/branch/select_invert_strict_with_distribute.js'
+import type { $SelectInvertStrict } from '../type_plus/branch/$select_invert_strict.js'
 import type { $Else, $Then } from '../type_plus/branch/selection.js'
 import type { IsUnknown } from '../unknown/is_unknown.js'
 import type { $Unknown } from '../unknown/unknown.js'
@@ -78,7 +78,7 @@ export type IsNotStrictBoolean<T, $O extends IsNotStrictBoolean.$Options = {}> =
 							$then: $ResolveBranch<T, $O, [$Unknown, $Then]>,
 							$else:
 							(
-								$ResolveOptions<[$O['distributive'], SelectInvertStrictWithDistribute.$Default['distributive']]> extends true
+								$ResolveOptions<[$O['distributive'], $SelectInvertStrict.$Default['distributive']]> extends true
 								? (
 									IsStrictBoolean._DistributeMap<T> extends infer R
 									? ['aBcD' | 'AbCd' | 'abcd'] extends [R] ? $ResolveBranch<Exclude<T, boolean>, $O, [$Then | $Else]>
@@ -86,7 +86,7 @@ export type IsNotStrictBoolean<T, $O extends IsNotStrictBoolean.$Options = {}> =
 									: ['aBcd' | 'Abcd'] extends [R] ? $ResolveBranch<T, $O, [$Else]> : $ResolveBranch<T, $O, [$Then]>
 									: never
 								)
-								: SelectInvertStrictWithDistribute._N<T, boolean, $O>
+								: $SelectInvertStrict._N<T, boolean, $O>
 							)
 						}
 					>
@@ -95,7 +95,7 @@ export type IsNotStrictBoolean<T, $O extends IsNotStrictBoolean.$Options = {}> =
 	>
 
 export namespace IsNotStrictBoolean {
-	export type $Options = SelectInvertStrictWithDistribute.$Options
-	export type $Default = SelectInvertStrictWithDistribute.$Default
-	export type $Branch = SelectInvertStrictWithDistribute.$Branch
+	export type $Options = $SelectInvertStrict.$Options
+	export type $Default = $SelectInvertStrict.$Default
+	export type $Branch = $SelectInvertStrict.$Branch
 }

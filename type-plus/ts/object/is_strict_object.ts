@@ -3,7 +3,7 @@ import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
 import type { IsNever } from '../never/is_never.js'
 import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
-import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
+import type { $Select } from '../type_plus/branch/$select.js'
 import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
@@ -14,15 +14,15 @@ import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selecti
 export type IsStrictObject<T, $O extends IsStrictObject.$Options = {}> =
 	IsAnyOrNever<T, $SelectionBranch> extends infer R
 	? R extends $Then ? $ResolveBranch<T, $O, [$Else]>
-	: R extends $Else ? ($ResolveOptions<[$O['distributive'], SelectWithDistribute.$Default['distributive']]> extends true
+	: R extends $Else ? ($ResolveOptions<[$O['distributive'], $Select.$Default['distributive']]> extends true
 		? IsStrictObject._D<T, $O>
-		: SelectWithDistribute._N<T, object, $O>)
+		: $Select._N<T, object, $O>)
 	: never : never
 
 export namespace IsStrictObject {
-	export type $Options = SelectWithDistribute.$Options
-	export type $Default = SelectWithDistribute.$Default
-	export type $Branch = SelectWithDistribute.$Branch
+	export type $Options = $Select.$Options
+	export type $Default = $Select.$Default
+	export type $Branch = $Select.$Branch
 	export type _D<T, $O extends IsStrictObject.$Options> =
 		T extends object
 		? IdentityEqual<T, {},

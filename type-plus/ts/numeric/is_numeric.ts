@@ -1,4 +1,4 @@
-import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
+import type { $Select } from '../type_plus/branch/$select.js'
 
 /**
  * Is `T` numeric.
@@ -11,10 +11,10 @@ import type { SelectWithDistribute } from '../type_plus/branch/select_with_distr
  * type R = IsNumeric<unknown> // false
  * ```
  */
-export type IsNumeric<T, $O extends IsNumeric.$Options = {}> = SelectWithDistribute<T, number | bigint, $O>
+export type IsNumeric<T, $O extends IsNumeric.$Options = {}> = $Select<T, number | bigint, $O>
 
 export namespace IsNumeric {
-	export type $Options = SelectWithDistribute.$Options
-	export type $Default = SelectWithDistribute.$Default
-	export type $Branch = SelectWithDistribute.$Branch
+	export type $Options = $Select.$Options
+	export type $Default = $Select.$Default
+	export type $Branch = $Select.$Branch
 }

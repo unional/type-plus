@@ -1,7 +1,7 @@
 import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
 import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
-import type { SelectStrictWithDistribute } from '../type_plus/branch/select_strict_with_distribute.js'
+import type { $SelectStrict } from '../type_plus/branch/$select_strict.js'
 import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
@@ -21,17 +21,17 @@ export type IsStrictFunction<T, $O extends IsStrictFunction.$Options = {}> =
 	> extends infer R
 	? R extends $Then ? $ResolveBranch<T, $O, [$Else]>
 	: R extends $Else ? (
-		$ResolveOptions<[$O['distributive'], SelectStrictWithDistribute.$Default['distributive']]> extends true
+		$ResolveOptions<[$O['distributive'], $SelectStrict.$Default['distributive']]> extends true
 		? IsStrictFunction._D<T, $O>
-		: SelectStrictWithDistribute._N<T, Function, $O>
+		: $SelectStrict._N<T, Function, $O>
 	)
 	: never : never
 
 export namespace IsStrictFunction {
-	export type $Options = SelectStrictWithDistribute.$Options
-	export type $Default = SelectStrictWithDistribute.$Default
-	export type $Branch = SelectStrictWithDistribute.$Branch
-	export type _D<T, $O extends SelectStrictWithDistribute.$Options> =
+	export type $Options = $SelectStrict.$Options
+	export type $Default = $SelectStrict.$Default
+	export type $Branch = $SelectStrict.$Branch
+	export type _D<T, $O extends $SelectStrict.$Options> =
 		T extends Function
 		? T extends (...args: any[]) => any
 		? $ResolveBranch<T, $O, [$Else]>

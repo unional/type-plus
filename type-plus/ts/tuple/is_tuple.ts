@@ -2,7 +2,7 @@ import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
 import type { $NeverOptions } from '../never/never.js'
 import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
-import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
+import type { $Select } from '../type_plus/branch/$select.js'
 import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
@@ -28,7 +28,7 @@ export type IsTuple<
 > extends infer R
 	? R extends $Then ? $ResolveBranch<T, $O, [$Else]>
 	: R extends $Else ? (
-		$ResolveOptions<[$O['distributive'], SelectWithDistribute.$Default['distributive']]> extends true
+		$ResolveOptions<[$O['distributive'], $Select.$Default['distributive']]> extends true
 		? (
 			T extends readonly any[]
 			? (
@@ -51,7 +51,7 @@ export type IsTuple<
 	: never : never
 
 export namespace IsTuple {
-	export type $Options = SelectWithDistribute.$Options & $NeverOptions
-	export type $Default = SelectWithDistribute.$Default
-	export type $Branch = SelectWithDistribute.$Branch
+	export type $Options = $Select.$Options & $NeverOptions
+	export type $Default = $Select.$Default
+	export type $Branch = $Select.$Branch
 }

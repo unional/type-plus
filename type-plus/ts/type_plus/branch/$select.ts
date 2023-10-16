@@ -16,13 +16,13 @@ import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './sele
  *
  * @example
  * ```ts
- * type R = SelectWithDistribute<undefined, undefined> // true
+ * type R = $Select<undefined, undefined> // true
  *
- * type R = SelectWithDistribute<never, undefined> // false
- * type R = SelectWithDistribute<unknown, undefined> // false
- * type R = SelectWithDistribute<string | boolean, undefined> // false
+ * type R = $Select<never, undefined> // false
+ * type R = $Select<unknown, undefined> // false
+ * type R = $Select<string | boolean, undefined> // false
  *
- * type R = SelectWithDistribute<string | undefined, undefined> // boolean
+ * type R = $Select<string | undefined, undefined> // boolean
  * ```
  *
  * 🔢 *customize*
@@ -31,13 +31,13 @@ import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './sele
  *
  * @example
  * ```ts
- * type R = SelectWithDistribute<undefined, undefined, { selection: 'filter' }> // undefined
+ * type R = $Select<undefined, undefined, { selection: 'filter' }> // undefined
  *
- * type R = SelectWithDistribute<never, undefined, { selection: 'filter' }> // never
- * type R = SelectWithDistribute<unknown, undefined, { selection: 'filter' }> // never
- * type R = SelectWithDistribute<string | boolean, undefined, { selection: 'filter' }> // never
+ * type R = $Select<never, undefined, { selection: 'filter' }> // never
+ * type R = $Select<unknown, undefined, { selection: 'filter' }> // never
+ * type R = $Select<string | boolean, undefined, { selection: 'filter' }> // never
  *
- * type R = SelectWithDistribute<string | undefined, undefined> // undefined
+ * type R = $Select<string | undefined, undefined> // undefined
  * ```
  *
  * 🔢 *customize*:
@@ -45,8 +45,8 @@ import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './sele
  * Disable distribution of union types.
  *
  * ```ts
- * type R = SelectWithDistribute<undefined | 1, undefined> // boolean
- * type R = SelectWithDistribute<undefined | 1, undefined, { distributive: false }> // false
+ * type R = $Select<undefined | 1, undefined> // boolean
+ * type R = $Select<undefined | 1, undefined, { distributive: false }> // false
  * ```
  *
  * 🔢 *customize*
@@ -55,14 +55,14 @@ import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './sele
  *
  * @example
  * ```ts
- * type R = SelectWithDistribute<undefined, undefined, $SelectionBranch> // $Then
- * type R = SelectWithDistribute<string, undefined, $SelectionBranch> // $Else
+ * type R = $Select<undefined, undefined, $SelectionBranch> // $Then
+ * type R = $Select<string, undefined, $SelectionBranch> // $Else
  * ```
  */
-export type SelectWithDistribute<
+export type $Select<
 	T,
 	U,
-	$O extends SelectWithDistribute.$Options = {}
+	$O extends $Select.$Options = {}
 > =
 	IsAny<
 		T,
@@ -73,21 +73,20 @@ export type SelectWithDistribute<
 				T,
 				{
 					$then: $ResolveBranch<T, $O, [$Never, $Else]>,
-					$else: $ResolveOptions<[$O['distributive'], SelectWithDistribute.$Default['distributive']]> extends true
-					? SelectWithDistribute._D<T, U, $O>
-					: SelectWithDistribute._N<T, U, $O>
-
+					$else: $ResolveOptions<[$O['distributive'], $Select.$Default['distributive']]> extends true
+					? $Select._D<T, U, $O>
+					: $Select._N<T, U, $O>
 				}
 			>
 		}
 	>
 
-export namespace SelectWithDistribute {
+export namespace $Select {
 	export type $Options = $SelectionOptions & $DistributiveOptions
 	export type $Default = $SelectionPredicate & $DistributiveDefault
 	export type $Branch = $SelectionBranch & $DistributiveDefault
-	export type _D<T, U, $O extends SelectWithDistribute.$Options> =
+	export type _D<T, U, $O extends $Select.$Options> =
 		T extends U ? $ResolveBranch<T, $O, [$Then]> : $ResolveBranch<T, $O, [$Else]>
-	export type _N<T, U, $O extends SelectWithDistribute.$Options> =
+	export type _N<T, U, $O extends $Select.$Options> =
 		[T] extends [U] ? $ResolveBranch<T, $O, [$Then]> : $ResolveBranch<T, $O, [$Else]>
 }

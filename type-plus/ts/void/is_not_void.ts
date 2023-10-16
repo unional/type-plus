@@ -1,5 +1,5 @@
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
-import type { SelectInvertWithDistribute } from '../type_plus/branch/select_invert_with_distribute.js'
+import type { $SelectInvert } from '../type_plus/branch/$select_invert.js'
 import type { $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 import type { IsUndefined } from '../undefined/is_undefined.js'
 
@@ -57,11 +57,11 @@ export type IsNotVoid<
 	$O extends IsNotVoid.$Options = {}
 > = IsUndefined<T, $SelectionBranch> extends infer R
 	? R extends $Then ?$ResolveBranch<T, $O, [$Then]>
-	: SelectInvertWithDistribute<T, void, $O>
+	: $SelectInvert<T, void, $O>
 	: never
 
 export namespace IsNotVoid {
-	export type $Options = SelectInvertWithDistribute.$Options
-	export type $Default = SelectInvertWithDistribute.$Default
-	export type $Branch = SelectInvertWithDistribute.$Branch
+	export type $Options = $SelectInvert.$Options
+	export type $Default = $SelectInvert.$Default
+	export type $Branch = $SelectInvert.$Branch
 }

@@ -1,4 +1,4 @@
-import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
+import type { $Select } from '../type_plus/branch/$select.js'
 
 /**
  * Is `T` an `object`.
@@ -14,10 +14,10 @@ import type { SelectWithDistribute } from '../type_plus/branch/select_with_distr
  * ```
  */
 
-export type IsObject<T, $O extends IsObject.$Options = {}> = SelectWithDistribute<T, object, $O>
+export type IsObject<T, $O extends IsObject.$Options = {}> = $Select<T, object, $O>
 
 export namespace IsObject {
-	export type $Options = SelectWithDistribute.$Options
-	export type $Default = SelectWithDistribute.$Default
-	export type $Branch = SelectWithDistribute.$Branch
+	export type $Options = $Select.$Options
+	export type $Default = $Select.$Default
+	export type $Branch = $Select.$Branch
 }

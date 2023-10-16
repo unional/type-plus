@@ -1,4 +1,4 @@
-import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
+import type { $Select } from '../type_plus/branch/$select.js'
 
 /**
  * 🎭 *predicate*
@@ -51,10 +51,10 @@ import type { SelectWithDistribute } from '../type_plus/branch/select_with_distr
  * type R = IsBoolean<string, $SelectionBranch> // $Else
  * ```
  */
-export type IsBoolean<T, $O extends IsBoolean.$Options = {}> = SelectWithDistribute<T, boolean, $O>
+export type IsBoolean<T, $O extends IsBoolean.$Options = {}> = $Select<T, boolean, $O>
 
 export namespace IsBoolean {
-	export type $Options = SelectWithDistribute.$Options
-	export type $Default = SelectWithDistribute.$Default
-	export type $Branch = SelectWithDistribute.$Branch
+	export type $Options = $Select.$Options
+	export type $Default = $Select.$Default
+	export type $Branch = $Select.$Branch
 }

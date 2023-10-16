@@ -1,4 +1,4 @@
-import type { SelectWithDistribute } from '../type_plus/branch/select_with_distribute.js'
+import type { $Select } from '../type_plus/branch/$select.js'
 
 /**
  * Is the type `T` exactly `symbol`.
@@ -12,10 +12,10 @@ import type { SelectWithDistribute } from '../type_plus/branch/select_with_distr
  * ```
  */
 
-export type IsSymbol<T, $O extends IsSymbol.$Options = {}> = SelectWithDistribute<T, symbol, $O>
+export type IsSymbol<T, $O extends IsSymbol.$Options = {}> = $Select<T, symbol, $O>
 
 export namespace IsSymbol {
-	export type $Options = SelectWithDistribute.$Options
-	export type $Default = SelectWithDistribute.$Default
-	export type $Branch = SelectWithDistribute.$Branch
+	export type $Options = $Select.$Options
+	export type $Default = $Select.$Default
+	export type $Branch = $Select.$Branch
 }

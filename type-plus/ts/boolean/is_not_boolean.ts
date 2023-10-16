@@ -1,4 +1,4 @@
-import type { SelectInvertWithDistribute } from '../type_plus/branch/select_invert_with_distribute.js'
+import type { $SelectInvert } from '../type_plus/branch/$select_invert.js'
 
 /**
  * 🎭 *predicate*
@@ -51,10 +51,10 @@ import type { SelectInvertWithDistribute } from '../type_plus/branch/select_inve
  * type R = IsNotBoolean<string, $SelectionBranch> // $Then
  * ```
  */
-export type IsNotBoolean<T, $O extends IsNotBoolean.$Options = {}> = SelectInvertWithDistribute<T, boolean, $O>
+export type IsNotBoolean<T, $O extends IsNotBoolean.$Options = {}> = $SelectInvert<T, boolean, $O>
 
 export namespace IsNotBoolean {
-	export type $Options = SelectInvertWithDistribute.$Options
-	export type $Default = SelectInvertWithDistribute.$Default
-	export type $Branch = SelectInvertWithDistribute.$Branch
+	export type $Options = $SelectInvert.$Options
+	export type $Default = $SelectInvert.$Default
+	export type $Branch = $SelectInvert.$Branch
 }
