@@ -67,3 +67,19 @@ it('works with unique branches', () => {
 
 	testType.equal<IsNotVoid<void | 1, IsNotVoid.$Branch>, $Then | $Else>(true)
 })
+
+it('can override $any branch', () => {
+	testType.equal<IsNotVoid<any>, true>(true)
+	testType.equal<IsNotVoid<any, { $any: unknown }>, unknown>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsNotVoid<unknown>, true>(true)
+	testType.equal<IsNotVoid<unknown, { $unknown: unknown }>, unknown>(true)
+})
+
+it('can override $never branch', () => {
+	testType.equal<IsNotVoid<never>, true>(true)
+	testType.equal<IsNotVoid<never, { $never: unknown }>, unknown>(true)
+})
+

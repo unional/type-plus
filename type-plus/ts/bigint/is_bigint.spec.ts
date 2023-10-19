@@ -71,3 +71,18 @@ it('works with unique branches', () => {
 
 	testType.equal<IsBigint<1n | 1, IsBigint.$Branch>, $Then | $Else>(true)
 })
+
+it('can override $any branch', () => {
+	testType.equal<IsBigint<any>, false>(true)
+	testType.equal<IsBigint<any, { $any: unknown }>, unknown>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsBigint<unknown>, false>(true)
+	testType.equal<IsBigint<unknown, { $unknown: unknown }>, unknown>(true)
+})
+
+it('can override $never branch', () => {
+	testType.equal<IsBigint<never>, false>(true)
+	testType.equal<IsBigint<never, { $never: unknown }>, unknown>(true)
+})

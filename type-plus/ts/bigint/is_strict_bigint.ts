@@ -1,8 +1,11 @@
-import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
+import type { $Any } from '../any/any.js'
+import type { $Never } from '../never/never.js'
 import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
+import type { $SpecialType } from '../type_plus/$special_type.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $Select } from '../type_plus/branch/$select.js'
-import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
+import type { $Else, $Then } from '../type_plus/branch/selection.js'
+import type { $Unknown } from '../unknown/unknown.js'
 
 /**
  * 🎭 *predicate*
@@ -59,13 +62,15 @@ import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selecti
 export type IsStrictBigint<
 	T,
 	$O extends IsStrictBigint.$Options = {}
-> =
-	IsAnyOrNever<T, $SelectionBranch> extends infer R
-	? R extends $Then ? $ResolveBranch<T, $O, [$Else]>
-	: R extends $Else ? ($ResolveOptions<[$O['distributive'], $Select.$Default['distributive']]> extends true
-		? IsStrictBigint._D<T, $O>
-		: IsStrictBigint._N<T, $O>)
-	: never : never
+> = $SpecialType<T,
+	{
+		$any: $ResolveBranch<T, $O, [$Any, $Else]>,
+		$never: $ResolveBranch<T, $O, [$Never, $Else]>,
+		$unknown: $ResolveBranch<T, $O, [$Unknown, $Else]>,
+		$else: ($ResolveOptions<[$O['distributive'], $Select.$Default['distributive']]> extends true
+			? IsStrictBigint._D<T, $O>
+			: IsStrictBigint._N<T, $O>)
+	}>
 
 export namespace IsStrictBigint {
 	export type $Options = $Select.$Options
@@ -76,7 +81,7 @@ export namespace IsStrictBigint {
 		? (
 			`${T}` extends `${number}`
 			? $ResolveBranch<T, $O, [$Else]>
-			: $ResolveBranch<T,$O,[$Then]>
+			: $ResolveBranch<T, $O, [$Then]>
 		)
 		: $ResolveBranch<T, $O, [$Else]>
 	export type _N<T, $O extends IsStrictBigint.$Options> = (
@@ -84,7 +89,7 @@ export namespace IsStrictBigint {
 		? (T extends bigint
 			? (`${T}` extends `${number}`
 				? $ResolveBranch<T, $O, [$Else]>
-				: $ResolveBranch<T,$O,[$Then]>)
+				: $ResolveBranch<T, $O, [$Then]>)
 			: $ResolveBranch<T, $O, [$Else]>)
 		: $ResolveBranch<T, $O, [$Else]>)
 }
