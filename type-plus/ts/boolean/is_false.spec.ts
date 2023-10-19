@@ -76,3 +76,18 @@ it('works with unique branches', () => {
 	testType.equal<IsFalse<never, IsFalse.$Branch>, $Else>(true)
 	testType.equal<IsFalse<void, IsFalse.$Branch>, $Else>(true)
 })
+
+it('can override $any branch', () => {
+	testType.equal<IsFalse<any>, false>(true)
+	testType.equal<IsFalse<any, { $any: unknown }>, unknown>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsFalse<unknown>, false>(true)
+	testType.equal<IsFalse<unknown, { $unknown: unknown }>, unknown>(true)
+})
+
+it('can override $never branch', () => {
+	testType.equal<IsFalse<never>, false>(true)
+	testType.equal<IsFalse<never, { $never: unknown }>, unknown>(true)
+})

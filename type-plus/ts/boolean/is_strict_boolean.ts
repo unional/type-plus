@@ -1,8 +1,11 @@
-import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
+import type { $Any } from '../any/any.js'
+import type { $Never } from '../never/never.js'
 import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
+import type { $SpecialType } from '../type_plus/$special_type.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $SelectStrict } from '../type_plus/branch/$select_strict.js'
-import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
+import type { $Else, $Then } from '../type_plus/branch/selection.js'
+import type { $Unknown } from '../unknown/unknown.js'
 
 /**
  * 🎭 *predicate*
@@ -58,23 +61,23 @@ import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selecti
  * type R = IsStrictBoolean<string, $SelectionBranch> // $Else
  * ```
  */
-export type IsStrictBoolean<T, $O extends IsStrictBoolean.$Options = {}> = IsAnyOrNever<
-	T,
-	$SelectionBranch
-> extends infer R
-	? R extends $Then ? $ResolveBranch<T, $O, [$Else]>
-	: R extends $Else ? (
-		$ResolveOptions<[$O['distributive'], $SelectStrict.$Default['distributive']]> extends true
-		? (
-			IsStrictBoolean._DistributeMap<T> extends infer R
-			? ['aBcD' | 'AbCd' | 'abcd'] extends [R] ? $ResolveBranch<boolean, $O, [$Then]> | $ResolveBranch<Exclude<T, boolean>, $O, [$Else]>
-			: ['aBcD' | 'AbCd'] extends [R] ? $ResolveBranch<T, $O, [$Then]>
-			: ['aBcd' | 'Abcd'] extends [R] ? $ResolveBranch<T, $O, [$Then]> : $ResolveBranch<T, $O, [$Else]>
-			: never
+export type IsStrictBoolean<T, $O extends IsStrictBoolean.$Options = {}> = $SpecialType<T,
+	{
+		$any: $ResolveBranch<T, $O, [$Any, $Else]>,
+		$never: $ResolveBranch<T, $O, [$Never, $Else]>,
+		$unknown: $ResolveBranch<T, $O, [$Unknown, $Else]>,
+		$else: (
+			$ResolveOptions<[$O['distributive'], $SelectStrict.$Default['distributive']]> extends true
+			? (
+				IsStrictBoolean._DistributeMap<T> extends infer R
+				? ['aBcD' | 'AbCd' | 'abcd'] extends [R] ? $ResolveBranch<boolean, $O, [$Then]> | $ResolveBranch<Exclude<T, boolean>, $O, [$Else]>
+				: ['aBcD' | 'AbCd'] extends [R] ? $ResolveBranch<T, $O, [$Then]>
+				: ['aBcd' | 'Abcd'] extends [R] ? $ResolveBranch<T, $O, [$Then]> : $ResolveBranch<T, $O, [$Else]>
+				: never
+			)
+			: $SelectStrict._N<T, boolean, $O>
 		)
-		: $SelectStrict._N<T, boolean, $O>
-	)
-	: never : never
+	}>
 
 export namespace IsStrictBoolean {
 	export type $Options = $SelectStrict.$Options

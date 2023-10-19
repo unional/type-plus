@@ -80,3 +80,18 @@ it('works with unique branches', () => {
 	testType.equal<IsNotStrictBoolean<never, $BranchOptions<$Never | $Then>>, $Never>(true)
 	testType.equal<IsNotStrictBoolean<void, IsNotStrictBoolean.$Branch>, $Then>(true)
 })
+
+it('can override $any branch', () => {
+	testType.equal<IsNotStrictBoolean<any>, true>(true)
+	testType.equal<IsNotStrictBoolean<any, { $any: unknown }>, unknown>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsNotStrictBoolean<unknown>, true>(true)
+	testType.equal<IsNotStrictBoolean<unknown, { $unknown: unknown }>, unknown>(true)
+})
+
+it('can override $never branch', () => {
+	testType.equal<IsNotStrictBoolean<never>, true>(true)
+	testType.equal<IsNotStrictBoolean<never, { $never: unknown }>, unknown>(true)
+})

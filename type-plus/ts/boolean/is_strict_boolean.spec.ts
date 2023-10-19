@@ -69,3 +69,18 @@ it('works with unique branches', () => {
 	testType.equal<IsStrictBoolean<never, IsStrictBoolean.$Branch>, $Else>(true)
 	testType.equal<IsStrictBoolean<void, IsStrictBoolean.$Branch>, $Else>(true)
 })
+
+it('can override $any branch', () => {
+	testType.equal<IsStrictBoolean<any>, false>(true)
+	testType.equal<IsStrictBoolean<any, { $any: unknown }>, unknown>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsStrictBoolean<unknown>, false>(true)
+	testType.equal<IsStrictBoolean<unknown, { $unknown: unknown }>, unknown>(true)
+})
+
+it('can override $never branch', () => {
+	testType.equal<IsStrictBoolean<never>, false>(true)
+	testType.equal<IsStrictBoolean<never, { $never: unknown }>, unknown>(true)
+})
