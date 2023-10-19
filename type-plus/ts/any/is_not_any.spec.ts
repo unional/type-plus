@@ -1,6 +1,19 @@
 import { describe, it } from '@jest/globals'
 import { testType, type $Else, type $Then, type IsNotAny } from '../index.js'
 
+// alternative implementation
+// export type IsNotAny<
+// 	T,
+// 	$O extends IsNotAny.$Options = {}
+// > =
+// 	0 extends 1 & T
+// 	? $ResolveBranch<T, $O, [$Else]>
+// 	: $ResolveBranch<
+// 		T,
+// 		$O,
+// 		[[unknown] extends [T] ? $Unknown : unknown, [never] extends [T] ? $Never : unknown, $Then]
+// 	>
+
 it('returns false for any', () => {
 	testType.equal<IsNotAny<any>, false>(true)
 })

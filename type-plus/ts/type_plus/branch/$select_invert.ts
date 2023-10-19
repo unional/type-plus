@@ -1,14 +1,12 @@
 import type { $ResolveOptions } from '../$resolve_options.js'
 import type { $Any } from '../../any/any.js'
-import type { IsAny } from '../../any/is_any.js'
 import type { IsNever } from '../../never/is_never.js'
 import type { $Never } from '../../never/never.js'
-import type { IsUnknown } from '../../unknown/is_unknown.js'
 import type { $Unknown } from '../../unknown/unknown.js'
+import type { $DistributiveDefault, $DistributiveOptions } from './$distributive.js'
 import type { $InputOptions } from './$input_options.js'
 import type { $ResolveBranch } from './$resolve_branch.js'
 import type { $SelectionOptions } from './$selection_options.js'
-import type { $DistributiveDefault, $DistributiveOptions } from './$distributive.js'
 import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './selection.js'
 
 /**
@@ -66,29 +64,17 @@ export type $SelectInvert<
 	T,
 	U,
 	$O extends $SelectInvert.$Options = {}
-> =
-	IsAny<
-		T,
-		{
-			$then: $ResolveBranch<T, $O, [$Any, $Then]>,
-			$else:
-			IsNever<
-				T,
-				{
-					$then: $ResolveBranch<T, $O, [$Never, $Then]>,
-					$else: IsUnknown<
-						T,
-						{
-							$then: $ResolveBranch<T, $O, [$Unknown, $Then]>,
-							$else: $ResolveOptions<[$O['distributive'], $SelectInvert.$Default['distributive']]> extends true
-							? T extends U ? $ResolveBranch<T, $O, [$Else]> : $ResolveBranch<T, $O, [$Then]>
-							: $SelectInvert._N<T, U, $O>
-						}
-					>
-				}
-			>
-		}
-	>
+> = IsNever<
+	T,
+	{
+		$any: $ResolveBranch<T, $O, [$Any, $Then]>,
+		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>,
+		$then: $ResolveBranch<T, $O, [$Never, $Then]>,
+		$else: $ResolveOptions<[$O['distributive'], $SelectInvert.$Default['distributive']]> extends true
+		? T extends U ? $ResolveBranch<T, $O, [$Else]> : $ResolveBranch<T, $O, [$Then]>
+		: $SelectInvert._N<T, U, $O>
+	}
+>
 
 export namespace $SelectInvert {
 	export type $Options = $SelectionOptions & $DistributiveOptions & $InputOptions<$Any | $Unknown | $Never>

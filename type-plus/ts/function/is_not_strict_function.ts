@@ -34,8 +34,6 @@ export namespace IsNotStrictFunction {
 	export type $Branch = $SelectInvertStrict.$Branch
 	export type _D<T, $O extends IsNotStrictFunction.$Options> =
 		T extends Function
-		? T extends (...args: any[]) => any
-		? $ResolveBranch<T, $O, [$Then]>
-		: $ResolveBranch<T, $O, [$Else]>
+		? $ResolveBranch<T, $O, [T extends (...args: any[]) => any ? $Then : $Else]>
 		: $ResolveBranch<T, $O, [$Then]>
 }

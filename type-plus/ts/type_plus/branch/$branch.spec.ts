@@ -1,6 +1,6 @@
-import { it } from '@jest/globals'
-import { testType } from '../../index.js'
-import type { $Branch } from './$branch.js'
+import { describe, it } from '@jest/globals'
+import { testType, type $Any, type $Branch, type $BranchOptions, type $Unknown } from '../../index.js'
+
 
 it('create a branch type with property name', () => {
 	type $Then = $Branch<'$then'>
@@ -10,4 +10,18 @@ it('create a branch type with property name', () => {
 it('the property name must start with $', () => {
 	// @ts-expect-error
 	type $DoesNotWork = $Branch<'nope'>
+})
+
+describe('$BranchOptions', () => {
+	it('creates branch options with single branch', () => {
+		testType.equal<$BranchOptions<$Any>, { $any: $Any }>(true)
+	})
+
+	it('creates branch options with multiple branches', () => {
+		testType.equal<$BranchOptions<$Any | $Unknown>, {
+			$any: $Any,
+			$unknown: $Unknown
+		}>(true)
+	})
+
 })

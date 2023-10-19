@@ -1,5 +1,5 @@
 import type { IsNever } from '../never/is_never.js'
-import type { $NeverDefault, $NeverOptions } from '../never/never.js'
+import type { $Never } from '../never/never.js'
 import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
 
 /**
@@ -32,11 +32,11 @@ export type Last<
 	: never : never
 
 export namespace Last {
-	export interface Options extends $NeverOptions {
+	export interface Options extends $Never.$Options {
 		caseEmptyTuple?: unknown
 	}
 
-	export interface DefaultOptions extends $NeverDefault {
+	export interface DefaultOptions extends $Never.$Default {
 		caseEmptyTuple: never
 	}
 }

@@ -1,5 +1,22 @@
 import { describe, it } from '@jest/globals'
-import { testType, type $Never, type IsNotNever, type $BranchOptions, type $Then, type $Else, type $Any, type $Unknown } from '../index.js'
+import { testType, type $Any, type $BranchOptions, type $Else, type $Never, type $Then, type $Unknown, type IsNotNever } from '../index.js'
+
+// alternative implementation
+// export type IsNotNever<
+// 	T,
+// 	$O extends IsNotNever.$Options = {}
+// > = [T, never] extends [never, T]
+// 	? $ResolveBranch<
+// 		T,
+// 		'$else' extends keyof $O ? $O :
+// 		$O['selection'] extends 'filter' ? $O & { $else: $Never } : $O,
+// 		[$Else]
+// 	>
+// 	: $ResolveBranch<
+// 		T,
+// 		$O,
+// 		[0 extends 1 & T ? $Any : unknown, [unknown] extends [T] ? $Unknown : unknown, $Then]
+// 	>
 
 it('returns false for never', () => {
 	testType.false<IsNotNever<never>>(true)
@@ -52,13 +69,24 @@ it('can override Then/Else', () => {
 	testType.equal<IsNotNever<unknown, $BranchOptions<$Unknown | $Then>>, $Unknown>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<IsNotNever<never, { $then: 1, $else: 2 }>, 2>(true)
-	testType.equal<IsNotNever<0, { $then: 1, $else: 2 }>, 1>(true)
+it('works with partial customization', () => {
+	testType.equal<IsNotNever<never, { $else: 2 }>, 2>(true)
+	testType.equal<IsNotNever<0, { $else: 2 }>, true>(true)
 
-	testType.equal<IsNotNever<any, { $then: 1, $else: 2 }>, 1>(true)
-	testType.equal<IsNotNever<unknown, { $then: 1, $else: 2 }>, 1>(true)
-	testType.equal<IsNotNever<void, { $then: 1, $else: 2 }>, 1>(true)
+	testType.equal<IsNotNever<any, { $then: 1 }>, 1>(true)
+	testType.equal<IsNotNever<unknown, { $then: 1 }>, 1>(true)
+	testType.equal<IsNotNever<never, { $then: 1 }>, false>(true)
+	testType.equal<IsNotNever<void, { $then: 1 }>, 1>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsNotNever<unknown>, true>(true)
+	testType.equal<IsNotNever<unknown, { $unknown: unknown }>, unknown>(true)
+})
+
+it('can override $any branch', () => {
+	testType.equal<IsNotNever<any>, true>(true)
+	testType.equal<IsNotNever<any, { $any: unknown }>, unknown>(true)
 })
 
 describe('filter', () => {

@@ -1,5 +1,22 @@
 import { it } from '@jest/globals'
-import { testType, type $Else, type $SelectionBranch, type $Then, type IsUnknown, type $BranchOptions, type $Any, type $Never } from '../index.js'
+import { testType, type $Any, type $BranchOptions, type $Else, type $Never, type $SelectionBranch, type $Then, type IsUnknown } from '../index.js'
+
+// alternative implementation
+// export type IsUnknown<
+// 	T,
+// 	$O extends IsUnknown.$Options = {}
+// > =
+// 	0 extends 1 & T
+// 	? $ResolveBranch<T, $O, [$Any, $Else]>
+// 	: (
+// 		[T, never] extends [never, T]
+// 		? $ResolveBranch<T, $O, [$Never, $Else]>
+// 		: (
+// 			[T, unknown] extends [unknown, T]
+// 			? $ResolveBranch<T, $O, [$Then]>
+// 			: $ResolveBranch<T, $O, [$Else]>
+// 		)
+// 	)
 
 it('returns true for unknown', () => {
 	testType.true<IsUnknown<unknown>>(true)
@@ -96,4 +113,14 @@ it('works with unique branches', () => {
 	testType.equal<IsUnknown<never, $BranchOptions<$Never | $Else>>, $Never>(true)
 
 	testType.equal<IsUnknown<void, $SelectionBranch>, $Else>(true)
+})
+
+it('can override $never branch', () => {
+	testType.equal<IsUnknown<never>, false>(true)
+	testType.equal<IsUnknown<never, { $never: unknown }>, unknown>(true)
+})
+
+it('can override $any branch', () => {
+	testType.equal<IsUnknown<any>, false>(true)
+	testType.equal<IsUnknown<any, { $any: unknown }>, unknown>(true)
 })

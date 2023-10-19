@@ -1,5 +1,5 @@
 import type { ElementMatch } from '../array/array_plus.element_match.js'
-import type { $NeverDefault, $NeverOptions } from '../never/never.js'
+import type { $Never } from '../never/never.js'
 import type { TypePlusOptions } from '../utils/options.js'
 import type { IsTuple } from './is_tuple.js'
 
@@ -77,12 +77,12 @@ export namespace Find {
 				TypePlusOptions.Merge<{ $notMatch: Device<Tail, Criteria, Options> }, Options>
 			>
 			: never)
-	export interface Options extends ElementMatch.Options, $NeverOptions {
+	export interface Options extends ElementMatch.Options, $Never.$Options {
 		$array?: unknown,
 		$emptyTuple?: unknown,
 	}
 
-	export interface DefaultOptions<Criteria> extends ElementMatch.DefaultOptions<Criteria>, $NeverDefault {
+	export interface DefaultOptions<Criteria> extends ElementMatch.DefaultOptions<Criteria>, $Never.$Default {
 		$array: 'does not support array. Please use `FindFirst` or `ArrayPlus.Find` instead.',
 		$emptyTuple: never,
 	}

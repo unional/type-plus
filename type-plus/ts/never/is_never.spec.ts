@@ -1,6 +1,19 @@
 import { describe, it } from '@jest/globals'
 import { testType, type $Any, type $BranchOptions, type $Else, type $NotNever, type $Then, type $Unknown, type IsNever } from '../index.js'
 
+// alternative implementation
+// export type IsNever<
+// 	T,
+// 	$O extends IsNever.$Options = {}
+// > = [T, never] extends [never, T]
+// 	? $ResolveBranch<T, $O, [$Then]>
+// 	: $ResolveBranch<
+// 		T,
+// 		'$else' extends keyof $O ? $O :
+// 		$O['selection'] extends 'filter' ? $O & { $else: $NotNever } : $O,
+// 		[0 extends 1 & T ? $Any : unknown, [unknown] extends [T] ? $Unknown : unknown, $Else]
+// 	>
+
 it('returns true for never', () => {
 	testType.true<IsNever<never>>(true)
 })
@@ -60,6 +73,16 @@ it('works with partial customization', () => {
 
 	testType.equal<IsNever<never, { $else: 2 }>, true>(true)
 	testType.equal<IsNever<0, { $else: 2 }>, 2>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsNever<unknown>, false>(true)
+	testType.equal<IsNever<unknown, { $unknown: unknown }>, unknown>(true)
+})
+
+it('can override $any branch', () => {
+	testType.equal<IsNever<any>, false>(true)
+	testType.equal<IsNever<any, { $any: unknown }>, unknown>(true)
 })
 
 describe('filter', () => {

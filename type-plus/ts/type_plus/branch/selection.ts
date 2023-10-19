@@ -4,6 +4,18 @@ import type { $SelectionOptions } from './$selection_options.js'
 export type $Then = $Branch<'$then'>
 export type $Else = $Branch<'$else'>
 
+export namespace $Then {
+	export type $Branch = {
+		$else: $Then
+	}
+}
+
+export namespace $Else {
+	export type $Branch = {
+		$else: $Else
+	}
+}
+
 /**
  * 🧰 *type util*
  *

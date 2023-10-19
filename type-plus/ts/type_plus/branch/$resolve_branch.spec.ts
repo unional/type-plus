@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type $Else, type $Never, type $NeverBranch, type $ResolveBranch, type $SelectionBranch, type $Then } from '../../index.js'
+import { testType, type $Else, type $Never, type $ResolveBranch, type $SelectionBranch, type $Then } from '../../index.js'
 
 it('returns boolean if selection is predicate', () => {
 	testType.equal<$ResolveBranch<123, { selection: 'predicate' }, [$Then]>, true>(true)
@@ -30,7 +30,7 @@ it('returns the value of the single specified branch if `$O` defines it', () => 
 
 it('returns the first matching branch value in `$O`', () => {
 	testType.equal<
-		$ResolveBranch<123, $SelectionBranch & $NeverBranch, [$Never, $Else]>,
+		$ResolveBranch<123, $SelectionBranch & $Never.$Branch, [$Never, $Else]>,
 		$Never
 	>(true)
 	testType.equal<

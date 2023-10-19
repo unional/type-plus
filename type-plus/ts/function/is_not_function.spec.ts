@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type AnyFunction, type IsNotFunction, type $Else, type $Then } from '../index.js'
+import { testType, type $Else, type $Then, type AnyFunction, type IsNotFunction } from '../index.js'
 
 it('returns false if T is Function', () => {
 	testType.false<IsNotFunction<Function>>(true)
@@ -41,7 +41,6 @@ it('distributes over union type', () => {
 	testType.equal<IsNotFunction<(() => void) | string>, boolean>(true)
 })
 
-
 it('returns false if T is function overloads', () => {
 	testType.false<IsNotFunction<{ (): void, (x: number): number }>>(true)
 })
@@ -77,4 +76,30 @@ it('works with unique branches', () => {
 	testType.equal<IsNotFunction<void, IsNotFunction.$Branch>, $Then>(true)
 
 	testType.equal<IsNotFunction<Function | 1, IsNotFunction.$Branch>, $Then | $Else>(true)
+})
+
+it('works with partial customization', () => {
+	testType.equal<IsNotFunction<Function, { $then: 1 }>, false>(true)
+	testType.equal<IsNotFunction<0, { $then: 1 }>, 1>(true)
+
+	testType.equal<IsNotFunction<Function, { $else: 2 }>, 2>(true)
+	testType.equal<IsNotFunction<0, { $else: 2 }>, true>(true)
+})
+
+it('can override $any branch', () => {
+	testType.equal<IsNotFunction<any>, true>(true)
+	testType.equal<IsNotFunction<any, { $any: any }>, any>(true)
+	testType.equal<IsNotFunction<any, { $any: 123 }>, 123>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsNotFunction<unknown>, true>(true)
+	testType.equal<IsNotFunction<unknown, { $unknown: unknown }>, unknown>(true)
+	testType.equal<IsNotFunction<unknown, { $unknown: 123 }>, 123>(true)
+})
+
+it('can override $never branch', () => {
+	testType.equal<IsNotFunction<never>, true>(true)
+	testType.equal<IsNotFunction<never, { $never: unknown }>, unknown>(true)
+	testType.equal<IsNotFunction<never, { $never: 123 }>, 123>(true)
 })

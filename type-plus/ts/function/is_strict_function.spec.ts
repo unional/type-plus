@@ -75,3 +75,29 @@ it('works with unique branches', () => {
 	testType.equal<IsStrictFunction<never, IsStrictFunction.$Branch>, $Else>(true)
 	testType.equal<IsStrictFunction<void, IsStrictFunction.$Branch>, $Else>(true)
 })
+
+it('works with partial customization', () => {
+	testType.equal<IsStrictFunction<Function, { $then: 1 }>, 1>(true)
+	testType.equal<IsStrictFunction<0, { $then: 1 }>, false>(true)
+
+	testType.equal<IsStrictFunction<Function, { $else: 2 }>, true>(true)
+	testType.equal<IsStrictFunction<0, { $else: 2 }>, 2>(true)
+})
+
+it('can override $any branch', () => {
+	testType.equal<IsStrictFunction<any>, false>(true)
+	testType.equal<IsStrictFunction<any, { $any: any }>, any>(true)
+	testType.equal<IsStrictFunction<any, { $any: 123 }>, 123>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsStrictFunction<unknown>, false>(true)
+	testType.equal<IsStrictFunction<unknown, { $unknown: unknown }>, unknown>(true)
+	testType.equal<IsStrictFunction<unknown, { $unknown: 123 }>, 123>(true)
+})
+
+it('can override $never branch', () => {
+	testType.equal<IsStrictFunction<never>, false>(true)
+	testType.equal<IsStrictFunction<never, { $never: unknown }>, unknown>(true)
+	testType.equal<IsStrictFunction<never, { $never: 123 }>, 123>(true)
+})

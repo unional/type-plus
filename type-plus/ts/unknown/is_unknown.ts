@@ -1,5 +1,6 @@
 import type { $Any } from '../any/any.js'
 import type { $Never } from '../never/never.js'
+import type { $SpecialType } from '../type_plus/$special_type.js'
 import type { $InputOptions } from '../type_plus/branch/$input_options.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $SelectionOptions } from '../type_plus/branch/$selection_options.js'
@@ -43,18 +44,12 @@ import type { $Else, $Then } from '../type_plus/branch/selection.js'
 export type IsUnknown<
 	T,
 	$O extends IsUnknown.$Options = {}
-> =
-	0 extends 1 & T
-	? $ResolveBranch<T, $O, [$Any, $Else]>
-	: (
-		[T, never] extends [never, T]
-		? $ResolveBranch<T, $O, [$Never, $Else]>
-		: (
-			[T, unknown] extends [unknown, T]
-			? $ResolveBranch<T, $O, [$Then]>
-			: $ResolveBranch<T, $O, [$Else]>
-		)
-	)
+> = $SpecialType<T, {
+	$any: $ResolveBranch<T, $O, [$Any, $Else]>,
+	$unknown: $ResolveBranch<T, $O, [$Then]>,
+	$never: $ResolveBranch<T, $O, [$Never, $Else]>,
+	$else: $ResolveBranch<T, $O, [$Else]>
+}>
 
 export namespace IsUnknown {
 	export type $Options = $SelectionOptions & $InputOptions<$Any | $Never>

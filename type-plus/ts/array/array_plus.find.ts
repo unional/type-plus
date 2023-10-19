@@ -1,6 +1,6 @@
-import type { $ResolveOptions } from '../index.js'
-import type { $NeverDefault, $NeverOptions } from '../never/never.js'
+import type { $Never } from '../never/never.js'
 import type { IsTuple } from '../tuple/is_tuple.js'
+import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
 import type { ElementMatch } from './array_plus.element_match.js'
 
 /**
@@ -61,11 +61,11 @@ export type Find<
 	}>
 
 export namespace Find {
-	export interface Options extends ElementMatch.Options, $NeverOptions {
+	export interface Options extends ElementMatch.Options, $Never.$Options {
 		$tuple?: unknown,
 	}
 
-	export interface DefaultOptions<Criteria> extends ElementMatch.DefaultOptions<Criteria>, $NeverDefault {
+	export interface DefaultOptions<Criteria> extends ElementMatch.DefaultOptions<Criteria>, $Never.$Default {
 		$tuple: 'does not support tuple. Please use `FindFirst` or `TuplePlus.Find` instead.',
 	}
 }

@@ -1,5 +1,5 @@
 import type { IsNever } from '../never/is_never.js'
-import type { $NeverDefault, $NeverOptions } from '../never/never.js'
+import type { $Never } from '../never/never.js'
 import type { KeyTypes } from '../object/KeyTypes.js'
 
 /**
@@ -30,9 +30,9 @@ export type CommonPropKeys<
 >
 
 export namespace CommonPropKeys {
-	export interface Options extends $NeverOptions {
+	export interface Options extends $Never.$Options {
 	}
 
-	export interface DefaultOptions extends $NeverDefault {
+	export interface DefaultOptions extends $Never.$Default {
 	}
 }

@@ -1,4 +1,6 @@
 import type { $Any } from '../any/any.js'
+import type { $SpecialType } from '../type_plus/$special_type.js'
+// import type { $SpecialType } from '../type_plus/$special_type.js'
 import type { $InputOptions } from '../type_plus/branch/$input_options.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $SelectionOptions } from '../type_plus/branch/$selection_options.js'
@@ -46,15 +48,15 @@ import type { $NotNever } from './never.js'
 export type IsNever<
 	T,
 	$O extends IsNever.$Options = {}
-> = [T, never] extends [never, T]
-	? $ResolveBranch<T, $O, [$Then]>
-	: $ResolveBranch<
-		T,
-		'$else' extends keyof $O ? $O :
-		$O['selection'] extends 'filter' ? $O & { $else: $NotNever } : $O,
-		[0 extends 1 & T ? $Any : unknown, [unknown] extends [T] ? $Unknown : unknown, $Else]
-	>
+> = $SpecialType<T, {
+	$any: $ResolveBranch<T, IsNever._O<$O>, [$Any, $Else]>,
+	$unknown: $ResolveBranch<T, IsNever._O<$O>, [$Unknown, $Else]>,
+	$never: $ResolveBranch<T, $O, [$Then]>,
+	$else: $ResolveBranch<T, IsNever._O<$O>, [$Else]>
+}>
 
 export namespace IsNever {
 	export type $Options = $SelectionOptions & $InputOptions<$Any | $Unknown>
+	export type _O<$O extends $Options> = '$else' extends keyof $O ? $O :
+		$O['selection'] extends 'filter' ? $O & { $else: $NotNever } : $O
 }

@@ -1,11 +1,12 @@
 import type { $ResolveOptions } from '../$resolve_options.js'
+import type { $SpecialType } from '../$special_type.js'
 import type { $Any } from '../../any/any.js'
-import type { IsAny } from '../../any/is_any.js'
-import type { IsNever } from '../../never/is_never.js'
 import type { $Never } from '../../never/never.js'
+import type { $Unknown } from '../../unknown/unknown.js'
+import type { $DistributiveDefault, $DistributiveOptions } from './$distributive.js'
+import type { $InputOptions } from './$input_options.js'
 import type { $ResolveBranch } from './$resolve_branch.js'
 import type { $SelectionOptions } from './$selection_options.js'
-import type { $DistributiveDefault, $DistributiveOptions } from './$distributive.js'
 import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './selection.js'
 
 /**
@@ -63,26 +64,21 @@ export type $Select<
 	T,
 	U,
 	$O extends $Select.$Options = {}
-> =
-	IsAny<
-		T,
-		{
-			$then: $ResolveBranch<T, $O, [$Any, $Else]>,
-			$else:
-			IsNever<
-				T,
-				{
-					$then: $ResolveBranch<T, $O, [$Never, $Else]>,
-					$else: $ResolveOptions<[$O['distributive'], $Select.$Default['distributive']]> extends true
-					? $Select._D<T, U, $O>
-					: $Select._N<T, U, $O>
-				}
-			>
-		}
-	>
+> = $SpecialType<
+	T,
+	{
+		$any: $ResolveBranch<T, $O, [$Any, $Else]>,
+		$unknown: $ResolveBranch<T, $O, [$Unknown, $Else]>,
+		$never: $ResolveBranch<T, $O, [$Never, $Else]>,
+		$else:
+		$ResolveOptions<[$O['distributive'], $Select.$Default['distributive']]> extends true
+		? $Select._D<T, U, $O>
+		: $Select._N<T, U, $O>
+	}
+>
 
 export namespace $Select {
-	export type $Options = $SelectionOptions & $DistributiveOptions
+	export type $Options = $SelectionOptions & $DistributiveOptions & $InputOptions<$Any | $Unknown | $Never>
 	export type $Default = $SelectionPredicate & $DistributiveDefault
 	export type $Branch = $SelectionBranch & $DistributiveDefault
 	export type _D<T, U, $O extends $Select.$Options> =

@@ -7,7 +7,7 @@
 
 import type { IsEqual } from '../equal/equal.js'
 import type { IsNever } from '../never/is_never.js'
-import type { $NeverOptions } from '../never/never.js'
+import type { $Never } from '../never/never.js'
 import type { TypePlusOptions } from '../utils/options.js'
 
 /**
@@ -37,7 +37,7 @@ export type Filter<
 	: never
 
 export namespace Filter {
-	export interface Options extends TypePlusOptions.NotArray, $NeverOptions { }
+	export interface Options extends TypePlusOptions.NotArray, $Never.$Options { }
 
 	export interface DefaultOptions {
 		$never: never,
