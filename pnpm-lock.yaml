@@ -94,8 +94,8 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       '@size-limit/esbuild-why':
-        specifier: ^8.2.4
-        version: 8.2.4(size-limit@8.2.4)
+        specifier: ^9.0.0
+        version: 9.0.0(size-limit@8.2.4)
       '@size-limit/preset-small-lib':
         specifier: ^9.0.0
         version: 9.0.0(size-limit@8.2.4)
@@ -2727,13 +2727,14 @@ packages:
       '@sinonjs/commons': 2.0.0
     dev: true
 
-  /@size-limit/esbuild-why@8.2.4(size-limit@8.2.4):
-    resolution: {integrity: sha512-6Cfe3GaMRpTej1h59+PRWLaGqqejLQhueqM99Wa6lTghZOVV0g2wvWYXdAWjdxgHbFp1R8z2y2bgKP4XbxCUdg==}
-    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
+  /@size-limit/esbuild-why@9.0.0(size-limit@8.2.4):
+    resolution: {integrity: sha512-p683YMq8Nk9pGDAt6zR09g5avm8tDIBZSd/xwiK9c23abiJK/kvD2Gowdj3PFdGLt73TFY5CW/kc2oaJwU+WSQ==}
+    engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
-      size-limit: 8.2.4
+      size-limit: 9.0.0
     dependencies:
-      esbuild-visualizer: 0.4.0
+      esbuild-visualizer: 0.4.1
+      open: 8.4.2
       size-limit: 8.2.4
     dev: true
 
@@ -4727,12 +4728,12 @@ packages:
       is-symbol: 1.0.4
     dev: true
 
-  /esbuild-visualizer@0.4.0:
-    resolution: {integrity: sha512-Sa1nXTxAPasvsyYKx/LVLgFy9CUY9rC4wGCkxjhB9+oL3bTYAlqAo2TcWaGS01T/KwG5qGOfyFWLTjjfokaAEA==}
+  /esbuild-visualizer@0.4.1:
+    resolution: {integrity: sha512-5XI3unzqPr3xqfzR/mzK3LhoAJs3FQhiIXBsKJ3Oh6CjyjuXz6HVmhJMoisrcpeTZip65fR54Dk53MZncA0AUQ==}
     engines: {node: '>=14.20'}
     hasBin: true
     dependencies:
-      open: 8.4.1
+      open: 8.4.2
       yargs: 17.7.1
     dev: true
 
@@ -7874,8 +7875,8 @@ packages:
     dependencies:
       mimic-fn: 4.0.0
 
-  /open@8.4.1:
-    resolution: {integrity: sha512-/4b7qZNhv6Uhd7jjnREh1NjnPxlTq+XNWPG88Ydkj5AILcA5m3ajvcg57pB24EQjKv0dK62XnDqk9c/hkIG5Kg==}
+  /open@8.4.2:
+    resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
     dependencies:
       define-lazy-prop: 2.0.0
