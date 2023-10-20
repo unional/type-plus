@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { describe, it } from '@jest/globals'
 import { testType, type IsBigint, type $Then, type $Else } from '../index.js'
 
 it('returns true for bigint', () => {
@@ -85,4 +85,93 @@ it('can override $unknown branch', () => {
 it('can override $never branch', () => {
 	testType.equal<IsBigint<never>, false>(true)
 	testType.equal<IsBigint<never, { $never: unknown }>, unknown>(true)
+})
+
+describe('exact mode', () => {
+
+	it('returns true for bigint', () => {
+		testType.true<IsBigint<bigint, { exact: true }>>(true)
+	})
+
+	it('returns false if T is bigint literals', () => {
+		testType.false<IsBigint<0n, { exact: true }>>(true)
+		testType.false<IsBigint<1n, { exact: true }>>(true)
+	})
+
+	it('returns false for special types', () => {
+		testType.false<IsBigint<any, { exact: true }>>(true)
+		testType.false<IsBigint<unknown, { exact: true }>>(true)
+		testType.false<IsBigint<void, { exact: true }>>(true)
+		testType.false<IsBigint<never, { exact: true }>>(true)
+	})
+
+	it('returns false for other types', () => {
+		testType.false<IsBigint<undefined, { exact: true }>>(true)
+		testType.false<IsBigint<null, { exact: true }>>(true)
+		testType.false<IsBigint<boolean, { exact: true }>>(true)
+		testType.false<IsBigint<true, { exact: true }>>(true)
+		testType.false<IsBigint<false, { exact: true }>>(true)
+		testType.false<IsBigint<number, { exact: true }>>(true)
+		testType.false<IsBigint<1, { exact: true }>>(true)
+		testType.false<IsBigint<string, { exact: true }>>(true)
+		testType.false<IsBigint<'', { exact: true }>>(true)
+		testType.false<IsBigint<symbol, { exact: true }>>(true)
+		testType.false<IsBigint<{}, { exact: true }>>(true)
+		testType.false<IsBigint<string[], { exact: true }>>(true)
+		testType.false<IsBigint<[], { exact: true }>>(true)
+		testType.false<IsBigint<Function, { exact: true }>>(true)
+		testType.false<IsBigint<() => void, { exact: true }>>(true)
+	})
+
+	it('distributes over union type', () => {
+		testType.equal<IsBigint<bigint | 1, { exact: true }>, boolean>(true)
+	})
+
+	it('can disable union distribution', () => {
+		testType.equal<IsBigint<bigint | 1, { distributive: false, exact: false }>, false>(true)
+	})
+
+	it('consider intersection type as strict', () => {
+		testType.true<IsBigint<bigint & { a: 1 }, { exact: true }>>(true)
+		testType.false<IsBigint<1n & { a: 1 }, { exact: true }>>(true)
+	})
+
+	it('works as filter', () => {
+		testType.equal<IsBigint<bigint, { selection: 'filter', exact: true }>, bigint>(true)
+		testType.equal<IsBigint<1n, { selection: 'filter', exact: true }>, never>(true)
+
+		testType.equal<IsBigint<never, { selection: 'filter', exact: true }>, never>(true)
+		testType.equal<IsBigint<unknown, { selection: 'filter', exact: true }>, never>(true)
+		testType.equal<IsBigint<string | boolean, { selection: 'filter', exact: true }>, never>(true)
+
+		testType.equal<never | bigint, bigint>(true)
+		testType.equal<IsBigint<string | bigint, { selection: 'filter', exact: true }>, bigint>(true)
+	})
+
+	it('works with unique branches', () => {
+		testType.equal<IsBigint<bigint, IsBigint.$Branch<{ exact: true }>>, $Then>(true)
+		testType.equal<IsBigint<1n, IsBigint.$Branch<{ exact: true }>>, $Else>(true)
+
+		testType.equal<IsBigint<any, IsBigint.$Branch<{ exact: true }>>, $Else>(true)
+		testType.equal<IsBigint<unknown, IsBigint.$Branch<{ exact: true }>>, $Else>(true)
+		testType.equal<IsBigint<never, IsBigint.$Branch<{ exact: true }>>, $Else>(true)
+		testType.equal<IsBigint<void, IsBigint.$Branch<{ exact: true }>>, $Else>(true)
+
+		testType.equal<IsBigint<bigint | 1, IsBigint.$Branch<{ exact: true }>>, $Then | $Else>(true)
+	})
+
+	it('can override $any branch', () => {
+		testType.equal<IsBigint<any, { exact: true }>, false>(true)
+		testType.equal<IsBigint<any, { $any: unknown, exact: true }>, unknown>(true)
+	})
+
+	it('can override $unknown branch', () => {
+		testType.equal<IsBigint<unknown, { exact: true }>, false>(true)
+		testType.equal<IsBigint<unknown, { $unknown: unknown, exact: true }>, unknown>(true)
+	})
+
+	it('can override $never branch', () => {
+		testType.equal<IsBigint<never, { exact: true }>, false>(true)
+		testType.equal<IsBigint<never, { $never: unknown, exact: true }>, unknown>(true)
+	})
 })

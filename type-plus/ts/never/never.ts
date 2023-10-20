@@ -11,7 +11,7 @@ export namespace $Never {
 	/**
 	 * 🧰 *type util*
 	 *
-	 * `$NeverOptions` enables customizing the behavior of the `$never` branch.
+	 * `$Never.$Options` enables customizing the behavior of the `$never` branch.
 	 *
 	 * The `$never` branch is used to handle when the input type is `never`.
 	 *
@@ -34,7 +34,7 @@ export namespace $Never {
 	/**
 	 * 🧰 *type util*
 	 *
-	 * `$NeverBranch` is the branch option for the `$never` branch.
+	 * `$Never.$Branch` is the branch option for the `$never` branch.
 	 *
 	 * It sets the value to `$Never`,
 	 * so that the branch can be uniquely identified and handled.

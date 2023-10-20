@@ -87,3 +87,18 @@ it('works with unique branches', () => {
 	testType.equal<IsNotStrictFunction<never, IsNotStrictFunction.$Branch>, $Then>(true)
 	testType.equal<IsNotStrictFunction<void, IsNotStrictFunction.$Branch>, $Then>(true)
 })
+
+it('can override $any branch', () => {
+	testType.equal<IsNotStrictFunction<any>, true>(true)
+	testType.equal<IsNotStrictFunction<any, { $any: unknown }>, unknown>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsNotStrictFunction<unknown>, true>(true)
+	testType.equal<IsNotStrictFunction<unknown, { $unknown: unknown }>, unknown>(true)
+})
+
+it('can override $never branch', () => {
+	testType.equal<IsNotStrictFunction<never>, true>(true)
+	testType.equal<IsNotStrictFunction<never, { $never: unknown }>, unknown>(true)
+})

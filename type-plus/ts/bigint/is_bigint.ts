@@ -1,4 +1,10 @@
+import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
+import type { $DistributiveOptions } from '../type_plus/branch/$distributive.js'
+import type { $Exact } from '../type_plus/branch/$exact.js'
+import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $Select } from '../type_plus/branch/$select.js'
+import type { $Else, $Then } from '../type_plus/branch/selection.js'
+import type { IsStrictBigint } from './is_strict_bigint.js'
 
 /**
  * 🎭 *predicate*
@@ -52,10 +58,31 @@ import type { $Select } from '../type_plus/branch/$select.js'
  * type R = IsBigint<string, $SelectionBranch> // $Else
  * ```
  */
-export type IsBigint<T, $O extends IsBigint.$Options = {}> = $Select<T, bigint, $O>
+export type IsBigint<T, $O extends IsBigint.$Options = {}> =
+	$ResolveOptions<[$O['exact'], false]> extends true
+	? IsStrictBigint<T, $O>
+	: $Select<T, bigint, $O>
 
 export namespace IsBigint {
-	export type $Options = $Select.$Options
+	export type $Options = $Select.$Options & $Exact.$Options
 	export type $Default = $Select.$Default
-	export type $Branch = $Select.$Branch
+	export type $Branch<
+		$O extends $DistributiveOptions & $Exact.$Options = {}// $DistributiveDefault & $Exact.$Default
+	> = $Select.$Branch<$O>
+	export type _D<T, $O extends IsBigint.$Options> =
+		T extends bigint
+		? (
+			`${T}` extends `${number}`
+			? $ResolveBranch<T, $O, [$Else]>
+			: $ResolveBranch<T, $O, [$Then]>
+		)
+		: $ResolveBranch<T, $O, [$Else]>
+	export type _N<T, $O extends IsBigint.$Options> = (
+		[bigint, T] extends [T, bigint]
+		? (T extends bigint
+			? (`${T}` extends `${number}`
+				? $ResolveBranch<T, $O, [$Else]>
+				: $ResolveBranch<T, $O, [$Then]>)
+			: $ResolveBranch<T, $O, [$Else]>)
+		: $ResolveBranch<T, $O, [$Else]>)
 }
