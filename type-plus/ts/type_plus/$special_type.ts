@@ -13,7 +13,7 @@ import type { $Else } from './branch/selection.js'
  */
 export type $SpecialType<T, $O extends $SpecialType.$Options> =
 	0 extends 1 & T ? $ResolveBranch<T, $O, [$Any]> :
-	[unknown] extends [T] ? $ResolveBranch<T, $O, [$Unknown]> :
+	[T, unknown] extends [unknown, T] ? $ResolveBranch<T, $O, [$Unknown]> :
 	[T, never] extends [never, T] ? $ResolveBranch<T, $O, [$Never]> :
 	$ResolveBranch<T, $O, [$Else]>
 

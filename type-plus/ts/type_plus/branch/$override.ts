@@ -1,4 +1,3 @@
-// WIP
 import type { $Type } from '../$type.js'
 
 /**
@@ -12,3 +11,12 @@ import type { $Type } from '../$type.js'
  * ```
  */
 export type $Override<T> = $Type<'override', 'override', T>
+
+export namespace $Override {
+	/**
+	 * 🧰 *type util*
+	 *
+	 * A utility type to unwrap an override.
+	 */
+	export type $Unwrap<T> = T extends $Override<infer U> ? U : T
+}

@@ -62,6 +62,7 @@ it('works as filter', () => {
 it('works with unique branches', () => {
 	testType.equal<IsString<string, IsString.$Branch>, $Then>(true)
 	testType.equal<IsString<'a', IsString.$Branch>, $Then>(true)
+	testType.equal<IsString<'a', { $then: String, $else: never }>, String>(true)
 
 	testType.equal<IsString<any, IsString.$Branch>, $Else>(true)
 	testType.equal<IsString<unknown, IsString.$Branch>, $Else>(true)
