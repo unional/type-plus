@@ -1,13 +1,13 @@
-import type { $ResolveOptions } from '../$resolve_options.js'
+import type { $SpecialType } from '../$special_type.js'
 import type { $Any } from '../../any/any.js'
-import type { IsNever } from '../../never/is_never.js'
 import type { $Never } from '../../never/never.js'
 import type { $Unknown } from '../../unknown/unknown.js'
 import type { $DistributiveDefault, $DistributiveOptions } from './$distributive.js'
 import type { $InputOptions } from './$input_options.js'
+import type { $IsDistributive } from './$is_distributive.js'
 import type { $ResolveBranch } from './$resolve_branch.js'
-import type { $SelectionOptions } from './$selection_options.js'
 import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './$selection.js'
+import type { $SelectionOptions } from './$selection_options.js'
 
 /**
  * 🎭 *predicate*
@@ -64,14 +64,14 @@ export type $SelectInvert<
 	T,
 	U,
 	$O extends $SelectInvert.$Options = {}
-> = IsNever<
+> = $SpecialType<
 	T,
 	{
 		$any: $ResolveBranch<T, $O, [$Any, $Then]>,
 		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>,
-		$then: $ResolveBranch<T, $O, [$Never, $Then]>,
-		$else: $ResolveOptions<[$O['distributive'], $SelectInvert.$Default['distributive']]> extends true
-		? T extends U ? $ResolveBranch<T, $O, [$Else]> : $ResolveBranch<T, $O, [$Then]>
+		$never: $ResolveBranch<T, $O, [$Never, $Then]>,
+		$else: $IsDistributive<$O> extends true
+		? $SelectInvert._D<T, U, $O>
 		: $SelectInvert._N<T, U, $O>
 	}
 >
@@ -80,6 +80,8 @@ export namespace $SelectInvert {
 	export type $Options = $SelectionOptions & $DistributiveOptions & $InputOptions<$Any | $Unknown | $Never>
 	export type $Default = $SelectionPredicate & $DistributiveDefault
 	export type $Branch = $SelectionBranch & $DistributiveDefault
+	export type _D<T, U, $O extends $SelectInvert.$Options> =
+		T extends U ? $ResolveBranch<T, $O, [$Else]> : $ResolveBranch<T, $O, [$Then]>
 	export type _N<T, U, $O extends $SelectInvert.$Options> =
 		[T] extends [U] ? $ResolveBranch<T, $O, [$Else]> : $ResolveBranch<T, $O, [$Then]>
 
