@@ -71,7 +71,7 @@ export type $Select<
 		$any: $ResolveBranch<T, $O, [$Any, $Else]>,
 		$unknown: $ResolveBranch<T, $O, [$Unknown, $Else]>,
 		$never: $ResolveBranch<T, $O, [$Never, $Else]>,
-		$else: $ResolveBranch<T, $O, [$Else], $Select._Else<T, U, $O>>
+		$else: $ResolveBranch<T, $O, [$Else], $Select._<T, U, $O>>
 	}
 >
 
@@ -79,7 +79,7 @@ export namespace $Select {
 	export type $Options = $SelectionOptions & $DistributiveOptions & $InputOptions<$Any | $Unknown | $Never> & $Exact.$Options
 	export type $Default = $SelectionPredicate & $DistributiveDefault
 	export type $Branch<$O extends $DistributiveOptions = $DistributiveDefault> = $SelectionBranch & $O
-	export type _Else<T, U, $O extends $Select.$Options> = $ResolveOptions<[$O['distributive'], $Select.$Default['distributive']]> extends true
+	export type _<T, U, $O extends $Select.$Options> = $ResolveOptions<[$O['distributive'], $Select.$Default['distributive']]> extends true
 		? _D<T, U, $O>
 		: _N<T, U, $O>
 
