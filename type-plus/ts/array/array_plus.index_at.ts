@@ -7,7 +7,7 @@ import type { IsNever } from '../never/is_never.js'
 import type { IsStrictNumber } from '../number/is_strict_number.js'
 import type { IsInteger } from '../numeric/is_integer.js'
 import type { IsNegative } from '../numeric/is_negative.js'
-import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$selection.js'
 
 /**
  * 🦴 *utilities*

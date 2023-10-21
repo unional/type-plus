@@ -2,7 +2,7 @@ import type { IsBigint } from '../bigint/is_bigint.js'
 import type { IsNumber } from '../number/is_number.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $Select } from '../type_plus/branch/$select.js'
-import type { $Else, $Then } from '../type_plus/branch/selection.js'
+import type { $Else, $Then } from '../type_plus/branch/$selection.js'
 
 /**
  * Is T an integer, including bigint.

@@ -3,7 +3,7 @@ import type { $DistributiveOptions } from '../type_plus/branch/$distributive.js'
 import type { $Exact } from '../type_plus/branch/$exact.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $Select } from '../type_plus/branch/$select.js'
-import type { $Else, $Then } from '../type_plus/branch/selection.js'
+import type { $Else, $Then } from '../type_plus/branch/$selection.js'
 import type { IsStrictBigint } from './is_strict_bigint.js'
 
 /**

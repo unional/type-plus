@@ -1,6 +1,6 @@
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $SelectInvert } from '../type_plus/branch/$select_invert.js'
-import type { $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
+import type { $SelectionBranch, $Then } from '../type_plus/branch/$selection.js'
 import type { IsUndefined } from '../undefined/is_undefined.js'
 
 /**

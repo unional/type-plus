@@ -9,7 +9,7 @@ import type { $InputOptions } from './$input_options.js'
 import type { $ResolveBranch } from './$resolve_branch.js'
 import type { $SelectionOptions } from './$selection_options.js'
 import type { $DistributiveDefault, $DistributiveOptions } from './$distributive.js'
-import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './selection.js'
+import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './$selection.js'
 
 /**
  * 🎭 *predicate*

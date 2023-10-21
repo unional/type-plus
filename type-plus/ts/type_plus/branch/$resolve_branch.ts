@@ -1,6 +1,6 @@
 import type { $Branch } from './$branch.js'
 import type { $Override } from './$override.js'
-import type { $Else, $Then } from './selection.js'
+import type { $Else, $Then } from './$selection.js'
 
 /**
  * 🧰 *type util*

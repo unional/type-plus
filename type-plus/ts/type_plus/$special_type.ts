@@ -4,7 +4,7 @@ import type { $Unknown } from '../unknown/unknown.js'
 import type { $BranchOptions } from './branch/$branch.js'
 import type { $InputOptions } from './branch/$input_options.js'
 import type { $ResolveBranch } from './branch/$resolve_branch.js'
-import type { $Else } from './branch/selection.js'
+import type { $Else } from './branch/$selection.js'
 
 /**
  * 🧰 *type util*

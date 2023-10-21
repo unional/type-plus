@@ -1,6 +1,6 @@
 import type { IsStrictNumber } from '../number/is_strict_number.js'
 import type { IsTuple } from '../tuple/is_tuple.js'
-import type { $Else, $Then } from '../type_plus/branch/selection.js'
+import type { $Else, $Then } from '../type_plus/branch/$selection.js'
 import type { IndexAt } from './array_plus.index_at.js'
 
 /**

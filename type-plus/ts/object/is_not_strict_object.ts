@@ -4,7 +4,7 @@ import type { IsNever } from '../never/is_never.js'
 import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $SelectInvert } from '../type_plus/branch/$select_invert.js'
-import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$selection.js'
 
 /**
  * 🎭 *predicate*

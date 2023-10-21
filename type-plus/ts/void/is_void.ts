@@ -1,6 +1,6 @@
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $Select } from '../type_plus/branch/$select.js'
-import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$selection.js'
 import type { IsUndefined } from '../undefined/is_undefined.js'
 
 /**

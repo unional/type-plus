@@ -4,7 +4,7 @@ import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
 import type { $SpecialType } from '../type_plus/$special_type.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $SelectStrict } from '../type_plus/branch/$select_strict.js'
-import type { $Else, $Then } from '../type_plus/branch/selection.js'
+import type { $Else, $Then } from '../type_plus/branch/$selection.js'
 import type { $Unknown } from '../unknown/unknown.js'
 
 /**

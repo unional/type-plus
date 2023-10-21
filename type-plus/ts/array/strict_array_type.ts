@@ -1,6 +1,6 @@
 import type { IsNever } from '../never/is_never.js'
 import type { IsStrictNumber } from '../number/is_strict_number.js'
-import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/selection.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$selection.js'
 
 /**
  * 🌪️ *filter*
