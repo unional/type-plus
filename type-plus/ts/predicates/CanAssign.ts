@@ -24,14 +24,10 @@ import type { IsEmptyObject } from './IsEmptyObject.js'
  * If you want to make sure all branches are assignable,
  * use `StrictCanAssign<A, B>`.
  */
-export type CanAssign<A, B, Then = true, Else = false> = IsEmptyObject<A> extends true
-	? Record<string, unknown> extends B
-		? Then
-		: Else
-	: boolean extends A
+export type CanAssign<A, B, Then = true, Else = false> = boolean extends A
 	? boolean extends B
-		? Then
-		: Else
+	? Then
+	: Else
 	: A extends B
 	? Then
 	: Else
@@ -49,12 +45,12 @@ export type CanAssign<A, B, Then = true, Else = false> = IsEmptyObject<A> extend
  */
 export type StrictCanAssign<A, B, Then = true, Else = false> = IsEmptyObject<A> extends true
 	? Record<string, unknown> extends B
-		? Then
-		: Else
+	? Then
+	: Else
 	: boolean extends A
 	? boolean extends B
-		? Then
-		: Else
+	? Then
+	: Else
 	: [A] extends [B]
 	? Then
 	: Else
