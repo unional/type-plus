@@ -76,7 +76,7 @@ export type Assignable<
 export namespace Assignable {
 	export type $Options = $SelectionOptions & $DistributiveOptions & $InputOptions<$Any | $Unknown | $Never>
 	export type $Default = $SelectionPredicate & $DistributiveDefault
-	export type $Branch = $SelectionBranch & $DistributiveDefault
+	export type $Branch<$O extends $DistributiveOptions = {}> = $SelectionBranch & $O
 
 	/**
 	 * 🧰 *type util*

@@ -1,13 +1,17 @@
+import type { $Any } from '../any/any.js'
+import type { $Never } from '../never/never.js'
 import type { Assignable } from '../predicates/assignable.js'
 import type { $MergeOptions } from '../type_plus/$merge_options.js'
 import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
 import type { $SpecialType } from '../type_plus/$special_type.js'
 import type { $DistributiveOptions } from '../type_plus/branch/$distributive.js'
 import type { $Exact } from '../type_plus/branch/$exact.js'
+import type { $InputOptions } from '../type_plus/branch/$input_options.js'
 import type { $IsDistributive } from '../type_plus/branch/$is_distributive.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
-import type { $Select } from '../type_plus/branch/$select.js'
-import type { $Else, $Then } from '../type_plus/branch/$selection.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$selection.js'
+import type { $SelectionOptions } from '../type_plus/branch/$selection_options.js'
+import type { $Unknown } from '../unknown/unknown.js'
 
 /**
  * 🎭 *predicate*
@@ -72,11 +76,13 @@ export type IsBigint<T, $O extends IsBigint.$Options = {}> =
 	>
 
 export namespace IsBigint {
-	export type $Options = $Select.$Options & $Exact.$Options
-	export type $Default = $Select.$Default
+	export type $Options = $SelectionOptions &
+		$DistributiveOptions &
+		$InputOptions<$Any | $Unknown | $Never> &
+		$Exact.$Options
 	export type $Branch<
-		$O extends $DistributiveOptions & $Exact.$Options = {}// $DistributiveDefault & $Exact.$Default
-	> = $Select.$Branch<$O>
+		$O extends $DistributiveOptions & $Exact.$Options = {}
+	> = $SelectionBranch & $O
 
 	/**
 	 * 🧰 *type util*
