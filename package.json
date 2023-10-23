@@ -19,16 +19,17 @@
     "size": "turbo run size",
     "test": "turbo run test",
     "tp": "pnpm --filter type-plus",
-    "verify": "turbo run lint build build:doc depcheck coverage test:type size",
+    "verify": "run-p lint verify:turbo",
+    "verify:turbo": "turbo run build build:doc depcheck coverage test:type size",
     "version": "changeset version"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
     "@commitlint/cli": "^18.0.0",
     "@commitlint/config-conventional": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "eslint": "^8.17.0",
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
+    "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-harmony": "^7.1.2",
@@ -46,6 +47,11 @@
   },
   "engines": {
     "typescript": "~5.0.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "typescript": "~5.0.4"
+    }
   },
   "packageManager": "pnpm@8.9.2"
 }

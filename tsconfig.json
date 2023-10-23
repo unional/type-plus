@@ -2,7 +2,7 @@
   "files": [],
   "references": [
     {
-      "path": "./type-plus/tsconfig.esm.json"
+      "path": "./type-plus/tsconfig.json"
     }
   ],
   "typedocOptions": {
