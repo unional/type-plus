@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else,type $Then, type Assignable, testType } from '../index.js'
+import { type $Else, type $Then, type Assignable, testType } from '../index.js'
 
 it('check if A can be assigned to B', () => {
 	testType.true<Assignable<1, 1>>(true)
@@ -111,4 +111,5 @@ it('can override $never branch', () => {
 	testType.equal<Assignable<never, never>, true>(true)
 	testType.equal<Assignable<never, never, { $never: unknown }>, unknown>(true)
 	testType.equal<Assignable<never, number, { $never: unknown }>, unknown>(true)
+	testType.equal<Assignable<1, never, { $never: unknown }>, false>(true)
 })

@@ -63,7 +63,7 @@ export type Assignable<
 > = $SpecialType<B, {
 	$any: $ResolveBranch<A, $O, [0 extends 1 & A ? $Any : unknown, $Then]>,
 	$unknown: $ResolveBranch<A, $O, [[A, unknown] extends [unknown, A] ? $Unknown : unknown, $Then]>,
-	$never: $ResolveBranch<A, $O, [$Never, [A, never] extends [never, A] ? $Then : $Else]>,
+	$never: $ResolveBranch<A, $O, [A, never] extends [never, A] ? [$Never, $Then] : [$Else]>,
 	$else: $SpecialType<A, {
 		$any: $ResolveBranch<A, $O, [$Any, $Then]>,
 		$unknown: $ResolveBranch<A, $O, [$Unknown, $Then]>,
