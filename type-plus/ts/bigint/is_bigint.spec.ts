@@ -89,7 +89,6 @@ it('can override $never branch', () => {
 })
 
 describe('exact mode', () => {
-
 	it('returns true for bigint', () => {
 		testType.true<IsBigint<bigint, { exact: true }>>(true)
 	})

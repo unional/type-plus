@@ -1,6 +1,6 @@
-import { it } from '@jest/globals'
+import { describe, it } from '@jest/globals'
 
-import { type $Any, type $BranchOptions, type $Else, type $Never,type $Then, type $Unknown, type IsNotBigint, testType } from '../index.js'
+import { testType, type $Any, type $BranchOptions, type $Else, type $Never, type $Then, type $Unknown, type IsNotBigint } from '../index.js'
 
 it('returns false for bigint', () => {
 	testType.false<IsNotBigint<bigint>>(true)
@@ -40,11 +40,6 @@ it('distributes over union type', () => {
 	testType.equal<IsNotBigint<bigint | 1>, boolean>(true)
 })
 
-it('can disable union distribution', () => {
-	testType.equal<IsNotBigint<1n | 1>, boolean>(true)
-	testType.equal<IsNotBigint<1n | 1, { distributive: false }>, true>(true)
-})
-
 it('returns false for intersection type', () => {
 	testType.false<IsNotBigint<bigint & { a: 1 }>>(true)
 })
@@ -57,6 +52,11 @@ it('works as filter', () => {
 	testType.equal<IsNotBigint<string | boolean, { selection: 'filter' }>, string | boolean>(true)
 
 	testType.equal<IsNotBigint<string | 1n, { selection: 'filter' }>, string>(true)
+})
+
+it('can disable union distribution', () => {
+	testType.equal<IsNotBigint<1n | 1>, boolean>(true)
+	testType.equal<IsNotBigint<1n | 1, { distributive: false }>, true>(true)
 })
 
 it('works with unique branches', () => {
@@ -90,4 +90,90 @@ it('can override $unknown branch', () => {
 it('can override $never branch', () => {
 	testType.equal<IsNotBigint<never>, true>(true)
 	testType.equal<IsNotBigint<never, { $never: unknown }>, unknown>(true)
+})
+
+describe('exact mode', () => {
+	it('returns false for bigint', () => {
+		testType.false<IsNotBigint<bigint, { exact: true }>>(true)
+	})
+
+	it('returns true if T is bigint literals', () => {
+		testType.true<IsNotBigint<0n, { exact: true }>>(true)
+		testType.true<IsNotBigint<1n, { exact: true }>>(true)
+	})
+
+	it('returns true for special types', () => {
+		testType.true<IsNotBigint<any, { exact: true }>>(true)
+		testType.true<IsNotBigint<unknown, { exact: true }>>(true)
+		testType.true<IsNotBigint<void, { exact: true }>>(true)
+		testType.true<IsNotBigint<never, { exact: true }>>(true)
+	})
+
+	it('returns true for other types', () => {
+		testType.true<IsNotBigint<undefined, { exact: true }>>(true)
+		testType.true<IsNotBigint<null, { exact: true }>>(true)
+		testType.true<IsNotBigint<boolean, { exact: true }>>(true)
+		testType.true<IsNotBigint<true, { exact: true }>>(true)
+		testType.true<IsNotBigint<false, { exact: true }>>(true)
+		testType.true<IsNotBigint<number, { exact: true }>>(true)
+		testType.true<IsNotBigint<1, { exact: true }>>(true)
+		testType.true<IsNotBigint<string, { exact: true }>>(true)
+		testType.true<IsNotBigint<'', { exact: true }>>(true)
+		testType.true<IsNotBigint<symbol, { exact: true }>>(true)
+		testType.true<IsNotBigint<{}, { exact: true }>>(true)
+		testType.true<IsNotBigint<string[], { exact: true }>>(true)
+		testType.true<IsNotBigint<[], { exact: true }>>(true)
+		testType.true<IsNotBigint<Function, { exact: true }>>(true)
+		testType.true<IsNotBigint<() => void, { exact: true }>>(true)
+	})
+
+	it('distributes over union type', () => {
+		testType.equal<IsNotBigint<bigint | 1, { exact: true }>, boolean>(true)
+	})
+
+	it('can disable union distribution', () => {
+		testType.equal<IsNotBigint<bigint | 1, { distributive: false, exact: true }>, true>(true)
+	})
+
+	it('consider intersection type as strict', () => {
+		testType.false<IsNotBigint<bigint & { a: 1 }, { exact: true }>>(true)
+		testType.true<IsNotBigint<1n & { a: 1 }, { exact: true }>>(true)
+	})
+
+	it('works as filter', () => {
+		testType.equal<IsNotBigint<bigint, { selection: 'filter', exact: true }>, never>(true)
+
+		testType.equal<IsNotBigint<never, { selection: 'filter', exact: true }>, never>(true)
+		testType.equal<IsNotBigint<unknown, { selection: 'filter', exact: true }>, unknown>(true)
+		testType.equal<IsNotBigint<string | boolean, { selection: 'filter', exact: true }>, string | boolean>(true)
+
+		testType.equal<IsNotBigint<string | bigint, { selection: 'filter', exact: true }>, string>(true)
+	})
+
+	it('works with unique branches', () => {
+		testType.equal<IsNotBigint<bigint, IsNotBigint.$Branch & { exact: true }>, $Else>(true)
+		testType.equal<IsNotBigint<1n, IsNotBigint.$Branch & { exact: true }>, $Then>(true)
+
+		testType.equal<IsNotBigint<any, IsNotBigint.$Branch & { exact: true }>, $Then>(true)
+		testType.equal<IsNotBigint<unknown, IsNotBigint.$Branch & { exact: true }>, $Then>(true)
+		testType.equal<IsNotBigint<never, IsNotBigint.$Branch & { exact: true }>, $Then>(true)
+		testType.equal<IsNotBigint<void, IsNotBigint.$Branch & { exact: true }>, $Then>(true)
+
+		testType.equal<IsNotBigint<bigint | 1, IsNotBigint.$Branch & { exact: true }>, $Then | $Else>(true)
+	})
+
+	it('can override $any branch', () => {
+		testType.equal<IsNotBigint<any, { exact: true }>, true>(true)
+		testType.equal<IsNotBigint<any, { $any: unknown, exact: true }>, unknown>(true)
+	})
+
+	it('can override $unknown branch', () => {
+		testType.equal<IsNotBigint<unknown, { exact: true }>, true>(true)
+		testType.equal<IsNotBigint<unknown, { $unknown: unknown, exact: true }>, unknown>(true)
+	})
+
+	it('can override $never branch', () => {
+		testType.equal<IsNotBigint<never, { exact: true }>, true>(true)
+		testType.equal<IsNotBigint<never, { $never: unknown, exact: true }>, unknown>(true)
+	})
 })

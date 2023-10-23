@@ -1,4 +1,17 @@
-import type { $SelectInvert } from '../type_plus/branch/$select_invert.js'
+import type { $Any } from '../any/any.js'
+import type { $Never } from '../never/never.js'
+import type { NotAssignable } from '../predicates/not_assignable.js'
+import type { $MergeOptions } from '../type_plus/$merge_options.js'
+import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
+import type { $SpecialType } from '../type_plus/$special_type.js'
+import type { $DistributiveOptions } from '../type_plus/branch/$distributive.js'
+import type { $Exact } from '../type_plus/branch/$exact.js'
+import type { $InputOptions } from '../type_plus/branch/$input_options.js'
+import type { $IsDistributive } from '../type_plus/branch/$is_distributive.js'
+import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
+import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$selection.js'
+import type { $SelectionOptions } from '../type_plus/branch/$selection_options.js'
+import type { $Unknown } from '../unknown/unknown.js'
 
 /**
  * 🎭 *predicate*
@@ -49,10 +62,51 @@ import type { $SelectInvert } from '../type_plus/branch/$select_invert.js'
  * type R = IsNotBigint<bigint, $SelectionBranch> // $Else
  * ```
  */
-export type IsNotBigint<T, $O extends IsNotBigint.$Options = {}> = $SelectInvert<T, bigint, $O>
+export type IsNotBigint<T, $O extends IsNotBigint.$Options = {}> = $SpecialType<T,
+	$MergeOptions<$O,
+		{
+			$then: $ResolveBranch<T, $O, [$Then]>,
+			$else: IsNotBigint.$<T, $O>
+		}
+	>
+>
 
 export namespace IsNotBigint {
-	export type $Options = $SelectInvert.$Options
-	export type $Default = $SelectInvert.$Default
-	export type $Branch = $SelectInvert.$Branch
+	export type $Options = $SelectionOptions &
+		$DistributiveOptions &
+		$InputOptions<$Any | $Unknown | $Never> &
+		$Exact.$Options
+	export type $Branch<
+		$O extends $DistributiveOptions & $Exact.$Options = {}
+	> = $SelectionBranch & $O
+	/**
+	 * 🧰 *type util*
+	 *
+	 * Validate if `T` is not `bigint` nor `bigint` literals.
+	 *
+	 * This is a type util for building custom types.
+	 * It does not check against special types.
+	 */
+	export type $<T, $O extends $Options> =
+		$ResolveOptions<[$O['exact'], false]> extends true
+		? $IsDistributive<$O, { $then: _SD<T, $O>, $else: _SN<T, $O> }>
+		: NotAssignable.$<T, bigint, $O>
+
+	export type _SD<T, $O extends $Options> =
+		T extends bigint
+		? (
+			`${T}` extends `${number}`
+			? $ResolveBranch<T, $O, [$Then]>
+			: $ResolveBranch<T, $O, [$Else]>
+		)
+		: $ResolveBranch<T, $O, [$Then]>
+	export type _SN<T, $O extends $Options> = (
+		[bigint, T] extends [T, bigint]
+		? (T extends bigint
+			? (`${T}` extends `${number}`
+				? $ResolveBranch<T, $O, [$Then]>
+				: $ResolveBranch<T, $O, [$Else]>
+			)
+			: $ResolveBranch<T, $O, [$Then]>)
+		: $ResolveBranch<T, $O, [$Then]>)
 }
