@@ -27,7 +27,7 @@ Filter to ensure `T` is `bigint` or `bigint` literals, otherwise returns `never`
 
 ```ts
 type R = IsBigint<bigint, { selection: 'filter' }> // bigint
-type R = IsBigint<1n, { selection: 'filter' }> // bigint
+type R = IsBigint<1n, { selection: 'filter' }> // 1n
 
 type R = IsBigint<never, { selection: 'filter' }> // never
 type R = IsBigint<unknown, { selection: 'filter' }> // never
@@ -100,107 +100,6 @@ Use unique branch identifiers to allow precise processing of the result.
 ```ts
 type R = IsNotBigint<string, $SelectionBranch> // $Then
 type R = IsNotBigint<bigint, $SelectionBranch> // $Else
-```
-
-## [IsStrictBigint](./is_strict_bigint.ts)
-
-`IsStrictBigint<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
-
-🎭 *predicate*
-
-Validate if `T` is `bigint`, excluding bigint literal.
-
-```ts
-type R = IsStrictBigint<bigint> // true
-
-type R = IsStrictBigint<1n> // false
-type R = IsStrictBigint<never> // false
-type R = IsStrictBigint<unknown> // false
-type R = IsStrictBigint<string | boolean> // false
-
-type R = IsStrictBigint<string | bigint> // boolean
-```
-
-🔢 *customize*
-
-Filter to ensure `T` is `bigint`, excluding bigint literal, otherwise returns `never`.
-
-```ts
-type R = IsStrictBigint<bigint, { selection: 'filter' }> // bigint
-
-type R = IsStrictBigint<1n, { selection: 'filter' }> // never
-type R = IsStrictBigint<never, { selection: 'filter' }> // never
-type R = IsStrictBigint<unknown, { selection: 'filter' }> // never
-type R = IsStrictBigint<string | boolean, { selection: 'filter' }> // never
-
-type R = IsStrictBigint<string | bigint> // bigint
-```
-
-🔢 *customize*:
-
-Disable distribution of union types.
-
-```ts
-type R = IsStrictBigint<bigint | 1> // boolean
-type R = IsStrictBigint<bigint | 1, { distributive: false }> // false
-```
-
-🔢 *customize*
-
-Use unique branch identifiers to allow precise processing of the result.
-
-```ts
-type R = IsStrictBigint<bigint, $SelectionBranch> // $Then
-type R = IsStrictBigint<string, $SelectionBranch> // $Else
-```
-
-## [IsNotStrictBigint](./is_not_strict_bigint.ts)
-
-`IsNotStrictBigint<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
-
-/**
-🎭 *predicate*
-
-Validate if `T` is not strictly `bigint`, but accept `bigint` literal.
-
-```ts
-type R = IsNotStrictBigint<bigint> // false
-type R = IsNotStrictBigint<1n> // true
-
-type R = IsNotStrictBigint<never> // true
-type R = IsNotStrictBigint<unknown> // true
-type R = IsNotStrictBigint<string | boolean> // true
-```
-
-🔢 *customize*
-
-Filter to ensure `T` is not strictly `bigint`, but accept `bigint` literal, otherwise returns `never`.
-
-```ts
-type R = IsNotStrictBigint<bigint, { selection: 'filter' }> // never
-type R = IsNotStrictBigint<1n, { selection: 'filter' }> // 1n
-
-type R = IsNotStrictBigint<never, { selection: 'filter' }> // never
-type R = IsNotStrictBigint<unknown, { selection: 'filter' }> // unknown
-type R = IsNotStrictBigint<string | boolean, { selection: 'filter' }> // string | boolean
-```
-
-🔢 *customize*
-
-Disable distribution of union types.
-
-```ts
-type R = IsNotStrictBigint<bigint | 1> // boolean
-type R = IsNotStrictBigint<bigint | 1, { distributive: false }> // true
-```
-
-🔢 *customize*
-
-Use unique branch identifiers to allow precise processing of the result.
-
-```ts
-type R = IsNotStrictBigint<string, $SelectionBranch> // $Then
-type R = IsNotStrictBigint<bigint, $SelectionBranch> // $Else
 ```
 
 ## References

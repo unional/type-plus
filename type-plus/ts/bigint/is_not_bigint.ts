@@ -79,6 +79,7 @@ export namespace IsNotBigint {
 	export type $Branch<
 		$O extends $DistributiveOptions & $Exact.$Options = {}
 	> = $SelectionBranch & $O
+
 	/**
 	 * 🧰 *type util*
 	 *
