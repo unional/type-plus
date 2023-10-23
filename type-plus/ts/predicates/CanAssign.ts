@@ -1,5 +1,5 @@
 import type { NotExtendable } from './Extends.js'
-import type { IsEmptyObject } from './IsEmptyObject.js'
+import type { Assignable } from './assignable.js'
 
 /**
  * Can `A` assign to `B`
@@ -9,6 +9,8 @@ import type { IsEmptyObject } from './IsEmptyObject.js'
  * instead of distinctive `Then` (`true`) or `Else` (`false`).
  *
  * This is the correct behavior.
+ *
+ * @deprecated use `Assignable<A, B>` instead
  *
  * @example
  * ```ts
@@ -37,23 +39,15 @@ export type CanAssign<A, B, Then = true, Else = false> = boolean extends A
  *
  * All branches in an union `A` are assignable to `B`.
  *
+ * @deprecated use `Assignable<A, B` instead
+ *
  * @example
  * ```ts
  * StrictCanAssign<number | string, number> // false
  * StrictCanAssign<number | string, number | string> // true
  * ```
  */
-export type StrictCanAssign<A, B, Then = true, Else = false> = IsEmptyObject<A> extends true
-	? Record<string, unknown> extends B
-	? Then
-	: Else
-	: boolean extends A
-	? boolean extends B
-	? Then
-	: Else
-	: [A] extends [B]
-	? Then
-	: Else
+export type StrictCanAssign<A, B, Then = true, Else = false> = Assignable<A, B, { distributive: false, $then: Then, $else: Else }>
 
 /**
  * @deprecated use `CanAssign` instead
