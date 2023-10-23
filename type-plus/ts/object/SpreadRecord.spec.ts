@@ -1,5 +1,6 @@
 import { test } from '@jest/globals'
-import { testType, type SpreadRecord } from '../index.js'
+
+import { type SpreadRecord,testType } from '../index.js'
 
 test('records are combined as intersection', () => {
 	type S = SpreadRecord<{ a: number }, { b: string }>

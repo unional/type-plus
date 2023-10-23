@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
-import type { $Type } from '../index.js'
-import { testType } from '../index.js'
+
+import { type $Type,testType } from '../index.js'
 
 it('is unique for each value', () => {
 	type X = $Type<'a', 'b'>

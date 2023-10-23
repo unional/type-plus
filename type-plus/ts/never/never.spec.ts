@@ -1,5 +1,6 @@
-import { test, it } from '@jest/globals'
-import { testType, type $Never, type $NotNever } from '../index.js'
+import { it,test } from '@jest/globals'
+
+import { type $Never, type $NotNever,testType } from '../index.js'
 
 test('union behavior of never', () => {
 	testType.equal<never | undefined, undefined>(true)

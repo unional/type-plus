@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type NotStrictArrayType } from '../index.js'
+
+import { type NotStrictArrayType,testType } from '../index.js'
 
 it('returns never if T is array', () => {
 	testType.never<NotStrictArrayType<string[]>>(true)

@@ -1,4 +1,5 @@
 import { it, test } from '@jest/globals'
+
 import { testType, type TuplePlus } from '../index.js'
 
 test('behavior of tuple.find()', () => {

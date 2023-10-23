@@ -1,5 +1,6 @@
 import { test } from '@jest/globals'
-import { testType, type RequiredKeys } from '../index.js'
+
+import { type RequiredKeys,testType } from '../index.js'
 
 test('extract required keys from object', () => {
 	type X = { a?: string, b: string }

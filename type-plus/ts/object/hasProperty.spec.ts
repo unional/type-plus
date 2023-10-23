@@ -1,4 +1,5 @@
 import { expect, test } from '@jest/globals'
+
 import { hasProperty } from '../index.js'
 
 test('hasProperty', () => {

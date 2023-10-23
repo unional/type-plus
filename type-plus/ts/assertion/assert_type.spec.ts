@@ -1,6 +1,7 @@
 import { describe, expect, it } from '@jest/globals'
 import { a } from 'assertron'
-import { assertType, testType, type AnyConstructor, type AnyFunction } from '../index.js'
+
+import { type AnyConstructor, type AnyFunction,assertType, testType } from '../index.js'
 
 describe('assertType()', () => {
 	it('input satisfies specified type', () => {

@@ -1,5 +1,6 @@
 import { describe, test } from '@jest/globals'
-import { testType, type And, type IsEqual, type Not, type Or, type Xor } from '../index.js'
+
+import { type And, type IsEqual, type Not, type Or, testType, type Xor } from '../index.js'
 
 describe('And<A,B>', () => {
 	test('basic', () => {

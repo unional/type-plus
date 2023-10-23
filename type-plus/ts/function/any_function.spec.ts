@@ -1,5 +1,6 @@
 import { test } from '@jest/globals'
-import { assertType, type AnyFunction } from '../index.js'
+
+import { type AnyFunction,assertType } from '../index.js'
 
 test('basic', () => {
 	function doCallback(cb: AnyFunction) {

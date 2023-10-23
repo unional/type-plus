@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type ArrayPlus } from '../index.js'
+
+import { type ArrayPlus,testType } from '../index.js'
 
 it('returns true for never', () => {
 	testType.true<ArrayPlus.IsIndexOutOfBound<['a'], never>>(true)

@@ -1,5 +1,6 @@
 import { describe, test } from '@jest/globals'
-import { isType, type IsStrictBoolean } from '../index.js'
+
+import { type IsStrictBoolean,isType } from '../index.js'
 
 describe('IsBoolean<T>', () => {
 	test('boolean/true/false', () => {

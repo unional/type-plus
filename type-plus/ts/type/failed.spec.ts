@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type Failed, type FailedT } from '../index.js'
+
+import { type Failed, type FailedT,testType } from '../index.js'
 
 it('shows error message (inspect by hover over it)', () => {
 	type R = Failed<'error message'>

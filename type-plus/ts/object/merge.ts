@@ -5,10 +5,10 @@ import type { IsNotNever } from '../never/is_not_never.js'
 import type { $Never } from '../never/never.js'
 import type { IsLiteral } from '../predicates/literal.js'
 import type { Or } from '../predicates/logical.js'
+import type { AnyRecord } from './any_record.js'
 import type { IsDisjoint } from './IsDisjoint.js'
 import type { KeyTypes } from './KeyTypes.js'
-import type { OptionalKeys } from './OptionalKeys.js'
-import type { AnyRecord } from './any_record.js'
+import type { OptionalKeys } from './optional_key.js'
 
 /**
  * ⚗️ *transform*

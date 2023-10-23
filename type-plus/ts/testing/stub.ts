@@ -1,4 +1,5 @@
 import { requiredDeep } from 'unpartial'
+
 import type { AnyFunction } from '../function/any_function.js'
 import type { RecursivePartial } from '../object/recursive_partial.js'
 import type { NoInfer } from '../type/no_infer.js'

@@ -1,5 +1,6 @@
 import { describe, it } from '@jest/globals'
-import { isType, testType, type CanAssign, type EitherOrBoth } from '../index.js'
+
+import { type CanAssign, type EitherOrBoth,isType, testType } from '../index.js'
 
 describe('Either<A, B>', () => {
 	type A = {

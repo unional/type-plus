@@ -1,4 +1,5 @@
 import { expect, it } from '@jest/globals'
+
 import { findKey } from '../index.js'
 
 it('pass key as indexer of the subject', () => {

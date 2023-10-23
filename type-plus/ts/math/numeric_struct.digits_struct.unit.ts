@@ -1,4 +1,5 @@
 import { describe, it } from '@jest/globals'
+
 import { testType } from '../index.js'
 import type { DigitsStruct } from './numeric_struct.js'
 

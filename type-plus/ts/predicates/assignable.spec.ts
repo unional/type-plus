@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type Assignable, type $Then, type $Else } from '../index.js'
+
+import { type $Else,type $Then, type Assignable, testType } from '../index.js'
 
 it('check if A can be assigned to B', () => {
 	testType.true<Assignable<1, 1>>(true)

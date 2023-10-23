@@ -1,5 +1,6 @@
 import { describe, it } from '@jest/globals'
-import { testType, type IsLiteral } from '../index.js'
+
+import { type IsLiteral,testType } from '../index.js'
 
 describe('IsLiteral<T>', () => {
 	it('returns false for `number` type', () => {

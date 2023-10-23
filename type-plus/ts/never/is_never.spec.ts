@@ -1,5 +1,6 @@
 import { describe, it } from '@jest/globals'
-import { testType, type $Any, type $BranchOptions, type $Else, type $NotNever, type $Then, type $Unknown, type IsNever } from '../index.js'
+
+import { type $Any, type $BranchOptions, type $Else, type $NotNever, type $Then, type $Unknown, type IsNever,testType } from '../index.js'
 
 // alternative implementation
 // export type IsNever<

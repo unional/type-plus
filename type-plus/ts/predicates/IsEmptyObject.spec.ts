@@ -1,5 +1,6 @@
 import { test } from '@jest/globals'
-import { testType, type IsEmptyObject } from '../index.js'
+
+import { type IsEmptyObject,testType } from '../index.js'
 
 test('true for {}', () => {
 	testType.true<IsEmptyObject<{}>>(true)

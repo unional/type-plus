@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type IsNotTuple, type $Then, type $Else } from '../index.js'
+
+import { type $Else,type $Then, type IsNotTuple, testType } from '../index.js'
 
 it('returns false if T is a tuple', () => {
 	testType.false<IsNotTuple<[]>>(true)

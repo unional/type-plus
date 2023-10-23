@@ -1,6 +1,7 @@
 import { it } from '@jest/globals'
-import { testType } from './test_type.js'
+
 import { assertType } from '../index.js'
+import { testType } from './test_type.js'
 
 it('can inspect type T', () => {
 	testType.inspect<{ a: number }>(t => testType.equal<typeof t.type, { a: number }>(true))

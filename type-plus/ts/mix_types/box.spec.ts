@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type Box } from '../index.js'
+
+import { type Box,testType } from '../index.js'
 
 it('boxes arrow function to Function', () => {
 	testType.equal<Box<() => void>, Function>(true)

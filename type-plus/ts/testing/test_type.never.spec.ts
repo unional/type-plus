@@ -1,4 +1,5 @@
 import { it } from '@jest/globals'
+
 import { testType } from './test_type.js'
 
 it('expects never', () => {

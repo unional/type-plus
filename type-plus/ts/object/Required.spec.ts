@@ -1,5 +1,6 @@
 import { test } from '@jest/globals'
-import { assertType, testType, type RequiredExcept, type RequiredPick } from '../index.js'
+
+import { assertType, type RequiredExcept, type RequiredPick,testType } from '../index.js'
 
 test('make picked properties required', () => {
 	type Foo = {

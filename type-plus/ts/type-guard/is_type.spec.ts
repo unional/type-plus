@@ -1,5 +1,6 @@
 import { describe, expect, it, test } from '@jest/globals'
-import { isType, testType, type IsEqual } from '../index.js'
+
+import { type IsEqual,isType, testType } from '../index.js'
 
 describe('isType()', () => {
 	describe('without validator', () => {

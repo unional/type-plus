@@ -1,5 +1,6 @@
 import { expect, test } from '@jest/globals'
-import { assertType, replaceProperty, type ReplaceProperty } from '../index.js'
+
+import { assertType, type ReplaceProperty,replaceProperty } from '../index.js'
 
 test('replaceProperty()', () => {
 	const subject = { a: 1, b: 2 } as const

@@ -1,5 +1,6 @@
 import { test } from '@jest/globals'
-import { testType, type Reverse } from '../index.js'
+
+import { type Reverse,testType } from '../index.js'
 
 test('empty array gets itself', () => {
 	testType.equal<Reverse<[]>, []>(true)

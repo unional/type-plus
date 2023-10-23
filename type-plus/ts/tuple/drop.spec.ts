@@ -1,4 +1,5 @@
 import { expect, it } from '@jest/globals'
+
 import { drop, testType } from '../index.js'
 
 it('returns the same tuple if the value does not match any entries in the tuple', () => {

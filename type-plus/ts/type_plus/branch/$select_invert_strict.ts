@@ -1,7 +1,7 @@
-import type { $SpecialType } from '../$special_type.js'
 import type { $Any } from '../../any/any.js'
 import type { $Never } from '../../never/never.js'
 import type { $Unknown } from '../../unknown/unknown.js'
+import type { $SpecialType } from '../$special_type.js'
 import type { $DistributiveDefault, $DistributiveOptions } from './$distributive.js'
 import type { $InputOptions } from './$input_options.js'
 import type { $IsDistributive } from './$is_distributive.js'

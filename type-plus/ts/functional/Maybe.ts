@@ -1,5 +1,5 @@
-import type { Brand } from '../nominal/index.js'
 import type { IsEqual } from '../equal/equal.js'
+import type { Brand } from '../nominal/index.js'
 import type { Widen } from '../utils/index.js'
 
 export type Maybe<T> = Just<T> | None<T>

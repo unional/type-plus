@@ -11,7 +11,8 @@
 
 
 import { it } from '@jest/globals'
-import { testType, type $Else, type $Then, type IsStrictString } from '../index.js'
+
+import { type $Else, type $Then, type IsStrictString,testType } from '../index.js'
 
 it('returns true for string', () => {
 	testType.true<IsStrictString<string>>(true)

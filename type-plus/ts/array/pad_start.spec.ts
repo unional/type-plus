@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type PadStart } from '../index.js'
+
+import { type PadStart,testType } from '../index.js'
 
 it('returns itself if A is any or never', () => {
 	testType.equal<PadStart<any, 2>, any>(true)

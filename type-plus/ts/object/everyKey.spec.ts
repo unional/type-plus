@@ -1,4 +1,5 @@
 import { expect, test } from '@jest/globals'
+
 import { everyKey } from '../index.js'
 
 test('predicate key can be used as indexer of the subject', () => {

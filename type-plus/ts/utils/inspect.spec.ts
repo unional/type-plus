@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { expect, it, jest } from '@jest/globals'
+
 import { inspect } from '../index.js'
 
 	it('should return the same value', () => {

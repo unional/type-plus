@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type $InferError } from '../index.js'
+
+import { type $InferError,testType } from '../index.js'
 
 it('can specify message only', () => {
 	type R = $InferError<'some message'>

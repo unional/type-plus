@@ -1,4 +1,5 @@
 import { test } from '@jest/globals'
+
 import { typeOverrideIncompatible } from '../index.js'
 
 test('same type override has no property', () => {

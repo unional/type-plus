@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type RecursivePartial } from '../index.js'
+
+import { type RecursivePartial,testType } from '../index.js'
 
 it('marks props partial', () => {
 	testType.equal<RecursivePartial<{ a: number }>, { a?: number | undefined }>(true)

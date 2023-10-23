@@ -1,4 +1,5 @@
 import { it } from '@jest/globals'
+
 import { testType, type TuplePlus } from '../index.js'
 
 it('never returns never', () => {

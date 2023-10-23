@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type StrictArrayType } from '../index.js'
+
+import { type StrictArrayType,testType } from '../index.js'
 
 it('returns T if T is array', () => {
 	testType.equal<StrictArrayType<string[]>, string[]>(true)

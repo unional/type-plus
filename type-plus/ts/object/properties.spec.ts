@@ -1,4 +1,5 @@
 import { it } from '@jest/globals'
+
 import { isType } from '../index.js'
 import type { Properties } from './properties.js'
 

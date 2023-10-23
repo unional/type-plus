@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type IsInteger, type $Then, type $Else } from '../index.js'
+
+import { type $Else,type $Then, type IsInteger, testType } from '../index.js'
 
 it('returns boolean if N is number as it can contain float', () => {
 	testType.equal<IsInteger<number>, boolean>(true)

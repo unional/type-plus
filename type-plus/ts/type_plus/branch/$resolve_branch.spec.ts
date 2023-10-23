@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type $Any, type $Else, type $Never, type $ResolveBranch, type $SelectionBranch, type $Then } from '../../index.js'
+
+import { type $Any, type $Else, type $Never, type $ResolveBranch, type $SelectionBranch, type $Then,testType } from '../../index.js'
 import type { $Override } from './$override.js'
 
 it('returns boolean if selection is predicate', () => {

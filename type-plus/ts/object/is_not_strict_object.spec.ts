@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type $Else, type $Then, type IsNotStrictObject } from '../index.js'
+
+import { type $Else, type $Then, type IsNotStrictObject,testType } from '../index.js'
 
 
 it('returns false for object', () => {

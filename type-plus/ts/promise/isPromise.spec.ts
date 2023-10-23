@@ -1,4 +1,5 @@
 import { expect, test } from '@jest/globals'
+
 import { isPromise } from '../index.js'
 
 test('false if subject is falsy value or non-object', () => {

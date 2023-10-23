@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type $Else, type $Then, type IsNotFalse } from '../index.js'
+
+import { type $Else, type $Then, type IsNotFalse,testType } from '../index.js'
 
 it('returns false if T is false', () => {
 	testType.equal<IsNotFalse<false>, false>(true)

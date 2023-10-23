@@ -1,4 +1,5 @@
 import { test } from '@jest/globals'
+
 import type { RecursiveIntersect } from '../index.js'
 
 test('add object type to types', () => {

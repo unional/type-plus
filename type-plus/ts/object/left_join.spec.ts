@@ -1,5 +1,6 @@
 import { describe, it, test } from '@jest/globals'
-import { assertType, testType, type LeftJoin } from '../index.js'
+
+import { assertType, type LeftJoin,testType } from '../index.js'
 
 describe('LeftJoin', () => {
 	test('same type returns A', () => {

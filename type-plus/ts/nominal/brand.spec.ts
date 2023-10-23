@@ -1,5 +1,6 @@
 import { expect, it } from '@jest/globals'
-import { brand, flavor, testType, type Brand } from '../index.js'
+
+import { type Brand,brand, flavor, testType } from '../index.js'
 
 it('branded type does not resolve to never', () => {
 	testType.never<Brand<'test', undefined>>(false)

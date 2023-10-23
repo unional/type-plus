@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type AnyRecord, type KeyTypes } from '../index.js'
+
+import { type AnyRecord, type KeyTypes,testType } from '../index.js'
 
 it('use as type criteria', () => {
 	type X<T extends AnyRecord> = keyof T

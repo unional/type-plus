@@ -1,4 +1,5 @@
 import { it } from '@jest/globals'
+
 import { testType } from '../../index.js'
 import type { $IsDistributive } from './$is_distributive.js'
 

@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type IsStrictBoolean, type $Then, type $Else } from '../index.js'
+
+import { type $Else,type $Then, type IsStrictBoolean, testType } from '../index.js'
 
 it('returns true if T is boolean', () => {
 	testType.equal<IsStrictBoolean<boolean>, true>(true)

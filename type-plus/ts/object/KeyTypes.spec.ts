@@ -1,4 +1,5 @@
 import { it } from '@jest/globals'
+
 import type { KeyTypes } from '../index.js'
 
 it('contains type of all keys', () => {

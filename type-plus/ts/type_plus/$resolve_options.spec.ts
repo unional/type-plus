@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type $Never, type $ResolveOptions, type $Then } from '../index.js'
+
+import { type $Never, type $ResolveOptions, type $Then,testType } from '../index.js'
 
 it('returns first non unknown', () => {
 	testType.equal<$ResolveOptions<[unknown, 1]>, 1>(true)

@@ -1,4 +1,5 @@
 import { describe, expect, test } from '@jest/globals'
+
 import { assertType } from './assertion/assert_type.js'
 import { type JSONObject, JSONTypes } from './json.js'
 import { isType } from './type-guard/is_type.js'

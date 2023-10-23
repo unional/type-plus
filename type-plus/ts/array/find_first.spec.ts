@@ -1,5 +1,6 @@
 import { describe, it } from '@jest/globals'
-import { testType, type FindFirst } from '../index.js'
+
+import { type FindFirst,testType } from '../index.js'
 
 describe('For Array', () => {
 	it('returns never if the type in the array does not satisfy the criteria', () => {

@@ -1,4 +1,5 @@
 import { it, test } from '@jest/globals'
+
 import { testType, type UnionOfProps } from '../index.js'
 
 test('get property from single value tuple', () => {

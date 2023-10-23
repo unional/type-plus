@@ -1,6 +1,7 @@
 import { expect, test } from '@jest/globals'
-import { assertType, canAssign, testType, type CanAssign } from '../index.js'
-import { just, none, type Just, type Maybe, type None } from './Maybe.js'
+
+import { assertType, type CanAssign,canAssign, testType } from '../index.js'
+import { type Just, just, type Maybe, type None,none } from './Maybe.js'
 
 test('just(value) returns Maybe<T>', () => {
 	assertType<Maybe<number>>(just(1))

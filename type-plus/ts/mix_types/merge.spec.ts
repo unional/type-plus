@@ -1,5 +1,6 @@
 import { describe, expect, it } from '@jest/globals'
-import { merge, testType, type Merge } from '../index.js'
+
+import { type Merge,merge, testType } from '../index.js'
 
 describe('Merge', () => {
 	it('merges with any -> any', () => {

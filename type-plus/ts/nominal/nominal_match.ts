@@ -1,6 +1,6 @@
 import type { Brand } from './brand.js'
-import type { Flavor } from './flavor.js'
 import { typeSym } from './constants.js'
+import type { Flavor } from './flavor.js'
 
 export function nominalMatch<A extends string, B extends A>(
 	a: Brand<A, unknown>,

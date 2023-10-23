@@ -1,4 +1,5 @@
 import { it } from '@jest/globals'
+
 import type { ArrayPlus } from '../index.js'
 import { testType } from '../index.js'
 

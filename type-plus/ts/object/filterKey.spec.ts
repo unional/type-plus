@@ -1,4 +1,5 @@
 import { expect, it } from '@jest/globals'
+
 import { filterKey } from '../index.js'
 
 it(`returns with type as 'keyof subject'`, () => {

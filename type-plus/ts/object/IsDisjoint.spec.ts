@@ -1,5 +1,6 @@
 import { test } from '@jest/globals'
-import { testType, type IsDisjoint } from '../index.js'
+
+import { type IsDisjoint,testType } from '../index.js'
 
 test('disjoint returns true', () => {
 	type A = { a: 1 }

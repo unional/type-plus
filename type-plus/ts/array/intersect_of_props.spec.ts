@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type IntersectOfProps } from '../index.js'
+
+import { type IntersectOfProps,testType } from '../index.js'
 
 it('gets property from single value tuple', () => {
 	type S = [{ a: number }]

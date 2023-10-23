@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type IsPositive, type $Then, type $Else } from '../index.js'
+
+import { type $Else,type $Then, type IsPositive, testType } from '../index.js'
 
 it('returns boolean if T is number or bigint', () => {
 	// `number` and `bigint` includes positive and negative numbers,

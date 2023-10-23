@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type $Any, type $InputOptions, type $Unknown } from '../../index.js'
+
+import { type $Any, type $InputOptions, type $Unknown,testType } from '../../index.js'
 
 it('creates branch options with single branch', () => {
 	testType.equal<$InputOptions<$Any>, { $any?: unknown }>(true)

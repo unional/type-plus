@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type $Else, type $Then, type IsNotBigint, type $BranchOptions, type $Any, type $Unknown, type $Never } from '../index.js'
+
+import { type $Any, type $BranchOptions, type $Else, type $Never,type $Then, type $Unknown, type IsNotBigint, testType } from '../index.js'
 
 it('returns false for bigint', () => {
 	testType.false<IsNotBigint<bigint>>(true)

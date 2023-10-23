@@ -1,4 +1,5 @@
 import { expect, test } from '@jest/globals'
+
 import type { RecursiveRequired } from '../index.js'
 
 test('simple optional property becomes required', () => {

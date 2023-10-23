@@ -1,4 +1,5 @@
 import { it } from '@jest/globals'
+
 import { MathPlus, testType } from '../index.js'
 
 it('converts positive bigint to negative', () => {

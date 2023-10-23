@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, ArrayPlus } from '../index.js'
+
+import { ArrayPlus,testType } from '../index.js'
 
 testType.equal<readonly string[], Readonly<string[]>>(true)
 

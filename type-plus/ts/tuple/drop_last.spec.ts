@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type DropLast } from '../index.js'
+
+import { type DropLast,testType } from '../index.js'
 
 it('returns the input type if input is an array', () => {
 	testType.equal<DropLast<string[]>, string[]>(true)

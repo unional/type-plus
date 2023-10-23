@@ -1,4 +1,5 @@
 import { expect, test } from '@jest/globals'
+
 import { isType, split, testType } from '../index.js'
 
 const target = { a: 0, b: '', c: false }

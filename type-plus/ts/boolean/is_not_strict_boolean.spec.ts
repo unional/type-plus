@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type $Any, type $BranchOptions, type $Else, type $Then, type IsNotStrictBoolean, type $Unknown, type $Never } from '../index.js'
+
+import { type $Any, type $BranchOptions, type $Else, type $Never,type $Then, type $Unknown, type IsNotStrictBoolean, testType } from '../index.js'
 
 it('returns false if T is boolean', () => {
 	testType.equal<IsNotStrictBoolean<boolean>, false>(true)

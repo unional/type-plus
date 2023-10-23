@@ -1,4 +1,5 @@
 import { it } from '@jest/globals'
+
 import { testType, type UnionOfValues } from '../index.js'
 
 it('returns type T of Array<T>', () => {

@@ -1,4 +1,5 @@
 import { it } from '@jest/globals'
+
 import { testType } from '../index.js'
 
 it(`should pass if A can assign to B`, () => {

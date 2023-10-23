@@ -1,5 +1,6 @@
 import { describe, it } from '@jest/globals'
-import { testType, type $Any, type $Branch, type $BranchOptions, type $Unknown } from '../../index.js'
+
+import { type $Any, type $Branch, type $BranchOptions, type $Unknown,testType } from '../../index.js'
 
 
 it('create a branch type with property name', () => {

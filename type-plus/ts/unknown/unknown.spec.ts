@@ -1,5 +1,6 @@
 import { it, test } from '@jest/globals'
-import { testType, type $Type, type $Unknown } from '../index.js'
+
+import { type $Type, type $Unknown,testType } from '../index.js'
 
 test('union behavior of unknown', () => {
 	testType.equal<unknown | null, unknown>(true)

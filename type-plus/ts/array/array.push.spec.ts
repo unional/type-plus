@@ -1,4 +1,5 @@
 import { expect, it, test } from '@jest/globals'
+
 import { testType } from '../index.js'
 
 test('behavior of array.push()', () => {

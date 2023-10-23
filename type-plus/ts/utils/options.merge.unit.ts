@@ -1,4 +1,5 @@
 import { it } from '@jest/globals'
+
 import { testType, type TypePlusOptions } from '../index.js'
 
 it('overrides cases', () => {

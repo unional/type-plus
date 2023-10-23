@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type IsArray } from '../index.js'
+
+import { type IsArray,testType } from '../index.js'
 
 it('returns true if T is array', () => {
 	testType.true<IsArray<any[]>>(true)

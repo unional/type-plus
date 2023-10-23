@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type IsUnion } from '../index.js'
+
+import { type IsUnion,testType } from '../index.js'
 
 it('returns false for non-union', () => {
 	testType.equal<IsUnion<any>, false>(true)

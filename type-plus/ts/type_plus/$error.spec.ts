@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type $Error } from '../index.js'
+
+import { type $Error,testType } from '../index.js'
 
 it('requires message', () => {
 	type R = $Error<'some message'>

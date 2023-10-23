@@ -1,5 +1,6 @@
 import { describe, it } from '@jest/globals'
-import { testType, type IsOptionalKey, type OptionalKeys, type OptionalProps } from '../index.js'
+
+import { type IsOptionalKey, type OptionalKeys, type OptionalProps,testType } from '../index.js'
 
 describe('IsOptionalKey', () => {
 	it('returns true for optional prop', () => {

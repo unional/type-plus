@@ -1,4 +1,5 @@
 import { it } from '@jest/globals'
+
 import { type Abs, testType } from '../index.js'
 
 it('returns N if N is positive number', () => {

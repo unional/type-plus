@@ -1,4 +1,5 @@
 import { test } from '@jest/globals'
+
 import { assertType, type PromiseValueMerge } from '../index.js'
 
 test('merge promise value', async () => {

@@ -1,12 +1,12 @@
 import { it, test } from '@jest/globals'
+
 import {
 	assertType,
-	testType,
 	type Partial,
 	type PartialExcept,
 	type PartialOmit,
-	type PartialPick
-} from '../index.js'
+	type PartialPick,
+	testType } from '../index.js'
 
 test('work on primitive type', () => {
 	type Foo = PartialPick<number, 'toFixed'>

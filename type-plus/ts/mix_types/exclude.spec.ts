@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type Exclude } from '../index.js'
+
+import { type Exclude,testType } from '../index.js'
 
 it('returns T for special types', () => {
 	testType.equal<Exclude<any, undefined>, any>(true)

@@ -1,4 +1,5 @@
 import { test } from '@jest/globals'
+
 import { assertType, type ExcludePropType } from '../index.js'
 
 test('exclude type R from properties of T', () => {

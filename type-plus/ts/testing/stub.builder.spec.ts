@@ -1,4 +1,5 @@
 import { expect, it } from '@jest/globals'
+
 import { stub, testType } from '../index.js'
 
 it('creates a stub builder with init object', () => {

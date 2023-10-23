@@ -1,5 +1,6 @@
 import { describe, it } from '@jest/globals'
-import { isType, type IsNever } from './index.js'
+
+import { type IsNever,isType } from './index.js'
 
 describe('IsNever<T>', () => {
 	it('checks if type is never', () => {

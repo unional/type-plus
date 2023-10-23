@@ -1,5 +1,6 @@
 import { it } from '@jest/globals'
-import { testType, type KeysOfOptional } from '../index.js'
+
+import { type KeysOfOptional,testType } from '../index.js'
 
 it('get keys from optional type', () => {
 	type X = { o?: { a: string, b: string } }
