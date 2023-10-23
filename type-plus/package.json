@@ -71,7 +71,7 @@
     "@jest/globals": "^29.5.0",
     "@repobuddy/jest": "^3.4.0",
     "@repobuddy/typescript": "^1.2.0",
-    "@size-limit/esbuild-why": "^9.0.0",
+    "@size-limit/esbuild-why": "^10.0.0",
     "@size-limit/preset-small-lib": "^9.0.0",
     "@types/node": "^18.0.0",
     "@unional/fixture": "^3.0.0",
