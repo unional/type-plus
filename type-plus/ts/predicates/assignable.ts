@@ -81,8 +81,8 @@ export namespace Assignable {
 	/**
 	 * 🧰 *type util*
 	 *
-   * Validate if `A` is assignable to `B`.
-   *
+	 * Validate if `A` is assignable to `B`.
+	 *
 	 * This is the internal logic of `Assignable`.
 	 * It does not check against special types.
 	 *
@@ -93,7 +93,7 @@ export namespace Assignable {
 		B,
 		$O extends Assignable.$Options = {}
 	> = $IsDistributive<$O, {
-		$then: $ResolveBranch<A, $O, [A extends B ? $Then : $Else]>,
-		$else: $ResolveBranch<A, $O, [[A] extends [B] ? $Then : $Else]>
+		$then: A extends B ? $ResolveBranch<A, $O, [$Then]> : $ResolveBranch<A, $O, [$Else]>,
+		$else: [A] extends [B] ? $ResolveBranch<A, $O, [$Then]> : $ResolveBranch<A, $O, [$Else]>,
 	}>
 }
