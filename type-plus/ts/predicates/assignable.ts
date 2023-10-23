@@ -10,7 +10,7 @@ import type { $SelectionOptions } from '../type_plus/branch/$selection_options.j
 import type { $Unknown } from '../unknown/unknown.js'
 
 /**
- * 🧰 *tool utils*
+ * 🎭 *predicate*
  *
  * Validate if `A` is assignable to `B`.
  *
@@ -81,7 +81,12 @@ export namespace Assignable {
 	/**
 	 * 🧰 *type util*
 	 *
+   * Validate if `A` is assignable to `B`.
+   *
+	 * This is the internal logic of `Assignable`.
+	 * It does not check against special types.
 	 *
+	 * It is suitable for building custom types.
 	 */
 	export type $<
 		A,
