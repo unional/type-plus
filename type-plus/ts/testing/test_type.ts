@@ -1,7 +1,6 @@
 import type { IsAny } from '../any/is_any.js'
 import type { IsArray } from '../array/is_array.js'
 import type { IsBigint } from '../bigint/is_bigint.js'
-import type { IsStrictBigint } from '../bigint/is_strict_bigint.js'
 import type { IsBoolean } from '../boolean/is_boolean.js'
 import type { IsFalse } from '../boolean/is_false.js'
 import type { IsStrictBoolean } from '../boolean/is_strict_boolean.js'
@@ -91,7 +90,7 @@ export namespace testType {
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		strictBigint<T>(expected: IsStrictBigint<T, { distributive: false }>): T,
+		strictBigint<T>(expected: IsBigint<T, { distributive: false, exact: true }>): T,
 		/**
 		 * Check if type `T` is `bigint` or bigint literals.
 		 *
