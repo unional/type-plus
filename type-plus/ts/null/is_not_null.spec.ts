@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else, type $Then, type IsNotNull,testType } from '../index.js'
+import { testType, type $Else, type $Then, type IsNotNull } from '../index.js'
 
 it('returns false for null', () => {
 	testType.false<IsNotNull<null>>(true)
@@ -52,4 +52,19 @@ it('works with unique branches', () => {
 	testType.equal<IsNotNull<unknown, IsNotNull.$Branch>, $Then>(true)
 	testType.equal<IsNotNull<never, IsNotNull.$Branch>, $Then>(true)
 	testType.equal<IsNotNull<void, IsNotNull.$Branch>, $Then>(true)
+})
+
+it('can override $any branch', () => {
+	testType.equal<IsNotNull<any>, true>(true)
+	testType.equal<IsNotNull<any, { $any: unknown }>, unknown>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsNotNull<unknown>, true>(true)
+	testType.equal<IsNotNull<unknown, { $unknown: unknown }>, unknown>(true)
+})
+
+it('can override $never branch', () => {
+	testType.equal<IsNotNull<never>, true>(true)
+	testType.equal<IsNotNull<never, { $never: unknown }>, unknown>(true)
 })

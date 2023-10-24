@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else, type $Then, type IsUndefined,testType } from '../index.js'
+import { type $Else, type $Then, type IsUndefined, testType } from '../index.js'
 
 it('returns true for undefined', () => {
 	testType.equal<IsUndefined<undefined>, true>(true)
@@ -101,4 +101,19 @@ it('works with unique branches', () => {
 	testType.equal<IsUndefined<void, IsUndefined.$Branch>, $Else>(true)
 
 	testType.equal<IsUndefined<undefined | 1, IsUndefined.$Branch>, $Then | $Else>(true)
+})
+
+it('can override $any branch', () => {
+	testType.equal<IsUndefined<any>, false>(true)
+	testType.equal<IsUndefined<any, { $any: unknown }>, unknown>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsUndefined<unknown>, false>(true)
+	testType.equal<IsUndefined<unknown, { $unknown: unknown }>, unknown>(true)
+})
+
+it('can override $never branch', () => {
+	testType.equal<IsUndefined<never>, false>(true)
+	testType.equal<IsUndefined<never, { $never: unknown }>, unknown>(true)
 })

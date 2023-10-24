@@ -56,10 +56,10 @@ export type $InvertSelection<Branch extends $Then | $Else> =
  *   : never
  * ```
  */
-export type $SelectionBranch = {
+export type $SelectionBranch<$O extends $SelectionOptions = {}> = {
 	$then: $Then,
 	$else: $Else,
-}
+} & $O
 
 /**
  * 🧰 *type util*
