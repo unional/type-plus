@@ -1,5 +1,5 @@
 import type { IsNever } from '../never/is_never.js'
-import type { IsStrictNumber } from '../number/is_strict_number.js'
+import type { IsNumber } from '../number/is_number.js'
 import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$selection.js'
 
 /**
@@ -22,7 +22,7 @@ export type ArrayType<T, Then = T, Else = never> = IsNever<
 	? R extends $Then ? Else
 	: R extends $Else ? [never[]] extends [T]
 	? ([T] extends [readonly any[]]
-		? IsStrictNumber<T['length'], { $then: Then, $else: Else }>
+		? IsNumber<T['length'], { exact: true, $then: Then, $else: Else }>
 		: Else)
 	: Else
 	: never : never

@@ -4,7 +4,7 @@ import type { Abs } from '../math/abs.js'
 import type { GreaterThan } from '../math/greater_than.js'
 import type { Subtract } from '../math/subtract.js'
 import type { IsNever } from '../never/is_never.js'
-import type { IsStrictNumber } from '../number/is_strict_number.js'
+import type { IsNumber } from '../number/is_number.js'
 import type { IsInteger } from '../numeric/is_integer.js'
 import type { IsNegative } from '../numeric/is_negative.js'
 import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$selection.js'
@@ -50,9 +50,9 @@ export namespace IndexAt {
 		IsInteger<
 			N,
 			{
-				$then: IsStrictNumber<
+				$then: IsNumber<
 					A['length'],
-					IsStrictNumber.$Branch
+					IsNumber.$Branch<{ exact: true }>
 				> extends infer R
 				// A: array
 				? R extends $Then ? N
@@ -70,9 +70,9 @@ export namespace IndexAt {
 					N,
 					{
 						$then: number,
-						$else: IsStrictNumber<
+						$else: IsNumber<
 							N,
-							IsStrictNumber.$Branch
+							IsNumber.$Branch<{ exact: true }>
 						> extends infer R
 						? R extends $Then ? N : never : never
 					}

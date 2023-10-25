@@ -11,7 +11,6 @@ import type { IsStrictFunction } from '../function/is_strict_function.js'
 import type { IsNever } from '../never/is_never.js'
 import type { IsNull } from '../null/is_null.js'
 import type { IsNumber } from '../number/is_number.js'
-import type { IsStrictNumber } from '../number/is_strict_number.js'
 import type { IsObject } from '../object/is_object.js'
 import type { CanAssign, StrictCanAssign } from '../predicates/CanAssign.js'
 import type { IsString } from '../string/is_string.js'
@@ -149,7 +148,7 @@ export namespace testType {
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		strictNumber<T>(expected: IsStrictNumber<T, { distributive: false }>): T,
+		strictNumber<T>(expected: IsNumber<T, { distributive: false, exact: true }>): T,
 		/**
 		 * Check if type `T` is `number` or number literals.
 		 *

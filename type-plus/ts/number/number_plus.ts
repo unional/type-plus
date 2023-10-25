@@ -8,8 +8,6 @@ export type * from '../numeric/is_numeric.js'
 export type * from '../numeric/is_positive.js'
 export type * from '../numeric/numeric_type.js'
 export type * from './is_not_number.js'
-export type * from './is_not_strict_number.js'
 export type * from './is_number.js'
-export type * from './is_strict_number.js'
 
 // export type { Sum } from './number_array.js'

@@ -1,4 +1,4 @@
-import type { IsStrictNumber } from '../number/is_strict_number.js'
+import type { IsNumber } from '../number/is_number.js'
 import type { IsTuple } from '../tuple/is_tuple.js'
 import type { $Else, $Then } from '../type_plus/branch/$selection.js'
 import type { IndexAt } from './array_plus.index_at.js'
@@ -29,7 +29,7 @@ export type At<A extends readonly unknown[], N extends number, Fail = never> =
 	? I extends number
 	? IsTuple<A, {
 		$then:
-		IsStrictNumber<I, IsStrictNumber.$Branch> extends infer R
+		IsNumber<I, IsNumber.$Branch<{ exact: true }>> extends infer R
 		? R extends $Then ? A[I] | undefined
 		: R extends $Else ? A[I] : never
 		: never,
