@@ -72,7 +72,6 @@ export type NotAssignable<
 	}>
 }>
 
-
 export namespace NotAssignable {
 	export type $Options = $SelectionOptions & $DistributiveOptions & $InputOptions<$Any | $Unknown | $Never>
 	export type $Default = $SelectionPredicate & $DistributiveDefault
@@ -91,9 +90,11 @@ export namespace NotAssignable {
 	export type $<
 		A,
 		B,
-		$O extends NotAssignable.$Options = {}
+		$O extends $UtilOptions
 	> = $IsDistributive<$O, {
 		$then: A extends B ? $ResolveBranch<A, $O, [$Else]> : $ResolveBranch<A, $O, [$Then]>,
 		$else: [A] extends [B] ? $ResolveBranch<A, $O, [$Else]> : $ResolveBranch<A, $O, [$Then]>,
 	}>
+
+	export type $UtilOptions = $SelectionOptions & $DistributiveOptions
 }

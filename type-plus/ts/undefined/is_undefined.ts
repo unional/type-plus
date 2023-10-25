@@ -65,7 +65,6 @@ export type IsUndefined<T, $O extends IsUndefined.$Options = {}> =
 		>
 	>
 
-
 export namespace IsUndefined {
 	export type $Options = $Equality.$Options
 	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
@@ -78,5 +77,6 @@ export namespace IsUndefined {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $Options> = Assignable.$<T, undefined, $O>
+	export type $<T, $O extends $UtilOptions> = Assignable.$<T, undefined, $O>
+	export type $UtilOptions = Assignable.$UtilOptions
 }

@@ -1,6 +1,9 @@
+import type { Assignable } from '../predicates/assignable.js'
+import type { $Equality } from '../type_plus/$equality.js'
+import type { $MergeOptions } from '../type_plus/$merge_options.js'
+import type { $SpecialType } from '../type_plus/$special_type.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
-import type { $Select } from '../type_plus/branch/$select.js'
-import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$selection.js'
+import type { $Else } from '../type_plus/branch/$selection.js'
 import type { IsUndefined } from '../undefined/is_undefined.js'
 
 /**
@@ -56,13 +59,33 @@ import type { IsUndefined } from '../undefined/is_undefined.js'
 export type IsVoid<
 	T,
 	$O extends IsVoid.$Options = {}
-> = IsUndefined<T, $SelectionBranch> extends infer R
-	? R extends $Then ? $ResolveBranch<T, $O, [$Else]>
-	: $Select<T, void, $O>
-	: never
+> =
+	$SpecialType<T,
+		$MergeOptions<$O,
+			{
+				$then: $ResolveBranch<T, $O, [$Else]>,
+				$else: IsVoid.$<T, $O>
+			}
+		>
+	>
 
 export namespace IsVoid {
-	export type $Options = $Select.$Options
-	export type $Default = $Select.$Default
-	export type $Branch = $Select.$Branch
+	export type $Options = $Equality.$Options
+	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
+
+	/**
+	 * 🧰 *type util*
+	 *
+	 * Validate if `T` is `undefined`.
+	 *
+	 * This is a type util for building custom types.
+	 * It does not check against special types.
+	 */
+	export type $<T, $O extends $UtilOptions> =
+		IsUndefined.$<T, {
+			$then: $ResolveBranch<T, $O, [$Else]>,
+			$else: Assignable.$<T, void, $O>
+		}>
+
+	export type $UtilOptions = Assignable.$UtilOptions
 }

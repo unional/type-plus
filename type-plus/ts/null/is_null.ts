@@ -77,5 +77,7 @@ export namespace IsNull {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $Options> = Assignable.$<T, null, $O>
+	export type $<T, $O extends $UtilOptions> = Assignable.$<T, null, $O>
+
+	export type $UtilOptions = Assignable.$UtilOptions
 }

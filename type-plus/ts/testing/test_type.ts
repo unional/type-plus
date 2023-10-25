@@ -14,7 +14,6 @@ import type { IsNumber } from '../number/is_number.js'
 import type { IsStrictNumber } from '../number/is_strict_number.js'
 import type { IsObject } from '../object/is_object.js'
 import type { CanAssign, StrictCanAssign } from '../predicates/CanAssign.js'
-import type { IsStrictString } from '../string/is_strict_string.js'
 import type { IsString } from '../string/is_string.js'
 import type { IsSymbol } from '../symbol/is_symbol.js'
 import type { IsTuple } from '../tuple/is_tuple.js'
@@ -170,7 +169,7 @@ export namespace testType {
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		strictString<T>(expected: IsStrictString<T>): T,
+		strictString<T>(expected: IsString<T, { exact: true }>): T,
 		/**
 		 * Check if type `T` is `string` or string literals.
 		 *

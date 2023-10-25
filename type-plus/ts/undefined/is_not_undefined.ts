@@ -75,5 +75,6 @@ export namespace IsNotUndefined {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $Options> = NotAssignable.$<T, undefined, $O>
+	export type $<T, $O extends $UtilOptions> = NotAssignable.$<T, undefined, $O>
+	export type $UtilOptions = NotAssignable.$UtilOptions
 }

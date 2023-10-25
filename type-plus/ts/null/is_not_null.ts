@@ -73,5 +73,7 @@ export namespace IsNotNull {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $Options> = NotAssignable.$<T, null, $O>
+	export type $<T, $O extends $UtilOptions> = NotAssignable.$<T, null, $O>
+
+	export type $UtilOptions = NotAssignable.$UtilOptions
 }

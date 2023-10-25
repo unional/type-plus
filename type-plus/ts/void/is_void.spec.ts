@@ -58,6 +58,7 @@ it('works as filter', () => {
 it('can disable union distribution', () => {
 	testType.equal<IsVoid<void | 1>, boolean>(true)
 	testType.equal<IsVoid<void | 1, { distributive: false }>, false>(true)
+	testType.equal<IsVoid<undefined | 1, { distributive: false }>, false>(true)
 })
 
 it('works with unique branches', () => {
