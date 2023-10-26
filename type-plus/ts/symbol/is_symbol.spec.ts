@@ -74,3 +74,18 @@ it('works with unique branches', () => {
 
 	testType.equal<IsSymbol<symbol | 1, IsSymbol.$Branch>, $Then | $Else>(true)
 })
+
+it('can override $any branch', () => {
+	testType.equal<IsSymbol<any>, false>(true)
+	testType.equal<IsSymbol<any, { $any: unknown }>, unknown>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsSymbol<unknown>, false>(true)
+	testType.equal<IsSymbol<unknown, { $unknown: unknown }>, unknown>(true)
+})
+
+it('can override $never branch', () => {
+	testType.equal<IsSymbol<never>, false>(true)
+	testType.equal<IsSymbol<never, { $never: unknown }>, unknown>(true)
+})
