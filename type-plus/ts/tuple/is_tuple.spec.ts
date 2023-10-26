@@ -9,6 +9,9 @@ it('returns true if T is a tuple', () => {
 
 it('returns false if T is an array', () => {
 	testType.false<IsTuple<string[]>>(true)
+	testType.false<IsTuple<any[]>>(true)
+	testType.false<IsTuple<unknown[]>>(true)
+	testType.false<IsTuple<never[]>>(true)
 })
 
 it('returns false for special types', () => {
@@ -74,4 +77,23 @@ it('works with unique branches', () => {
 	testType.equal<IsTuple<unknown, IsTuple.$Branch>, $Else>(true)
 	testType.equal<IsTuple<never, IsTuple.$Branch>, $Else>(true)
 	testType.equal<IsTuple<void, IsTuple.$Branch>, $Else>(true)
+})
+
+it('can override $any branch', () => {
+	testType.equal<IsTuple<any>, false>(true)
+	testType.equal<IsTuple<any, { $any: unknown }>, unknown>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsTuple<unknown>, false>(true)
+	testType.equal<IsTuple<unknown, { $unknown: unknown }>, unknown>(true)
+})
+
+it('can override $never branch', () => {
+	testType.equal<IsTuple<never>, false>(true)
+	testType.equal<IsTuple<never, { $never: unknown }>, unknown>(true)
+})
+
+it('can override $else branch with unknown', () => {
+	testType.equal<IsTuple<any[], { $else: unknown }>, unknown>(true)
 })

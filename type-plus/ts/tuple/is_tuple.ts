@@ -1,9 +1,10 @@
-import type { IsAnyOrNever } from '../mix_types/is_any_or_never.js'
-import type { $Never } from '../never/never.js'
-import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
+import type { Assignable } from '../predicates/assignable.js'
+import type { $Equality } from '../type_plus/$equality.js'
+import type { $MergeOptions } from '../type_plus/$merge_options.js'
+import type { $SpecialType } from '../type_plus/$special_type.js'
+import type { $IsDistributive } from '../type_plus/branch/$is_distributive.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
-import type { $Select } from '../type_plus/branch/$select.js'
-import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$selection.js'
+import type { $Else, $Then } from '../type_plus/branch/$selection.js'
 
 /**
  * 🎭 *predicate*
@@ -18,40 +19,82 @@ import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$select
  * type R = IsTuple<never>    // false
  * type R = IsTuple<unknown>  // false
  * ```
+ *
+ * 🔢 *customize*
+ *
+ * Filter to ensure `T` is a `tuple`, otherwise returns `never`.
+ *
+ * @example
+ * ```ts
+ * type R = IsTuple<[], { selection: 'filter' }> // []
+ * type R = IsTuple<[1], { selection: 'filter' }> // [1]
+ *
+ * type R = IsTuple<never, { selection: 'filter' }> // never
+ * type R = IsTuple<unknown, { selection: 'filter' }> // never
+ * type R = IsTuple<[] | boolean, { selection: 'filter' }> // []
+ * ```
+ *
+ * 🔢 *customize*:
+ *
+ * Disable distribution of union types.
+ *
+ * ```ts
+ * type R = IsTuple<[1] | 1> // boolean
+ * type R = IsTuple<[] | 1, { distributive: false }> // false
+ * ```
+ *
+ * 🔢 *customize*
+ *
+ * Use unique branch identifiers to allow precise processing of the result.
+ *
+ * @example
+ * ```ts
+ * type R = IsTuple<bigint, IsTuple.$Branch> // $Then
+ * type R = IsTuple<string, IsTuple.$Branch> // $Else
+ * ```
  */
 export type IsTuple<
 	T,
 	$O extends IsTuple.$Options = {}
-> = IsAnyOrNever<
-	T,
-	$SelectionBranch
-> extends infer R
-	? R extends $Then ? $ResolveBranch<T, $O, [$Else]>
-	: R extends $Else ? (
-		$ResolveOptions<[$O['distributive'], $Select.$Default['distributive']]> extends true
-		? (
-			T extends readonly any[]
-			? (
-				number extends T['length']
-				? $ResolveBranch<T, $O, [$Else]>
-				: $ResolveBranch<T, $O, [$Then]>
-			)
-			: $ResolveBranch<T, $O, [$Else]>
-		)
-		: (
-			[T] extends [readonly any[]]
-			? (
-				number extends T['length']
-				? $ResolveBranch<T, $O, [$Else]>
-				: $ResolveBranch<T, $O, [$Then]>
-			)
-			: $ResolveBranch<T, $O, [$Else]>
-		)
-	)
-	: never : never
+> =
+	$SpecialType<T,
+		$MergeOptions<$O,
+			{
+				$then: $ResolveBranch<T, $O, [$Else]>,
+				$else: IsTuple.$<T, $O>
+			}
+		>
+	>
 
 export namespace IsTuple {
-	export type $Options = $Select.$Options & $Never.$Options
-	export type $Default = $Select.$Default
-	export type $Branch = $Select.$Branch
+	export type $Options = $Equality.$Options
+	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
+	// export type $Default = $Select.$Default
+
+	/**
+	 * 🧰 *type util*
+	 *
+	 * Validate if `T` is `bigint` or `bigint` literals.
+	 *
+	 * This is a type util for building custom types.
+	 * It does not check against special types.
+	 */
+	export type $<T, $O extends $UtilOptions> = $IsDistributive<$O, {
+		$then: T extends readonly any[]
+		? (
+			number extends T['length']
+			? $ResolveBranch<T, $O, [$Else]>
+			: $ResolveBranch<T, $O, [$Then]>
+		)
+		: $ResolveBranch<T, $O, [$Else]>,
+		$else: [T] extends [readonly any[]]
+		? (
+			number extends T['length']
+			? $ResolveBranch<T, $O, [$Else]>
+			: $ResolveBranch<T, $O, [$Then]>
+		)
+		: $ResolveBranch<T, $O, [$Else]>
+	}>
+
+	export type $UtilOptions = Assignable.$UtilOptions
 }

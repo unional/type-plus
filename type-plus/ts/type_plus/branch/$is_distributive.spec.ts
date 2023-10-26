@@ -16,3 +16,13 @@ it(`supports overrides`, () => {
 	testType.equal<$IsDistributive<{ distributive: true }, { $then: 1 }>, 1>(true)
 	testType.equal<$IsDistributive<{ distributive: false }, { $else: 1 }>, 1>(true)
 })
+
+it('supports override with any[] and unknown[]', () => {
+	testType.equal<$IsDistributive<{ distributive: true }, { $then: any[] }>, any[]>(true)
+	testType.equal<$IsDistributive<{ distributive: false }, { $else: unknown[] }>, unknown[]>(true)
+})
+
+it('supports override with any and unknown', () => {
+	testType.equal<$IsDistributive<{ distributive: true }, { $then: any }>, any>(true)
+	testType.equal<$IsDistributive<{ distributive: false }, { $else: unknown }>, unknown>(true)
+})

@@ -8,5 +8,5 @@ export type $IsDistributive<
 	$O extends $InputOptions<$Then | $Else> = {}
 > =
 	$ResolveOptions<[$Options['distributive'], $DistributiveDefault['distributive']]> extends true
-	? [unknown] extends $O['$then'] ? true : $O['$then']
-	: [unknown] extends $O['$else'] ? false : $O['$else']
+	? '$then' extends keyof $O ? $O['$then'] : true
+	: '$else' extends keyof $O ? $O['$else'] : false

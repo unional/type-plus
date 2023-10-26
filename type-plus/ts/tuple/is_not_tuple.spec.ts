@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else,type $Then, type IsNotTuple, testType } from '../index.js'
+import { type $Else, type $Then, type IsNotTuple, testType } from '../index.js'
 
 it('returns false if T is a tuple', () => {
 	testType.false<IsNotTuple<[]>>(true)
@@ -43,6 +43,7 @@ it('distributes over union type', () => {
 
 it('can disable union distribution', () => {
 	testType.equal<IsNotTuple<[] | number, { distributive: false }>, true>(true)
+	testType.equal<IsNotTuple<[] | number, { distributive: false, selection: 'filter' }>, [] | number>(true)
 })
 
 it('returns false if T is union of tuples', () => {

@@ -92,10 +92,11 @@ export namespace Assignable {
 		A,
 		B,
 		$O extends $UtilOptions
-	> = $IsDistributive<$O, {
-		$then: A extends B ? $ResolveBranch<A, $O, [$Then]> : $ResolveBranch<A, $O, [$Else]>,
-		$else: [A] extends [B] ? $ResolveBranch<A, $O, [$Then]> : $ResolveBranch<A, $O, [$Else]>,
-	}>
+	> =
+		$IsDistributive<$O, {
+			$then: A extends B ? $ResolveBranch<A, $O, [$Then]> : $ResolveBranch<A, $O, [$Else]>,
+			$else: [A] extends [B] ? $ResolveBranch<A, $O, [$Then]> : $ResolveBranch<A, $O, [$Else]>,
+		}>
 
 	export type $UtilOptions = $SelectionOptions & $DistributiveOptions
 }

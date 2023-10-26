@@ -83,7 +83,7 @@ export namespace IsBigint {
 	 * It does not check against special types.
 	 */
 	export type $<T, $O extends $UtilOptions> =
-		$ResolveOptions<[$O['exact'], false]> extends true
+		$ResolveOptions<[$O['exact'], $Exact.$Default]> extends true
 		? $IsDistributive<$O, { $then: _SD<T, $O>, $else: _SN<T, $O> }>
 		: Assignable.$<T, bigint, $O>
 	export type $UtilOptions = Assignable.$UtilOptions & $Exact.$Options

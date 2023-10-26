@@ -83,3 +83,8 @@ it('extract value from override', () => {
 	testType.equal<$ResolveBranch<true, { $else: $Override<1> }, [$Else]>, 1>(true)
 	testType.equal<$ResolveBranch<true, { $any: $Override<1> }, [$Any]>, 1>(true)
 })
+
+it('can override with unknown or any', () => {
+	testType.equal<$ResolveBranch<true, { $then: unknown }, [$Then]>, unknown>(true)
+	testType.equal<$ResolveBranch<true, { $then: any }, [$Then]>, any>(true)
+})
