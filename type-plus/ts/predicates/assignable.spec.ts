@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { describe, it } from '@jest/globals'
 
 import { type $Else, type $Then, type Assignable, testType } from '../index.js'
 
@@ -112,4 +112,39 @@ it('can override $never branch', () => {
 	testType.equal<Assignable<never, never, { $never: unknown }>, unknown>(true)
 	testType.equal<Assignable<never, number, { $never: unknown }>, unknown>(true)
 	testType.equal<Assignable<1, never, { $never: unknown }>, false>(true)
+})
+
+describe('disable distributive', () => {
+	it('literal type to widen', () => {
+		testType.true<Assignable<1, number, { distributive: false }>>(true)
+		testType.true<Assignable<1, 1, { distributive: false }>>(true)
+		testType.true<Assignable<number, number, { distributive: false }>>(true)
+		testType.true<Assignable<'a', string, { distributive: false }>>(true)
+		testType.true<Assignable<'a', 'a', { distributive: false }>>(true)
+		testType.true<Assignable<string, string, { distributive: false }>>(true)
+		testType.true<Assignable<false, boolean, { distributive: false }>>(true)
+		testType.true<Assignable<true, boolean, { distributive: false }>>(true)
+		testType.true<Assignable<boolean, boolean, { distributive: false }>>(true)
+	})
+	it('base type to literal type fails', () => {
+		testType.false<Assignable<number, 1, { distributive: false }>>(true)
+		testType.false<Assignable<string, 'a', { distributive: false }>>(true)
+		testType.false<Assignable<true, false, { distributive: false }>>(true)
+		testType.false<Assignable<false, true, { distributive: false }>>(true)
+		testType.false<Assignable<boolean, false, { distributive: false }>>(true)
+		testType.false<Assignable<boolean, true, { distributive: false }>>(true)
+	})
+	it('super set to sub set', () => {
+		testType.true<Assignable<{ a: string, b: number }, { a: string }, { distributive: false }>>(true)
+	})
+	it('sub set to super set fail', () => {
+		testType.false<Assignable<{ a: string }, { a: string, b: number }, { distributive: false }>>(true)
+	})
+
+	it('union types checks against all branches', () => {
+		testType.true<Assignable<number | string, number | string, { distributive: false }>>(true)
+		testType.true<Assignable<(number & { a: 1 }) | (string & { a: 1 }), number | string, { distributive: false }>>(true)
+
+		testType.false<Assignable<number | string, number, { distributive: false }>>(true)
+	})
 })
