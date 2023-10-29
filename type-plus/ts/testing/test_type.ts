@@ -12,7 +12,7 @@ import type { IsNever } from '../never/is_never.js'
 import type { IsNull } from '../null/is_null.js'
 import type { IsNumber } from '../number/is_number.js'
 import type { IsObject } from '../object/is_object.js'
-import type { CanAssign, StrictCanAssign } from '../predicates/CanAssign.js'
+import type { Assignable } from '../predicates/assignable.js'
 import type { IsString } from '../string/is_string.js'
 import type { IsSymbol } from '../symbol/is_symbol.js'
 import type { IsTuple } from '../tuple/is_tuple.js'
@@ -55,7 +55,7 @@ export namespace testType {
 		 *
 		 * @return `expected` as `A` for type inspection.
 		 */
-		canAssign<A, B>(expected: CanAssign<A, B>): A,
+		canAssign<A, B>(expected: Assignable<A, B>): A,
 		/**
 		 * Check if `A` can fully assign to `B`.
 		 *
@@ -70,7 +70,7 @@ export namespace testType {
 		 *
 		 * @return `expected` as `A` for type inspection.
 		 */
-		strictCanAssign<A, B>(expected: StrictCanAssign<A, B>): A,
+		strictCanAssign<A, B>(expected: Assignable<A, B, { distributive: false }>): A,
 		/**
 		 * Check if type `T` is exactly `any`.
 		 *
@@ -162,31 +162,31 @@ export namespace testType {
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		object<T>(expected: IsObject<T>): T,
+		object<T>(expected: IsObject<T, { distributive: false }>): T,
 		/**
 		 * Check if type `T` is exactly `string`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		strictString<T>(expected: IsString<T, { exact: true }>): T,
+		strictString<T>(expected: IsString<T, { distributive: false, exact: true }>): T,
 		/**
 		 * Check if type `T` is `string` or string literals.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		string<T>(expected: IsString<T>): T,
+		string<T>(expected: IsString<T, { distributive: false }>): T,
 		/**
 		 * Check if type `T` is a `symbol`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		symbol<T>(expected: IsSymbol<T>): T,
+		symbol<T>(expected: IsSymbol<T, { distributive: false }>): T,
 		/**
 		 * Check if type `T` is a *tuple*.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		tuple<T>(expected: IsTuple<T>): T,
+		tuple<T>(expected: IsTuple<T, { distributive: false }>): T,
 		/**
 		 * Check if type `T` is exactly `undefined`.
 		 *

@@ -43,6 +43,16 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  *
  * 🔢 *customize*:
  *
+ * Validate if `T` is exactly `bigint`.
+ *
+ * @example
+ * ```ts
+ * type R = IsBigint<bigint, { exact: true }> // true
+ * type R = IsBigint<1n, { exact: true }> // false
+ * ```
+ *
+ * 🔢 *customize*:
+ *
  * Disable distribution of union types.
  *
  * ```ts

@@ -10,19 +10,6 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
 import type { $SelectionOptions } from '../type_plus/branch/$selection_options.js'
 
 /**
- * Is the type `T` not `string` nor string literals.
- *
- * ```ts
- * type R = IsNotString<string> // false
- * type R = IsNotString<''> // false
- * type R = IsNotString<'a'> // false
- *
- * type R = IsNotString<string | boolean> // true
- * type R = IsNotString<never> // true
- * type R = IsNotString<unknown> // true
- * ```
- */
-/**
  * 🎭 *predicate*
  *
  * Validate if `T` is not `string` nor `string` literals.

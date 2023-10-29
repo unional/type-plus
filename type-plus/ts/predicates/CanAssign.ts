@@ -39,7 +39,7 @@ export type CanAssign<A, B, Then = true, Else = false> = boolean extends A
  *
  * All branches in an union `A` are assignable to `B`.
  *
- * @deprecated use `Assignable<A, B` instead
+ * @deprecated use `Assignable<A, B, { distributive: false }>` instead
  *
  * @example
  * ```ts
@@ -50,7 +50,7 @@ export type CanAssign<A, B, Then = true, Else = false> = boolean extends A
 export type StrictCanAssign<A, B, Then = true, Else = false> = Assignable<A, B, { distributive: false, $then: Then, $else: Else }>
 
 /**
- * @deprecated use `CanAssign` instead
+ * @deprecated use `Assignable<A, B>` instead
  */
 export type IsAssign<A, B, Then = true, Else = false> = CanAssign<A, B, Then, Else>
 

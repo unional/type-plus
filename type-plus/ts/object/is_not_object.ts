@@ -1,4 +1,14 @@
-import type { $SelectInvert } from '../type_plus/branch/$select_invert.js'
+import type { IdentityEqual } from '../equal/identity_equal.js'
+import type { IsNever } from '../never/is_never.js'
+import type { NotAssignable } from '../predicates/not_assignable.js'
+import type { $Equality } from '../type_plus/$equality.js'
+import type { $MergeOptions } from '../type_plus/$merge_options.js'
+import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
+import type { $SpecialType } from '../type_plus/$special_type.js'
+import type { $Exact } from '../type_plus/branch/$exact.js'
+import type { $IsDistributive } from '../type_plus/branch/$is_distributive.js'
+import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
+import type { $Else, $Then } from '../type_plus/branch/$selection.js'
 
 /**
  * Is `T` not an `object`.
@@ -13,11 +23,108 @@ import type { $SelectInvert } from '../type_plus/branch/$select_invert.js'
  * type R = IsNotObject<number> // true
  * ```
  */
-
-export type IsNotObject<T, $O extends IsNotObject.$Options = {}> = $SelectInvert<T, object, $O>
-
+/**
+ * 🎭 *predicate*
+ *
+ * Validate if `T` is not an `object` nor object literals.
+ *
+ * Note that `Function`, `Array`, and *tuple* are also objects.
+ *
+ * @example
+ * ```ts
+ * type R = IsNotObject<object> // false
+ * type R = IsNotObject<{}> // false
+ * type R = IsNotObject<{ a: 1 }> // false
+ * type R = IsNotObject<Function> // false
+ *
+ * type R = IsNotObject<never> // true
+ * type R = IsNotObject<unknown> // true
+ * type R = IsNotObject<number> // true
+ *
+ * type R = IsNotObject<{} | bigint> // boolean
+ * ```
+ *
+ * 🔢 *customize*
+ *
+ * Filter to ensure `T` is not an `object` nor object literals, otherwise returns `never`.
+ *
+ * @example
+ * ```ts
+ * type R = IsNotObject<{}, { selection: 'filter' }> // never
+ * type R = IsNotObject<{ a: 1 }, { selection: 'filter' }> // never
+ * type R = IsNotObject<Function, { selection: 'filter' }> // never
+ *
+ * type R = IsNotObject<never, { selection: 'filter' }> // never
+ * type R = IsNotObject<unknown, { selection: 'filter' }> // unknown
+ *
+ * type R = IsNotObject<{} | bigint> // bigint
+ * ```
+ *
+ * 🔢 *customize*:
+ *
+ * Validate if `T` is not exactly `object`.
+ *
+ * @example
+ * ```ts
+ * type R = IsNotObject<object, { exact: true }> // false
+ * type R = IsNotObject<{}, { exact: true }> // true
+ * ```
+ *
+ * 🔢 *customize*:
+ *
+ * Disable distribution of union types.
+ *
+ * ```ts
+ * type R = IsNotObject<{} | 1> // boolean
+ * type R = IsNotObject<{} | 1, { distributive: false }> // true
+ * ```
+ *
+ * 🔢 *customize*
+ *
+ * Use unique branch identifiers to allow precise processing of the result.
+ *
+ * @example
+ * ```ts
+ * type R = IsNotObject<{}, $SelectionBranch> // $Else
+ * type R = IsNotObject<string, $SelectionBranch> // $Then
+ * ```
+ */
+export type IsNotObject<T, $O extends IsNotObject.$Options = {}> = $SpecialType<T,
+	$MergeOptions<$O,
+		{
+			$then: $ResolveBranch<T, $O, [$Then]>,
+			$else: IsNotObject.$<T, $O>
+		}
+	>
+>
 export namespace IsNotObject {
-	export type $Options = $SelectInvert.$Options
-	export type $Default = $SelectInvert.$Default
-	export type $Branch = $SelectInvert.$Branch
+	export type $Options = $Equality.$Options & $Exact.$Options
+	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
+
+	/**
+	 * 🧰 *type util*
+	 *
+	 * Validate if `T` is `object` or `object` literals.
+	 *
+	 * This is a type util for building custom types.
+	 * It does not check against special types.
+	 */
+	export type $<T, $O extends $UtilOptions> =
+		$ResolveOptions<[$O['exact'], $Exact.$Default]> extends true
+		? $IsDistributive<$O, { $then: _D<T, $O>, $else: _N<T, $O> }>
+		: NotAssignable.$<T, object, $O>
+	export type $UtilOptions = NotAssignable.$UtilOptions & $Exact.$Options
+
+	export type _D<T, $O extends $UtilOptions> = T extends object
+		? IdentityEqual<T, {},
+			$ResolveBranch<T, $O, [$Then]>,
+			IsNever<keyof T, {
+				$then: $ResolveBranch<T, $O, [$Else]>,
+				$else: $ResolveBranch<T, $O, [$Then]>
+			}>>
+		: $ResolveBranch<T, $O, [$Then]>
+
+	export type _N<T, $O extends $UtilOptions> = [T] extends [object]
+		? $ResolveBranch<T, $O, [$Else]>
+		: $ResolveBranch<T, $O, [$Then]>
 }

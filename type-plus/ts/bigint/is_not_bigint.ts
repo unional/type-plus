@@ -37,6 +37,16 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  * type R = IsNotBigint<string | boolean, { selection: 'filter' }> // string | boolean
  * ```
  *
+ * 🔢 *customize*:
+ *
+ * Validate if `T` is not exactly `bigint`.
+ *
+ * @example
+ * ```ts
+ * type R = IsNotBigint<bigint, { exact: true }> // false
+ * type R = IsNotBigint<1n, { exact: true }> // true
+ * ```
+ *
  * 🔢 *customize*
  *
  * Disable distribution of union types.
