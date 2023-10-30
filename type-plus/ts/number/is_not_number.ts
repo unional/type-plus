@@ -95,11 +95,9 @@ export namespace IsNotNumber {
 			)
 		)
 		: $ResolveBranch<T, $O, [$Then]>
-	export type _N<T, $O extends IsNotNumber.$Options> = ([number, T] extends [T, number]
-		? (T extends number
-			? (`${T}` extends `${bigint}`
-				? $ResolveBranch<T, $O, [$Then]>
-				: $ResolveBranch<T, $O, [$Else]>)
-			: $ResolveBranch<T, $O, [$Then]>)
-		: $ResolveBranch<T, $O, [$Then]>)
+	export type _N<T, $O extends IsNotNumber.$Options> =
+		[T] extends [number & infer U] ?
+		U extends number ? $ResolveBranch<T, $O, [$Then]>
+		: $ResolveBranch<T, $O, [$Else]>
+		: $ResolveBranch<T, $O, [$Then]>
 }

@@ -57,7 +57,10 @@ it('can disable union distribution', () => {
 it('returns true for intersection type', () => {
 	testType.equal<object & [], object & []>(true)
 	testType.true<IsObject<object & []>>(true)
+	testType.true<IsObject<object & [], { distributive: false }>>(true)
+
 	testType.true<IsObject<{ a: 1 } & []>>(true)
+	testType.true<IsObject<{ a: 1 } & [], { distributive: false }>>(true)
 })
 
 it('works as filter', () => {
@@ -158,7 +161,13 @@ describe('exact', () => {
 		// and `object & object -> object` directly.
 		// so there is no intersection type that can produce a strict object.
 		testType.equal<IsObject<object & Function, { exact: true }>, false>(true)
+		testType.equal<IsObject<object & Function, { distributive: false, exact: true }>, false>(true)
+
 		testType.false<IsObject<object & [], { exact: true }>>(true)
+		testType.false<IsObject<object & [], { distributive: false, exact: true }>>(true)
+
+		testType.false<IsObject<object & { a: 1 }, { exact: true }>>(true)
+		testType.false<IsObject<object & { a: 1 }, { distributive: false, exact: true }>>(true)
 	})
 
 	it('works as filter', () => {

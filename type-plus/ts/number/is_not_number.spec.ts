@@ -30,6 +30,7 @@ it('returns true for all other types', () => {
 	testType.true<IsNotNumber<''>>(true)
 	testType.true<IsNotNumber<symbol>>(true)
 	testType.true<IsNotNumber<bigint>>(true)
+	testType.true<IsNotNumber<1n>>(true)
 	testType.true<IsNotNumber<{}>>(true)
 	testType.true<IsNotNumber<string[]>>(true)
 	testType.true<IsNotNumber<[]>>(true)
@@ -47,6 +48,21 @@ it('returns false if N is union of number and number literal', () => {
 
 it('returns false if T is intersection of number, as that is still considered a number', () => {
 	testType.equal<IsNotNumber<number & { a: 1 }>, false>(true)
+	testType.equal<IsNotNumber<number & { a: 1 }, { distributive: false }>, false>(true)
+
+	testType.equal<IsNotNumber<1 & { a: 1 }>, false>(true)
+	testType.equal<IsNotNumber<1 & { a: 1 }, { distributive: false }>, false>(true)
+
+	testType.equal<IsNotNumber<1.1 & { a: 1 }>, false>(true)
+	testType.equal<IsNotNumber<1.1 & { a: 1 }, { distributive: false }>, false>(true)
+})
+
+it('returns true if T is an intersection of bigint and bigint literal', () => {
+	testType.equal<IsNotNumber<bigint & { a: 1 }>, true>(true)
+	testType.equal<IsNotNumber<bigint & { a: 1 }, { distributive: false }>, true>(true)
+
+	testType.equal<IsNotNumber<1n & { a: 1 }>, true>(true)
+	testType.equal<IsNotNumber<1n & { a: 1 }, { distributive: false }>, true>(true)
 })
 
 it('can disable union distribution', () => {
@@ -123,6 +139,7 @@ describe('exact', () => {
 		testType.true<IsNotNumber<'', { exact: true }>>(true)
 		testType.true<IsNotNumber<symbol, { exact: true }>>(true)
 		testType.true<IsNotNumber<bigint, { exact: true }>>(true)
+		testType.true<IsNotNumber<1n, { exact: true }>>(true)
 		testType.true<IsNotNumber<{}, { exact: true }>>(true)
 		testType.true<IsNotNumber<string[], { exact: true }>>(true)
 		testType.true<IsNotNumber<[], { exact: true }>>(true)
@@ -143,6 +160,13 @@ describe('exact', () => {
 
 	it('returns false for intersection type', () => {
 		testType.false<IsNotNumber<number & { a: 1 }, { exact: true }>>(true)
+		testType.false<IsNotNumber<number & { a: 1 }, { distributive: false, exact: true }>>(true)
+
+		testType.true<IsNotNumber<1 & { a: 1 }, { exact: true }>>(true)
+		testType.true<IsNotNumber<1 & { a: 1 }, { distributive: false, exact: true }>>(true)
+
+		testType.true<IsNotNumber<1.1 & { a: 1 }, { exact: true }>>(true)
+		testType.true<IsNotNumber<1.1 & { a: 1 }, { distributive: false, exact: true }>>(true)
 	})
 
 	it('works as filter', () => {

@@ -12,8 +12,8 @@ it('rejects number literal', () => {
 	testType.strictNumber<1>(false)
 })
 
-it('rejects intersection with number', () => {
-	testType.strictNumber<number & { a: 1 }>(false)
+it('accepts intersection with number', () => {
+	testType.strictNumber<number & { a: 1 }>(true)
 })
 
 it('rejects others', () => {

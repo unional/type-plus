@@ -11,8 +11,8 @@ it('rejects bigint literal', () => {
 	testType.strictBigint<1n>(false)
 })
 
-it('rejects intersection with bigint', () => {
-	testType.strictBigint<bigint & { a: 1 }>(false)
+it('accepts intersection with bigint', () => {
+	testType.strictBigint<bigint & { a: 1 }>(true)
 })
 
 it('rejects others', () => {

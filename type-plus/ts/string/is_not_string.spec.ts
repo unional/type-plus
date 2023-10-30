@@ -28,6 +28,7 @@ it('returns true for other types', () => {
 	testType.true<IsNotString<1>>(true)
 	testType.true<IsNotString<symbol>>(true)
 	testType.true<IsNotString<bigint>>(true)
+	testType.true<IsNotString<1n>>(true)
 	testType.true<IsNotString<{}>>(true)
 	testType.true<IsNotString<string[]>>(true)
 	testType.true<IsNotString<[]>>(true)
@@ -36,21 +37,26 @@ it('returns true for other types', () => {
 })
 
 it('distributes over union type', () => {
-	testType.equal<IsNotString<number | string>, boolean>(true)
+	testType.equal<IsNotString<string | number>, boolean>(true)
+	testType.equal<IsNotString<'' | number>, boolean>(true)
 })
 
 it('returns false if N is union of string and string literal', () => {
 	testType.equal<IsNotString<string | 'a'>, false>(true)
 })
 
-it('returns false if T is intersection of string, as that is still considered a string', () => {
-	testType.equal<IsNotString<string & { a: 1 }>, false>(true)
-})
-
 it('can disable union distribution', () => {
 	testType.equal<IsNotString<string | 1>, boolean>(true)
 	testType.equal<IsNotString<'' | 1, { distributive: false }>, true>(true)
 	testType.true<IsNotString<number | string, { distributive: false }>>(true)
+})
+
+it('returns false if T is intersection of string, as that is still considered a string', () => {
+	testType.equal<IsNotString<string & { a: 1 }>, false>(true)
+	testType.equal<IsNotString<string & { a: 1 }, { distributive: false }>, false>(true)
+
+	testType.equal<IsNotString<'' & { a: 1 }>, false>(true)
+	testType.equal<IsNotString<'' & { a: 1 }, { distributive: false }>, false>(true)
 })
 
 it('works as filter', () => {
@@ -117,6 +123,7 @@ describe('exact', () => {
 		testType.true<IsNotString<1, { exact: true }>>(true)
 		testType.true<IsNotString<symbol, { exact: true }>>(true)
 		testType.true<IsNotString<bigint, { exact: true }>>(true)
+		testType.true<IsNotString<1n, { exact: true }>>(true)
 		testType.true<IsNotString<{}, { exact: true }>>(true)
 		testType.true<IsNotString<string[], { exact: true }>>(true)
 		testType.true<IsNotString<[], { exact: true }>>(true)
@@ -136,8 +143,14 @@ describe('exact', () => {
 	})
 
 	it('returns false for intersection type', () => {
+		testType.equal<IsNotString<number, { exact: true }>, true>(true)
+		testType.equal<IsNotString<number, { distributive: false, exact: true }>, true>(true)
+
 		testType.equal<IsNotString<string & { a: 1 }, { exact: true }>, false>(true)
+		testType.equal<IsNotString<string & { a: 1 }, { distributive: false, exact: true }>, false>(true)
+
 		testType.equal<IsNotString<'' & { a: 1 }, { exact: true }>, true>(true)
+		testType.equal<IsNotString<'' & { a: 1 }, { distributive: false, exact: true }>, true>(true)
 	})
 
 	it('works as filter', () => {

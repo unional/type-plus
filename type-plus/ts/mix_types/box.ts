@@ -2,7 +2,7 @@ import type { IsBigint } from '../bigint/is_bigint.js'
 import type { IsBoolean } from '../boolean/is_boolean.js'
 import type { IsFunction } from '../function/is_function.js'
 import type { IsNumber } from '../number/is_number.js'
-import type { IsStrictObject } from '../object/is_strict_object.js'
+import type { IsObject } from '../object/is_object.js'
 import type { IsString } from '../string/is_string.js'
 import type { IsSymbol } from '../symbol/is_symbol.js'
 import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$selection.js'
@@ -31,9 +31,9 @@ export type Box<T, Options extends Box.Options = Box.DefaultOptions> =
 		IsFunction.$Branch
 	> extends infer R
 	? R extends $Then ? Function
-	: IsStrictObject<
+	: IsObject<
 		T,
-		IsStrictObject.$Branch> extends infer R
+		IsObject.$Branch<{ exact: true }>> extends infer R
 	? R extends $Then ? Object :
 	T extends Record<any, any> ? T :
 	IsBoolean<

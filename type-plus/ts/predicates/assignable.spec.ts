@@ -61,6 +61,8 @@ it('can disable distribution', () => {
 	testType.equal<Assignable<boolean, true>, boolean>(true)
 	testType.equal<Assignable<boolean, true, { distributive: false }>, false>(true)
 
+	testType.equal<Assignable<string, number>, false>(true)
+	testType.equal<Assignable<string, number, { distributive: false }>, false>(true)
 	testType.equal<Assignable<number | string, number>, boolean>(true)
 	testType.equal<Assignable<number | string, number, { distributive: false }>, false>(true)
 })

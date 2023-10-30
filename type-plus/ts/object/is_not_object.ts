@@ -124,7 +124,9 @@ export namespace IsNotObject {
 			}>>
 		: $ResolveBranch<T, $O, [$Then]>
 
-	export type _N<T, $O extends $UtilOptions> = [T] extends [object]
-		? $ResolveBranch<T, $O, [$Else]>
+	export type _N<T, $O extends $UtilOptions> =
+		[T] extends [object & infer U] ?
+		U extends object ? $ResolveBranch<T, $O, [$Then]>
+		: $ResolveBranch<T, $O, [$Else]>
 		: $ResolveBranch<T, $O, [$Then]>
 }

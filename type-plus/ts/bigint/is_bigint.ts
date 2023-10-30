@@ -106,12 +106,9 @@ export namespace IsBigint {
 			: $ResolveBranch<T, $O, [$Then]>
 		)
 		: $ResolveBranch<T, $O, [$Else]>
-	export type _SN<T, $O extends $Options> = (
-		[bigint, T] extends [T, bigint]
-		? (T extends bigint
-			? (`${T}` extends `${number}`
-				? $ResolveBranch<T, $O, [$Else]>
-				: $ResolveBranch<T, $O, [$Then]>)
-			: $ResolveBranch<T, $O, [$Else]>)
-		: $ResolveBranch<T, $O, [$Else]>)
+	export type _SN<T, $O extends $Options> =
+		[T] extends [bigint & infer U] ?
+		U extends bigint ? $ResolveBranch<T, $O, [$Else]>
+		: $ResolveBranch<T, $O, [$Then]>
+		: $ResolveBranch<T, $O, [$Else]>
 }

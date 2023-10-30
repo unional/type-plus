@@ -95,7 +95,8 @@ export namespace IsString {
 		)
 		: $ResolveBranch<T, $O, [$Else]>
 	export type _N<T, $O extends $SelectionOptions> =
-		[string, T] extends [T, string]
-		? $ResolveBranch<T, $O, [$Then]>
+		[T] extends [string & infer U] ?
+		U extends string ? $ResolveBranch<T, $O, [$Else]>
+		: $ResolveBranch<T, $O, [$Then]>
 		: $ResolveBranch<T, $O, [$Else]>
 }

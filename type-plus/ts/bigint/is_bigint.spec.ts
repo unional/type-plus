@@ -43,7 +43,16 @@ it('distributes for union type', () => {
 
 it('returns true for intersection type', () => {
 	testType.true<IsBigint<bigint & { a: 1 }>>(true)
+	testType.true<IsBigint<bigint & { a: 1 }, { distributive: false }>>(true)
 	testType.true<IsBigint<1n & { a: 1 }>>(true)
+	testType.true<IsBigint<1n & { a: 1 }, { distributive: false }>>(true)
+
+	testType.false<IsBigint<number & { a: 1 }>>(true)
+	testType.false<IsBigint<number & { a: 1 }, { distributive: false }>>(true)
+	testType.false<IsBigint<1 & { a: 1 }>>(true)
+	testType.false<IsBigint<1 & { a: 1 }, { distributive: false }>>(true)
+	testType.false<IsBigint<1.1 & { a: 1 }>>(true)
+	testType.false<IsBigint<1.1 & { a: 1 }, { distributive: false }>>(true)
 })
 
 it('works as filter', () => {
@@ -57,8 +66,17 @@ it('works as filter', () => {
 })
 
 it('can disable union distribution', () => {
-	testType.equal<IsBigint<1n | 1>, boolean>(true)
-	testType.equal<IsBigint<1n | 1, { distributive: false }>, false>(true)
+	testType.equal<IsBigint<bigint | string>, boolean>(true)
+	testType.equal<IsBigint<bigint | string, { distributive: false }>, false>(true)
+
+	testType.equal<IsBigint<1n | string>, boolean>(true)
+	testType.equal<IsBigint<1n | string, { distributive: false }>, false>(true)
+
+	testType.equal<IsBigint<number | string>, false>(true)
+	testType.equal<IsBigint<number | string, { distributive: false }>, false>(true)
+
+	testType.equal<IsBigint<1 | string>, false>(true)
+	testType.equal<IsBigint<1 | string, { distributive: false }>, false>(true)
 })
 
 it('works with unique branches', () => {
@@ -128,12 +146,31 @@ describe('exact mode', () => {
 	})
 
 	it('can disable union distribution', () => {
-		testType.equal<IsBigint<bigint | 1, { distributive: false, exact: false }>, false>(true)
+		testType.equal<IsBigint<bigint | string, { exact: true }>, boolean>(true)
+		testType.equal<IsBigint<bigint | string, { distributive: false, exact: true }>, false>(true)
+
+		testType.equal<IsBigint<1n | string, { exact: true }>, false>(true)
+		testType.equal<IsBigint<1n | string, { distributive: false, exact: true }>, false>(true)
+
+		testType.equal<IsBigint<number | string, { exact: true }>, false>(true)
+		testType.equal<IsBigint<number | string, { distributive: false, exact: true }>, false>(true)
+
+		testType.equal<IsBigint<1 | string, { exact: true }>, false>(true)
+		testType.equal<IsBigint<1 | string, { distributive: false, exact: true }>, false>(true)
 	})
 
 	it('consider intersection type as strict', () => {
 		testType.true<IsBigint<bigint & { a: 1 }, { exact: true }>>(true)
+		testType.true<IsBigint<bigint & { a: 1 }, { distributive: false, exact: true }>>(true)
+
 		testType.false<IsBigint<1n & { a: 1 }, { exact: true }>>(true)
+		testType.false<IsBigint<1n & { a: 1 }, { distributive: false, exact: true }>>(true)
+
+		testType.false<IsBigint<number & { a: 1 }, { exact: true }>>(true)
+		testType.false<IsBigint<number & { a: 1 }, { distributive: false, exact: true }>>(true)
+
+		testType.false<IsBigint<1 & { a: 1 }, { exact: true }>>(true)
+		testType.false<IsBigint<1 & { a: 1 }, { distributive: false, exact: true }>>(true)
 	})
 
 	it('works as filter', () => {

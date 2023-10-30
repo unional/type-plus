@@ -28,6 +28,7 @@ it('returns false for other types', () => {
 	testType.false<IsString<1>>(true)
 	testType.false<IsString<symbol>>(true)
 	testType.false<IsString<bigint>>(true)
+	testType.false<IsString<1n>>(true)
 	testType.false<IsString<{}>>(true)
 	testType.false<IsString<string[]>>(true)
 	testType.false<IsString<[]>>(true)
@@ -40,6 +41,10 @@ it('distributes over union type', () => {
 	testType.equal<IsString<'' | number>, boolean>(true)
 })
 
+it('returns true if N is union of string and string literal', () => {
+	testType.equal<IsString<string | 'a'>, true>(true)
+})
+
 it('can disable union distribution', () => {
 	testType.equal<IsString<string | number, { distributive: false }>, false>(true)
 	testType.equal<IsString<'' | number, { distributive: false }>, false>(true)
@@ -47,6 +52,9 @@ it('can disable union distribution', () => {
 
 it('returns true for intersection type', () => {
 	testType.equal<IsString<string & { a: 1 }>, true>(true)
+	testType.equal<IsString<string & { a: 1 }, { distributive: false }>, true>(true)
+	testType.equal<IsString<'' & { a: 1 }>, true>(true)
+	testType.equal<IsString<'' & { a: 1 }, { distributive: false }>, true>(true)
 })
 
 it('works as filter', () => {
@@ -87,7 +95,6 @@ it('can override $never branch', () => {
 })
 
 describe('exact mode', () => {
-
 	it('returns true for string', () => {
 		testType.true<IsString<string, { exact: true }>>(true)
 	})
@@ -114,6 +121,7 @@ describe('exact mode', () => {
 		testType.false<IsString<1, { exact: true }>>(true)
 		testType.false<IsString<symbol, { exact: true }>>(true)
 		testType.false<IsString<bigint, { exact: true }>>(true)
+		testType.false<IsString<1n, { exact: true }>>(true)
 		testType.false<IsString<{}, { exact: true }>>(true)
 		testType.false<IsString<string[], { exact: true }>>(true)
 		testType.false<IsString<[], { exact: true }>>(true)
@@ -133,8 +141,14 @@ describe('exact mode', () => {
 	})
 
 	it('returns true for intersection type', () => {
+		testType.equal<IsString<number, { exact: true }>, false>(true)
+		testType.equal<IsString<number, { distributive: false, exact: true }>, false>(true)
+
 		testType.equal<IsString<string & { a: 1 }, { exact: true }>, true>(true)
+		testType.equal<IsString<string & { a: 1 }, { distributive: false, exact: true }>, true>(true)
+
 		testType.equal<IsString<'' & { a: 1 }, { exact: true }>, false>(true)
+		testType.equal<IsString<'' & { a: 1 }, { distributive: false, exact: true }>, false>(true)
 	})
 
 	it('works as filter', () => {

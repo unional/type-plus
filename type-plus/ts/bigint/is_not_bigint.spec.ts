@@ -42,6 +42,17 @@ it('distributes over union type', () => {
 
 it('returns false for intersection type', () => {
 	testType.false<IsNotBigint<bigint & { a: 1 }>>(true)
+	testType.false<IsNotBigint<bigint & { a: 1 }, { distributive: false }>>(true)
+
+	testType.false<IsNotBigint<1n & { a: 1 }>>(true)
+	testType.false<IsNotBigint<1n & { a: 1 }, { distributive: false }>>(true)
+
+	testType.true<IsNotBigint<number & { a: 1 }>>(true)
+	testType.true<IsNotBigint<number & { a: 1 }, { distributive: false }>>(true)
+	testType.true<IsNotBigint<1 & { a: 1 }>>(true)
+	testType.true<IsNotBigint<1 & { a: 1 }, { distributive: false }>>(true)
+	testType.true<IsNotBigint<1.1 & { a: 1 }>>(true)
+	testType.true<IsNotBigint<1.1 & { a: 1 }, { distributive: false }>>(true)
 })
 
 it('works as filter', () => {
@@ -55,8 +66,18 @@ it('works as filter', () => {
 })
 
 it('can disable union distribution', () => {
-	testType.equal<IsNotBigint<1n | 1>, boolean>(true)
-	testType.equal<IsNotBigint<1n | 1, { distributive: false }>, true>(true)
+	testType.equal<IsNotBigint<bigint | string>, boolean>(true)
+	testType.equal<IsNotBigint<bigint | string, { distributive: false }>, true>(true)
+
+	testType.equal<IsNotBigint<1n | string>, boolean>(true)
+	testType.equal<IsNotBigint<1n | string, { distributive: false }>, true>(true)
+
+	testType.equal<IsNotBigint<number | string>, true>(true)
+	testType.equal<IsNotBigint<number | string, { distributive: false }>, true>(true)
+	testType.equal<IsNotBigint<1 | string>, true>(true)
+	testType.equal<IsNotBigint<1 | string, { distributive: false }>, true>(true)
+	testType.equal<IsNotBigint<1.1 | string>, true>(true)
+	testType.equal<IsNotBigint<1.1 | string, { distributive: false }>, true>(true)
 })
 
 it('works with unique branches', () => {
@@ -137,7 +158,9 @@ describe('exact mode', () => {
 
 	it('consider intersection type as strict', () => {
 		testType.false<IsNotBigint<bigint & { a: 1 }, { exact: true }>>(true)
+		testType.false<IsNotBigint<bigint & { a: 1 }, { distributive: false, exact: true }>>(true)
 		testType.true<IsNotBigint<1n & { a: 1 }, { exact: true }>>(true)
+		testType.true<IsNotBigint<1n & { a: 1 }, { distributive: false, exact: true }>>(true)
 	})
 
 	it('works as filter', () => {
