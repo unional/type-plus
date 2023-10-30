@@ -68,7 +68,7 @@ export namespace IsNotNull {
 	/**
 	 * 🧰 *type util*
 	 *
-	 * Validate if `T` is `null`.
+	 * Validate if `T` is not `null`.
 	 *
 	 * This is a type util for building custom types.
 	 * It does not check against special types.

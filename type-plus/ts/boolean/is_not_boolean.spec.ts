@@ -1,6 +1,6 @@
-import { it } from '@jest/globals'
+import { describe, it } from '@jest/globals'
 
-import { type $Else,type $Then, type IsNotBoolean, testType } from '../index.js'
+import { type $Else, type $Then, type IsNotBoolean, testType, type $BranchOptions, type $Any, type $Unknown, type $Never } from '../index.js'
 
 it('returns false if T is boolean', () => {
 	testType.equal<IsNotBoolean<boolean>, false>(true)
@@ -27,6 +27,7 @@ it('returns true for all other types', () => {
 	testType.equal<IsNotBoolean<''>, true>(true)
 	testType.equal<IsNotBoolean<symbol>, true>(true)
 	testType.equal<IsNotBoolean<bigint>, true>(true)
+	testType.equal<IsNotBoolean<1n>, true>(true)
 	testType.equal<IsNotBoolean<{}>, true>(true)
 	testType.equal<IsNotBoolean<string[]>, true>(true)
 	testType.equal<IsNotBoolean<[]>, true>(true)
@@ -42,8 +43,15 @@ it('can disable union distribution', () => {
 	testType.equal<IsNotBoolean<boolean | 1, { distributive: false }>, true>(true)
 })
 
-it('returns true for intersection type', () => {
+it('intersection type', () => {
 	testType.equal<IsNotBoolean<boolean & { a: 1 }>, false>(true)
+	testType.equal<IsNotBoolean<boolean & { a: 1 }, { distributive: false }>, false>(true)
+
+	testType.equal<IsNotBoolean<true & { a: 1 }>, false>(true)
+	testType.equal<IsNotBoolean<true & { a: 1 }, { distributive: false }>, false>(true)
+
+	testType.equal<IsNotBoolean<false & { a: 1 }>, false>(true)
+	testType.equal<IsNotBoolean<false & { a: 1 }, { distributive: false }>, false>(true)
 })
 
 it('works as filter', () => {
@@ -82,4 +90,108 @@ it('can override $unknown branch', () => {
 it('can override $never branch', () => {
 	testType.equal<IsNotBoolean<never>, true>(true)
 	testType.equal<IsNotBoolean<never, { $never: unknown }>, unknown>(true)
+})
+
+describe('exact mode', () => {
+	it('returns false if T is boolean', () => {
+		testType.equal<IsNotBoolean<boolean, { exact: true }>, false>(true)
+	})
+
+	it('returns true it T is true or false literal', () => {
+		testType.equal<IsNotBoolean<true, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<false, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<true, { distributive: false, exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<false, { distributive: false, exact: true }>, true>(true)
+	})
+
+	it('returns true for special types', () => {
+		testType.equal<IsNotBoolean<void, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<unknown, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<any, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<never, { exact: true }>, true>(true)
+	})
+
+	it('returns true for all other types', () => {
+		testType.equal<IsNotBoolean<undefined, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<null, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<number, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<1, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<string, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<'', { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<symbol, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<bigint, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<1n, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<{}, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<{ a: 1 }, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<string[], { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<[], { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<Function, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<() => void, { exact: true }>, true>(true)
+	})
+
+	it('distributes over union type', () => {
+		testType.equal<IsNotBoolean<boolean | 1, { exact: true }>, boolean>(true)
+	})
+
+	it('can disable union distribution', () => {
+		testType.equal<IsNotBoolean<boolean | 1, { distributive: false, exact: true }>, true>(true)
+	})
+
+	it('returns false for intersection type', () => {
+		// `boolean & { a: 1 }` is considered as strict boolean
+		testType.equal<IsNotBoolean<boolean & { a: 1 }, { exact: true }>, false>(true)
+		testType.equal<IsNotBoolean<boolean & { a: 1 }, { distributive: false }>, false>(true)
+
+		testType.equal<IsNotBoolean<true & { a: 1 }, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<true & { a: 1 }, { distributive: false, exact: true }>, true>(true)
+
+		testType.equal<IsNotBoolean<false & { a: 1 }, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<false & { a: 1 }, { distributive: false, exact: true }>, true>(true)
+	})
+
+	it('works as filter', () => {
+		testType.equal<IsNotBoolean<boolean, { selection: 'filter', exact: true }>, never>(true)
+		testType.equal<IsNotBoolean<true, { selection: 'filter', exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<false, { selection: 'filter', exact: true }>, false>(true)
+
+		testType.equal<IsNotBoolean<number, { selection: 'filter', exact: true }>, number>(true)
+		testType.equal<IsNotBoolean<never, { selection: 'filter', exact: true }>, never>(true)
+		testType.equal<IsNotBoolean<unknown, { selection: 'filter', exact: true }>, unknown>(true)
+		testType.equal<IsNotBoolean<string | boolean, { selection: 'filter', exact: true }>, string>(true)
+		testType.equal<IsNotBoolean<string | boolean, { selection: 'filter', exact: true, distributive: false }>, string | boolean>(true)
+
+		testType.equal<IsNotBoolean<string | true, { selection: 'filter', exact: true }>, string | true>(true)
+	})
+
+	it('works with unique branches', () => {
+		testType.equal<IsNotBoolean<boolean, IsNotBoolean.$Branch<{ exact: true }>>, $Else>(true)
+		testType.equal<IsNotBoolean<true, IsNotBoolean.$Branch<{ exact: true }>>, $Then>(true)
+		testType.equal<IsNotBoolean<false, IsNotBoolean.$Branch<{ exact: true }>>, $Then>(true)
+
+		testType.equal<IsNotBoolean<any, IsNotBoolean.$Branch<{ exact: true }>>, $Then>(true)
+		testType.equal<IsNotBoolean<any, $BranchOptions<$Any> & { exact: true }>, $Any>(true)
+		testType.equal<IsNotBoolean<any, $BranchOptions<$Any | $Then & { exact: true }>>, $Any>(true)
+		testType.equal<IsNotBoolean<unknown, IsNotBoolean.$Branch<{ exact: true }>>, $Then>(true)
+		testType.equal<IsNotBoolean<unknown, $BranchOptions<$Unknown> & { exact: true }>, $Unknown>(true)
+		testType.equal<IsNotBoolean<unknown, $BranchOptions<$Unknown | $Then> & { exact: true }>, $Unknown>(true)
+		testType.equal<IsNotBoolean<never, IsNotBoolean.$Branch<{ exact: true }>>, $Then>(true)
+		testType.equal<IsNotBoolean<never, $BranchOptions<$Never> & { exact: true }>, $Never>(true)
+		testType.equal<IsNotBoolean<never, $BranchOptions<$Never | $Then> & { exact: true }>, $Never>(true)
+		testType.equal<IsNotBoolean<void, IsNotBoolean.$Branch<{ exact: true }>>, $Then>(true)
+	})
+
+	it('can override $any branch', () => {
+		testType.equal<IsNotBoolean<any, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<any, { $any: unknown, exact: true }>, unknown>(true)
+	})
+
+	it('can override $unknown branch', () => {
+		testType.equal<IsNotBoolean<unknown, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<unknown, { $unknown: unknown, exact: true }>, unknown>(true)
+	})
+
+	it('can override $never branch', () => {
+		testType.equal<IsNotBoolean<never, { exact: true }>, true>(true)
+		testType.equal<IsNotBoolean<never, { $never: unknown, exact: true }>, unknown>(true)
+	})
 })

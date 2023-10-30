@@ -3,7 +3,6 @@ import type { IsArray } from '../array/is_array.js'
 import type { IsBigint } from '../bigint/is_bigint.js'
 import type { IsBoolean } from '../boolean/is_boolean.js'
 import type { IsFalse } from '../boolean/is_false.js'
-import type { IsStrictBoolean } from '../boolean/is_strict_boolean.js'
 import type { IsTrue } from '../boolean/is_true.js'
 import type { IsEqual } from '../equal/equal.js'
 import type { IsFunction } from '../function/is_function.js'
@@ -100,7 +99,7 @@ export namespace testType {
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		strictBoolean<T>(expected: IsStrictBoolean<T, { distributive: false }>): T,
+		strictBoolean<T>(expected: IsBoolean<T, { distributive: false, exact: true }>): T,
 		/**
 		 * Check if type `T` is `boolean` and boolean literals.
 		 *

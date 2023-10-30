@@ -1,4 +1,9 @@
-import type { $SelectInvert } from '../type_plus/branch/$select_invert.js'
+import type { NotAssignable } from '../predicates/not_assignable.js'
+import type { $Equality } from '../type_plus/$equality.js'
+import type { $MergeOptions } from '../type_plus/$merge_options.js'
+import type { $SpecialType } from '../type_plus/$special_type.js'
+import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
+import type { $Then } from '../type_plus/branch/$selection.js'
 
 /**
  * 🎭 *predicate*
@@ -54,10 +59,28 @@ import type { $SelectInvert } from '../type_plus/branch/$select_invert.js'
  * type R = IsNotFalse<string, $SelectionBranch> // $Then
  * ```
  */
-export type IsNotFalse<T, $O extends IsNotFalse.$Options = {}> = $SelectInvert<T, false, $O>
+export type IsNotFalse<T, $O extends IsNotFalse.$Options = {}> = $SpecialType<T,
+	$MergeOptions<$O,
+		{
+			$then: $ResolveBranch<T, $O, [$Then]>,
+			$else: IsNotFalse.$<T, $O>
+		}
+	>
+>
 
 export namespace IsNotFalse {
-	export type $Options = $SelectInvert.$Options
-	export type $Default = $SelectInvert.$Default
-	export type $Branch = $SelectInvert.$Branch
+	export type $Options = $Equality.$Options
+	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
+
+	/**
+	 * 🧰 *type util*
+	 *
+	 * Validate if `T` is not `false`.
+	 *
+	 * This is a type util for building custom types.
+	 * It does not check against special types.
+	 */
+	export type $<T, $O extends $UtilOptions> = NotAssignable.$<T, false, $O>
+
+	export type $UtilOptions = NotAssignable.$UtilOptions
 }

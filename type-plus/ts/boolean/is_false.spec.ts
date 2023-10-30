@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else,type $Then, type IsFalse, testType } from '../index.js'
+import { type $Else, type $Then, type IsFalse, testType } from '../index.js'
 
 it('returns true if T is false', () => {
 	testType.equal<IsFalse<false>, true>(true)
@@ -52,6 +52,13 @@ it('can disable union distribution', () => {
 
 it('returns true for intersection type', () => {
 	testType.equal<IsFalse<false & { a: 1 }>, true>(true)
+	testType.equal<IsFalse<false & { a: 1 }, { distributive: false }>, true>(true)
+
+	testType.equal<IsFalse<boolean & { a: 1 }>, boolean>(true)
+	testType.equal<IsFalse<boolean & { a: 1 }, { distributive: false }>, false>(true)
+
+	testType.equal<IsFalse<true & { a: 1 }>, false>(true)
+	testType.equal<IsFalse<true & { a: 1 }, { distributive: false }>, false>(true)
 })
 
 it('works as filter', () => {

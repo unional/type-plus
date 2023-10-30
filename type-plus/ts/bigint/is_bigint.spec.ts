@@ -41,6 +41,20 @@ it('distributes for union type', () => {
 	testType.equal<IsBigint<1n | 1>, boolean>(true)
 })
 
+it('can disable union distribution', () => {
+	testType.equal<IsBigint<bigint | string>, boolean>(true)
+	testType.equal<IsBigint<bigint | string, { distributive: false }>, false>(true)
+
+	testType.equal<IsBigint<1n | string>, boolean>(true)
+	testType.equal<IsBigint<1n | string, { distributive: false }>, false>(true)
+
+	testType.equal<IsBigint<number | string>, false>(true)
+	testType.equal<IsBigint<number | string, { distributive: false }>, false>(true)
+
+	testType.equal<IsBigint<1 | string>, false>(true)
+	testType.equal<IsBigint<1 | string, { distributive: false }>, false>(true)
+})
+
 it('returns true for intersection type', () => {
 	testType.true<IsBigint<bigint & { a: 1 }>>(true)
 	testType.true<IsBigint<bigint & { a: 1 }, { distributive: false }>>(true)
@@ -63,20 +77,6 @@ it('works as filter', () => {
 	testType.equal<IsBigint<string | boolean, { selection: 'filter' }>, never>(true)
 
 	testType.equal<IsBigint<string | 1n, { selection: 'filter' }>, 1n>(true)
-})
-
-it('can disable union distribution', () => {
-	testType.equal<IsBigint<bigint | string>, boolean>(true)
-	testType.equal<IsBigint<bigint | string, { distributive: false }>, false>(true)
-
-	testType.equal<IsBigint<1n | string>, boolean>(true)
-	testType.equal<IsBigint<1n | string, { distributive: false }>, false>(true)
-
-	testType.equal<IsBigint<number | string>, false>(true)
-	testType.equal<IsBigint<number | string, { distributive: false }>, false>(true)
-
-	testType.equal<IsBigint<1 | string>, false>(true)
-	testType.equal<IsBigint<1 | string, { distributive: false }>, false>(true)
 })
 
 it('works with unique branches', () => {

@@ -48,6 +48,8 @@ test('intersection behavior of boolean', () => {
 
 	testType.equal<boolean & {}, boolean>(true)
 	testType.equal<boolean & { a: 1 }, boolean & { a: 1 }>(true)
+	testType.equal<true & { a: 1 }, true & { a: 1 }>(true)
+	testType.equal<false & { a: 1 }, false & { a: 1 }>(true)
 	testType.equal<boolean & string[], boolean & string[]>(true)
 	testType.equal<boolean & [], boolean & []>(true)
 	testType.equal<boolean & Function, boolean & Function>(true)
