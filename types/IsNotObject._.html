@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>$Default | type-plus - v8.0.0-beta.0</title><meta name="description" content="Documentation for type-plus"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/search.js" id="tsd-search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>$ | type-plus - v8.0.0-beta.0</title><meta name="description" content="Documentation for type-plus"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/search.js" id="tsd-search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
 <div class="tsd-toolbar-contents container">
 <div class="table-cell" id="tsd-search" data-base="..">
 <div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
@@ -13,12 +13,25 @@
 <div class="tsd-page-title">
 <ul class="tsd-breadcrumb">
 <li><a href="../modules.html">type-plus</a></li>
-<li><a href="../modules/IsObject.html">IsObject</a></li>
-<li><a href="IsObject._Default.html">$Default</a></li></ul>
-<h1>Type alias $Default</h1></div>
-<div class="tsd-signature"><span class="tsd-kind-type-alias">$<wbr/>Default</span><span class="tsd-signature-symbol">:</span> <a href="../modules/_Select.html" class="tsd-signature-type tsd-kind-namespace">$Select</a><span class="tsd-signature-symbol">.</span><a href="_Select._Default.html" class="tsd-signature-type tsd-kind-type-alias">$Default</a></div><aside class="tsd-sources">
+<li><a href="../modules/IsNotObject.html">IsNotObject</a></li>
+<li><a href="IsNotObject._.html">$</a></li></ul>
+<h1>Type alias $&lt;T, $O&gt;</h1></div>
+<div class="tsd-signature"><span class="tsd-kind-type-alias">$</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">$O</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">:</span> <a href="_ResolveOptions.html" class="tsd-signature-type tsd-kind-type-alias">$ResolveOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type tsd-kind-type-parameter">$O</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">&quot;exact&quot;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type ">$Exact.$Default</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">true</span><br/><span>    </span><span class="tsd-signature-symbol">? </span><a href="_IsDistributive.html" class="tsd-signature-type tsd-kind-type-alias">$IsDistributive</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">$O</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">$else</span><span class="tsd-signature-symbol">: </span><a href="../modules/IsNotObject.html" class="tsd-signature-type tsd-kind-namespace">IsNotObject</a><span class="tsd-signature-symbol">.</span><a href="IsNotObject._N.html" class="tsd-signature-type tsd-kind-type-alias">_N</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">$O</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">$then</span><span class="tsd-signature-symbol">: </span><a href="../modules/IsNotObject.html" class="tsd-signature-type tsd-kind-namespace">IsNotObject</a><span class="tsd-signature-symbol">.</span><a href="IsNotObject._D.html" class="tsd-signature-type tsd-kind-type-alias">_D</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">$O</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">&gt;</span><br/><span>    </span><span class="tsd-signature-symbol">: </span><a href="../modules/NotAssignable.html" class="tsd-signature-type tsd-kind-namespace">NotAssignable</a><span class="tsd-signature-symbol">.</span><a href="NotAssignable._.html" class="tsd-signature-type tsd-kind-type-alias">$</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type tsd-kind-type-parameter">$O</span><span class="tsd-signature-symbol">&gt;</span></div>
+<div class="tsd-comment tsd-typography"><p>🧰 <em>type util</em></p>
+<p>Validate if <code>T</code> is <code>object</code> or <code>object</code> literals.</p>
+<p>This is a type util for building custom types.
+It does not check against special types.</p>
+</div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li>
+<h4><span class="tsd-kind-type-parameter">T</span></h4></li>
+<li>
+<h4><span class="tsd-kind-type-parameter">$O</span><span class="tsd-signature-symbol"> extends </span><a href="../modules/IsNotObject.html" class="tsd-signature-type tsd-kind-namespace">IsNotObject</a><span class="tsd-signature-symbol">.</span><a href="IsNotObject._UtilOptions.html" class="tsd-signature-type tsd-kind-type-alias">$UtilOptions</a></h4></li></ul></section>
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/unional/type-plus/blob/5d9d8de7d/type-plus/ts/object/is_object.ts#L21">type-plus/ts/object/is_object.ts:21</a></li></ul></aside></div>
+<li>Defined in <a href="https://github.com/unional/type-plus/blob/ae5257a76/type-plus/ts/object/is_not_object.ts#L112">type-plus/ts/object/is_not_object.ts:112</a></li></ul></aside></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -79,10 +92,18 @@
 <li><a href="../modules/IsNotFunction.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Function</span></a></li>
 <li><a href="../modules/IsNotNever.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Never</span></a></li>
 <li><a href="../modules/IsNotNull.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Null</span></a></li>
-<li><a href="../modules/IsNotObject.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Object</span></a></li>
+<li>
+<details class="tsd-index-accordion" open data-key="IsNotObject"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="#icon-chevronDown"></use></svg><a href="../modules/IsNotObject.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Object</span></a></summary>
+<div class="tsd-accordion-details">
+<ul class="tsd-nested-navigation">
+<li><a href="IsNotObject._.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-2097152"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-type-alias)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)"></path></g></svg><span>$</span></a></li>
+<li><a href="IsNotObject._Branch.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>$<wbr/>Branch</span></a></li>
+<li><a href="IsNotObject._Options.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>$<wbr/>Options</span></a></li>
+<li><a href="IsNotObject._UtilOptions.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>$<wbr/>Util<wbr/>Options</span></a></li>
+<li><a href="IsNotObject._D.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>_D</span></a></li>
+<li><a href="IsNotObject._N.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>_N</span></a></li></ul></div></details></li>
 <li><a href="../modules/IsNotStrictBoolean.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Strict<wbr/>Boolean</span></a></li>
 <li><a href="../modules/IsNotStrictFunction.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Strict<wbr/>Function</span></a></li>
-<li><a href="../modules/IsNotStrictObject.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Strict<wbr/>Object</span></a></li>
 <li><a href="../modules/IsNotString.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>String</span></a></li>
 <li><a href="../modules/IsNotSymbol.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Symbol</span></a></li>
 <li><a href="../modules/IsNotTrue.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>True</span></a></li>
@@ -91,16 +112,9 @@
 <li><a href="../modules/IsNotUnknown.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Unknown</span></a></li>
 <li><a href="../modules/IsNotVoid.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Not<wbr/>Void</span></a></li>
 <li><a href="../modules/IsNull.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Null</span></a></li>
-<li>
-<details class="tsd-index-accordion" open data-key="IsObject"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="#icon-chevronDown"></use></svg><a href="../modules/IsObject.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Object</span></a></summary>
-<div class="tsd-accordion-details">
-<ul class="tsd-nested-navigation">
-<li><a href="IsObject._Branch.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-2097152"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-type-alias)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)"></path></g></svg><span>$<wbr/>Branch</span></a></li>
-<li><a href="IsObject._Default.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>$<wbr/>Default</span></a></li>
-<li><a href="IsObject._Options.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>$<wbr/>Options</span></a></li></ul></div></details></li>
+<li><a href="../modules/IsObject.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Object</span></a></li>
 <li><a href="../modules/IsStrictBoolean.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Strict<wbr/>Boolean</span></a></li>
 <li><a href="../modules/IsStrictFunction.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Strict<wbr/>Function</span></a></li>
-<li><a href="../modules/IsStrictObject.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Strict<wbr/>Object</span></a></li>
 <li><a href="../modules/IsString.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>String</span></a></li>
 <li><a href="../modules/IsSymbol.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>Symbol</span></a></li>
 <li><a href="../modules/IsTrue.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>Is<wbr/>True</span></a></li>
@@ -237,7 +251,6 @@
 <li><a href="IsNotStrictArray.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Strict<wbr/>Array</span></a></li>
 <li><a href="IsNotStrictBoolean-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Strict<wbr/>Boolean</span></a></li>
 <li><a href="IsNotStrictFunction-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Strict<wbr/>Function</span></a></li>
-<li><a href="IsNotStrictObject-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Strict<wbr/>Object</span></a></li>
 <li><a href="IsNotString-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>String</span></a></li>
 <li><a href="IsNotSymbol-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>Symbol</span></a></li>
 <li><a href="IsNotTrue-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Not<wbr/>True</span></a></li>
@@ -252,7 +265,6 @@
 <li><a href="IsStrictArray.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Strict<wbr/>Array</span></a></li>
 <li><a href="IsStrictBoolean-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Strict<wbr/>Boolean</span></a></li>
 <li><a href="IsStrictFunction-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Strict<wbr/>Function</span></a></li>
-<li><a href="IsStrictObject-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Strict<wbr/>Object</span></a></li>
 <li><a href="IsString-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>String</span></a></li>
 <li><a href="IsSymbol-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>Symbol</span></a></li>
 <li><a href="IsTrue-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Is<wbr/>True</span></a></li>
