@@ -69,12 +69,11 @@ export type IsTuple<
 export namespace IsTuple {
 	export type $Options = $Equality.$Options
 	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
-	// export type $Default = $Select.$Default
 
 	/**
 	 * 🧰 *type util*
 	 *
-	 * Validate if `T` is `bigint` or `bigint` literals.
+	 * Validate if `T` is `tuple`.
 	 *
 	 * This is a type util for building custom types.
 	 * It does not check against special types.

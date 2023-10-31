@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type IsNotArray,testType } from '../index.js'
+import { type IsNotArray, testType, type $Else, type $Then } from '../index.js'
 
 it('returns false if T is array', () => {
 	testType.false<IsNotArray<string[]>>(true)
@@ -38,24 +38,58 @@ it('returns true for other types', () => {
 	testType.true<IsNotArray<() => void>>(true)
 })
 
-it('returns true for union type', () => {
-	testType.true<IsNotArray<number[] | 1>>(true)
+it('distributes over union type', () => {
+	testType.boolean<IsNotArray<number[] | 1>>(true)
 })
 
-it('returns true for intersection type', () => {
-	testType.true<IsNotArray<number[] & 1>>(true)
+it('returns false if T is union of arrays', () => {
+	testType.false<IsNotArray<string[] | number[]>>(true)
 })
 
-it('can override Then/Else', () => {
-	testType.equal<IsNotArray<string[], 1, 2>, 2>(true)
-	testType.equal<IsNotArray<[], 1, 2>, 1>(true)
+it('can disable union distribution', () => {
+	testType.equal<IsNotArray<number[] | number, { distributive: false }>, true>(true)
+})
 
-	testType.equal<IsNotArray<any, 1, 2>, 1>(true)
-	testType.equal<IsNotArray<unknown, 1, 2>, 1>(true)
-	testType.equal<IsNotArray<never, 1, 2>, 1>(true)
-	testType.equal<IsNotArray<void, 1, 2>, 1>(true)
+it('returns false for intersection type', () => {
+	testType.false<IsNotArray<number[] & 1>>(true)
+	testType.false<IsNotArray<number[] & 1, { distributive: false }>>(true)
+
+	testType.true<IsNotArray<[] & 1>>(true)
+	testType.true<IsNotArray<[] & 1, { distributive: false }>>(true)
+})
+
+it('works as filter', () => {
+	testType.equal<IsNotArray<null[], { selection: 'filter' }>, never>(true)
+
+	testType.equal<IsNotArray<never, { selection: 'filter' }>, never>(true)
+	testType.equal<IsNotArray<unknown, { selection: 'filter' }>, unknown>(true)
+	testType.equal<IsNotArray<null[] | number, { selection: 'filter' }>, number>(true)
+})
+it('works with unique branches', () => {
+	testType.equal<IsNotArray<string[], IsNotArray.$Branch>, $Else>(true)
+
+	testType.equal<IsNotArray<any, IsNotArray.$Branch>, $Then>(true)
+	testType.equal<IsNotArray<unknown, IsNotArray.$Branch>, $Then>(true)
+	testType.equal<IsNotArray<never, IsNotArray.$Branch>, $Then>(true)
+	testType.equal<IsNotArray<void, IsNotArray.$Branch>, $Then>(true)
+})
+
+it('can override $any branch', () => {
+	testType.equal<IsNotArray<any>, true>(true)
+	testType.equal<IsNotArray<any, { $any: unknown }>, unknown>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsNotArray<unknown>, true>(true)
+	testType.equal<IsNotArray<unknown, { $unknown: unknown }>, unknown>(true)
+})
+
+it('can override $never branch', () => {
+	testType.equal<IsNotArray<never>, true>(true)
+	testType.equal<IsNotArray<never, { $never: unknown }>, unknown>(true)
 })
 
 it('supports readonly array', () => {
-	testType.true<IsNotArray<readonly [1]>>(true)
+	testType.false<IsNotArray<readonly string[]>>(true)
+	testType.true<IsNotArray<readonly []>>(true)
 })

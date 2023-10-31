@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else,type $Then, type IsTuple, testType } from '../index.js'
+import { type $Else, type $Then, type IsTuple, testType } from '../index.js'
 
 it('returns true if T is a tuple', () => {
 	testType.true<IsTuple<[]>>(true)
@@ -55,12 +55,11 @@ it('returns true if T is union of tuples', () => {
 
 it('returns true if T is intersection of tuples', () => {
 	testType.equal<IsTuple<[] & { a: 1 }>, true>(true)
-})
+	testType.equal<IsTuple<[] & { a: 1 }, { distributive: false }>, true>(true)
 
-// TODO: add $never support back to the system
-// it('can override never case', () => {
-// 	testType.equal<IsTuple<never, 1, 2, { $never: 3 }>, 3>(true)
-// })
+	testType.equal<IsTuple<null[] & { a: 1 }>, false>(true)
+	testType.equal<IsTuple<null[] & { a: 1 }, { distributive: false }>, false>(true)
+})
 
 it('works as filter', () => {
 	testType.equal<IsTuple<[], { selection: 'filter' }>, []>(true)

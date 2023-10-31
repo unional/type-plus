@@ -1,7 +1,7 @@
 import type { IsNever } from '../never/is_never.js'
 import type { IsTuple } from '../tuple/is_tuple.js'
 import type { IndexAt } from './array_plus.index_at.js'
-import type { ArrayType } from './array_type.js'
+import type { IsArray } from './is_array.js'
 
 /**
  * ⚗️ *transform*
@@ -32,10 +32,12 @@ export type SplitAt<
 	Index extends number,
 	DeleteCount extends number | never = never,
 	Insert extends readonly unknown[] | never = never
-> = ArrayType<
+> = IsArray<
 	A,
-	[A, A],
-	SplitAt._<A, [], [], IndexAt._<A, Index>, DeleteCount, Insert>
+	{
+		$then: [A, A],
+		$else: SplitAt._<A, [], [], IndexAt._<A, Index>, DeleteCount, Insert>
+	}
 >
 
 export namespace SplitAt {
