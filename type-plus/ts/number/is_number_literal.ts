@@ -9,7 +9,7 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
 /**
  * 🎭 *predicate*
  *
- * Validate if `T` is `number` literals.
+ * Validate if `T` is number literals.
  *
  * @example
  * ```ts
