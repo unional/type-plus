@@ -73,7 +73,7 @@ export namespace IsNotNumber {
 	/**
 	 * 🧰 *type util*
 	 *
-	 * Validate if `T` is not `bigint` nor `bigint` literals.
+	 * Validate if `T` is not `number` nor `number` literals.
 	 *
 	 * This is a type util for building custom types.
 	 * It does not check against special types.

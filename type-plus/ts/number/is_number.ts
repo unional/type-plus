@@ -76,7 +76,7 @@ export namespace IsNumber {
 	/**
 	 * 🧰 *type util*
 	 *
-	 * Validate if `T` is `bigint` or `bigint` literals.
+	 * Validate if `T` is `number` or `number` literals.
 	 *
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
