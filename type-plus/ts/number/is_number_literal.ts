@@ -20,7 +20,7 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  * type R = IsNumberLiteral<unknown> // false
  * type R = IsNumberLiteral<string | boolean> // false
  *
- * type R = IsNumberLiteral<string | number> // boolean
+ * type R = IsNumberLiteral<string | 1> // boolean
  * ```
  *
  * 🔢 *customize*
@@ -36,7 +36,7 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  * type R = IsNumberLiteral<unknown, { selection: 'filter' }> // never
  * type R = IsNumberLiteral<string | boolean, { selection: 'filter' }> // never
  *
- * type R = IsNumberLiteral<string | number> // number
+ * type R = IsNumberLiteral<string | 1> // 1
  * ```
  *
  * 🔢 *customize*:
@@ -44,8 +44,8 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  * Disable distribution of union types.
  *
  * ```ts
- * type R = IsNumberLiteral<number | 1> // boolean
- * type R = IsNumberLiteral<number | 1, { distributive: false }> // false
+ * type R = IsNumberLiteral<1 | string> // boolean
+ * type R = IsNumberLiteral<1 | string, { distributive: false }> // false
  * ```
  *
  * 🔢 *customize*
@@ -54,7 +54,7 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  *
  * @example
  * ```ts
- * type R = IsNumberLiteral<number, $SelectionBranch> // $Then
+ * type R = IsNumberLiteral<1, $SelectionBranch> // $Then
  * type R = IsNumberLiteral<string, $SelectionBranch> // $Else
  * ```
  */
@@ -85,18 +85,16 @@ export namespace IsNumberLiteral {
 	export type $UtilOptions = Assignable.$UtilOptions
 
 	export type _D<T, $O extends $UtilOptions> =
-		T extends number
+		T extends number & infer U
 		? (
-			number extends T
-			? $ResolveBranch<T, $O, [$Else]>
-			: $ResolveBranch<T, $O, [$Then]>
+			U extends number
+			? $ResolveBranch<T, $O, [$Then]>
+			: $ResolveBranch<T, $O, [$Else]>
 		)
 		: $ResolveBranch<T, $O, [$Else]>
 	export type _N<T, $O extends $UtilOptions> =
 		[T] extends [number & infer U] ?
-		U extends number ? (number extends T
-			? $ResolveBranch<T, $O, [$Else]>
-			: $ResolveBranch<T, $O, [$Then]>)
-		: $ResolveBranch<T, $O, [$Then]>
+		U extends number ? $ResolveBranch<T, $O, [$Then]>
+		: $ResolveBranch<T, $O, [$Else]>
 		: $ResolveBranch<T, $O, [$Else]>
 }

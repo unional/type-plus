@@ -42,8 +42,8 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  * Disable distribution of union types.
  *
  * ```ts
- * type R = IsNotNumberLiteral<number | 1> // boolean
- * type R = IsNotNumberLiteral<number | 1, { distributive: false }> // false
+ * type R = IsNotNumberLiteral<1 | string> // boolean
+ * type R = IsNotNumberLiteral<1 | string, { distributive: false }> // true
  * ```
  *
  * 🔢 *customize*
@@ -52,8 +52,8 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  *
  * @example
  * ```ts
- * type R = IsNotNumberLiteral<number, $SelectionBranch> // $Then
- * type R = IsNotNumberLiteral<string, $SelectionBranch> // $Else
+ * type R = IsNotNumberLiteral<1, $SelectionBranch> // $Else
+ * type R = IsNotNumberLiteral<string, $SelectionBranch> // $Then
  * ```
  */
 export type IsNotNumberLiteral<T, $O extends IsNotNumberLiteral.$Options = {}> = $SpecialType<T,
@@ -72,7 +72,7 @@ export namespace IsNotNumberLiteral {
 	/**
 	 * 🧰 *type util*
 	 *
-	 * Validate if `T` is number literals.
+	 * Validate if `T` is not number literals.
 	 *
 	 * This is a type util for building custom types.
 	 * It does not check against special types.

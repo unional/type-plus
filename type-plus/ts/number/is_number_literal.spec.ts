@@ -50,8 +50,8 @@ it('can disable union distribution', () => {
 })
 
 it('returns true for intersection type', () => {
-	testType.equal<IsNumberLiteral<number & { a: 1 }>, true>(true)
-	testType.equal<IsNumberLiteral<number & { a: 1 }, { distributive: false }>, true>(true)
+	testType.equal<IsNumberLiteral<number & { a: 1 }>, false>(true)
+	testType.equal<IsNumberLiteral<number & { a: 1 }, { distributive: false }>, false>(true)
 	testType.equal<IsNumberLiteral<1 & { a: 1 }>, true>(true)
 	testType.equal<IsNumberLiteral<1 & { a: 1 }, { distributive: false }>, true>(true)
 
