@@ -10,6 +10,10 @@ it('returns false for number', () => {
 	testType.false<IsBigintLiteral<1.1>>(true)
 })
 
+it('returns false for bigint', () => {
+	testType.false<IsBigintLiteral<bigint>>(true)
+})
+
 it('returns true if T is bigint literial', () => {
 	testType.true<IsBigintLiteral<-1n>>(true)
 	testType.true<IsBigintLiteral<0n>>(true)
@@ -32,7 +36,6 @@ it('returns false for all other types', () => {
 	testType.false<IsBigintLiteral<string>>(true)
 	testType.false<IsBigintLiteral<''>>(true)
 	testType.false<IsBigintLiteral<symbol>>(true)
-	testType.false<IsBigintLiteral<bigint>>(true)
 	testType.false<IsBigintLiteral<{}>>(true)
 	testType.false<IsBigintLiteral<string[]>>(true)
 	testType.false<IsBigintLiteral<[]>>(true)
