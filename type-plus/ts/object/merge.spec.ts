@@ -129,4 +129,3 @@ it('spread across unions', () => {
 	// 	{ a: number } | { a: number, b: 2 }
 	// >(true)
 })
-

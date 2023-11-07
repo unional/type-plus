@@ -30,4 +30,5 @@ export namespace StringPlus {
 	 * ```
 	 */
 	export type Split<Subject extends string, Seperator extends string> = StringSplit<Subject, Seperator>
+
 }

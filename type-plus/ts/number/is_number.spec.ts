@@ -142,6 +142,7 @@ describe('exact', () => {
 
 	it('can disable union distribution', () => {
 		testType.equal<IsNumber<number | string, { distributive: false }>, false>(true)
+		testType.equal<IsNumber<1 | 2, { distributive: false }>, true>(true)
 	})
 
 	it('returns true for intersection type', () => {

@@ -7,7 +7,6 @@ import type { $Exact } from '../type_plus/branch/$exact.js'
 import type { $IsDistributive } from '../type_plus/branch/$is_distributive.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../type_plus/branch/$selection.js'
-import type { $SelectionOptions } from '../type_plus/branch/$selection_options.js'
 
 /**
  * 🎭 *predicate*
@@ -86,7 +85,7 @@ export namespace IsString {
 
 	export type $UtilOptions = Assignable.$UtilOptions & $Exact.$Options
 
-	export type _D<T, $O extends $SelectionOptions> =
+	export type _D<T, $O extends $UtilOptions> =
 		T extends string & infer U
 		? (
 			U extends string
@@ -94,7 +93,7 @@ export namespace IsString {
 			: $ResolveBranch<T, $O, [$Then]>
 		)
 		: $ResolveBranch<T, $O, [$Else]>
-	export type _N<T, $O extends $SelectionOptions> =
+	export type _N<T, $O extends $UtilOptions> =
 		[T] extends [string & infer U] ?
 		U extends string ? $ResolveBranch<T, $O, [$Else]>
 		: $ResolveBranch<T, $O, [$Then]>
