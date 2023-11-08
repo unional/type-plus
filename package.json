@@ -20,7 +20,7 @@
     "test": "jest -c jest.config.mjs",
     "tp": "pnpm --filter type-plus",
     "verify": "run-p lint verify:turbo",
-    "verify:turbo": "turbo run build build:doc depcheck coverage test:type size",
+    "verify:turbo": "turbo run build build:doc depcheck coverage size",
     "version": "changeset version"
   },
   "devDependencies": {

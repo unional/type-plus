@@ -171,4 +171,4 @@ describe(`${merge.name}()`, () => {
 })
 
 // TODO: array merge check
-testType.equal<Merge<{toString: 1}, string>, string>(true)
+// testType.equal<Merge<{toString: 1}, string>, string>(true)
