@@ -5,7 +5,7 @@ import type { $SpecialType } from '../type_plus/$special_type.js'
 import type { $IsDistributive } from '../type_plus/branch/$is_distributive.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../type_plus/branch/$selection.js'
-import type { $ExtractProcessedString } from './$extract_processed_string.js'
+import type { $ExtractManipulatedString } from './$extract_manipulated_string.js'
 
 export type IsTemplateLiteral<T, $O extends IsTemplateLiteral.$Options = {}> =
 	$SpecialType<T,
@@ -28,7 +28,7 @@ export namespace IsTemplateLiteral {
 
 	type _D<T, $O extends $UtilOptions> =
 		T extends string
-		? ($ExtractProcessedString<`${T}`> extends infer K
+		? ($ExtractManipulatedString<`${T}`> extends infer K
 			? (string extends K
 				? $ResolveBranch<T, $O, [$Else]>
 				: (K extends string

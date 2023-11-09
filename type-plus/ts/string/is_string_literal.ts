@@ -8,7 +8,7 @@ import type { $IsDistributive } from '../type_plus/branch/$is_distributive.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../type_plus/branch/$selection.js'
 import type { $SelectionOptions } from '../type_plus/branch/$selection_options.js'
-import type { $ExtractProcessedString } from './$extract_processed_string.js'
+import type { $ExtractManipulatedString } from './$extract_manipulated_string.js'
 
 /**
  * 🎭 *predicate*
@@ -19,6 +19,7 @@ import type { $ExtractProcessedString } from './$extract_processed_string.js'
  * ```ts
  * type R = IsStringLiteral<string> // false
  * type R = IsStringLiteral<'a'> // true
+ * type R = IsStringLiteral<`${number}`> // true
  *
  * type R = IsStringLiteral<never> // false
  * type R = IsStringLiteral<unknown> // false
@@ -44,8 +45,17 @@ import type { $ExtractProcessedString } from './$extract_processed_string.js'
  * Disable distribution of union types.
  *
  * ```ts
- * type R = IsStringLiteral<string | 1> // boolean
- * type R = IsStringLiteral<string | 1, { distributive: false }> // false
+ * type R = IsStringLiteral<'abc' | 1> // boolean
+ * type R = IsStringLiteral<'abc' | 1, { distributive: false }> // false
+ * ```
+ *
+ * 🔢 *customize*:
+ *
+ * Check if `T` is exactly a string literal, excluding template literals.
+ *
+ * ```ts
+ * type R = IsStringLiteral<'${number}'> // true
+ * type R = IsStringLiteral<'${number}', { exact: true }> // false
  * ```
  *
  * 🔢 *customize*
@@ -54,8 +64,8 @@ import type { $ExtractProcessedString } from './$extract_processed_string.js'
  *
  * @example
  * ```ts
- * type R = IsStringLiteral<string, $IsStringLiteral.$Branch> // $Then
- * type R = IsStringLiteral<bigint, $IsStringLiteral.$Branch> // $Else
+ * type R = IsStringLiteral<'abc', $IsStringLiteral.$Branch> // $Then
+ * type R = IsStringLiteral<string, $IsStringLiteral.$Branch> // $Else
  * ```
  */
 export type IsStringLiteral<T, $O extends IsStringLiteral.$Options = {}> =
@@ -89,7 +99,7 @@ export namespace IsStringLiteral {
 
 	export type _ED<T, $O extends $SelectionOptions> =
 		T extends string
-		? ($ExtractProcessedString<`${T}`> extends infer K
+		? ($ExtractManipulatedString<`${T}`> extends infer K
 			? (string extends K
 				? $ResolveBranch<T, $O, [$Else]>
 				: (K extends string
@@ -101,7 +111,8 @@ export namespace IsStringLiteral {
 					: $ResolveBranch<T, $O, [$Else]>))
 			: never)
 		: $ResolveBranch<T, $O, [$Else]>
-	export type _EN<T, $O extends $SelectionOptions> =
+
+		export type _EN<T, $O extends $SelectionOptions> =
 		_D<T, { $then: $Then, $else: $Else }> extends infer R
 		? $Then | $Else extends R
 		? $ResolveBranch<T, $O, [$Else]>
