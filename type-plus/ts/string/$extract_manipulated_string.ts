@@ -1,7 +1,7 @@
 /**
  * 🧰 *type util*
  *
- * Extract the processed string from any of the intrinsic string manipulation types:
+ * Extract the manipulated string from any of the intrinsic string manipulation types:
  *
  * - `Uppercase`
  * - `Lowercase`
