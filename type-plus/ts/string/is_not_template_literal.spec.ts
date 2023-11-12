@@ -35,11 +35,8 @@ it('returns false for template literal', () => {
 
 it('returns true if T can be reduced to a string literal', () => {
 	testType.true<IsNotTemplateLiteral<`${boolean}`>>(true)
-
 	testType.true<IsNotTemplateLiteral<`a${1}`>>(true)
-
 	testType.true<IsNotTemplateLiteral<`${1n}c`>>(true)
-
 	testType.true<IsNotTemplateLiteral<`a${null}c`>>(true)
 })
 
@@ -50,7 +47,6 @@ it('returns true for Uppercase or Lowercase string', () => {
 
 it('returns true for Uppercase or Lowercase string literal', () => {
 	testType.true<IsNotTemplateLiteral<Uppercase<'abc'>>>(true)
-
 	testType.true<IsNotTemplateLiteral<Lowercase<'abc'>>>(true)
 })
 

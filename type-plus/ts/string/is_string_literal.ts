@@ -13,7 +13,7 @@ import type { $ExtractManipulatedString } from './$extract_manipulated_string.js
 /**
  * 🎭 *predicate*
  *
- * Validate if `T` is string literals.
+ * Validate if `T` is a string literal(s).
  *
  * @example
  * ```ts
@@ -23,12 +23,12 @@ import type { $ExtractManipulatedString } from './$extract_manipulated_string.js
  *
  * type R = IsStringLiteral<never> // false
  * type R = IsStringLiteral<unknown> // false
- * type R = IsStringLiteral<string | boolean> // boolean
+ * type R = IsStringLiteral<'a' | boolean> // boolean
  * ```
  *
  * 🔢 *customize*
  *
- * Filter to ensure `T` is string literals, otherwise returns `never`.
+ * Filter to ensure `T` is a string literal(s), otherwise returns `never`.
  *
  * @example
  * ```ts
@@ -37,7 +37,7 @@ import type { $ExtractManipulatedString } from './$extract_manipulated_string.js
  *
  * type R = IsStringLiteral<never, { selection: 'filter' }> // never
  * type R = IsStringLiteral<unknown, { selection: 'filter' }> // never
- * type R = IsStringLiteral<string | boolean, { selection: 'filter' }> // string
+ * type R = IsStringLiteral<'a' | boolean, { selection: 'filter' }> // 'a'
  * ```
  *
  * 🔢 *customize*:
@@ -98,25 +98,23 @@ export namespace IsStringLiteral {
 	export type $UtilOptions = Assignable.$UtilOptions & $Exact.$Options
 
 	export type _ED<T, $O extends $SelectionOptions> =
-		T extends string
-		? ($ExtractManipulatedString<`${T}`> extends infer K
-			? (string extends K
-				? $ResolveBranch<T, $O, [$Else]>
-				: (K extends string
-					? (Uppercase<K> extends Uppercase<Lowercase<K>>
-						? (Lowercase<K> extends Lowercase<Uppercase<K>>
-							? $ResolveBranch<T, $O, [$Then]>
-							: $ResolveBranch<T, $O, [$Else]>)
-						: $ResolveBranch<T, $O, [$Else]>)
-					: $ResolveBranch<T, $O, [$Else]>))
-			: never)
-		: $ResolveBranch<T, $O, [$Else]>
+		T extends string ? (_E<T, $O>) : $ResolveBranch<T, $O, [$Else]>
 
-		export type _EN<T, $O extends $SelectionOptions> =
-		_D<T, { $then: $Then, $else: $Else }> extends infer R
-		? $Then | $Else extends R
-		? $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [R]>
+	export type _EN<T, $O extends $SelectionOptions> =
+		[T] extends [string] ? (_E<T, $O>) : $ResolveBranch<T, $O, [$Else]>
+
+	export type _E<T extends string, $O extends $SelectionOptions> =
+		$ExtractManipulatedString<`${T}`> extends infer K
+		? (string extends K
+			? $ResolveBranch<T, $O, [$Else]>
+			: (K extends string
+				? (Uppercase<K> extends Uppercase<Lowercase<K>>
+					? (Lowercase<K> extends Lowercase<Uppercase<K>>
+						? $ResolveBranch<T, $O, [$Then]>
+						: $ResolveBranch<T, $O, [$Else]>)
+					: $ResolveBranch<T, $O, [$Else]>)
+				: $ResolveBranch<T, $O, [$Else]>)
+		)
 		: never
 
 	export type _D<T, $O extends $SelectionOptions> =
