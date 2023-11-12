@@ -1,7 +1,7 @@
 import type { IsBigint } from '../bigint/is_bigint.js'
 import type { IsNumber } from '../number/is_number.js'
+import type { $Equality } from '../type_plus/$equality.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
-import type { $Select } from '../type_plus/branch/$select.js'
 import type { $Else, $Then } from '../type_plus/branch/$selection.js'
 
 /**
@@ -44,14 +44,6 @@ export type IsNotInteger<T, $O extends IsNotInteger.$Options = {}> = IsNumber<T,
 	)
 	: never : never
 export namespace IsNotInteger {
-	export type $Options = $Select.$Options
-	export type $Default = $Select.$Default
-	export type $Branch = $Select.$Branch
+	export type $Options = $Equality.$Options
+	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
 }
-
-// export type IsNotInteger<T, Then = true, Else = false> =  IsAnyOrNever<
-// T,
-// $SelectionBranch> extends infer R
-// ? R extends $Then ? Then
-// : R extends $Else ? [T] extends [Numeric] ? (`${T}` extends `${bigint}` ? Else : Then) : Then
-// : never : never
