@@ -81,7 +81,7 @@ export namespace testType {
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		array<T>(expected: IsArray<T>): T,
+		array<T>(expected: IsArray<T, { exact: true }>): T,
 		/**
 		 * Check if type `T` is exactly `bigint`.
 		 *

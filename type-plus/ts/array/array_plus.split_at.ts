@@ -35,6 +35,7 @@ export type SplitAt<
 > = IsArray<
 	A,
 	{
+		exact: true,
 		$then: [A, A],
 		$else: SplitAt._<A, [], [], IndexAt._<A, Index>, DeleteCount, Insert>
 	}
