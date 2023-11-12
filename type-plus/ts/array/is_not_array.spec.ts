@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it, describe } from '@jest/globals'
 
 import { type IsNotArray, testType, type $Else, type $Then } from '../index.js'
 
@@ -6,9 +6,9 @@ it('returns false if T is array', () => {
 	testType.false<IsNotArray<string[]>>(true)
 })
 
-it('returns true if T is tuple', () => {
-	testType.true<IsNotArray<[]>>(true)
-	testType.true<IsNotArray<[1]>>(true)
+it('returns false if T is tuple', () => {
+	testType.false<IsNotArray<[]>>(true)
+	testType.false<IsNotArray<[1]>>(true)
 })
 
 it('returns true for special types', () => {
@@ -33,7 +33,6 @@ it('returns true for other types', () => {
 	testType.true<IsNotArray<1n>>(true)
 	testType.true<IsNotArray<{}>>(true)
 	testType.true<IsNotArray<{ a: 1 }>>(true)
-	testType.true<IsNotArray<[]>>(true)
 	testType.true<IsNotArray<Function>>(true)
 	testType.true<IsNotArray<() => void>>(true)
 })
@@ -54,8 +53,8 @@ it('returns false for intersection type', () => {
 	testType.false<IsNotArray<number[] & 1>>(true)
 	testType.false<IsNotArray<number[] & 1, { distributive: false }>>(true)
 
-	testType.true<IsNotArray<[] & 1>>(true)
-	testType.true<IsNotArray<[] & 1, { distributive: false }>>(true)
+	testType.false<IsNotArray<[] & 1>>(true)
+	testType.false<IsNotArray<[] & 1, { distributive: false }>>(true)
 })
 
 it('works as filter', () => {
@@ -91,5 +90,21 @@ it('can override $never branch', () => {
 
 it('supports readonly array', () => {
 	testType.false<IsNotArray<readonly string[]>>(true)
-	testType.true<IsNotArray<readonly []>>(true)
+	testType.false<IsNotArray<readonly []>>(true)
+})
+
+describe('exact', () => {
+	it('returns true if T is a tuple', () => {
+		testType.true<IsNotArray<[], { exact: true }>>(true)
+		testType.true<IsNotArray<[1], { exact: true }>>(true)
+	})
+
+	it('returns true for tuple intersection type', () => {
+		testType.true<IsNotArray<[] & 1, { exact: true }>>(true)
+		testType.true<IsNotArray<[] & 1, { distributive: false, exact: true }>>(true)
+	})
+
+	it('supports readonly tuple', () => {
+		testType.true<IsNotArray<readonly [], { exact: true }>>(true)
+	})
 })

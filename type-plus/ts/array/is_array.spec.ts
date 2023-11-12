@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { describe, it } from '@jest/globals'
 
 import { testType, type $Else, type $Then, type IsArray } from '../index.js'
 
@@ -11,9 +11,9 @@ it('returns true if T is array', () => {
 	testType.true<IsArray<string[]>>(true)
 })
 
-it('returns false if T is tuple', () => {
-	testType.false<IsArray<[]>>(true)
-	testType.false<IsArray<[1]>>(true)
+it('returns true if T is tuple', () => {
+	testType.true<IsArray<[]>>(true)
+	testType.true<IsArray<[1]>>(true)
 })
 
 it('returns false for special types', () => {
@@ -38,7 +38,6 @@ it('returns false for other types', () => {
 	testType.false<IsArray<1n>>(true)
 	testType.false<IsArray<{}>>(true)
 	testType.false<IsArray<{ a: 1 }>>(true)
-	testType.false<IsArray<[]>>(true)
 	testType.false<IsArray<Function>>(true)
 	testType.false<IsArray<() => void>>(true)
 })
@@ -55,12 +54,12 @@ it('can disable union distribution', () => {
 	testType.equal<IsArray<number[] | number, { distributive: false }>, false>(true)
 })
 
-it('returns false for intersection type', () => {
+it('works with intersection type', () => {
 	testType.true<IsArray<number[] & 1>>(true)
 	testType.true<IsArray<number[] & 1, { distributive: false }>>(true)
 
-	testType.false<IsArray<[] & 1>>(true)
-	testType.false<IsArray<[] & 1, { distributive: false }>>(true)
+	testType.true<IsArray<[] & 1>>(true)
+	testType.true<IsArray<[] & 1, { distributive: false }>>(true)
 })
 
 it('works as filter', () => {
@@ -96,5 +95,21 @@ it('can override $never branch', () => {
 
 it('supports readonly array', () => {
 	testType.true<IsArray<readonly string[]>>(true)
-	testType.false<IsArray<readonly []>>(true)
+	testType.true<IsArray<readonly []>>(true)
+})
+
+describe('exact', () => {
+	it('returns false if T is a tuple', () => {
+		testType.false<IsArray<[], { exact: true }>>(true)
+		testType.false<IsArray<[1], { exact: true }>>(true)
+	})
+
+	it('returns false for tuple intersection type', () => {
+		testType.false<IsArray<[] & 1, { exact: true }>>(true)
+		testType.false<IsArray<[] & 1, { distributive: false, exact: true }>>(true)
+	})
+
+	it('supports readonly tuple', () => {
+		testType.false<IsArray<readonly [], { exact: true }>>(true)
+	})
 })

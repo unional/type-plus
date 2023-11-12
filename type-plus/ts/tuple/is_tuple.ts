@@ -49,7 +49,7 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  *
  * @example
  * ```ts
- * type R = IsTuple<bigint, IsTuple.$Branch> // $Then
+ * type R = IsTuple<[], IsTuple.$Branch> // $Then
  * type R = IsTuple<string, IsTuple.$Branch> // $Else
  * ```
  */
