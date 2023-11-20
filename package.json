@@ -48,7 +48,7 @@
     "turbo": "1.10.16",
     "typedoc": "^0.25.0",
     "typedoc-plugin-extras": "^2.3.3",
-    "typescript": "~5.0.4"
+    "typescript": "~5.3.0"
   },
   "engines": {
     "typescript": "~5.0.4"
