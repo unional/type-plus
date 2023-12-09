@@ -58,5 +58,5 @@
       "typescript": "~5.0.4"
     }
   },
-  "packageManager": "pnpm@8.11.0"
+  "packageManager": "pnpm@8.12.0"
 }
