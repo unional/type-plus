@@ -1,0 +1,63 @@
+{
+  "name": "@type-plus/kind",
+  "version": "0.0.0",
+  "description": "TypeScript Kind-Level Programming implementation",
+  "keywords": [
+    "kind",
+    "typescript",
+    "type",
+    "types"
+  ],
+  "homepage": "https://github.com/unional/type-plus/tree/main/type-plus/packages/kind#readme",
+  "bugs": {
+    "url": "https://github.com/unional/type-plus/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unional/type-plus.git",
+    "directory": "type-plus"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Homa Wong (unional)",
+    "email": "homawong@gmail.com"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./testing": {
+      "types": "./dist/testing/index.d.ts",
+      "default": "./dist/testing/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "ts",
+    "!**/*.{spec,test,unit,accept,integrate,system,perf,stress}.*"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rimraf coverage dist --glob *.tsbuildinfo",
+    "coverage:x": "bun test --coverage",
+    "depcheck": "depcheck",
+    "nuke": "pnpm clean && rimraf node_modules",
+    "test:x": "bun test",
+    "test:type": "tsc --noEmit",
+    "verify": "npm-run-all clean -p build depcheck coverage",
+    "watch:x": "bun test --watch",
+    "w:x": "bun test --watch"
+  },
+  "devDependencies": {
+    "@repobuddy/typescript": "^1.2.0",
+    "depcheck": "^1.4.3",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^5.0.0"
+  }
+}
