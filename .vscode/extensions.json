@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "aaron-bond.better-comments",
+    "astro-build.astro-vscode",
     "bierner.emojisense",
     "davidanson.vscode-markdownlint",
     "dbaeumer.vscode-eslint",
@@ -12,8 +13,7 @@
     "mhutchie.git-graph",
     "pflannery.vscode-versionlens",
     "unional.vscode-sort-package-json",
-    "valentjn.vscode-ltex",
     "yzhang.markdown-all-in-one",
-    "astro-build.astro-vscode"
+    "ms-vscode.live-server"
   ]
 }
