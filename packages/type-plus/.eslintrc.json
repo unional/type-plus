@@ -6,8 +6,8 @@
     "cjs",
     "esm",
     "node_modules",
-    "ts/type-checker",
-    "ts/types",
+    "src/type-checker",
+    "src/types",
     "tslib"
   ],
   "overrides": [
