@@ -2,16 +2,16 @@
   "files": [],
   "references": [
     {
-      "path": "./type-plus/tsconfig.json"
+      "path": "./packages/type-plus/tsconfig.json"
     }
   ],
   "typedocOptions": {
     "customTitle": "Additional types and utils for TypeScript",
-    "customTitleLink": "https://github.com/unional/type-plus",
+    "titleLink": "https://github.com/unional/type-plus",
     "entryPointStrategy": "packages",
     "includeVersion": true,
     "entryPoints": [
-      "type-plus"
+      "packages/type-plus"
     ],
     "out": "docs"
   }
