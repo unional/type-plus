@@ -52,4 +52,5 @@ node_modules
 
 # project
 /.turbo
+*.tsbuildinfo
 docs
