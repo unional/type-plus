@@ -43,9 +43,9 @@
   "types": "./esm/index.d.ts",
   "files": [
     "esm",
-    "ts",
-    "!ts/types",
-    "!ts/type-checker",
+    "src",
+    "!src/types",
+    "!src/type-checker",
     "!**/*.{spec,test,unit,accept,integrate,system,perf,stress}.*"
   ],
   "scripts": {

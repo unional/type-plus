@@ -1,6 +1,6 @@
 /** @type {import('jest').Config} */
 export default {
 	preset: '@repobuddy/jest/presets/ts-esm-watch',
-	modulePathIgnorePatterns: ['<rootDir>/ts/types', '<rootDir>/ts/type-checker'],
-	roots: ['<rootDir>/ts'],
+	modulePathIgnorePatterns: ['<rootDir>/src/types', '<rootDir>/src/type-checker'],
+	roots: ['<rootDir>/src'],
 }

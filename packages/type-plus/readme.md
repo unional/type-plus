@@ -125,10 +125,10 @@ so that that type of the value can be narrowed down.
 
 ### assertType
 
-[`assertType`](./ts/assertion/assert_type.ts) provides a generic assertion function,
+[`assertType`](./src/assertion/assert_type.ts) provides a generic assertion function,
 as well as many assertion functions for builtin types.
 
-> [`assertType<T>(subject)`](./ts/assertion/readme.md#asserttype)
+> [`assertType<T>(subject)`](./src/assertion/readme.md#asserttype)
 
 💀 deprecated. Use `assertType.as()` instead.
 
@@ -149,90 +149,90 @@ assertType<boolean>(s, s => typeof s === 'boolean')
 
 The message beautification is provided by [`tersify`](https://github.com/unional/tersify).
 
-> [`assertType.isUndefined()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.isUndefined()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is `undefined`.
 
-> [`assertType.noUndefined()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.noUndefined()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is not `undefined`.
 
-> [`assertType.isNull()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.isNull()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is `null`.
 
-> [`assertType.noNull()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.noNull()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is not `null`.
 
-> [`assertType.isNumber()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.isNumber()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is `number`.
 
-> [`assertType.noNumber()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.noNumber()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is not `number`.
 
-> [`assertType.isBoolean()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.isBoolean()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is `boolean`.
 
-> [`assertType.noBoolean()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.noBoolean()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is not `boolean`.
 
-> [`assertType.isTrue()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.isTrue()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is `true`.
 
-> [`assertType.noTrue()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.noTrue()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is not `true`.
 
-> [`assertType.isFalse()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.isFalse()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is `false`.
 
-> [`assertType.noFalse()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.noFalse()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is not `false`.
 
-> [`assertType.isString()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.isString()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is `string`.
 
-> [`assertType.noString()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.noString()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is not `string`.
 
-> [`assertType.isFunction()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.isFunction()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is `function`.
 
-> [`assertType.noFunction()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.noFunction()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is not `function`.
 
-> [`assertType.isError()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.isError()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is an `Error`.
 
-> [`assertType.noError()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.noError()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is not an `Error`.
 
-> [`assertType.isConstructor()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.isConstructor()`](./src/assertion/readme.md#asserttype)
 
 💀 deprecated. It does not work in all cases.
 
 It passes for function that can be called with `new`.
 If the subject is an arrow function, it can still return true after compilation.
 
-> [`assertType.isNever()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.isNever()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` is `never`.
 
-> [`assertType.custom()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.custom()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: creates a custom assertion function.
 
@@ -240,7 +240,7 @@ Using it to create a custom assertion function that provides better error messag
 
 The message beautification is provided by [`tersify`](https://github.com/unional/tersify).
 
-> [`assertType.as<T>()`](./ts/assertion/readme.md#asserttype)
+> [`assertType.as<T>()`](./src/assertion/readme.md#asserttype)
 
 🚦`assertion`: assert the `subject` as `T` without validator.
 
@@ -250,23 +250,23 @@ This works similar to manual assertion `;(subject as T)`
 
 [User-defined type guard functions][type_guard] is a function which its return type is specified as `x is T`.
 
-> [`isType()`](./ts/type-guard/readme.md#istype)
+> [`isType()`](./src/type-guard/readme.md#istype)
 
 🛡️ `guard`: a generic type guard function
 
-> [`isType.t()`](./ts/type-guard/readme.md#istype)
+> [`isType.t()`](./src/type-guard/readme.md#istype)
 
 💀 `deprecated`: use `testType.true()` instead.
 
-> [`isType.f()`](./ts/type-guard/readme.md#istype)
+> [`isType.f()`](./src/type-guard/readme.md#istype)
 
 💀 `deprecated`: use `testType.false()` instead.
 
-> [`isType.never()`](./ts/type-guard/readme.md#istype)
+> [`isType.never()`](./src/type-guard/readme.md#istype)
 
 💀 `deprecated`: use `testType.never()` instead.
 
-> [`isType.equal()`](./ts/type-guard/readme.md#istype)
+> [`isType.equal()`](./src/type-guard/readme.md#istype)
 
 💀 `deprecated`: use `testType.equal()` instead.
 
@@ -365,137 +365,137 @@ Some types will have more checks, such as `boolean` has `StrictBooleanType<T>`, 
 
 You can learn more in their respective sections:
 
-- [any](./ts/any/readme.md)
-- [array](./ts/array/readme.md)
-- [bigint](./ts/bigint/readme.md)
-- [boolean](./ts/boolean/readme.md)
-- [function](./ts/function/readme.md)
-- [never](./ts/never/readme.md)
-- [null](./ts/null/readme.md)
-- [number](./ts/number/readme.md)
-- [object](./ts/object/readme.md)
-- [string](./ts/string/readme.md)
-- [symbol](./ts/symbol/readme.md)
-- [tuple](./ts/tuple/readme.md)
-- [undefined](./ts/undefined/readme.md)
-- [unknown](./ts/unknown/readme.md)
-- [void](./ts/void/readme.md)
-- [mix types](./ts/mix-types/readme.md)
+- [any](./src/any/readme.md)
+- [array](./src/array/readme.md)
+- [bigint](./src/bigint/readme.md)
+- [boolean](./src/boolean/readme.md)
+- [function](./src/function/readme.md)
+- [never](./src/never/readme.md)
+- [null](./src/null/readme.md)
+- [number](./src/number/readme.md)
+- [object](./src/object/readme.md)
+- [string](./src/string/readme.md)
+- [symbol](./src/symbol/readme.md)
+- [tuple](./src/tuple/readme.md)
+- [undefined](./src/undefined/readme.md)
+- [unknown](./src/unknown/readme.md)
+- [void](./src/void/readme.md)
+- [mix types](./src/mix-types/readme.md)
 
-### [any](./ts/any/readme.md)
+### [any](./src/any/readme.md)
 
-- [`AnyType`](./ts/any/readme.md#anytype)
-- [`IsAny`](./ts/any/readme.md#isany)
-- [`NotAnyType`](./ts/any/readme.md#notanytype)
-- [`IsNotAny`](./ts/any/readme.md#isnotany)
-- [`AnyOrNeverType`](./ts/mix_types/readme.md#anyornevertype)
-- [`IsAnyOrNever`](./ts/mix_types/readme.md#isanyornever)
+- [`AnyType`](./src/any/readme.md#anytype)
+- [`IsAny`](./src/any/readme.md#isany)
+- [`NotAnyType`](./src/any/readme.md#notanytype)
+- [`IsNotAny`](./src/any/readme.md#isnotany)
+- [`AnyOrNeverType`](./src/mix_types/readme.md#anyornevertype)
+- [`IsAnyOrNever`](./src/mix_types/readme.md#isanyornever)
 
-### [Array](./ts/array/readme.md)
+### [Array](./src/array/readme.md)
 
-- 🌪️[`ArrayType`](./ts/array/readme.md#arraytype): Filter `T` to ensure it is an array, excluding tuple.
-- 🎭[`IsArray`](./ts/array/readme.md#isarray): Validate that `T` is an array, excluding tuple.
-- 🌪️[`NotArrayType`](./ts/array/readme.md#notarraytype): Filter `T` to ensure it is not an array, excluding tuple.
-- 🎭[`IsNotArrayType`](./ts/array/readme.md#isnotarraytype): Validate that `T` is not an array, excluding tuple.
-- 🦴[`At`](./ts/array/readme.md#at): Gets the type of the array or tuple at positive or negative index `N`.
-- 🦴💀[`Concat`](./ts/array/readme.md#concat): Concats two arrays or tuples.
-- 🦴🔢[`FindFirst`](./ts/array/readme.md#findfirst): Find the first type in the array or tuple `A` that matches `Criteria`.
-- [`FindLast`](./ts/array/readme.md#findlast)
-- [`Some`](./ts/array/readme.md#some)
-- ⚗️[`Filter`](./ts/array/readme.md#filter): Filter the array or tuple `A`, keeping entries satisfying `Criteria`.
-- ⚗️👽[`KeepMatch`](./ts/array/readme.md#keepmatch): Keeps entries satisfying `Criteria` in array or tuple `A`.
-- 🦴🔢[`Head`](./ts/array/readme.md#head): Gets the first entry in the tuple or the type of array `T`.
-- [`IntersectOfProps`](./ts/array/readme.md#intersectofprops)
-- [`MapToProp`](./ts/array/readme.md#maptoprop)
-- 🦴🔢[`Last`](./ts/array/readme.md#last): Gets the last entry in the tuple or the type of array `T`.
-- [`literalArray`](./ts/array/readme.md#literalarray)
-- [`PadStart`](./ts/array/readme.md#padstart)
-- [`reduceWhile`](./ts/array/readme.md#reducewhile)
-- [`Reverse`](./ts/array/readme.md#reverse)
-- [`PropUnion`](./ts/array/readme.md#propunion)
-- [`UnionOfProps`](./ts/array/readme.md#unionofprops)
-- [`UnionOfValues`](./ts/array/readme.md#unionofvalues)
-- [`ArrayPlus.At`](./ts/array/readme.md#arrayplusat)
-- [`ArrayPlus.Concat`](./ts/array/readme.md#arrayplusconcat)
-- [`ArrayPlus.Entries`](./ts/array/readme.md#arrayplusentries)
-- 🦴🔢[`ArrayPlus.Find`](./ts/array/readme.md#arrayplusfind): Finds the type in array `A` that matches `Criteria`.
-- [`ArrayPlus.FindLast`](./ts/array/readme.md#arrayplusfindlast)
-- [`ArrayPlus.Reverse`](./ts/array/readme.md#arrayplusreverse)
-- [`ArrayPlus.SplitAt`](./ts/array/readme.md#arrayplussplitat)
-- [`ArrayPlus.Some`](./ts/array/readme.md#arrayplussome)
+- 🌪️[`ArrayType`](./src/array/readme.md#arraytype): Filter `T` to ensure it is an array, excluding tuple.
+- 🎭[`IsArray`](./src/array/readme.md#isarray): Validate that `T` is an array, excluding tuple.
+- 🌪️[`NotArrayType`](./src/array/readme.md#notarraytype): Filter `T` to ensure it is not an array, excluding tuple.
+- 🎭[`IsNotArrayType`](./src/array/readme.md#isnotarraytype): Validate that `T` is not an array, excluding tuple.
+- 🦴[`At`](./src/array/readme.md#at): Gets the type of the array or tuple at positive or negative index `N`.
+- 🦴💀[`Concat`](./src/array/readme.md#concat): Concats two arrays or tuples.
+- 🦴🔢[`FindFirst`](./src/array/readme.md#findfirst): Find the first type in the array or tuple `A` that matches `Criteria`.
+- [`FindLast`](./src/array/readme.md#findlast)
+- [`Some`](./src/array/readme.md#some)
+- ⚗️[`Filter`](./src/array/readme.md#filter): Filter the array or tuple `A`, keeping entries satisfying `Criteria`.
+- ⚗️👽[`KeepMatch`](./src/array/readme.md#keepmatch): Keeps entries satisfying `Criteria` in array or tuple `A`.
+- 🦴🔢[`Head`](./src/array/readme.md#head): Gets the first entry in the tuple or the type of array `T`.
+- [`IntersectOfProps`](./src/array/readme.md#intersectofprops)
+- [`MapToProp`](./src/array/readme.md#maptoprop)
+- 🦴🔢[`Last`](./src/array/readme.md#last): Gets the last entry in the tuple or the type of array `T`.
+- [`literalArray`](./src/array/readme.md#literalarray)
+- [`PadStart`](./src/array/readme.md#padstart)
+- [`reduceWhile`](./src/array/readme.md#reducewhile)
+- [`Reverse`](./src/array/readme.md#reverse)
+- [`PropUnion`](./src/array/readme.md#propunion)
+- [`UnionOfProps`](./src/array/readme.md#unionofprops)
+- [`UnionOfValues`](./src/array/readme.md#unionofvalues)
+- [`ArrayPlus.At`](./src/array/readme.md#arrayplusat)
+- [`ArrayPlus.Concat`](./src/array/readme.md#arrayplusconcat)
+- [`ArrayPlus.Entries`](./src/array/readme.md#arrayplusentries)
+- 🦴🔢[`ArrayPlus.Find`](./src/array/readme.md#arrayplusfind): Finds the type in array `A` that matches `Criteria`.
+- [`ArrayPlus.FindLast`](./src/array/readme.md#arrayplusfindlast)
+- [`ArrayPlus.Reverse`](./src/array/readme.md#arrayplusreverse)
+- [`ArrayPlus.SplitAt`](./src/array/readme.md#arrayplussplitat)
+- [`ArrayPlus.Some`](./src/array/readme.md#arrayplussome)
 
-### [union](./ts/union/readme.md)
+### [union](./src/union/readme.md)
 
-- [`IsUnion`](./ts/union//readme.md#isunion)
-- [`UnionType`](./ts/union/readme.md#uniontype)
+- [`IsUnion`](./src/union//readme.md#isunion)
+- [`UnionType`](./src/union/readme.md#uniontype)
 
 ### bigint
 
-> [`BigintType<T, Then = T, Else = never>`](./ts/bigint/bigint_type.ts#L15)
+> [`BigintType<T, Then = T, Else = never>`](./src/bigint/bigint_type.ts#L15)
 
 ↪️ `parse`: if `T` is `bigint` or bigint literal.
 
-> [`IsBigint<T, Then = true, Else = false>`](./ts/bigint/bigint_type.ts#L33)
+> [`IsBigint<T, Then = true, Else = false>`](./src/bigint/bigint_type.ts#L33)
 
 ⭕ `predicate`: if `T` is `bigint` or bigint literal.
 
-> [`NotBigintType<T, Then = T, Else = never>`](./ts/bigint/bigint_type.ts#L47)
+> [`NotBigintType<T, Then = T, Else = never>`](./src/bigint/bigint_type.ts#L47)
 
 ↪️ `parse`: if `T` is not `bigint` or bigint literal.
 
-> [`IsNotBigInt<T, Then = true, Else = false>`](./ts/bigint/bigint_type.ts#L61)
+> [`IsNotBigInt<T, Then = true, Else = false>`](./src/bigint/bigint_type.ts#L61)
 
 ⭕ `predicate`: if `T` is not `bigint` or bigint literal.
 
-> [`StrictBigintType<T, Then = T, Else = never>`](./ts/bigint/strict_bigint_type.ts#L15)
+> [`StrictBigintType<T, Then = T, Else = never>`](./src/bigint/strict_bigint_type.ts#L15)
 
 ↪️ `parse`: if `T` is exactly `bigint`.
 
-> [`IsStrictBigint<T, Then = true, Else = false>`](./ts/bigint/strict_bigint_type.ts#L33)
+> [`IsStrictBigint<T, Then = true, Else = false>`](./src/bigint/strict_bigint_type.ts#L33)
 
 ⭕ `predicate`: if `T` is exactly `bigint`.
 
-> [`NotStrictBigintType<T, Then = T, Else = never>`](./ts/bigint/strict_bigint_type.ts#L47)
+> [`NotStrictBigintType<T, Then = T, Else = never>`](./src/bigint/strict_bigint_type.ts#L47)
 
 ↪️ `parse`: if `T` is not exactly `bigint`.
 
-> [`IsNotStrictBigint<T, Then = true, Else = false>`](./ts/bigint/strict_bigint_type.ts#L61)
+> [`IsNotStrictBigint<T, Then = true, Else = false>`](./src/bigint/strict_bigint_type.ts#L61)
 
 ⭕ `predicate`: if `T` is not exactly `bigint`.
 
 ### boolean
 
-> [`BooleanType<T>`](./ts/boolean/readme.md#type-checking)
+> [`BooleanType<T>`](./src/boolean/readme.md#type-checking)
 
 ↪️ `parse`: `T === boolean`.
 
-> [`IsBoolean<T>`](./ts/boolean/readme.md#type-checking)
+> [`IsBoolean<T>`](./src/boolean/readme.md#type-checking)
 
 ⭕ `predicate`: `T === boolean`
 
-> [`NotBooleanType<T>`](./ts/boolean/readme.md#type-checking)
+> [`NotBooleanType<T>`](./src/boolean/readme.md#type-checking)
 
 ↪️ `parse`: `T !== boolean`.
 
-> [`IsNotBoolean<T>`](./ts/boolean/readme.md#type-checking)
+> [`IsNotBoolean<T>`](./src/boolean/readme.md#type-checking)
 
 ⭕ `predicate`: `T !== boolean`
 
 ### function
 
-> [`FunctionType<T>`](./ts/function/readme.md#type-checking)
+> [`FunctionType<T>`](./src/function/readme.md#type-checking)
 
 ↪️ `parse`: `T === function`.
 
-> [`IsFunction<T>`](./ts/function/readme.md#type-checking)
+> [`IsFunction<T>`](./src/function/readme.md#type-checking)
 
 ⭕ `predicate`: `T === function`
 
-> [`NotFunctionType<T>`](./ts/function/readme.md#type-checking)
+> [`NotFunctionType<T>`](./src/function/readme.md#type-checking)
 
 ↪️ `parse`: `T !== function`.
 
-> [`IsNotFunction<T>`](./ts/function/readme.md#type-checking)
+> [`IsNotFunction<T>`](./src/function/readme.md#type-checking)
 
 ⭕ `predicate`: `T !== function`
 
@@ -517,77 +517,77 @@ You can learn more in their respective sections:
 
 ### never
 
-> [`NeverType<T>`](./ts/never/readme.md#type-checking)
+> [`NeverType<T>`](./src/never/readme.md#type-checking)
 
 ↪️ `parse`: `T === never`.
 
-> [`IsNever<T>`](./ts/never/readme.md#type-checking)
+> [`IsNever<T>`](./src/never/readme.md#type-checking)
 
 ⭕ `predicate`: `T === never`
 
-> [`NotNeverType<T>`](./ts/never/readme.md#type-checking)
+> [`NotNeverType<T>`](./src/never/readme.md#type-checking)
 
 ↪️ `parse`: `T !== never`.
 
-> [`IsNotNever<T>`](./ts/never/readme.md#type-checking)
+> [`IsNotNever<T>`](./src/never/readme.md#type-checking)
 
 ⭕ `predicate`: `T !== never`
 
 ### null
 
-> [`NullType<T>`](./ts/null/readme.md#type-checking)
+> [`NullType<T>`](./src/null/readme.md#type-checking)
 
 ↪️ `parse`: `T === null`.
 
-> [`IsNull<T>`](./ts/null/readme.md#type-checking)
+> [`IsNull<T>`](./src/null/readme.md#type-checking)
 
 ⭕ `predicate`: `T === null`
 
-> [`NotNullType<T>`](./ts/null/readme.md#type-checking)
+> [`NotNullType<T>`](./src/null/readme.md#type-checking)
 
 ↪️ `parse`: `T !== null`.
 
-> [`IsNotNull<T>`](./ts/null/readme.md#type-checking)
+> [`IsNotNull<T>`](./src/null/readme.md#type-checking)
 
 ⭕ `predicate`: `T !== null`
 
 ### number
 
-> [`NumberType<T, Then = N, Else = never>`](./ts/number/number_type.ts#L14)
+> [`NumberType<T, Then = N, Else = never>`](./src/number/number_type.ts#L14)
 
 ↪️ `parse`: is the type `T` `number`.
 
-> [`IsNumber<T, Then = true, Else = false>`](./ts/number/number_type.ts#L27)
+> [`IsNumber<T, Then = true, Else = false>`](./src/number/number_type.ts#L27)
 
 ⭕ `predicate`: is the type `T` `number`.
 
-> [`NotNumberType<T, Then = T, Else = never>`](./ts/number/number_type.ts#L40)
+> [`NotNumberType<T, Then = T, Else = never>`](./src/number/number_type.ts#L40)
 
 ↪️ `parse`: is the type `T` not `number`.
 
-> [`IsNotNumber<T, Then = true, Else = false>`](./ts/number/number_type.ts#L53)
+> [`IsNotNumber<T, Then = true, Else = false>`](./src/number/number_type.ts#L53)
 
 ⭕ `predicate`: is the type `T` not `number`.
 
-> [`StrictNumberType<T, Then = N, Else = never>`](./ts/number/strict_number_type.ts#L19)
+> [`StrictNumberType<T, Then = N, Else = never>`](./src/number/strict_number_type.ts#L19)
 
 ↪️ `parse`: is the type `T` exactly `number`.
 
-> [`IsStrictNumber<T, Then = true, Else = false>`](./ts/number/strict_number_type.ts#L41)
+> [`IsStrictNumber<T, Then = true, Else = false>`](./src/number/strict_number_type.ts#L41)
 
 ⭕ `predicate`: is the type `T` exactly `number`.
 
-> [`NotStrictNumberType<T, Then = T, Else = never>`](./ts/number/strict_number_type.ts#L55)
+> [`NotStrictNumberType<T, Then = T, Else = never>`](./src/number/strict_number_type.ts#L55)
 
 ↪️ `parse`: is the type `T` not exactly `number`.
 
-> [`IsNotStrictNumber<T, Then = true, Else = false>`](./ts/number/strict_number_type.ts#L69)
+> [`IsNotStrictNumber<T, Then = true, Else = false>`](./src/number/strict_number_type.ts#L69)
 
 ⭕ `predicate`: is the type `T` not exactly `number`.
 
 ### numeric
 
-> [`Numeric`](./ts/numeric/numeric_type.ts#L4)
+> [`Numeric`](./src/numeric/numeric_type.ts#L4)
 
 📘 `definition`: `number | bigint`.
 
@@ -595,55 +595,55 @@ You can learn more in their respective sections:
 
 📘 `definition`: `0 | 0n`
 
-> [`Integer<N, Then = N, Else = never>`](./ts/numeric/integer.ts#L15)
+> [`Integer<N, Then = N, Else = never>`](./src/numeric/integer.ts#L15)
 
 ↪️ `parse`: is integer.
 
-> [`IsInteger<N, Then = true, Else = false>`](./ts/numeric/integer.ts#L32)
+> [`IsInteger<N, Then = true, Else = false>`](./src/numeric/integer.ts#L32)
 
 ⭕ `predicate`: is integer.
 
-> [`NotInteger<N, Then = N, Else = never>`](./ts/numeric/integer.ts#L45)
+> [`NotInteger<N, Then = N, Else = never>`](./src/numeric/integer.ts#L45)
 
 ↪️ `parse`: is not integer.
 
-> [`IsNotInteger<N, Then = true, Else = false>`](./ts/numeric/integer.ts#L60)
+> [`IsNotInteger<N, Then = true, Else = false>`](./src/numeric/integer.ts#L60)
 
 ⭕ `predicate`: is not integer.
 
-> [`IsWhole<N, Then = true, Else = false>`](./ts/numeric/integer.ts#L75)
+> [`IsWhole<N, Then = true, Else = false>`](./src/numeric/integer.ts#L75)
 
 💀⭕ `deprecated`, `predicate`: is integer. Use `IsInteger` instead.
 
-> [`Negative<N, Then = N, Else = never>`](./ts/numeric/negative.ts#L19)
+> [`Negative<N, Then = N, Else = never>`](./src/numeric/negative.ts#L19)
 
 ↪️ `parse`: is negative.
 
-> [`IsNegative<N, Then = true, Else = false>`](./ts/numeric/negative.ts#L53)
+> [`IsNegative<N, Then = true, Else = false>`](./src/numeric/negative.ts#L53)
 
 ⭕ `predicate`: is negative.
 
-> [`NonNegative<N, Then = N, Else = never>`](./ts/numeric/negative.ts#L69)
+> [`NonNegative<N, Then = N, Else = never>`](./src/numeric/negative.ts#L69)
 
 ↪️ `parse`: is not negative.
 
-> [`IsNonNegative<N, Then = N, Else = never>`](./ts/numeric/negative.ts#L101)
+> [`IsNonNegative<N, Then = N, Else = never>`](./src/numeric/negative.ts#L101)
 
 ⭕ `predicate`: is not negative.
 
-> [`Positive<N, Then = N, Else = never>`](./ts/numeric/positive.ts#15)
+> [`Positive<N, Then = N, Else = never>`](./src/numeric/positive.ts#15)
 
 ↪️ `parse`: is positive.
 
-> [`IsPositive<N, Then = true, Else = false>`](./ts/numeric/positive.ts#L36)
+> [`IsPositive<N, Then = true, Else = false>`](./src/numeric/positive.ts#L36)
 
 ⭕ `predicate`: is positive.
 
-> [`NotPositive<N, Then = N, Else = never>`](./ts/numeric/positive.ts#48)
+> [`NotPositive<N, Then = N, Else = never>`](./src/numeric/positive.ts#48)
 
 ↪️ `parse`: is not positive.
 
-> [`IsNotPositive<N, Then = true, Else = false>`](./ts/numeric/positive.ts#L60)
+> [`IsNotPositive<N, Then = true, Else = false>`](./src/numeric/positive.ts#L60)
 
 ⭕ `predicate`: is not positive.
 
@@ -769,14 +769,14 @@ You can learn more in their respective sections:
 
 ### tuple
 
-- 🌪️ [`TupleType`](./ts/tuple/readme.md#tupletype): Filter `T` to ensure it is a tuple, excluding array.
-- 🎭 [`IsTuple`](./ts/tuple/readme.md#istuple): Validate that `T` is a tuple, excluding array.
-- 🌪️ [`NotTupleType`](./ts/tuple/readme.md#nottupletype): Filter `T` to ensure it is not an tuple, excluding array.
-- 🎭 [`IsNotTuple`](./ts/tuple/readme.md#isnottupletype): Validate that `T` is not an tuple, excluding array.
-- ⚗️🔢[`CommonPropKeys`](./ts/tuple/readme.md#commonpropkeys): Gets the common property keys of the elements in tuple `T`.
+- 🌪️ [`TupleType`](./src/tuple/readme.md#tupletype): Filter `T` to ensure it is a tuple, excluding array.
+- 🎭 [`IsTuple`](./src/tuple/readme.md#istuple): Validate that `T` is a tuple, excluding array.
+- 🌪️ [`NotTupleType`](./src/tuple/readme.md#nottupletype): Filter `T` to ensure it is not an tuple, excluding array.
+- 🎭 [`IsNotTuple`](./src/tuple/readme.md#isnottupletype): Validate that `T` is not an tuple, excluding array.
+- ⚗️🔢[`CommonPropKeys`](./src/tuple/readme.md#commonpropkeys): Gets the common property keys of the elements in tuple `T`.
 - ⚗️💀`CommonKeys`: Deprecated. Please use `CommonPropKeys` instead.
-- ⚗️🔢[`DropFirst`](./ts/tuple/readme.md#dropfirst): Drops the first entry in the tuple`T`.
-- ⚗️🔢[`DropLast`](./ts/tuple/readme.md#droplast): Drops the last entry in the tuple`T`.
+- ⚗️🔢[`DropFirst`](./src/tuple/readme.md#dropfirst): Drops the first entry in the tuple`T`.
+- ⚗️🔢[`DropLast`](./src/tuple/readme.md#droplast): Drops the last entry in the tuple`T`.
 
 > `CreateTuple<L, T>`
 
@@ -796,55 +796,55 @@ You can learn more in their respective sections:
 
 ### undefined
 
-> [`UndefinedType<T>`](./ts/undefined/readme.md#type-checking)
+> [`UndefinedType<T>`](./src/undefined/readme.md#type-checking)
 
 ↪️ `parse`: `T === undefined`.
 
-> [`IsUndefined<T>`](./ts/undefined/readme.md#type-checking)
+> [`IsUndefined<T>`](./src/undefined/readme.md#type-checking)
 
 ⭕ `predicate`: `T === undefined`
 
-> [`NotUndefinedType<T>`](./ts/undefined/readme.md#type-checking)
+> [`NotUndefinedType<T>`](./src/undefined/readme.md#type-checking)
 
 ↪️ `parse`: `T !== undefined`.
 
-> [`IsNotUndefined<T>`](./ts/undefined/readme.md#type-checking)
+> [`IsNotUndefined<T>`](./src/undefined/readme.md#type-checking)
 
 ⭕ `predicate`: `T !== undefined`
 
 ### unknown
 
-> [`UnknownType<T>`](./ts/unknown/readme.md#type-checking)
+> [`UnknownType<T>`](./src/unknown/readme.md#type-checking)
 
 ↪️ `parse`: `T === unknown`.
 
-> [`IsUnknown<T>`](./ts/unknown/readme.md#type-checking)
+> [`IsUnknown<T>`](./src/unknown/readme.md#type-checking)
 
 ⭕ `predicate`: `T === unknown`
 
-> [`NotUnknownType<T>`](./ts/unknown/readme.md#type-checking)
+> [`NotUnknownType<T>`](./src/unknown/readme.md#type-checking)
 
 ↪️ `parse`: `T !== unknown`.
 
-> [`IsNotUnknown<T>`](./ts/unknown/readme.md#type-checking)
+> [`IsNotUnknown<T>`](./src/unknown/readme.md#type-checking)
 
 ⭕ `predicate`: `T !== unknown`
 
 ### void
 
-> [`VoidType<T>`](./ts/void/readme.md#type-checking)
+> [`VoidType<T>`](./src/void/readme.md#type-checking)
 
 ↪️ `parse`: `T === void`.
 
-> [`IsVoid<T>`](./ts/void/readme.md#type-checking)
+> [`IsVoid<T>`](./src/void/readme.md#type-checking)
 
 ⭕ `predicate`: `T === void`
 
-> [`NotVoidType<T>`](./ts/void/readme.md#type-checking)
+> [`NotVoidType<T>`](./src/void/readme.md#type-checking)
 
 ↪️ `parse`: `T !== void`.
 
-> [`IsNotVoid<T>`](./ts/void/readme.md#type-checking)
+> [`IsNotVoid<T>`](./src/void/readme.md#type-checking)
 
 ⭕ `predicate`: `T !== void`
 
@@ -852,7 +852,7 @@ You can learn more in their respective sections:
 
 [type-plus](./README.md) privides some testing utilities to help you test your types.
 
-One of the key utilities is [`testType`](./ts/testing/readme.md#testtype).
+One of the key utilities is [`testType`](./src/testing/readme.md#testtype).
 
 ```ts
 import { testType } from 'type-plus'
@@ -862,7 +862,7 @@ testType.equal<A, B>(true) // A is equal to B
 testType.never<T>(false) // T is not `never`
 ```
 
-You can learn more about them in the [docs](./ts/testing/readme.md).
+You can learn more about them in the [docs](./src/testing/readme.md).
 
 ## Constant Types
 

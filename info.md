@@ -30,8 +30,8 @@ They indicate what kind of feature they offer:
 
 ## Feature Highlights
 
-- [Type assertions](./ts/assertion/readme.md)
-- [Type Guard](./ts/type-guard/readme.md)
+- [Type assertions](./src/assertion/readme.md)
+- [Type Guard](./src/type-guard/readme.md)
 - [Type Checking](#type-checking)
 - [Type Utilities](#type-utilities)
 - [Nominal Types](#nominal-types)
@@ -145,21 +145,21 @@ Some types will have more checks, such as `boolean` has `StrictBooleanType<T>`, 
 
 You can learn more in their respective sections:
 
-- [any](./ts/any/readme.md)
-- [array](./ts/array/readme.md)
-- [bigint](./ts/bigint/readme.md)
-- [boolean](./ts/boolean/readme.md)
-- [function](./ts/function/readme.md)
-- [never](./ts/never/readme.md)
-- [null](./ts/null/readme.md)
-- [number](./ts/number/readme.md)
-- [object](./ts/object/readme.md)
-- [string](./ts/string/readme.md)
-- [symbol](./ts/symbol/readme.md)
-- [tuple](./ts/tuple/readme.md)
-- [undefined](./ts/undefined/readme.md)
-- [unknown](./ts/unknown/readme.md)
-- [void](./ts/void/readme.md)
+- [any](./src/any/readme.md)
+- [array](./src/array/readme.md)
+- [bigint](./src/bigint/readme.md)
+- [boolean](./src/boolean/readme.md)
+- [function](./src/function/readme.md)
+- [never](./src/never/readme.md)
+- [null](./src/null/readme.md)
+- [number](./src/number/readme.md)
+- [object](./src/object/readme.md)
+- [string](./src/string/readme.md)
+- [symbol](./src/symbol/readme.md)
+- [tuple](./src/tuple/readme.md)
+- [undefined](./src/undefined/readme.md)
+- [unknown](./src/unknown/readme.md)
+- [void](./src/void/readme.md)
 
 ## Type Utilities
 
