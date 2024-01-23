@@ -1,5 +1,43 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 8.0.0-beta.1
+
+### Major Changes
+
+- a27e32e4e: Update `IsSymbol` and variances
+- 3957e3193: Update `IsUnknown` and `IsNotUnknown`. Reomove `UnknownType` and `NotUnknownType`.
+- d677a793e: Remove `StrictBigintType` and `NotStrictBigintType`
+- 9e51d0b09: Remove `NonUndefined`. Use `Exclude` instead.
+  Remove `NonNull`. Use `Exclude` instead.
+- 25b5d31f1: Remove `Positive`, `Negative`, `NumericType`, `NotNumericType`,
+- 7e2ab3925: Update `IsTuple` and variances.
+- 322a33df0: Update `IsString` and its variances.
+
+### Minor Changes
+
+- 33c02089f: Update `IsFunction`, `IsNotFunction`, `IsStrictFunction`, `IsNotStrictFunction`.
+
+  Remove `FunctionType`, `NotFunctionType`, `StrictFunctionType`, `NotStrictFunctionType`.
+
+- 4c991f199: Add `Assignable<A, B>`.
+  Deprecated `CanAssign<A, B>` and `StrictCanAssign<A, B>`.
+- d8848947a: Add `$DefineInputOptions` and `$DefineBranchOptions`.
+  Add support of handing `$any`, `$unknown`, `$never` for `IsAny`.
+
+  Add `$ResolveBranch` that fixes the `unknown` passthrough issue.
+
+  The types will be able to use in the form of `IsAny<T, { $then:..., $else:...}>`, hopefully.
+
+  It's still not recommended to do so, but at least it will not produce weird results.
+
+  Will need to convert other types to support that and add tests for them.
+
+- 4dc227a62: Update `IsObject` and variants
+
+### Patch Changes
+
+- 973cc4a9f: Move source under `packages/type-plus`.
+
 ## 8.0.0-beta.0
 
 ### Major Changes

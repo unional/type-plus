@@ -3,18 +3,31 @@
   "tag": "beta",
   "initialVersions": {
     "pages": "0.0.1",
-    "type-plus": "7.6.0"
+    "type-plus": "7.6.0",
+    "@type-plus/kind": "0.0.0"
   },
   "changesets": [
+    "blue-pumpkins-accept",
+    "bright-ghosts-count",
+    "dirty-stingrays-greet",
     "fluffy-files-flash",
     "gentle-papayas-beg",
+    "large-windows-obey",
     "lovely-horses-press",
     "lucky-socks-walk",
     "metal-buckets-stare",
+    "moody-badgers-refuse",
     "nice-forks-hide",
     "red-plums-look",
+    "serious-suns-drive",
+    "shaggy-roses-hug",
     "short-suns-stare",
     "silver-eggs-add",
-    "tricky-wasps-glow"
+    "strong-rabbits-tie",
+    "sweet-tools-clap",
+    "tidy-coins-relate",
+    "tough-files-sort",
+    "tricky-wasps-glow",
+    "two-shrimps-wonder"
   ]
 }
