@@ -5,4 +5,4 @@ dist/
 docs/
 esm/
 node_modules/
-
+tslib/

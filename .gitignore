@@ -54,3 +54,4 @@ node_modules
 /.turbo
 *.tsbuildinfo
 docs
+*/tslib/
