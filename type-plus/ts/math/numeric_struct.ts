@@ -433,7 +433,7 @@ export namespace DigitArray {
 		? Multiply<A, Tail, [...R, CarryDigits<MultiplyArray<A, Head, Zeros<Tail['length']>>>]>
 		: never
 
-	type Zeros<N extends number, R extends number[] = []> = R['length'] extends N ? R : Zeros<N, [0, ...R]>
+	type Zeros<N extends number, R extends number[] = []> = N extends unknown ? R['length'] extends N ? R : Zeros<N, [0, ...R]> : never
 
 	type MultiplyArray<
 		A extends number[],
