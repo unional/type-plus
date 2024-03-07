@@ -55,3 +55,5 @@ node_modules
 *.tsbuildinfo
 docs
 */tslib/
+# old location
+/type-plus
