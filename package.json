@@ -52,15 +52,7 @@
     "turbo": "1.12.5",
     "typedoc": "^0.25.0",
     "typedoc-plugin-extras": "^3.0.0",
-    "typescript": "~5.4.0"
-  },
-  "engines": {
-    "typescript": "~5.0.4"
-  },
-  "pnpm": {
-    "overrides": {
-      "typescript": "~5.0.4"
-    }
+    "typescript": "~5.4.2"
   },
   "packageManager": "pnpm@8.15.4"
 }

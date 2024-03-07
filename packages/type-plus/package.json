@@ -41,6 +41,13 @@
   },
   "module": "./esm/index.js",
   "types": "./esm/index.d.ts",
+  "typesVersions": {
+    ">=5.4.0": {
+      "*": [
+        "*"
+      ]
+    }
+  },
   "files": [
     "esm",
     "src",
@@ -59,8 +66,8 @@
     "test:type": "tsc --noEmit",
     "test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watch",
     "verify": "npm-run-all clean -p build depcheck lint coverage -p size",
-    "watch": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watch",
-    "w": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watch"
+    "w": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watch",
+    "watch": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watch"
   },
   "dependencies": {
     "tersify": "^3.11.1",
