@@ -28,9 +28,9 @@
     "@commitlint/config-conventional": "^17.0.2",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.48.0",
-    "eslint": "^8.17.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-harmony": "^7.1.2",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-harmony": "^7.2.0",
     "eslint-plugin-yml": "~1.8.0",
     "husky": "^8.0.1",
     "npm-check-updates": "^16.0.0",
@@ -39,10 +39,7 @@
     "turbo": "1.10.7",
     "typedoc": "^0.24.7",
     "typedoc-plugin-extras": "^2.3.3",
-    "typescript": "~5.0.4"
-  },
-  "engines": {
-    "typescript": "~5.0.4"
+    "typescript": "~5.4.0"
   },
   "packageManager": "pnpm@8.6.6"
 }

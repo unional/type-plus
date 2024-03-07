@@ -81,7 +81,7 @@
     "@repobuddy/typescript": "^1.2.0",
     "@size-limit/esbuild-why": "^8.2.4",
     "@size-limit/preset-small-lib": "^8.2.4",
-    "@types/node": "^18.0.0",
+    "@types/node": "^18.19.22",
     "@unional/fixture": "^3.0.0",
     "assertron": "^11.0.1",
     "cross-env": "^7.0.3",
