@@ -63,7 +63,9 @@ it('returns never if T is union with negative numeric values', () => {
 })
 
 it('returns never if T is intersection of negative number', () => {
+	// @ts-expect-error
 	testType.equal<NotNegative<-1 & { a: 1 }>, never>(true)
+	// @ts-expect-error
 	testType.equal<NotNegative<-1n & { a: 1 }>, never>(true)
 })
 

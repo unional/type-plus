@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type Negative } from '../index.js'
+import { testType, type Negative, type IsNegative } from '../index.js'
 
 it('returns T if T is number or bigint', () => {
 	testType.equal<Negative<number>, number>(true)
@@ -66,8 +66,16 @@ it('returns T if T is union with negative numeric values', () => {
 })
 
 it('returns T if T is intersection of negative number', () => {
+	// @ts-expect-error
 	testType.equal<Negative<-1 & { a: 1 }>, -1 & { a: 1 }>(true)
+	// @ts-expect-error
 	testType.equal<Negative<-1n & { a: 1 }>, -1n & { a: 1 }>(true)
+})
+it('returns true if T is intersection of negative numbers', () => {
+	// @ts-expect-error
+	testType.true<IsNegative<-1 & { a: 1 }>>(true)
+	// @ts-expect-error
+	testType.true<IsNegative<-1n & { a: 1 }>>(true)
 })
 
 it('can override Then/Else', () => {
