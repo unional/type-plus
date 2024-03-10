@@ -1,5 +1,19 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 7.6.1
+
+### Patch Changes
+
+- df83f62b7: Work around excessive stack depth error in TS 5.4 for type `Zeros`.
+- 69b588c18: The `Integer` and `Negative` type has some issue regarding intersection type since 5.3.
+  The issue is addressed in v8, currently in beta.
+
+  On the v7 train, they are marked as expected errors.
+
+- ef317309c: Update to typescript 5.4.2.
+
+  Simplify `Omit` type as the simpler code is working with typescript 5.4
+
 ## 7.6.0
 
 ### Minor Changes
