@@ -15,7 +15,7 @@
     "postpack": "pinst --enable",
     "prepack": "pinst --disable",
     "prepare": "husky install",
-    "release": "changeset publish",
+    "release": "pnpm build && changeset publish",
     "size": "turbo run size",
     "test": "turbo run test",
     "tp": "pnpm --filter type-plus",
