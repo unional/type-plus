@@ -19,6 +19,7 @@ it('returns known keys', () => {
 		// @ts-expect-error
 		input = 'c'
 
+	// @ts-ignore
 		let r: keyof (Foo & T)
 		r = 'a'
 		r = 'b'
