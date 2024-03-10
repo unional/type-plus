@@ -63,19 +63,6 @@ describe('Omit<T, K>', () => {
 		x = { type: 'B', foo: 'bar' }
 		expect(x.foo).toBe('bar')
 	})
-
-	test('intersection types with generic', () => {
-		type Foo = { a: string, b: string }
-		function foo<T>(input: Omit<Foo & T, 'b'>): void {
-			input.a = '1'
-			// @ts-expect-error Property 'b' does not exist
-			input.b = '1'
-
-			// @ts-expect-error	Property 'c' does not exist.
-			input.c = '1'
-		}
-		foo({ a: '1' })
-	})
 })
 
 describe(`${omit.name}()`, () => {

@@ -5,10 +5,9 @@ it('gets the keys of an object', () => {
 	testType.equal<UnionKeys<{ a: 1, b: 2 }>, 'a' | 'b'>(true)
 })
 
-
 it('returns known keys', () => {
 	type Foo = {
-		a: string
+		a: string,
 		b: string
 	}
 
@@ -19,7 +18,7 @@ it('returns known keys', () => {
 		// @ts-expect-error
 		input = 'c'
 
-	// @ts-ignore
+		// @ts-ignore
 		let r: keyof (Foo & T)
 		r = 'a'
 		r = 'b'
