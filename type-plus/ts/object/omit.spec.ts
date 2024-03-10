@@ -49,14 +49,14 @@ describe('Omit<T, K>', () => {
 	test('distributive Omit with disjoined keys', () => {
 		type Union =
 			| {
-					type: 'A',
-					foo: string
-			  }
+				type: 'A',
+				foo: string
+			}
 			| {
-					type: 'B',
-					foo: string,
-					bar: string
-			  }
+				type: 'B',
+				foo: string,
+				bar: string
+			}
 		// eslint-disable-next-line @typescript-eslint/ban-types
 		type Id<T> = {} & { [P in keyof T]: T[P] }
 		let x: Id<Omit<Union, 'bar'>> = { type: 'A', foo: 'foo' }
@@ -66,10 +66,15 @@ describe('Omit<T, K>', () => {
 
 	test('intersection types with generic', () => {
 		type Foo = { a: string, b: string }
-		function foo<T>(input: Omit<Foo & T, 'a'>): void {
-			assertType.isString(input.b)
+		function foo<T>(input: Omit<Foo & T, 'b'>): void {
+			input.a = '1'
+			// @ts-expect-error Property 'b' does not exist
+			input.b = '1'
+
+			// @ts-expect-error	Property 'c' does not exist.
+			input.c = '1'
 		}
-		foo({ b: '1' })
+		foo({ a: '1' })
 	})
 })
 
