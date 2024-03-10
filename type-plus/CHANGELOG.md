@@ -1,5 +1,11 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 7.6.2
+
+### Patch Changes
+
+- 354a25bcb: Revert the `typesVersions` requirement. That should consider as a feature bump.
+
 ## 7.6.1
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "type-plus",
-  "version": "7.6.1",
+  "version": "7.6.2",
   "description": "Provides additional types for TypeScript.",
   "keywords": [
     "assert",
@@ -97,12 +97,5 @@
     "size-limit": "^8.2.4",
     "ts-jest": "^29.1.0",
     "tslib": "^2.4.0"
-  },
-  "typesVersions": {
-    ">=5.4.0": {
-      "*": [
-        "*"
-      ]
-    }
   }
 }
