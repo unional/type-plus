@@ -88,16 +88,12 @@ export namespace IsNumber {
 	export type $UtilOptions = Assignable.$UtilOptions & $Exact.$Options
 
 	export type _D<T, $O extends $UtilOptions> =
-		T extends number
-		? (
-			`${T}` extends `${bigint}`
-			? $ResolveBranch<T, $O, [$Else]>
-			: (
-				`${T}` extends `${number}.${number}`
-				? $ResolveBranch<T, $O, [$Else]>
-				: $ResolveBranch<T, $O, [$Then]>
-			)
-		)
+	T extends number & infer U
+	? (
+		U extends number
+		? $ResolveBranch<T, $O, [$Else]>
+		: $ResolveBranch<T, $O, [$Then]>
+	)
 		: $ResolveBranch<T, $O, [$Else]>
 	export type _N<T, $O extends $UtilOptions> =
 		[T] extends [number & infer U] ?
