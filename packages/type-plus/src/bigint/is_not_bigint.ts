@@ -95,9 +95,9 @@ export namespace IsNotBigint {
 	export type $UtilOptions = NotAssignable.$UtilOptions & $Exact.$Options
 
 	export type _SD<T, $O extends $Options> =
-		T extends bigint
+		T extends bigint & infer U
 		? (
-			`${T}` extends `${number}`
+			U extends bigint
 			? $ResolveBranch<T, $O, [$Then]>
 			: $ResolveBranch<T, $O, [$Else]>
 		)
