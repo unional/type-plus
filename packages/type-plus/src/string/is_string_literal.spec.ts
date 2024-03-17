@@ -532,7 +532,7 @@ describe('enable exact', () => {
 		testType.true<IsStringLiteral<'a', { exact: true }>>(true)
 	})
 
-	it('returns true if T is a template literal reducible to simple string literal', () => {
+	it('returns true if T is a template literal reducible to string literal', () => {
 		testType.equal<`${''}`, ''>(true)
 		testType.true<IsStringLiteral<`${''}`, { exact: true }>>(true)
 		testType.equal<`a-${boolean}`, 'a-true' | `a-false`>(true)
