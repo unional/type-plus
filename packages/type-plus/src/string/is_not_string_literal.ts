@@ -98,24 +98,24 @@ export namespace IsNotStringLiteral {
 	export type $UtilOptions = Assignable.$UtilOptions & $Exact.$Options
 
 	export type _ED<T, $O extends $SelectionOptions> =
-	T extends string ? (_E<T, $O>) : $ResolveBranch<T, $O, [$Then]>
+		T extends string ? (_E<T, $O>) : $ResolveBranch<T, $O, [$Then]>
 
-export type _EN<T, $O extends $SelectionOptions> =
-	[T] extends [string] ? (_E<T, $O>) : $ResolveBranch<T, $O, [$Then]>
+	export type _EN<T, $O extends $SelectionOptions> =
+		[T] extends [string] ? (_E<T, $O>) : $ResolveBranch<T, $O, [$Then]>
 
-export type _E<T extends string, $O extends $SelectionOptions> =
-	$ExtractManipulatedString<`${T}`> extends infer K
-	? (string extends K
-		? $ResolveBranch<T, $O, [$Then]>
-		: (K extends string
-			? (Uppercase<K> extends Uppercase<Lowercase<K>>
-				? (Lowercase<K> extends Lowercase<Uppercase<K>>
-					? $ResolveBranch<T, $O, [$Else]>
+	export type _E<T extends string, $O extends $SelectionOptions> =
+		$ExtractManipulatedString<`${T}`> extends infer K
+		? (string extends K
+			? $ResolveBranch<T, $O, [$Then]>
+			: (K extends string
+				? (Uppercase<K> extends Uppercase<Lowercase<K>>
+					? (Lowercase<K> extends Lowercase<Uppercase<K>>
+						? $ResolveBranch<T, $O, [$Else]>
+						: $ResolveBranch<T, $O, [$Then]>)
 					: $ResolveBranch<T, $O, [$Then]>)
 				: $ResolveBranch<T, $O, [$Then]>)
-			: $ResolveBranch<T, $O, [$Then]>)
-	)
-	: never
+		)
+		: never
 
 	export type _D<T, $O extends $SelectionOptions> =
 		T extends string & infer U ? _U<T, U, $O> : $ResolveBranch<T, $O, [$Then]>
