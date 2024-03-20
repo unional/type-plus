@@ -82,6 +82,11 @@ it('returns false if T is intersection of non-negative numbers', () => {
 	testType.false<IsNegative<-1n & { a: 1 }>>(true)
 })
 
+it('returns boolean when T is an intersection type with number', () => {
+	testType.equal<IsNegative<number & { a: 1 }>, boolean>(true)
+	testType.equal<IsNegative<bigint & { a: 1 }>, boolean>(true)
+})
+
 it('distributes over union type', () => {
 	testType.equal<IsNegative<1 | string>, false>(true)
 	testType.equal<IsNegative<-1 | string>, boolean>(true)
