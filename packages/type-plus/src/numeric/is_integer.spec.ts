@@ -60,8 +60,14 @@ it('can disable union distribution', () => {
 	testType.equal<IsInteger<1 | string, { distributive: false }>, false>(true)
 })
 
-it('returns true for intersection type', () => {
-	testType.equal<IsInteger<number & { a: 1 }>, true>(true)
+it('returns true for intersection type with integer literals', () => {
+	testType.equal<IsInteger<1 & { a: 1 }>, true>(true)
+	testType.equal<IsInteger<-1 & { a: 1 }>, true>(true)
+	testType.equal<IsInteger<1n & { a: 1 }>, true>(true)
+})
+
+it('returns boolean when T is an intersection type with number', () => {
+	testType.equal<IsInteger<number & { a: 1 }>, boolean>(true)
 })
 
 it('works as filter', () => {
