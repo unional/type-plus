@@ -39,11 +39,13 @@ export type IsPositive<T, $O extends IsPositive.$Options = {}> = IsBigint<T, {
 export namespace IsPositive {
 	export type $Options = $Equality.$Options
 	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
-	export type _Positive<T, U extends number | bigint, $O extends IsPositive.$Options> = T extends U
+	export type _Positive<T, U extends number | bigint, $O extends IsPositive.$Options> = T extends U & infer R
 		? (
 			`${T}` extends `-${string}`
 			? $ResolveBranch<T, $O, [$Else]>
-			: U extends T ? $ResolveBranch<T, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]> : $ResolveBranch<T, $O, [$Then]>
+			: U extends T ? $ResolveBranch<T, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
+			: [T, R] extends [R, T] ? $ResolveBranch<T, $O, [$Then]>
+			: $ResolveBranch<number, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
 		)
 		: never
 }

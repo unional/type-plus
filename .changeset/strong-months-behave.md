@@ -2,4 +2,4 @@
 "type-plus": patch
 ---
 
-Fix `IsNegative<number & { a: 1 }>` should returns `boolean`
+Fix `IsNegative<number & { a: 1 }>` should return `boolean`

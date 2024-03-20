@@ -69,16 +69,23 @@ it('returns false if T is union with negative numeric values', () => {
 
 it('returns true if T is intersection of positive number', () => {
 	testType.true<IsPositive<1 & { a: 1 }>>(true)
+	testType.true<IsPositive<0 & { a: 1 }>>(true)
 	testType.true<IsPositive<1n & { a: 1 }>>(true)
 })
 
 // https://github.com/microsoft/TypeScript/issues/54648#issuecomment-1990057710
 // https://github.com/microsoft/TypeScript/issues/57776
-// it('returns false if T is intersection of non-positive number', () => {
-// 	testType.false<IsPositive<-1 & { a: 1 }>>(true)
-// 	testType.false<IsPositive<0 & { a: 1 }>>(true)
-// 	testType.false<IsPositive<-1n & { a: 1 }>>(true)
-// })
+it.skip('returns false if T is intersection of non-positive number', () => {
+	// @ts-expect-error
+	testType.false<IsPositive<-1 & { a: 1 }>>(true)
+	// @ts-expect-error
+	testType.false<IsPositive<-1n & { a: 1 }>>(true)
+})
+
+it('returns boolean when T is an intersection type with number or bigint', () => {
+	testType.equal<IsPositive<number & { a: 1 }>, boolean>(true)
+	testType.equal<IsPositive<bigint & { a: 1 }>, boolean>(true)
+})
 
 it('distributes over union type', () => {
 	testType.equal<IsPositive<1 | string>, boolean>(true)
