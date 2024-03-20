@@ -23,10 +23,11 @@ export type IsInteger<T, $O extends IsInteger.$Options = {}> = IsNumber<T, {
 	? R extends $Then ? (
 		number extends T
 		? $ResolveBranch<number, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
-		: T extends number ? (
+		: T extends number & infer U ? (
 			`${T}` extends `${number}.${number}`
 			? $ResolveBranch<T, $O, [$Else]>
-			: $ResolveBranch<T, $O, [$Then]>
+			: [T, U] extends [U, T] ? $ResolveBranch<T, $O, [$Then]>
+			: $ResolveBranch<number, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
 		)
 		: never
 	)
