@@ -30,7 +30,7 @@ export type IsNegative<T, $O extends IsNegative.$Options = {}> = IsBigint<T, {
 		? (
 			R extends $Then
 			? IsNegative._Negative<T, number, $O>
-			: $ResolveBranch<T,$O, [$Else]>
+			: $ResolveBranch<T, $O, [$Else]>
 		)
 		: never
 	)
@@ -39,11 +39,13 @@ export type IsNegative<T, $O extends IsNegative.$Options = {}> = IsBigint<T, {
 export namespace IsNegative {
 	export type $Options = $Equality.$Options
 	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
-	export type _Negative<T, U extends number | bigint, $O extends IsNegative.$Options> = T extends U
+	export type _Negative<T, U extends number | bigint, $O extends IsNegative.$Options> = T extends U & infer R
 		? (
 			`${T}` extends `-${string}`
-			? $ResolveBranch<T,$O, [$Then]>
-			: U extends T ? $ResolveBranch<T,$O, [$Then]> | $ResolveBranch<T,$O, [$Else]> : $ResolveBranch<T,$O, [$Else]>
+			? $ResolveBranch<T, $O, [$Then]>
+			: U extends T ? $ResolveBranch<T, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
+			: [T, R] extends [R, T] ? $ResolveBranch<T, $O, [$Else]>
+			: $ResolveBranch<number, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
 		)
 		: never
 }
