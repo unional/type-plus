@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { type Merge,merge, testType } from '../index.js'
+import { merge, testType, type Merge } from '../index.js'
 
 describe('Merge', () => {
 	it('merges with any -> any', () => {
@@ -67,7 +67,7 @@ describe('Merge', () => {
 			toFixed: (fractionDigits?: number | undefined) => string,
 			toExponential: (fractionDigits?: number | undefined) => string,
 			toPrecision: (precision?: number | undefined) => string,
-			valueOf: (() => Object) & (() => boolean)
+			valueOf: () => boolean
 		}>(true)
 
 		testType.equal<Merge<string, symbol>, Merge<String, Symbol>>(true)
