@@ -7,7 +7,7 @@ module.exports = {
 	parserOptions: {
 		sourceType: 'module'
 	},
-	extends: ['plugin:harmony/latest', 'plugin:yml/standard'],
+	extends: ['plugin:yml/standard'],
 	rules: {
 		'yml/quotes': ['error', { prefer: 'single' }]
 	},
