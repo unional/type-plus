@@ -222,11 +222,18 @@ it('distributes over union type', () => {
 	testType.equal<IsStringLiteral<'a' | number>, boolean>(true)
 })
 
-it('works with intersection type', () => {
-	testType.true<IsStringLiteral<'' & { a: 1 }>>(true)
-	testType.true<IsStringLiteral<`a${number}` & { a: 1 }>>(true)
+it('returns false for intersection type of non string literal and record', () => {
+	testType.false<IsStringLiteral<123 & { a: 1 }>>(true)
 	testType.false<IsStringLiteral<string & { a: 1 }>>(true)
-	testType.false<IsStringLiteral<1 & { a: 1 }>>(true)
+})
+
+it('consider intersection type of template literal and record as string literal', () => {
+	testType.true<IsStringLiteral<`a-${number}` & { a: 1 }>>(true)
+})
+
+it('returns true for intersection type of string literal and record', () => {
+	testType.true<IsStringLiteral<'' & { a: 1 }>>(true)
+	testType.true<IsStringLiteral<'abc' & { a: 1 }>>(true)
 })
 
 it('works as filter', () => {
@@ -514,11 +521,18 @@ describe('disable distribution', () => {
 		testType.equal<IsStringLiteral<'a' | number, { distributive: false }>, false>(true)
 	})
 
-	it('works with intersection type', () => {
-		testType.true<IsStringLiteral<'' & { a: 1 }, { distributive: false }>>(true)
-		testType.true<IsStringLiteral<`a${number}` & { a: 1 }, { distributive: false }>>(true)
+	it('returns false for intersection type of non string literal and record', () => {
+		testType.false<IsStringLiteral<123 & { a: 1 }, { distributive: false }>>(true)
 		testType.false<IsStringLiteral<string & { a: 1 }, { distributive: false }>>(true)
-		testType.false<IsStringLiteral<1 & { a: 1 }, { distributive: false }>>(true)
+	})
+
+	it('consider intersection type of template literal and record as string literal', () => {
+		testType.true<IsStringLiteral<`a-${number}` & { a: 1 }, { distributive: false }>>(true)
+	})
+
+	it('returns true for intersection type of string literal and record', () => {
+		testType.true<IsStringLiteral<'' & { a: 1 }, { distributive: false }>>(true)
+		testType.true<IsStringLiteral<'abc' & { a: 1 }, { distributive: false }>>(true)
 	})
 })
 
@@ -627,13 +641,15 @@ describe('enable exact', () => {
 		testType.equal<IsStringLiteral<'a' | number, { exact: true }>, boolean>(true)
 	})
 
-	it.skip('works with intersection type', () => {
-		// FIXME: https://github.com/microsoft/TypeScript/issues/57776
-		// @ts-expect-error
-		testType.true<IsStringLiteral<'' & { a: 1 }, { exact: true }>>(true)
-		testType.false<IsStringLiteral<1 & { a: 1 }, { exact: true }>>(true)
+	it('returns false for intersection type of non string literal and record', () => {
+		testType.false<IsStringLiteral<123 & { a: 1 }, { exact: true }>>(true)
 		testType.false<IsStringLiteral<string & { a: 1 }, { exact: true }>>(true)
-		testType.false<IsStringLiteral<`${number}` & { a: 1 }, { exact: true }>>(true)
+		testType.false<IsStringLiteral<`a-${number}` & { a: 1 }, { exact: true }>>(true)
+	})
+
+	it.skip('returns true for intersection type of string literal and record', () => {
+		// FIXME: https://github.com/microsoft/TypeScript/issues/57776
+		// testType.true<IsStringLiteral<'abc' & { a: 1 }, { exact: true }>>(true)
 	})
 
 	it('works as filter', () => {
@@ -778,8 +794,7 @@ describe('enable exact', () => {
 
 		it.skip('works with intersection type', () => {
 			// FIXME: https://github.com/microsoft/TypeScript/issues/57776
-			// @ts-expect-error
-			testType.true<IsStringLiteral<'' & { a: 1 }, { distributive: false, exact: true }>>(true)
+			// testType.true<IsStringLiteral<'' & { a: 1 }, { distributive: false, exact: true }>>(true)
 			testType.false<IsStringLiteral<1 & { a: 1 }, { distributive: false, exact: true }>>(true)
 			testType.false<IsStringLiteral<string & { a: 1 }, { distributive: false, exact: true }>>(true)
 			testType.false<IsStringLiteral<`${number}` & { a: 1 }, { distributive: false, exact: true }>>(true)

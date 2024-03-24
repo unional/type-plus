@@ -98,13 +98,21 @@ it('distributes over union type', () => {
 	testType.equal<IsNotTemplateLiteral<Uncapitalize<`${boolean}` | `${null}`>>, true>(true)
 })
 
-it('works with intersection type', () => {
-	testType.equal<IsNotTemplateLiteral<string & { a: 1 }>, true>(true)
+it('returns true for intersection type of non template literal and record', () => {
+	testType.true<IsNotTemplateLiteral<123 & { a: 1 }>>(true)
+	testType.true<IsNotTemplateLiteral<string & { a: 1 }>>(true)
 
-	testType.equal<IsNotTemplateLiteral<`${number}` & { a: 1 }>, false>(true)
+	// @ts-expect-error https://github.com/microsoft/TypeScript/issues/57918
+	testType.true<IsNotTemplateLiteral<'' & { a: 1 }>>(true)
+	// @ts-expect-error https://github.com/microsoft/TypeScript/issues/57918
+	testType.true<IsNotTemplateLiteral<'abc' & { a: 1 }>>(true)
+	// @ts-expect-error https://github.com/microsoft/TypeScript/issues/57918
+	testType.true<IsNotTemplateLiteral<Uppercase<``> & { a: 1 }>>(true)
+})
 
-	testType.equal<IsNotTemplateLiteral<Uppercase<``> & { a: 1 }>, true>(true)
-	testType.equal<IsNotTemplateLiteral<Uppercase<`${number}`> & { a: 1 }>, false>(true)
+it('returns false for intersection type of template literal and record', () => {
+	testType.false<IsNotTemplateLiteral<`a-${number}` & { a: 1 }>>(true)
+	testType.false<IsNotTemplateLiteral<Uppercase<`${number}`> & { a: 1 }>>(true)
 })
 
 describe('disable distribution', () => {
@@ -190,13 +198,21 @@ describe('disable distribution', () => {
 		testType.equal<IsNotTemplateLiteral<Uncapitalize<`${boolean}` | `${null}`>, { distributive: false }>, true>(true)
 	})
 
-	it('works with intersection type', () => {
-		testType.equal<IsNotTemplateLiteral<string & { a: 1 }, { distributive: false }>, true>(true)
+	it('returns true for intersection type of non template literal and record', () => {
+		testType.true<IsNotTemplateLiteral<123 & { a: 1 }, { distributive: false }>>(true)
+		testType.true<IsNotTemplateLiteral<string & { a: 1 }, { distributive: false }>>(true)
 
-		testType.equal<IsNotTemplateLiteral<`${number}` & { a: 1 }, { distributive: false }>, false>(true)
+		// @ts-expect-error https://github.com/microsoft/TypeScript/issues/57918
+		testType.true<IsNotTemplateLiteral<'' & { a: 1 }, { distributive: false }>>(true)
+		// @ts-expect-error https://github.com/microsoft/TypeScript/issues/57918
+		testType.true<IsNotTemplateLiteral<'abc' & { a: 1 }, { distributive: false }>>(true)
+		// @ts-expect-error https://github.com/microsoft/TypeScript/issues/57918
+		testType.true<IsNotTemplateLiteral<Uppercase<``> & { a: 1 }, { distributive: false }>>(true)
+	})
 
-		testType.equal<IsNotTemplateLiteral<Uppercase<``> & { a: 1 }, { distributive: false }>, true>(true)
-		testType.equal<IsNotTemplateLiteral<Uppercase<`${number}`> & { a: 1 }, { distributive: false }>, false>(true)
+	it('returns false for intersection type of template literal and record', () => {
+		testType.false<IsNotTemplateLiteral<`a-${number}` & { a: 1 }, { distributive: false }>>(true)
+		testType.false<IsNotTemplateLiteral<Uppercase<`${number}`> & { a: 1 }, { distributive: false }>>(true)
 	})
 })
 

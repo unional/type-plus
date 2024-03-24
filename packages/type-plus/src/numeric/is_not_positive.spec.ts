@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else,type $Then, type IsNotPositive, testType } from '../index.js'
+import { type $Else, type $Then, type IsNotPositive, testType } from '../index.js'
 
 it('returns boolean if T is number or bigint', () => {
 	// `number` includes positive and negative numbers,
@@ -67,18 +67,18 @@ it('returns boolean if T is union of mixing positive and negative value', () => 
 	testType.strictBoolean<IsNotPositive<1 | -1>>(true)
 })
 
-it('returns false if T is intersection of positive number', () => {
+it('returns false if T is intersection of 0 or positive number', () => {
 	testType.false<IsNotPositive<1 & { a: 1 }>>(true)
 	testType.false<IsNotPositive<1n & { a: 1 }>>(true)
+	testType.false<IsNotPositive<0 & { a: 1 }>>(true)
+	testType.false<IsNotPositive<0n & { a: 1 }>>(true)
 })
 
-// https://github.com/microsoft/TypeScript/issues/54648#issuecomment-1990057710
-// https://github.com/microsoft/TypeScript/issues/57776
-// it('returns true if T is intersection of non-positive number', () => {
-// 	testType.true<IsNotPositive<-1 & { a: 1 }>>(true)
-// 	testType.true<IsNotPositive<0 & { a: 1 }>>(true)
-// 	testType.true<IsNotPositive<0n & { a: 1 }>>(true)
-// })
+// FIXME: https://github.com/microsoft/TypeScript/issues/57918
+it.skip('returns true if T is intersection of non-positive number', () => {
+	// testType.true<IsNotPositive<-1 & { a: 1 }>>(true)
+	// testType.true<IsNotPositive<-1n & { a: 1 }>>(true)
+})
 
 it('distributes over union type', () => {
 	testType.equal<IsNotPositive<1 | string>, boolean>(true)

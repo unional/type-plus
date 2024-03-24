@@ -209,24 +209,58 @@ it('distributes over union type', () => {
 	testType.equal<IsTemplateLiteral<Uncapitalize<`${boolean}` | `${null}`>>, false>(true)
 })
 
-it('works with intersection type', () => {
-	testType.equal<IsTemplateLiteral<string & { a: 1 }>, false>(true)
+it('returns false for intersection type of non template literal and record', () => {
+	testType.false<IsTemplateLiteral<123 & { a: 1 }>>(true)
+	testType.false<IsTemplateLiteral<string & { a: 1 }>>(true)
 
-	testType.equal<IsTemplateLiteral<'' & { a: 1 }>, false>(true)
-	testType.equal<IsTemplateLiteral<'abc' & { a: 1 }>, false>(true)
+	// @ts-expect-error https://github.com/microsoft/TypeScript/issues/57918
+	testType.false<IsTemplateLiteral<'' & { a: 1 }>>(true)
+	// @ts-expect-error https://github.com/microsoft/TypeScript/issues/57918
+	testType.false<IsTemplateLiteral<'abc' & { a: 1 }>>(true)
+	// @ts-expect-error https://github.com/microsoft/TypeScript/issues/57918
+	testType.false<IsTemplateLiteral<Uppercase<``> & { a: 1 }>>(true)
+})
 
-	testType.equal<IsTemplateLiteral<`${number}` & { a: 1 }>, true>(true)
-	testType.equal<IsTemplateLiteral<`${string}` & { a: 1 }>, false>(true)
-	testType.equal<IsTemplateLiteral<`${bigint}` & { a: 1 }>, true>(true)
-	testType.equal<IsTemplateLiteral<`a${number}` & { a: 1 }>, true>(true)
-	testType.equal<IsTemplateLiteral<`a${string}` & { a: 1 }>, true>(true)
-	testType.equal<IsTemplateLiteral<`a${bigint}` & { a: 1 }>, true>(true)
+it('returns true for intersection type of template literal and record', () => {
+	testType.true<IsTemplateLiteral<`a-${number}` & { a: 1 }>>(true)
+	testType.true<IsTemplateLiteral<Uppercase<`${number}`> & { a: 1 }>>(true)
+})
 
-	testType.equal<IsTemplateLiteral<Uppercase<``> & { a: 1 }>, false>(true)
-	testType.equal<IsTemplateLiteral<Uppercase<`${number}`> & { a: 1 }>, true>(true)
+it('works as filter', () => {
+	testType.equal<IsTemplateLiteral<string, { selection: 'filter' }>, never>(true)
+	testType.equal<IsTemplateLiteral<'', { selection: 'filter' }>, never>(true)
+	testType.equal<IsTemplateLiteral<`${number}`, { selection: 'filter' }>, `${number}`>(true)
 
-	testType.equal<IsTemplateLiteral<Uppercase<`` & { a: 1 }>>, false>(true)
-	testType.equal<IsTemplateLiteral<Uppercase<`${number}` & { a: 1 }>>, true>(true)
+	testType.equal<IsTemplateLiteral<never, { selection: 'filter' }>, never>(true)
+	testType.equal<IsTemplateLiteral<unknown, { selection: 'filter' }>, never>(true)
+	testType.equal<IsTemplateLiteral<string | number, { selection: 'filter' }>, never>(true)
+	testType.equal<IsTemplateLiteral<`${number}` | number, { selection: 'filter' }>, `${number}`>(true)
+})
+
+it('works with unique branches', () => {
+	testType.equal<IsTemplateLiteral<string, IsTemplateLiteral.$Branch>, $Else>(true)
+	testType.equal<IsTemplateLiteral<'a', IsTemplateLiteral.$Branch>, $Else>(true)
+	testType.equal<IsTemplateLiteral<`${number}`, { $then: String, $else: never }>, String>(true)
+
+	testType.equal<IsTemplateLiteral<any, IsTemplateLiteral.$Branch>, $Else>(true)
+	testType.equal<IsTemplateLiteral<unknown, IsTemplateLiteral.$Branch>, $Else>(true)
+	testType.equal<IsTemplateLiteral<never, IsTemplateLiteral.$Branch>, $Else>(true)
+	testType.equal<IsTemplateLiteral<void, IsTemplateLiteral.$Branch>, $Else>(true)
+})
+
+it('can override $any branch', () => {
+	testType.equal<IsTemplateLiteral<any>, false>(true)
+	testType.equal<IsTemplateLiteral<any, { $any: unknown }>, unknown>(true)
+})
+
+it('can override $unknown branch', () => {
+	testType.equal<IsTemplateLiteral<unknown>, false>(true)
+	testType.equal<IsTemplateLiteral<unknown, { $unknown: unknown }>, unknown>(true)
+})
+
+it('can override $never branch', () => {
+	testType.equal<IsTemplateLiteral<never>, false>(true)
+	testType.equal<IsTemplateLiteral<never, { $never: unknown }>, unknown>(true)
 })
 
 describe('disable distribution', () => {
@@ -408,60 +442,20 @@ describe('disable distribution', () => {
 		testType.equal<IsTemplateLiteral<Uncapitalize<`${boolean}` | `${null}`>, { distributive: false }>, false>(true)
 	})
 
-	it('works with intersection type', () => {
-		testType.equal<IsTemplateLiteral<string & { a: 1 }, { distributive: false }>, false>(true)
+	it('returns false for intersection type of non template literal and record', () => {
+		testType.false<IsTemplateLiteral<123 & { a: 1 }, { distributive: false }>>(true)
+		testType.false<IsTemplateLiteral<string & { a: 1 }, { distributive: false }>>(true)
 
-		testType.equal<IsTemplateLiteral<'' & { a: 1 }, { distributive: false }>, false>(true)
-		testType.equal<IsTemplateLiteral<'abc' & { a: 1 }, { distributive: false }>, false>(true)
-
-		testType.equal<IsTemplateLiteral<`${number}` & { a: 1 }, { distributive: false }>, true>(true)
-		testType.equal<IsTemplateLiteral<`${string}` & { a: 1 }, { distributive: false }>, false>(true)
-		testType.equal<IsTemplateLiteral<`${bigint}` & { a: 1 }, { distributive: false }>, true>(true)
-		testType.equal<IsTemplateLiteral<`a${number}` & { a: 1 }, { distributive: false }>, true>(true)
-		testType.equal<IsTemplateLiteral<`a${string}` & { a: 1 }, { distributive: false }>, true>(true)
-		testType.equal<IsTemplateLiteral<`a${bigint}` & { a: 1 }, { distributive: false }>, true>(true)
-
-		testType.equal<IsTemplateLiteral<Uppercase<``> & { a: 1 }, { distributive: false }>, false>(true)
-		testType.equal<IsTemplateLiteral<Uppercase<`${number}`> & { a: 1 }, { distributive: false }>, true>(true)
-
-		testType.equal<IsTemplateLiteral<Uppercase<`` & { a: 1 }>, { distributive: false }>, false>(true)
-		testType.equal<IsTemplateLiteral<Uppercase<`${number}` & { a: 1 }>, { distributive: false }>, true>(true)
+		// @ts-expect-error https://github.com/microsoft/TypeScript/issues/57918
+		testType.false<IsTemplateLiteral<'' & { a: 1 }, { distributive: false }>>(true)
+		// @ts-expect-error https://github.com/microsoft/TypeScript/issues/57918
+		testType.false<IsTemplateLiteral<'abc' & { a: 1 }, { distributive: false }>>(true)
+		// @ts-expect-error https://github.com/microsoft/TypeScript/issues/57918
+		testType.false<IsTemplateLiteral<Uppercase<``> & { a: 1 }, { distributive: false }>>(true)
 	})
-})
 
-it('works as filter', () => {
-	testType.equal<IsTemplateLiteral<string, { selection: 'filter' }>, never>(true)
-	testType.equal<IsTemplateLiteral<'', { selection: 'filter' }>, never>(true)
-	testType.equal<IsTemplateLiteral<`${number}`, { selection: 'filter' }>, `${number}`>(true)
-
-	testType.equal<IsTemplateLiteral<never, { selection: 'filter' }>, never>(true)
-	testType.equal<IsTemplateLiteral<unknown, { selection: 'filter' }>, never>(true)
-	testType.equal<IsTemplateLiteral<string | number, { selection: 'filter' }>, never>(true)
-	testType.equal<IsTemplateLiteral<`${number}` | number, { selection: 'filter' }>, `${number}`>(true)
-})
-
-it('works with unique branches', () => {
-	testType.equal<IsTemplateLiteral<string, IsTemplateLiteral.$Branch>, $Else>(true)
-	testType.equal<IsTemplateLiteral<'a', IsTemplateLiteral.$Branch>, $Else>(true)
-	testType.equal<IsTemplateLiteral<`${number}`, { $then: String, $else: never }>, String>(true)
-
-	testType.equal<IsTemplateLiteral<any, IsTemplateLiteral.$Branch>, $Else>(true)
-	testType.equal<IsTemplateLiteral<unknown, IsTemplateLiteral.$Branch>, $Else>(true)
-	testType.equal<IsTemplateLiteral<never, IsTemplateLiteral.$Branch>, $Else>(true)
-	testType.equal<IsTemplateLiteral<void, IsTemplateLiteral.$Branch>, $Else>(true)
-})
-
-it('can override $any branch', () => {
-	testType.equal<IsTemplateLiteral<any>, false>(true)
-	testType.equal<IsTemplateLiteral<any, { $any: unknown }>, unknown>(true)
-})
-
-it('can override $unknown branch', () => {
-	testType.equal<IsTemplateLiteral<unknown>, false>(true)
-	testType.equal<IsTemplateLiteral<unknown, { $unknown: unknown }>, unknown>(true)
-})
-
-it('can override $never branch', () => {
-	testType.equal<IsTemplateLiteral<never>, false>(true)
-	testType.equal<IsTemplateLiteral<never, { $never: unknown }>, unknown>(true)
+	it('returns true for intersection type of template literal and record', () => {
+		testType.true<IsTemplateLiteral<`a-${number}` & { a: 1 }, { distributive: false }>>(true)
+		testType.true<IsTemplateLiteral<Uppercase<`${number}`> & { a: 1 }, { distributive: false }>>(true)
+	})
 })

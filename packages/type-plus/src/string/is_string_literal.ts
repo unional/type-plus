@@ -8,7 +8,7 @@ import type { $IsDistributive } from '../type_plus/branch/$is_distributive.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../type_plus/branch/$selection.js'
 import type { $SelectionOptions } from '../type_plus/branch/$selection_options.js'
-import type { $ExtractManipulatedString } from './$extract_manipulated_string.js'
+import type { _StringType } from './_string_type.js'
 
 /**
  * 🎭 *predicate*
@@ -104,18 +104,13 @@ export namespace IsStringLiteral {
 		[T] extends [string] ? (_E<T, $O>) : $ResolveBranch<T, $O, [$Else]>
 
 	export type _E<T extends string, $O extends $SelectionOptions> =
-		$ExtractManipulatedString<`${T}`> extends infer K
-		? (string extends K
-			? $ResolveBranch<T, $O, [$Else]>
-			: (K extends string
-				? (Uppercase<K> extends Uppercase<Lowercase<K>>
-					? (Lowercase<K> extends Lowercase<Uppercase<K>>
-						? $ResolveBranch<T, $O, [$Then]>
-						: $ResolveBranch<T, $O, [$Else]>)
-					: $ResolveBranch<T, $O, [$Else]>)
-				: $ResolveBranch<T, $O, [$Else]>)
-		)
+		T extends string
+		? _StringType<T> extends infer R
+		? R extends 'stringLiteral'
+		? $ResolveBranch<T, $O, [$Then]>
+		: $ResolveBranch<T, $O, [$Else]>
 		: never
+		: $ResolveBranch<T, $O, [$Else]>
 
 	export type _D<T, $O extends $SelectionOptions> =
 		T extends string & infer U ? _U<T, U, $O> : $ResolveBranch<T, $O, [$Else]>

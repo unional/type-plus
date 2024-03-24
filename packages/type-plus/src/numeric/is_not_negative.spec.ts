@@ -72,12 +72,11 @@ it('returns true if T is intersection of positive number', () => {
 	testType.equal<IsNotNegative<1n & { a: 1 }>, true>(true)
 })
 
-// https://github.com/microsoft/TypeScript/issues/54648#issuecomment-1990057710
-// https://github.com/microsoft/TypeScript/issues/57776
-// it('returns false if T is intersection of negative number', () => {
-// 	testType.equal<IsNotNegative<-1 & { a: 1 }>, false>(true)
-// 	testType.equal<IsNotNegative<-1n & { a: 1 }>, false>(true)
-// })
+// FIXME: https://github.com/microsoft/TypeScript/issues/57918
+it.skip('returns false if T is intersection of negative number', () => {
+	// testType.equal<IsNotNegative<-1 & { a: 1 }>, false>(true)
+	// testType.equal<IsNotNegative<-1n & { a: 1 }>, false>(true)
+})
 
 it('returns true if T is intersection of non-negative number', () => {
 	testType.true<IsNotNegative<0 & { a: 1 }>>(true)

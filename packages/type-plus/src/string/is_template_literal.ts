@@ -5,7 +5,7 @@ import type { $SpecialType } from '../type_plus/$special_type.js'
 import type { $IsDistributive } from '../type_plus/branch/$is_distributive.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../type_plus/branch/$selection.js'
-import type { $ExtractManipulatedString } from './$extract_manipulated_string.js'
+import type { _StringType } from './_string_type.js'
 
 /**
  * 🎭 *validate*
@@ -75,17 +75,11 @@ export namespace IsTemplateLiteral {
 
 	type _D<T, $O extends $UtilOptions> =
 		T extends string
-		? ($ExtractManipulatedString<`${T}`> extends infer K
-			? (string extends K
-				? $ResolveBranch<T, $O, [$Else]>
-				: (K extends string
-					? (Uppercase<K> extends Uppercase<Lowercase<K>>
-						? (Lowercase<K> extends Lowercase<Uppercase<K>>
-							? $ResolveBranch<T, $O, [$Else]>
-							: $ResolveBranch<T, $O, [$Then]>)
-						: $ResolveBranch<T, $O, [$Then]>)
-					: $ResolveBranch<T, $O, [$Else]>))
-			: never)
+		? _StringType<T> extends infer R
+		? R extends 'templateLiteral'
+		? $ResolveBranch<T, $O, [$Then]>
+		: $ResolveBranch<T, $O, [$Else]>
+		: never
 		: $ResolveBranch<T, $O, [$Else]>
 
 	type _N<T, $O extends $UtilOptions> =

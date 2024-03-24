@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else,type $Then, type IsNegative, testType } from '../index.js'
+import { type $Else, type $Then, type IsNegative, testType } from '../index.js'
 
 it('returns boolean if T is number or bigint', () => {
 	// `number` and `bigint` includes positive and negative numbers,
@@ -67,19 +67,16 @@ it('returns boolean if T is union of mixing positive and negative value', () => 
 	testType.strictBoolean<IsNegative<1 | -1>>(true)
 })
 
-// https://github.com/microsoft/TypeScript/issues/54648#issuecomment-1990057710
-// https://github.com/microsoft/TypeScript/issues/57776
+// FIXME: https://github.com/microsoft/TypeScript/issues/57918
 it.skip('returns true if T is an intersection of negative numbers', () => {
-	// @ts-expect-error
-	testType.true<IsNegative<-1 & { a: 1 }>>(true)
-	// @ts-expect-error
-	testType.true<IsNegative<-1n & { a: 1 }>>(true)
+	// testType.true<IsNegative<-1 & { a: 1 }>>(true)
+	// testType.true<IsNegative<-1n & { a: 1 }>>(true)
 })
 
 it('returns false if T is intersection of non-negative numbers', () => {
 	testType.false<IsNegative<0 & { a: 1 }>>(true)
-	testType.false<IsNegative<-1 & { a: 1 }>>(true)
-	testType.false<IsNegative<-1n & { a: 1 }>>(true)
+	testType.false<IsNegative<1 & { a: 1 }>>(true)
+	testType.false<IsNegative< 1n & { a: 1 }>>(true)
 })
 
 it('returns boolean when T is an intersection type with number or bigint', () => {
