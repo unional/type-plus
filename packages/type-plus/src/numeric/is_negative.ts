@@ -5,20 +5,20 @@ import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../type_plus/branch/$selection.js'
 
 /**
- * Is `T` a positive numeric type.
+ * Is `T` a negative numeric type.
  *
  * ```ts
- * type R = IsNegative<1> // true
- * type R = IsNegative<0> // true
- * type R = IsNegative<1n> // true
+ * type R = IsNegative<-1> // true
+ * type R = IsNegative<-1n> // true
+*
+ * type R = IsNegative<0> // false
+ * type R = IsNegative<1> // false
  *
  * type R = IsNegative<number> // boolean
  * type R = IsNegative<bigint> // boolean
  * type R = IsNegative<any> // boolean
- *
- * type R = IsNegative<-1> // false
  * ```
- */
+*/
 export type IsNegative<T, $O extends IsNegative.$Options = {}> = IsBigint<T, {
 	distributive: $O['distributive'],
 	$then: $Then,
