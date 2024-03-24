@@ -12,7 +12,7 @@ it(`returns value from $Options['distributive']`, () => {
 	testType.equal<$IsDistributive<{ distributive: false }>, false>(true)
 })
 
-it(`supports overrides`, () => {
+it('supports overrides', () => {
 	testType.equal<$IsDistributive<{ distributive: true }, { $then: 1 }>, 1>(true)
 	testType.equal<$IsDistributive<{ distributive: false }, { $else: 1 }>, 1>(true)
 })

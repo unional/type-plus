@@ -65,20 +65,20 @@ describe(`${record.name}()`, () => {
 	})
 })
 
-describe(`RecordValue<R>`, () => {
+describe('RecordValue<R>', () => {
 	it('gets the value type from Record<any, T>', () => {
 		type R = RecordValue<Record<any, string>>
 
 		isType.equal<true, string, R>()
 	})
 
-	it(`gets the value type form Record<number, T>`, () => {
+	it('gets the value type form Record<number, T>', () => {
 		type R = RecordValue<Record<number, string>>
 
 		isType.equal<true, string, R>()
 	})
 
-	it(`gets the value type form Record<number, T>`, () => {
+	it('gets the value type form Record<number, T>', () => {
 		type R = RecordValue<Record<symbol, string>>
 
 		isType.equal<true, string, R>()

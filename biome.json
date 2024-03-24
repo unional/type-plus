@@ -24,10 +24,6 @@
       },
       "suspicious": {
         "noConfusingVoidType": "off"
-      },
-      "style": {
-        "noUselessElse": "warn",
-        "noUnusedTemplateLiteral": "warn"
       }
     }
   }

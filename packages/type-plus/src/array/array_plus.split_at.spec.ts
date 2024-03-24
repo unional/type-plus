@@ -84,7 +84,7 @@ it('split array type to two same array', () => {
 	testType.equal<SplitAt<string[], 1>, [string[], string[]]>(true)
 })
 
-it(`split tuple with delete count`, () => {
+it('split tuple with delete count', () => {
 	testType.equal<SplitAt<[1, 2, 3, 4, 5], 2, 2>, [[1, 2, 5], [3, 4]]>(true)
 
 	testType.equal<

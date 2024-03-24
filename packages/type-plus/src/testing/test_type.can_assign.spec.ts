@@ -2,7 +2,7 @@ import { it } from '@jest/globals'
 
 import { testType } from '../index.js'
 
-it(`should pass if A can assign to B`, () => {
+it('should pass if A can assign to B', () => {
 	testType.canAssign<number, number>(true)
 	testType.canAssign<string, string>(true)
 })

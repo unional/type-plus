@@ -30,7 +30,7 @@ describe('Filter<A, C>', () => {
 		})
 	})
 
-	describe(`A is Tuple`, () => {
+	describe('A is Tuple', () => {
 		it('matching criteria', () => {
 			testType.equal<Filter<[1, 2, 3, 4], 2 | 4>, [2, 4]>(true)
 			testType.equal<Filter<[1, 2, '3'], number>, [1, 2]>(true)
@@ -91,7 +91,7 @@ describe('KeepMatch<A, C>', () => {
 		})
 	})
 
-	describe(`A is Tuple`, () => {
+	describe('A is Tuple', () => {
 		it('matching criteria', () => {
 			type Actual = KeepMatch<[1, 2, 3, 4], 2 | 4>
 			testType.equal<[2, 4], Actual>(true)

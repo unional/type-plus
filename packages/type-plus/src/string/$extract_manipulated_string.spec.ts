@@ -5,7 +5,7 @@ it('returns T if T is a string', () => {
 	testType.equal<$ExtractManipulatedString<string>, string>(true)
 })
 
-it(`returns T if T is a string literal`, () => {
+it('returns T if T is a string literal', () => {
 	testType.equal<$ExtractManipulatedString<''>, ''>(true)
 	testType.equal<$ExtractManipulatedString<'a'>, 'a'>(true)
 })

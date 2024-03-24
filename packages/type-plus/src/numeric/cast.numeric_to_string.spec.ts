@@ -9,7 +9,7 @@ test('TypeScript bigint to string is missing the n suffix', () => {
 	testType.equal<R<1n>, '1n'>(false)
 })
 
-it(`casts number`, () => {
+it('casts number', () => {
 	testType.equal<NumericToString<123>, '123'>(true)
 	testType.equal<NumericToString<0>, '0'>(true)
 	testType.equal<NumericToString<-0>, '0'>(true)

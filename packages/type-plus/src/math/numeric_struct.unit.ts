@@ -45,7 +45,7 @@ describe('FromNumeric', () => {
 		})
 	})
 
-	describe(`number`, () => {
+	describe('number', () => {
 		it('casts positive number to ["number", ["+", Digits, Exponent]]', () => {
 			testType.equal<NumericStruct.FromNumeric<1>, ['number', ['+', [1], 0]]>(true)
 
@@ -125,7 +125,7 @@ describe('FromNumeric', () => {
 	})
 })
 
-describe(`ToNumeric`, () => {
+describe('ToNumeric', () => {
 	it('converts bigint', () => {
 		testType.equal<NumericStruct.ToNumeric<['bigint', ['+', [0], 0]]>, 0n>(true)
 		testType.equal<NumericStruct.ToNumeric<['bigint', ['+', [1], 0]]>, 1n>(true)
@@ -237,7 +237,7 @@ describe(`ToNumeric`, () => {
 describe('conversion roundtrip', () => {
 	type RoundTrip<N extends number | bigint> = NumericStruct.ToNumeric<NumericStruct.FromNumeric<N>>
 
-	it(`keep widen type?`, () => {
+	it('keep widen type?', () => {
 		// @ts-expect-error
 		testType.equal<RoundTrip<number>, number>(true)
 		// @ts-expect-error

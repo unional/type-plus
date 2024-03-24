@@ -7,7 +7,7 @@ it('returns N if N is positive number', () => {
 	testType.equal<Abs<12345678901234>, 12345678901234>(true)
 })
 
-it(`returns N if N is positive bigint`, () => {
+it('returns N if N is positive bigint', () => {
 	testType.equal<Abs<1n>, 1n>(true)
 	testType.equal<Abs<12345678901234n>, 12345678901234n>(true)
 })

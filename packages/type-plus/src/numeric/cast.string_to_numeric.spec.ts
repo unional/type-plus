@@ -9,7 +9,7 @@ test('TypeScript infer floating number with trailing zeros does not work correct
 	testType.equal<R<'1.0'>, 1.0>(false)
 })
 
-it(`casts number`, () => {
+it('casts number', () => {
 	testType.equal<StringToNumeric<'123'>, 123>(true)
 	testType.equal<StringToNumeric<'0'>, 0>(true)
 	testType.equal<StringToNumeric<'-0'>, 0>(true)

@@ -58,7 +58,7 @@ it('gets never if N is out of range', () => {
 	testType.never<ArrayPlus.At<['a'], -2>>(true)
 })
 
-it(`can override fail case`, () => {
+it('can override fail case', () => {
 	testType.equal<ArrayPlus.At<[], 0, 'ha'>, 'ha'>(true)
 
 	testType.equal<ArrayPlus.At<[], any, 'ha'>, 'ha'>(true)
