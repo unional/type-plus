@@ -13,11 +13,11 @@ it('returns known keys', () => {
 	}
 
 	// @ts-ignore
-	function foo<T>(input: UnionKeys<Foo & T>): void {
-		input = 'a'
-		input = 'b'
+	function _foo<T>(_input: UnionKeys<Foo & T>): void {
+		_input = 'a'
+		_input = 'b'
 		// @ts-expect-error
-		input = 'c'
+		_input = 'c'
 
 		let r: keyof (Foo & T)
 		r = 'a'

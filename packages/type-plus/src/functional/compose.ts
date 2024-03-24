@@ -13,5 +13,6 @@ export function compose<FS extends AnyFunction[]>(
 	...fns: FS
 ): (...args: Parameters<Head<FS>>) => ReturnType<Last<FS>> {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-	return (...args: any[]) => fns.reduce((args, fn) => [fn(...args)], args)[0]
+	// biome-ignore lint/performance/noAccumulatingSpread: https://github.com/biomejs/biome/issues/2183
+		return (...args: any[]) => fns.reduce((args, fn) => [fn(...args)], args)[0]
 }

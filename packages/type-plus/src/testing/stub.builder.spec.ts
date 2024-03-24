@@ -29,7 +29,7 @@ it('can add init function to builder', () => {
 		}))
 		.with(input => ({
 			...input,
-			b: (input?.b ?? '0') + '1'
+			b: `${input?.b ?? '0'}1`
 		}))
 		.create()
 	expect(s()).toEqual({ a: 1, b: '01' })

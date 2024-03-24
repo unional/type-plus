@@ -16,7 +16,6 @@ export function nominalMatch<A extends string, B extends A>(
 ) {
 	if (typeof a === 'object' && a !== null && typeof b === 'object' && b !== null)
 		return a[typeSym] === b[typeSym]
-	else {
-		return true
-	}
+
+	return true
 }

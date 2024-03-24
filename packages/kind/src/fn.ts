@@ -3,7 +3,7 @@ export interface Fn {
 	output: [unknown, unknown]
 }
 
-export type Eval<Input extends unknown, Fns extends Fn[]> = Pipe<[Input, unknown], Fns>[0]
+export type Eval<Input, Fns extends Fn[]> = Pipe<[Input, unknown], Fns>[0]
 
 export type Pipe<Input extends [unknown, unknown], Fns extends Fn[]> = Fns extends [
 	infer H extends Fn,

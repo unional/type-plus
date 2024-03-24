@@ -58,7 +58,7 @@ function contextBuilder(init: ContextBaseShape, extenders: Array<[ContextExtende
 		build() {
 			return extenders.reduce((p, [t], i) => {
 				const v = typeof t === 'function' ? (extenders[i]![0] = t(p)) : t
-				return { ...p, ...v }
+				return Object.assign({}, p, v)
 			}, init)
 		}
 	}

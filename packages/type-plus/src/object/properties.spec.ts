@@ -73,8 +73,9 @@ it('returns {} for actual function types', () => {
 })
 
 it('skips function signatures from object', () => {
-	// this is because the function signatures are not indexible.
-	isType.equal<true, {}, Properties<{ (): void }>>()
+	// this is because the function signatures are not indexable.
+	// biome-ignore lint/style/useShorthandFunctionType: on purpose
+		isType.equal<true, {}, Properties<{ (): void }>>()
 	isType.equal<true, { a: 1 }, Properties<{ (): void, a: 1 }>>()
 })
 

@@ -78,7 +78,7 @@ describe('isType.t()', () => {
 		// @ts-expect-error
 		isType.t(false)
 		// @ts-expect-error
-		isType.t(1 === 1)
+		isType.t(true as Boolean)
 	})
 })
 
@@ -99,7 +99,7 @@ describe('isType.f()', () => {
 		// @ts-expect-error
 		isType.f(true)
 		// @ts-expect-error
-		isType.f(1 !== 1)
+		isType.f(false as Boolean)
 	})
 })
 

@@ -1,7 +1,6 @@
 import { tersify } from 'tersify'
-
-import { type AnyConstructor,isConstructor } from '../class/index.js'
-import { type AnyFunction } from '../function/any_function.js'
+import { isConstructor, type AnyConstructor } from '../class/index.js'
+import type { AnyFunction } from '../function/any_function.js'
 
 /**
  * 💥 *immediate*
@@ -15,9 +14,9 @@ export function assertType<T>(subject: unknown, validator: (s: T) => boolean): a
 /**
  * @deprecated this is not a failsafe test
  */
-export function assertType<T extends new (...args: any) => any>(
+export function assertType<T extends new (..._args: any[]) => any>(
 	subject: unknown,
-	constructor: T
+	classConstructor: T
 ): asserts subject is InstanceType<T>
 export function assertType(subject: unknown, validator?: (s: any) => boolean) {
 	if (validator) {
@@ -27,14 +26,14 @@ export function assertType(subject: unknown, validator?: (s: any) => boolean) {
 	return
 }
 
-assertType.isUndefined = function (subject: undefined): asserts subject is undefined {
+assertType.isUndefined = (subject: undefined): asserts subject is undefined => {
 	if (typeof subject !== 'undefined') throw TypeError(`subject is not undefined`)
 }
-assertType.noUndefined = function <S>(subject: Exclude<S, undefined>): void {
+assertType.noUndefined = <S>(subject: Exclude<S, undefined>): void => {
 	if (typeof subject === 'undefined') throw TypeError(`subject is undefined`)
 }
 
-assertType.isNull = function (subject: null): asserts subject is null {
+assertType.isNull = (subject: null): asserts subject is null => {
 	if (subject !== null) throw TypeError(`subject is not null`)
 }
 assertType.noNull = function <S>(subject: Exclude<S, null>): void {
@@ -102,7 +101,7 @@ assertType.noError = function <S>(subject: Exclude<S, Error>): void {
 	if (subject instanceof Error) throw TypeError(`subject is an Error`)
 }
 
-assertType.isNever = function (_subject: never): asserts _subject is never {}
+assertType.isNever = function (_subject: never): asserts _subject is never { }
 
 /**
  * creates a custom assertion function with standard TypeError.
@@ -117,4 +116,4 @@ assertType.custom = function <T>(validator: (s: T) => boolean): (subject: unknow
 	}
 }
 
-assertType.as = function <T>(_subject: unknown): asserts _subject is T {}
+assertType.as = function <T>(_subject: unknown): asserts _subject is T { }

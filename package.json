@@ -12,7 +12,7 @@
     "coverage": "turbo run coverage",
     "cs": "changeset",
     "depcheck": "turbo run depcheck",
-    "lint": "eslint .",
+    "lint": "biome lint .",
     "nuke:local": "rimraf node_modules",
     "nuke": "turbo run nuke && pnpm nuke:local",
     "p": "pnpm --filter pages",
@@ -51,5 +51,9 @@
     "typedoc-plugin-extras": "^3.0.0",
     "typescript": "~5.4.2"
   },
-  "packageManager": "pnpm@8.15.4"
+  "packageManager": "pnpm@8.15.4",
+  "dependencies": {
+    "@biomejs/biome": "^1.6.2",
+    "@repobuddy/biome": "^1.0.4"
+  }
 }

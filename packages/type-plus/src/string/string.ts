@@ -13,7 +13,7 @@ export type StringIncludes<
 	Search extends string,
 	Then = true,
 	Else = false
-> = Subject extends `${infer _}${Search}${infer _}` ? Then : Else
+> = Subject extends `${infer _X}${Search}${infer _Y}` ? Then : Else
 
 /**
  * Split a string into substrings using the specified separator,

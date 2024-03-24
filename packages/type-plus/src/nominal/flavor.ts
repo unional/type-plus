@@ -40,9 +40,7 @@ export function flavor<F extends string>(type: F): <T>(subject: T) => Flavor<F, 
 export function flavor<F extends string, T>(type: F, subject: T): Flavor<F, Widen<T>>
 export function flavor(type: string, subject?: unknown) {
 	if (subject === undefined)
-		return function <T>(subject: T) {
-			return flavor(type, subject)
-		}
+		return <T>(subject: T) => flavor(type, subject)
 
 	if (isType<{ [typeSym]: string }>(subject, s => typeof s === 'object' && s !== null)) {
 		// if subject is not an object, the branding will exist only in type-level.

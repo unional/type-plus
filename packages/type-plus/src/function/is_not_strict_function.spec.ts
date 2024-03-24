@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else, type $Then, type AnyFunction, type IsNotStrictFunction,testType } from '../index.js'
+import { type $Else, type $Then, type AnyFunction, type IsNotStrictFunction, testType } from '../index.js'
 
 it('returns false if T is Function', () => {
 	testType.false<IsNotStrictFunction<Function>>(true)
@@ -50,7 +50,7 @@ it('can disable union distribution', () => {
 })
 
 it('returns true if T is function overloads', () => {
-	testType.true<IsNotStrictFunction<{ (): void }>>(true)
+	testType.true<IsNotStrictFunction<() => void>>(true)
 	testType.true<IsNotStrictFunction<{ (): void, (x: number): number }>>(true)
 })
 

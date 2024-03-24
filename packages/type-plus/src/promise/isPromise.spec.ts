@@ -16,11 +16,13 @@ test('false if subject does not have a then function', () => {
 })
 
 test('false if subject.then is not a function', () => {
+	// biome-ignore lint/suspicious/noThenProperty: on purpose
 	expect(isPromise({ then: true })).toBe(false)
 })
 
 test('type guard as promise', () => {
 	const subject = {
+		// biome-ignore lint/suspicious/noThenProperty: on purpose
 		then() {
 			return true
 		}

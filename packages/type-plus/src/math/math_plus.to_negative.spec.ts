@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { MathPlus, testType } from '../index.js'
+import { testType, type MathPlus } from '../index.js'
 
 it('converts positive bigint to negative', () => {
 	testType.equal<MathPlus.ToNegative<1n>, -1n>(true)

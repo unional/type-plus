@@ -15,22 +15,18 @@ export function isType(subject: unknown, validator?: (s: unknown) => unknown) {
 /**
  * @deprecated use `isType<T>()` or `testType.true<T>()` instead
  */
-isType.t = function <T extends true>(subject?: T) {
-	return subject === undefined || subject === true
-}
+isType.t = <T extends true>(subject?: T) => subject === undefined || subject === true
 
 /**
  * @deprecated use `isType<T>()` or `testType.false<T>()` instead
  */
-isType.f = function <T extends false>(subject?: T) {
-	return subject === undefined || subject === false
-}
+isType.f = <T extends false>(subject?: T) => subject === undefined || subject === false
 
 /**
  * Check is the type `never`
  * @deprecated use `isType<T>()` or `testType.never<T>()` instead
  */
-function isNever<S extends never>(): unknown
+function isNever<_S extends never>(): unknown
 /**
  * Check is the value is type `never`
  * @deprecated use `isType<T>()` or `testType.never<T>()` instead
@@ -49,4 +45,4 @@ isType.never = isNever
  *
  * @deprecated use `testType.equal()` instead
  */
-isType.equal = function <_C extends IsEqual<A, B>, A, B>() {}
+isType.equal = <_C extends IsEqual<A, B>, A, B>() => {}

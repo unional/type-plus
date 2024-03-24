@@ -10,7 +10,7 @@ it('create a branch type with property name', () => {
 
 it('the property name must start with $', () => {
 	// @ts-expect-error
-	type $DoesNotWork = $Branch<'nope'>
+	type _$DoesNotWork = $Branch<'nope'>
 })
 
 describe('$BranchOptions', () => {

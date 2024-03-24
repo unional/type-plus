@@ -345,8 +345,8 @@ it('works with function overload', () => {
 	testType.false<IsNotEqual<F, { (v: string): string, (v: number): number }>>(true)
 	testType.true<IsNotEqual<F, { (v: string): string, (v: number): string }>>(true)
 
-	testType.true<IsNotEqual<F, { (v: number): number }>>(true)
-	testType.true<IsNotEqual<F, { (v: string): number }>>(true)
+	testType.true<IsNotEqual<F, (v: number) => number>>(true)
+	testType.true<IsNotEqual<F, (v: string) => number>>(true)
 
 	testType.true<IsNotEqual<(x: 0, y: null) => void, (x: number, y: string) => void>>(true)
 	testType.false<

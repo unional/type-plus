@@ -7,10 +7,9 @@
 // export type NoInfer<T> = T extends infer S ? S : never;
 
 import { it } from '@jest/globals'
-
 import { testType } from '../index.js'
-import { type UnionToIntersection } from '../union/union_to_intersection.js'
-import { type NoInfer } from './no_infer.js'
+import type { UnionToIntersection } from '../union/union_to_intersection.js'
+import type { NoInfer } from './no_infer.js'
 
 function id<T>(v: T): T {
 	return v
@@ -45,16 +44,16 @@ it('works with primitive types', () => {
 	id<{ a: 1 }>(noInfer({ a: 1 }))
 	id<string[]>(noInfer(['a']))
 	id<[]>(noInfer([]))
-	id<Function>(noInfer(() => {}))
-	id<() => void>(noInfer(() => {}))
+	id<Function>(noInfer(() => { }))
+	id<() => void>(noInfer(() => { }))
 })
 
 it('can be used to control which param to infer from', () => {
 	class Animal {
-		move() {}
+		move() { }
 	}
 	class Dog extends Animal {
-		woof() {}
+		woof() { }
 	}
 
 	function inferred<T>(value: T, _fn: () => T) {
@@ -65,7 +64,7 @@ it('can be used to control which param to infer from', () => {
 	testType.equal<typeof notWeWant, Animal>(true)
 	testType.equal<typeof notWeWant, Dog>(false)
 
-	function notInferred<T>(_value: T, _fn: () => NoInfer<T>) {}
+	function notInferred<T>(_value: T, _fn: () => NoInfer<T>) { }
 	// Wanted an error here - getDefault() ought to return same type as 'value'
 	// @ts-expect-error
 	notInferred(new Dog(), () => new Animal())
@@ -107,13 +106,13 @@ it('invoke vs test', () => {
 it('', () => {
 	// https://github.com/microsoft/TypeScript/issues/14829#issuecomment-520191642
 	class Animal {
-		move() {}
+		move() { }
 	}
 	class Dog extends Animal {
-		woof() {}
+		woof() { }
 	}
 	class Cat extends Animal {
-		meow() {}
+		meow() { }
 	}
 
 	type K<T> = T extends any ? { [k in keyof T]: string } : never
@@ -121,12 +120,12 @@ it('', () => {
 	function doSomethingNoInferAjafff<T extends Dog | Cat>(
 		_getDefault: (x: any) => T,
 		_value: UnionToIntersection<K<NoInfer<T>>>
-	) {}
+	) { }
 
 	// TODO: This should pass
 	// Use a function parameter
 	// @ts-expect-error
-	doSomethingNoInferAjafff(x => new Dog(), { woof: '', move: '' })
+	doSomethingNoInferAjafff(_x => new Dog(), { woof: '', move: '' })
 
 	doSomethingNoInferAjafff((_x: any) => new Dog(), { woof: '', move: '' })
 

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.6.2/schema.json",
+  "extends": [
+    "./node_modules/@repobuddy/biome/recommended.json"
+  ],
+  "files": {
+    "ignore": [
+      "./docs",
+      "packages/*/coverage",
+      "packages/*/cjs",
+      "packages/*/dist",
+      "packages/*/esm",
+      "packages/*/tslib",
+      "packages/type-plus/src/types",
+      "packages/type-plus/src/type-checker",
+      "pages/dist",
+      "*.astro"
+    ]
+  },
+  "linter": {
+    "rules": {
+      "complexity": {
+        "noBannedTypes": "off",
+        "useArrowFunction": "warn"
+      },
+      "suspicious": {
+        "noConfusingVoidType": "off"
+      },
+      "style": {
+        "noUselessElse": "warn",
+        "noUnusedTemplateLiteral": "warn",
+        "useImportType": "warn"
+      }
+    }
+  }
+}

@@ -6,9 +6,9 @@
         "^build"
       ],
       "inputs": [
-        "ts/**/*.tsx?",
-        "!ts/**/*.spec.tsx?",
-        "!ts/**/*.stories.tsx?",
+        "src/**/*.tsx?",
+        "!src/**/*.spec.tsx?",
+        "!src/**/*.stories.tsx?",
         "tsconfig.*"
       ],
       "outputs": [

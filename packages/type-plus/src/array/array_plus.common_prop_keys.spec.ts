@@ -1,6 +1,5 @@
 import { it } from '@jest/globals'
-
-import { ArrayPlus,testType } from '../index.js'
+import { testType, type ArrayPlus } from '../index.js'
 
 it('never returns never', () => {
 	testType.equal<ArrayPlus.CommonPropKeys<never>, never>(true)
