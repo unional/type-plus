@@ -416,7 +416,7 @@ describe('assertType.noString()', () => {
 describe('assertType.isFunction()', () => {
 	it('ensure the input type is function and nothing else', () => {
 		assertType.isFunction(() => {})
-		assertType.isFunction(function () {})
+		assertType.isFunction(() => {})
 
 		const f = () => {}
 		// @ts-expect-error

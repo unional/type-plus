@@ -1,6 +1,5 @@
 import { it } from '@jest/globals'
-
-import { ArrayPlus, type FindLast,testType } from '../index.js'
+import { testType, type ArrayPlus, type FindLast } from '../index.js'
 
 it('returns T | undefined for T[] if T satisfies Criteria', () => {
 	testType.equal<FindLast<string[], number>, never>(true)

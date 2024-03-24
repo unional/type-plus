@@ -20,16 +20,14 @@
   "linter": {
     "rules": {
       "complexity": {
-        "noBannedTypes": "off",
-        "useArrowFunction": "warn"
+        "noBannedTypes": "off"
       },
       "suspicious": {
         "noConfusingVoidType": "off"
       },
       "style": {
         "noUselessElse": "warn",
-        "noUnusedTemplateLiteral": "warn",
-        "useImportType": "warn"
+        "noUnusedTemplateLiteral": "warn"
       }
     }
   }
