@@ -8,7 +8,7 @@ it('gets the keys of an object', () => {
 
 it('returns known keys', () => {
 	type Foo = {
-		a: string
+		a: string,
 		b: string
 	}
 
