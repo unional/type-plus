@@ -55,7 +55,7 @@
     "w:x": "bun test --watch"
   },
   "devDependencies": {
-    "@repobuddy/typescript": "^1.2.0",
+    "@repobuddy/typescript": "^2.0.0",
     "depcheck": "^1.4.3",
     "npm-run-all2": "^6.0.0",
     "rimraf": "^5.0.0"

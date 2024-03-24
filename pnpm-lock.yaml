@@ -87,8 +87,8 @@ importers:
   packages/kind:
     devDependencies:
       '@repobuddy/typescript':
-        specifier: ^1.2.0
-        version: 1.2.0
+        specifier: ^2.0.0
+        version: 2.0.0
       depcheck:
         specifier: ^1.4.3
         version: 1.4.3
@@ -115,8 +115,8 @@ importers:
         specifier: ^3.4.2
         version: 3.4.2(@swc/jest@0.2.36)(jest-watch-suspend@1.1.2)(jest-watch-toggle-config-2@2.1.0)(jest-watch-typeahead@2.2.2)(jest@29.7.0)(ts-jest@29.1.2)
       '@repobuddy/typescript':
-        specifier: ^1.2.0
-        version: 1.2.0
+        specifier: ^2.0.0
+        version: 2.0.0
       '@size-limit/esbuild-why':
         specifier: ^9.0.0
         version: 9.0.0(size-limit@9.0.0)
@@ -2870,12 +2870,12 @@ packages:
       type-plus: 7.6.2
     dev: true
 
-  /@repobuddy/typescript@1.2.0:
-    resolution: {integrity: sha512-xPsIcoyqeoVfhtKd76dzZ4/8BEJCadgg3DIL9nupAczsKjVuOev9VBtwDm5pMIOYEO5+lZXy52YSTsWu9KFePg==}
+  /@repobuddy/typescript@2.0.0:
+    resolution: {integrity: sha512-Rt/YGq/UFVg9urdtpAmk4o2k3VjUSKiyCtAWjLASd1mOAngQl75yy8tZbpwB/06oJr0V7sroOavst59fha5uvA==}
     dependencies:
       clibuilder: 8.0.17
       dirname-filename-esm: 1.1.1
-      execa: 7.1.1
+      execa: 8.0.1
     dev: true
 
   /@rushstack/eslint-patch@1.2.0:
@@ -5703,6 +5703,7 @@ packages:
       onetime: 6.0.0
       signal-exit: 3.0.7
       strip-final-newline: 3.0.0
+    dev: false
 
   /execa@8.0.1:
     resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
@@ -6424,6 +6425,7 @@ packages:
   /human-signals@4.3.1:
     resolution: {integrity: sha512-nZXjEF2nbo7lIw3mgYjItAfgQXog3OjJogSbKa2CQIIvSGWcKgeJnQlNXip6NglNzYH45nSRiEVimMvYL8DDqQ==}
     engines: {node: '>=14.18.0'}
+    dev: false
 
   /human-signals@5.0.0:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
@@ -8421,7 +8423,7 @@ packages:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
     hasBin: true
     dependencies:
-      minimist: 1.2.7
+      minimist: 1.2.8
     dev: true
 
   /mkdirp@1.0.4:
