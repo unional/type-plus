@@ -22,7 +22,7 @@ it('should return true if the string matches exactly', () => {
 	testType.true<StringIncludes<'abc', 'abc'>>(true)
 })
 
-it('can overrride Then/Else', () => {
+it('can override Then/Else', () => {
 	testType.equal<StringIncludes<'abc', 'b', 'yes', 'no'>, 'yes'>(true)
 	testType.equal<StringIncludes<'abc', 'd', 'yes', 'no'>, 'no'>(true)
 })

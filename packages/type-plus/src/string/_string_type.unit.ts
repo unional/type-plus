@@ -26,7 +26,7 @@ it('detects string intersects with record as `string`', () => {
 	testType.equal<_StringType<string & Record<number, unknown>>, 'string'>(true)
 })
 
-// https://github.com/microsoft/TypeScript/issues/57918
+// FIXME: https://github.com/microsoft/TypeScript/issues/57918
 it.skip('detects string literal intersects with record as `stringLiteral`', () => {
 	// testType.equal<_StringType<'' & { a: 1 }>, 'stringLiteral'>(true)
 	// testType.equal<_StringType<'a' & { a: 1 }>, 'stringLiteral'>(true)

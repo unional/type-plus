@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { expect, it } from '@jest/globals'
 import { testType, type UnionKeys } from './index.js'
 
 it('gets the keys of an object', () => {
@@ -24,5 +24,6 @@ it('returns known keys', () => {
 		r = 'b'
 		// @ts-expect-error
 		r = 'c'
+		expect(r).toBe('c')
 	}
 })
