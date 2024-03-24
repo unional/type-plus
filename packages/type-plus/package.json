@@ -75,7 +75,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.5.0",
-    "@repobuddy/jest": "^3.4.0",
+    "@repobuddy/jest": "^3.4.2",
     "@repobuddy/typescript": "^1.2.0",
     "@size-limit/esbuild-why": "^9.0.0",
     "@size-limit/preset-small-lib": "^9.0.0",
@@ -84,7 +84,7 @@
     "assertron": "^11.0.1",
     "cross-env": "^7.0.3",
     "depcheck": "^1.4.3",
-    "jest": "^29.5.0",
+    "jest": "^29.7.0",
     "jest-watch-suspend": "^1.1.2",
     "jest-watch-toggle-config-2": "^2.1.0",
     "jest-watch-typeahead": "^2.2.2",
@@ -92,6 +92,6 @@
     "rimraf": "^5.0.0",
     "satisfier": "^5.2.2",
     "size-limit": "^9.0.0",
-    "ts-jest": "^29.1.0"
+    "ts-jest": "^29.1.2"
   }
 }
