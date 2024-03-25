@@ -3,7 +3,6 @@ module.exports = {
 		node: true,
 		es6: true
 	},
-	ignorePatterns: ['docs', 'node_modules'],
 	parserOptions: {
 		sourceType: 'module'
 	},
