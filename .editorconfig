@@ -21,3 +21,6 @@ indent_style = space
 [*.json]
 indent_style = space
 insert_final_newline = false
+
+[.vscode/ltex.*]
+insert_final_newline = false
