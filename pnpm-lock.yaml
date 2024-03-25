@@ -12,8 +12,8 @@ importers:
         specifier: ^1.6.2
         version: 1.6.2
       '@repobuddy/biome':
-        specifier: ^1.0.4
-        version: 1.0.4
+        specifier: ^1.1.0
+        version: 1.1.0
     devDependencies:
       '@changesets/cli':
         specifier: ^2.25.2
@@ -2922,8 +2922,8 @@ packages:
       config-chain: 1.1.13
     dev: true
 
-  /@repobuddy/biome@1.0.4:
-    resolution: {integrity: sha512-dfnvOWrLukc0jJ9SIRQ8CmVu6lccoYXFnonOvy5OGq1qLMLq1oiFBhP06AX9/W9xw6B63q22RTRKYYk4ykDNmg==}
+  /@repobuddy/biome@1.1.0:
+    resolution: {integrity: sha512-HCPPUVoX/eemzfjqzZqwudZOOohIcsgiXi/3fs1J98fmepb5yHM6gyx+ijfLYvDohDjmNEmqTPV6WfAe+BTwaA==}
     dev: false
 
   /@repobuddy/jest@3.4.2(@swc/jest@0.2.36)(jest-watch-suspend@1.1.2)(jest-watch-toggle-config-2@2.1.0)(jest-watch-typeahead@2.2.2)(jest@29.7.0)(ts-jest@29.1.2):

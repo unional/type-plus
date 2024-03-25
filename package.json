@@ -52,6 +52,6 @@
   "packageManager": "pnpm@8.15.4",
   "dependencies": {
     "@biomejs/biome": "^1.6.2",
-    "@repobuddy/biome": "^1.0.4"
+    "@repobuddy/biome": "^1.1.0"
   }
 }
