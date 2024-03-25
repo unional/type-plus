@@ -1,5 +1,20 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 8.0.0-beta.2
+
+### Minor Changes
+
+- f9821214a: Update to require typescript 5.4.
+
+### Patch Changes
+
+- 4ae069b28: Fix `IsPositive<number & { a: 1 }>` should return `boolean`
+- 72272509c: Simplify `Omit` type as the simpler code is working with typescript 5.4
+- 8901e750a: Work around excessive stack depth error in TS 5.4 for type `Zeros`.
+- b480c6c2b: Update some docs under `numerics`
+- 3d56d1a39: Fix `IsInteger<number & { a: 1 }>` should returns `boolean`
+- cc94afdc3: Fix `IsNegative<number & { a: 1 }>` should return `boolean`
+
 ## 8.0.0-beta.1
 
 ### Major Changes
