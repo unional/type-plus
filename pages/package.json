@@ -11,8 +11,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/solid-js": "^4.0.0",
-    "astro": "^4.0.0",
-    "solid-js": "^1.4.3"
+    "@astrojs/solid-js": "^4.0.1",
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.5.10",
+    "solid-js": "^1.4.3",
+    "tailwindcss": "^3.4.3"
   }
 }
