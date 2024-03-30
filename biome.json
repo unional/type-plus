@@ -14,8 +14,7 @@
       "packages/type-plus/src/types",
       "packages/type-plus/src/type-checker",
       "pages/dist",
-      "*.astro",
-      "package.json"
+      "*.astro"
     ]
   },
   "linter": {
