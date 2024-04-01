@@ -6,13 +6,18 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.5.10",
     "@astrojs/solid-js": "^4.0.0",
-    "astro": "^4.0.0",
-    "solid-js": "^1.4.3"
+    "@astrojs/starlight": "^0.21.2",
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.5.9",
+    "sharp": "^0.33.3",
+    "solid-js": "^1.4.3",
+    "tailwindcss": "^3.4.3"
   }
 }
