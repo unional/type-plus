@@ -43,15 +43,15 @@ import type { $Unknown } from '../unknown/unknown.js'
  * type R = IsNotAny<string, $SelectionBranch> // $Then
  * ```
  */
-export type IsNotAny<
+export type IsNotAny<T, $O extends IsNotAny.$Options = {}> = $SpecialType<
 	T,
-	$O extends IsNotAny.$Options = {}
-> = $SpecialType<T, {
-	$any: $ResolveBranch<T, $O, [$Else]>,
-	$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>,
-	$never: $ResolveBranch<T, $O, [$Never, $Then]>,
-	$else: $ResolveBranch<T, $O, [$Then]>
-}>
+	{
+		$any: $ResolveBranch<T, $O, [$Else]>
+		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>
+		$never: $ResolveBranch<T, $O, [$Never, $Then]>
+		$else: $ResolveBranch<T, $O, [$Then]>
+	}
+>
 
 export namespace IsNotAny {
 	export type $Options = $SelectionOptions & $InputOptions<$Unknown | $Never>

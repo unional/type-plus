@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type Head,testType } from '../index.js'
+import { type Head, testType } from '../index.js'
 
 it('returns never for empty tuple', () => {
 	testType.equal<Head<never>, never>(true)

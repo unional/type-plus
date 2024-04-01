@@ -67,10 +67,12 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  * type R = IsNotBigint<bigint, $SelectionBranch> // $Else
  * ```
  */
-export type IsNotBigint<T, $O extends IsNotBigint.$Options = {}> = $SpecialType<T,
-	$MergeOptions<$O,
+export type IsNotBigint<T, $O extends IsNotBigint.$Options = {}> = $SpecialType<
+	T,
+	$MergeOptions<
+		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Then]>,
+			$then: $ResolveBranch<T, $O, [$Then]>
 			$else: IsNotBigint.$<T, $O>
 		}
 	>
@@ -88,23 +90,19 @@ export namespace IsNotBigint {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> =
-		$ResolveOptions<[$O['exact'], false]> extends true
-		? $IsDistributive<$O, { $then: _SD<T, $O>, $else: _SN<T, $O> }>
+	export type $<T, $O extends $UtilOptions> = $ResolveOptions<[$O['exact'], false]> extends true
+		? $IsDistributive<$O, { $then: _SD<T, $O>; $else: _SN<T, $O> }>
 		: NotAssignable.$<T, bigint, $O>
 	export type $UtilOptions = NotAssignable.$UtilOptions & $Exact.$Options
 
-	export type _SD<T, $O extends $Options> =
-		T extends bigint & infer U
-		? (
-			U extends bigint
+	export type _SD<T, $O extends $Options> = T extends bigint & infer U
+		? U extends bigint
 			? $ResolveBranch<T, $O, [$Then]>
 			: $ResolveBranch<T, $O, [$Else]>
-		)
 		: $ResolveBranch<T, $O, [$Then]>
-	export type _SN<T, $O extends $Options> = (
-		[T] extends [bigint & infer U] ?
-		U extends bigint ? $ResolveBranch<T, $O, [$Then]>
-		: $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Then]>)
+	export type _SN<T, $O extends $Options> = [T] extends [bigint & infer U]
+		? U extends bigint
+			? $ResolveBranch<T, $O, [$Then]>
+			: $ResolveBranch<T, $O, [$Else]>
+		: $ResolveBranch<T, $O, [$Then]>
 }

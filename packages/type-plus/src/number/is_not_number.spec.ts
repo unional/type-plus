@@ -110,7 +110,6 @@ it('can override $never branch', () => {
 })
 
 describe('exact', () => {
-
 	it('returns false for number', () => {
 		testType.false<IsNotNumber<number, { exact: true }>>(true)
 	})
@@ -155,28 +154,28 @@ describe('exact', () => {
 	})
 
 	it('can disable union distribution', () => {
-		testType.equal<IsNotNumber<number | string, { distributive: false, exact: true }>, true>(true)
+		testType.equal<IsNotNumber<number | string, { distributive: false; exact: true }>, true>(true)
 	})
 
 	it('returns false for intersection type', () => {
 		testType.false<IsNotNumber<number & { a: 1 }, { exact: true }>>(true)
-		testType.false<IsNotNumber<number & { a: 1 }, { distributive: false, exact: true }>>(true)
+		testType.false<IsNotNumber<number & { a: 1 }, { distributive: false; exact: true }>>(true)
 
 		testType.true<IsNotNumber<1 & { a: 1 }, { exact: true }>>(true)
-		testType.true<IsNotNumber<1 & { a: 1 }, { distributive: false, exact: true }>>(true)
+		testType.true<IsNotNumber<1 & { a: 1 }, { distributive: false; exact: true }>>(true)
 
 		testType.true<IsNotNumber<1.1 & { a: 1 }, { exact: true }>>(true)
-		testType.true<IsNotNumber<1.1 & { a: 1 }, { distributive: false, exact: true }>>(true)
+		testType.true<IsNotNumber<1.1 & { a: 1 }, { distributive: false; exact: true }>>(true)
 	})
 
 	it('works as filter', () => {
-		testType.equal<IsNotNumber<number, { selection: 'filter', exact: true }>, never>(true)
+		testType.equal<IsNotNumber<number, { selection: 'filter'; exact: true }>, never>(true)
 
-		testType.equal<IsNotNumber<never, { selection: 'filter', exact: true }>, never>(true)
-		testType.equal<IsNotNumber<unknown, { selection: 'filter', exact: true }>, unknown>(true)
-		testType.equal<IsNotNumber<string | boolean, { selection: 'filter', exact: true }>, string | boolean>(true)
+		testType.equal<IsNotNumber<never, { selection: 'filter'; exact: true }>, never>(true)
+		testType.equal<IsNotNumber<unknown, { selection: 'filter'; exact: true }>, unknown>(true)
+		testType.equal<IsNotNumber<string | boolean, { selection: 'filter'; exact: true }>, string | boolean>(true)
 
-		testType.equal<IsNotNumber<string | number, { selection: 'filter', exact: true }>, string>(true)
+		testType.equal<IsNotNumber<string | number, { selection: 'filter'; exact: true }>, string>(true)
 	})
 
 	it('works with unique branches', () => {
@@ -193,16 +192,16 @@ describe('exact', () => {
 
 	it('can override $any branch', () => {
 		testType.equal<IsNotNumber<any, { exact: true }>, true>(true)
-		testType.equal<IsNotNumber<any, { $any: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsNotNumber<any, { $any: unknown; exact: true }>, unknown>(true)
 	})
 
 	it('can override $unknown branch', () => {
 		testType.equal<IsNotNumber<unknown, { exact: true }>, true>(true)
-		testType.equal<IsNotNumber<unknown, { $unknown: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsNotNumber<unknown, { $unknown: unknown; exact: true }>, unknown>(true)
 	})
 
 	it('can override $never branch', () => {
 		testType.equal<IsNotNumber<never, { exact: true }>, true>(true)
-		testType.equal<IsNotNumber<never, { $never: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsNotNumber<never, { $never: unknown; exact: true }>, unknown>(true)
 	})
 })

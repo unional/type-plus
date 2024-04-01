@@ -1,6 +1,6 @@
 import { expect, it, test } from '@jest/globals'
 
-import { type ArrayPlus,isType, testType } from '../index.js'
+import { type ArrayPlus, isType, testType } from '../index.js'
 
 test('behavior of array.concat()', () => {
 	const a1 = [1, 2, 3]

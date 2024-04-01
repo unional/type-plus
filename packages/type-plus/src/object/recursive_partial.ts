@@ -30,10 +30,10 @@ export type RecursivePartial<T> = {
 	[P in keyof T]?: T[P] extends (infer U)[]
 		? RecursivePartial<U>[] | undefined
 		: T[P] extends infer F extends AnyFunction
-		? [keyof T[P]] extends [undefined]
-			? T[P] | undefined
-			: ExtractFunction<F> & RecursivePartial<Properties<T[P]>>
-		: T[P] extends AnyRecord
-		? RecursivePartial<T[P]> | undefined
-		: T[P] | undefined
+			? [keyof T[P]] extends [undefined]
+				? T[P] | undefined
+				: ExtractFunction<F> & RecursivePartial<Properties<T[P]>>
+			: T[P] extends AnyRecord
+				? RecursivePartial<T[P]> | undefined
+				: T[P] | undefined
 }

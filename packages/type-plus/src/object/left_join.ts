@@ -6,5 +6,5 @@ import type { Properties } from './properties.js'
 export type LeftJoin<A extends AnyRecord, B extends AnyRecord> = IsEqual<A, B> extends true
 	? A
 	: IsDisjoint<A, B> extends true
-	? A & B
-	: Properties<{ [k in Exclude<keyof A, keyof B>]: A[k] } & { [k in keyof B]: B[k] }>
+		? A & B
+		: Properties<{ [k in Exclude<keyof A, keyof B>]: A[k] } & { [k in keyof B]: B[k] }>

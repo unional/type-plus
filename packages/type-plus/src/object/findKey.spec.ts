@@ -4,7 +4,7 @@ import { findKey } from '../index.js'
 
 it('pass key as indexer of the subject', () => {
 	const subject = { a: 1, b: 2, c: 3 }
-	const actual = findKey(subject, key => subject[key] === 2)
+	const actual = findKey(subject, (key) => subject[key] === 2)
 	expect(actual).toEqual('b')
 })
 

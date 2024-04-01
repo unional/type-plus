@@ -7,8 +7,6 @@ import type { $SelectionBranch } from './branch/$selection.js'
 import type { $SelectionOptions } from './branch/$selection_options.js'
 
 export namespace $Equality {
-	export type $Options = $SelectionOptions &
-		$DistributiveOptions &
-		$InputOptions<$Any | $Unknown | $Never>
+	export type $Options = $SelectionOptions & $DistributiveOptions & $InputOptions<$Any | $Unknown | $Never>
 	export type $Branch<$O extends $SelectionOptions = {}> = $SelectionBranch<$O>
 }

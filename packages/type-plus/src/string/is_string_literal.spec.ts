@@ -250,7 +250,7 @@ it('works as filter', () => {
 it('works with unique branches', () => {
 	testType.equal<IsStringLiteral<string, IsStringLiteral.$Branch>, $Else>(true)
 	testType.equal<IsStringLiteral<'a', IsStringLiteral.$Branch>, $Then>(true)
-	testType.equal<IsStringLiteral<'a', { $then: String, $else: never }>, String>(true)
+	testType.equal<IsStringLiteral<'a', { $then: String; $else: never }>, String>(true)
 
 	testType.equal<IsStringLiteral<any, IsStringLiteral.$Branch>, $Else>(true)
 	testType.equal<IsStringLiteral<unknown, IsStringLiteral.$Branch>, $Else>(true)
@@ -653,20 +653,20 @@ describe('enable exact', () => {
 	})
 
 	it('works as filter', () => {
-		testType.equal<IsStringLiteral<string, { selection: 'filter', exact: true }>, never>(true)
-		testType.equal<IsStringLiteral<'', { selection: 'filter', exact: true }>, ''>(true)
+		testType.equal<IsStringLiteral<string, { selection: 'filter'; exact: true }>, never>(true)
+		testType.equal<IsStringLiteral<'', { selection: 'filter'; exact: true }>, ''>(true)
 
-		testType.equal<IsStringLiteral<never, { selection: 'filter', exact: true }>, never>(true)
-		testType.equal<IsStringLiteral<unknown, { selection: 'filter', exact: true }>, never>(true)
-		testType.equal<IsStringLiteral<string | number, { selection: 'filter', exact: true }>, never>(true)
+		testType.equal<IsStringLiteral<never, { selection: 'filter'; exact: true }>, never>(true)
+		testType.equal<IsStringLiteral<unknown, { selection: 'filter'; exact: true }>, never>(true)
+		testType.equal<IsStringLiteral<string | number, { selection: 'filter'; exact: true }>, never>(true)
 
-		testType.equal<IsStringLiteral<'' | 1, { selection: 'filter', exact: true }>, ''>(true)
+		testType.equal<IsStringLiteral<'' | 1, { selection: 'filter'; exact: true }>, ''>(true)
 	})
 
 	it('works with unique branches', () => {
 		testType.equal<IsStringLiteral<string, IsStringLiteral.$Branch<{ exact: true }>>, $Else>(true)
 		testType.equal<IsStringLiteral<'a', IsStringLiteral.$Branch<{ exact: true }>>, $Then>(true)
-		testType.equal<IsStringLiteral<'a', { exact: true, $then: String, $else: never }>, String>(true)
+		testType.equal<IsStringLiteral<'a', { exact: true; $then: String; $else: never }>, String>(true)
 
 		testType.equal<IsStringLiteral<any, IsStringLiteral.$Branch<{ exact: true }>>, $Else>(true)
 		testType.equal<IsStringLiteral<unknown, IsStringLiteral.$Branch<{ exact: true }>>, $Else>(true)
@@ -676,128 +676,136 @@ describe('enable exact', () => {
 
 	it('can override $any branch', () => {
 		testType.equal<IsStringLiteral<any, { exact: true }>, false>(true)
-		testType.equal<IsStringLiteral<any, { $any: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsStringLiteral<any, { $any: unknown; exact: true }>, unknown>(true)
 	})
 
 	it('can override $unknown branch', () => {
 		testType.equal<IsStringLiteral<unknown, { exact: true }>, false>(true)
-		testType.equal<IsStringLiteral<unknown, { $unknown: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsStringLiteral<unknown, { $unknown: unknown; exact: true }>, unknown>(true)
 	})
 
 	it('can override $never branch', () => {
 		testType.equal<IsStringLiteral<never, { exact: true }>, false>(true)
-		testType.equal<IsStringLiteral<never, { $never: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsStringLiteral<never, { $never: unknown; exact: true }>, unknown>(true)
 	})
 
 	describe('disable distribution', () => {
 		it('returns false for string', () => {
-			testType.false<IsStringLiteral<string, { distributive: false, exact: true }>>(true)
+			testType.false<IsStringLiteral<string, { distributive: false; exact: true }>>(true)
 		})
 
 		it('returns true if T is a string literal', () => {
-			testType.true<IsStringLiteral<'', { distributive: false, exact: true }>>(true)
-			testType.true<IsStringLiteral<'a', { distributive: false, exact: true }>>(true)
+			testType.true<IsStringLiteral<'', { distributive: false; exact: true }>>(true)
+			testType.true<IsStringLiteral<'a', { distributive: false; exact: true }>>(true)
 		})
 
 		it('returns true if T is a template literal reducible to string literal', () => {
-			testType.true<IsStringLiteral<`${''}`, { distributive: false, exact: true }>>(true)
-			testType.true<IsStringLiteral<`a${boolean}`, { distributive: false, exact: true }>>(true)
-			testType.true<IsStringLiteral<`${false}c`, { distributive: false, exact: true }>>(true)
-			testType.true<IsStringLiteral<`${1}c`, { distributive: false, exact: true }>>(true)
-			testType.true<IsStringLiteral<`a${1n}c`, { distributive: false, exact: true }>>(true)
+			testType.true<IsStringLiteral<`${''}`, { distributive: false; exact: true }>>(true)
+			testType.true<IsStringLiteral<`a${boolean}`, { distributive: false; exact: true }>>(true)
+			testType.true<IsStringLiteral<`${false}c`, { distributive: false; exact: true }>>(true)
+			testType.true<IsStringLiteral<`${1}c`, { distributive: false; exact: true }>>(true)
+			testType.true<IsStringLiteral<`a${1n}c`, { distributive: false; exact: true }>>(true)
 		})
 
 		it('returns false if T is a template literal', () => {
-			testType.false<IsStringLiteral<`${number}`, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<`a${bigint}`, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<`${string}c`, { distributive: false, exact: true }>>(true)
+			testType.false<IsStringLiteral<`${number}`, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<`a${bigint}`, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<`${string}c`, { distributive: false; exact: true }>>(true)
 		})
 
 		it('returns true for Uppercase string literal', () => {
-			testType.true<IsStringLiteral<Uppercase<'abc'>, { distributive: false, exact: true }>>(true)
+			testType.true<IsStringLiteral<Uppercase<'abc'>, { distributive: false; exact: true }>>(true)
 		})
 
 		it('returns false for manipulated template literal', () => {
-			testType.false<IsStringLiteral<Uppercase<`${number}`>, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<Lowercase<`${bigint}`>, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<Capitalize<`a${number}`>, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<Uncapitalize<`a${string}`>, { distributive: false, exact: true }>>(true)
+			testType.false<IsStringLiteral<Uppercase<`${number}`>, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<Lowercase<`${bigint}`>, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<Capitalize<`a${number}`>, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<Uncapitalize<`a${string}`>, { distributive: false; exact: true }>>(true)
 		})
 
 		it('returns true for manipulated template literal reduced to string literal', () => {
-			testType.true<IsStringLiteral<Uppercase<`${''}`>, { distributive: false, exact: true }>>(true)
-			testType.true<IsStringLiteral<Lowercase<`a${true}`>, { distributive: false, exact: true }>>(true)
-			testType.true<IsStringLiteral<Capitalize<`${1.1}c`>, { distributive: false, exact: true }>>(true)
-			testType.true<IsStringLiteral<Uncapitalize<`a${undefined}c`>, { distributive: false, exact: true }>>(true)
+			testType.true<IsStringLiteral<Uppercase<`${''}`>, { distributive: false; exact: true }>>(true)
+			testType.true<IsStringLiteral<Lowercase<`a${true}`>, { distributive: false; exact: true }>>(true)
+			testType.true<IsStringLiteral<Capitalize<`${1.1}c`>, { distributive: false; exact: true }>>(true)
+			testType.true<IsStringLiteral<Uncapitalize<`a${undefined}c`>, { distributive: false; exact: true }>>(true)
 		})
 
 		it('returns false for Uppercase string', () => {
-			testType.false<IsStringLiteral<Uppercase<string>, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<Uppercase<Uppercase<string>>, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<Uppercase<Lowercase<string>>, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<Uppercase<Uppercase<Lowercase<string>>>, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<Uppercase<Lowercase<Uppercase<string>>>, { distributive: false, exact: true }>>(true)
+			testType.false<IsStringLiteral<Uppercase<string>, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<Uppercase<Uppercase<string>>, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<Uppercase<Lowercase<string>>, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<Uppercase<Uppercase<Lowercase<string>>>, { distributive: false; exact: true }>>(
+				true
+			)
+			testType.false<IsStringLiteral<Uppercase<Lowercase<Uppercase<string>>>, { distributive: false; exact: true }>>(
+				true
+			)
 		})
 
 		it('returns true for Lowercase string literal', () => {
-			testType.true<IsStringLiteral<Lowercase<'abc'>, { distributive: false, exact: true }>>(true)
-			testType.true<IsStringLiteral<Lowercase<'foo'>, { distributive: false, exact: true }>>(true)
+			testType.true<IsStringLiteral<Lowercase<'abc'>, { distributive: false; exact: true }>>(true)
+			testType.true<IsStringLiteral<Lowercase<'foo'>, { distributive: false; exact: true }>>(true)
 		})
 
 		it('returns false for Lowercase template literal', () => {
-			testType.false<IsStringLiteral<Lowercase<`${number}`>, { distributive: false, exact: true }>>(true)
-			testType.true<IsStringLiteral<Lowercase<`a${boolean}c`>, { distributive: false, exact: true }>>(true)
+			testType.false<IsStringLiteral<Lowercase<`${number}`>, { distributive: false; exact: true }>>(true)
+			testType.true<IsStringLiteral<Lowercase<`a${boolean}c`>, { distributive: false; exact: true }>>(true)
 		})
 
 		it('returns false for Lowercase string', () => {
-			testType.false<IsStringLiteral<Lowercase<string>, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<Lowercase<Lowercase<string>>, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<Lowercase<Uppercase<string>>, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<Lowercase<Lowercase<Uppercase<string>>>, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<Lowercase<Uppercase<Lowercase<string>>>, { distributive: false, exact: true }>>(true)
+			testType.false<IsStringLiteral<Lowercase<string>, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<Lowercase<Lowercase<string>>, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<Lowercase<Uppercase<string>>, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<Lowercase<Lowercase<Uppercase<string>>>, { distributive: false; exact: true }>>(
+				true
+			)
+			testType.false<IsStringLiteral<Lowercase<Uppercase<Lowercase<string>>>, { distributive: false; exact: true }>>(
+				true
+			)
 		})
 
 		it('returns false for special types', () => {
-			testType.false<IsStringLiteral<void, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<unknown, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<any, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<never, { distributive: false, exact: true }>>(true)
+			testType.false<IsStringLiteral<void, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<unknown, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<any, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<never, { distributive: false; exact: true }>>(true)
 		})
 
 		it('returns false for all other types', () => {
-			testType.false<IsStringLiteral<undefined, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<null, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<boolean, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<true, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<false, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<number, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<-1, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<0, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<1, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<1.1, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<string, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<bigint, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<-1n, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<0n, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<1n, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<symbol, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<{}, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<string[], { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<[], { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<Function, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<() => void, { distributive: false, exact: true }>>(true)
+			testType.false<IsStringLiteral<undefined, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<null, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<boolean, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<true, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<false, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<number, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<-1, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<0, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<1, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<1.1, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<string, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<bigint, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<-1n, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<0n, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<1n, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<symbol, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<{}, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<string[], { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<[], { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<Function, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<() => void, { distributive: false; exact: true }>>(true)
 		})
 
 		it('over union', () => {
-			testType.equal<IsStringLiteral<'a' | number, { distributive: false, exact: true }>, false>(true)
+			testType.equal<IsStringLiteral<'a' | number, { distributive: false; exact: true }>, false>(true)
 		})
 
 		it.skip('works with intersection type', () => {
 			// FIXME: https://github.com/microsoft/TypeScript/issues/57776
 			// testType.true<IsStringLiteral<'' & { a: 1 }, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<1 & { a: 1 }, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<string & { a: 1 }, { distributive: false, exact: true }>>(true)
-			testType.false<IsStringLiteral<`${number}` & { a: 1 }, { distributive: false, exact: true }>>(true)
+			testType.false<IsStringLiteral<1 & { a: 1 }, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<string & { a: 1 }, { distributive: false; exact: true }>>(true)
+			testType.false<IsStringLiteral<`${number}` & { a: 1 }, { distributive: false; exact: true }>>(true)
 		})
 	})
 })

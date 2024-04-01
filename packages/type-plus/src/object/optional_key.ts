@@ -1,4 +1,3 @@
-
 import type { AnyRecord } from './any_record.js'
 import type { KeyTypes } from './KeyTypes.js'
 
@@ -33,6 +32,4 @@ export type OptionalKeys<T> = T extends unknown
 /**
  * Parse `T` to keep only the optional properties.
  */
-export type OptionalProps<T extends AnyRecord> = T extends unknown
-	? { [k in OptionalKeys<T>]?: T[k] }
-	: never
+export type OptionalProps<T extends AnyRecord> = T extends unknown ? { [k in OptionalKeys<T>]?: T[k] } : never

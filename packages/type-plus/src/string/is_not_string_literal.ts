@@ -68,15 +68,16 @@ import type { _StringType } from './_string_type.js'
  * type R = IsNotStringLiteral<string, $IsNotStringLiteral.$Branch> // $Then
  * ```
  */
-export type IsNotStringLiteral<T, $O extends IsNotStringLiteral.$Options = {}> =
-	$SpecialType<T,
-		$MergeOptions<$O,
-			{
-				$then: $ResolveBranch<T, $O, [$Then]>,
-				$else: IsNotStringLiteral.$<T, $O>
-			}
-		>
+export type IsNotStringLiteral<T, $O extends IsNotStringLiteral.$Options = {}> = $SpecialType<
+	T,
+	$MergeOptions<
+		$O,
+		{
+			$then: $ResolveBranch<T, $O, [$Then]>
+			$else: IsNotStringLiteral.$<T, $O>
+		}
 	>
+>
 
 export namespace IsNotStringLiteral {
 	export type $Options = $Equality.$Options & $Exact.$Options
@@ -90,43 +91,37 @@ export namespace IsNotStringLiteral {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> =
-		$ResolveOptions<[$O['exact'], $Exact.$Default]> extends true
-		? $IsDistributive<$O, { $then: _ED<T, $O>, $else: _EN<T, $O> }>
-		: $IsDistributive<$O, { $then: _D<T, $O>, $else: _N<T, $O> }>
+	export type $<T, $O extends $UtilOptions> = $ResolveOptions<[$O['exact'], $Exact.$Default]> extends true
+		? $IsDistributive<$O, { $then: _ED<T, $O>; $else: _EN<T, $O> }>
+		: $IsDistributive<$O, { $then: _D<T, $O>; $else: _N<T, $O> }>
 
 	export type $UtilOptions = Assignable.$UtilOptions & $Exact.$Options
 
-	export type _ED<T, $O extends $SelectionOptions> =
-		T extends string ? (_E<T, $O>) : $ResolveBranch<T, $O, [$Then]>
+	export type _ED<T, $O extends $SelectionOptions> = T extends string ? _E<T, $O> : $ResolveBranch<T, $O, [$Then]>
 
-	export type _EN<T, $O extends $SelectionOptions> =
-		[T] extends [string] ? (_E<T, $O>) : $ResolveBranch<T, $O, [$Then]>
+	export type _EN<T, $O extends $SelectionOptions> = [T] extends [string] ? _E<T, $O> : $ResolveBranch<T, $O, [$Then]>
 
-	export type _E<T extends string, $O extends $SelectionOptions> =
-		T extends string
+	export type _E<T extends string, $O extends $SelectionOptions> = T extends string
 		? _StringType<T> extends infer R
-		? R extends 'stringLiteral'
-		? $ResolveBranch<T, $O, [$Else]>
+			? R extends 'stringLiteral'
+				? $ResolveBranch<T, $O, [$Else]>
+				: $ResolveBranch<T, $O, [$Then]>
+			: never
 		: $ResolveBranch<T, $O, [$Then]>
-		: never
+
+	export type _D<T, $O extends $SelectionOptions> = T extends string & infer U
+		? _U<T, U, $O>
 		: $ResolveBranch<T, $O, [$Then]>
 
-	export type _D<T, $O extends $SelectionOptions> =
-		T extends string & infer U ? _U<T, U, $O> : $ResolveBranch<T, $O, [$Then]>
+	export type _N<T, $O extends $SelectionOptions> = [T] extends [string & infer U]
+		? _U<T, U, $O>
+		: $ResolveBranch<T, $O, [$Then]>
 
-	export type _N<T, $O extends $SelectionOptions> =
-		[T] extends [string & infer U] ? _U<T, U, $O> : $ResolveBranch<T, $O, [$Then]>
-
-	export type _U<T, U, $O extends $SelectionOptions> =
-		U extends `${any}`
+	export type _U<T, U, $O extends $SelectionOptions> = U extends `${any}`
 		? $ResolveBranch<T, $O, [$Else]>
-		: (
-			U extends Uppercase<infer N>
+		: U extends Uppercase<infer N>
 			? _D<N, $O>
 			: U extends Lowercase<infer N>
-			? _D<N, $O>
-			: $ResolveBranch<T, $O, [$Then]>
-		)
-
+				? _D<N, $O>
+				: $ResolveBranch<T, $O, [$Then]>
 }

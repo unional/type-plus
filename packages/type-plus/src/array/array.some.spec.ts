@@ -1,6 +1,6 @@
 import { describe, it } from '@jest/globals'
 
-import { type ArrayPlus, type Some,testType } from '../index.js'
+import { type ArrayPlus, type Some, testType } from '../index.js'
 
 it('returns true if array satisfies Criteria', () => {
 	testType.true<Some<number[], number>>(true)

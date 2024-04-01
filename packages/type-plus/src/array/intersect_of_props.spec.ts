@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type IntersectOfProps,testType } from '../index.js'
+import { type IntersectOfProps, testType } from '../index.js'
 
 it('gets property from single value tuple', () => {
 	type S = [{ a: number }]
@@ -16,11 +16,7 @@ it('gets property from multiple values', () => {
 })
 
 it('gets property from array', () => {
-	testType.equal<
-		IntersectOfProps<
-			Array<{ a: number } | { a: string }>,
-			'a'
-		>, number | string>(true)
+	testType.equal<IntersectOfProps<Array<{ a: number } | { a: string }>, 'a'>, number | string>(true)
 })
 
 it('support readonly array', () => {

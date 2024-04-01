@@ -43,7 +43,7 @@ it('distributes over union type', () => {
 
 it('can disable union distribution', () => {
 	testType.equal<IsNotTuple<[] | number, { distributive: false }>, true>(true)
-	testType.equal<IsNotTuple<[] | number, { distributive: false, selection: 'filter' }>, [] | number>(true)
+	testType.equal<IsNotTuple<[] | number, { distributive: false; selection: 'filter' }>, [] | number>(true)
 })
 
 it('returns false if T is union of tuples', () => {

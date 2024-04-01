@@ -22,17 +22,16 @@ import type { KeyTypes } from '../object/KeyTypes.js'
 export type CommonPropKeys<
 	A extends readonly Record<KeyTypes, unknown>[],
 	Options extends CommonPropKeys.Options = CommonPropKeys.DefaultOptions
-> = IsNever<A,
+> = IsNever<
+	A,
 	{
-		$then: Options['$never'],
+		$then: Options['$never']
 		$else: A extends Readonly<Array<infer R extends Record<KeyTypes, unknown>>> ? keyof R : never
 	}
 >
 
 export namespace CommonPropKeys {
-	export interface Options extends $Never.$Options {
-	}
+	export interface Options extends $Never.$Options {}
 
-	export interface DefaultOptions extends $Never.$Default {
-	}
+	export interface DefaultOptions extends $Never.$Default {}
 }

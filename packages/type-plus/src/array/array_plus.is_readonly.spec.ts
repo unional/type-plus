@@ -26,7 +26,6 @@ it('', () => {
 	testType.equal<ArrayPlus.IsReadonly<unknown>, false>(true)
 	testType.equal<ArrayPlus.IsReadonly<never, { $never: 'n' }>, 'n'>(true)
 	testType.equal<ArrayPlus.IsReadonly<void>, false>(true)
-
 })
 
 it('detects non array case', () => {

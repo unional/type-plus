@@ -13,7 +13,7 @@ test('mixed type', () => {
 })
 
 test('extract value from prop', () => {
-	const actual = mapProperties({ a: { foo: 'x' }, b: { foo: 'y' } }, v => v.foo)
+	const actual = mapProperties({ a: { foo: 'x' }, b: { foo: 'y' } }, (v) => v.foo)
 	expect(actual).toEqual({ a: 'x', b: 'y' })
 })
 
@@ -26,6 +26,6 @@ test('parent props are not mapped', () => {
 	}
 	const boo = new Boo()
 
-	const actual = mapProperties(boo, v => v(2))
+	const actual = mapProperties(boo, (v) => v(2))
 	expect(actual).toEqual({ own: 6 })
 })

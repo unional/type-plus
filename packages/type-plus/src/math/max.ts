@@ -8,6 +8,6 @@ export type Max<A extends number | bigint, B extends number | bigint, Fail = nev
 	? IsNever<Result> extends true
 		? Fail
 		: Result extends true
-		? A
-		: B
+			? A
+			: B
 	: never

@@ -25,43 +25,40 @@ import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$select
  * Box<undefined> // never
  * ```
  */
-export type Box<T, Options extends Box.Options = Box.DefaultOptions> =
-	IsFunction<
-		T,
-		IsFunction.$Branch
-	> extends infer R
-	? R extends $Then ? Function
-	: IsObject<
-		T,
-		IsObject.$Branch<{ exact: true }>> extends infer R
-	? R extends $Then ? Object :
-	T extends Record<any, any> ? T :
-	IsBoolean<
-		T,
-		$SelectionBranch
-	> extends infer R
-	? R extends $Then ? Boolean
-	: R extends $Else ? IsNumber<
-		T,
-		IsNumber.$Branch
-	> extends infer R
-	? R extends $Then ? Number
-	: R extends $Else ? IsString<
-		T,
-		{
-			$then: String,
-			$else: IsSymbol<
-				T,
-				{
-					$then: Symbol,
-					$else: IsBigint<T, { $then: BigInt, $else: Options['$notBoxable'] }>
-				}
-			>
-		}
-	>
-	: never : never
-	: never : never
-	: never
+export type Box<T, Options extends Box.Options = Box.DefaultOptions> = IsFunction<T, IsFunction.$Branch> extends infer R
+	? R extends $Then
+		? Function
+		: IsObject<T, IsObject.$Branch<{ exact: true }>> extends infer R
+			? R extends $Then
+				? Object
+				: T extends Record<any, any>
+					? T
+					: IsBoolean<T, $SelectionBranch> extends infer R
+						? R extends $Then
+							? Boolean
+							: R extends $Else
+								? IsNumber<T, IsNumber.$Branch> extends infer R
+									? R extends $Then
+										? Number
+										: R extends $Else
+											? IsString<
+													T,
+													{
+														$then: String
+														$else: IsSymbol<
+															T,
+															{
+																$then: Symbol
+																$else: IsBigint<T, { $then: BigInt; $else: Options['$notBoxable'] }>
+															}
+														>
+													}
+												>
+											: never
+									: never
+								: never
+						: never
+			: never
 	: never
 
 export namespace Box {

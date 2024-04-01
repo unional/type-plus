@@ -1,12 +1,6 @@
 import { it, test } from '@jest/globals'
 
-import {
-	assertType,
-	type Partial,
-	type PartialExcept,
-	type PartialOmit,
-	type PartialPick,
-	testType } from '../index.js'
+import { assertType, type Partial, type PartialExcept, type PartialOmit, type PartialPick, testType } from '../index.js'
 
 test('work on primitive type', () => {
 	type Foo = PartialPick<number, 'toFixed'>
@@ -16,8 +10,8 @@ test('work on primitive type', () => {
 
 test('make picked properties optional', () => {
 	type Foo = {
-		a: number,
-		b: number,
+		a: number
+		b: number
 		c: number
 	}
 
@@ -30,8 +24,8 @@ test('make picked properties optional', () => {
 
 test('make not specified properties optional', () => {
 	type Foo = {
-		a: number,
-		b: number,
+		a: number
+		b: number
 		c: number
 	}
 
@@ -43,8 +37,8 @@ test('make not specified properties optional', () => {
 
 test('make not specified properties optional', () => {
 	type Foo = {
-		a: number,
-		b: number,
+		a: number
+		b: number
 		c: number
 	}
 

@@ -4,7 +4,7 @@ import { filterKey } from '../index.js'
 
 it(`returns with type as 'keyof subject'`, () => {
 	const subject = { a: 1, b: 2, c: 3 }
-	const actual = filterKey(subject, key => subject[key] > 1)
+	const actual = filterKey(subject, (key) => subject[key] > 1)
 	expect(actual).toEqual(['b', 'c'])
 })
 

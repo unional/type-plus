@@ -1,5 +1,5 @@
 export interface Fn {
-	input: [unknown, unknown],
+	input: [unknown, unknown]
 	output: [unknown, unknown]
 }
 
@@ -9,7 +9,10 @@ export type Pipe<Input extends [unknown, unknown], Fns extends Fn[]> = Fns exten
 	infer H extends Fn,
 	...infer Rest extends Fn[]
 ]
-	? Pipe<(H & {
-		input: Input
-	})['output'], Rest>
+	? Pipe<
+			(H & {
+				input: Input
+			})['output'],
+			Rest
+		>
 	: Input

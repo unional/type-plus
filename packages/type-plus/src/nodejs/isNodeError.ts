@@ -1,17 +1,17 @@
 export type SystemErrors = {
-	EACCES: Error & { code: 'EACCES' },
-	EADDRINUSE: Error & { code: 'EADDRINUSE' },
-	ECONNREFUSED: Error,
-	ECONNRESET: Error,
-	EEXIST: Error,
-	EISDIR: Error,
-	EMFILE: Error,
-	ENOENT: Error & { code: 'ENOENT', path: string },
-	ENOTDIR: Error,
-	ENOTEMPTY: Error,
-	ENOTFOUND: Error,
-	EPERM: Error,
-	EPIPE: Error,
+	EACCES: Error & { code: 'EACCES' }
+	EADDRINUSE: Error & { code: 'EADDRINUSE' }
+	ECONNREFUSED: Error
+	ECONNRESET: Error
+	EEXIST: Error
+	EISDIR: Error
+	EMFILE: Error
+	ENOENT: Error & { code: 'ENOENT'; path: string }
+	ENOTDIR: Error
+	ENOTEMPTY: Error
+	ENOTFOUND: Error
+	EPERM: Error
+	EPIPE: Error
 	ETIMEDOUT: Error
 }
 

@@ -1,6 +1,6 @@
 import { describe, it } from '@jest/globals'
 
-import { type Filter, type KeepMatch,testType } from '../index.js'
+import { type Filter, type KeepMatch, testType } from '../index.js'
 
 describe('Filter<A, C>', () => {
 	describe('A is array', () => {

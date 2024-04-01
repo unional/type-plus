@@ -7,4 +7,3 @@ export type * from './is_not_positive.js'
 export type * from './is_numeric.js'
 export type * from './is_positive.js'
 export type * from './numeric_type.js'
-

@@ -1,6 +1,6 @@
 import { it, test } from '@jest/globals'
 
-import { type ArrayPlus,testType } from '../index.js'
+import { type ArrayPlus, testType } from '../index.js'
 
 test('behavior of array.entries()', () => {
 	const array = [1, 2, '3']

@@ -6,9 +6,7 @@ export type Maybe<T> = Just<T> | None<T>
 export type Just<T> = Brand<'maybe', T> & { unwrap(): T }
 export type None<T> = Brand<'maybe', void> & { unwrap(): T }
 
-export function just<T>(
-	value: T
-): IsEqual<T, undefined | null> extends true ? None<T> : Just<Widen<NonNullable<T>>> {
+export function just<T>(value: T): IsEqual<T, undefined | null> extends true ? None<T> : Just<Widen<NonNullable<T>>> {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 	return {
 		unwrap() {

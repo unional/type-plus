@@ -1,6 +1,6 @@
 import { describe, it, test } from '@jest/globals'
 
-import { type StrictCanAssign,testType } from '../index.js'
+import { type StrictCanAssign, testType } from '../index.js'
 
 describe('StrictCanAssign<A, B>', () => {
 	test('literal type to widen', () => {
@@ -23,10 +23,10 @@ describe('StrictCanAssign<A, B>', () => {
 		testType.false<StrictCanAssign<boolean, true>>(true)
 	})
 	test('super set to sub set', () => {
-		testType.true<StrictCanAssign<{ a: string, b: number }, { a: string }>>(true)
+		testType.true<StrictCanAssign<{ a: string; b: number }, { a: string }>>(true)
 	})
 	test('sub set to super set fail', () => {
-		testType.false<StrictCanAssign<{ a: string }, { a: string, b: number }>>(true)
+		testType.false<StrictCanAssign<{ a: string }, { a: string; b: number }>>(true)
 	})
 
 	it('union types checks against all branches', () => {

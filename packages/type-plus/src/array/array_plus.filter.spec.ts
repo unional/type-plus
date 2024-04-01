@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type ArrayPlus,testType } from '../index.js'
+import { type ArrayPlus, testType } from '../index.js'
 
 it('returns never for never case', () => {
 	testType.equal<ArrayPlus.Filter<never, string>, never>(true)

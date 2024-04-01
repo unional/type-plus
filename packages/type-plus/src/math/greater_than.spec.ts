@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type GreaterThan,testType } from '../index.js'
+import { type GreaterThan, testType } from '../index.js'
 
 it('number gets never', () => {
 	testType.never<GreaterThan<number, 1>>(true)

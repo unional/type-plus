@@ -264,11 +264,11 @@ test('object with any', () => {
 })
 
 test('A subset of B is false', () => {
-	testType.true<IsNotEqual<{ a: 1 }, { a: 1, b: 1 }>>(true)
+	testType.true<IsNotEqual<{ a: 1 }, { a: 1; b: 1 }>>(true)
 })
 
 test('B subset of A is false', () => {
-	testType.true<IsNotEqual<{ a: 1, b: 1 }, { a: 1 }>>(true)
+	testType.true<IsNotEqual<{ a: 1; b: 1 }, { a: 1 }>>(true)
 })
 
 test('disjoin is false', () => {
@@ -276,7 +276,7 @@ test('disjoin is false', () => {
 })
 
 test('overlap is false', () => {
-	testType.true<IsNotEqual<{ a: 1, b: 1 }, { a: 1, c: 2 }>>(true)
+	testType.true<IsNotEqual<{ a: 1; b: 1 }, { a: 1; c: 2 }>>(true)
 })
 
 it('works against tuple', () => {
@@ -313,10 +313,7 @@ it('works with union types containing symbol', () => {
 
 it('works with union of functions', () => {
 	testType.false<
-		IsNotEqual<
-			((v: string) => string) | ((v: number) => number),
-			((v: string) => string) | ((v: number) => number)
-		>
+		IsNotEqual<((v: string) => string) | ((v: number) => number), ((v: string) => string) | ((v: number) => number)>
 	>(true)
 
 	testType.true<IsNotEqual<(v: string) => string, ((v: string) => string) | ((v: number) => number)>>(true)
@@ -324,14 +321,14 @@ it('works with union of functions', () => {
 })
 
 it('works with intersect types', () => {
-	testType.false<IsNotEqual<{ a: number, b: string }, { a: number } & { b: string }>>(true)
-	testType.false<IsNotEqual<{ a: number } & { b: number }, { a: number, b: number }>>(true)
-	testType.false<IsNotEqual<{ a: number, b?: string }, { a: number } & { b?: string }>>(true)
-	testType.false<IsNotEqual<{ a: number } & { b?: string }, { a: number, b?: string }>>(true)
+	testType.false<IsNotEqual<{ a: number; b: string }, { a: number } & { b: string }>>(true)
+	testType.false<IsNotEqual<{ a: number } & { b: number }, { a: number; b: number }>>(true)
+	testType.false<IsNotEqual<{ a: number; b?: string }, { a: number } & { b?: string }>>(true)
+	testType.false<IsNotEqual<{ a: number } & { b?: string }, { a: number; b?: string }>>(true)
 
 	testType.true<IsNotEqual<1 | 2, 1>>(true)
-	testType.true<IsNotEqual<{ a: number } & { c: number }, { a: number, b: number }>>(true)
-	testType.true<IsNotEqual<{ a: number, b: number }, { a: number } & { c: number }>>(true)
+	testType.true<IsNotEqual<{ a: number } & { c: number }, { a: number; b: number }>>(true)
+	testType.true<IsNotEqual<{ a: number; b: number }, { a: number } & { c: number }>>(true)
 })
 
 it('works with function overload', () => {
@@ -342,8 +339,8 @@ it('works with function overload', () => {
 	}
 	type F = typeof foo
 
-	testType.false<IsNotEqual<F, { (v: string): string, (v: number): number }>>(true)
-	testType.true<IsNotEqual<F, { (v: string): string, (v: number): string }>>(true)
+	testType.false<IsNotEqual<F, { (v: string): string; (v: number): number }>>(true)
+	testType.true<IsNotEqual<F, { (v: string): string; (v: number): string }>>(true)
 
 	testType.true<IsNotEqual<F, (v: number) => number>>(true)
 	testType.true<IsNotEqual<F, (v: string) => number>>(true)
@@ -395,24 +392,21 @@ it('detect redonly', () => {
 
 it('works with deep any', () => {
 	testType.false<
-		IsNotEqual<
-			{ a: { a: any, n: never, u: unknown, v: void } },
-			{ a: { a: any, n: never, u: unknown, v: void } }
-		>
+		IsNotEqual<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: never; u: unknown; v: void } }>
 	>(true)
 
 	testType.true<
-		IsNotEqual<{ a: { a: any, n: never, u: unknown, v: void } }, { a: { a: 1, n: never, u: unknown, v: void } }>
+		IsNotEqual<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: 1; n: never; u: unknown; v: void } }>
 	>(true)
 
 	testType.true<
-		IsNotEqual<{ a: { a: any, n: never, u: unknown, v: void } }, { a: { a: any, n: 2, u: unknown, v: void } }>
+		IsNotEqual<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: 2; u: unknown; v: void } }>
 	>(true)
 	testType.true<
-		IsNotEqual<{ a: { a: any, n: never, u: unknown, v: void } }, { a: { a: any, n: never, u: 3, v: void } }>
+		IsNotEqual<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: never; u: 3; v: void } }>
 	>(true)
 	testType.true<
-		IsNotEqual<{ a: { a: any, n: never, u: unknown, v: void } }, { a: { a: any, n: never, u: unknown, v: 4 } }>
+		IsNotEqual<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: never; u: unknown; v: 4 } }>
 	>(true)
 })
 

@@ -1,7 +1,7 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "outDir": "esm",
-    "verbatimModuleSyntax": true
-  }
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"outDir": "esm",
+		"verbatimModuleSyntax": true
+	}
 }

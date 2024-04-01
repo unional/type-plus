@@ -89,10 +89,12 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  * type R = IsNotObject<string, $SelectionBranch> // $Then
  * ```
  */
-export type IsNotObject<T, $O extends IsNotObject.$Options = {}> = $SpecialType<T,
-	$MergeOptions<$O,
+export type IsNotObject<T, $O extends IsNotObject.$Options = {}> = $SpecialType<
+	T,
+	$MergeOptions<
+		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Then]>,
+			$then: $ResolveBranch<T, $O, [$Then]>
 			$else: IsNotObject.$<T, $O>
 		}
 	>
@@ -109,24 +111,29 @@ export namespace IsNotObject {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> =
-		$ResolveOptions<[$O['exact'], $Exact.$Default]> extends true
-		? $IsDistributive<$O, { $then: _D<T, $O>, $else: _N<T, $O> }>
+	export type $<T, $O extends $UtilOptions> = $ResolveOptions<[$O['exact'], $Exact.$Default]> extends true
+		? $IsDistributive<$O, { $then: _D<T, $O>; $else: _N<T, $O> }>
 		: NotAssignable.$<T, object, $O>
 	export type $UtilOptions = NotAssignable.$UtilOptions & $Exact.$Options
 
 	export type _D<T, $O extends $UtilOptions> = T extends object
-		? IdentityEqual<T, {},
-			$ResolveBranch<T, $O, [$Then]>,
-			IsNever<keyof T, {
-				$then: $ResolveBranch<T, $O, [$Else]>,
-				$else: $ResolveBranch<T, $O, [$Then]>
-			}>>
+		? IdentityEqual<
+				T,
+				{},
+				$ResolveBranch<T, $O, [$Then]>,
+				IsNever<
+					keyof T,
+					{
+						$then: $ResolveBranch<T, $O, [$Else]>
+						$else: $ResolveBranch<T, $O, [$Then]>
+					}
+				>
+			>
 		: $ResolveBranch<T, $O, [$Then]>
 
-	export type _N<T, $O extends $UtilOptions> =
-		[T] extends [object & infer U] ?
-		U extends object ? $ResolveBranch<T, $O, [$Then]>
-		: $ResolveBranch<T, $O, [$Else]>
+	export type _N<T, $O extends $UtilOptions> = [T] extends [object & infer U]
+		? U extends object
+			? $ResolveBranch<T, $O, [$Then]>
+			: $ResolveBranch<T, $O, [$Else]>
 		: $ResolveBranch<T, $O, [$Then]>
 }

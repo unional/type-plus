@@ -28,11 +28,11 @@ import type { NotExtendable } from './Extends.js'
  */
 export type CanAssign<A, B, Then = true, Else = false> = boolean extends A
 	? boolean extends B
-	? Then
-	: Else
+		? Then
+		: Else
 	: A extends B
-	? Then
-	: Else
+		? Then
+		: Else
 
 /**
  * Can `A` strictly assign to `B`.
@@ -47,7 +47,11 @@ export type CanAssign<A, B, Then = true, Else = false> = boolean extends A
  * StrictCanAssign<number | string, number | string> // true
  * ```
  */
-export type StrictCanAssign<A, B, Then = true, Else = false> = Assignable<A, B, { distributive: false, $then: Then, $else: Else }>
+export type StrictCanAssign<A, B, Then = true, Else = false> = Assignable<
+	A,
+	B,
+	{ distributive: false; $then: Then; $else: Else }
+>
 
 /**
  * @deprecated use `Assignable<A, B>` instead

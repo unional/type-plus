@@ -6,12 +6,7 @@ import type { And, Or } from '../predicates/logical.js'
 import type { IsSymbol } from '../symbol/is_symbol.js'
 import type { IdentityEqual } from './identity_equal.js'
 
-type BothNever<A, B, Both, One, None> = And<
-	IsNever<A>,
-	IsNever<B>,
-	Both,
-	Or<IsNever<A>, IsNever<B>, One, None>
->
+type BothNever<A, B, Both, One, None> = And<IsNever<A>, IsNever<B>, Both, Or<IsNever<A>, IsNever<B>, One, None>>
 
 type BothAny<A, B, Both, One, None> = And<IsAny<A>, IsAny<B>, Both, Or<IsAny<A>, IsAny<B>, One, None>>
 
@@ -37,37 +32,37 @@ type BothAny<A, B, Both, One, None> = And<IsAny<A>, IsAny<B>, Both, Or<IsAny<A>,
  */
 export type IsEqual<A, B, Then = true, Else = false> = [A, B] extends [B, A]
 	? BothNever<
-		A,
-		B,
-		Then,
-		Else,
-		BothAny<
 			A,
 			B,
 			Then,
 			Else,
-			IdentityEqual<
+			BothAny<
 				A,
 				B,
 				Then,
-				And<
-					IsObject<A>,
-					IsObject<B>,
-					IdentityEqual<
-						Properties<A>,
-						Properties<B>,
-						[A, B] extends [(...args: infer P1) => any, (...args: infer P2) => any]
-						? IsEqual<P1, P2, Then, Else>
-						: Then,
-						Else
-					>,
-					// `A` and `B` are narrowed, need to check again.
-					// This is fixed in TS 5.0.2, but keeping it to support older versions.
-					[A, B] extends [B, A] ? Then : Else
+				Else,
+				IdentityEqual<
+					A,
+					B,
+					Then,
+					And<
+						IsObject<A>,
+						IsObject<B>,
+						IdentityEqual<
+							Properties<A>,
+							Properties<B>,
+							[A, B] extends [(...args: infer P1) => any, (...args: infer P2) => any]
+								? IsEqual<P1, P2, Then, Else>
+								: Then,
+							Else
+						>,
+						// `A` and `B` are narrowed, need to check again.
+						// This is fixed in TS 5.0.2, but keeping it to support older versions.
+						[A, B] extends [B, A] ? Then : Else
+					>
 				>
 			>
 		>
-	>
 	: And<IsSymbol<A, { distributive: false }>, IsSymbol<B, { distributive: false }>, Then, Else>
 
 /**

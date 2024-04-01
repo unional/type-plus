@@ -26,9 +26,13 @@ export namespace $Exact {
 		exact: false
 	}
 
-	export type $IsExact<$Opt extends $Options,
-		$O extends $InputOptions<$Then | $Else> = {}
-	> = $ResolveOptions<[$Opt['exact'], $Exact.$Default]> extends true
-		? '$then' extends keyof $O ? $O['$then'] : true
-		: '$else' extends keyof $O ? $O['$else'] : false
+	export type $IsExact<$Opt extends $Options, $O extends $InputOptions<$Then | $Else> = {}> = $ResolveOptions<
+		[$Opt['exact'], $Exact.$Default]
+	> extends true
+		? '$then' extends keyof $O
+			? $O['$then']
+			: true
+		: '$else' extends keyof $O
+			? $O['$else']
+			: false
 }

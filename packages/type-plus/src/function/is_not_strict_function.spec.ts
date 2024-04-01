@@ -51,11 +51,11 @@ it('can disable union distribution', () => {
 
 it('returns true if T is function overloads', () => {
 	testType.true<IsNotStrictFunction<() => void>>(true)
-	testType.true<IsNotStrictFunction<{ (): void, (x: number): number }>>(true)
+	testType.true<IsNotStrictFunction<{ (): void; (x: number): number }>>(true)
 })
 
 it('returns true if T is function overloads', () => {
-	testType.true<IsNotStrictFunction<{ (): void, (x: number): number }>>(true)
+	testType.true<IsNotStrictFunction<{ (): void; (x: number): number }>>(true)
 })
 
 it('returns false if T is intersection of function', () => {
@@ -74,7 +74,10 @@ it('works as filter', () => {
 	testType.equal<IsNotStrictFunction<never, { selection: 'filter' }>, never>(true)
 	testType.equal<IsNotStrictFunction<unknown, { selection: 'filter' }>, unknown>(true)
 	testType.equal<IsNotStrictFunction<Function | number, { selection: 'filter' }>, number>(true)
-	testType.equal<IsNotStrictFunction<Function | number, { selection: 'filter', distributive: false }>, Function | number>(true)
+	testType.equal<
+		IsNotStrictFunction<Function | number, { selection: 'filter'; distributive: false }>,
+		Function | number
+	>(true)
 
 	testType.equal<IsNotStrictFunction<Function | true, { selection: 'filter' }>, true>(true)
 })

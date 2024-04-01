@@ -19,32 +19,28 @@ import type { LooseArrayType } from './loose_array_type.js'
  * type R = IsReadonly<readonly string[] | number> // boolean
  * ```
  */
-export type IsReadonly<
-	A,
-	$Options extends IsReadonly.Options = IsReadonly.DefaultOptions
-> =
-	TypePlusOptions.Merge<$Options, IsReadonly.DefaultOptions> extends infer O extends IsReadonly.Options ?
-	IsNever<
-		A,
-		{
-			$then: O['$never'],
-			$else: A extends any ?
-			LooseArrayType<A,
-				Readonly<A> extends A ? O['$then'] : O['$else'],
-				O['$notArray']
-			> : never
-		}
-	>
+export type IsReadonly<A, $Options extends IsReadonly.Options = IsReadonly.DefaultOptions> = TypePlusOptions.Merge<
+	$Options,
+	IsReadonly.DefaultOptions
+> extends infer O extends IsReadonly.Options
+	? IsNever<
+			A,
+			{
+				$then: O['$never']
+				$else: A extends any
+					? LooseArrayType<A, Readonly<A> extends A ? O['$then'] : O['$else'], O['$notArray']>
+					: never
+			}
+		>
 	: never
 
 export namespace IsReadonly {
-	export interface Options
-		extends $Never.$Options, $SelectionOptions, TypePlusOptions.NotArray { }
+	export interface Options extends $Never.$Options, $SelectionOptions, TypePlusOptions.NotArray {}
 
 	export interface DefaultOptions {
-		$then: true,
-		$else: false,
-		$never: false,
+		$then: true
+		$else: false
+		$never: false
 		$notArray: false
 	}
 }

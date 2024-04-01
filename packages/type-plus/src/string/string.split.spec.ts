@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type StringSplit,testType } from '../index.js'
+import { type StringSplit, testType } from '../index.js'
 
 it('should split a string into an array of substrings', () => {
 	testType.equal<StringSplit<'ab', 'b'>, ['a', '']>(true)

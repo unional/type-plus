@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else,type $Then, type AnyFunction, type IsStrictFunction, testType } from '../index.js'
+import { type $Else, type $Then, type AnyFunction, type IsStrictFunction, testType } from '../index.js'
 
 it('returns true if T is Function', () => {
 	testType.true<IsStrictFunction<Function>>(true)
@@ -44,7 +44,7 @@ it('distributes over union type', () => {
 })
 
 it('returns false if T is function overloads', () => {
-	testType.false<IsStrictFunction<{ (): void, (x: number): number }>>(true)
+	testType.false<IsStrictFunction<{ (): void; (x: number): number }>>(true)
 })
 
 it('can disable union distribution', () => {
@@ -62,7 +62,7 @@ it('works as filter', () => {
 	testType.equal<IsStrictFunction<never, { selection: 'filter' }>, never>(true)
 	testType.equal<IsStrictFunction<unknown, { selection: 'filter' }>, never>(true)
 	testType.equal<IsStrictFunction<Function | number, { selection: 'filter' }>, Function>(true)
-	testType.equal<IsStrictFunction<Function | number, { selection: 'filter', distributive: false }>, never>(true)
+	testType.equal<IsStrictFunction<Function | number, { selection: 'filter'; distributive: false }>, never>(true)
 
 	testType.equal<IsStrictFunction<Function | true, { selection: 'filter' }>, Function>(true)
 })

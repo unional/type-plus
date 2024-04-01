@@ -38,15 +38,7 @@ export function facade<
 	P4 extends keyof T,
 	P5 extends keyof T,
 	P6 extends keyof T
->(
-	subject: T,
-	prop1: P1,
-	prop2: P2,
-	prop3: P3,
-	prop4: P4,
-	prop5: P5,
-	prop6: P6
-): Pick<T, P1 | P2 | P3 | P4 | P5 | P6>
+>(subject: T, prop1: P1, prop2: P2, prop3: P3, prop4: P4, prop5: P5, prop6: P6): Pick<T, P1 | P2 | P3 | P4 | P5 | P6>
 export function facade<
 	T extends AnyRecord,
 	P1 extends keyof T,

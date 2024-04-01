@@ -30,8 +30,5 @@ export type UnionType<T, Then = T, Else = never> = UnionType.Device<T, Then, Els
 export type IsUnion<T, Then = true, Else = false> = UnionType.Device<T, Then, Else>
 
 export namespace UnionType {
-	export type Device<T, Then, Else, U = T> =
-		(T extends unknown ? (U extends T ? 1 : 2) : never) extends 1
-		? Else
-		: Then
+	export type Device<T, Then, Else, U = T> = (T extends unknown ? (U extends T ? 1 : 2) : never) extends 1 ? Else : Then
 }

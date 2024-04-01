@@ -1,13 +1,10 @@
 {
-  "extends": "@repobuddy/typescript/tsconfig/monorepo",
-  "compilerOptions": {
-    "exactOptionalPropertyTypes": true,
-    "outDir": "dist",
-    "rootDir": "src",
-    "verbatimModuleSyntax": true
-  },
-  "include": [
-    "src",
-    "types"
-  ]
+	"extends": "@repobuddy/typescript/tsconfig/monorepo",
+	"compilerOptions": {
+		"exactOptionalPropertyTypes": true,
+		"outDir": "dist",
+		"rootDir": "src",
+		"verbatimModuleSyntax": true
+	},
+	"include": ["src", "types"]
 }

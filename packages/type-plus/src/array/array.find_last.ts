@@ -20,12 +20,12 @@ export type FindLast<A extends readonly unknown[], Criteria> = IsTuple<
 	A,
 	{
 		$then: A['length'] extends 0
-		? never
-		: (A extends readonly [...infer Heads, infer Last]
-			? (Last extends Criteria
-				? Last
-				: FindLast<Heads, Criteria>)
-			: never),
+			? never
+			: A extends readonly [...infer Heads, infer Last]
+				? Last extends Criteria
+					? Last
+					: FindLast<Heads, Criteria>
+				: never
 		$else: A extends Readonly<Array<infer T>> ? (T extends Criteria ? T | undefined : never) : never
 	}
 >

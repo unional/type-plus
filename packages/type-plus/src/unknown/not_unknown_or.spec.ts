@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Unknown, type NotUnknownOr,testType } from '../index.js'
+import { type $Unknown, type NotUnknownOr, testType } from '../index.js'
 
 it('pass through if not unknown', () => {
 	testType.equal<NotUnknownOr<number>, number>(true)
@@ -19,4 +19,3 @@ it('can override Else branch if the branch is simple', () => {
 	// Do this only when the branch is simple to avoid performance issue.
 	testType.equal<NotUnknownOr<unknown, 1>, 1>(true)
 })
-

@@ -1,6 +1,6 @@
 import { describe, it } from '@jest/globals'
 
-import { type FindFirst,testType } from '../index.js'
+import { type FindFirst, testType } from '../index.js'
 
 describe('For Array', () => {
 	it('returns never if the type in the array does not satisfy the criteria', () => {
@@ -66,7 +66,7 @@ describe('for Tuple', () => {
 
 	it('pick object', () => {
 		type Actual = FindFirst<
-			[{ name: 'a', type: 1 }, { name: 'b', type: 2 }, { name: 'c', type: 3 }, { name: 'b', type: 4 }],
+			[{ name: 'a'; type: 1 }, { name: 'b'; type: 2 }, { name: 'c'; type: 3 }, { name: 'b'; type: 4 }],
 			{ name: 'b' }
 		>['type']
 		testType.equal<Actual, 2>(true)

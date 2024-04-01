@@ -5,5 +5,4 @@ import type { $Branch } from './$branch.js'
  *
  * Define branch input options.
  */
-export type $InputOptions<$B extends $Branch<any>> =
-	{ [k in $B['value']]?: unknown }
+export type $InputOptions<$B extends $Branch<any>> = { [k in $B['value']]?: unknown }

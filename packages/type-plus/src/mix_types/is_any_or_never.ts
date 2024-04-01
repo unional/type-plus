@@ -22,10 +22,10 @@ import type { $SelectionOptions } from '../type_plus/branch/$selection_options.j
  * type R = IsAnyOrNever<'a', $SelectionPredicate> // false
  * ```
  */
-export type IsAnyOrNever<
+export type IsAnyOrNever<T, $O extends $SelectionOptions = $SelectionPredicate> = IsNever<
 	T,
-	$O extends $SelectionOptions = $SelectionPredicate
-> = IsNever<T, {
-	$then: $O['$then'],
-	$else: IsAny<T, $O>
-}>
+	{
+		$then: $O['$then']
+		$else: IsAny<T, $O>
+	}
+>

@@ -56,21 +56,23 @@ import type { $Unknown } from '../unknown/unknown.js'
  * type R = NotAssignable<never, any, { $never: 1 }> // 1
  * ```
  */
-export type NotAssignable<
-	A,
+export type NotAssignable<A, B, $O extends NotAssignable.$Options = {}> = $SpecialType<
 	B,
-	$O extends NotAssignable.$Options = {}
-> = $SpecialType<B, {
-	$any: $ResolveBranch<A, $O, [0 extends 1 & A ? $Any : unknown, $Else]>,
-	$unknown: $ResolveBranch<A, $O, [[A, unknown] extends [unknown, A] ? $Unknown : unknown, $Else]>,
-	$never: $ResolveBranch<A, $O, [A, never] extends [never, A] ? [$Never, $Else] : [$Then]>,
-	$else: $SpecialType<A, {
-		$any: $ResolveBranch<A, $O, [$Any, $Else]>,
-		$unknown: $ResolveBranch<A, $O, [$Unknown, $Else]>,
-		$never: $ResolveBranch<A, $O, [$Never, $Else]>,
-		$else: NotAssignable.$<A, B, $O>
-	}>
-}>
+	{
+		$any: $ResolveBranch<A, $O, [0 extends 1 & A ? $Any : unknown, $Else]>
+		$unknown: $ResolveBranch<A, $O, [[A, unknown] extends [unknown, A] ? $Unknown : unknown, $Else]>
+		$never: $ResolveBranch<A, $O, [A, never] extends [never, A] ? [$Never, $Else] : [$Then]>
+		$else: $SpecialType<
+			A,
+			{
+				$any: $ResolveBranch<A, $O, [$Any, $Else]>
+				$unknown: $ResolveBranch<A, $O, [$Unknown, $Else]>
+				$never: $ResolveBranch<A, $O, [$Never, $Else]>
+				$else: NotAssignable.$<A, B, $O>
+			}
+		>
+	}
+>
 
 export namespace NotAssignable {
 	export type $Options = $SelectionOptions & $DistributiveOptions & $InputOptions<$Any | $Unknown | $Never>
@@ -87,14 +89,13 @@ export namespace NotAssignable {
 	 *
 	 * It is suitable for building custom types.
 	 */
-	export type $<
-		A,
-		B,
-		$O extends $UtilOptions
-	> = $IsDistributive<$O, {
-		$then: A extends B ? $ResolveBranch<A, $O, [$Else]> : $ResolveBranch<A, $O, [$Then]>,
-		$else: [A] extends [B] ? $ResolveBranch<A, $O, [$Else]> : $ResolveBranch<A, $O, [$Then]>,
-	}>
+	export type $<A, B, $O extends $UtilOptions> = $IsDistributive<
+		$O,
+		{
+			$then: A extends B ? $ResolveBranch<A, $O, [$Else]> : $ResolveBranch<A, $O, [$Then]>
+			$else: [A] extends [B] ? $ResolveBranch<A, $O, [$Else]> : $ResolveBranch<A, $O, [$Then]>
+		}
+	>
 
 	export type $UtilOptions = $SelectionOptions & $DistributiveOptions
 }

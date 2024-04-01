@@ -1,6 +1,15 @@
 import { describe, it } from '@jest/globals'
 
-import { testType, type $Any, type $BranchOptions, type $Else, type $Never, type $Then, type $Unknown, type IsNotBigint } from '../index.js'
+import {
+	testType,
+	type $Any,
+	type $BranchOptions,
+	type $Else,
+	type $Never,
+	type $Then,
+	type $Unknown,
+	type IsNotBigint
+} from '../index.js'
 
 it('returns false for bigint', () => {
 	testType.false<IsNotBigint<bigint>>(true)
@@ -153,24 +162,24 @@ describe('exact mode', () => {
 	})
 
 	it('can disable union distribution', () => {
-		testType.equal<IsNotBigint<bigint | 1, { distributive: false, exact: true }>, true>(true)
+		testType.equal<IsNotBigint<bigint | 1, { distributive: false; exact: true }>, true>(true)
 	})
 
 	it('consider intersection type as strict', () => {
 		testType.false<IsNotBigint<bigint & { a: 1 }, { exact: true }>>(true)
-		testType.false<IsNotBigint<bigint & { a: 1 }, { distributive: false, exact: true }>>(true)
+		testType.false<IsNotBigint<bigint & { a: 1 }, { distributive: false; exact: true }>>(true)
 		testType.true<IsNotBigint<1n & { a: 1 }, { exact: true }>>(true)
-		testType.true<IsNotBigint<1n & { a: 1 }, { distributive: false, exact: true }>>(true)
+		testType.true<IsNotBigint<1n & { a: 1 }, { distributive: false; exact: true }>>(true)
 	})
 
 	it('works as filter', () => {
-		testType.equal<IsNotBigint<bigint, { selection: 'filter', exact: true }>, never>(true)
+		testType.equal<IsNotBigint<bigint, { selection: 'filter'; exact: true }>, never>(true)
 
-		testType.equal<IsNotBigint<never, { selection: 'filter', exact: true }>, never>(true)
-		testType.equal<IsNotBigint<unknown, { selection: 'filter', exact: true }>, unknown>(true)
-		testType.equal<IsNotBigint<string | boolean, { selection: 'filter', exact: true }>, string | boolean>(true)
+		testType.equal<IsNotBigint<never, { selection: 'filter'; exact: true }>, never>(true)
+		testType.equal<IsNotBigint<unknown, { selection: 'filter'; exact: true }>, unknown>(true)
+		testType.equal<IsNotBigint<string | boolean, { selection: 'filter'; exact: true }>, string | boolean>(true)
 
-		testType.equal<IsNotBigint<string | bigint, { selection: 'filter', exact: true }>, string>(true)
+		testType.equal<IsNotBigint<string | bigint, { selection: 'filter'; exact: true }>, string>(true)
 	})
 
 	it('works with unique branches', () => {
@@ -187,16 +196,16 @@ describe('exact mode', () => {
 
 	it('can override $any branch', () => {
 		testType.equal<IsNotBigint<any, { exact: true }>, true>(true)
-		testType.equal<IsNotBigint<any, { $any: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsNotBigint<any, { $any: unknown; exact: true }>, unknown>(true)
 	})
 
 	it('can override $unknown branch', () => {
 		testType.equal<IsNotBigint<unknown, { exact: true }>, true>(true)
-		testType.equal<IsNotBigint<unknown, { $unknown: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsNotBigint<unknown, { $unknown: unknown; exact: true }>, unknown>(true)
 	})
 
 	it('can override $never branch', () => {
 		testType.equal<IsNotBigint<never, { exact: true }>, true>(true)
-		testType.equal<IsNotBigint<never, { $never: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsNotBigint<never, { $never: unknown; exact: true }>, unknown>(true)
 	})
 })

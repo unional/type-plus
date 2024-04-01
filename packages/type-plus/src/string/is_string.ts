@@ -56,15 +56,16 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  * type R = IsString<bigint, $IsString.$Branch> // $Else
  * ```
  */
-export type IsString<T, $O extends IsString.$Options = {}> =
-	$SpecialType<T,
-		$MergeOptions<$O,
-			{
-				$then: $ResolveBranch<T, $O, [$Else]>,
-				$else: IsString.$<T, $O>
-			}
-		>
+export type IsString<T, $O extends IsString.$Options = {}> = $SpecialType<
+	T,
+	$MergeOptions<
+		$O,
+		{
+			$then: $ResolveBranch<T, $O, [$Else]>
+			$else: IsString.$<T, $O>
+		}
 	>
+>
 
 export namespace IsString {
 	export type $Options = $Equality.$Options & $Exact.$Options
@@ -78,24 +79,20 @@ export namespace IsString {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> =
-		$ResolveOptions<[$O['exact'], false]> extends true
-		? $IsDistributive<$O, { $then: _D<T, $O>, $else: _N<T, $O> }>
+	export type $<T, $O extends $UtilOptions> = $ResolveOptions<[$O['exact'], false]> extends true
+		? $IsDistributive<$O, { $then: _D<T, $O>; $else: _N<T, $O> }>
 		: Assignable.$<T, string, $O>
 
 	export type $UtilOptions = Assignable.$UtilOptions & $Exact.$Options
 
-	export type _D<T, $O extends $UtilOptions> =
-		T extends string & infer U
-		? (
-			U extends string
+	export type _D<T, $O extends $UtilOptions> = T extends string & infer U
+		? U extends string
 			? $ResolveBranch<T, $O, [$Else]>
 			: $ResolveBranch<T, $O, [$Then]>
-		)
 		: $ResolveBranch<T, $O, [$Else]>
-	export type _N<T, $O extends $UtilOptions> =
-		[T] extends [string & infer U] ?
-		U extends string ? $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Then]>
+	export type _N<T, $O extends $UtilOptions> = [T] extends [string & infer U]
+		? U extends string
+			? $ResolveBranch<T, $O, [$Else]>
+			: $ResolveBranch<T, $O, [$Then]>
 		: $ResolveBranch<T, $O, [$Else]>
 }

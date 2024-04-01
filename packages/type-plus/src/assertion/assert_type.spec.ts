@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@jest/globals'
 import { a } from 'assertron'
 
-import { type AnyConstructor, type AnyFunction,assertType, testType } from '../index.js'
+import { type AnyConstructor, type AnyFunction, assertType, testType } from '../index.js'
 
 describe('assertType()', () => {
 	it('input satisfies specified type', () => {
@@ -15,14 +15,14 @@ describe('assertType()', () => {
 	})
 	it('Specify T at type declaration', () => {
 		const s: unknown = false
-		assertType<boolean>(s, s => typeof s === 'boolean')
+		assertType<boolean>(s, (s) => typeof s === 'boolean')
 		testType.boolean<typeof s>(true)
 	})
 	it('error message contains info from validator', () => {
 		const s: unknown = 1
 		a.throws(
-			() => assertType(s, s => typeof s === 'boolean'),
-			e => /subject fails to satisfy s => typeof s === 'boolean'/.test(e)
+			() => assertType(s, (s) => typeof s === 'boolean'),
+			(e) => /subject fails to satisfy s => typeof s === 'boolean'/.test(e)
 		)
 	})
 	it('Class as validator', () => {
@@ -40,7 +40,7 @@ describe('assertType()', () => {
 	})
 	it('subject can be type any', () => {
 		const s: any = false
-		assertType<boolean>(s, s => typeof s === 'boolean')
+		assertType<boolean>(s, (s) => typeof s === 'boolean')
 		testType.boolean<typeof s>(true)
 	})
 })
@@ -593,16 +593,16 @@ describe('assertType.custom', () => {
 		expect(isBool(s)).toBe(undefined)
 	})
 	it('specify T at type declaration', () => {
-		const isBool = assertType.custom<boolean>(s => typeof s === 'boolean')
+		const isBool = assertType.custom<boolean>((s) => typeof s === 'boolean')
 		const s: unknown = false
 		expect(isBool(s)).toBe(undefined)
 	})
 	it('error message contains info from validator', () => {
-		const isBool = assertType.custom<boolean>(s => typeof s === 'boolean')
+		const isBool = assertType.custom<boolean>((s) => typeof s === 'boolean')
 		const s: unknown = 1
 		a.throws(
 			() => isBool(s),
-			e => /subject fails to satisfy s => typeof s === 'boolean'/.test(e)
+			(e) => /subject fails to satisfy s => typeof s === 'boolean'/.test(e)
 		)
 	})
 })

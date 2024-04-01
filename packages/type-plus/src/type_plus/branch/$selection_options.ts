@@ -30,7 +30,7 @@ export type $SelectionOptions = {
 	 *
 	 * Note that setting `$then` and `$else` overrides the default selection logic.
 	 */
-	selection?: 'predicate' | 'filter' | undefined,
-	$then?: unknown,
-	$else?: unknown,
+	selection?: 'predicate' | 'filter' | undefined
+	$then?: unknown
+	$else?: unknown
 }

@@ -1,53 +1,53 @@
 import { describe, it } from '@jest/globals'
 
-import { type CanAssign, type EitherOrBoth,isType, testType } from '../index.js'
+import { type CanAssign, type EitherOrBoth, isType, testType } from '../index.js'
 
 describe('Either<A, B>', () => {
 	type A = {
-		a: number,
+		a: number
 		x?: string
 	}
 	type B = {
-		b: number,
+		b: number
 		x?: boolean
 	}
 	type C = {
-		c: number,
+		c: number
 		y?: boolean
 	}
 	type D = {
-		d: number,
+		d: number
 		z?: number
 	}
 	it('allows just A', () => {
 		type S = EitherOrBoth<A, B>
 		testType.true<CanAssign<{ a: number }, S>>(true)
-		testType.true<CanAssign<{ a: number, x?: string }, S>>(true)
-		testType.true<CanAssign<{ a: number, x: string }, S>>(true)
-		testType.false<CanAssign<{ a: number, x: number }, S>>(true)
+		testType.true<CanAssign<{ a: number; x?: string }, S>>(true)
+		testType.true<CanAssign<{ a: number; x: string }, S>>(true)
+		testType.false<CanAssign<{ a: number; x: number }, S>>(true)
 	})
 	it('allows just B', () => {
 		type S = EitherOrBoth<A, B>
 		testType.true<CanAssign<{ b: number }, S>>(true)
-		testType.true<CanAssign<{ b: number, x?: boolean }, S>>(true)
-		testType.true<CanAssign<{ b: number, x: boolean }, S>>(true)
-		testType.false<CanAssign<{ b: number, x: number }, S>>(true)
+		testType.true<CanAssign<{ b: number; x?: boolean }, S>>(true)
+		testType.true<CanAssign<{ b: number; x: boolean }, S>>(true)
+		testType.false<CanAssign<{ b: number; x: number }, S>>(true)
 	})
 	it('allows A & B', () => {
 		type S = EitherOrBoth<A, B>
-		testType.true<CanAssign<{ a: number, b: number }, S>>(true)
-		testType.true<CanAssign<{ a: number, b: number, x?: boolean }, S>>(true)
-		testType.true<CanAssign<{ a: number, b: number, x: boolean }, S>>(true)
-		testType.true<CanAssign<{ a: number, b: number, x?: string }, S>>(true)
-		testType.true<CanAssign<{ a: number, b: number, x: string }, S>>(true)
-		testType.true<CanAssign<{ a: number, b: number, x?: string | boolean }, S>>(true)
-		testType.true<CanAssign<{ a: number, b: number, x: string | boolean }, S>>(true)
-		testType.false<CanAssign<{ a: number, b: number, x: number }, S>>(true)
+		testType.true<CanAssign<{ a: number; b: number }, S>>(true)
+		testType.true<CanAssign<{ a: number; b: number; x?: boolean }, S>>(true)
+		testType.true<CanAssign<{ a: number; b: number; x: boolean }, S>>(true)
+		testType.true<CanAssign<{ a: number; b: number; x?: string }, S>>(true)
+		testType.true<CanAssign<{ a: number; b: number; x: string }, S>>(true)
+		testType.true<CanAssign<{ a: number; b: number; x?: string | boolean }, S>>(true)
+		testType.true<CanAssign<{ a: number; b: number; x: string | boolean }, S>>(true)
+		testType.false<CanAssign<{ a: number; b: number; x: number }, S>>(true)
 	})
 	it('can use isType() to type guard the value', () => {
 		type S = EitherOrBoth<A, B>
 		function foo(o: S) {
-			if (isType<A>(o, o => typeof o.a === 'number')) {
+			if (isType<A>(o, (o) => typeof o.a === 'number')) {
 				testType.equal<typeof o, A | (A & B)>(true)
 			} else {
 				throw new Error('should not reach')
@@ -59,18 +59,18 @@ describe('Either<A, B>', () => {
 		type S = EitherOrBoth<A, C>
 
 		testType.false<CanAssign<{ x: 'x' }, S>>(true)
-		testType.true<CanAssign<{ a: 1, x: 'x' }, S>>(true)
+		testType.true<CanAssign<{ a: 1; x: 'x' }, S>>(true)
 	})
 	it('allows A, B, C', () => {
 		type S = EitherOrBoth<A, B, C>
 		testType.true<CanAssign<{ a: number }, S>>(true)
 		testType.true<CanAssign<{ b: number }, S>>(true)
 		testType.true<CanAssign<{ c: number }, S>>(true)
-		testType.true<CanAssign<{ a: number, b: number }, S>>(true)
-		testType.true<CanAssign<{ a: number, c: number }, S>>(true)
-		testType.true<CanAssign<{ a: number, c: number, x: number }, S>>(true)
-		testType.true<CanAssign<{ b: number, c: number }, S>>(true)
-		testType.true<CanAssign<{ a: number, b: number, c: number }, S>>(true)
+		testType.true<CanAssign<{ a: number; b: number }, S>>(true)
+		testType.true<CanAssign<{ a: number; c: number }, S>>(true)
+		testType.true<CanAssign<{ a: number; c: number; x: number }, S>>(true)
+		testType.true<CanAssign<{ b: number; c: number }, S>>(true)
+		testType.true<CanAssign<{ a: number; b: number; c: number }, S>>(true)
 	})
 	it('allows A, B, C, D', () => {
 		type S = EitherOrBoth<A, B, C, D>
@@ -78,21 +78,21 @@ describe('Either<A, B>', () => {
 		testType.true<CanAssign<{ b: number }, S>>(true)
 		testType.true<CanAssign<{ c: number }, S>>(true)
 		testType.true<CanAssign<{ d: number }, S>>(true)
-		testType.true<CanAssign<{ a: number, b: number }, S>>(true)
-		testType.true<CanAssign<{ a: number, c: number }, S>>(true)
-		testType.true<CanAssign<{ a: number, d: number }, S>>(true)
-		testType.true<CanAssign<{ b: number, c: number }, S>>(true)
-		testType.true<CanAssign<{ b: number, d: number }, S>>(true)
-		testType.true<CanAssign<{ c: number, d: number }, S>>(true)
-		testType.true<CanAssign<{ a: number, b: number, c: number }, S>>(true)
-		testType.true<CanAssign<{ a: number, b: number, d: number }, S>>(true)
-		testType.true<CanAssign<{ a: number, c: number, d: number }, S>>(true)
-		testType.true<CanAssign<{ b: number, c: number, d: number }, S>>(true)
-		testType.true<CanAssign<{ a: number, b: number, c: number, d: number }, S>>(true)
-		testType.true<CanAssign<{ a: string, b: number, c: number, d: number }, S>>(true)
-		testType.true<CanAssign<{ a: number, b: string, c: number, d: number }, S>>(true)
-		testType.true<CanAssign<{ a: number, b: number, c: string, d: number }, S>>(true)
-		testType.true<CanAssign<{ a: number, b: number, c: number, d: string }, S>>(true)
+		testType.true<CanAssign<{ a: number; b: number }, S>>(true)
+		testType.true<CanAssign<{ a: number; c: number }, S>>(true)
+		testType.true<CanAssign<{ a: number; d: number }, S>>(true)
+		testType.true<CanAssign<{ b: number; c: number }, S>>(true)
+		testType.true<CanAssign<{ b: number; d: number }, S>>(true)
+		testType.true<CanAssign<{ c: number; d: number }, S>>(true)
+		testType.true<CanAssign<{ a: number; b: number; c: number }, S>>(true)
+		testType.true<CanAssign<{ a: number; b: number; d: number }, S>>(true)
+		testType.true<CanAssign<{ a: number; c: number; d: number }, S>>(true)
+		testType.true<CanAssign<{ b: number; c: number; d: number }, S>>(true)
+		testType.true<CanAssign<{ a: number; b: number; c: number; d: number }, S>>(true)
+		testType.true<CanAssign<{ a: string; b: number; c: number; d: number }, S>>(true)
+		testType.true<CanAssign<{ a: number; b: string; c: number; d: number }, S>>(true)
+		testType.true<CanAssign<{ a: number; b: number; c: string; d: number }, S>>(true)
+		testType.true<CanAssign<{ a: number; b: number; c: number; d: string }, S>>(true)
 	})
 	it('can compose', () => {
 		//  A | B | (A & B) | C | ((A | B | (A & B)) & C)

@@ -8,10 +8,10 @@ import type { PrimitiveTypes } from '../primitive.js'
 export type KnownKeys<T> = T extends PrimitiveTypes
 	? never
 	: {
-		[K in keyof T]: string extends K ? never : number extends K ? never : K
-	} extends { [_ in keyof T]: infer U }
-	? // eslint-disable-next-line @typescript-eslint/ban-types
-	{} extends U
-	? never
-	: U
-	: never
+				[K in keyof T]: string extends K ? never : number extends K ? never : K
+			} extends { [_ in keyof T]: infer U }
+		? // eslint-disable-next-line @typescript-eslint/ban-types
+			{} extends U
+			? never
+			: U
+		: never

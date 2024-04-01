@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type DropLast,testType } from '../index.js'
+import { type DropLast, testType } from '../index.js'
 
 it('returns the input type if input is an array', () => {
 	testType.equal<DropLast<string[]>, string[]>(true)
@@ -20,4 +20,3 @@ it('returns empty tuple [] when dropping from single entry tuple', () => {
 it('returns empty tuple [] if input is empty tuple', () => {
 	testType.equal<DropLast<[]>, []>(true)
 })
-

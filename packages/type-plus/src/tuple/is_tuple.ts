@@ -53,18 +53,16 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  * type R = IsTuple<string, IsTuple.$Branch> // $Else
  * ```
  */
-export type IsTuple<
+export type IsTuple<T, $O extends IsTuple.$Options = {}> = $SpecialType<
 	T,
-	$O extends IsTuple.$Options = {}
-> =
-	$SpecialType<T,
-		$MergeOptions<$O,
-			{
-				$then: $ResolveBranch<T, $O, [$Else]>,
-				$else: IsTuple.$<T, $O>
-			}
-		>
+	$MergeOptions<
+		$O,
+		{
+			$then: $ResolveBranch<T, $O, [$Else]>
+			$else: IsTuple.$<T, $O>
+		}
 	>
+>
 
 export namespace IsTuple {
 	export type $Options = $Equality.$Options
@@ -78,22 +76,21 @@ export namespace IsTuple {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> = $IsDistributive<$O, {
-		$then: T extends readonly any[]
-		? (
-			number extends T['length']
-			? $ResolveBranch<T, $O, [$Else]>
-			: $ResolveBranch<T, $O, [$Then]>
-		)
-		: $ResolveBranch<T, $O, [$Else]>,
-		$else: [T] extends [readonly any[]]
-		? (
-			number extends T['length']
-			? $ResolveBranch<T, $O, [$Else]>
-			: $ResolveBranch<T, $O, [$Then]>
-		)
-		: $ResolveBranch<T, $O, [$Else]>
-	}>
+	export type $<T, $O extends $UtilOptions> = $IsDistributive<
+		$O,
+		{
+			$then: T extends readonly any[]
+				? number extends T['length']
+					? $ResolveBranch<T, $O, [$Else]>
+					: $ResolveBranch<T, $O, [$Then]>
+				: $ResolveBranch<T, $O, [$Else]>
+			$else: [T] extends [readonly any[]]
+				? number extends T['length']
+					? $ResolveBranch<T, $O, [$Else]>
+					: $ResolveBranch<T, $O, [$Then]>
+				: $ResolveBranch<T, $O, [$Else]>
+		}
+	>
 
 	export type $UtilOptions = Assignable.$UtilOptions
 }

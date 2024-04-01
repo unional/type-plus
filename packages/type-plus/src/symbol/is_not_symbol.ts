@@ -51,10 +51,12 @@ import type { $Then } from '../type_plus/branch/$selection.js'
  * type R = IsNotSymbol<symbol, $SelectionBranch> // $Else
  * ```
  */
-export type IsNotSymbol<T, $O extends IsNotSymbol.$Options = {}> = $SpecialType<T,
-	$MergeOptions<$O,
+export type IsNotSymbol<T, $O extends IsNotSymbol.$Options = {}> = $SpecialType<
+	T,
+	$MergeOptions<
+		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Then]>,
+			$then: $ResolveBranch<T, $O, [$Then]>
 			$else: IsNotSymbol.$<T, $O>
 		}
 	>

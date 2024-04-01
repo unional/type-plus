@@ -1,4 +1,3 @@
-
 /**
  * Either number or bigint.
  */

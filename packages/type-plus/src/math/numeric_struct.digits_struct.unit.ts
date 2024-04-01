@@ -60,10 +60,7 @@ describe('Balance', () => {
 		>(true)
 	})
 	it('balances the struct when they have different exponent', () => {
-		testType.equal<
-			DigitsStruct.Balance<['+', [1], 0], ['+', [1, 2], 1]>,
-			[['+', [1, 0], 1], ['+', [1, 2], 1]]
-		>(true)
+		testType.equal<DigitsStruct.Balance<['+', [1], 0], ['+', [1, 2], 1]>, [['+', [1, 0], 1], ['+', [1, 2], 1]]>(true)
 
 		testType.equal<DigitsStruct.Balance<['+', [0], 0], ['+', [1], 3]>, [['+', [0], 3], ['+', [1], 3]]>(true)
 
@@ -74,20 +71,14 @@ describe('Balance', () => {
 		// +  ['+', [1, 2, 0, 0], 3]
 		// => ['+', [1, 2, 0, 1], 3]
 		// => 1.201
-		testType.equal<
-			DigitsStruct.Balance<['+', [1], 3], ['+', [1, 2], 1]>,
-			[['+', [1], 3], ['+', [1, 2, 0, 0], 3]]
-		>(true)
+		testType.equal<DigitsStruct.Balance<['+', [1], 3], ['+', [1, 2], 1]>, [['+', [1], 3], ['+', [1, 2, 0, 0], 3]]>(true)
 
 		testType.equal<
 			DigitsStruct.Balance<['+', [1, 3, 5, 7], 4], ['+', [9, 7, 5, 3], 6]>,
 			[['+', [1, 3, 5, 7, 0, 0], 6], ['+', [9, 7, 5, 3], 6]]
 		>(true)
 
-		testType.equal<
-			DigitsStruct.Balance<['+', [1], 0], ['+', [1, 2], 1]>,
-			[['+', [1, 0], 1], ['+', [1, 2], 1]]
-		>(true)
+		testType.equal<DigitsStruct.Balance<['+', [1], 0], ['+', [1, 2], 1]>, [['+', [1, 0], 1], ['+', [1, 2], 1]]>(true)
 	})
 })
 

@@ -32,5 +32,5 @@ export type StringSplit<
 > = Subject extends `${infer A}${Seperator}${infer B}`
 	? [A, ...StringSplit<B, Seperator>]
 	: Seperator extends ''
-	? []
-	: [Subject]
+		? []
+		: [Subject]

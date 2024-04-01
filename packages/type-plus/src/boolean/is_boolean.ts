@@ -59,10 +59,12 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  * type R = IsBoolean<string, $SelectionBranch> // $Else
  * ```
  */
-export type IsBoolean<T, $O extends IsBoolean.$Options = {}> = $SpecialType<T,
-	$MergeOptions<$O,
+export type IsBoolean<T, $O extends IsBoolean.$Options = {}> = $SpecialType<
+	T,
+	$MergeOptions<
+		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Else]>,
+			$then: $ResolveBranch<T, $O, [$Else]>
 			$else: IsBoolean.$<T, $O>
 		}
 	>
@@ -79,48 +81,58 @@ export namespace IsBoolean {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> =
-		$ResolveOptions<[$O['exact'], $Exact.$Default]> extends true
-		? $IsDistributive<$O, { $then: _SD<T, $O>, $else: _N<T, $O> }>
+	export type $<T, $O extends $UtilOptions> = $ResolveOptions<[$O['exact'], $Exact.$Default]> extends true
+		? $IsDistributive<$O, { $then: _SD<T, $O>; $else: _N<T, $O> }>
 		: Assignable.$<T, boolean, $O>
 	export type $UtilOptions = Assignable.$UtilOptions & $Exact.$Options
 
-	export type _SD<T, $O extends $Options> =
-		IsBoolean._DistributeMap<T> extends infer R
-		? ['aBcD' | 'AbCd' | 'abcd'] extends [R] ? $ResolveBranch<boolean, $O, [$Then]> | $ResolveBranch<Exclude<T, boolean>, $O, [$Else]>
-		: ['aBcD' | 'AbCd'] extends [R] ? $ResolveBranch<T, $O, [$Then]>
-		: ['aBcd' | 'Abcd'] extends [R] ? $ResolveBranch<T, $O, [$Then]> : $ResolveBranch<T, $O, [$Else]>
+	export type _SD<T, $O extends $Options> = IsBoolean._DistributeMap<T> extends infer R
+		? ['aBcD' | 'AbCd' | 'abcd'] extends [R]
+			? $ResolveBranch<boolean, $O, [$Then]> | $ResolveBranch<Exclude<T, boolean>, $O, [$Else]>
+			: ['aBcD' | 'AbCd'] extends [R]
+				? $ResolveBranch<T, $O, [$Then]>
+				: ['aBcd' | 'Abcd'] extends [R]
+					? $ResolveBranch<T, $O, [$Then]>
+					: $ResolveBranch<T, $O, [$Else]>
 		: never
 
-	export type _N<T, $O extends $Options> =
-		[T] extends [boolean]
-		? (
-			[T] extends [true]
+	export type _N<T, $O extends $Options> = [T] extends [boolean]
+		? [T] extends [true]
 			? $ResolveBranch<T, $O, [$Else]>
-			: (
-				[T] extends [false]
+			: [T] extends [false]
 				? $ResolveBranch<T, $O, [$Else]>
 				: $ResolveBranch<T, $O, [$Then]>
-			)
-		)
 		: $ResolveBranch<T, $O, [$Else]>
 
 	export type _DistributeMap<T> = T extends true
-		? (T extends false
-			? (true extends T
-				? (false extends T ? 'ABCD' : 'ABCd')
-				: (false extends T ? 'ABcD' : 'ABcd'))
-			: (true extends T
-				? (false extends T ? 'AbCD' : 'AbCd')
-				: (false extends T ? 'AbcD' : 'Abcd'))
-		)
-		: (T extends false
-			? (true extends T
-				? (false extends T ? 'aBCD' : 'aBCd')
-				: (false extends T ? 'aBcD' : 'aBcd'))
-			: (true extends T
-				? (false extends T ? 'abCD' : 'abCd')
-				: (false extends T ? 'abcD' : 'abcd'))
-		)
-
+		? T extends false
+			? true extends T
+				? false extends T
+					? 'ABCD'
+					: 'ABCd'
+				: false extends T
+					? 'ABcD'
+					: 'ABcd'
+			: true extends T
+				? false extends T
+					? 'AbCD'
+					: 'AbCd'
+				: false extends T
+					? 'AbcD'
+					: 'Abcd'
+		: T extends false
+			? true extends T
+				? false extends T
+					? 'aBCD'
+					: 'aBCd'
+				: false extends T
+					? 'aBcD'
+					: 'aBcd'
+			: true extends T
+				? false extends T
+					? 'abCD'
+					: 'abCd'
+				: false extends T
+					? 'abcD'
+					: 'abcd'
 }

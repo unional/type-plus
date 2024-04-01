@@ -9,9 +9,9 @@
 export type StringToNumber<S extends string, Fail = never> = S extends `-0`
 	? 0
 	: S extends `${infer W}.0`
-	? StringToNumber<W>
-	: S extends `${infer W}.${infer F}0`
-	? StringToNumber<`${W}.${F}`>
-	: S extends `${infer N extends number}`
-	? N
-	: Fail
+		? StringToNumber<W>
+		: S extends `${infer W}.${infer F}0`
+			? StringToNumber<`${W}.${F}`>
+			: S extends `${infer N extends number}`
+				? N
+				: Fail

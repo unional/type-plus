@@ -1,64 +1,39 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
-  "pipeline": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "src/**/*.tsx?",
-        "!src/**/*.spec.tsx?",
-        "!src/**/*.stories.tsx?",
-        "tsconfig.*"
-      ],
-      "outputs": [
-        "lib/**"
-      ]
-    },
-    "build:doc": {
-      "dependsOn": [
-        "^build"
-      ]
-    },
-    "clean": {
-      "cache": false
-    },
-    "coverage": {
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "ts/**/*.tsx?"
-      ]
-    },
-    "depcheck": {},
-    "dev": {
-      "cache": false
-    },
-    "lint": {},
-    "nuke": {
-      "cache": false
-    },
-    "size": {
-      "dependsOn": [
-        "build"
-      ]
-    },
-    "test": {
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "ts/**/*.tsx?"
-      ]
-    },
-    "test:type": {
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "ts/**/*.tsx?"
-      ]
-    }
-  }
+	"$schema": "https://turborepo.org/schema.json",
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^build"],
+			"inputs": ["src/**/*.tsx?", "!src/**/*.spec.tsx?", "!src/**/*.stories.tsx?", "tsconfig.*"],
+			"outputs": ["lib/**"]
+		},
+		"build:doc": {
+			"dependsOn": ["^build"]
+		},
+		"clean": {
+			"cache": false
+		},
+		"coverage": {
+			"dependsOn": ["^build"],
+			"inputs": ["ts/**/*.tsx?"]
+		},
+		"depcheck": {},
+		"dev": {
+			"cache": false
+		},
+		"lint": {},
+		"nuke": {
+			"cache": false
+		},
+		"size": {
+			"dependsOn": ["build"]
+		},
+		"test": {
+			"dependsOn": ["^build"],
+			"inputs": ["ts/**/*.tsx?"]
+		},
+		"test:type": {
+			"dependsOn": ["^build"],
+			"inputs": ["ts/**/*.tsx?"]
+		}
+	}
 }

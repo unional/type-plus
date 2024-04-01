@@ -98,7 +98,6 @@ it('allows delete to go beyond the length of the array', () => {
 	testType.equal<SplitAt<[1, 2, 3, 4, 5], 4, 2>, [[1, 2, 3, 4], [5]]>(true)
 })
 
-
 it('support replace', () => {
 	testType.equal<SplitAt<[1, 2, 3, 4, 5], 0, 1>, [[2, 3, 4, 5], [1]]>(true)
 	testType.equal<SplitAt<[1, 2, 3, 4, 5], 0, 1, ['a']>, [['a', 2, 3, 4, 5], [1]]>(true)

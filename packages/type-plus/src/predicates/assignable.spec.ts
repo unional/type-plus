@@ -13,12 +13,12 @@ it('check if A can be assigned to B', () => {
 	testType.true<Assignable<true, boolean>>(true)
 	testType.true<Assignable<boolean, boolean>>(true)
 	testType.true<Assignable<{ a: 1 }, { a: number }>>(true)
-	testType.true<Assignable<{ a: string, b: number }, { a: string }>>(true)
+	testType.true<Assignable<{ a: string; b: number }, { a: string }>>(true)
 
 	testType.false<Assignable<number, 1>>(true)
 	testType.false<Assignable<string, 'a'>>(true)
 	testType.false<Assignable<{ a: number }, { a: 1 }>>(true)
-	testType.false<Assignable<{ a: string }, { a: string, b: number }>>(true)
+	testType.false<Assignable<{ a: string }, { a: string; b: number }>>(true)
 })
 
 it('returns true when B is `any` as anything can be assigned to `any`', () => {
@@ -137,10 +137,10 @@ describe('disable distributive', () => {
 		testType.false<Assignable<boolean, true, { distributive: false }>>(true)
 	})
 	it('super set to sub set', () => {
-		testType.true<Assignable<{ a: string, b: number }, { a: string }, { distributive: false }>>(true)
+		testType.true<Assignable<{ a: string; b: number }, { a: string }, { distributive: false }>>(true)
 	})
 	it('sub set to super set fail', () => {
-		testType.false<Assignable<{ a: string }, { a: string, b: number }, { distributive: false }>>(true)
+		testType.false<Assignable<{ a: string }, { a: string; b: number }, { distributive: false }>>(true)
 	})
 
 	it('union types checks against all branches', () => {

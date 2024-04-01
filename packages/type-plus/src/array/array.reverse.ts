@@ -14,12 +14,13 @@ import type { IsReadonly } from './array_plus.is_readonly.js'
  * @returns The reversed array type.
  */
 export type Reverse<A extends readonly unknown[]> = Reverse._<A> extends infer R
-	? IsReadonly<A> extends true ? Readonly<R> : R
+	? IsReadonly<A> extends true
+		? Readonly<R>
+		: R
 	: never
 
 export namespace Reverse {
 	export type _<A extends readonly unknown[]> = A extends readonly [infer First, ...infer Rest]
 		? [..._<Rest>, First]
 		: A
-
 }

@@ -56,10 +56,12 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  * type R = IsNotNumberLiteral<string, $SelectionBranch> // $Then
  * ```
  */
-export type IsNotNumberLiteral<T, $O extends IsNotNumberLiteral.$Options = {}> = $SpecialType<T,
-	$MergeOptions<$O,
+export type IsNotNumberLiteral<T, $O extends IsNotNumberLiteral.$Options = {}> = $SpecialType<
+	T,
+	$MergeOptions<
+		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Then]>,
+			$then: $ResolveBranch<T, $O, [$Then]>
 			$else: IsNotNumberLiteral.$<T, $O>
 		}
 	>
@@ -77,25 +79,24 @@ export namespace IsNotNumberLiteral {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> =
-		$IsDistributive<$O, {
-			$then: _D<T, $O>,
+	export type $<T, $O extends $UtilOptions> = $IsDistributive<
+		$O,
+		{
+			$then: _D<T, $O>
 			$else: _N<T, $O>
-		}>
+		}
+	>
 
 	export type $UtilOptions = Assignable.$UtilOptions
 
-	export type _D<T, $O extends $UtilOptions> =
-		T extends number & infer U
-		? (
-			U extends number
+	export type _D<T, $O extends $UtilOptions> = T extends number & infer U
+		? U extends number
 			? $ResolveBranch<T, $O, [$Else]>
 			: $ResolveBranch<T, $O, [$Then]>
-		)
 		: $ResolveBranch<T, $O, [$Then]>
-	export type _N<T, $O extends $UtilOptions> =
-		[T] extends [number & infer U] ?
-		U extends number ? $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Then]>
+	export type _N<T, $O extends $UtilOptions> = [T] extends [number & infer U]
+		? U extends number
+			? $ResolveBranch<T, $O, [$Else]>
+			: $ResolveBranch<T, $O, [$Then]>
 		: $ResolveBranch<T, $O, [$Then]>
 }

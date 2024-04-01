@@ -19,33 +19,33 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  * type R = IsPositive<-1> // false
  * ```
  */
-export type IsPositive<T, $O extends IsPositive.$Options = {}> = IsBigint<T, {
-	distributive: $O['distributive'],
-	$then: $Then,
-	$else: $Else
-}> extends infer R
-	? R extends $Then ? IsPositive._Positive<T, bigint, $O>
-	: (
-		IsNumber<Exclude<T, bigint>, { distributive: $O['distributive'], $then: $Then, $else: $Else }> extends infer R
-		? (
-			R extends $Then
-			? IsPositive._Positive<T, number, $O>
-			: $ResolveBranch<T, $O, [$Else]>
-		)
-		: never
-	)
+export type IsPositive<T, $O extends IsPositive.$Options = {}> = IsBigint<
+	T,
+	{
+		distributive: $O['distributive']
+		$then: $Then
+		$else: $Else
+	}
+> extends infer R
+	? R extends $Then
+		? IsPositive._Positive<T, bigint, $O>
+		: IsNumber<Exclude<T, bigint>, { distributive: $O['distributive']; $then: $Then; $else: $Else }> extends infer R
+			? R extends $Then
+				? IsPositive._Positive<T, number, $O>
+				: $ResolveBranch<T, $O, [$Else]>
+			: never
 	: never
 
 export namespace IsPositive {
 	export type $Options = $Equality.$Options
 	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
 	export type _Positive<T, U extends number | bigint, $O extends IsPositive.$Options> = T extends U & infer R
-		? (
-			`${T}` extends `-${string}`
+		? `${T}` extends `-${string}`
 			? $ResolveBranch<T, $O, [$Else]>
-			: U extends T ? $ResolveBranch<T, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
-			: [T, R] extends [R, T] ? $ResolveBranch<T, $O, [$Then]>
-			: $ResolveBranch<number, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
-		)
+			: U extends T
+				? $ResolveBranch<T, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
+				: [T, R] extends [R, T]
+					? $ResolveBranch<T, $O, [$Then]>
+					: $ResolveBranch<number, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
 		: never
 }

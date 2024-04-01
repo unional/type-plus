@@ -101,7 +101,7 @@ describe('exact', () => {
 
 	it('returns true for tuple intersection type', () => {
 		testType.true<IsNotArray<[] & 1, { exact: true }>>(true)
-		testType.true<IsNotArray<[] & 1, { distributive: false, exact: true }>>(true)
+		testType.true<IsNotArray<[] & 1, { distributive: false; exact: true }>>(true)
 	})
 
 	it('supports readonly tuple', () => {

@@ -23,5 +23,4 @@ export type $Branch<P extends `$${string}`> = $Type<'branch', P, P>
  * type $YourOptions = $BranchOptions<$Then | $Else> // { $then: $Then, $else: $Else }
  * ```
  */
-export type $BranchOptions<$B extends $Branch<any>> =
-	{ [k in $B['value']]: $B extends { value: k } ? $B : never }
+export type $BranchOptions<$B extends $Branch<any>> = { [k in $B['value']]: $B extends { value: k } ? $B : never }

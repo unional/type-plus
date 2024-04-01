@@ -1,6 +1,6 @@
 import { describe, expect, it, test } from '@jest/globals'
 
-import { type IsEqual,isType, testType } from '../index.js'
+import { type IsEqual, isType, testType } from '../index.js'
 
 describe('isType()', () => {
 	describe('without validator', () => {
@@ -26,14 +26,14 @@ describe('isType()', () => {
 		})
 		test('Specify T at type declaration', () => {
 			const s: unknown = false
-			if (isType<boolean>(s, s => typeof s === 'boolean')) {
+			if (isType<boolean>(s, (s) => typeof s === 'boolean')) {
 				type R = typeof s
 				testType.equal<R, boolean>(true)
 			}
 		})
 		test('exclude type if type guard fails', () => {
 			const s = 1 as string | number
-			if (isType<string>(s, s => typeof s === 'string')) {
+			if (isType<string>(s, (s) => typeof s === 'string')) {
 				type R = typeof s
 				testType.equal<R, string>(true)
 			} else {
@@ -44,7 +44,7 @@ describe('isType()', () => {
 
 		it('can use a truthy validator', () => {
 			const s: any = { a: 1 }
-			if (isType<{ a: number }>(s, s => s.a)) {
+			if (isType<{ a: number }>(s, (s) => s.a)) {
 				type R = typeof s
 				testType.equal<R, { a: number }>(true)
 			} else {
@@ -54,7 +54,7 @@ describe('isType()', () => {
 		})
 		test('subject can be type any', () => {
 			const s: any = false
-			if (isType<boolean>(s, s => typeof s === 'boolean')) {
+			if (isType<boolean>(s, (s) => typeof s === 'boolean')) {
 				type R = typeof s
 				testType.equal<R, boolean>(true)
 			}

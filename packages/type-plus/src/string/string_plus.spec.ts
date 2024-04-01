@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type StringIncludes, type StringPlus,testType } from '../index.js'
+import { type StringIncludes, type StringPlus, testType } from '../index.js'
 
 it('exposes Includes', () => {
 	testType.equal<StringPlus.Includes<'', ''>, StringIncludes<'', ''>>(true)

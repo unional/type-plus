@@ -101,7 +101,7 @@ assertType.noError = <S>(subject: Exclude<S, Error>): void => {
 	if (subject instanceof Error) throw TypeError('subject is an Error')
 }
 
-assertType.isNever = (_subject: never): asserts _subject is never => { }
+assertType.isNever = (_subject: never): asserts _subject is never => {}
 
 /**
  * creates a custom assertion function with standard TypeError.
@@ -109,9 +109,11 @@ assertType.isNever = (_subject: never): asserts _subject is never => { }
  * thus making it hard to use:
  * https://github.com/microsoft/TypeScript/issues/41047
  */
-assertType.custom = <T>(validator: (s: T) => boolean): (subject: unknown) => asserts subject is T => (subject) => {
+assertType.custom =
+	<T>(validator: (s: T) => boolean): ((subject: unknown) => asserts subject is T) =>
+	(subject) => {
 		if (!validator(subject as any)) throw new TypeError(`subject fails to satisfy ${tersify(validator)}`)
 		return
 	}
 
-assertType.as = <T>(_subject: unknown): asserts _subject is T => { }
+assertType.as = <T>(_subject: unknown): asserts _subject is T => {}

@@ -1,16 +1,9 @@
 {
-  "extends": "@repobuddy/typescript/tsconfig/monorepo",
-  "compilerOptions": {
-    "rootDir": "src",
-    "skipLibCheck": true
-  },
-  "exclude": [
-		"node_modules",
-    "src/type-checker",
-    "src/types"
-  ],
-  "include": [
-    "src",
-    "types"
-  ]
+	"extends": "@repobuddy/typescript/tsconfig/monorepo",
+	"compilerOptions": {
+		"rootDir": "src",
+		"skipLibCheck": true
+	},
+	"exclude": ["node_modules", "src/type-checker", "src/types"],
+	"include": ["src", "types"]
 }

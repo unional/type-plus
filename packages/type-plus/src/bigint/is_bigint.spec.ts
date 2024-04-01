@@ -147,42 +147,42 @@ describe('exact mode', () => {
 
 	it('can disable union distribution', () => {
 		testType.equal<IsBigint<bigint | string, { exact: true }>, boolean>(true)
-		testType.equal<IsBigint<bigint | string, { distributive: false, exact: true }>, false>(true)
+		testType.equal<IsBigint<bigint | string, { distributive: false; exact: true }>, false>(true)
 
 		testType.equal<IsBigint<1n | string, { exact: true }>, false>(true)
-		testType.equal<IsBigint<1n | string, { distributive: false, exact: true }>, false>(true)
+		testType.equal<IsBigint<1n | string, { distributive: false; exact: true }>, false>(true)
 
 		testType.equal<IsBigint<number | string, { exact: true }>, false>(true)
-		testType.equal<IsBigint<number | string, { distributive: false, exact: true }>, false>(true)
+		testType.equal<IsBigint<number | string, { distributive: false; exact: true }>, false>(true)
 
 		testType.equal<IsBigint<1 | string, { exact: true }>, false>(true)
-		testType.equal<IsBigint<1 | string, { distributive: false, exact: true }>, false>(true)
+		testType.equal<IsBigint<1 | string, { distributive: false; exact: true }>, false>(true)
 	})
 
 	it('consider intersection type as strict', () => {
 		testType.true<IsBigint<bigint & { a: 1 }, { exact: true }>>(true)
-		testType.true<IsBigint<bigint & { a: 1 }, { distributive: false, exact: true }>>(true)
+		testType.true<IsBigint<bigint & { a: 1 }, { distributive: false; exact: true }>>(true)
 
 		testType.false<IsBigint<1n & { a: 1 }, { exact: true }>>(true)
-		testType.false<IsBigint<1n & { a: 1 }, { distributive: false, exact: true }>>(true)
+		testType.false<IsBigint<1n & { a: 1 }, { distributive: false; exact: true }>>(true)
 
 		testType.false<IsBigint<number & { a: 1 }, { exact: true }>>(true)
-		testType.false<IsBigint<number & { a: 1 }, { distributive: false, exact: true }>>(true)
+		testType.false<IsBigint<number & { a: 1 }, { distributive: false; exact: true }>>(true)
 
 		testType.false<IsBigint<1 & { a: 1 }, { exact: true }>>(true)
-		testType.false<IsBigint<1 & { a: 1 }, { distributive: false, exact: true }>>(true)
+		testType.false<IsBigint<1 & { a: 1 }, { distributive: false; exact: true }>>(true)
 	})
 
 	it('works as filter', () => {
-		testType.equal<IsBigint<bigint, { selection: 'filter', exact: true }>, bigint>(true)
-		testType.equal<IsBigint<1n, { selection: 'filter', exact: true }>, never>(true)
+		testType.equal<IsBigint<bigint, { selection: 'filter'; exact: true }>, bigint>(true)
+		testType.equal<IsBigint<1n, { selection: 'filter'; exact: true }>, never>(true)
 
-		testType.equal<IsBigint<never, { selection: 'filter', exact: true }>, never>(true)
-		testType.equal<IsBigint<unknown, { selection: 'filter', exact: true }>, never>(true)
-		testType.equal<IsBigint<string | boolean, { selection: 'filter', exact: true }>, never>(true)
+		testType.equal<IsBigint<never, { selection: 'filter'; exact: true }>, never>(true)
+		testType.equal<IsBigint<unknown, { selection: 'filter'; exact: true }>, never>(true)
+		testType.equal<IsBigint<string | boolean, { selection: 'filter'; exact: true }>, never>(true)
 
 		testType.equal<never | bigint, bigint>(true)
-		testType.equal<IsBigint<string | bigint, { selection: 'filter', exact: true }>, bigint>(true)
+		testType.equal<IsBigint<string | bigint, { selection: 'filter'; exact: true }>, bigint>(true)
 	})
 
 	it('works with unique branches', () => {
@@ -199,16 +199,16 @@ describe('exact mode', () => {
 
 	it('can override $any branch', () => {
 		testType.equal<IsBigint<any, { exact: true }>, false>(true)
-		testType.equal<IsBigint<any, { $any: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsBigint<any, { $any: unknown; exact: true }>, unknown>(true)
 	})
 
 	it('can override $unknown branch', () => {
 		testType.equal<IsBigint<unknown, { exact: true }>, false>(true)
-		testType.equal<IsBigint<unknown, { $unknown: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsBigint<unknown, { $unknown: unknown; exact: true }>, unknown>(true)
 	})
 
 	it('can override $never branch', () => {
 		testType.equal<IsBigint<never, { exact: true }>, false>(true)
-		testType.equal<IsBigint<never, { $never: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsBigint<never, { $never: unknown; exact: true }>, unknown>(true)
 	})
 })

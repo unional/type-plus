@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type AnyFunction, type Last,testType } from '../index.js'
+import { type AnyFunction, type Last, testType } from '../index.js'
 
 it('returns never for empty tuple', () => {
 	testType.equal<Last<never>, never>(true)

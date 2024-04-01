@@ -153,7 +153,7 @@ describe('exact mode', () => {
 
 	it('can disable union distribution', () => {
 		testType.equal<IsNotObject<{ a: 1 } | 1, { exact: true }>, true>(true)
-		testType.equal<IsNotObject<{ a: 1 } | 1, { distributive: false, exact: true }>, true>(true)
+		testType.equal<IsNotObject<{ a: 1 } | 1, { distributive: false; exact: true }>, true>(true)
 	})
 
 	it('returns true for intersection type', () => {
@@ -161,23 +161,23 @@ describe('exact mode', () => {
 		// and `object & object -> object` directly.
 		// so there is no intersection type that can produce a strict object.
 		testType.equal<IsNotObject<object & Function, { exact: true }>, true>(true)
-		testType.equal<IsNotObject<object & Function, { distributive: false, exact: true }>, true>(true)
+		testType.equal<IsNotObject<object & Function, { distributive: false; exact: true }>, true>(true)
 
 		testType.true<IsNotObject<object & [], { exact: true }>>(true)
-		testType.true<IsNotObject<object & [], { distributive: false, exact: true }>>(true)
+		testType.true<IsNotObject<object & [], { distributive: false; exact: true }>>(true)
 
 		testType.true<IsNotObject<object & { a: 1 }, { exact: true }>>(true)
-		testType.true<IsNotObject<object & { a: 1 }, { distributive: false, exact: true }>>(true)
+		testType.true<IsNotObject<object & { a: 1 }, { distributive: false; exact: true }>>(true)
 	})
 
 	it('works as filter', () => {
-		testType.equal<IsNotObject<object, { selection: 'filter', exact: true }>, never>(true)
-		testType.equal<IsNotObject<{ a: 1 }, { selection: 'filter', exact: true }>, { a: 1 }>(true)
+		testType.equal<IsNotObject<object, { selection: 'filter'; exact: true }>, never>(true)
+		testType.equal<IsNotObject<{ a: 1 }, { selection: 'filter'; exact: true }>, { a: 1 }>(true)
 
-		testType.equal<IsNotObject<never, { selection: 'filter', exact: true }>, never>(true)
-		testType.equal<IsNotObject<unknown, { selection: 'filter', exact: true }>, unknown>(true)
-		testType.equal<IsNotObject<object | boolean, { selection: 'filter', exact: true }>, boolean>(true)
-		testType.equal<IsNotObject<{ a: 1 } | boolean, { selection: 'filter', exact: true }>, { a: 1 } | boolean>(true)
+		testType.equal<IsNotObject<never, { selection: 'filter'; exact: true }>, never>(true)
+		testType.equal<IsNotObject<unknown, { selection: 'filter'; exact: true }>, unknown>(true)
+		testType.equal<IsNotObject<object | boolean, { selection: 'filter'; exact: true }>, boolean>(true)
+		testType.equal<IsNotObject<{ a: 1 } | boolean, { selection: 'filter'; exact: true }>, { a: 1 } | boolean>(true)
 	})
 
 	it('works with unique branches', () => {

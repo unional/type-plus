@@ -132,39 +132,39 @@ describe('exact mode', () => {
 
 	it('can disable union distribution', () => {
 		testType.equal<IsBoolean<boolean | 1, { exact: true }>, boolean>(true)
-		testType.equal<IsBoolean<boolean | 1, { distributive: false, exact: true }>, false>(true)
+		testType.equal<IsBoolean<boolean | 1, { distributive: false; exact: true }>, false>(true)
 
 		testType.equal<IsBoolean<true | string, { exact: true }>, false>(true)
-		testType.equal<IsBoolean<true | string, { distributive: false, exact: true }>, false>(true)
+		testType.equal<IsBoolean<true | string, { distributive: false; exact: true }>, false>(true)
 
 		testType.equal<IsBoolean<false | string, { exact: true }>, false>(true)
-		testType.equal<IsBoolean<false | string, { distributive: false, exact: true }>, false>(true)
+		testType.equal<IsBoolean<false | string, { distributive: false; exact: true }>, false>(true)
 	})
 
 	it('returns true for intersection type', () => {
 		testType.equal<IsBoolean<number & { a: 1 }, { exact: true }>, false>(true)
-		testType.equal<IsBoolean<number & { a: 1 }, { distributive: false, exact: true }>, false>(true)
+		testType.equal<IsBoolean<number & { a: 1 }, { distributive: false; exact: true }>, false>(true)
 
 		testType.equal<IsBoolean<boolean & { a: 1 }, { exact: true }>, true>(true)
-		testType.equal<IsBoolean<boolean & { a: 1 }, { distributive: false, exact: true }>, true>(true)
+		testType.equal<IsBoolean<boolean & { a: 1 }, { distributive: false; exact: true }>, true>(true)
 
 		testType.equal<IsBoolean<true & { a: 1 }, { exact: true }>, false>(true)
-		testType.equal<IsBoolean<true & { a: 1 }, { distributive: false, exact: true }>, false>(true)
+		testType.equal<IsBoolean<true & { a: 1 }, { distributive: false; exact: true }>, false>(true)
 
 		testType.equal<IsBoolean<false & { a: 1 }, { exact: true }>, false>(true)
-		testType.equal<IsBoolean<false & { a: 1 }, { distributive: false, exact: true }>, false>(true)
+		testType.equal<IsBoolean<false & { a: 1 }, { distributive: false; exact: true }>, false>(true)
 	})
 
 	it('works as filter', () => {
-		testType.equal<IsBoolean<boolean, { selection: 'filter', exact: true }>, boolean>(true)
-		testType.equal<IsBoolean<true, { selection: 'filter', exact: true }>, never>(true)
+		testType.equal<IsBoolean<boolean, { selection: 'filter'; exact: true }>, boolean>(true)
+		testType.equal<IsBoolean<true, { selection: 'filter'; exact: true }>, never>(true)
 
-		testType.equal<IsBoolean<never, { selection: 'filter', exact: true }>, never>(true)
-		testType.equal<IsBoolean<unknown, { selection: 'filter', exact: true }>, never>(true)
-		testType.equal<IsBoolean<string | boolean, { selection: 'filter', exact: true }>, boolean>(true)
-		testType.equal<IsBoolean<string | boolean, { selection: 'filter', exact: true, distributive: false }>, never>(true)
+		testType.equal<IsBoolean<never, { selection: 'filter'; exact: true }>, never>(true)
+		testType.equal<IsBoolean<unknown, { selection: 'filter'; exact: true }>, never>(true)
+		testType.equal<IsBoolean<string | boolean, { selection: 'filter'; exact: true }>, boolean>(true)
+		testType.equal<IsBoolean<string | boolean, { selection: 'filter'; exact: true; distributive: false }>, never>(true)
 
-		testType.equal<IsBoolean<string | true, { selection: 'filter', exact: true }>, never>(true)
+		testType.equal<IsBoolean<string | true, { selection: 'filter'; exact: true }>, never>(true)
 	})
 
 	it('works with unique branches', () => {
@@ -180,16 +180,16 @@ describe('exact mode', () => {
 
 	it('can override $any branch', () => {
 		testType.equal<IsBoolean<any, { exact: true }>, false>(true)
-		testType.equal<IsBoolean<any, { $any: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsBoolean<any, { $any: unknown; exact: true }>, unknown>(true)
 	})
 
 	it('can override $unknown branch', () => {
 		testType.equal<IsBoolean<unknown, { exact: true }>, false>(true)
-		testType.equal<IsBoolean<unknown, { $unknown: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsBoolean<unknown, { $unknown: unknown; exact: true }>, unknown>(true)
 	})
 
 	it('can override $never branch', () => {
 		testType.equal<IsBoolean<never, { exact: true }>, false>(true)
-		testType.equal<IsBoolean<never, { $never: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsBoolean<never, { $never: unknown; exact: true }>, unknown>(true)
 	})
 })

@@ -17,7 +17,7 @@ export type Brand<B extends string, T = never> = [T] extends [null] | [undefined
  * A branded type of `B` with value of `T`.
  */
 export interface Branded<B extends string, T> {
-	[typeSym]: B,
+	[typeSym]: B
 	[valueSym]: T
 }
 
@@ -30,10 +30,9 @@ export function brand<B extends string>(type: B): <T>(subject: T) => Brand<B, Wi
  */
 export function brand<B extends string, T>(type: B, subject: T): Brand<B, Widen<T>>
 export function brand(typeInput: string, subject?: unknown) {
-	if (subject === undefined)
-		return <T>(subject: T) => brand(typeInput, subject)
+	if (subject === undefined) return <T>(subject: T) => brand(typeInput, subject)
 
-	if (isType<{ [typeSym]: string }>(subject, s => typeof s === 'object' && s !== null)) {
+	if (isType<{ [typeSym]: string }>(subject, (s) => typeof s === 'object' && s !== null)) {
 		// if subject is not an object, the branding will exist only in type-level.
 		subject[typeSym] = typeInput
 	}

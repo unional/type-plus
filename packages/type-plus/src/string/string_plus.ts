@@ -11,12 +11,12 @@ export namespace StringPlus {
 	 * type R = StringPlus.Includes<'abc', 'd'> // false
 	 * ```
 	 */
-	export type Includes<
-		Subject extends string,
-		Search extends string,
-		Then = true,
-		Else = false
-	> = StringIncludes<Subject, Search, Then, Else>
+	export type Includes<Subject extends string, Search extends string, Then = true, Else = false> = StringIncludes<
+		Subject,
+		Search,
+		Then,
+		Else
+	>
 
 	/**
 	 * Split a string into substrings using the specified separator,
@@ -30,5 +30,4 @@ export namespace StringPlus {
 	 * ```
 	 */
 	export type Split<Subject extends string, Seperator extends string> = StringSplit<Subject, Seperator>
-
 }

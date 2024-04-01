@@ -50,22 +50,20 @@ export type Find<
 	A extends readonly unknown[],
 	Criteria,
 	Options extends Find.Options = Find.DefaultOptions<Criteria>
-> =
-	IsTuple<A, {
-		$then: $ResolveOptions<[Options['$tuple'], Find.DefaultOptions<Criteria>['$tuple']]>,
-		$else: (
-			A extends Readonly<Array<infer T>>
-			? ElementMatch<T, Criteria, Options>
-			: never
-		)
-	}>
+> = IsTuple<
+	A,
+	{
+		$then: $ResolveOptions<[Options['$tuple'], Find.DefaultOptions<Criteria>['$tuple']]>
+		$else: A extends Readonly<Array<infer T>> ? ElementMatch<T, Criteria, Options> : never
+	}
+>
 
 export namespace Find {
 	export interface Options extends ElementMatch.Options, $Never.$Options {
-		$tuple?: unknown,
+		$tuple?: unknown
 	}
 
 	export interface DefaultOptions<Criteria> extends ElementMatch.DefaultOptions<Criteria>, $Never.$Default {
-		$tuple: 'does not support tuple. Please use `FindFirst` or `TuplePlus.Find` instead.',
+		$tuple: 'does not support tuple. Please use `FindFirst` or `TuplePlus.Find` instead.'
 	}
 }

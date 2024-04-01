@@ -44,9 +44,9 @@ export namespace Some {
 
 	export type StrictTuple<A extends readonly unknown[], Criteria, Then, Else> = A['length'] extends 0
 		? Else
-		: (IsEqual<A[0], Criteria> extends true
+		: IsEqual<A[0], Criteria> extends true
 			? Then
-			: StrictTuple<Tail<A>, Criteria, Then, Else>)
+			: StrictTuple<Tail<A>, Criteria, Then, Else>
 
 	export type Loose<A extends readonly unknown[], Criteria, Then, Else> = number extends A['length']
 		? LooseArray<A, Criteria, Then, Else>
@@ -61,7 +61,7 @@ export namespace Some {
 
 	export type LooseTuple<A extends readonly unknown[], Criteria, Then, Else> = A['length'] extends 0
 		? Else
-		: (A[0] extends Criteria
+		: A[0] extends Criteria
 			? Then
-			: LooseTuple<Tail<A>, Criteria, Then, Else>)
+			: LooseTuple<Tail<A>, Criteria, Then, Else>
 }

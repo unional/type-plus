@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type Max,testType } from '../index.js'
+import { type Max, testType } from '../index.js'
 
 it('works with floating point', () => {
 	testType.equal<Max<0.1, 1>, 1>(true)

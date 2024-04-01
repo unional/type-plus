@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else, type $SelectionBranch, type $Then, type HasUndefined,testType } from '../index.js'
+import { type $Else, type $SelectionBranch, type $Then, type HasUndefined, testType } from '../index.js'
 
 it('returns false when there is no undefined', () => {
 	testType.equal<HasUndefined<1 | 2>, false>(true)

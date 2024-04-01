@@ -63,12 +63,16 @@ describe('Merge', () => {
 	})
 
 	it('merges primitive types for its properties', () => {
-		testType.equal<Merge<number, boolean>, Merge<Number, Boolean>, {
-			toFixed: (fractionDigits?: number | undefined) => string,
-			toExponential: (fractionDigits?: number | undefined) => string,
-			toPrecision: (precision?: number | undefined) => string,
-			valueOf: () => boolean
-		}>(true)
+		testType.equal<
+			Merge<number, boolean>,
+			Merge<Number, Boolean>,
+			{
+				toFixed: (fractionDigits?: number | undefined) => string
+				toExponential: (fractionDigits?: number | undefined) => string
+				toPrecision: (precision?: number | undefined) => string
+				valueOf: () => boolean
+			}
+		>(true)
 
 		testType.equal<Merge<string, symbol>, Merge<String, Symbol>>(true)
 		testType.equal<Merge<() => void, bigint>, Merge<Function, BigInt>>(true)

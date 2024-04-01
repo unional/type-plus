@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else, type $Then, type IsNotFalse,testType } from '../index.js'
+import { type $Else, type $Then, type IsNotFalse, testType } from '../index.js'
 
 it('returns false if T is false', () => {
 	testType.equal<IsNotFalse<false>, false>(true)
@@ -10,7 +10,6 @@ it('returns boolean if T is boolean because it is distributive by default', () =
 	testType.equal<IsNotFalse<boolean>, boolean>(true)
 	testType.equal<IsNotFalse<boolean, { distributive: false }>, true>(true)
 })
-
 
 it('returns true if T is true', () => {
 	testType.equal<IsNotFalse<true>, true>(true)
@@ -73,7 +72,7 @@ it('works as filter', () => {
 	testType.equal<IsNotFalse<never, { selection: 'filter' }>, never>(true)
 	testType.equal<IsNotFalse<unknown, { selection: 'filter' }>, unknown>(true)
 	testType.equal<IsNotFalse<string | boolean, { selection: 'filter' }>, string | true>(true)
-	testType.equal<IsNotFalse<string | boolean, { selection: 'filter', distributive: false }>, string | boolean>(true)
+	testType.equal<IsNotFalse<string | boolean, { selection: 'filter'; distributive: false }>, string | boolean>(true)
 
 	testType.equal<IsNotFalse<string | false, { selection: 'filter' }>, string>(true)
 })

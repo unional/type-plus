@@ -26,25 +26,19 @@ export type CommonPropKeys<
 > = IsNever<
 	T,
 	{
-		$then: Options['$never'],
-		$else: (T['length'] extends 0
+		$then: Options['$never']
+		$else: T['length'] extends 0
 			? never
-			: (
-				T['length'] extends 1
+			: T['length'] extends 1
 				? keyof T[0]
-				: (
-					T['length'] extends 2
+				: T['length'] extends 2
 					? keyof T[0] & keyof T[1]
 					: keyof T[0] & keyof T[1] & CommonPropKeys<Tail<Tail<T>>>
-				)
-			))
 	}
 >
 
 export namespace CommonPropKeys {
-	export interface Options extends $Never.$Options {
-	}
+	export interface Options extends $Never.$Options {}
 
-	export interface DefaultOptions extends $Never.$Default {
-	}
+	export interface DefaultOptions extends $Never.$Default {}
 }

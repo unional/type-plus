@@ -22,12 +22,7 @@ export function split<T extends AnyRecord, S1 extends Splitter<T>, S2 extends Sp
 	split1: S1,
 	split2: S2
 ): [Split<T, S1>, Split<T, S2>, Omit<T, keyof S1 | keyof S2>]
-export function split<
-	T extends AnyRecord,
-	S1 extends Splitter<T>,
-	S2 extends Splitter<T>,
-	S3 extends Splitter<T>
->(
+export function split<T extends AnyRecord, S1 extends Splitter<T>, S2 extends Splitter<T>, S3 extends Splitter<T>>(
 	target: T,
 	splitter1: S1,
 	splitter2: S2,
@@ -45,13 +40,7 @@ export function split<
 	splitter2: S2,
 	splitter3: S3,
 	splitter4: S4
-): [
-	Split<T, S1>,
-	Split<T, S2>,
-	Split<T, S3>,
-	Split<T, S4>,
-	Omit<T, keyof S1 | keyof S2 | keyof S3 | keyof S4>
-]
+): [Split<T, S1>, Split<T, S2>, Split<T, S3>, Split<T, S4>, Omit<T, keyof S1 | keyof S2 | keyof S3 | keyof S4>]
 export function split<
 	T extends AnyRecord,
 	S1 extends Splitter<T>,
@@ -194,7 +183,7 @@ export function split<
 ]
 export function split(target: AnyRecord, ...splitters: AnyRecord[]): AnyRecord[] {
 	const keyMap: AnyRecord = {}
-	const s = splitters.map(s =>
+	const s = splitters.map((s) =>
 		reduceByKey(s, (p, k) => ((keyMap[k] = true), (p[k] = target[k] ?? s[k]), p), {} as AnyRecord)
 	)
 	const r = reduceByKey(target, (p, k) => (keyMap[k] ? p : ((p[k] = target[k]), p)), {} as AnyRecord)

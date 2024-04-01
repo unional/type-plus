@@ -9,5 +9,5 @@
 export type StringToBigint<S extends string, Fail = never> = S extends `-0n`
 	? 0n
 	: S extends `${infer N extends bigint}n`
-	? N
-	: Fail
+		? N
+		: Fail

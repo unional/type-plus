@@ -17,32 +17,37 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  * type R = IsNotInteger<1n> // false
  * ```
  */
-export type IsNotInteger<T, $O extends IsNotInteger.$Options = {}> = IsNumber<T, {
-	distributive: $O['distributive'],
-	$then: $Then,
-	$else: $Else
-}> extends infer R
-	? R extends $Then ? (
-		number extends T
-		? $ResolveBranch<T, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
-		: T extends number ? (
-			`${T}` extends `${number}.${number}`
-			? $ResolveBranch<T, $O, [$Then]>
-			: $ResolveBranch<T, $O, [$Else]>
-		)
-		: never
-	)
-	: R extends $Else ? (
-		IsBigint<T, {
-			distributive: $O['distributive'],
-			$then: $Then,
-			$else: $Else
-		}> extends infer R
-		? R extends $Then ? $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<Exclude<T, number>, $O, [$Then]>
-		: never
-	)
-	: never : never
+export type IsNotInteger<T, $O extends IsNotInteger.$Options = {}> = IsNumber<
+	T,
+	{
+		distributive: $O['distributive']
+		$then: $Then
+		$else: $Else
+	}
+> extends infer R
+	? R extends $Then
+		? number extends T
+			? $ResolveBranch<T, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
+			: T extends number
+				? `${T}` extends `${number}.${number}`
+					? $ResolveBranch<T, $O, [$Then]>
+					: $ResolveBranch<T, $O, [$Else]>
+				: never
+		: R extends $Else
+			? IsBigint<
+					T,
+					{
+						distributive: $O['distributive']
+						$then: $Then
+						$else: $Else
+					}
+				> extends infer R
+				? R extends $Then
+					? $ResolveBranch<T, $O, [$Else]>
+					: $ResolveBranch<Exclude<T, number>, $O, [$Then]>
+				: never
+			: never
+	: never
 export namespace IsNotInteger {
 	export type $Options = $Equality.$Options
 	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>

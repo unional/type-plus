@@ -60,10 +60,12 @@ import type { $Then } from '../type_plus/branch/$selection.js'
  * type R = IsNotTrue<string, $SelectionBranch> // $Then
  * ```
  */
-export type IsNotTrue<T, $O extends IsNotTrue.$Options = {}> = $SpecialType<T,
-	$MergeOptions<$O,
+export type IsNotTrue<T, $O extends IsNotTrue.$Options = {}> = $SpecialType<
+	T,
+	$MergeOptions<
+		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Then]>,
+			$then: $ResolveBranch<T, $O, [$Then]>
 			$else: IsNotTrue.$<T, $O>
 		}
 	>

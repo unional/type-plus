@@ -1,6 +1,15 @@
 import { describe, it } from '@jest/globals'
 
-import { type $Any, type $BranchOptions, type $Else, type $NotNever, type $Then, type $Unknown, type IsNever,testType } from '../index.js'
+import {
+	type $Any,
+	type $BranchOptions,
+	type $Else,
+	type $NotNever,
+	type $Then,
+	type $Unknown,
+	type IsNever,
+	testType
+} from '../index.js'
 
 // alternative implementation
 // export type IsNever<
@@ -89,7 +98,7 @@ it('can override $any branch', () => {
 describe('filter', () => {
 	it('returns never if T is never', () => {
 		testType.equal<IsNever<never, { selection: 'filter' }>, never>(true)
-		testType.equal<IsNever<void, { selection: 'filter', $else: $NotNever }>, $NotNever>(true)
+		testType.equal<IsNever<void, { selection: 'filter'; $else: $NotNever }>, $NotNever>(true)
 	})
 
 	it('returns $NotNever for other special types', () => {

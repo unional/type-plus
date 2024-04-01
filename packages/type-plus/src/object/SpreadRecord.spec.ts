@@ -1,6 +1,6 @@
 import { test } from '@jest/globals'
 
-import { type SpreadRecord,testType } from '../index.js'
+import { type SpreadRecord, testType } from '../index.js'
 
 test('records are combined as intersection', () => {
 	type S = SpreadRecord<{ a: number }, { b: string }>
@@ -9,8 +9,8 @@ test('records are combined as intersection', () => {
 
 test('Property in B overrides A', () => {
 	type A = { a: number }
-	type B = { a: string, b: string }
+	type B = { a: string; b: string }
 	type S = SpreadRecord<A, B>
 
-	testType.equal<S, { a: string, b: string }>(true)
+	testType.equal<S, { a: string; b: string }>(true)
 })

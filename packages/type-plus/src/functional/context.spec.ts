@@ -23,24 +23,24 @@ describe(`${context.name}()`, () => {
 
 	it('accepts transformer expecting Init', () => {
 		const r = context({ a: 1 })
-			.extend(ctx => {
+			.extend((ctx) => {
 				testType.equal<typeof ctx, { a: number }>(true)
 				expect(ctx).toEqual({ a: 1 })
 				return { b: ctx.a + 1 }
 			})
 			.build()
 
-		testType.equal<typeof r, { a: number, b: number }>(true)
+		testType.equal<typeof r, { a: number; b: number }>(true)
 		expect(r).toEqual({ a: 1, b: 2 })
 	})
 
 	it('provides the combined context to the next transformer', () => {
 		const r = context({ a: 1 })
-			.extend(ctx => ({ b: ctx.a + 1 }))
-			.extend(ctx => ({ c: ctx.a + ctx.b }))
+			.extend((ctx) => ({ b: ctx.a + 1 }))
+			.extend((ctx) => ({ c: ctx.a + ctx.b }))
 			.build()
 
-		testType.equal<typeof r, { a: number, b: number, c: number }>(true)
+		testType.equal<typeof r, { a: number; b: number; c: number }>(true)
 		expect(r).toEqual({ a: 1, b: 2, c: 3 })
 	})
 
@@ -50,16 +50,16 @@ describe(`${context.name}()`, () => {
 		}
 		const r = context({ a: 1, b: 2 }).extend(foo).build()
 
-		testType.equal<typeof r, { a: number, b: number, c: number }>(true)
+		testType.equal<typeof r, { a: number; b: number; c: number }>(true)
 		expect(r).toEqual({ a: 1, b: 2, c: 3 })
 	})
 
 	it('can specify additional type during extend', () => {
 		const r = context({ a: 1 })
-			.extend<{ b: number | undefined }>(ctx => ({ b: ctx.a + 1 }))
+			.extend<{ b: number | undefined }>((ctx) => ({ b: ctx.a + 1 }))
 			.build()
 
-		testType.equal<typeof r, { a: number, b: number | undefined }>(true)
+		testType.equal<typeof r, { a: number; b: number | undefined }>(true)
 		expect(r).toEqual({ a: 1, b: 2 })
 	})
 

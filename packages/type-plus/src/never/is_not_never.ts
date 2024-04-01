@@ -44,19 +44,22 @@ import type { $Never } from './never.js'
  * type R = IsNotNever<1, $SelectionBranch> // $Then
  * ```
  */
-export type IsNotNever<
+export type IsNotNever<T, $O extends IsNotNever.$Options = {}> = $SpecialType<
 	T,
-	$O extends IsNotNever.$Options = {}
-> = $SpecialType<T, {
-	$any: $ResolveBranch<T, $O, [$Any, $Then]>,
-	$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>,
-	$never: $ResolveBranch<T, IsNotNever._O<$O>, [$Else]>,
-	$else: $ResolveBranch<T, $O, [$Then]>
-}>
+	{
+		$any: $ResolveBranch<T, $O, [$Any, $Then]>
+		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>
+		$never: $ResolveBranch<T, IsNotNever._O<$O>, [$Else]>
+		$else: $ResolveBranch<T, $O, [$Then]>
+	}
+>
 
 export namespace IsNotNever {
 	export type $Options = $SelectionOptions & $InputOptions<$Any | $Unknown>
 	export type $Branch = $SelectionBranch
-	export type _O<$O extends $Options> = '$else' extends keyof $O ? $O :
-		$O['selection'] extends 'filter' ? $O & { $else: $Never } : $O
+	export type _O<$O extends $Options> = '$else' extends keyof $O
+		? $O
+		: $O['selection'] extends 'filter'
+			? $O & { $else: $Never }
+			: $O
 }

@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type Failed, type FailedT,testType } from '../index.js'
+import { type Failed, type FailedT, testType } from '../index.js'
 
 it('shows error message (inspect by hover over it)', () => {
 	type R = Failed<'error message'>
@@ -11,5 +11,5 @@ it('shows error message (inspect by hover over it)', () => {
 it('shows error message with type', () => {
 	type R = FailedT<'type should be', number | string>
 
-	testType.equal<R, FailedT<'type should be',  number | string>>(true)
+	testType.equal<R, FailedT<'type should be', number | string>>(true)
 })

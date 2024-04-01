@@ -1,6 +1,6 @@
-import { describe, it,test } from '@jest/globals'
+import { describe, it, test } from '@jest/globals'
 
-import { type CanAssign,canAssign, testType } from '../index.js'
+import { type CanAssign, canAssign, testType } from '../index.js'
 
 describe('CanAssign<A, B>', () => {
 	test('literal type to widen', () => {
@@ -23,10 +23,10 @@ describe('CanAssign<A, B>', () => {
 		testType.false<CanAssign<boolean, true>>(true)
 	})
 	test('super set to sub set', () => {
-		testType.true<CanAssign<{ a: string, b: number }, { a: string }>>(true)
+		testType.true<CanAssign<{ a: string; b: number }, { a: string }>>(true)
 	})
 	test('sub set to super set fail', () => {
-		testType.false<CanAssign<{ a: string }, { a: string, b: number }>>(true)
+		testType.false<CanAssign<{ a: string }, { a: string; b: number }>>(true)
 	})
 
 	it('distributes union types to return boolean if only part of the union is assignable', () => {

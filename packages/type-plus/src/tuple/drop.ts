@@ -29,20 +29,20 @@ export type DropFirst<
 > = number extends T['length']
 	? Options['$array']
 	: T['length'] extends 0
-	? Options['caseEmptyTuple']
-	: T['length'] extends 1
-	? []
-	: T extends [any, ...infer Tail]
-	? Tail
-	: never
+		? Options['caseEmptyTuple']
+		: T['length'] extends 1
+			? []
+			: T extends [any, ...infer Tail]
+				? Tail
+				: never
 
 export namespace DropFirst {
 	export interface Options {
-		$array?: unknown,
-		caseEmptyTuple?: unknown,
+		$array?: unknown
+		caseEmptyTuple?: unknown
 	}
 	export interface DefaultOptions<T> {
-		$array: T,
+		$array: T
 		caseEmptyTuple: []
 	}
 }
@@ -75,25 +75,23 @@ export type DropLast<
 > = number extends T['length']
 	? Cases['$array']
 	: T['length'] extends 0
-	? Cases['caseEmptyTuple']
-	: T['length'] extends 1
-	? []
-	: T extends [...infer Heads, any]
-	? Heads
-	: never
-
+		? Cases['caseEmptyTuple']
+		: T['length'] extends 1
+			? []
+			: T extends [...infer Heads, any]
+				? Heads
+				: never
 
 export namespace DropLast {
 	export interface Options {
-		$array?: unknown,
-		caseEmptyTuple?: unknown,
+		$array?: unknown
+		caseEmptyTuple?: unknown
 	}
 	export interface DefaultOptions<T> {
-		$array: T,
+		$array: T
 		caseEmptyTuple: []
 	}
 }
-
 
 /**
  * ⚗️ *transform*
@@ -107,7 +105,7 @@ export namespace DropLast {
  * type R = DropMatch<Array<1 | 2>, number> // never[]
  * ```
  */
-export type DropMatch<A extends Readonly<Array<unknown>>, Criteria> =	number extends A['length']
+export type DropMatch<A extends Readonly<Array<unknown>>, Criteria> = number extends A['length']
 	? ArrayDropMatch<A, Criteria>
 	: TupleDropMatch<A, Criteria>
 
@@ -121,5 +119,5 @@ export type DropUndefined<A extends Array<any>> = DropMatch<A, undefined>
  * 💀 *deprecated* the type does not sufficiently cover the use cases.
  */
 export function drop<A extends Readonly<unknown[]>, const C>(array: A, value: C): DropMatch<A, C> {
-	return array.filter(v => v !== value) as DropMatch<A, C>
+	return array.filter((v) => v !== value) as DropMatch<A, C>
 }

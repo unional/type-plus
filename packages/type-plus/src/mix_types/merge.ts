@@ -20,42 +20,38 @@ import type { Box } from './box.js'
  *
  * This type does not have such restrictions, and tries to handle the other types accordingly.
  */
-export type Merge<A, B> =
+export type Merge<A, B> = Or<
+	IsNever<A>,
+	IsNever<B>,
+	never,
 	Or<
-		IsNever<A>,
-		IsNever<B>,
-		never,
+		IsVoid<A>,
+		IsVoid<B>,
+		A & B,
 		Or<
-			IsVoid<A>,
-			IsVoid<B>,
-			A & B,
+			IsUnknown<A>,
+			Or<IsUndefined<A>, IsNull<A>>,
+			B,
 			Or<
-				IsUnknown<A>,
-				Or<IsUndefined<A>, IsNull<A>>,
-				B,
-				Or<
-					IsUnknown<B>,
-					Or<IsUndefined<B>, IsNull<B>>,
-					A,
-					ObjectMerge<
-						Box<A, { $notBoxable: {} }>,
-						Box<B, { $notBoxable: {} }>
-					>
-				>
+				IsUnknown<B>,
+				Or<IsUndefined<B>, IsNull<B>>,
+				A,
+				ObjectMerge<Box<A, { $notBoxable: {} }>, Box<B, { $notBoxable: {} }>>
 			>
 		>
 	>
+>
 
 /**
-* Left join `a` with `b`.
-*
-* This returns the proper type of `{ ...a, ...b }`
-*
-* @example
-* ```ts
-* merge({ a: 1 }, {} as { a?: string | undefined }) // { a: number | string }
-* ```
-*/
+ * Left join `a` with `b`.
+ *
+ * This returns the proper type of `{ ...a, ...b }`
+ *
+ * @example
+ * ```ts
+ * merge({ a: 1 }, {} as { a?: string | undefined }) // { a: number | string }
+ * ```
+ */
 export function merge<A, B>(a: A, b: B): Merge<A, B> {
 	return { ...a, ...b } as any
 }

@@ -29,59 +29,53 @@ export type IndexAt<
 	Fail = never,
 	Upper = A['length'],
 	Lower = 0
-> = IsNever<
-	A,
-	$SelectionBranch> extends infer R
-	? R extends $Then ? Fail
-	: R extends $Else ? IndexAt._<A, N, Fail, Upper, Lower>
-	: never : never
+> = IsNever<A, $SelectionBranch> extends infer R
+	? R extends $Then
+		? Fail
+		: R extends $Else
+			? IndexAt._<A, N, Fail, Upper, Lower>
+			: never
+	: never
 
 export namespace IndexAt {
-	export type _<
-		A extends readonly unknown[],
-		N extends number,
-		Fail = never,
-		Upper = A['length'],
-		Lower = 0
-	> = IsEqual<
+	export type _<A extends readonly unknown[], N extends number, Fail = never, Upper = A['length'], Lower = 0> = IsEqual<
 		A['length'],
 		0,
 		Fail,
 		IsInteger<
 			N,
 			{
-				$then: IsNumber<
-					A['length'],
-					IsNumber.$Branch<{ exact: true }>
-				> extends infer R
-				// A: array
-				? R extends $Then ? N
-				// A: tuple
-				: R extends $Else ? IsNegative<
-					N,
-					{
-						$then: GreaterThan<Abs<N>, A['length']> extends true ? Lower : Subtract<A['length'], Abs<N>>,
-						$else: GreaterThan<A['length'], N> extends true ? N : Upper
-					}
-				>
-				: never : never,
+				$then: IsNumber<A['length'], IsNumber.$Branch<{ exact: true }>> extends infer R
+					? // A: array
+						R extends $Then
+						? N
+						: // A: tuple
+							R extends $Else
+							? IsNegative<
+									N,
+									{
+										$then: GreaterThan<Abs<N>, A['length']> extends true ? Lower : Subtract<A['length'], Abs<N>>
+										$else: GreaterThan<A['length'], N> extends true ? N : Upper
+									}
+								>
+							: never
+					: never
 				// N: number or float
 				$else: IsAny<
 					N,
 					{
-						$then: number,
-						$else: IsNumber<
-							N,
-							IsNumber.$Branch<{ exact: true }>
-						> extends infer R
-						? R extends $Then ? N : never : never
+						$then: number
+						$else: IsNumber<N, IsNumber.$Branch<{ exact: true }>> extends infer R
+							? R extends $Then
+								? N
+								: never
+							: never
 					}
 				>
 			}
 		>
 	>
 }
-
 
 // import type { IsAny } from '../any/is_any.js'
 // import type { IsEqual } from '../equal/equal.js'

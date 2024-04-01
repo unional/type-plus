@@ -2,13 +2,12 @@ import { expect, it } from '@jest/globals'
 import { testType, type UnionKeys } from './index.js'
 
 it('gets the keys of an object', () => {
-	testType.equal<UnionKeys<{ a: 1, b: 2 }>, 'a' | 'b'>(true)
+	testType.equal<UnionKeys<{ a: 1; b: 2 }>, 'a' | 'b'>(true)
 })
-
 
 it('returns known keys', () => {
 	type Foo = {
-		a: string,
+		a: string
 		b: string
 	}
 

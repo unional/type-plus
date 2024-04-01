@@ -139,29 +139,32 @@ describe('exact', () => {
 	})
 
 	it('can disable union distribution', () => {
-		testType.equal<IsNotString<string | number, { distributive: false, exact: true }>, true>(true)
+		testType.equal<IsNotString<string | number, { distributive: false; exact: true }>, true>(true)
 	})
 
 	it('returns false for intersection type', () => {
 		testType.equal<IsNotString<number, { exact: true }>, true>(true)
-		testType.equal<IsNotString<number, { distributive: false, exact: true }>, true>(true)
+		testType.equal<IsNotString<number, { distributive: false; exact: true }>, true>(true)
 
 		testType.equal<IsNotString<string & { a: 1 }, { exact: true }>, false>(true)
-		testType.equal<IsNotString<string & { a: 1 }, { distributive: false, exact: true }>, false>(true)
+		testType.equal<IsNotString<string & { a: 1 }, { distributive: false; exact: true }>, false>(true)
 
 		testType.equal<IsNotString<'' & { a: 1 }, { exact: true }>, true>(true)
-		testType.equal<IsNotString<'' & { a: 1 }, { distributive: false, exact: true }>, true>(true)
+		testType.equal<IsNotString<'' & { a: 1 }, { distributive: false; exact: true }>, true>(true)
 	})
 
 	it('works as filter', () => {
-		testType.equal<IsNotString<string, { selection: 'filter', exact: true }>, never>(true)
-		testType.equal<IsNotString<'', { selection: 'filter', exact: true }>, ''>(true)
+		testType.equal<IsNotString<string, { selection: 'filter'; exact: true }>, never>(true)
+		testType.equal<IsNotString<'', { selection: 'filter'; exact: true }>, ''>(true)
 
-		testType.equal<IsNotString<never, { selection: 'filter', exact: true }>, never>(true)
-		testType.equal<IsNotString<unknown, { selection: 'filter', exact: true }>, unknown>(true)
-		testType.equal<IsNotString<string | number, { selection: 'filter', exact: true }>, number>(true)
-		testType.equal<IsNotString<string | number, { selection: 'filter', exact: true, distributive: false }>, string | number>(true)
-		testType.equal<IsNotString<'' | true, { selection: 'filter', exact: true }>, '' | true>(true)
+		testType.equal<IsNotString<never, { selection: 'filter'; exact: true }>, never>(true)
+		testType.equal<IsNotString<unknown, { selection: 'filter'; exact: true }>, unknown>(true)
+		testType.equal<IsNotString<string | number, { selection: 'filter'; exact: true }>, number>(true)
+		testType.equal<
+			IsNotString<string | number, { selection: 'filter'; exact: true; distributive: false }>,
+			string | number
+		>(true)
+		testType.equal<IsNotString<'' | true, { selection: 'filter'; exact: true }>, '' | true>(true)
 	})
 
 	it('works with unique branches', () => {
@@ -176,16 +179,16 @@ describe('exact', () => {
 
 	it('can override $any branch', () => {
 		testType.equal<IsNotString<any, { exact: true }>, true>(true)
-		testType.equal<IsNotString<any, { $any: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsNotString<any, { $any: unknown; exact: true }>, unknown>(true)
 	})
 
 	it('can override $unknown branch', () => {
 		testType.equal<IsNotString<unknown, { exact: true }>, true>(true)
-		testType.equal<IsNotString<unknown, { $unknown: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsNotString<unknown, { $unknown: unknown; exact: true }>, unknown>(true)
 	})
 
 	it('can override $never branch', () => {
 		testType.equal<IsNotString<never, { exact: true }>, true>(true)
-		testType.equal<IsNotString<never, { $never: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsNotString<never, { $never: unknown; exact: true }>, unknown>(true)
 	})
 })

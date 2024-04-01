@@ -58,10 +58,12 @@ import type { $Else } from '../type_plus/branch/$selection.js'
  * type R = IsTrue<string, $SelectionBranch> // $Else
  * ```
  */
-export type IsTrue<T, $O extends IsTrue.$Options = {}> = $SpecialType<T,
-	$MergeOptions<$O,
+export type IsTrue<T, $O extends IsTrue.$Options = {}> = $SpecialType<
+	T,
+	$MergeOptions<
+		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Else]>,
+			$then: $ResolveBranch<T, $O, [$Else]>
 			$else: IsTrue.$<T, $O>
 		}
 	>

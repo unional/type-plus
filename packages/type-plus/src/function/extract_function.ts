@@ -15,9 +15,7 @@ import type { AnyFunction } from './any_function.js'
  * }> // () => void
  * ```
  */
-export type ExtractFunction<T extends AnyFunction> = T extends AnyFunction<infer P, infer R>
-	? (...args: P) => R
-	: never
+export type ExtractFunction<T extends AnyFunction> = T extends AnyFunction<infer P, infer R> ? (...args: P) => R : never
 
 /**
  * Extract the function signature from a composite function.

@@ -136,4 +136,3 @@ export * from './utils/index.js'
 export type { TypePlusOptions } from './utils/options.js'
 export type * from './void/is_not_void.js'
 export type * from './void/is_void.js'
-

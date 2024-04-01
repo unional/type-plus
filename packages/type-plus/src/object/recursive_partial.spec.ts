@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type RecursivePartial,testType } from '../index.js'
+import { type RecursivePartial, testType } from '../index.js'
 
 it('marks props partial', () => {
 	testType.equal<RecursivePartial<{ a: number }>, { a?: number | undefined }>(true)
@@ -25,10 +25,10 @@ it('marks function props partial', () => {
 })
 
 it('marks function complex type partial', () => {
-	type F = { (): void, b: { c: number } }
+	type F = { (): void; b: { c: number } }
 
 	type R = RecursivePartial<{ f: F }>
-	const r: R = { f() { } } as any
+	const r: R = { f() {} } as any
 
 	// @ts-expect-error
 	r.f()
@@ -40,8 +40,8 @@ it('marks function complex type partial', () => {
 	testType.equal<
 		R['f'],
 		| ((() => void) & {
-			b?: { c?: number | undefined } | undefined
-		})
+				b?: { c?: number | undefined } | undefined
+		  })
 		| undefined
 	>(true)
 })

@@ -35,8 +35,8 @@ export type SplitAt<
 > = IsArray<
 	A,
 	{
-		exact: true,
-		$then: [A, A],
+		exact: true
+		$then: [A, A]
 		$else: SplitAt._<A, [], [], IndexAt._<A, Index>, DeleteCount, Insert>
 	}
 >
@@ -48,32 +48,30 @@ export namespace SplitAt {
 		C extends readonly unknown[],
 		Index extends number,
 		DeleteCount,
-		Insert extends readonly unknown[],
+		Insert extends readonly unknown[]
 	> = 0 extends A['length']
-		? IsTuple<Insert, { $then: [[...Insert, ...B], C], $else: [B, C] }>
-		: (Index extends B['length']
+		? IsTuple<Insert, { $then: [[...Insert, ...B], C]; $else: [B, C] }>
+		: Index extends B['length']
 			? IsNever<
-				DeleteCount,
-				{
-					$then: [B, A],
-					$else: _D<A, B, C, DeleteCount, Insert>
-				}>
-			: (A extends readonly [infer Head, ...infer Tail]
+					DeleteCount,
+					{
+						$then: [B, A]
+						$else: _D<A, B, C, DeleteCount, Insert>
+					}
+				>
+			: A extends readonly [infer Head, ...infer Tail]
 				? _<Tail, [...B, Head], [], Index, DeleteCount, Insert>
-				: 'unexpected: A does not extends [Head, ...Tail]'))
+				: 'unexpected: A does not extends [Head, ...Tail]'
 
 	export type _D<
 		A extends readonly unknown[],
 		B extends readonly unknown[],
 		C extends readonly unknown[],
 		DeleteCount,
-		Insert extends readonly unknown[],
+		Insert extends readonly unknown[]
 	> = DeleteCount extends C['length']
-		? IsTuple<Insert, { $then: [[...B, ...Insert, ...A], C], $else: [[...B, ...A], C] }>
-		: (A extends readonly [infer Head, ...infer Tail]
+		? IsTuple<Insert, { $then: [[...B, ...Insert, ...A], C]; $else: [[...B, ...A], C] }>
+		: A extends readonly [infer Head, ...infer Tail]
 			? _D<Tail, B, [...C, Head], DeleteCount, Insert>
-			: IsTuple<Insert, { $then: [[...Insert, ...B], C], $else: [B, C] }>
-		)
-
+			: IsTuple<Insert, { $then: [[...Insert, ...B], C]; $else: [B, C] }>
 }
-

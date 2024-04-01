@@ -54,36 +54,26 @@ export type Find<
 	Options extends Find.Options = Find.DefaultOptions<Criteria>
 > = TypePlusOptions.Merge<Options, Find.DefaultOptions<Criteria>> extends infer O extends Find.Options
 	? IsTuple<
-		A,
-		{
-			$then: A['length'] extends 0
-			? O['$emptyTuple']
-			: Find.Device<A, Criteria, O>,
-			$else: O['$array']
-		}
-	>
+			A,
+			{
+				$then: A['length'] extends 0 ? O['$emptyTuple'] : Find.Device<A, Criteria, O>
+				$else: O['$array']
+			}
+		>
 	: never
 export namespace Find {
-	export type Device<
-		A extends readonly unknown[],
-		Criteria,
-		Options extends Find.Options
-	> = A['length'] extends 0
+	export type Device<A extends readonly unknown[], Criteria, Options extends Find.Options> = A['length'] extends 0
 		? Options['$notMatch']
-		: (A extends readonly [infer Head, ...infer Tail]
-			? ElementMatch<
-				Head,
-				Criteria,
-				TypePlusOptions.Merge<{ $notMatch: Device<Tail, Criteria, Options> }, Options>
-			>
-			: never)
+		: A extends readonly [infer Head, ...infer Tail]
+			? ElementMatch<Head, Criteria, TypePlusOptions.Merge<{ $notMatch: Device<Tail, Criteria, Options> }, Options>>
+			: never
 	export interface Options extends ElementMatch.Options, $Never.$Options {
-		$array?: unknown,
-		$emptyTuple?: unknown,
+		$array?: unknown
+		$emptyTuple?: unknown
 	}
 
 	export interface DefaultOptions<Criteria> extends ElementMatch.DefaultOptions<Criteria>, $Never.$Default {
-		$array: 'does not support array. Please use `FindFirst` or `ArrayPlus.Find` instead.',
-		$emptyTuple: never,
+		$array: 'does not support array. Please use `FindFirst` or `ArrayPlus.Find` instead.'
+		$emptyTuple: never
 	}
 }

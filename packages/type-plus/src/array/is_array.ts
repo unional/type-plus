@@ -60,13 +60,12 @@ import type { $Else, $Then } from '../type_plus/branch/$selection.js'
  * type R = IsArray<number, IsArray.$Branch> // $Else
  * ```
  */
-export type IsArray<
+export type IsArray<T, $O extends IsArray.$Options = {}> = $SpecialType<
 	T,
-	$O extends IsArray.$Options = {}
-> = $SpecialType<T,
-	$MergeOptions<$O,
+	$MergeOptions<
+		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Else]>,
+			$then: $ResolveBranch<T, $O, [$Else]>
 			$else: IsArray.$<T, $O>
 		}
 	>
@@ -84,33 +83,33 @@ export namespace IsArray {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> =
-		$Exact.$IsExact<$O, {
-			$then: $IsDistributive<$O, {
-				$then: T extends readonly any[]
-				? (
-					number extends T['length']
-					? $ResolveBranch<T, $O, [$Then]>
-					: $ResolveBranch<T, $O, [$Else]>
-				)
-				: $ResolveBranch<T, $O, [$Else]>,
-				$else: [T] extends [readonly any[]]
-				? (
-					number extends T['length']
-					? $ResolveBranch<T, $O, [$Then]>
-					: $ResolveBranch<T, $O, [$Else]>
-				)
-				: $ResolveBranch<T, $O, [$Else]>
-			}>,
-			$else: $IsDistributive<$O, {
-				$then: T extends readonly any[]
-				? $ResolveBranch<T, $O, [$Then]>
-				: $ResolveBranch<T, $O, [$Else]>,
-				$else: [T] extends readonly [any[]]
-				? $ResolveBranch<T, $O, [$Then]>
-				: $ResolveBranch<T, $O, [$Else]>
-			}>
-		}>
+	export type $<T, $O extends $UtilOptions> = $Exact.$IsExact<
+		$O,
+		{
+			$then: $IsDistributive<
+				$O,
+				{
+					$then: T extends readonly any[]
+						? number extends T['length']
+							? $ResolveBranch<T, $O, [$Then]>
+							: $ResolveBranch<T, $O, [$Else]>
+						: $ResolveBranch<T, $O, [$Else]>
+					$else: [T] extends [readonly any[]]
+						? number extends T['length']
+							? $ResolveBranch<T, $O, [$Then]>
+							: $ResolveBranch<T, $O, [$Else]>
+						: $ResolveBranch<T, $O, [$Else]>
+				}
+			>
+			$else: $IsDistributive<
+				$O,
+				{
+					$then: T extends readonly any[] ? $ResolveBranch<T, $O, [$Then]> : $ResolveBranch<T, $O, [$Else]>
+					$else: [T] extends readonly [any[]] ? $ResolveBranch<T, $O, [$Then]> : $ResolveBranch<T, $O, [$Else]>
+				}
+			>
+		}
+	>
 
 	export type $UtilOptions = Assignable.$UtilOptions & $Exact.$Options
 }

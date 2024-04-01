@@ -162,7 +162,6 @@ it('returns true for intrinsic manipulative types with template literal', () => 
 	testType.true<IsTemplateLiteral<Uncapitalize<`a${string}c`>>>(true)
 	testType.true<IsTemplateLiteral<Uncapitalize<`a${bigint}c`>>>(true)
 
-
 	testType.true<IsTemplateLiteral<Uppercase<Uppercase<`a${number}c`>>>>(true)
 	testType.true<IsTemplateLiteral<Uppercase<Lowercase<`a${number}c`>>>>(true)
 	testType.true<IsTemplateLiteral<Uppercase<Uppercase<Lowercase<`a${number}c`>>>>>(true)
@@ -240,7 +239,7 @@ it('works as filter', () => {
 it('works with unique branches', () => {
 	testType.equal<IsTemplateLiteral<string, IsTemplateLiteral.$Branch>, $Else>(true)
 	testType.equal<IsTemplateLiteral<'a', IsTemplateLiteral.$Branch>, $Else>(true)
-	testType.equal<IsTemplateLiteral<`${number}`, { $then: String, $else: never }>, String>(true)
+	testType.equal<IsTemplateLiteral<`${number}`, { $then: String; $else: never }>, String>(true)
 
 	testType.equal<IsTemplateLiteral<any, IsTemplateLiteral.$Branch>, $Else>(true)
 	testType.equal<IsTemplateLiteral<unknown, IsTemplateLiteral.$Branch>, $Else>(true)

@@ -18,7 +18,7 @@ import type { IndexAt } from './array_plus.index_at.js'
 export type IsIndexOutOfBound<A extends readonly unknown[], N extends number, Then = true, Else = false> = IsNever<
 	IndexAt<A, N, never, never, never>,
 	{
-		$then: Then,
+		$then: Then
 		$else: Else
 	}
 >

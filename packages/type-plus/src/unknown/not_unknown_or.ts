@@ -24,6 +24,10 @@ import type { $Unknown } from './unknown.js'
  * type R = NotUnknownOr<unknown, number> // number
  * ```
  */
-export type NotUnknownOr<T, Else = $Unknown> = IsUnknown<T, {
-	$then: Else, $else: T
-}>
+export type NotUnknownOr<T, Else = $Unknown> = IsUnknown<
+	T,
+	{
+		$then: Else
+		$else: T
+	}
+>

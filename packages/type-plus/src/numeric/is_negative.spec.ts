@@ -76,7 +76,7 @@ it.skip('returns true if T is an intersection of negative numbers', () => {
 it('returns false if T is intersection of non-negative numbers', () => {
 	testType.false<IsNegative<0 & { a: 1 }>>(true)
 	testType.false<IsNegative<1 & { a: 1 }>>(true)
-	testType.false<IsNegative< 1n & { a: 1 }>>(true)
+	testType.false<IsNegative<1n & { a: 1 }>>(true)
 })
 
 it('returns boolean when T is an intersection type with number or bigint', () => {

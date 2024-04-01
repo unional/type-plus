@@ -1,6 +1,6 @@
 import { test } from '@jest/globals'
 
-import { type ChainFn,testType } from '../index.js'
+import { type ChainFn, testType } from '../index.js'
 
 test('return type is the same as input type', () => {
 	type A = ChainFn<number>

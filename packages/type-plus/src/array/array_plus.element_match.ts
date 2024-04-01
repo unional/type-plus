@@ -27,35 +27,38 @@ import type { TypePlusOptions } from '../utils/options.js'
  * Since it is a union, the result will be joined to the matched branch as union.
  * e.g. `ElementMatch<1 | 2, 1>` -> `1 | undefined`
  */
-export type ElementMatch<
-	T,
-	Criteria,
-	Options extends ElementMatch.Options = ElementMatch.DefaultOptions<Criteria>
-> = [T] extends [Criteria]
+export type ElementMatch<T, Criteria, Options extends ElementMatch.Options = ElementMatch.DefaultOptions<Criteria>> = [
+	T
+] extends [Criteria]
 	? T
-	: (TypePlusOptions.Merge<Options, ElementMatch.DefaultOptions<Criteria>> extends infer C extends Record<keyof ElementMatch.Options, unknown>
-		? ((T extends Criteria
-			? T
-			: (C['widen'] extends true
-				? (Criteria extends T
-					? C['$widen']
-					: C['$notMatch'])
-				: C['$notMatch'])) extends infer R
-			? IsUnion<T, IsNever<R, { $then: R, $else: R | C['$unionNotMatch'] }>, R>
-			: C['$notMatch'])
-		: never)
+	: TypePlusOptions.Merge<Options, ElementMatch.DefaultOptions<Criteria>> extends infer C extends Record<
+				keyof ElementMatch.Options,
+				unknown
+			>
+		? (
+				T extends Criteria
+					? T
+					: C['widen'] extends true
+						? Criteria extends T
+							? C['$widen']
+							: C['$notMatch']
+						: C['$notMatch']
+			) extends infer R
+			? IsUnion<T, IsNever<R, { $then: R; $else: R | C['$unionNotMatch'] }>, R>
+			: C['$notMatch']
+		: never
 
 export namespace ElementMatch {
 	export interface Options {
-		widen?: boolean | undefined,
-		$notMatch?: unknown,
-		$widen?: unknown,
+		widen?: boolean | undefined
+		$notMatch?: unknown
+		$widen?: unknown
 		$unionNotMatch?: unknown
 	}
 	export interface DefaultOptions<Criteria> {
-		widen: true,
-		$notMatch: never,
-		$widen: Criteria | undefined,
+		widen: true
+		$notMatch: never
+		$widen: Criteria | undefined
 		$unionNotMatch: never
 	}
 }

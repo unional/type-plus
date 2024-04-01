@@ -1,8 +1,6 @@
 {
-  "extends": "./tsconfig.esm.json",
-  "typedocOptions": {
-    "entryPoints": [
-      "src/index.ts"
-    ]
-  }
+	"extends": "./tsconfig.esm.json",
+	"typedocOptions": {
+		"entryPoints": ["src/index.ts"]
+	}
 }

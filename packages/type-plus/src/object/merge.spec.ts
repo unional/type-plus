@@ -1,7 +1,6 @@
 import { expect, it } from '@jest/globals'
 import { testType, type ObjectPlus } from '../index.js'
 
-
 it('merges with any -> any', () => {
 	testType.equal<ObjectPlus.Merge<any, any>, any>(true)
 	testType.equal<ObjectPlus.Merge<{ a: 1 }, any>, any>(true)
@@ -19,26 +18,29 @@ it('returns A if A and B are the same type', () => {
 })
 
 it('merges disjoint types', () => {
-	testType.equal<ObjectPlus.Merge<{ a: 1 }, { b: 1 }>, { a: 1, b: 1 }>(true)
+	testType.equal<ObjectPlus.Merge<{ a: 1 }, { b: 1 }>, { a: 1; b: 1 }>(true)
 })
 
 it('combines type with required and optional props', () => {
-	testType.equal<ObjectPlus.Merge<{ a: 1 }, { b?: 1 }>, { a: 1, b?: 1 }>(true)
-	testType.equal<ObjectPlus.Merge<{ a: 1 }, { b?: 1 | undefined }>, { a: 1, b?: 1 | undefined }>(true)
+	testType.equal<ObjectPlus.Merge<{ a: 1 }, { b?: 1 }>, { a: 1; b?: 1 }>(true)
+	testType.equal<ObjectPlus.Merge<{ a: 1 }, { b?: 1 | undefined }>, { a: 1; b?: 1 | undefined }>(true)
 
-	testType.equal<ObjectPlus.Merge<{ a?: 1 }, { b: 1 }>, { a?: 1, b: 1 }>(true)
-	testType.equal<ObjectPlus.Merge<{ a?: 1 | undefined }, { b: 1 }>, { a?: 1 | undefined, b: 1 }>(true)
+	testType.equal<ObjectPlus.Merge<{ a?: 1 }, { b: 1 }>, { a?: 1; b: 1 }>(true)
+	testType.equal<ObjectPlus.Merge<{ a?: 1 | undefined }, { b: 1 }>, { a?: 1 | undefined; b: 1 }>(true)
 
-	testType.equal<ObjectPlus.Merge<{ a?: 1 }, { b?: 1 }>, { a?: 1, b?: 1 }>(true)
-	testType.equal<ObjectPlus.Merge<{ a?: 1 | undefined }, { b?: 1 }>, { a?: 1 | undefined, b?: 1 }>(true)
-	testType.equal<ObjectPlus.Merge<{ a?: 1 }, { b?: 1 | undefined }>, { a?: 1, b?: 1 | undefined }>(true)
-	testType.equal<ObjectPlus.Merge<{ a?: 1 | undefined }, { b?: 1 | undefined }>, { a?: 1 | undefined, b?: 1 | undefined }>(true)
+	testType.equal<ObjectPlus.Merge<{ a?: 1 }, { b?: 1 }>, { a?: 1; b?: 1 }>(true)
+	testType.equal<ObjectPlus.Merge<{ a?: 1 | undefined }, { b?: 1 }>, { a?: 1 | undefined; b?: 1 }>(true)
+	testType.equal<ObjectPlus.Merge<{ a?: 1 }, { b?: 1 | undefined }>, { a?: 1; b?: 1 | undefined }>(true)
+	testType.equal<
+		ObjectPlus.Merge<{ a?: 1 | undefined }, { b?: 1 | undefined }>,
+		{ a?: 1 | undefined; b?: 1 | undefined }
+	>(true)
 })
 
 it('replaces property in A with property in B', () => {
 	testType.equal<
-		ObjectPlus.Merge<{ type: 'a' | 'b', value: string }, { value: number }>,
-		{ type: 'a' | 'b', value: number }
+		ObjectPlus.Merge<{ type: 'a' | 'b'; value: string }, { value: number }>,
+		{ type: 'a' | 'b'; value: number }
 	>(true)
 })
 
@@ -52,10 +54,7 @@ it('overrides property in A with property in B', () => {
 
 	expect({ ...a, ...b }).toEqual({ leaf: { boo: 'boo' } })
 
-	testType.equal<
-		ObjectPlus.Merge<{ leaf: { foo: 'foo' } }, { leaf: { boo: 'boo' } }>,
-		{ leaf: { boo: 'boo' } }
-	>(true)
+	testType.equal<ObjectPlus.Merge<{ leaf: { foo: 'foo' } }, { leaf: { boo: 'boo' } }>, { leaf: { boo: 'boo' } }>(true)
 })
 
 it('appends types of optional prop to required prop', () => {
@@ -64,15 +63,9 @@ it('appends types of optional prop to required prop', () => {
 
 	expect({ ...x, ...y }).toEqual({ a: 1 })
 
-	testType.equal<
-		ObjectPlus.Merge<{ a: number }, { a?: string }>,
-		{ a: number | string }
-	>(true)
+	testType.equal<ObjectPlus.Merge<{ a: number }, { a?: string }>, { a: number | string }>(true)
 
-	testType.equal<
-		ObjectPlus.Merge<{ a: number }, { a?: string | undefined }>,
-		{ a: number | string }
-	>(true)
+	testType.equal<ObjectPlus.Merge<{ a: number }, { a?: string | undefined }>, { a: number | string }>(true)
 })
 
 it('appends types of required prop to optional prop', () => {
@@ -80,7 +73,7 @@ it('appends types of required prop to optional prop', () => {
 })
 
 it('combines type with required and optional props', () => {
-	testType.equal<ObjectPlus.Merge<{ a: number }, { b?: string }>, { a: number, b?: string }>(true)
+	testType.equal<ObjectPlus.Merge<{ a: number }, { b?: string }>, { a: number; b?: string }>(true)
 
 	type R = ObjectPlus.Merge<
 		{ a: { c: number } },
@@ -89,7 +82,7 @@ it('combines type with required and optional props', () => {
 		}
 	>
 
-	testType.inspect<R>(t => t)
+	testType.inspect<R>((t) => t)
 	testType.equal<R['a'], { c: number } | { d: string }>(true)
 })
 
@@ -110,17 +103,21 @@ it('merges an optional property with a required property merges the two as union
 
 it('merges two optional properties', () => {
 	testType.equal<ObjectPlus.Merge<{ a?: number }, { a?: string }>, { a?: number | string }>(true)
-	testType.equal<ObjectPlus.Merge<{ a?: number | undefined }, { a?: string }>, { a?: number | string | undefined }>(true)
-	testType.equal<ObjectPlus.Merge<{ a?: number }, { a?: string | undefined }>, { a?: number | string | undefined }>(true)
-	testType.equal<ObjectPlus.Merge<
-		{ a?: number | undefined }, { a?: string | undefined }>,
+	testType.equal<ObjectPlus.Merge<{ a?: number | undefined }, { a?: string }>, { a?: number | string | undefined }>(
+		true
+	)
+	testType.equal<ObjectPlus.Merge<{ a?: number }, { a?: string | undefined }>, { a?: number | string | undefined }>(
+		true
+	)
+	testType.equal<
+		ObjectPlus.Merge<{ a?: number | undefined }, { a?: string | undefined }>,
 		{ a?: number | string | undefined }
 	>(true)
 })
 
 it('spread across unions', () => {
-	testType.equal<ObjectPlus.Merge<{ a: 1 } | { b: 2 }, { c: 3 }>, { a: 1, c: 3 } | { b: 2, c: 3 }>(true)
-	testType.equal<ObjectPlus.Merge<{ c: 3 }, { a: 1 } | { b: 2 }>, { a: 1, c: 3 } | { b: 2, c: 3 }>(true)
+	testType.equal<ObjectPlus.Merge<{ a: 1 } | { b: 2 }, { c: 3 }>, { a: 1; c: 3 } | { b: 2; c: 3 }>(true)
+	testType.equal<ObjectPlus.Merge<{ c: 3 }, { a: 1 } | { b: 2 }>, { a: 1; c: 3 } | { b: 2; c: 3 }>(true)
 
 	// TODO: currently the merge is not distributive
 	// testType.equal<ObjectPlus.Merge<

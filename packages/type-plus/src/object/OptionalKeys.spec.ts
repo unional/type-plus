@@ -4,12 +4,12 @@ import { testType } from '../index.js'
 import type { OptionalKeys } from './optional_key.js'
 
 test('extract optional keys from object', () => {
-	type X = { a?: string, b: string }
+	type X = { a?: string; b: string }
 
 	testType.equal<'a', OptionalKeys<X>>(true)
 })
 test('work with union type', () => {
-	type X = { a?: string, b: string } | { c: string, d?: string }
+	type X = { a?: string; b: string } | { c: string; d?: string }
 
 	type A = OptionalKeys<X>
 	testType.equal<'a' | 'd', A>(true)

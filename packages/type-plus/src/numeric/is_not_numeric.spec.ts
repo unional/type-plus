@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else, type $Then, type IsNotNumeric,testType } from '../index.js'
+import { type $Else, type $Then, type IsNotNumeric, testType } from '../index.js'
 
 it('returns false for number', () => {
 	testType.false<IsNotNumeric<number>>(true)

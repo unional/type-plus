@@ -49,7 +49,7 @@ it('gets type of element in tuple', () => {
 	testType.equal<ArrayPlus.At<['a', 1, string], -1>, string>(true)
 	testType.equal<ArrayPlus.At<['a', 1, string], -2>, 1>(true)
 	testType.equal<ArrayPlus.At<['a', 1, string], -3>, 'a'>(true)
-	testType.equal<ArrayPlus.At<['a', 1, string], number>,'a' | 1 | string | undefined>(true)
+	testType.equal<ArrayPlus.At<['a', 1, string], number>, 'a' | 1 | string | undefined>(true)
 	testType.equal<ArrayPlus.At<['a', 1, string], any>, 'a' | 1 | string | undefined>(true)
 })
 

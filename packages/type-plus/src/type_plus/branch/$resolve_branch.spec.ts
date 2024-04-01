@@ -1,6 +1,14 @@
 import { it } from '@jest/globals'
 
-import { type $Any, type $Else, type $Never, type $ResolveBranch, type $SelectionBranch, type $Then,testType } from '../../index.js'
+import {
+	type $Any,
+	type $Else,
+	type $Never,
+	type $ResolveBranch,
+	type $SelectionBranch,
+	type $Then,
+	testType
+} from '../../index.js'
 import type { $Override } from './$override.js'
 
 it('returns boolean if selection is predicate', () => {
@@ -14,10 +22,10 @@ it('returns T or never if selection is filter', () => {
 })
 
 it('returns the value in $then or $else over `selection`', () => {
-	testType.equal<$ResolveBranch<123, { selection: 'filter', $then: 133 }, [$Then]>, 133>(true)
-	testType.equal<$ResolveBranch<123, { selection: 'filter', $else: 133 }, [$Else]>, 133>(true)
-	testType.equal<$ResolveBranch<123, { selection: 'predicate', $then: 133 }, [$Then]>, 133>(true)
-	testType.equal<$ResolveBranch<123, { selection: 'predicate', $else: 133 }, [$Else]>, 133>(true)
+	testType.equal<$ResolveBranch<123, { selection: 'filter'; $then: 133 }, [$Then]>, 133>(true)
+	testType.equal<$ResolveBranch<123, { selection: 'filter'; $else: 133 }, [$Else]>, 133>(true)
+	testType.equal<$ResolveBranch<123, { selection: 'predicate'; $then: 133 }, [$Then]>, 133>(true)
+	testType.equal<$ResolveBranch<123, { selection: 'predicate'; $else: 133 }, [$Else]>, 133>(true)
 })
 
 it('returns the default value if `$O` does not define any specific branch', () => {
@@ -31,25 +39,13 @@ it('returns the value of the single specified branch if `$O` defines it', () => 
 })
 
 it('returns the first matching branch value in `$O`', () => {
-	testType.equal<
-		$ResolveBranch<123, $SelectionBranch & $Never.$Branch, [$Never, $Else]>,
-		$Never
-	>(true)
-	testType.equal<
-		$ResolveBranch<123, $SelectionBranch & { $never: unknown }, [$Never, $Else]>,
-		unknown
-	>(true)
-	testType.equal<
-		$ResolveBranch<123, $SelectionBranch, [$Never, $Else]>,
-		$Else
-	>(true)
+	testType.equal<$ResolveBranch<123, $SelectionBranch & $Never.$Branch, [$Never, $Else]>, $Never>(true)
+	testType.equal<$ResolveBranch<123, $SelectionBranch & { $never: unknown }, [$Never, $Else]>, unknown>(true)
+	testType.equal<$ResolveBranch<123, $SelectionBranch, [$Never, $Else]>, $Else>(true)
 })
 
 it('skip over branches that is `unknown`', () => {
-	testType.equal<
-		$ResolveBranch<123, $SelectionBranch, [unknown, $Else]>,
-		$Else
-	>(true)
+	testType.equal<$ResolveBranch<123, $SelectionBranch, [unknown, $Else]>, $Else>(true)
 })
 
 it('returns default value if all branches are `unknown`', () => {

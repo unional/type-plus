@@ -18,4 +18,6 @@ import type { $Type } from './$type.js'
  *   : InferError<'some message', T>
  * ```
  */
-export type $InferError<M extends string, T = unknown> = M extends any ? $Type<'error', `Unable to infer: ${M}`, T> : never
+export type $InferError<M extends string, T = unknown> = M extends any
+	? $Type<'error', `Unable to infer: ${M}`, T>
+	: never

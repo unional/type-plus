@@ -83,25 +83,24 @@ export namespace NumericStruct {
 	 */
 	export type FromNumeric<N extends number | bigint, Fail = never> = N extends number
 		? number extends N
-		? Fail
-		: ['number', DigitsStruct.FromNumber<N>]
+			? Fail
+			: ['number', DigitsStruct.FromNumber<N>]
 		: N extends bigint
-		? bigint extends N
-		? Fail
-		: ['bigint', DigitsStruct.FromBigint<N>]
-		: never
+			? bigint extends N
+				? Fail
+				: ['bigint', DigitsStruct.FromBigint<N>]
+			: never
 
 	/**
 	 * Converts a `NumericStruct` to a number or bigint.
 	 *
 	 * It includes the normalization of the `NumericStruct`.
 	 */
-	export type ToNumeric<M extends NumericStruct> = DigitsStruct.ToString<
-		M[DIGITS_STRUCT]
-	> extends infer S extends string
+	export type ToNumeric<M extends NumericStruct> = DigitsStruct.ToString<M[DIGITS_STRUCT]> extends infer S extends
+		string
 		? M[TYPE] extends 'bigint'
-		? StringToBigint<S, StringToNumber<S, `The value '${S}' cannot be represented as bigint or number`>>
-		: StringToNumber<S, StringToBigint<S, `The value '${S}' cannot be represented as bigint or number`>>
+			? StringToBigint<S, StringToNumber<S, `The value '${S}' cannot be represented as bigint or number`>>
+			: StringToNumber<S, StringToBigint<S, `The value '${S}' cannot be represented as bigint or number`>>
 		: never
 
 	export type Add<A extends NumericStruct, B extends NumericStruct> = [
@@ -126,8 +125,8 @@ type StringToBigint<S extends string, Fail> = S extends `${infer N extends bigin
 // TODO: move into `NumericHelpers`
 export type StringToNumber<S extends string, Fail> = S extends `${infer N extends number}`
 	? number extends N
-	? Fail
-	: N
+		? Fail
+		: N
 	: Fail
 
 export type DigitsStruct = [Sign: '+' | '-', Digits: number[], Exponent: number]
@@ -144,21 +143,21 @@ export namespace DigitsStruct {
 	 */
 	export type FromNumber<N extends number> = `${N}` extends `-${infer R}`
 		? R extends `${infer W}.${infer F}`
-		? [DigitArray.FromString<W>, DigitArray.FromString<F>] extends [
-			infer WA extends number[],
-			infer FA extends number[]
-		]
-		? ['-', DigitArray.TrimLeadingZeros<[...WA, ...FA]>, FA['length']]
-		: never
-		: ['-', DigitArray.FromString<R>, 0]
+			? [DigitArray.FromString<W>, DigitArray.FromString<F>] extends [
+					infer WA extends number[],
+					infer FA extends number[]
+				]
+				? ['-', DigitArray.TrimLeadingZeros<[...WA, ...FA]>, FA['length']]
+				: never
+			: ['-', DigitArray.FromString<R>, 0]
 		: `${N}` extends `${infer W}.${infer F}`
-		? [DigitArray.FromString<W>, DigitArray.FromString<F>] extends [
-			infer WA extends number[],
-			infer FA extends number[]
-		]
-		? ['+', DigitArray.TrimLeadingZeros<[...WA, ...FA]>, FA['length']]
-		: never
-		: ['+', DigitArray.FromString<`${N}`>, 0]
+			? [DigitArray.FromString<W>, DigitArray.FromString<F>] extends [
+					infer WA extends number[],
+					infer FA extends number[]
+				]
+				? ['+', DigitArray.TrimLeadingZeros<[...WA, ...FA]>, FA['length']]
+				: never
+			: ['+', DigitArray.FromString<`${N}`>, 0]
 
 	/**
 	 * Creates a `DigitsStruct` from bigint `N`.
@@ -176,22 +175,22 @@ export namespace DigitsStruct {
 	 */
 	export type ToString<D extends DigitsStruct> = (
 		PadStart<D[DIGITS], D[EXPONENT], 0> extends infer Padded extends number[]
-		? Padded['length'] extends D[EXPONENT]
-		? DigitArray.ToString<[0, '.', ...DigitArray.TrimTrailingZeros<Padded>]>
-		: SplitFloat<Padded, D[EXPONENT]> extends [infer W extends number[], infer F extends number[]]
-		? F extends []
-		? DigitArray.ToString<W>
-		: DigitArray.ToString<[...W, '.', ...DigitArray.TrimTrailingZeros<F>]>
-		: never
-		: never
+			? Padded['length'] extends D[EXPONENT]
+				? DigitArray.ToString<[0, '.', ...DigitArray.TrimTrailingZeros<Padded>]>
+				: SplitFloat<Padded, D[EXPONENT]> extends [infer W extends number[], infer F extends number[]]
+					? F extends []
+						? DigitArray.ToString<W>
+						: DigitArray.ToString<[...W, '.', ...DigitArray.TrimTrailingZeros<F>]>
+					: never
+			: never
 	) extends infer R
 		? R extends '0'
-		? R
-		: R extends string
-		? D[SIGN] extends '-'
-		? `-${R}`
-		: R
-		: never
+			? R
+			: R extends string
+				? D[SIGN] extends '-'
+					? `-${R}`
+					: R
+				: never
 		: never
 
 	/**
@@ -202,10 +201,10 @@ export namespace DigitsStruct {
 	type SplitFloat<A extends number[], I extends number, F extends number[] = []> = I extends 0
 		? [A, []]
 		: F['length'] extends I
-		? [A, F]
-		: A extends [...infer H extends number[], infer T extends number]
-		? SplitFloat<H, I, [T, ...F]>
-		: never
+			? [A, F]
+			: A extends [...infer H extends number[], infer T extends number]
+				? SplitFloat<H, I, [T, ...F]>
+				: never
 
 	/**
 	 * Normalizes a `DigitsStruct`.
@@ -222,17 +221,13 @@ export namespace DigitsStruct {
 		? Normalize<FlipSign<N>, R>
 		: [N[SIGN], DigitArray.CarryDigits<N[DIGITS]>, N[EXPONENT]]
 
-	type FlipSign<
-		D extends DigitsStruct,
-		I extends number[] = D[DIGITS],
-		R extends number[] = []
-	> = I extends []
+	type FlipSign<D extends DigitsStruct, I extends number[] = D[DIGITS], R extends number[] = []> = I extends []
 		? D[SIGN] extends '-'
-		? ['+', R, D[EXPONENT]]
-		: ['-', R, D[EXPONENT]]
+			? ['+', R, D[EXPONENT]]
+			: ['-', R, D[EXPONENT]]
 		: I extends [infer H extends number, ...infer T extends number[]]
-		? FlipSign<D, T, [...R, Digit.FlipSign<H>]>
-		: never
+			? FlipSign<D, T, [...R, Digit.FlipSign<H>]>
+			: never
 
 	/**
 	 * Add `A` and `B`.
@@ -245,14 +240,14 @@ export namespace DigitsStruct {
 		infer BB extends DigitsStruct
 	]
 		? [BA[SIGN], BB[SIGN]] extends ['+', '+']
-		? Normalize<['+', DigitArray.Add<BA[DIGITS], BB[DIGITS]>, BA[EXPONENT]]>
-		: [BA[SIGN], BB[SIGN]] extends ['+', '-']
-		? Normalize<['+', DigitArray.Subtract<BA[DIGITS], BB[DIGITS]>, BA[EXPONENT]]>
-		: [BA[SIGN], BB[SIGN]] extends ['-', '+']
-		? Normalize<['+', DigitArray.Subtract<BB[DIGITS], BA[DIGITS]>, BB[EXPONENT]]>
-		: [BA[SIGN], BB[SIGN]] extends ['-', '-']
-		? Normalize<['-', DigitArray.Add<BA[DIGITS], BB[DIGITS]>, BA[EXPONENT]]>
-		: never
+			? Normalize<['+', DigitArray.Add<BA[DIGITS], BB[DIGITS]>, BA[EXPONENT]]>
+			: [BA[SIGN], BB[SIGN]] extends ['+', '-']
+				? Normalize<['+', DigitArray.Subtract<BA[DIGITS], BB[DIGITS]>, BA[EXPONENT]]>
+				: [BA[SIGN], BB[SIGN]] extends ['-', '+']
+					? Normalize<['+', DigitArray.Subtract<BB[DIGITS], BA[DIGITS]>, BB[EXPONENT]]>
+					: [BA[SIGN], BB[SIGN]] extends ['-', '-']
+						? Normalize<['-', DigitArray.Add<BA[DIGITS], BB[DIGITS]>, BA[EXPONENT]]>
+						: never
 		: never
 
 	export type Subtract<A extends DigitsStruct, B extends DigitsStruct> = Balance<A, B> extends [
@@ -260,14 +255,14 @@ export namespace DigitsStruct {
 		infer BB extends DigitsStruct
 	]
 		? [BA[SIGN], BB[SIGN]] extends ['+', '+']
-		? Normalize<['+', DigitArray.Subtract<BA[DIGITS], BB[DIGITS]>, BA[EXPONENT]]>
-		: [BA[SIGN], BB[SIGN]] extends ['+', '-']
-		? Normalize<['+', DigitArray.Add<BA[DIGITS], BB[DIGITS]>, BA[EXPONENT]]>
-		: [BA[SIGN], BB[SIGN]] extends ['-', '+']
-		? Normalize<['-', DigitArray.Add<BB[DIGITS], BA[DIGITS]>, BA[EXPONENT]]>
-		: [BA[SIGN], BB[SIGN]] extends ['-', '-']
-		? Normalize<['-', DigitArray.Subtract<BA[DIGITS], BB[DIGITS]>, BA[EXPONENT]]>
-		: never
+			? Normalize<['+', DigitArray.Subtract<BA[DIGITS], BB[DIGITS]>, BA[EXPONENT]]>
+			: [BA[SIGN], BB[SIGN]] extends ['+', '-']
+				? Normalize<['+', DigitArray.Add<BA[DIGITS], BB[DIGITS]>, BA[EXPONENT]]>
+				: [BA[SIGN], BB[SIGN]] extends ['-', '+']
+					? Normalize<['-', DigitArray.Add<BB[DIGITS], BA[DIGITS]>, BA[EXPONENT]]>
+					: [BA[SIGN], BB[SIGN]] extends ['-', '-']
+						? Normalize<['-', DigitArray.Subtract<BA[DIGITS], BB[DIGITS]>, BA[EXPONENT]]>
+						: never
 		: never
 
 	export type Multiply<A extends DigitsStruct, B extends DigitsStruct> = NumericAdd<
@@ -275,14 +270,14 @@ export namespace DigitsStruct {
 		B[EXPONENT]
 	> extends infer Exp extends number
 		? [A[SIGN], B[SIGN]] extends ['+', '+']
-		? Normalize<['+', DigitArray.Multiply<A[DIGITS], B[DIGITS]>, Exp]>
-		: [A[SIGN], B[SIGN]] extends ['+', '-']
-		? Normalize<['-', DigitArray.Multiply<A[DIGITS], B[DIGITS]>, Exp]>
-		: [A[SIGN], B[SIGN]] extends ['-', '+']
-		? Normalize<['-', DigitArray.Multiply<B[DIGITS], A[DIGITS]>, Exp]>
-		: [A[SIGN], B[SIGN]] extends ['-', '-']
-		? Normalize<['+', DigitArray.Multiply<A[DIGITS], B[DIGITS]>, Exp]>
-		: never
+			? Normalize<['+', DigitArray.Multiply<A[DIGITS], B[DIGITS]>, Exp]>
+			: [A[SIGN], B[SIGN]] extends ['+', '-']
+				? Normalize<['-', DigitArray.Multiply<A[DIGITS], B[DIGITS]>, Exp]>
+				: [A[SIGN], B[SIGN]] extends ['-', '+']
+					? Normalize<['-', DigitArray.Multiply<B[DIGITS], A[DIGITS]>, Exp]>
+					: [A[SIGN], B[SIGN]] extends ['-', '-']
+						? Normalize<['+', DigitArray.Multiply<A[DIGITS], B[DIGITS]>, Exp]>
+						: never
 		: never
 
 	/**
@@ -293,8 +288,8 @@ export namespace DigitsStruct {
 		B[EXPONENT]
 	> extends [infer Pads extends number[], infer Longer]
 		? Longer extends 'A'
-		? [A, [B[SIGN], DigitArray.TrimLeadingZeros<[...B[DIGITS], ...Pads]>, A[EXPONENT]]]
-		: [[A[SIGN], DigitArray.TrimLeadingZeros<[...A[DIGITS], ...Pads]>, B[EXPONENT]], B]
+			? [A, [B[SIGN], DigitArray.TrimLeadingZeros<[...B[DIGITS], ...Pads]>, A[EXPONENT]]]
+			: [[A[SIGN], DigitArray.TrimLeadingZeros<[...A[DIGITS], ...Pads]>, B[EXPONENT]], B]
 		: never
 
 	type GetBalancePadding<
@@ -305,76 +300,76 @@ export namespace DigitsStruct {
 	> = A extends B
 		? [[], 'A']
 		: R extends []
-		? // have not reach min yet
-		C['length'] extends A
-		? GetBalancePadding<A, B, [0, ...C], [0]>
-		: C['length'] extends B
-		? GetBalancePadding<A, B, [0, ...C], [0, ...R]>
-		: GetBalancePadding<A, B, [0, ...C], []>
-		: C['length'] extends A
-		? [R, 'A']
-		: C['length'] extends B
-		? [R, 'B']
-		: GetBalancePadding<A, B, [0, ...C], [0, ...R]>
+			? // have not reach min yet
+				C['length'] extends A
+				? GetBalancePadding<A, B, [0, ...C], [0]>
+				: C['length'] extends B
+					? GetBalancePadding<A, B, [0, ...C], [0, ...R]>
+					: GetBalancePadding<A, B, [0, ...C], []>
+			: C['length'] extends A
+				? [R, 'A']
+				: C['length'] extends B
+					? [R, 'B']
+					: GetBalancePadding<A, B, [0, ...C], [0, ...R]>
 
 	/**
 	 * This is used to align the `NumberStruct` during `Add/Subtract`.
 	 */
-	export type GetMinPadEnd<
-		A extends number,
-		B extends number,
-		R extends number[] = []
-	> = R['length'] extends A ? [R, 'B'] : R['length'] extends B ? [R, 'A'] : GetMinPadEnd<A, B, [0, ...R]>
+	export type GetMinPadEnd<A extends number, B extends number, R extends number[] = []> = R['length'] extends A
+		? [R, 'B']
+		: R['length'] extends B
+			? [R, 'A']
+			: GetMinPadEnd<A, B, [0, ...R]>
 }
 
 export namespace DigitArray {
 	export type FromString<S extends string> = S extends `1${infer L}`
 		? [1, ...FromString<L>]
 		: S extends `2${infer L}`
-		? [2, ...FromString<L>]
-		: S extends `3${infer L}`
-		? [3, ...FromString<L>]
-		: S extends `4${infer L}`
-		? [4, ...FromString<L>]
-		: S extends `5${infer L}`
-		? [5, ...FromString<L>]
-		: S extends `6${infer L}`
-		? [6, ...FromString<L>]
-		: S extends `7${infer L}`
-		? [7, ...FromString<L>]
-		: S extends `8${infer L}`
-		? [8, ...FromString<L>]
-		: S extends `9${infer L}`
-		? [9, ...FromString<L>]
-		: S extends `0${infer L}`
-		? [0, ...FromString<L>]
-		: S extends `-1${infer L}`
-		? [-1, ...FromString<L>]
-		: S extends `-2${infer L}`
-		? [-2, ...FromString<L>]
-		: S extends `-3${infer L}`
-		? [-3, ...FromString<L>]
-		: S extends `-4${infer L}`
-		? [-4, ...FromString<L>]
-		: S extends `-5${infer L}`
-		? [-5, ...FromString<L>]
-		: S extends `-6${infer L}`
-		? [-6, ...FromString<L>]
-		: S extends `-7${infer L}`
-		? [-7, ...FromString<L>]
-		: S extends `-8${infer L}`
-		? [-8, ...FromString<L>]
-		: S extends `-9${infer L}`
-		? [-9, ...FromString<L>]
-		: S extends `-0${infer L}`
-		? [-0, ...FromString<L>]
-		: []
+			? [2, ...FromString<L>]
+			: S extends `3${infer L}`
+				? [3, ...FromString<L>]
+				: S extends `4${infer L}`
+					? [4, ...FromString<L>]
+					: S extends `5${infer L}`
+						? [5, ...FromString<L>]
+						: S extends `6${infer L}`
+							? [6, ...FromString<L>]
+							: S extends `7${infer L}`
+								? [7, ...FromString<L>]
+								: S extends `8${infer L}`
+									? [8, ...FromString<L>]
+									: S extends `9${infer L}`
+										? [9, ...FromString<L>]
+										: S extends `0${infer L}`
+											? [0, ...FromString<L>]
+											: S extends `-1${infer L}`
+												? [-1, ...FromString<L>]
+												: S extends `-2${infer L}`
+													? [-2, ...FromString<L>]
+													: S extends `-3${infer L}`
+														? [-3, ...FromString<L>]
+														: S extends `-4${infer L}`
+															? [-4, ...FromString<L>]
+															: S extends `-5${infer L}`
+																? [-5, ...FromString<L>]
+																: S extends `-6${infer L}`
+																	? [-6, ...FromString<L>]
+																	: S extends `-7${infer L}`
+																		? [-7, ...FromString<L>]
+																		: S extends `-8${infer L}`
+																			? [-8, ...FromString<L>]
+																			: S extends `-9${infer L}`
+																				? [-9, ...FromString<L>]
+																				: S extends `-0${infer L}`
+																					? [-0, ...FromString<L>]
+																					: []
 
 	export type ToString<A extends Array<number | string>> = number extends A['length']
 		? ''
 		: A['length'] extends 0
-		? ''
-		: `${A[0]}${ToString<Tail<A>>}`
+			? ''
+			: `${A[0]}${ToString<Tail<A>>}`
 
 	/**
 	 * [0, 0, -1] => [-1]
@@ -385,70 +380,69 @@ export namespace DigitArray {
 	export type TrimLeadingZeros<T extends number[]> = T extends [0]
 		? T
 		: T extends [0, ...infer Tail extends number[]]
-		? TrimLeadingZeros<Tail>
-		: T
+			? TrimLeadingZeros<Tail>
+			: T
 	export type TrimTrailingZeros<T extends number[]> = T extends [0]
 		? T
 		: T extends [...infer Tail extends number[], 0]
-		? TrimTrailingZeros<Tail>
-		: T
+			? TrimTrailingZeros<Tail>
+			: T
 
 	export type Add<A extends number[], B extends number[], R extends number[] = []> = A extends []
 		? B extends []
-		? R
-		: B extends [...infer BH extends number[], infer BL extends number]
-		? Add<[], BH, [BL, ...R]>
-		: never
+			? R
+			: B extends [...infer BH extends number[], infer BL extends number]
+				? Add<[], BH, [BL, ...R]>
+				: never
 		: B extends []
-		? A extends [...infer AH extends number[], infer AL extends number]
-		? Add<AH, [], [AL, ...R]>
-		: never
-		: [A, B] extends [
-			[...infer AH extends number[], infer AL extends number],
-			[...infer BH extends number[], infer BL extends number]
-		]
-		? Add<AH, BH, [Digit.Add<AL, BL>, ...R]>
-		: never
+			? A extends [...infer AH extends number[], infer AL extends number]
+				? Add<AH, [], [AL, ...R]>
+				: never
+			: [A, B] extends [
+						[...infer AH extends number[], infer AL extends number],
+						[...infer BH extends number[], infer BL extends number]
+					]
+				? Add<AH, BH, [Digit.Add<AL, BL>, ...R]>
+				: never
 
 	export type Subtract<A extends number[], B extends number[], R extends number[] = []> = A extends []
 		? B extends []
-		? TrimLeadingZeros<R>
-		: B extends [...infer BH extends number[], infer BL extends number]
-		? Subtract<[], BH, [ToNegative<BL>, ...R]>
-		: never
+			? TrimLeadingZeros<R>
+			: B extends [...infer BH extends number[], infer BL extends number]
+				? Subtract<[], BH, [ToNegative<BL>, ...R]>
+				: never
 		: B extends []
-		? A extends [...infer AH extends number[], infer AL extends number]
-		? Subtract<AH, [], [AL, ...R]>
-		: never
-		: [A, B] extends [
-			[...infer AH extends number[], infer AL extends number],
-			[...infer BH extends number[], infer BL extends number]
-		]
-		? Subtract<AH, BH, [Digit.Subtract<AL, BL>, ...R]>
-		: never
+			? A extends [...infer AH extends number[], infer AL extends number]
+				? Subtract<AH, [], [AL, ...R]>
+				: never
+			: [A, B] extends [
+						[...infer AH extends number[], infer AL extends number],
+						[...infer BH extends number[], infer BL extends number]
+					]
+				? Subtract<AH, BH, [Digit.Subtract<AL, BL>, ...R]>
+				: never
 
 	export type Multiply<A extends number[], B extends number[], R extends number[][] = []> = B extends []
 		? RecursiveAdd<R>
 		: B extends [infer Head extends number, ...infer Tail extends number[]]
-		? Multiply<A, Tail, [...R, CarryDigits<MultiplyArray<A, Head, Zeros<Tail['length']>>>]>
+			? Multiply<A, Tail, [...R, CarryDigits<MultiplyArray<A, Head, Zeros<Tail['length']>>>]>
+			: never
+
+	type Zeros<N extends number, R extends number[] = []> = N extends unknown
+		? R['length'] extends N
+			? R
+			: Zeros<N, [0, ...R]>
 		: never
 
-	type Zeros<N extends number, R extends number[] = []> = N extends unknown ? R['length'] extends N ? R : Zeros<N, [0, ...R]> : never
-
-	type MultiplyArray<
-		A extends number[],
-		B extends number,
-		Pad extends number[],
-		R extends number[] = []
-	> = B extends 0
+	type MultiplyArray<A extends number[], B extends number, Pad extends number[], R extends number[] = []> = B extends 0
 		? [0]
 		: B extends 1
-		? [...A, ...Pad]
-		: A extends []
-		? [...R, ...Pad]
-		: A extends [infer H extends number, ...infer T extends number[]]
-		? MultiplyArray<T, B, Pad, [...R, Digit.Multiply<H, B>]>
-		: never
+			? [...A, ...Pad]
+			: A extends []
+				? [...R, ...Pad]
+				: A extends [infer H extends number, ...infer T extends number[]]
+					? MultiplyArray<T, B, Pad, [...R, Digit.Multiply<H, B>]>
+					: never
 
 	/**
 	 * Recursively add digit arrays.
@@ -458,40 +452,40 @@ export namespace DigitArray {
 	type RecursiveAdd<E extends number[][], R extends number[] = []> = E extends []
 		? R
 		: E extends [infer H extends number[], ...infer T extends number[][]]
-		? RecursiveAdd<T, CarryDigits<Add<R, H>>>
-		: never
+			? RecursiveAdd<T, CarryDigits<Add<R, H>>>
+			: never
 
 	export type CarryDigits<N extends number[], R extends number[] = []> = N extends []
 		? TrimLeadingZeros<R>
 		: N extends [infer Tail extends number]
-		? `${Tail}` extends `${infer T1 extends number}${infer T2 extends number}`
-		? CarryDigits<[], [T1, T2, ...R]>
-		: `${Tail}` extends `-${infer T1 extends number}${infer T2 extends number}`
-		? `-${T1}` extends `${infer NT extends number}`
-		? CarryDigits<[], [NT, T2, ...R]>
-		: never
-		: CarryDigits<[], [Tail, ...R]>
-		: N extends [infer Head extends number, infer Tail extends number]
-		? `${Tail}` extends `${infer T1 extends number}${infer T2 extends number}`
-		? CarryDigits<[Digit.Add<Head, T1>], [T2, ...R]>
-		: `${Tail}` extends `-${infer T1 extends number}${infer T2 extends number}`
-		? `-${T1}` extends `${infer NT extends number}`
-		? CarryDigits<[Digit.Add<Head, NT>], [T2, ...R]>
-		: never
-		: `${Tail}` extends `-${number}`
-		? CarryDigits<[Digit.Add<Head, -1>], [Digit.Plus10[Tail], ...R]>
-		: CarryDigits<[Head], [Tail, ...R]>
-		: N extends [...infer Heads extends number[], infer Head extends number, infer Tail extends number]
-		? `${Tail}` extends `${infer T1 extends number}${infer T2 extends number}`
-		? CarryDigits<[...Heads, Digit.Add<Head, T1>], [T2, ...R]>
-		: `${Tail}` extends `-${infer T1 extends number}${infer T2 extends number}`
-		? `-${T1}` extends `${infer NT extends number}`
-		? CarryDigits<[...Heads, Digit.Add<Head, NT>], [T2, ...R]>
-		: never
-		: `${Tail}` extends `-${number}`
-		? CarryDigits<[...Heads, Digit.Add<Head, -1>], [Digit.Plus10[Tail], ...R]>
-		: CarryDigits<[...Heads, Head], [Tail, ...R]>
-		: never
+			? `${Tail}` extends `${infer T1 extends number}${infer T2 extends number}`
+				? CarryDigits<[], [T1, T2, ...R]>
+				: `${Tail}` extends `-${infer T1 extends number}${infer T2 extends number}`
+					? `-${T1}` extends `${infer NT extends number}`
+						? CarryDigits<[], [NT, T2, ...R]>
+						: never
+					: CarryDigits<[], [Tail, ...R]>
+			: N extends [infer Head extends number, infer Tail extends number]
+				? `${Tail}` extends `${infer T1 extends number}${infer T2 extends number}`
+					? CarryDigits<[Digit.Add<Head, T1>], [T2, ...R]>
+					: `${Tail}` extends `-${infer T1 extends number}${infer T2 extends number}`
+						? `-${T1}` extends `${infer NT extends number}`
+							? CarryDigits<[Digit.Add<Head, NT>], [T2, ...R]>
+							: never
+						: `${Tail}` extends `-${number}`
+							? CarryDigits<[Digit.Add<Head, -1>], [Digit.Plus10[Tail], ...R]>
+							: CarryDigits<[Head], [Tail, ...R]>
+				: N extends [...infer Heads extends number[], infer Head extends number, infer Tail extends number]
+					? `${Tail}` extends `${infer T1 extends number}${infer T2 extends number}`
+						? CarryDigits<[...Heads, Digit.Add<Head, T1>], [T2, ...R]>
+						: `${Tail}` extends `-${infer T1 extends number}${infer T2 extends number}`
+							? `-${T1}` extends `${infer NT extends number}`
+								? CarryDigits<[...Heads, Digit.Add<Head, NT>], [T2, ...R]>
+								: never
+							: `${Tail}` extends `-${number}`
+								? CarryDigits<[...Heads, Digit.Add<Head, -1>], [Digit.Plus10[Tail], ...R]>
+								: CarryDigits<[...Heads, Head], [Tail, ...R]>
+					: never
 }
 
 export namespace Digit {
@@ -503,19 +497,19 @@ export namespace Digit {
 	 */
 	export type Add<A extends number, B extends number> = `${A}` extends `-${infer AD extends number}`
 		? `${B}` extends `-${infer BD extends number}`
-		? ToNegative<PositiveEntryAdd<AD, BD>>
-		: Subtract<B, AD>
+			? ToNegative<PositiveEntryAdd<AD, BD>>
+			: Subtract<B, AD>
 		: `${B}` extends `-${infer BD extends number}`
-		? Subtract<A, BD>
-		: PositiveEntryAdd<A, B>
+			? Subtract<A, BD>
+			: PositiveEntryAdd<A, B>
 
 	export type FlipSign<T extends number> = T extends 0
 		? 0
 		: `${T}` extends `-${infer R extends number}`
-		? R
-		: `-${T}` extends `${infer R extends number}`
-		? R
-		: never
+			? R
+			: `-${T}` extends `${infer R extends number}`
+				? R
+				: never
 
 	type PositiveEntryAdd<A extends number, B extends number> = [
 		[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -612,10 +606,10 @@ export namespace Digit {
 	]
 		? Subtract<A2, B2>
 		: `${A}` extends `${number}${infer A2 extends number}`
-		? Subtract<A2, B>
-		: `${B}` extends `${number}${infer B2 extends number}`
-		? Subtract<A, B2>
-		: SingleDigitSubtract<A, B>
+			? Subtract<A2, B>
+			: `${B}` extends `${number}${infer B2 extends number}`
+				? Subtract<A, B2>
+				: SingleDigitSubtract<A, B>
 
 	export type SingleDigitSubtract<A extends number, B extends number> = [
 		[0, -1, -2, -3, -4, -5, -6, -7, -8, -9],
@@ -631,14 +625,14 @@ export namespace Digit {
 	][A][B]
 
 	export type Plus10 = { [k in number]: number } & {
-		'-1': 9,
-		'-2': 8,
-		'-3': 7,
-		'-4': 6,
-		'-5': 5,
-		'-6': 4,
-		'-7': 3,
-		'-8': 2,
+		'-1': 9
+		'-2': 8
+		'-3': 7
+		'-4': 6
+		'-5': 5
+		'-6': 4
+		'-7': 3
+		'-8': 2
 		'-9': 1
 	}
 	export type Multiply<A extends number, B extends number> = [

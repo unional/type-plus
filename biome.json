@@ -1,31 +1,30 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.6.2/schema.json",
-  "extends": [
-    "./node_modules/@repobuddy/biome/recommended.json"
-  ],
-  "files": {
-    "ignore": [
-      "./docs",
-      "packages/*/coverage",
-      "packages/*/cjs",
-      "packages/*/dist",
-      "packages/*/esm",
-      "packages/*/tslib",
-      "packages/type-plus/src/types",
-      "packages/type-plus/src/type-checker",
-      "pages/dist",
-      "*.astro",
-      "package.json"
-    ]
-  },
-  "linter": {
-    "rules": {
-      "complexity": {
-        "noBannedTypes": "off"
-      },
-      "suspicious": {
-        "noConfusingVoidType": "off"
-      }
-    }
-  }
+	"$schema": "https://biomejs.dev/schemas/1.6.2/schema.json",
+	"extends": ["./node_modules/@repobuddy/biome/recommended.json"],
+	"files": {
+		"ignore": [
+			"./git",
+			"./docs",
+			"packages/*/coverage",
+			"packages/*/cjs",
+			"packages/*/dist",
+			"packages/*/esm",
+			"packages/*/tslib",
+			"packages/type-plus/src/types",
+			"packages/type-plus/src/type-checker",
+			"pages/dist",
+			"*.astro",
+			"package.json"
+		]
+	},
+	"linter": {
+		"rules": {
+			"complexity": {
+				"noBannedTypes": "off"
+			},
+			"suspicious": {
+				"noConfusingVoidType": "off"
+			}
+		}
+	}
 }

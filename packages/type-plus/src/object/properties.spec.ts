@@ -39,23 +39,23 @@ it('returns something weird for any', () => {
 })
 
 it('returns the properties of an object type', () => {
-	type T = { a: number, b: string }
-	isType.equal<true, { a: number, b: string }, Properties<T>>()
+	type T = { a: number; b: string }
+	isType.equal<true, { a: number; b: string }, Properties<T>>()
 })
 
 it('returns the properties of an object type with optional properties', () => {
-	type T = { a: number, b?: string }
-	isType.equal<true, { a: number, b?: string }, Properties<T>>()
+	type T = { a: number; b?: string }
+	isType.equal<true, { a: number; b?: string }, Properties<T>>()
 })
 
 it('returns the properties of an object type with readonly properties', () => {
-	type T = { readonly a: number, readonly b: string }
-	isType.equal<true, { readonly a: number, readonly b: string }, Properties<T>>()
+	type T = { readonly a: number; readonly b: string }
+	isType.equal<true, { readonly a: number; readonly b: string }, Properties<T>>()
 })
 
 it('returns the properties of an object type with readonly optional properties', () => {
-	type T = { readonly a: number, readonly b?: string }
-	isType.equal<true, { readonly a: number, readonly b?: string }, Properties<T>>()
+	type T = { readonly a: number; readonly b?: string }
+	isType.equal<true, { readonly a: number; readonly b?: string }, Properties<T>>()
 })
 
 it('returns the function methods', () => {
@@ -75,8 +75,8 @@ it('returns {} for actual function types', () => {
 it('skips function signatures from object', () => {
 	// this is because the function signatures are not indexable.
 	// biome-ignore lint/style/useShorthandFunctionType: on purpose
-		isType.equal<true, {}, Properties<{ (): void }>>()
-	isType.equal<true, { a: 1 }, Properties<{ (): void, a: 1 }>>()
+	isType.equal<true, {}, Properties<{ (): void }>>()
+	isType.equal<true, { a: 1 }, Properties<{ (): void; a: 1 }>>()
 })
 
 it('returns the properties of classes, including methods', () => {
@@ -89,6 +89,6 @@ it('returns the properties of classes, including methods', () => {
 		boo() {}
 	}
 
-	isType.equal<true, Properties<Foo>, { f: number, foo(): void }>()
-	isType.equal<true, Properties<Boo>, { f: number, b: number, boo(): void, foo(): void }>()
+	isType.equal<true, Properties<Foo>, { f: number; foo(): void }>()
+	isType.equal<true, Properties<Boo>, { f: number; b: number; boo(): void; foo(): void }>()
 })

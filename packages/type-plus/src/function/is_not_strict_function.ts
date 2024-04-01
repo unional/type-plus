@@ -18,23 +18,23 @@ import type { $Unknown } from '../unknown/unknown.js'
  * ```
  */
 
-export type IsNotStrictFunction<T, $O extends IsNotStrictFunction.$Options = {}> = $SpecialType<T, {
-	$any: $ResolveBranch<T, $O, [$Any, $Then]>,
-	$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>,
-	$never: $ResolveBranch<T, $O, [$Never, $Then]>,
-	$else: (
-		$ResolveOptions<[$O['distributive'], $SelectInvertStrict.$Default['distributive']]> extends true
-		? IsNotStrictFunction._D<T, $O>
-		: $SelectInvertStrict._N<T, Function, $O>
-	)
-}>
+export type IsNotStrictFunction<T, $O extends IsNotStrictFunction.$Options = {}> = $SpecialType<
+	T,
+	{
+		$any: $ResolveBranch<T, $O, [$Any, $Then]>
+		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>
+		$never: $ResolveBranch<T, $O, [$Never, $Then]>
+		$else: $ResolveOptions<[$O['distributive'], $SelectInvertStrict.$Default['distributive']]> extends true
+			? IsNotStrictFunction._D<T, $O>
+			: $SelectInvertStrict._N<T, Function, $O>
+	}
+>
 
 export namespace IsNotStrictFunction {
 	export type $Options = $SelectInvertStrict.$Options
 	export type $Default = $SelectInvertStrict.$Default
 	export type $Branch = $SelectInvertStrict.$Branch
-	export type _D<T, $O extends IsNotStrictFunction.$Options> =
-		T extends Function
+	export type _D<T, $O extends IsNotStrictFunction.$Options> = T extends Function
 		? $ResolveBranch<T, $O, [T extends (...args: any[]) => any ? $Then : $Else]>
 		: $ResolveBranch<T, $O, [$Then]>
 }

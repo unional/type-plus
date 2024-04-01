@@ -25,8 +25,7 @@ export namespace $Else {
  * - `$Then` -> `$Else`
  * - `$Else` -> `$Then`
  */
-export type $InvertSelection<Branch extends $Then | $Else> =
-	Branch extends $Then ? $Else : $Then
+export type $InvertSelection<Branch extends $Then | $Else> = Branch extends $Then ? $Else : $Then
 
 /**
  * 🧰 *type util*
@@ -57,8 +56,8 @@ export type $InvertSelection<Branch extends $Then | $Else> =
  * ```
  */
 export type $SelectionBranch<$O extends $SelectionOptions = {}> = {
-	$then: $Then,
-	$else: $Else,
+	$then: $Then
+	$else: $Else
 } & $O
 
 /**
@@ -85,9 +84,9 @@ export type $SelectionBranch<$O extends $SelectionOptions = {}> = {
  * ```
  */
 export type $SelectionFilter<T> = {
-	selection: 'filter',
-	$then: T,
-	$else: never,
+	selection: 'filter'
+	$then: T
+	$else: never
 }
 
 /**
@@ -113,7 +112,7 @@ export type $SelectionFilter<T> = {
  * ```
  */
 export type $SelectionPredicate = {
-	$then: true,
+	$then: true
 	$else: false
 }
 
@@ -130,6 +129,6 @@ export type $SelectionPredicate = {
  * ```
  */
 export type $FlipSelection<$Options extends $SelectionOptions> = {
-	$then: $Options['$else'],
+	$then: $Options['$else']
 	$else: $Options['$then']
 } & Omit<$Options, '$then' | '$else'>

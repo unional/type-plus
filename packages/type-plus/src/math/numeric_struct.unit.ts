@@ -9,10 +9,7 @@ describe('FromNumeric', () => {
 		it('converts positive bigint to ["bigint", ["+", Digits, 0]]', () => {
 			testType.equal<NumericStruct.FromNumeric<1n>, ['bigint', ['+', [1], 0]]>(true)
 
-			testType.equal<
-				NumericStruct.FromNumeric<1234567890n>,
-				['bigint', ['+', [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 0]]
-			>(true)
+			testType.equal<NumericStruct.FromNumeric<1234567890n>, ['bigint', ['+', [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 0]]>(true)
 
 			testType.equal<
 				NumericStruct.FromNumeric<9007199254740993n>,
@@ -23,10 +20,9 @@ describe('FromNumeric', () => {
 		it('converts positive bigint to ["bigint", ["-", Digits, 0]]', () => {
 			testType.equal<NumericStruct.FromNumeric<-1n>, ['bigint', ['-', [1], 0]]>(true)
 
-			testType.equal<
-				NumericStruct.FromNumeric<-1234567890n>,
-				['bigint', ['-', [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 0]]
-			>(true)
+			testType.equal<NumericStruct.FromNumeric<-1234567890n>, ['bigint', ['-', [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 0]]>(
+				true
+			)
 
 			testType.equal<
 				NumericStruct.FromNumeric<-9007199254740993n>,
@@ -49,10 +45,7 @@ describe('FromNumeric', () => {
 		it('casts positive number to ["number", ["+", Digits, Exponent]]', () => {
 			testType.equal<NumericStruct.FromNumeric<1>, ['number', ['+', [1], 0]]>(true)
 
-			testType.equal<
-				NumericStruct.FromNumeric<1234567890>,
-				['number', ['+', [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 0]]
-			>(true)
+			testType.equal<NumericStruct.FromNumeric<1234567890>, ['number', ['+', [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 0]]>(true)
 
 			testType.equal<
 				NumericStruct.FromNumeric<9007199254740992>,
@@ -75,10 +68,7 @@ describe('FromNumeric', () => {
 		it('casts negative number to ["number", ["-", Digits, Exponent]]', () => {
 			testType.equal<NumericStruct.FromNumeric<-1>, ['number', ['-', [1], 0]]>(true)
 
-			testType.equal<
-				NumericStruct.FromNumeric<-1234567890>,
-				['number', ['-', [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 0]]
-			>(true)
+			testType.equal<NumericStruct.FromNumeric<-1234567890>, ['number', ['-', [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 0]]>(true)
 			// MAX_NUMBER = 9007199254740992
 			testType.equal<
 				NumericStruct.FromNumeric<-9007199254740992>,
@@ -129,25 +119,17 @@ describe('ToNumeric', () => {
 	it('converts bigint', () => {
 		testType.equal<NumericStruct.ToNumeric<['bigint', ['+', [0], 0]]>, 0n>(true)
 		testType.equal<NumericStruct.ToNumeric<['bigint', ['+', [1], 0]]>, 1n>(true)
-		testType.equal<
-			NumericStruct.ToNumeric<['bigint', ['+', [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 0]]>,
-			9876543210n
-		>(true)
+		testType.equal<NumericStruct.ToNumeric<['bigint', ['+', [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 0]]>, 9876543210n>(true)
 
 		testType.equal<NumericStruct.ToNumeric<['bigint', ['-', [0], 0]]>, 0n>(true)
 		testType.equal<NumericStruct.ToNumeric<['bigint', ['-', [1], 0]]>, -1n>(true)
-		testType.equal<
-			NumericStruct.ToNumeric<['bigint', ['-', [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 0]]>,
-			-9876543210n
-		>(true)
+		testType.equal<NumericStruct.ToNumeric<['bigint', ['-', [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 0]]>, -9876543210n>(true)
 	})
 
 	it('converts whole numbers', () => {
 		testType.equal<NumericStruct.ToNumeric<['number', ['+', [0], 0]]>, 0>(true)
 		testType.equal<NumericStruct.ToNumeric<['number', ['+', [1], 0]]>, 1>(true)
-		testType.equal<NumericStruct.ToNumeric<['number', ['+', [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 0]]>, 9876543210>(
-			true
-		)
+		testType.equal<NumericStruct.ToNumeric<['number', ['+', [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 0]]>, 9876543210>(true)
 		testType.equal<
 			NumericStruct.ToNumeric<['number', ['+', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2], 0]]>,
 			9007199254740992
@@ -155,10 +137,7 @@ describe('ToNumeric', () => {
 
 		testType.equal<NumericStruct.ToNumeric<['number', ['-', [0], 0]]>, 0>(true)
 		testType.equal<NumericStruct.ToNumeric<['number', ['-', [1], 0]]>, -1>(true)
-		testType.equal<
-			NumericStruct.ToNumeric<['number', ['-', [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 0]]>,
-			-9876543210
-		>(true)
+		testType.equal<NumericStruct.ToNumeric<['number', ['-', [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 0]]>, -9876543210>(true)
 		testType.equal<
 			NumericStruct.ToNumeric<['number', ['-', [9, 0, 0, 7, 1, 9, 9, 2, 5, 4, 7, 4, 0, 9, 9, 2], 0]]>,
 			-9007199254740992

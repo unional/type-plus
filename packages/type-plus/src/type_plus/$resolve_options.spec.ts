@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Never, type $ResolveOptions, type $Then,testType } from '../index.js'
+import { type $Never, type $ResolveOptions, type $Then, testType } from '../index.js'
 
 // alternative implementation
 // export type $ResolveOptions<Values extends unknown[]> =
@@ -11,7 +11,6 @@ import { type $Never, type $ResolveOptions, type $Then,testType } from '../index
 // 	: (Values extends []
 // 		? $Error<'Values cannot be `[]`.', Values>
 // 		: $ResolveOptions._<Values, never>))
-
 
 it('returns first non unknown', () => {
 	testType.equal<$ResolveOptions<[unknown, 1]>, 1>(true)

@@ -1,6 +1,6 @@
 import { describe, it } from '@jest/globals'
 
-import { type ExtractFunction,extractFunction, testType } from '../index.js'
+import { type ExtractFunction, extractFunction, testType } from '../index.js'
 
 describe('ExtraceFunction<T>', () => {
 	it('gets the function itself if it is not composite', () => {

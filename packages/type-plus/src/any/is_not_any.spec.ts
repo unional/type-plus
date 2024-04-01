@@ -1,6 +1,6 @@
 import { describe, it } from '@jest/globals'
 
-import { type $Else, type $Then, type IsNotAny,testType } from '../index.js'
+import { type $Else, type $Then, type IsNotAny, testType } from '../index.js'
 
 // alternative implementation
 // export type IsNotAny<

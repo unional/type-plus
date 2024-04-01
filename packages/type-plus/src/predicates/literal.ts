@@ -25,11 +25,11 @@ export type IsLiteral<
 > = number extends T
 	? Else
 	: string extends T
-	? Else
-	: boolean extends T
-	? Else
-	: symbol extends T
-	? Else
-	: bigint extends T
-	? Else
-	: Then
+		? Else
+		: boolean extends T
+			? Else
+			: symbol extends T
+				? Else
+				: bigint extends T
+					? Else
+					: Then

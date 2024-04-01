@@ -26,13 +26,13 @@ export namespace testType {
 		 *
 		 * @return `expected` as `A` for type inspection.
 		 */
-		equal<A, B, C>(expected: IsEqual<A, B> & IsEqual<A, C>): A,
+		equal<A, B, C>(expected: IsEqual<A, B> & IsEqual<A, C>): A
 		/**
 		 * Check if type `A` is equal to type `B`.
 		 *
 		 * @return `expected` as `A` for type inspection.
 		 */
-		equal<A, B>(expected: IsEqual<A, B>): A,
+		equal<A, B>(expected: IsEqual<A, B>): A
 		/**
 		 * Check if `A` can assign to `B`.
 		 *
@@ -54,7 +54,7 @@ export namespace testType {
 		 *
 		 * @return `expected` as `A` for type inspection.
 		 */
-		canAssign<A, B>(expected: Assignable<A, B>): A,
+		canAssign<A, B>(expected: Assignable<A, B>): A
 		/**
 		 * Check if `A` can fully assign to `B`.
 		 *
@@ -69,91 +69,91 @@ export namespace testType {
 		 *
 		 * @return `expected` as `A` for type inspection.
 		 */
-		strictCanAssign<A, B>(expected: Assignable<A, B, { distributive: false }>): A,
+		strictCanAssign<A, B>(expected: Assignable<A, B, { distributive: false }>): A
 		/**
 		 * Check if type `T` is exactly `any`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		any<T>(expected: IsAny<T>): T,
+		any<T>(expected: IsAny<T>): T
 		/**
 		 * Check if type `T` is exactly `array`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		array<T>(expected: IsArray<T, { exact: true }>): T,
+		array<T>(expected: IsArray<T, { exact: true }>): T
 		/**
 		 * Check if type `T` is exactly `bigint`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		strictBigint<T>(expected: IsBigint<T, { distributive: false, exact: true }>): T,
+		strictBigint<T>(expected: IsBigint<T, { distributive: false; exact: true }>): T
 		/**
 		 * Check if type `T` is `bigint` or bigint literals.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		bigint<T>(expected: IsBigint<T, { distributive: false }>): T,
+		bigint<T>(expected: IsBigint<T, { distributive: false }>): T
 		/**
 		 * Check if type `T` is exactly `boolean`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		strictBoolean<T>(expected: IsBoolean<T, { distributive: false, exact: true }>): T,
+		strictBoolean<T>(expected: IsBoolean<T, { distributive: false; exact: true }>): T
 		/**
 		 * Check if type `T` is `boolean` and boolean literals.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		boolean<T>(expected: IsBoolean<T, { distributive: false }>): T,
+		boolean<T>(expected: IsBoolean<T, { distributive: false }>): T
 		/**
 		 * Check if type `T` is exactly `true`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		true<T>(expected: IsTrue<T, { distributive: false }>): T,
+		true<T>(expected: IsTrue<T, { distributive: false }>): T
 		/**
 		 * Check if type `T` is exactly `false`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		false<T>(expected: IsFalse<T, { distributive: false }>): T,
+		false<T>(expected: IsFalse<T, { distributive: false }>): T
 		/**
 		 * Check if type `T` is exactly `boolean`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		strictFunction<T>(expected: IsStrictFunction<T, { distributive: false }>): T,
+		strictFunction<T>(expected: IsStrictFunction<T, { distributive: false }>): T
 		/**
 		 * Check if type `T` is `boolean` and boolean literals.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		function<T>(expected: IsFunction<T, { distributive: false }>): T,
+		function<T>(expected: IsFunction<T, { distributive: false }>): T
 		/**
 		 * Check if type `T` is exactly `never`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		never<T>(expected: IsNever<T>): T,
+		never<T>(expected: IsNever<T>): T
 		/**
 		 * Check if type `T` is exactly `null`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		null<T>(expected: IsNull<T, { distributive: false }>): T,
+		null<T>(expected: IsNull<T, { distributive: false }>): T
 		/**
 		 * Check if type `T` is exactly `number`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		strictNumber<T>(expected: IsNumber<T, { distributive: false, exact: true }>): T,
+		strictNumber<T>(expected: IsNumber<T, { distributive: false; exact: true }>): T
 		/**
 		 * Check if type `T` is `number` or number literals.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		number<T>(expected: IsNumber<T, { distributive: false }>): T,
+		number<T>(expected: IsNumber<T, { distributive: false }>): T
 		/**
 		 * Check if type `T` is `object`.
 		 *
@@ -161,50 +161,50 @@ export namespace testType {
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		object<T>(expected: IsObject<T, { distributive: false }>): T,
+		object<T>(expected: IsObject<T, { distributive: false }>): T
 		/**
 		 * Check if type `T` is exactly `string`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		strictString<T>(expected: IsString<T, { distributive: false, exact: true }>): T,
+		strictString<T>(expected: IsString<T, { distributive: false; exact: true }>): T
 		/**
 		 * Check if type `T` is `string` or string literals.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		string<T>(expected: IsString<T, { distributive: false }>): T,
+		string<T>(expected: IsString<T, { distributive: false }>): T
 		/**
 		 * Check if type `T` is a `symbol`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		symbol<T>(expected: IsSymbol<T, { distributive: false }>): T,
+		symbol<T>(expected: IsSymbol<T, { distributive: false }>): T
 		/**
 		 * Check if type `T` is a *tuple*.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		tuple<T>(expected: IsTuple<T, { distributive: false }>): T,
+		tuple<T>(expected: IsTuple<T, { distributive: false }>): T
 		/**
 		 * Check if type `T` is exactly `undefined`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		undefined<T>(expected: IsUndefined<T, { distributive: false }>): T,
+		undefined<T>(expected: IsUndefined<T, { distributive: false }>): T
 		// hasUndefined<T>(expected: CanAssign<T, undefined>): T
 		/**
 		 * Check if type `T` is exactly `unknown`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		unknown<T>(expected: IsUnknown<T>): T,
+		unknown<T>(expected: IsUnknown<T>): T
 		/**
 		 * Check if type `T` is exactly `void`.
 		 *
 		 * @return `expected` as `T` for type inspection.
 		 */
-		void<T>(expected: IsVoid<T, { distributive: false }>): T,
+		void<T>(expected: IsVoid<T, { distributive: false }>): T
 		/**
 		 * A quick way to inspect a type.
 		 *
@@ -232,69 +232,69 @@ export namespace testType {
 	}
 
 	export type InspectedType<T> = {
-		type: T,
-		extends<R>(): T extends R ? true : false,
-		extends_any: T extends any ? true : false,
-		extends_unknown: T extends unknown ? true : false,
-		extends_void: T extends void ? true : false,
-		extends_never: T extends never ? true : false,
-		extends_undefined: T extends undefined ? true : false,
-		extends_null: T extends null ? true : false,
-		extends_boolean: T extends boolean ? true : false,
-		extends_true: T extends true ? true : false,
-		extends_false: T extends false ? true : false,
-		extends_number: T extends number ? true : false,
-		extends_1: T extends 1 ? true : false,
-		extends_bigint: T extends bigint ? true : false,
-		extends_1n: T extends 1n ? true : false,
-		extends_string: T extends string ? true : false,
-		extends_a: T extends 'a' ? true : false,
-		extends_symbol: T extends symbol ? true : false,
-		extends_object: T extends object ? true : false,
-		extends_function: T extends Function ? true : false,
-		extends_array_unknown: T extends unknown[] ? true : false,
-		extends_tuple_empty: T extends [] ? true : false,
-		union<R>(): T | R,
-		union_any: T | any,
-		union_unknown: T | unknown,
-		union_void: T | void,
-		union_never: T | never,
-		union_undefined: T | undefined,
-		union_null: T | null,
-		union_boolean: T | boolean,
-		union_true: T | true,
-		union_false: T | false,
-		union_number: T | number,
-		union_1: T | 1,
-		union_bigint: T | bigint,
-		union_1n: T | 1n,
-		union_string: T | string,
-		union_a: T | 'a',
-		union_symbol: T | symbol,
-		union_object: T | object,
-		union_function: T | Function,
-		union_array_unknown: T | unknown[],
-		union_tuple_empty: T | [],
-		intersect<R>(): T & R,
-		intersect_any: T & any,
-		intersect_unknown: T & unknown,
-		intersect_void: T & void,
-		intersect_never: T & never,
-		intersect_undefined: T & undefined,
-		intersect_null: T & null,
-		intersect_boolean: T & boolean,
-		intersect_true: T & true,
-		intersect_false: T & false,
-		intersect_number: T & number,
-		intersect_1: T & 1,
-		intersect_bigint: T & bigint,
-		intersect_1n: T & 1n,
-		intersect_string: T & string,
-		intersect_a: T & 'a',
-		intersect_symbol: T & symbol,
-		intersect_object: T & object,
-		intersect_function: T & Function,
-		intersect_array_unknown: T & unknown[],
+		type: T
+		extends<R>(): T extends R ? true : false
+		extends_any: T extends any ? true : false
+		extends_unknown: T extends unknown ? true : false
+		extends_void: T extends void ? true : false
+		extends_never: T extends never ? true : false
+		extends_undefined: T extends undefined ? true : false
+		extends_null: T extends null ? true : false
+		extends_boolean: T extends boolean ? true : false
+		extends_true: T extends true ? true : false
+		extends_false: T extends false ? true : false
+		extends_number: T extends number ? true : false
+		extends_1: T extends 1 ? true : false
+		extends_bigint: T extends bigint ? true : false
+		extends_1n: T extends 1n ? true : false
+		extends_string: T extends string ? true : false
+		extends_a: T extends 'a' ? true : false
+		extends_symbol: T extends symbol ? true : false
+		extends_object: T extends object ? true : false
+		extends_function: T extends Function ? true : false
+		extends_array_unknown: T extends unknown[] ? true : false
+		extends_tuple_empty: T extends [] ? true : false
+		union<R>(): T | R
+		union_any: T | any
+		union_unknown: T | unknown
+		union_void: T | void
+		union_never: T | never
+		union_undefined: T | undefined
+		union_null: T | null
+		union_boolean: T | boolean
+		union_true: T | true
+		union_false: T | false
+		union_number: T | number
+		union_1: T | 1
+		union_bigint: T | bigint
+		union_1n: T | 1n
+		union_string: T | string
+		union_a: T | 'a'
+		union_symbol: T | symbol
+		union_object: T | object
+		union_function: T | Function
+		union_array_unknown: T | unknown[]
+		union_tuple_empty: T | []
+		intersect<R>(): T & R
+		intersect_any: T & any
+		intersect_unknown: T & unknown
+		intersect_void: T & void
+		intersect_never: T & never
+		intersect_undefined: T & undefined
+		intersect_null: T & null
+		intersect_boolean: T & boolean
+		intersect_true: T & true
+		intersect_false: T & false
+		intersect_number: T & number
+		intersect_1: T & 1
+		intersect_bigint: T & bigint
+		intersect_1n: T & 1n
+		intersect_string: T & string
+		intersect_a: T & 'a'
+		intersect_symbol: T & symbol
+		intersect_object: T & object
+		intersect_function: T & Function
+		intersect_array_unknown: T & unknown[]
 		intersect_tuple_empty: T & []
 	}
 }

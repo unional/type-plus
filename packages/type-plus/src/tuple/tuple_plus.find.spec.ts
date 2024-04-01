@@ -4,7 +4,7 @@ import { testType, type TuplePlus } from '../index.js'
 
 test('behavior of tuple.find()', () => {
 	const tuple: [1, 2, '3'] = [1, 2, '3']
-	const r = tuple.find(x => typeof x === 'number')
+	const r = tuple.find((x) => typeof x === 'number')
 	testType.equal<typeof r, 1 | 2 | '3' | undefined>(true)
 })
 
@@ -26,7 +26,10 @@ it('can override empty tuple case', () => {
 })
 
 it('does not work with array type', () => {
-	testType.equal<TuplePlus.Find<string[], number>, 'does not support array. Please use `FindFirst` or `ArrayPlus.Find` instead.'>(true)
+	testType.equal<
+		TuplePlus.Find<string[], number>,
+		'does not support array. Please use `FindFirst` or `ArrayPlus.Find` instead.'
+	>(true)
 })
 
 it('can override array case', () => {
@@ -81,7 +84,7 @@ it('can return T | undefined by overriding unionNotMach to `undefined`', () => {
 
 it('pick object', () => {
 	type Actual = TuplePlus.Find<
-		[{ name: 'a', type: 1 }, { name: 'b', type: 2 }, { name: 'c', type: 3 }, { name: 'b', type: 4 }],
+		[{ name: 'a'; type: 1 }, { name: 'b'; type: 2 }, { name: 'c'; type: 3 }, { name: 'b'; type: 4 }],
 		{ name: 'b' }
 	>['type']
 	testType.equal<Actual, 2>(true)

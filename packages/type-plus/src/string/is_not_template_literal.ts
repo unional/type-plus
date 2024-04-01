@@ -7,7 +7,6 @@ import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../type_plus/branch/$selection.js'
 import type { _StringType } from './_string_type.js'
 
-
 /**
  * 🎭 *validate*
  *
@@ -53,15 +52,16 @@ import type { _StringType } from './_string_type.js'
  * type R = IsNotTemplateLiteral<bigint, $IsString.$Branch> // $Then
  * ```
  */
-export type IsNotTemplateLiteral<T, $O extends IsNotTemplateLiteral.$Options = {}> =
-	$SpecialType<T,
-		$MergeOptions<$O,
-			{
-				$then: $ResolveBranch<T, $O, [$Then]>,
-				$else: IsNotTemplateLiteral.$<T, $O>
-			}
-		>
+export type IsNotTemplateLiteral<T, $O extends IsNotTemplateLiteral.$Options = {}> = $SpecialType<
+	T,
+	$MergeOptions<
+		$O,
+		{
+			$then: $ResolveBranch<T, $O, [$Then]>
+			$else: IsNotTemplateLiteral.$<T, $O>
+		}
 	>
+>
 
 export namespace IsNotTemplateLiteral {
 	export type $Options = $Equality.$Options
@@ -69,22 +69,19 @@ export namespace IsNotTemplateLiteral {
 
 	export type $UtilOptions = Assignable.$UtilOptions
 
-	export type $<T, $O extends $UtilOptions> =
-		$IsDistributive<$O, { $then: _D<T, $O>, $else: _N<T, $O> }>
+	export type $<T, $O extends $UtilOptions> = $IsDistributive<$O, { $then: _D<T, $O>; $else: _N<T, $O> }>
 
-	type _D<T, $O extends $UtilOptions> =
-		T extends string
+	type _D<T, $O extends $UtilOptions> = T extends string
 		? _StringType<T> extends infer R
-		? R extends 'templateLiteral'
-		? $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Then]>
-		: never
+			? R extends 'templateLiteral'
+				? $ResolveBranch<T, $O, [$Else]>
+				: $ResolveBranch<T, $O, [$Then]>
+			: never
 		: $ResolveBranch<T, $O, [$Then]>
 
-	type _N<T, $O extends $UtilOptions> =
-		_D<T, { $then: $Then, $else: $Else }> extends infer R
+	type _N<T, $O extends $UtilOptions> = _D<T, { $then: $Then; $else: $Else }> extends infer R
 		? $Then | $Else extends R
-		? $ResolveBranch<T, $O, [$Then]>
-		: $ResolveBranch<T, $O, [R]>
+			? $ResolveBranch<T, $O, [$Then]>
+			: $ResolveBranch<T, $O, [R]>
 		: never
 }

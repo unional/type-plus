@@ -60,29 +60,24 @@ import type { $SelectionOptions } from './$selection_options.js'
  * type R = $SelectInvertStrict<string, undefined, $SelectionBranch> // $Else
  * ```
  */
-export type $SelectInvertStrict<
+export type $SelectInvertStrict<T, U, $O extends $SelectInvertStrict.$Options = {}> = $SpecialType<
 	T,
-	U,
-	$O extends $SelectInvertStrict.$Options = {}
-> =
-	$SpecialType<
-		T,
-		{
-			$any: $ResolveBranch<T, $O, [$Any, $Then]>,
-			$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>,
-			$never: $ResolveBranch<T, $O, [$Never, $Then]>,
-			$else: $IsDistributive<$O> extends true
-			? $SelectInvertStrict._D<T, U, $O>
-			: $SelectInvertStrict._N<T, U, $O>
-		}
-	>
+	{
+		$any: $ResolveBranch<T, $O, [$Any, $Then]>
+		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>
+		$never: $ResolveBranch<T, $O, [$Never, $Then]>
+		$else: $IsDistributive<$O> extends true ? $SelectInvertStrict._D<T, U, $O> : $SelectInvertStrict._N<T, U, $O>
+	}
+>
 
 export namespace $SelectInvertStrict {
 	export type $Options = $SelectionOptions & $DistributiveOptions & $InputOptions<$Any | $Unknown | $Never>
 	export type $Default = $SelectionPredicate & $DistributiveDefault
 	export type $Branch = $SelectionBranch & $DistributiveDefault
-	export type _D<T, U, $O extends $SelectInvertStrict.$Options> =
-		T extends U ? $ResolveBranch<T, $O, [$Else]> : $ResolveBranch<T, $O, [$Then]>
-	export type _N<T, U, $O extends $SelectInvertStrict.$Options> =
-		[T, U] extends [U, T] ? $ResolveBranch<T, $O, [$Else]> : $ResolveBranch<T, $O, [$Then]>
+	export type _D<T, U, $O extends $SelectInvertStrict.$Options> = T extends U
+		? $ResolveBranch<T, $O, [$Else]>
+		: $ResolveBranch<T, $O, [$Then]>
+	export type _N<T, U, $O extends $SelectInvertStrict.$Options> = [T, U] extends [U, T]
+		? $ResolveBranch<T, $O, [$Else]>
+		: $ResolveBranch<T, $O, [$Then]>
 }

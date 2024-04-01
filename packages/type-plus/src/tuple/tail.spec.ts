@@ -1,6 +1,6 @@
 import { test } from '@jest/globals'
 
-import { type Tail,testType } from '../index.js'
+import { type Tail, testType } from '../index.js'
 
 test('get tail types', () => {
 	type S = [1, 'a', 'b']

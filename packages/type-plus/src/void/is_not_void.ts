@@ -55,18 +55,16 @@ import type { IsUndefined } from '../undefined/is_undefined.js'
  * type R = IsNotVoid<string, $SelectionBranch> // $Then
  * ```
  */
-export type IsNotVoid<
+export type IsNotVoid<T, $O extends IsNotVoid.$Options = {}> = $SpecialType<
 	T,
-	$O extends IsNotVoid.$Options = {}
-> =
-	$SpecialType<T,
-		$MergeOptions<$O,
-			{
-				$then: $ResolveBranch<T, $O, [$Then]>,
-				$else: IsNotVoid.$<T, $O>
-			}
-		>
+	$MergeOptions<
+		$O,
+		{
+			$then: $ResolveBranch<T, $O, [$Then]>
+			$else: IsNotVoid.$<T, $O>
+		}
 	>
+>
 
 export namespace IsNotVoid {
 	export type $Options = $Equality.$Options
@@ -80,11 +78,13 @@ export namespace IsNotVoid {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> =
-		IsUndefined.$<T, {
-			$then: $ResolveBranch<T, $O, [$Then]>,
+	export type $<T, $O extends $UtilOptions> = IsUndefined.$<
+		T,
+		{
+			$then: $ResolveBranch<T, $O, [$Then]>
 			$else: NotAssignable.$<T, void, $O>
-		}>
+		}
+	>
 
 	export type $UtilOptions = NotAssignable.$UtilOptions
 }

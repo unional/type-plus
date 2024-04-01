@@ -52,16 +52,16 @@ import type { $Then } from '../type_plus/branch/$selection.js'
  * type R = IsNotUndefined<undefined, $SelectionBranch> // $Else
  * ```
  */
-export type IsNotUndefined<T, $O extends IsNotUndefined.$Options = {}> =
-	$SpecialType<T,
-		$MergeOptions<$O,
-			{
-				$then: $ResolveBranch<T, $O, [$Then]>,
-				$else: IsNotUndefined.$<T, $O>
-			}
-		>
+export type IsNotUndefined<T, $O extends IsNotUndefined.$Options = {}> = $SpecialType<
+	T,
+	$MergeOptions<
+		$O,
+		{
+			$then: $ResolveBranch<T, $O, [$Then]>
+			$else: IsNotUndefined.$<T, $O>
+		}
 	>
-
+>
 
 export namespace IsNotUndefined {
 	export type $Options = $Equality.$Options

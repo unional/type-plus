@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type StringIncludes,testType } from '../index.js'
+import { type StringIncludes, testType } from '../index.js'
 
 it('should return true if the string contains the search string', () => {
 	testType.true<StringIncludes<'abc', 'b'>>(true)

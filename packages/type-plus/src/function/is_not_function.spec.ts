@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else, type $Then, type AnyFunction, type IsNotFunction,testType } from '../index.js'
+import { type $Else, type $Then, type AnyFunction, type IsNotFunction, testType } from '../index.js'
 
 it('returns false if T is Function', () => {
 	testType.false<IsNotFunction<Function>>(true)
@@ -43,7 +43,7 @@ it('distributes over union type', () => {
 })
 
 it('returns false if T is function overloads', () => {
-	testType.false<IsNotFunction<{ (): void, (x: number): number }>>(true)
+	testType.false<IsNotFunction<{ (): void; (x: number): number }>>(true)
 })
 
 it('returns false if T is intersection of function', () => {

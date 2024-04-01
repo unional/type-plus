@@ -54,15 +54,16 @@ import type { _StringType } from './_string_type.js'
  * type R = IsTemplateLiteral<bigint, $IsString.$Branch> // $Else
  * ```
  */
-export type IsTemplateLiteral<T, $O extends IsTemplateLiteral.$Options = {}> =
-	$SpecialType<T,
-		$MergeOptions<$O,
-			{
-				$then: $ResolveBranch<T, $O, [$Else]>,
-				$else: IsTemplateLiteral.$<T, $O>
-			}
-		>
+export type IsTemplateLiteral<T, $O extends IsTemplateLiteral.$Options = {}> = $SpecialType<
+	T,
+	$MergeOptions<
+		$O,
+		{
+			$then: $ResolveBranch<T, $O, [$Else]>
+			$else: IsTemplateLiteral.$<T, $O>
+		}
 	>
+>
 
 export namespace IsTemplateLiteral {
 	export type $Options = $Equality.$Options
@@ -70,22 +71,19 @@ export namespace IsTemplateLiteral {
 
 	export type $UtilOptions = Assignable.$UtilOptions
 
-	export type $<T, $O extends $UtilOptions> =
-		$IsDistributive<$O, { $then: _D<T, $O>, $else: _N<T, $O> }>
+	export type $<T, $O extends $UtilOptions> = $IsDistributive<$O, { $then: _D<T, $O>; $else: _N<T, $O> }>
 
-	type _D<T, $O extends $UtilOptions> =
-		T extends string
+	type _D<T, $O extends $UtilOptions> = T extends string
 		? _StringType<T> extends infer R
-		? R extends 'templateLiteral'
-		? $ResolveBranch<T, $O, [$Then]>
-		: $ResolveBranch<T, $O, [$Else]>
-		: never
+			? R extends 'templateLiteral'
+				? $ResolveBranch<T, $O, [$Then]>
+				: $ResolveBranch<T, $O, [$Else]>
+			: never
 		: $ResolveBranch<T, $O, [$Else]>
 
-	type _N<T, $O extends $UtilOptions> =
-		_D<T, { $then: $Then, $else: $Else }> extends infer R
+	type _N<T, $O extends $UtilOptions> = _D<T, { $then: $Then; $else: $Else }> extends infer R
 		? $Then | $Else extends R
-		? $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [R]>
+			? $ResolveBranch<T, $O, [$Else]>
+			: $ResolveBranch<T, $O, [R]>
 		: never
 }

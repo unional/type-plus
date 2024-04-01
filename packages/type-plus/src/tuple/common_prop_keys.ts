@@ -24,13 +24,10 @@ export type CommonPropKeys<
 	Options extends CommonPropKeys.Options = CommonPropKeys.DefaultOptions
 > = number extends T['length'] ? ArrayCommonPropKeys<T> : TupleCommonPropKeys<T, Options>
 
-
 export namespace CommonPropKeys {
-	export interface Options extends TupleCommonPropKeys.Options {
-	}
+	export interface Options extends TupleCommonPropKeys.Options {}
 
-	export interface DefaultOptions extends TupleCommonPropKeys.DefaultOptions {
-	}
+	export interface DefaultOptions extends TupleCommonPropKeys.DefaultOptions {}
 }
 
 /**

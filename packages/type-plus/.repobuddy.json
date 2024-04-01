@@ -1,5 +1,3 @@
 {
-  "plugins": [
-    "@repobuddy/typescript"
-  ]
+	"plugins": ["@repobuddy/typescript"]
 }

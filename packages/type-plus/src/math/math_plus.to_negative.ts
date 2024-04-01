@@ -13,10 +13,10 @@ export type ToNegative<N extends number | bigint> = N extends number
 	? N extends 0
 		? 0
 		: `-${N}` extends `${infer W extends number}`
-		? W
-		: N
+			? W
+			: N
 	: N extends 0n
-	? 0n
-	: `-${N}` extends `${infer W extends bigint}`
-	? W
-	: N
+		? 0n
+		: `-${N}` extends `${infer W extends bigint}`
+			? W
+			: N

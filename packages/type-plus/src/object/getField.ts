@@ -1,9 +1,6 @@
 import type { UnionKeys } from '../union_keys.js'
 
-export function getField<T, TX extends Exclude<T, undefined | null>, K extends UnionKeys<TX>>(
-	subject: T,
-	key: K
-): TX[K]
+export function getField<T, TX extends Exclude<T, undefined | null>, K extends UnionKeys<TX>>(subject: T, key: K): TX[K]
 export function getField<
 	T,
 	TX extends Exclude<T, undefined | null>,

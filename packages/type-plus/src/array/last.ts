@@ -21,15 +21,20 @@ import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$select
  * @typeParam Options['caseEmptyTuple'] Return type when `T` is `[]`.
  * Default to `never`.
  */
-export type Last<
-	T extends readonly unknown[],
-	Options extends Last.Options = Last.DefaultOptions
-> = IsNever<T, $SelectionBranch> extends infer R
-	? R extends $Then ? Options['$never']
-	: R extends $Else ? T['length'] extends 0
-	? Options['caseEmptyTuple']
-	: T extends readonly [...unknown[], infer R] ? R : T[0]
-	: never : never
+export type Last<T extends readonly unknown[], Options extends Last.Options = Last.DefaultOptions> = IsNever<
+	T,
+	$SelectionBranch
+> extends infer R
+	? R extends $Then
+		? Options['$never']
+		: R extends $Else
+			? T['length'] extends 0
+				? Options['caseEmptyTuple']
+				: T extends readonly [...unknown[], infer R]
+					? R
+					: T[0]
+			: never
+	: never
 
 export namespace Last {
 	export interface Options extends $Never.$Options {

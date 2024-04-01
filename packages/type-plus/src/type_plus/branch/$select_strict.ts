@@ -60,15 +60,12 @@ import type { $SelectionOptions } from './$selection_options.js'
  * type R = $SelectStrict<string, undefined, $SelectionBranch> // $Else
  * ```
  */
-export type $SelectStrict<
+export type $SelectStrict<T, U, $O extends $SelectStrict.$Options = {}> = $SpecialType<
 	T,
-	U,
-	$O extends $SelectStrict.$Options = {}
-> = $SpecialType<
-	T, {
-		$any: $ResolveBranch<T, $O, [$Any, $Else]>,
-		$unknown: $ResolveBranch<T, $O, [$Unknown, $Else]>,
-		$never: $ResolveBranch<T, $O, [$Never, $Else]>,
+	{
+		$any: $ResolveBranch<T, $O, [$Any, $Else]>
+		$unknown: $ResolveBranch<T, $O, [$Unknown, $Else]>
+		$never: $ResolveBranch<T, $O, [$Never, $Else]>
 		$else: $SelectStrict._Else<T, U, $O>
 	}
 >
@@ -80,11 +77,12 @@ export namespace $SelectStrict {
 	export type _Else<T, U, $O extends $SelectStrict.$Options> = $IsDistributive<$O> extends true
 		? _D<T, U, $O>
 		: _N<T, U, $O>
-	export type _D<T, U, $O extends $SelectStrict.$Options> =
-		T extends U ? U extends T
+	export type _D<T, U, $O extends $SelectStrict.$Options> = T extends U
+		? U extends T
+			? $ResolveBranch<T, $O, [$Then]>
+			: $ResolveBranch<T, $O, [$Else]>
+		: $ResolveBranch<T, $O, [$Else]>
+	export type _N<T, U, $O extends $SelectStrict.$Options> = [T, U] extends [U, T]
 		? $ResolveBranch<T, $O, [$Then]>
 		: $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Else]>
-	export type _N<T, U, $O extends $SelectStrict.$Options> =
-		[T, U] extends [U, T] ? $ResolveBranch<T, $O, [$Then]> : $ResolveBranch<T, $O, [$Else]>
 }

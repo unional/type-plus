@@ -18,10 +18,13 @@ it('no match gets never', () => {
 })
 
 it('pick object', () => {
-	testType.equal<FindLast<
-		[{ name: 'a', type: 1 }, { name: 'b', type: 2 }, { name: 'c', type: 3 }, { name: 'b', type: 4 }],
-		{ name: 'b' }
-	>, { name: 'b', type: 4 }>(true)
+	testType.equal<
+		FindLast<
+			[{ name: 'a'; type: 1 }, { name: 'b'; type: 2 }, { name: 'c'; type: 3 }, { name: 'b'; type: 4 }],
+			{ name: 'b' }
+		>,
+		{ name: 'b'; type: 4 }
+	>(true)
 })
 
 it('is available as ArrayPlus.FindLast', () => {
@@ -29,8 +32,11 @@ it('is available as ArrayPlus.FindLast', () => {
 })
 
 it('supports readonly array', () => {
-	testType.equal<FindLast<
-		readonly [{ name: 'a', type: 1 }, { name: 'b', type: 2 }, { name: 'c', type: 3 }, { name: 'b', type: 4 }],
-		{ name: 'b' }
-	>, { name: 'b', type: 4 }>(true)
+	testType.equal<
+		FindLast<
+			readonly [{ name: 'a'; type: 1 }, { name: 'b'; type: 2 }, { name: 'c'; type: 3 }, { name: 'b'; type: 4 }],
+			{ name: 'b' }
+		>,
+		{ name: 'b'; type: 4 }
+	>(true)
 })

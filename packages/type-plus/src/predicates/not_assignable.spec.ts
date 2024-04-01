@@ -13,12 +13,12 @@ it('check if A can be assigned to B', () => {
 	testType.false<NotAssignable<true, boolean>>(true)
 	testType.false<NotAssignable<boolean, boolean>>(true)
 	testType.false<NotAssignable<{ a: 1 }, { a: number }>>(true)
-	testType.false<NotAssignable<{ a: string, b: number }, { a: string }>>(true)
+	testType.false<NotAssignable<{ a: string; b: number }, { a: string }>>(true)
 
 	testType.true<NotAssignable<number, 1>>(true)
 	testType.true<NotAssignable<string, 'a'>>(true)
 	testType.true<NotAssignable<{ a: number }, { a: 1 }>>(true)
-	testType.true<NotAssignable<{ a: string }, { a: string, b: number }>>(true)
+	testType.true<NotAssignable<{ a: string }, { a: string; b: number }>>(true)
 })
 
 it('returns true when B is `any` as anything can be assigned to `any`', () => {

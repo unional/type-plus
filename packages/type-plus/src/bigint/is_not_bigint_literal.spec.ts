@@ -73,7 +73,7 @@ it('works as filter', () => {
 
 	testType.equal<IsNotBigintLiteral<never, { selection: 'filter' }>, never>(true)
 	testType.equal<IsNotBigintLiteral<unknown, { selection: 'filter' }>, unknown>(true)
-	testType.equal<IsNotBigintLiteral<bigint | string, { selection: 'filter' }>, bigint | string >(true)
+	testType.equal<IsNotBigintLiteral<bigint | string, { selection: 'filter' }>, bigint | string>(true)
 
 	testType.equal<IsNotBigintLiteral<1n | string, { selection: 'filter' }>, string>(true)
 })

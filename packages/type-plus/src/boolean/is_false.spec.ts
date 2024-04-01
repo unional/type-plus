@@ -65,7 +65,7 @@ it('works as filter', () => {
 	testType.equal<IsFalse<false, { selection: 'filter' }>, false>(true)
 	testType.equal<IsFalse<true, { selection: 'filter' }>, never>(true)
 	testType.equal<IsFalse<boolean, { selection: 'filter' }>, false>(true)
-	testType.equal<IsFalse<boolean, { selection: 'filter', distributive: false }>, never>(true)
+	testType.equal<IsFalse<boolean, { selection: 'filter'; distributive: false }>, never>(true)
 
 	testType.equal<IsFalse<never, { selection: 'filter' }>, never>(true)
 	testType.equal<IsFalse<unknown, { selection: 'filter' }>, never>(true)

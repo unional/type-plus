@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else, type $Then, type IsVoid,testType } from '../index.js'
+import { type $Else, type $Then, type IsVoid, testType } from '../index.js'
 
 it('returns true for void', () => {
 	testType.equal<IsVoid<void>, true>(true)
@@ -87,4 +87,3 @@ it('can override $never branch', () => {
 	testType.equal<IsVoid<never>, false>(true)
 	testType.equal<IsVoid<never, { $never: unknown }>, unknown>(true)
 })
-

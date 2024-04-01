@@ -41,15 +41,15 @@ import type { $SelectionOptions } from '../type_plus/branch/$selection_options.j
  * type R = IsUnknown<string, $SelectionBranch> // $Else
  * ```
  */
-export type IsUnknown<
+export type IsUnknown<T, $O extends IsUnknown.$Options = {}> = $SpecialType<
 	T,
-	$O extends IsUnknown.$Options = {}
-> = $SpecialType<T, {
-	$any: $ResolveBranch<T, $O, [$Any, $Else]>,
-	$unknown: $ResolveBranch<T, $O, [$Then]>,
-	$never: $ResolveBranch<T, $O, [$Never, $Else]>,
-	$else: $ResolveBranch<T, $O, [$Else]>
-}>
+	{
+		$any: $ResolveBranch<T, $O, [$Any, $Else]>
+		$unknown: $ResolveBranch<T, $O, [$Then]>
+		$never: $ResolveBranch<T, $O, [$Never, $Else]>
+		$else: $ResolveBranch<T, $O, [$Else]>
+	}
+>
 
 export namespace IsUnknown {
 	export type $Options = $SelectionOptions & $InputOptions<$Any | $Never>

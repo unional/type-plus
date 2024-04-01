@@ -51,21 +51,22 @@ import type { Find as ArrayFind } from './array_plus.find.js'
  */
 export type FindFirst<
 	A extends readonly unknown[],
-	Criteria, Options extends FindFirst.Options = FindFirst.DefaultOptions<Criteria>
+	Criteria,
+	Options extends FindFirst.Options = FindFirst.DefaultOptions<Criteria>
 > = IsTuple<
 	A,
 	{
-		$then: TupleFind<A, Criteria, Options>,
+		$then: TupleFind<A, Criteria, Options>
 		$else: ArrayFind<A, Criteria, Options>
 	}
 >
 
 export namespace FindFirst {
-	export interface Options extends ArrayFind.Options, TupleFind.Options { }
+	export interface Options extends ArrayFind.Options, TupleFind.Options {}
 	export interface DefaultOptions<Criteria>
-		extends ArrayFind.DefaultOptions<Criteria>, TupleFind.DefaultOptions<Criteria> { }
+		extends ArrayFind.DefaultOptions<Criteria>,
+			TupleFind.DefaultOptions<Criteria> {}
 }
-
 
 /**
  * @deprecated use FindFirst

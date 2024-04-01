@@ -14,7 +14,7 @@ import type { IsTuple } from '../tuple/is_tuple.js'
 export type Entries<A extends readonly unknown[]> = IsTuple<
 	A,
 	{
-		$then: Entries.Device<A, []>,
+		$then: Entries.Device<A, []>
 		$else: A extends Array<infer T> ? Array<[number, T]> : never
 	}
 >
@@ -22,7 +22,7 @@ export type Entries<A extends readonly unknown[]> = IsTuple<
 export namespace Entries {
 	export type Device<A extends readonly unknown[], R extends unknown[]> = A['length'] extends 0
 		? R
-		: (A extends readonly [...infer F, infer N]
+		: A extends readonly [...infer F, infer N]
 			? Device<F, [[F['length'], N], ...R]>
-			: never)
+			: never
 }

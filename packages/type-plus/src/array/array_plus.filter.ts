@@ -26,27 +26,26 @@ export type Filter<
 	Criteria = true,
 	Options extends Filter.Options = Filter.DefaultOptions
 > = TypePlusOptions.Merge<Options, Filter.DefaultOptions> extends infer O extends Filter.Options
-	? (IsNever<
-		A,
-		{
-			$then: O['$never'],
-			$else: (A[0] extends Criteria
-				? A
-				: Criteria extends A[0] ? Array<Criteria> : O['$notArray'])
-		}>)
+	? IsNever<
+			A,
+			{
+				$then: O['$never']
+				$else: A[0] extends Criteria ? A : Criteria extends A[0] ? Array<Criteria> : O['$notArray']
+			}
+		>
 	: never
 
 export namespace Filter {
-	export interface Options extends TypePlusOptions.NotArray, $Never.$Options { }
+	export interface Options extends TypePlusOptions.NotArray, $Never.$Options {}
 
 	export interface DefaultOptions {
-		$never: never,
+		$never: never
 		$notArray: never[]
 	}
 
 	export type _<A extends readonly unknown[], Criteria, Result extends unknown[]> = A['length'] extends 0
 		? Result
-		: (A extends [infer H, ...infer Rest]
+		: A extends [infer H, ...infer Rest]
 			? IsEqual<H, Criteria, _<Rest, Criteria, [...Result, H]>, _<Rest, Criteria, Result>>
-			: never)
+			: never
 }

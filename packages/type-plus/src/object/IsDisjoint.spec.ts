@@ -1,6 +1,6 @@
 import { test } from '@jest/globals'
 
-import { type IsDisjoint,testType } from '../index.js'
+import { type IsDisjoint, testType } from '../index.js'
 
 test('disjoint returns true', () => {
 	type A = { a: 1 }
@@ -16,12 +16,12 @@ test('same type returns false', () => {
 
 test('A subset of B returns false', () => {
 	type A = { a: 1 }
-	type B = { a: 1, b: 1 }
+	type B = { a: 1; b: 1 }
 	testType.false<IsDisjoint<A, B>>(true)
 })
 
 test('B subset of A returns false', () => {
-	type A = { a: 1, b: 1 }
+	type A = { a: 1; b: 1 }
 	type B = { a: 1 }
 	testType.false<IsDisjoint<A, B>>(true)
 })

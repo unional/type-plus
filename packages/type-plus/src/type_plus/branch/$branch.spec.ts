@@ -1,7 +1,6 @@
 import { describe, it } from '@jest/globals'
 
-import { type $Any, type $Branch, type $BranchOptions, type $Unknown,testType } from '../../index.js'
-
+import { type $Any, type $Branch, type $BranchOptions, type $Unknown, testType } from '../../index.js'
 
 it('create a branch type with property name', () => {
 	type $Then = $Branch<'$then'>
@@ -19,10 +18,12 @@ describe('$BranchOptions', () => {
 	})
 
 	it('creates branch options with multiple branches', () => {
-		testType.equal<$BranchOptions<$Any | $Unknown>, {
-			$any: $Any,
-			$unknown: $Unknown
-		}>(true)
+		testType.equal<
+			$BranchOptions<$Any | $Unknown>,
+			{
+				$any: $Any
+				$unknown: $Unknown
+			}
+		>(true)
 	})
-
 })

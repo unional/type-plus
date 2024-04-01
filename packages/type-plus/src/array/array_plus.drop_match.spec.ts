@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type ArrayPlus,testType } from '../index.js'
+import { type ArrayPlus, testType } from '../index.js'
 
 it('drop all types gets never[]', () => {
 	type A = ArrayPlus.DropMatch<Array<string>, string>

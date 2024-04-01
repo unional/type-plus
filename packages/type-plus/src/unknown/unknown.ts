@@ -8,7 +8,6 @@ import type { $Branch } from '../type_plus/branch/$branch.js'
 export type $Unknown = $Branch<'$unknown'>
 
 export namespace $Unknown {
-
 	/**
 	 * 🧰 *type util*
 	 *

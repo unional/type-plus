@@ -55,15 +55,16 @@ import type { $Else } from '../type_plus/branch/$selection.js'
  * type R = IsNull<string, $SelectionBranch> // $Else
  * ```
  */
-export type IsNull<T, $O extends IsNull.$Options = {}> =
-	$SpecialType<T,
-		$MergeOptions<$O,
-			{
-				$then: $ResolveBranch<T, $O, [$Else]>,
-				$else: IsNull.$<T, $O>
-			}
-		>
+export type IsNull<T, $O extends IsNull.$Options = {}> = $SpecialType<
+	T,
+	$MergeOptions<
+		$O,
+		{
+			$then: $ResolveBranch<T, $O, [$Else]>
+			$else: IsNull.$<T, $O>
+		}
 	>
+>
 
 export namespace IsNull {
 	export type $Options = $Equality.$Options

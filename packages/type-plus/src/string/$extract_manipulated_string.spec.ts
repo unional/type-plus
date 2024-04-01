@@ -25,7 +25,6 @@ it('returns T if T can be reduced to a string literal', () => {
 	testType.equal<$ExtractManipulatedString<`${undefined}`>, `undefined`>(true)
 })
 
-
 it('returns T for template literal', () => {
 	testType.equal<$ExtractManipulatedString<`${number}`>, `${number}`>(true)
 	testType.equal<$ExtractManipulatedString<`${string}`>, string>(true)
@@ -89,9 +88,18 @@ it('unwraps T in Uppercase', () => {
 	testType.equal<`${number | string | bigint}`, string>(true)
 	testType.equal<$ExtractManipulatedString<Uppercase<`${number | string | bigint}`>>, string>(true)
 	testType.equal<$ExtractManipulatedString<Uppercase<`${number | bigint}`>>, `${number | bigint}`>(true)
-	testType.equal<$ExtractManipulatedString<Uppercase<`a${number | string | bigint}`>>, `A${Uppercase<`${number | string | bigint}`>}`>(true)
-	testType.equal<$ExtractManipulatedString<Uppercase<`${number | string | bigint}c`>>, `${Uppercase<`${number | string | bigint}`>}C`>(true)
-	testType.equal<$ExtractManipulatedString<Uppercase<`a${number | string | bigint}c`>>, `A${Uppercase<`${number | string | bigint}`>}C`>(true)
+	testType.equal<
+		$ExtractManipulatedString<Uppercase<`a${number | string | bigint}`>>,
+		`A${Uppercase<`${number | string | bigint}`>}`
+	>(true)
+	testType.equal<
+		$ExtractManipulatedString<Uppercase<`${number | string | bigint}c`>>,
+		`${Uppercase<`${number | string | bigint}`>}C`
+	>(true)
+	testType.equal<
+		$ExtractManipulatedString<Uppercase<`a${number | string | bigint}c`>>,
+		`A${Uppercase<`${number | string | bigint}`>}C`
+	>(true)
 })
 
 it('unwraps T in Lowercase', () => {
@@ -132,9 +140,18 @@ it('unwraps T in Lowercase', () => {
 	testType.equal<`${number | string | bigint}`, string>(true)
 	testType.equal<$ExtractManipulatedString<Lowercase<`${number | string | bigint}`>>, string>(true)
 	testType.equal<$ExtractManipulatedString<Lowercase<`${number | bigint}`>>, `${number | bigint}`>(true)
-	testType.equal<$ExtractManipulatedString<Lowercase<`a${number | string | bigint}`>>, `a${Lowercase<`${number | string | bigint}`>}`>(true)
-	testType.equal<$ExtractManipulatedString<Lowercase<`${number | string | bigint}c`>>, `${Lowercase<`${number | string | bigint}`>}c`>(true)
-	testType.equal<$ExtractManipulatedString<Lowercase<`a${number | string | bigint}c`>>, `a${Lowercase<`${number | string | bigint}`>}c`>(true)
+	testType.equal<
+		$ExtractManipulatedString<Lowercase<`a${number | string | bigint}`>>,
+		`a${Lowercase<`${number | string | bigint}`>}`
+	>(true)
+	testType.equal<
+		$ExtractManipulatedString<Lowercase<`${number | string | bigint}c`>>,
+		`${Lowercase<`${number | string | bigint}`>}c`
+	>(true)
+	testType.equal<
+		$ExtractManipulatedString<Lowercase<`a${number | string | bigint}c`>>,
+		`a${Lowercase<`${number | string | bigint}`>}c`
+	>(true)
 })
 
 it('unwraps T in Capitalize', () => {
@@ -176,9 +193,17 @@ it('unwraps T in Capitalize', () => {
 	testType.equal<`${number | string | bigint}`, string>(true)
 	testType.equal<$ExtractManipulatedString<Capitalize<`${number | string | bigint}`>>, string>(true)
 	testType.equal<$ExtractManipulatedString<Capitalize<`${number | bigint}`>>, `${number | bigint}`>(true)
-	testType.equal<$ExtractManipulatedString<Capitalize<`a${number | string | bigint}`>>, `A${number | string | bigint}`>(true)
-	testType.equal<$ExtractManipulatedString<Capitalize<`${number | string | bigint}c`>>, `${Capitalize<`${number | string | bigint}`>}c`>(true)
-	testType.equal<$ExtractManipulatedString<Capitalize<`a${number | string | bigint}c`>>, `A${number | string | bigint}c`>(true)
+	testType.equal<$ExtractManipulatedString<Capitalize<`a${number | string | bigint}`>>, `A${number | string | bigint}`>(
+		true
+	)
+	testType.equal<
+		$ExtractManipulatedString<Capitalize<`${number | string | bigint}c`>>,
+		`${Capitalize<`${number | string | bigint}`>}c`
+	>(true)
+	testType.equal<
+		$ExtractManipulatedString<Capitalize<`a${number | string | bigint}c`>>,
+		`A${number | string | bigint}c`
+	>(true)
 })
 
 it('unwraps T in Uncapitalize', () => {
@@ -220,14 +245,28 @@ it('unwraps T in Uncapitalize', () => {
 	testType.equal<`${number | string | bigint}`, string>(true)
 	testType.equal<$ExtractManipulatedString<Uncapitalize<`${number | string | bigint}`>>, string>(true)
 	testType.equal<$ExtractManipulatedString<Uncapitalize<`${number | bigint}`>>, `${number | bigint}`>(true)
-	testType.equal<$ExtractManipulatedString<Uncapitalize<`a${number | string | bigint}`>>, `a${number | string | bigint}`>(true)
-	testType.equal<$ExtractManipulatedString<Uncapitalize<`${number | string | bigint}c`>>, `${Uncapitalize<`${number | string | bigint}`>}c`>(true)
-	testType.equal<$ExtractManipulatedString<Uncapitalize<`a${number | string | bigint}c`>>, `a${number | string | bigint}c`>(true)
+	testType.equal<
+		$ExtractManipulatedString<Uncapitalize<`a${number | string | bigint}`>>,
+		`a${number | string | bigint}`
+	>(true)
+	testType.equal<
+		$ExtractManipulatedString<Uncapitalize<`${number | string | bigint}c`>>,
+		`${Uncapitalize<`${number | string | bigint}`>}c`
+	>(true)
+	testType.equal<
+		$ExtractManipulatedString<Uncapitalize<`a${number | string | bigint}c`>>,
+		`a${number | string | bigint}c`
+	>(true)
 })
 
 it('unwraps nested T', () => {
 	testType.equal<$ExtractManipulatedString<Uppercase<Lowercase<Capitalize<Uncapitalize<'ABC'>>>>>, 'ABC'>(true)
 
-	testType.equal<$ExtractManipulatedString<Uppercase<Lowercase<Capitalize<Uncapitalize<`${number}`>>>>>, `${number}`>(true)
-	testType.equal<$ExtractManipulatedString<Uppercase<Lowercase<Capitalize<Uncapitalize<`a${number}`>>>>>, `A${Uppercase<Lowercase<`${number}`>>}`>(true)
+	testType.equal<$ExtractManipulatedString<Uppercase<Lowercase<Capitalize<Uncapitalize<`${number}`>>>>>, `${number}`>(
+		true
+	)
+	testType.equal<
+		$ExtractManipulatedString<Uppercase<Lowercase<Capitalize<Uncapitalize<`a${number}`>>>>>,
+		`A${Uppercase<Lowercase<`${number}`>>}`
+	>(true)
 })

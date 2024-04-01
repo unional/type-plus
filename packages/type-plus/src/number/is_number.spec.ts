@@ -147,28 +147,28 @@ describe('exact', () => {
 
 	it('returns true for intersection type', () => {
 		testType.equal<IsNumber<number & { a: 1 }, { exact: true }>, true>(true)
-		testType.equal<IsNumber<number & { a: 1 }, { distributive: false, exact: true }>, true>(true)
+		testType.equal<IsNumber<number & { a: 1 }, { distributive: false; exact: true }>, true>(true)
 
 		testType.equal<IsNumber<1 & { a: 1 }, { exact: true }>, false>(true)
-		testType.equal<IsNumber<1 & { a: 1 }, { distributive: false, exact: true }>, false>(true)
+		testType.equal<IsNumber<1 & { a: 1 }, { distributive: false; exact: true }>, false>(true)
 
 		testType.equal<IsNumber<1.1 & { a: 1 }, { exact: true }>, false>(true)
-		testType.equal<IsNumber<1.1 & { a: 1 }, { distributive: false, exact: true }>, false>(true)
+		testType.equal<IsNumber<1.1 & { a: 1 }, { distributive: false; exact: true }>, false>(true)
 
 		testType.equal<IsNumber<1n & { a: 1 }, { exact: true }>, false>(true)
-		testType.equal<IsNumber<1n & { a: 1 }, { distributive: false, exact: true }>, false>(true)
+		testType.equal<IsNumber<1n & { a: 1 }, { distributive: false; exact: true }>, false>(true)
 	})
 
 	it('works as filter', () => {
-		testType.equal<IsNumber<number, { selection: 'filter', exact: true }>, number>(true)
-		testType.equal<IsNumber<1, { selection: 'filter', exact: true }>, never>(true)
+		testType.equal<IsNumber<number, { selection: 'filter'; exact: true }>, number>(true)
+		testType.equal<IsNumber<1, { selection: 'filter'; exact: true }>, never>(true)
 
-		testType.equal<IsNumber<never, { selection: 'filter', exact: true }>, never>(true)
-		testType.equal<IsNumber<unknown, { selection: 'filter', exact: true }>, never>(true)
-		testType.equal<IsNumber<string | number, { selection: 'filter', exact: true }>, number>(true)
-		testType.equal<IsNumber<string | number, { selection: 'filter', exact: true, distributive: false }>, never>(true)
+		testType.equal<IsNumber<never, { selection: 'filter'; exact: true }>, never>(true)
+		testType.equal<IsNumber<unknown, { selection: 'filter'; exact: true }>, never>(true)
+		testType.equal<IsNumber<string | number, { selection: 'filter'; exact: true }>, number>(true)
+		testType.equal<IsNumber<string | number, { selection: 'filter'; exact: true; distributive: false }>, never>(true)
 
-		testType.equal<IsNumber<string | true, { selection: 'filter', exact: true }>, never>(true)
+		testType.equal<IsNumber<string | true, { selection: 'filter'; exact: true }>, never>(true)
 	})
 
 	it('works with unique branches', () => {
@@ -183,16 +183,16 @@ describe('exact', () => {
 
 	it('can override $any branch', () => {
 		testType.equal<IsNumber<any, { exact: true }>, false>(true)
-		testType.equal<IsNumber<any, { $any: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsNumber<any, { $any: unknown; exact: true }>, unknown>(true)
 	})
 
 	it('can override $unknown branch', () => {
 		testType.equal<IsNumber<unknown, { exact: true }>, false>(true)
-		testType.equal<IsNumber<unknown, { $unknown: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsNumber<unknown, { $unknown: unknown; exact: true }>, unknown>(true)
 	})
 
 	it('can override $never branch', () => {
 		testType.equal<IsNumber<never, { exact: true }>, false>(true)
-		testType.equal<IsNumber<never, { $never: unknown, exact: true }>, unknown>(true)
+		testType.equal<IsNumber<never, { $never: unknown; exact: true }>, unknown>(true)
 	})
 })
