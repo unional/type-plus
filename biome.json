@@ -3,7 +3,6 @@
 	"extends": ["./node_modules/@repobuddy/biome/recommended.json"],
 	"files": {
 		"ignore": [
-			"./git",
 			"./docs",
 			"packages/*/coverage",
 			"packages/*/cjs",
