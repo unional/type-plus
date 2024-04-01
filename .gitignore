@@ -53,7 +53,7 @@ node_modules
 # project
 /.turbo
 *.tsbuildinfo
-docs
+/docs
 */tslib/
 # old location
 /type-plus
