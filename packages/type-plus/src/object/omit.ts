@@ -4,9 +4,13 @@ import type { Pick } from './pick.js'
 import { record } from './record.js'
 import { reduceByKey } from './reduceKey.js'
 
-// by Titian Cernicova-Dragomir
-// https://github.com/microsoft/TypeScript/issues/28339#issuecomment-463577347
-// type-zoo
+/**
+ * Omit properties from a type.
+ *
+ * @origin [typescript#28339](https://github.com/microsoft/TypeScript/issues/28339#issuecomment-463577347)
+ * @originAuthor Titian Cernicova-Dragomir
+ * @alternative [type-zoo](https://github.com/pelotom/type-zoo)
+ */
 export type Omit<T, K extends UnionKeys<T>> = T extends unknown ? Pick<T, Exclude<keyof T, K>> : never
 
 /**
