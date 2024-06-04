@@ -44,7 +44,7 @@
     "npm-run-all2": "^6.0.0",
     "rimraf": "^5.0.5",
     "ts-jest": "^29.1.2",
-    "turbo": "1.13.0",
+    "turbo": "1.13.4",
     "typedoc": "^0.25.0",
     "typedoc-plugin-extras": "^3.0.0",
     "typescript": "~5.4.2"
