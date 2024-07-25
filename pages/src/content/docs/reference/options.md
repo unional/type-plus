@@ -1,11 +1,9 @@
 ---
 title: Options
-description: A reference page in my new Starlight docs site.
+description: Common options available to the types.
 ---
 
-# Type Options
-
-These are typical options available ti the types and what do they mean.
+These are typical options available to the types and what do they mean.
 
 ## 🔀 Distributive
 
@@ -15,6 +13,8 @@ so both branches may be executed.
 ```ts
 type R = IsUndefined<string | undefined> // true | false -> boolean
 ```
+
+Typically, most types are distributive by default.
 
 ## 📌 Exact
 

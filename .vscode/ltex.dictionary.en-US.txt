@@ -2,7 +2,9 @@ Codecov
 ASI
 PropType
 @gcanti
-
 Homa
 unional
 NONINFRINGEMENT
+endofunctor
+endofunction
+Endofunction
