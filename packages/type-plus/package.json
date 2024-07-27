@@ -34,8 +34,7 @@
       "import": {
         "types": "./esm/index.d.ts",
         "default": "./esm/index.js"
-      },
-      "default": "./esm/index.js"
+      }
     },
     "./package.json": "./package.json"
   },
