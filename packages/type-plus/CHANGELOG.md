@@ -1,5 +1,14 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 8.0.0-beta.3
+
+### Patch Changes
+
+- bbe256cb5: Remove `exports.default` in `package.json`.
+
+  That provide the wrong file to systems expecting CJS.
+  May need to add a different one for browser-spec.
+
 ## 8.0.0-beta.2
 
 ### Minor Changes
