@@ -8,7 +8,7 @@ import {
 	type $BranchOptions,
 	type $Any,
 	type $Unknown,
-	type $Never
+	type $Never,
 } from '../index.js'
 
 it('returns false if T is boolean', () => {

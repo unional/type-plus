@@ -1,15 +1,15 @@
 module.exports = {
 	env: {
 		node: true,
-		es6: true
+		es6: true,
 	},
 	ignorePatterns: ['docs', 'node_modules'],
 	parserOptions: {
-		sourceType: 'module'
+		sourceType: 'module',
 	},
 	extends: ['plugin:yml/standard'],
 	rules: {
-		'yml/quotes': ['error', { prefer: 'single' }]
+		'yml/quotes': ['error', { prefer: 'single' }],
 	},
-	root: true
+	root: true,
 }

@@ -28,7 +28,7 @@ import type { PadStart as PadStartArray } from './array_plus.pad_start.js'
 export type PadStart<
 	A extends readonly unknown[],
 	MaxLength extends number,
-	PadWith = unknown
+	PadWith = unknown,
 > = number extends A['length'] ? PadStartArray<A, MaxLength, PadWith> : PadStartTuple<A, MaxLength, PadWith>
 
 /**

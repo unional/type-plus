@@ -25,7 +25,7 @@ export type Merge<
 	A extends AnyRecord,
 	B extends AnyRecord,
 	// biome-ignore lint/correctness/noUnusedVariables: FIXME
-	Options = Merge.DefaultOptions
+	Options = Merge.DefaultOptions,
 > = Or<
 	IsAny<A>,
 	IsAny<B>,

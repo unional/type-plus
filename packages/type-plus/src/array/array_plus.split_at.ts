@@ -31,7 +31,7 @@ export type SplitAt<
 	A extends readonly unknown[],
 	Index extends number,
 	DeleteCount extends number | never = never,
-	Insert extends readonly unknown[] | never = never
+	Insert extends readonly unknown[] | never = never,
 > = IsArray<
 	A,
 	{
@@ -48,7 +48,7 @@ export namespace SplitAt {
 		C extends readonly unknown[],
 		Index extends number,
 		DeleteCount,
-		Insert extends readonly unknown[]
+		Insert extends readonly unknown[],
 	> = 0 extends A['length']
 		? IsTuple<Insert, { $then: [[...Insert, ...B], C]; $else: [B, C] }>
 		: Index extends B['length']
@@ -68,7 +68,7 @@ export namespace SplitAt {
 		B extends readonly unknown[],
 		C extends readonly unknown[],
 		DeleteCount,
-		Insert extends readonly unknown[]
+		Insert extends readonly unknown[],
 	> = DeleteCount extends C['length']
 		? IsTuple<Insert, { $then: [[...B, ...Insert, ...A], C]; $else: [[...B, ...A], C] }>
 		: A extends readonly [infer Head, ...infer Tail]

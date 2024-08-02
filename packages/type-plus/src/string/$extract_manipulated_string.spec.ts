@@ -194,7 +194,7 @@ it('unwraps T in Capitalize', () => {
 	testType.equal<$ExtractManipulatedString<Capitalize<`${number | string | bigint}`>>, string>(true)
 	testType.equal<$ExtractManipulatedString<Capitalize<`${number | bigint}`>>, `${number | bigint}`>(true)
 	testType.equal<$ExtractManipulatedString<Capitalize<`a${number | string | bigint}`>>, `A${number | string | bigint}`>(
-		true
+		true,
 	)
 	testType.equal<
 		$ExtractManipulatedString<Capitalize<`${number | string | bigint}c`>>,
@@ -263,7 +263,7 @@ it('unwraps nested T', () => {
 	testType.equal<$ExtractManipulatedString<Uppercase<Lowercase<Capitalize<Uncapitalize<'ABC'>>>>>, 'ABC'>(true)
 
 	testType.equal<$ExtractManipulatedString<Uppercase<Lowercase<Capitalize<Uncapitalize<`${number}`>>>>>, `${number}`>(
-		true
+		true,
 	)
 	testType.equal<
 		$ExtractManipulatedString<Uppercase<Lowercase<Capitalize<Uncapitalize<`a${number}`>>>>>,

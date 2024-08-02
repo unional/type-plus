@@ -28,7 +28,7 @@ export type IndexAt<
 	N extends number,
 	Fail = never,
 	Upper = A['length'],
-	Lower = 0
+	Lower = 0,
 > = IsNever<A, $SelectionBranch> extends infer R
 	? R extends $Then
 		? Fail

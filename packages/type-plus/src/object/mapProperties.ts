@@ -12,11 +12,11 @@ import type { ValueOf } from './ValueOf.js'
  */
 export function mapProperties<Subject extends AnyRecord, ResultProp>(
 	subject: Subject,
-	callbackfn: (value: ValueOf<Subject>, key: keyof Subject, obj: Subject) => ResultProp
+	callbackfn: (value: ValueOf<Subject>, key: keyof Subject, obj: Subject) => ResultProp,
 ): { [K in keyof Subject]: ResultProp } {
 	return reduceByKey(
 		subject,
 		(p, key) => ((p[key] = callbackfn(subject[key], key, subject)), p),
-		{} as { [K in keyof Subject]: ResultProp }
+		{} as { [K in keyof Subject]: ResultProp },
 	)
 }

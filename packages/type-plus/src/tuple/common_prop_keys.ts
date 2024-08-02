@@ -21,7 +21,7 @@ import type { CommonPropKeys as TupleCommonPropKeys } from './tuple_plus.common_
  */
 export type CommonPropKeys<
 	T extends Record<KeyTypes, unknown>[],
-	Options extends CommonPropKeys.Options = CommonPropKeys.DefaultOptions
+	Options extends CommonPropKeys.Options = CommonPropKeys.DefaultOptions,
 > = number extends T['length'] ? ArrayCommonPropKeys<T> : TupleCommonPropKeys<T, Options>
 
 export namespace CommonPropKeys {

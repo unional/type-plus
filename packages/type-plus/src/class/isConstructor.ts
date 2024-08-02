@@ -28,7 +28,7 @@ export function isConstructor(subject: unknown): subject is AnyConstructor {
  */
 export function isInstanceof<T extends AnyConstructor>(
 	subject: unknown,
-	classConstructor: T
+	classConstructor: T,
 ): subject is InstanceType<T> {
 	return subject instanceof classConstructor
 }

@@ -25,7 +25,7 @@ import type { DropMatch as TupleDropMatch } from './tuple_plus.drop_match.js'
  */
 export type DropFirst<
 	T extends unknown[],
-	Options extends DropFirst.Options = DropFirst.DefaultOptions<T>
+	Options extends DropFirst.Options = DropFirst.DefaultOptions<T>,
 > = number extends T['length']
 	? Options['$array']
 	: T['length'] extends 0
@@ -71,7 +71,7 @@ export namespace DropFirst {
  */
 export type DropLast<
 	T extends unknown[],
-	Cases extends DropLast.Options = DropLast.DefaultOptions<T>
+	Cases extends DropLast.Options = DropLast.DefaultOptions<T>,
 > = number extends T['length']
 	? Cases['$array']
 	: T['length'] extends 0

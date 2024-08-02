@@ -22,7 +22,7 @@ import type { Tail } from './tail.js'
  */
 export type CommonPropKeys<
 	T extends Record<KeyTypes, unknown>[],
-	Options extends CommonPropKeys.Options = CommonPropKeys.DefaultOptions
+	Options extends CommonPropKeys.Options = CommonPropKeys.DefaultOptions,
 > = IsNever<
 	T,
 	{

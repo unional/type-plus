@@ -119,7 +119,7 @@ it('', () => {
 
 	function doSomethingNoInferAjafff<T extends Dog | Cat>(
 		_getDefault: (x: any) => T,
-		_value: UnionToIntersection<K<NoInfer<T>>>
+		_value: UnionToIntersection<K<NoInfer<T>>>,
 	) {}
 
 	// TODO: This should pass

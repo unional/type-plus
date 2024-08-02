@@ -18,7 +18,7 @@ test('facade on function', () => {
 		a: 1,
 		foo() {
 			return this.a
-		}
+		},
 	}
 
 	const actual = facade(subject, 'foo')

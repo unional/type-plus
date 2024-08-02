@@ -21,7 +21,7 @@ describe('LeftJoin', () => {
 
 	it('removes extra empty {}', () => {
 		testType.equal<LeftJoin<{ leaf: { boo(): number } }, { leaf: { foo(): number } }>, { leaf: { foo(): number } }>(
-			true
+			true,
 		)
 
 		testType.equal<LeftJoin<{ leaf: { boo(): number } }, {}>, { leaf: { boo(): number } }>(true)

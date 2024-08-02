@@ -15,7 +15,7 @@ test('type this arg', () => {
 			function () {
 				return this.a === 1
 			},
-			{ a: 1 }
-		)
+			{ a: 1 },
+		),
 	).toBe(true)
 })

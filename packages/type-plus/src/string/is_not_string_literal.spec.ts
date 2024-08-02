@@ -403,7 +403,7 @@ describe('enable exact', () => {
 			testType.true<IsNotStringLiteral<Lowercase<string>, { distributive: false; exact: true }>>(true)
 			testType.true<IsNotStringLiteral<Lowercase<Uppercase<string>>, { distributive: false; exact: true }>>(true)
 			testType.true<IsNotStringLiteral<Lowercase<Lowercase<Uppercase<string>>>, { distributive: false; exact: true }>>(
-				true
+				true,
 			)
 		})
 

@@ -309,5 +309,5 @@ export namespace testType {
 export const testType = new Proxy({} as testType.TestType, {
 	get(_target, _prop, _receiver) {
 		return (expected: unknown) => expected
-	}
+	},
 })

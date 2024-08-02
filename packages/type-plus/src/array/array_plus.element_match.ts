@@ -28,7 +28,7 @@ import type { TypePlusOptions } from '../utils/options.js'
  * e.g. `ElementMatch<1 | 2, 1>` -> `1 | undefined`
  */
 export type ElementMatch<T, Criteria, Options extends ElementMatch.Options = ElementMatch.DefaultOptions<Criteria>> = [
-	T
+	T,
 ] extends [Criteria]
 	? T
 	: TypePlusOptions.Merge<Options, ElementMatch.DefaultOptions<Criteria>> extends infer C extends Record<

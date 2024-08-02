@@ -16,7 +16,7 @@ export function assertType<T>(subject: unknown, validator: (s: T) => boolean): a
  */
 export function assertType<T extends new (..._args: any[]) => any>(
 	subject: unknown,
-	classConstructor: T
+	classConstructor: T,
 ): asserts subject is InstanceType<T>
 export function assertType(subject: unknown, validator?: (s: any) => boolean) {
 	if (validator) {

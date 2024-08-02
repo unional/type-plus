@@ -53,6 +53,6 @@ it('gets common keys from multiple entries', () => {
 	testType.equal<CommonPropKeys<[{ a: number }, { b: number }, { c: number }]>, never>(true)
 
 	testType.equal<CommonPropKeys<[{ a: number; d: 1 }, { b: number; d?: 2 }, { c: number; d?: 3 | undefined }]>, 'd'>(
-		true
+		true,
 	)
 })

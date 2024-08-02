@@ -11,7 +11,7 @@ export function just<T>(value: T): IsEqual<T, undefined | null> extends true ? N
 	return {
 		unwrap() {
 			return value
-		}
+		},
 	} as any
 }
 

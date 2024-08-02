@@ -21,7 +21,7 @@ describe('FromNumeric', () => {
 			testType.equal<NumericStruct.FromNumeric<-1n>, ['bigint', ['-', [1], 0]]>(true)
 
 			testType.equal<NumericStruct.FromNumeric<-1234567890n>, ['bigint', ['-', [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 0]]>(
-				true
+				true,
 			)
 
 			testType.equal<

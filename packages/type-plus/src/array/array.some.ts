@@ -27,7 +27,7 @@ export type Some<
 	Criteria,
 	Mode extends 'strict' | 'loose' = 'loose',
 	Then = true,
-	Else = false
+	Else = false,
 > = Mode extends 'strict' ? Some.Strict<A, Criteria, Then, Else> : Some.Loose<A, Criteria, Then, Else>
 
 export namespace Some {

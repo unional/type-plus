@@ -26,7 +26,7 @@ export type ContextBuilder<Init extends ContextBaseShape, Ctx extends ContextBas
 	 * it overrides the existing value.
 	 */
 	extend<Additional extends ContextBaseShape = ContextBaseShape>(
-		extender: ContextExtender<Ctx, Additional>
+		extender: ContextExtender<Ctx, Additional>,
 	): ContextBuilder<Init, LeftJoin<Ctx, Additional>>
 	/**
 	 * Build and return the context.
@@ -43,7 +43,7 @@ export type ContextBuilder<Init extends ContextBaseShape, Ctx extends ContextBas
  * use `build()` to build the context.
  */
 export function context<Init extends ContextBaseShape, Ctx extends ContextBaseShape = Init>(
-	init?: Init | (() => Init)
+	init?: Init | (() => Init),
 ): ContextBuilder<Init, Ctx> {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 	return typeof init === 'function' ? contextBuilder({}, [[init]]) : (contextBuilder(init ?? {}, []) as any)
@@ -60,7 +60,7 @@ function contextBuilder(init: ContextBaseShape, extenders: Array<[ContextExtende
 				const v = typeof t === 'function' ? (extenders[i]![0] = t(p)) : t
 				return Object.assign({}, p, v)
 			}, init)
-		}
+		},
 	}
 }
 /* eslint-enable */

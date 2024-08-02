@@ -10,7 +10,7 @@ export type PromiseValueMerge<
 	P6 extends Promise<any> = any,
 	P7 extends Promise<any> = any,
 	P8 extends Promise<any> = any,
-	P9 extends Promise<any> = any
+	P9 extends Promise<any> = any,
 > = Promise<
 	Awaited<P1> &
 		Awaited<P2> &

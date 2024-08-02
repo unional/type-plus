@@ -24,7 +24,7 @@ import type { TypePlusOptions } from '../utils/options.js'
 export type Filter<
 	A extends readonly unknown[],
 	Criteria = true,
-	Options extends Filter.Options = Filter.DefaultOptions
+	Options extends Filter.Options = Filter.DefaultOptions,
 > = TypePlusOptions.Merge<Options, Filter.DefaultOptions> extends infer O extends Filter.Options
 	? IsNever<
 			A,

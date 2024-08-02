@@ -21,7 +21,7 @@
 export type IsLiteral<
 	T extends number | boolean | bigint | string | symbol,
 	Then = true,
-	Else = false
+	Else = false,
 > = number extends T
 	? Else
 	: string extends T

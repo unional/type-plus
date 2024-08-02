@@ -1,6 +1,6 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.6.2/schema.json",
-	"extends": ["./node_modules/@repobuddy/biome/recommended.json"],
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"extends": ["@repobuddy/biome/recommended"],
 	"files": {
 		"ignore": [
 			"./docs",

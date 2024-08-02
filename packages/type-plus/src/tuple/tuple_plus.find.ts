@@ -51,7 +51,7 @@ import type { IsTuple } from './is_tuple.js'
 export type Find<
 	A extends readonly unknown[],
 	Criteria,
-	Options extends Find.Options = Find.DefaultOptions<Criteria>
+	Options extends Find.Options = Find.DefaultOptions<Criteria>,
 > = TypePlusOptions.Merge<Options, Find.DefaultOptions<Criteria>> extends infer O extends Find.Options
 	? IsTuple<
 			A,
