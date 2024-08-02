@@ -10,6 +10,6 @@ test('map over values', () => {
 		(result) => {
 			expect(actual).toBe('321')
 			expect(result).toEqual(['3', '32', '321'])
-		}
+		},
 	)
 })

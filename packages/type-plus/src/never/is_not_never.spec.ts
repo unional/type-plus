@@ -8,7 +8,7 @@ import {
 	type $Then,
 	type $Unknown,
 	type IsNotNever,
-	testType
+	testType,
 } from '../index.js'
 
 // alternative implementation

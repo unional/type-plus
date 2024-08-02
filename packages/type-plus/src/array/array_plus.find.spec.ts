@@ -61,7 +61,7 @@ it('can override unionNotMach to `undefined`', () => {
 	// as an array of `Array<string | number>` can contains only `string` or `number`.
 	// so `Find<Array<string | number>, string>` returns `string | undefined`.
 	testType.equal<ArrayPlus.Find<Array<string | number>, number, { $unionNotMatch: undefined }>, number | undefined>(
-		true
+		true,
 	)
 	testType.equal<ArrayPlus.Find<Array<1 | 2 | 'x'>, number, { $unionNotMatch: undefined }>, 1 | 2 | undefined>(true)
 })

@@ -11,25 +11,25 @@ export default defineConfig({
 		starlight({
 			title: 'type-plus',
 			social: {
-				github: 'https://github.com/unional/type-plus'
+				github: 'https://github.com/unional/type-plus',
 			},
 			sidebar: [
 				{
 					label: 'Guides',
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', link: '/guides/example/' }
-					]
+						{ label: 'Example Guide', link: '/guides/example/' },
+					],
 				},
 				{
 					label: 'API',
-					autogenerate: { directory: 'api' }
+					autogenerate: { directory: 'api' },
 				},
 				{
 					label: 'Reference',
-					autogenerate: { directory: 'reference' }
-				}
-			]
-		})
-	]
+					autogenerate: { directory: 'reference' },
+				},
+			],
+		}),
+	],
 })

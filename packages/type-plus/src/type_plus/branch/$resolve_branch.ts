@@ -22,7 +22,7 @@ export type $ResolveBranch<
 	T,
 	$O extends Record<string, any>,
 	$B extends Array<$Branch<any> | unknown>,
-	$D = unknown
+	$D = unknown,
 > = [unknown, $D] extends [$D, unknown]
 	? $B extends [infer B]
 		? $ResolveBranch._Last<T, $O, B>
@@ -33,7 +33,7 @@ export type $ResolveBranch<
 
 export namespace $ResolveBranch {
 	export type _Override<$D, $O extends Record<string, any>, $B extends Array<$Branch<any> | unknown>> = $B extends [
-		infer B
+		infer B,
 	]
 		? _OLast<$D, $O, B>
 		: $B extends [infer B, ...infer Bs extends Array<$Branch<any> | unknown>]

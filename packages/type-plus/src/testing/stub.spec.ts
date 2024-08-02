@@ -25,6 +25,6 @@ it('retains param types if the requested type is a function', () => {
 			testType.equal<typeof a, string>(true)
 			testType.equal<typeof b, number>(true)
 			return false
-		})
+		}),
 	)
 })

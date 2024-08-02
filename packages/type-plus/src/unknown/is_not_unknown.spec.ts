@@ -8,7 +8,7 @@ import {
 	type $SelectionBranch,
 	type $Then,
 	type IsNotUnknown,
-	testType
+	testType,
 } from '../index.js'
 
 // alternative implementation

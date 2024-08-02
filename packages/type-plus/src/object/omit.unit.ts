@@ -4,7 +4,7 @@ import type { Omit } from '../index.js'
 it('intersection types with generic', () => {
 	// note this is not a typical use case.
 	// it is used to show that the assignability is still working.
-	type Foo = { a: string, b: string }
+	type Foo = { a: string; b: string }
 	function foo<T>(input: Omit<Foo & T, 'b'>): void {
 		input.a = '1'
 		// @ts-expect-error Property 'b' does not exist

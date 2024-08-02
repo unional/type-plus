@@ -7,7 +7,7 @@ import {
 	type $ResolveBranch,
 	type $SelectionBranch,
 	type $Then,
-	testType
+	testType,
 } from '../../index.js'
 import type { $Override } from './$override.js'
 

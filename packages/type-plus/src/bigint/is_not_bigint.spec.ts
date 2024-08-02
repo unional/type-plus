@@ -8,7 +8,7 @@ import {
 	type $Never,
 	type $Then,
 	type $Unknown,
-	type IsNotBigint
+	type IsNotBigint,
 } from '../index.js'
 
 it('returns false for bigint', () => {

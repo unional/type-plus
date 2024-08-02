@@ -736,10 +736,10 @@ describe('enable exact', () => {
 			testType.false<IsStringLiteral<Uppercase<Uppercase<string>>, { distributive: false; exact: true }>>(true)
 			testType.false<IsStringLiteral<Uppercase<Lowercase<string>>, { distributive: false; exact: true }>>(true)
 			testType.false<IsStringLiteral<Uppercase<Uppercase<Lowercase<string>>>, { distributive: false; exact: true }>>(
-				true
+				true,
 			)
 			testType.false<IsStringLiteral<Uppercase<Lowercase<Uppercase<string>>>, { distributive: false; exact: true }>>(
-				true
+				true,
 			)
 		})
 
@@ -758,10 +758,10 @@ describe('enable exact', () => {
 			testType.false<IsStringLiteral<Lowercase<Lowercase<string>>, { distributive: false; exact: true }>>(true)
 			testType.false<IsStringLiteral<Lowercase<Uppercase<string>>, { distributive: false; exact: true }>>(true)
 			testType.false<IsStringLiteral<Lowercase<Lowercase<Uppercase<string>>>, { distributive: false; exact: true }>>(
-				true
+				true,
 			)
 			testType.false<IsStringLiteral<Lowercase<Uppercase<Lowercase<string>>>, { distributive: false; exact: true }>>(
-				true
+				true,
 			)
 		})
 

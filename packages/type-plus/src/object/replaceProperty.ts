@@ -5,7 +5,7 @@ export type ReplaceProperty<T extends AnyRecord, K extends keyof T, V> = Omit<T,
 export function replaceProperty<T extends AnyRecord, K extends keyof T, V>(
 	subject: T,
 	key: K,
-	value: V
+	value: V,
 ): ReplaceProperty<T, K, V> {
 	return { ...subject, [key]: value }
 }

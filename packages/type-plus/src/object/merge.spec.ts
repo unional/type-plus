@@ -104,10 +104,10 @@ it('merges an optional property with a required property merges the two as union
 it('merges two optional properties', () => {
 	testType.equal<ObjectPlus.Merge<{ a?: number }, { a?: string }>, { a?: number | string }>(true)
 	testType.equal<ObjectPlus.Merge<{ a?: number | undefined }, { a?: string }>, { a?: number | string | undefined }>(
-		true
+		true,
 	)
 	testType.equal<ObjectPlus.Merge<{ a?: number }, { a?: string | undefined }>, { a?: number | string | undefined }>(
-		true
+		true,
 	)
 	testType.equal<
 		ObjectPlus.Merge<{ a?: number | undefined }, { a?: string | undefined }>,

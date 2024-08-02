@@ -52,7 +52,7 @@ import type { Find as ArrayFind } from './array_plus.find.js'
 export type FindFirst<
 	A extends readonly unknown[],
 	Criteria,
-	Options extends FindFirst.Options = FindFirst.DefaultOptions<Criteria>
+	Options extends FindFirst.Options = FindFirst.DefaultOptions<Criteria>,
 > = IsTuple<
 	A,
 	{

@@ -5,7 +5,7 @@ import { type IsNever, testType } from '../index.js'
 // @todo: this should be a new type that filter within the union.
 // That type cannot support override because the `Then` type can be overridden,
 // and the logic will not be correct.
-export type TupleTypeFilterUnion<T> = IsNever<
+type TupleTypeFilterUnion<T> = IsNever<
 	T,
 	{
 		$then: never

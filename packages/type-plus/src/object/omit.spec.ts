@@ -64,7 +64,6 @@ describe('Omit<T, K>', () => {
 		x = { type: 'B', foo: 'bar' }
 		expect(x.foo).toBe('bar')
 	})
-
 })
 
 describe(`${omit.name}()`, () => {

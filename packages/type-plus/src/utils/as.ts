@@ -16,6 +16,6 @@ export function amend<S>(subject: S) {
 		},
 		intersect<T>(): T | S {
 			return subject as T | S
-		}
+		},
 	}
 }

@@ -354,7 +354,7 @@ it('works with intersect types', () => {
 
 	testType.true<IsEqual<{ nested: { a: number; b: string } }, { nested: { a: number } & { b: string } }>>(
 		// @ts-expect-error: Known limitation: nested intersection type properties don't work.
-		true
+		true,
 	)
 })
 
@@ -430,7 +430,7 @@ it('works with deep any', () => {
 		IsEqual<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: 2; u: unknown; v: void } }>
 	>(true)
 	testType.false<IsEqual<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: never; u: 3; v: void } }>>(
-		true
+		true,
 	)
 	testType.false<
 		IsEqual<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: never; u: unknown; v: 4 } }>

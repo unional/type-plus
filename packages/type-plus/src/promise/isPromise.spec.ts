@@ -25,7 +25,7 @@ test('type guard as promise', () => {
 		// biome-ignore lint/suspicious/noThenProperty: on purpose
 		then() {
 			return true
-		}
+		},
 	}
 	if (isPromise(subject)) {
 		expect(subject.then()).toBe(true)

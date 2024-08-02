@@ -12,7 +12,7 @@ export type StringIncludes<
 	Subject extends string,
 	Search extends string,
 	Then = true,
-	Else = false
+	Else = false,
 > = Subject extends `${infer _X}${Search}${infer _Y}` ? Then : Else
 
 /**
@@ -28,7 +28,7 @@ export type StringIncludes<
  */
 export type StringSplit<
 	Subject extends string,
-	Seperator extends string
+	Seperator extends string,
 > = Subject extends `${infer A}${Seperator}${infer B}`
 	? [A, ...StringSplit<B, Seperator>]
 	: Seperator extends ''

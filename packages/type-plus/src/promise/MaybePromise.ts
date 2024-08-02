@@ -20,12 +20,12 @@ export function transformMaybePromise<T, R>(value: Promise<T>, transformer: (val
  */
 export function transformMaybePromise<T, R>(
 	value: T,
-	transformer: (value: T) => R
+	transformer: (value: T) => R,
 ): T extends Promise<any> ? Promise<R> : R
 export function transformMaybePromise<T, R>(value: MaybePromise<T>, transformer: (value: T) => R) {
 	return isPromise(value) ? value.then(transformer) : transformer(value)
 }
 
 export const MaybePromise = {
-	transform: transformMaybePromise
+	transform: transformMaybePromise,
 }

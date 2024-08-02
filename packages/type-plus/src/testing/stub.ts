@@ -21,7 +21,7 @@ export function stub<T>(stub: unknown): T {
  * builds a stub function
  */
 function build<T>(
-	init: RecursivePartial<T> | ((stub?: RecursivePartial<T>) => RecursivePartial<T>)
+	init: RecursivePartial<T> | ((stub?: RecursivePartial<T>) => RecursivePartial<T>),
 ): (stub?: RecursivePartial<T>) => T
 function build<T>(init: RecursivePartial<T> | ((stub?: RecursivePartial<T>) => RecursivePartial<T>)) {
 	return builder(init).create()
@@ -46,7 +46,7 @@ function builder<T>(init: RecursivePartial<T> | ((stub?: RecursivePartial<T>) =>
 }
 
 function builderInternal<T>(
-	initializers: Array<RecursivePartial<T> | ((stub?: RecursivePartial<T>) => RecursivePartial<T>)>
+	initializers: Array<RecursivePartial<T> | ((stub?: RecursivePartial<T>) => RecursivePartial<T>)>,
 ) {
 	const builder = {
 		/**
@@ -73,7 +73,7 @@ function builderInternal<T>(
 					return requiredDeep<RecursivePartial<T>>(init, acc)
 				}, stub) as T
 			}
-		}
+		},
 	}
 	return builder
 }

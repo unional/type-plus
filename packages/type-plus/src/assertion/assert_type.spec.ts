@@ -22,7 +22,7 @@ describe('assertType()', () => {
 		const s: unknown = 1
 		a.throws(
 			() => assertType(s, (s) => typeof s === 'boolean'),
-			(e) => /subject fails to satisfy s => typeof s === 'boolean'/.test(e)
+			(e) => /subject fails to satisfy s => typeof s === 'boolean'/.test(e),
 		)
 	})
 	it('Class as validator', () => {
@@ -35,7 +35,7 @@ describe('assertType()', () => {
 		const s: unknown = 1
 		a.throws(
 			() => assertType(s, Foo),
-			(e: Error) => /subject fails to satisfy class Foo{}/.test(e.message)
+			(e: Error) => /subject fails to satisfy class Foo{}/.test(e.message),
 		)
 	})
 	it('subject can be type any', () => {
@@ -602,7 +602,7 @@ describe('assertType.custom', () => {
 		const s: unknown = 1
 		a.throws(
 			() => isBool(s),
-			(e) => /subject fails to satisfy s => typeof s === 'boolean'/.test(e)
+			(e) => /subject fails to satisfy s => typeof s === 'boolean'/.test(e),
 		)
 	})
 })

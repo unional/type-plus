@@ -49,7 +49,7 @@ import type { ElementMatch } from './array_plus.element_match.js'
 export type Find<
 	A extends readonly unknown[],
 	Criteria,
-	Options extends Find.Options = Find.DefaultOptions<Criteria>
+	Options extends Find.Options = Find.DefaultOptions<Criteria>,
 > = IsTuple<
 	A,
 	{

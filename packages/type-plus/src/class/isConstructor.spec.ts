@@ -15,7 +15,7 @@ test('check throw function', () => {
 	expect(
 		isConstructor(() => {
 			throw new Error()
-		})
+		}),
 	).toBe(false)
 })
 

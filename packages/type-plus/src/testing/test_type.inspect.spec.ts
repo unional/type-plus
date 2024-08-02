@@ -35,7 +35,7 @@ it('can inspect T extends basic types', () => {
 			extends_tuple_empty,
 			extends_undefined,
 			extends_unknown,
-			extends_void
+			extends_void,
 		}) => {
 			testType.false<typeof extends_1>(true)
 			testType.false<typeof extends_1n>(true)
@@ -57,7 +57,7 @@ it('can inspect T extends basic types', () => {
 			testType.false<typeof extends_undefined>(true)
 			testType.true<typeof extends_unknown>(true)
 			testType.false<typeof extends_void>(true)
-		}
+		},
 	)
 })
 
@@ -89,7 +89,7 @@ it('can inspect T union with basic types', () => {
 			union_tuple_empty,
 			union_undefined,
 			union_unknown,
-			union_void
+			union_void,
 		}) => {
 			testType.equal<typeof union_1, 123 | 1>(true)
 			testType.equal<typeof union_1n, 123 | 1n>(true)
@@ -111,7 +111,7 @@ it('can inspect T union with basic types', () => {
 			testType.equal<typeof union_undefined, 123 | undefined>(true)
 			testType.equal<typeof union_unknown, unknown>(true)
 			testType.equal<typeof union_void, 123 | void>(true)
-		}
+		},
 	)
 })
 
@@ -143,7 +143,7 @@ it('can inspect T intersect with basic types', () => {
 			intersect_tuple_empty,
 			intersect_undefined,
 			intersect_unknown,
-			intersect_void
+			intersect_void,
 		}) => {
 			testType.equal<typeof intersect_1, never>(true)
 			testType.equal<typeof intersect_1n, never>(true)
@@ -165,6 +165,6 @@ it('can inspect T intersect with basic types', () => {
 			testType.equal<typeof intersect_undefined, never>(true)
 			testType.equal<typeof intersect_unknown, 123>(true)
 			testType.equal<typeof intersect_void, never>(true)
-		}
+		},
 	)
 })

@@ -21,7 +21,7 @@ import type { KeyTypes } from '../object/KeyTypes.js'
  */
 export type CommonPropKeys<
 	A extends readonly Record<KeyTypes, unknown>[],
-	Options extends CommonPropKeys.Options = CommonPropKeys.DefaultOptions
+	Options extends CommonPropKeys.Options = CommonPropKeys.DefaultOptions,
 > = IsNever<
 	A,
 	{

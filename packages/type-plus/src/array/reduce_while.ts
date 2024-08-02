@@ -8,7 +8,7 @@ export function reduceWhile<T, R>(
 	predicate: (acc: R, currentValue: T) => boolean,
 	callbackfn: (previousValue: R, currentValue: T, currentIndex: number, array: T[]) => R,
 	initialValue: R,
-	array: T[]
+	array: T[],
 ) {
 	let acc = initialValue
 	for (let i = 0; i < array.length; i++) {

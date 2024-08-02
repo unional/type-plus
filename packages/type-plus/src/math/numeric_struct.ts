@@ -105,17 +105,17 @@ export namespace NumericStruct {
 
 	export type Add<A extends NumericStruct, B extends NumericStruct> = [
 		A[TYPE],
-		DigitsStruct.Add<A[DIGITS_STRUCT], B[DIGITS_STRUCT]>
+		DigitsStruct.Add<A[DIGITS_STRUCT], B[DIGITS_STRUCT]>,
 	]
 
 	export type Subtract<A extends NumericStruct, B extends NumericStruct> = [
 		A[TYPE],
-		DigitsStruct.Subtract<A[DIGITS_STRUCT], B[DIGITS_STRUCT]>
+		DigitsStruct.Subtract<A[DIGITS_STRUCT], B[DIGITS_STRUCT]>,
 	]
 
 	export type Multiply<A extends NumericStruct, B extends NumericStruct> = [
 		A[TYPE],
-		DigitsStruct.Multiply<A[DIGITS_STRUCT], B[DIGITS_STRUCT]>
+		DigitsStruct.Multiply<A[DIGITS_STRUCT], B[DIGITS_STRUCT]>,
 	]
 }
 
@@ -145,7 +145,7 @@ export namespace DigitsStruct {
 		? R extends `${infer W}.${infer F}`
 			? [DigitArray.FromString<W>, DigitArray.FromString<F>] extends [
 					infer WA extends number[],
-					infer FA extends number[]
+					infer FA extends number[],
 				]
 				? ['-', DigitArray.TrimLeadingZeros<[...WA, ...FA]>, FA['length']]
 				: never
@@ -153,7 +153,7 @@ export namespace DigitsStruct {
 		: `${N}` extends `${infer W}.${infer F}`
 			? [DigitArray.FromString<W>, DigitArray.FromString<F>] extends [
 					infer WA extends number[],
-					infer FA extends number[]
+					infer FA extends number[],
 				]
 				? ['+', DigitArray.TrimLeadingZeros<[...WA, ...FA]>, FA['length']]
 				: never
@@ -216,7 +216,7 @@ export namespace DigitsStruct {
 	 */
 	export type Normalize<
 		N extends DigitsStruct,
-		R extends DigitsStruct = ['+', [], 0]
+		R extends DigitsStruct = ['+', [], 0],
 	> = `${N[DIGITS][0]}` extends `-${number}`
 		? Normalize<FlipSign<N>, R>
 		: [N[SIGN], DigitArray.CarryDigits<N[DIGITS]>, N[EXPONENT]]
@@ -237,7 +237,7 @@ export namespace DigitsStruct {
 	 */
 	export type Add<A extends DigitsStruct, B extends DigitsStruct> = Balance<A, B> extends [
 		infer BA extends DigitsStruct,
-		infer BB extends DigitsStruct
+		infer BB extends DigitsStruct,
 	]
 		? [BA[SIGN], BB[SIGN]] extends ['+', '+']
 			? Normalize<['+', DigitArray.Add<BA[DIGITS], BB[DIGITS]>, BA[EXPONENT]]>
@@ -252,7 +252,7 @@ export namespace DigitsStruct {
 
 	export type Subtract<A extends DigitsStruct, B extends DigitsStruct> = Balance<A, B> extends [
 		infer BA extends DigitsStruct,
-		infer BB extends DigitsStruct
+		infer BB extends DigitsStruct,
 	]
 		? [BA[SIGN], BB[SIGN]] extends ['+', '+']
 			? Normalize<['+', DigitArray.Subtract<BA[DIGITS], BB[DIGITS]>, BA[EXPONENT]]>
@@ -296,7 +296,7 @@ export namespace DigitsStruct {
 		A extends number,
 		B extends number,
 		C extends number[] = [],
-		R extends number[] = []
+		R extends number[] = [],
 	> = A extends B
 		? [[], 'A']
 		: R extends []
@@ -400,7 +400,7 @@ export namespace DigitArray {
 				: never
 			: [A, B] extends [
 						[...infer AH extends number[], infer AL extends number],
-						[...infer BH extends number[], infer BL extends number]
+						[...infer BH extends number[], infer BL extends number],
 					]
 				? Add<AH, BH, [Digit.Add<AL, BL>, ...R]>
 				: never
@@ -417,7 +417,7 @@ export namespace DigitArray {
 				: never
 			: [A, B] extends [
 						[...infer AH extends number[], infer AL extends number],
-						[...infer BH extends number[], infer BL extends number]
+						[...infer BH extends number[], infer BL extends number],
 					]
 				? Subtract<AH, BH, [Digit.Subtract<AL, BL>, ...R]>
 				: never
@@ -593,7 +593,7 @@ export namespace Digit {
 		[78, 79, 80, 81, 82, 83, 84, 85, 86, 87],
 		[79, 80, 81, 82, 83, 84, 85, 86, 87, 88],
 		[80, 81, 82, 83, 84, 85, 86, 87, 88, 89],
-		[81, 82, 83, 84, 85, 86, 87, 88, 89, 90]
+		[81, 82, 83, 84, 85, 86, 87, 88, 89, 90],
 	][A][B]
 
 	/**
@@ -602,7 +602,7 @@ export namespace Digit {
 	 */
 	export type Subtract<A extends number, B extends number> = [`${A}`, `${B}`] extends [
 		`${number}${infer A2 extends number}`,
-		`${number}${infer B2 extends number}`
+		`${number}${infer B2 extends number}`,
 	]
 		? Subtract<A2, B2>
 		: `${A}` extends `${number}${infer A2 extends number}`
@@ -621,7 +621,7 @@ export namespace Digit {
 		[6, 5, 4, 3, 2, 1, 0, -1, -2, -3],
 		[7, 6, 5, 4, 3, 2, 1, 0, -1, -2],
 		[8, 7, 6, 5, 4, 3, 2, 1, 0, -1],
-		[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+		[9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
 	][A][B]
 
 	export type Plus10 = { [k in number]: number } & {
@@ -645,6 +645,6 @@ export namespace Digit {
 		[0, 6, 12, 18, 24, 30, 36, 42, 48, 54],
 		[0, 7, 14, 21, 28, 35, 42, 49, 56, 63],
 		[0, 8, 16, 24, 32, 40, 48, 56, 64, 72],
-		[0, 9, 18, 27, 36, 45, 54, 63, 72, 81]
+		[0, 9, 18, 27, 36, 45, 54, 63, 72, 81],
 	][A][B]
 }

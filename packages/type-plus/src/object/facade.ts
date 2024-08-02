@@ -7,20 +7,20 @@ export function facade<T extends AnyRecord, P1 extends keyof T>(subject: T, prop
 export function facade<T extends AnyRecord, P1 extends keyof T, P2 extends keyof T>(
 	subject: T,
 	prop1: P1,
-	prop2: P2
+	prop2: P2,
 ): Pick<T, P1 | P2>
 export function facade<T extends AnyRecord, P1 extends keyof T, P2 extends keyof T, P3 extends keyof T>(
 	subject: T,
 	prop1: P1,
 	prop2: P2,
-	prop3: P3
+	prop3: P3,
 ): Pick<T, P1 | P2 | P3>
 export function facade<
 	T extends AnyRecord,
 	P1 extends keyof T,
 	P2 extends keyof T,
 	P3 extends keyof T,
-	P4 extends keyof T
+	P4 extends keyof T,
 >(subject: T, prop1: P1, prop2: P2, prop3: P3, prop4: P4): Pick<T, P1 | P2 | P3 | P4>
 export function facade<
 	T extends AnyRecord,
@@ -28,7 +28,7 @@ export function facade<
 	P2 extends keyof T,
 	P3 extends keyof T,
 	P4 extends keyof T,
-	P5 extends keyof T
+	P5 extends keyof T,
 >(subject: T, prop1: P1, prop2: P2, prop3: P3, prop4: P4, prop5: P5): Pick<T, P1 | P2 | P3 | P4 | P5>
 export function facade<
 	T extends AnyRecord,
@@ -37,7 +37,7 @@ export function facade<
 	P3 extends keyof T,
 	P4 extends keyof T,
 	P5 extends keyof T,
-	P6 extends keyof T
+	P6 extends keyof T,
 >(subject: T, prop1: P1, prop2: P2, prop3: P3, prop4: P4, prop5: P5, prop6: P6): Pick<T, P1 | P2 | P3 | P4 | P5 | P6>
 export function facade<
 	T extends AnyRecord,
@@ -47,7 +47,7 @@ export function facade<
 	P4 extends keyof T,
 	P5 extends keyof T,
 	P6 extends keyof T,
-	P7 extends keyof T
+	P7 extends keyof T,
 >(
 	subject: T,
 	prop1: P1,
@@ -56,7 +56,7 @@ export function facade<
 	prop4: P4,
 	prop5: P5,
 	prop6: P6,
-	prop7: P7
+	prop7: P7,
 ): Pick<T, P1 | P2 | P3 | P4 | P5 | P6 | P7>
 export function facade<
 	T extends AnyRecord,
@@ -67,7 +67,7 @@ export function facade<
 	P5 extends keyof T,
 	P6 extends keyof T,
 	P7 extends keyof T,
-	P8 extends keyof T
+	P8 extends keyof T,
 >(
 	subject: T,
 	prop1: P1,
@@ -77,7 +77,7 @@ export function facade<
 	prop5: P5,
 	prop6: P6,
 	prop7: P7,
-	prop8: P8
+	prop8: P8,
 ): Pick<T, P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8>
 export function facade<
 	T extends AnyRecord,
@@ -89,7 +89,7 @@ export function facade<
 	P6 extends keyof T,
 	P7 extends keyof T,
 	P8 extends keyof T,
-	P9 extends keyof T
+	P9 extends keyof T,
 >(
 	subject: T,
 	prop1: P1,
@@ -100,7 +100,7 @@ export function facade<
 	prop6: P6,
 	prop7: P7,
 	prop8: P8,
-	prop9: P9
+	prop9: P9,
 ): Pick<T, P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9>
 export function facade<
 	T extends AnyRecord,
@@ -113,7 +113,7 @@ export function facade<
 	P7 extends keyof T,
 	P8 extends keyof T,
 	P9 extends keyof T,
-	P10 extends keyof T
+	P10 extends keyof T,
 >(
 	subject: T,
 	prop1: P1,
@@ -125,7 +125,7 @@ export function facade<
 	prop7: P7,
 	prop8: P8,
 	prop9: P9,
-	prop10: P10
+	prop10: P10,
 ): Pick<T, P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9 | P10>
 export function facade<
 	T extends AnyRecord,
@@ -139,7 +139,7 @@ export function facade<
 	P8 extends keyof T,
 	P9 extends keyof T,
 	P10 extends keyof T,
-	P11 extends keyof T
+	P11 extends keyof T,
 >(
 	subject: T,
 	prop1: P1,
@@ -152,7 +152,7 @@ export function facade<
 	prop8: P8,
 	prop9: P9,
 	prop10: P10,
-	prop11: P11
+	prop11: P11,
 ): Pick<T, P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9 | P10 | P11>
 export function facade<
 	T extends AnyRecord,
@@ -167,7 +167,7 @@ export function facade<
 	P9 extends keyof T,
 	P10 extends keyof T,
 	P11 extends keyof T,
-	P12 extends keyof T
+	P12 extends keyof T,
 >(
 	subject: T,
 	prop1: P1,
@@ -181,7 +181,7 @@ export function facade<
 	prop9: P9,
 	prop10: P10,
 	prop11: P11,
-	prop12: P12
+	prop12: P12,
 ): Pick<T, P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9 | P10 | P11 | P12>
 export function facade<T extends AnyRecord>(subject: T, ...props: (keyof T)[]) {
 	return props.reduce((p, k) => {
@@ -198,7 +198,7 @@ export function facade<T extends AnyRecord>(subject: T, ...props: (keyof T)[]) {
 				set(value: any) {
 					// eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-assignment
 					return (subject[k] = value)
-				}
+				},
 			})
 		}
 		return p

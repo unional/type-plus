@@ -25,11 +25,11 @@ it('can add init function to builder', () => {
 	const s = stub
 		.builder<{ a: number; b?: string }>((input) => ({
 			...input,
-			a: (input?.a ?? 0) + 1
+			a: (input?.a ?? 0) + 1,
 		}))
 		.with((input) => ({
 			...input,
-			b: `${input?.b ?? '0'}1`
+			b: `${input?.b ?? '0'}1`,
 		}))
 		.create()
 	expect(s()).toEqual({ a: 1, b: '01' })

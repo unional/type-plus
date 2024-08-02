@@ -29,7 +29,7 @@ export namespace PadStart {
 		Source extends readonly unknown[],
 		MaxLength extends number,
 		PadWith,
-		Result extends unknown[]
+		Result extends unknown[],
 	> = Result['length'] extends MaxLength
 		? Source extends []
 			? Result

@@ -16,8 +16,8 @@ describe('reduceWhile()', () => {
 					return (p += v)
 				},
 				'',
-				array
-			)
+				array,
+			),
 		).toEqual('abc')
 	})
 	test('terminate early with predicate', () => {
@@ -26,8 +26,8 @@ describe('reduceWhile()', () => {
 				(p, v) => p < v,
 				(p, v) => (p += v),
 				-2,
-				[3, 2, 1]
-			)
+				[3, 2, 1],
+			),
 		).toEqual(3)
 	})
 })
