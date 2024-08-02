@@ -1,5 +1,11 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 8.0.0-beta.4
+
+### Minor Changes
+
+- 2d4d9b4: Reintroduce CJS support.
+
 ## 8.0.0-beta.3
 
 ### Patch Changes
