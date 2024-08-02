@@ -2,10 +2,6 @@
 	"name": "root",
 	"private": true,
 	"license": "MIT",
-	"workspaces": [
-		"pages",
-		"packages/*"
-	],
 	"scripts": {
 		"build": "turbo run build",
 		"build:doc": "typedoc --plugin typedoc-plugin-extras",
