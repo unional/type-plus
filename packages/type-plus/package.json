@@ -1,6 +1,6 @@
 {
   "name": "type-plus",
-  "version": "8.0.0-beta.3",
+  "version": "8.0.0-beta.4",
   "description": "Provides additional types for TypeScript.",
   "keywords": [
     "assert",
@@ -35,7 +35,7 @@
         "types": "./esm/index.d.ts",
         "default": "./esm/index.js"
       },
-			"require": {
+      "require": {
         "types": "./cjs/index.d.ts",
         "default": "./cjs/index.js"
       }
@@ -52,7 +52,7 @@
     }
   },
   "files": [
-		"cjs",
+    "cjs",
     "esm",
     "src",
     "!src/types",
