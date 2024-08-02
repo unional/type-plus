@@ -50,7 +50,7 @@
     "typedoc-plugin-extras": "^3.0.0",
     "typescript": "~5.5.4"
   },
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@9.6.0",
   "dependencies": {
     "@biomejs/biome": "^1.6.3",
     "@repobuddy/biome": "^1.3.0"
