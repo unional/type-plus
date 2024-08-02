@@ -2,7 +2,8 @@ name: pull-request
 on:
   pull_request:
     types: [opened, synchronize]
-
+    branches:
+      - "!changeset-release/main"
 jobs:
   code:
     uses: unional/.github/.github/workflows/pnpm-verify.yml@main
