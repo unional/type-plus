@@ -18,7 +18,8 @@
 		},
 		"depcheck": {},
 		"dev": {
-			"cache": false
+			"cache": false,
+			"persistent": true
 		},
 		"lint": {},
 		"nuke": {
