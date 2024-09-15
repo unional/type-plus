@@ -8,44 +8,45 @@
 
 [![Visual Studio Code][vscode_image]][vscode_url]
 
-More than 200 type utilities for [TypeScript] for applications, library, and type-level programming.
+More than 200 type utilities for [TypeScript] for applications, library,
+and type-level programming.
 
 ## Table of Contents
 
 1. [Table of Contents](#table-of-contents)
 2. [Installation](#installation)
 3. [What's in the package?](#whats-in-the-package)
-   1. [Update organization](#update-organization)
-   2. [Update documentation](#update-documentation)
+	1. [Update organization](#update-organization)
+	2. [Update documentation](#update-documentation)
 4. [Assertion Function](#assertion-function)
-   1. [assertType](#asserttype)
+	1. [assertType](#asserttype)
 5. [Type Guard](#type-guard)
 6. [Type Utilities](#type-utilities)
 7. [Type Specific Utilities](#type-specific-utilities)
-   1. [any](#any)
-   2. [Array](#array)
-   3. [union](#union)
-   4. [bigint](#bigint)
-   5. [boolean](#boolean)
-   6. [function](#function)
-   7. [never](#never)
-   8. [null](#null)
-   9. [number](#number)
-   10. [numeric](#numeric)
-   11. [object](#object)
-   12. [Promise](#promise)
-   13. [string](#string)
-   14. [symbol](#symbol)
-   15. [tuple](#tuple)
-   16. [undefined](#undefined)
-   17. [unknown](#unknown)
-   18. [void](#void)
+	1. [any](#any)
+	2. [Array](#array)
+	3. [union](#union)
+	4. [bigint](#bigint)
+	5. [boolean](#boolean)
+	6. [function](#function)
+	7. [never](#never)
+	8. [null](#null)
+	9. [number](#number)
+	10. [numeric](#numeric)
+	11. [object](#object)
+	12. [Promise](#promise)
+	13. [string](#string)
+	14. [symbol](#symbol)
+	15. [tuple](#tuple)
+	16. [undefined](#undefined)
+	17. [unknown](#unknown)
+	18. [void](#void)
 8. [Testing Utilities](#testing-utilities)
 9. [Constant Types](#constant-types)
 10. [JSON Support](#json-support)
 11. [Type manipulation](#type-manipulation)
 12. [Type Predicates](#type-predicates)
-    1. [Logical](#logical)
+	1. [Logical](#logical)
 13. [Math](#math)
 14. [Utility Functions](#utility-functions)
 15. [Nominal Types](#nominal-types)
@@ -69,7 +70,7 @@ pnpm add type-plus
 With over 200 types in [type-plus],
 it can become difficult to find the types you need.
 
-Also, some of the types need to be updated as TypeScript continue to evolve.
+Also, some types need to be updated as TypeScript continue to evolve.
 
 Currently, we are updating [type-plus] with the following objective:
 

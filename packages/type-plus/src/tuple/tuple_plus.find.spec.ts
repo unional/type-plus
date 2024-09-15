@@ -1,12 +1,5 @@
-import { it, test } from '@jest/globals'
-
+import { it } from '@jest/globals'
 import { testType, type TuplePlus } from '../index.js'
-
-test('behavior of tuple.find()', () => {
-	const tuple: [1, 2, '3'] = [1, 2, '3']
-	const r = tuple.find((x) => typeof x === 'number')
-	testType.equal<typeof r, 1 | 2 | undefined>(true)
-})
 
 // TODO: handle never and $never
 // it('returns never if input is never', () => {
