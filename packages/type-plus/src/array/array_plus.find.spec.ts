@@ -1,12 +1,6 @@
-import { it, test } from '@jest/globals'
+import { it } from '@jest/globals'
 
 import { type ArrayPlus, testType } from '../index.js'
-
-test('behavior of array.find()', () => {
-	const array = [1, 2, '3']
-	const r = array.find((x) => typeof x === 'number')
-	testType.equal<typeof r, number | undefined>(true)
-})
 
 it('returns never if input is never', () => {
 	testType.equal<ArrayPlus.Find<never, number>, never>(true)

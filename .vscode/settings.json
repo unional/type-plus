@@ -76,6 +76,11 @@
 	},
 	"markdown.extension.toc.orderedList": true,
 	"markdown.extension.toc.unorderedList.marker": "-",
+	"material-icon-theme.files.associations": {
+		"tsconfig.ts54.json": "tsconfig",
+		"tsconfig.ts55.json": "tsconfig",
+		"tsconfig.ts56.json": "tsconfig",
+	},
 	"tsimporter.filesToExclude": ["**/cjs", "**/esm", "**/tslib"],
 	"typescript.tsdk": "node_modules/typescript/lib"
 }

@@ -4,6 +4,6 @@
 		"rootDir": "src",
 		"skipLibCheck": true
 	},
-	"exclude": ["node_modules", "src/type-checker", "src/types"],
+	"exclude": ["node_modules", "src/type-checker", "src/types", "src/**/*.ts*.spec.ts"],
 	"include": ["src", "types"]
 }

@@ -44,13 +44,6 @@
   },
   "module": "./esm/index.js",
   "types": "./esm/index.d.ts",
-  "typesVersions": {
-    ">=5.4.0": {
-      "*": [
-        "*"
-      ]
-    }
-  },
   "files": [
     "cjs",
     "esm",
@@ -71,7 +64,10 @@
     "nuke:local": "rimraf node_modules",
     "size": "size-limit",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest",
-    "test:type": "tsc --noEmit",
+    "test:type": "run-p test:type:*",
+    "test:type:latest": "./node_modules/typescript/bin/tsc --noEmit",
+    "test:type:54": "./node_modules/ts-5.4/bin/tsc -p tsconfig.ts54.json --noEmit",
+    "test:type:55": "./node_modules/ts-5.5/bin/tsc -p tsconfig.ts55.json --noEmit",
     "test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watch",
     "verify": "npm-run-all clean -p build depcheck lint coverage -p size",
     "w": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watch",
@@ -100,6 +96,9 @@
     "rimraf": "^5.0.5",
     "satisfier": "^5.2.2",
     "size-limit": "^9.0.0",
-    "ts-jest": "^29.1.2"
+    "ts-5.4": "npm:typescript@~5.4",
+    "ts-5.5": "npm:typescript@~5.5",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.6.2"
   }
 }

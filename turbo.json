@@ -14,7 +14,7 @@
 		},
 		"coverage": {
 			"dependsOn": ["^build"],
-			"inputs": ["ts/**/*.tsx?"]
+			"inputs": ["src/**/*.tsx?"]
 		},
 		"depcheck": {},
 		"dev": {
@@ -30,11 +30,27 @@
 		},
 		"test": {
 			"dependsOn": ["^build"],
-			"inputs": ["ts/**/*.tsx?"]
+			"inputs": ["src/**/*.tsx?"]
 		},
 		"test:type": {
 			"dependsOn": ["^build"],
-			"inputs": ["ts/**/*.tsx?"]
+			"inputs": ["src/**/*.tsx?"]
+		},
+		"test:type:latest": {
+			"dependsOn": ["^build"],
+			"inputs": ["src/**/*.tsx?"]
+		},
+		"test:type:54": {
+			"dependsOn": ["^build"],
+			"inputs": ["src/**/*.tsx?"]
+		},
+		"test:type:55": {
+			"dependsOn": ["^build"],
+			"inputs": ["src/**/*.tsx?"]
+		},
+		"test:type:56": {
+			"dependsOn": ["^build"],
+			"inputs": ["src/**/*.tsx?"]
 		}
 	}
 }

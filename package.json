@@ -22,6 +22,7 @@
 		"size": "turbo run size",
 		"test": "jest -c jest.config.mjs",
 		"tp": "turbo --filter type-plus",
+		"ptp": "pnpm --filter type-plus",
 		"verify": "run-p lint verify:turbo",
 		"verify:turbo": "turbo run build build:doc depcheck coverage size",
 		"version": "changeset version"
@@ -46,7 +47,7 @@
 		"turbo": "2.0.11",
 		"typedoc": "^0.25.0",
 		"typedoc-plugin-extras": "^3.0.0",
-		"typescript": "~5.5.4"
+		"typescript": "^5.6.2"
 	},
 	"packageManager": "pnpm@9.6.0"
 }
