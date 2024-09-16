@@ -93,7 +93,7 @@
     "jest-watch-toggle-config-2": "^2.1.0",
     "jest-watch-typeahead": "^2.2.2",
     "npm-run-all2": "^6.1.1",
-    "rimraf": "^5.0.5",
+    "rimraf": "^6.0.0",
     "satisfier": "^5.4.2",
     "size-limit": "^11.1.5",
     "ts-5.4": "npm:typescript@~5.4.5",
