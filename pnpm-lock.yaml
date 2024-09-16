@@ -16,7 +16,7 @@ importers:
         version: 2.25.2
       '@commitlint/cli':
         specifier: ^19.0.0
-        version: 19.0.0(@types/node@18.11.11)(typescript@5.6.2)
+        version: 19.0.0(@types/node@22.0.2)(typescript@5.6.2)
       '@commitlint/config-conventional':
         specifier: ^19.0.0
         version: 19.0.0
@@ -37,16 +37,16 @@ importers:
         version: 9.0.11
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@18.11.11)
+        version: 29.7.0(@types/node@22.0.2)
       jest-watch-suspend:
         specifier: ^1.1.2
-        version: 1.1.2(jest@29.7.0(@types/node@18.11.11))
+        version: 1.1.2(jest@29.7.0(@types/node@22.0.2))
       jest-watch-toggle-config-2:
         specifier: ^2.1.0
-        version: 2.1.0(jest@29.7.0(@types/node@18.11.11))
+        version: 2.1.0(jest@29.7.0(@types/node@22.0.2))
       jest-watch-typeahead:
         specifier: ^2.2.2
-        version: 2.2.2(jest@29.7.0(@types/node@18.11.11))
+        version: 2.2.2(jest@29.7.0(@types/node@22.0.2))
       npm-check-updates:
         specifier: ^16.0.0
         version: 16.0.0
@@ -58,7 +58,7 @@ importers:
         version: 5.0.5
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.3)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.3))(jest@29.7.0(@types/node@18.11.11))(typescript@5.6.2)
+        version: 29.1.2(@babel/core@7.24.3)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.3))(jest@29.7.0(@types/node@22.0.2))(typescript@5.6.2)
       turbo:
         specifier: 2.0.11
         version: 2.0.11
@@ -101,13 +101,13 @@ importers:
         version: 29.5.0
       '@repobuddy/jest':
         specifier: ^4.0.0
-        version: 4.0.0(@swc/jest@0.2.36(@swc/core@1.7.5))(jest-watch-suspend@1.1.2(jest@29.7.0(@types/node@18.11.11)))(jest-watch-toggle-config-2@2.1.0(jest@29.7.0(@types/node@18.11.11)))(jest-watch-typeahead@2.2.2(jest@29.7.0(@types/node@18.11.11)))(jest@29.7.0(@types/node@18.11.11))(ts-jest@29.1.2(@babel/core@7.23.2)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.23.2))(jest@29.7.0(@types/node@18.11.11))(typescript@5.6.2))
+        version: 4.0.0(@swc/jest@0.2.36(@swc/core@1.7.5))(jest-watch-suspend@1.1.2(jest@29.7.0(@types/node@18.11.11)))(jest-watch-toggle-config-2@2.1.0(jest@29.7.0(@types/node@18.11.11)))(jest-watch-typeahead@2.2.2(jest@29.7.0(@types/node@18.11.11)))(jest@29.7.0(@types/node@18.11.11))(ts-jest@29.1.2(@babel/core@7.24.3)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.3))(jest@29.7.0(@types/node@18.11.11))(typescript@5.6.2))
       '@repobuddy/typescript':
         specifier: ^2.0.0
         version: 2.0.0
       '@size-limit/esbuild-why':
-        specifier: ^9.0.0
-        version: 9.0.0(size-limit@9.0.0)
+        specifier: ^11.0.0
+        version: 11.1.5(size-limit@9.0.0)
       '@size-limit/preset-small-lib':
         specifier: ^9.0.0
         version: 9.0.0(size-limit@9.0.0)
@@ -158,7 +158,7 @@ importers:
         version: typescript@5.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.23.2)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.23.2))(jest@29.7.0(@types/node@18.11.11))(typescript@5.6.2)
+        version: 29.1.2(@babel/core@7.24.3)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.3))(jest@29.7.0(@types/node@18.11.11))(typescript@5.6.2)
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -1734,11 +1734,11 @@ packages:
   '@sinonjs/fake-timers@10.3.0':
     resolution: {integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==}
 
-  '@size-limit/esbuild-why@9.0.0':
-    resolution: {integrity: sha512-p683YMq8Nk9pGDAt6zR09g5avm8tDIBZSd/xwiK9c23abiJK/kvD2Gowdj3PFdGLt73TFY5CW/kc2oaJwU+WSQ==}
+  '@size-limit/esbuild-why@11.1.5':
+    resolution: {integrity: sha512-2flK0Jz0lthzqPsM0QtkEhjXkjTO3mmmw2bhaIftDROTe6xbGNWYuWj5HnKNwbITHWLn6zpjT4fkLBoVvEUCOw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
-      size-limit: 9.0.0
+      size-limit: 11.1.5
 
   '@size-limit/esbuild@9.0.0':
     resolution: {integrity: sha512-y3NY0inaFeLqV6SRXNVILhawQdQcODxF30qft6OalsrqtQtBjt++6ZeahYhUbrVexUEWRh6c7yPCe8RvHn8hlA==}
@@ -2358,6 +2358,10 @@ packages:
   builtins@5.0.1:
     resolution: {integrity: sha512-qwVpFEHNfhYJIzNRBvd2C1kyo6jz3ZSMPyyuR47OPdiKWlbYnZNyDWuyR175qDnAJLiCo5fBBqPb3RiXgWlkOQ==}
 
+  bundle-name@4.1.0:
+    resolution: {integrity: sha512-tjwM5exMg6BGRI+kNmTntNsvdZS1X8BFYS6tnJ2hdH0kVxM6/eVZ2xy+FqStSWvYmtfFMDLIxurorHwDKfDz5Q==}
+    engines: {node: '>=18'}
+
   bytes-iec@3.1.1:
     resolution: {integrity: sha512-fey6+4jDK7TFtFg/klGSvNKJctyU7n2aQdnM+CO0ruLPbqqMOM8Tio0Pc+deqUeVKX1tL5DQep1zQ7+37aTAsA==}
     engines: {node: '>= 0.8'}
@@ -2725,6 +2729,14 @@ packages:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
     engines: {node: '>=0.10.0'}
 
+  default-browser-id@5.0.0:
+    resolution: {integrity: sha512-A6p/pu/6fyBcA1TRz/GqWYPViplrftcW2gZC9q79ngNCKAeR/X3gcEdXQHl4KNXV+3wgIJ1CPkJQ3IHM6lcsyA==}
+    engines: {node: '>=18'}
+
+  default-browser@5.2.1:
+    resolution: {integrity: sha512-WY/3TUME0x3KPYdRRxEJJvXRHV4PyPoUsxtZa78lwItwRQRHhd2U9xOscaT/YTf8uCXIAjeJOFBVEh/7FtD8Xg==}
+    engines: {node: '>=18'}
+
   defaults@1.0.4:
     resolution: {integrity: sha512-eFuaLoy/Rxalv2kr+lqMlUnrDWV+3j4pljOIJgLIhI058IQfWJ7vXhyEIHu+HtC738klGALYxOKDO0bQP3tg8A==}
 
@@ -2735,6 +2747,10 @@ packages:
   define-lazy-prop@2.0.0:
     resolution: {integrity: sha512-Ds09qNh8yw3khSjiJjiUInaGX9xlqZDY7JVryGxdxV7NPeuqQfplOpQ66yJFZut3jLa5zOwkXw1g9EI2uKh4Og==}
     engines: {node: '>=8'}
+
+  define-lazy-prop@3.0.0:
+    resolution: {integrity: sha512-N+MeXYoqr3pOgn8xfyRPREN7gHakLYjhsHhWGT3fWAiL4IkAt0iDw14QiiEm2bE30c5XX5q0FtAA3CK5f9/BUg==}
+    engines: {node: '>=12'}
 
   define-properties@1.1.4:
     resolution: {integrity: sha512-uckOqKcfaVvtBdsVkdPv3XjveQJsNQqmhXgRi8uhvWWuPYZCNlzT8qAyblUgNoXdHdjMTzAqeGjAoli8f+bzPA==}
@@ -2896,9 +2912,9 @@ packages:
     resolution: {integrity: sha512-QCOllgZJtaUo9miYBcLChTUaHNjJF3PYs1VidD7AwiEj1kYxKeQTctLAezAOH5ZKRH0g2IgPn6KwB4IT8iRpvA==}
     engines: {node: '>= 0.4'}
 
-  esbuild-visualizer@0.4.1:
-    resolution: {integrity: sha512-5XI3unzqPr3xqfzR/mzK3LhoAJs3FQhiIXBsKJ3Oh6CjyjuXz6HVmhJMoisrcpeTZip65fR54Dk53MZncA0AUQ==}
-    engines: {node: '>=14.20'}
+  esbuild-visualizer@0.6.0:
+    resolution: {integrity: sha512-oNK3JAhC7+re93VTtUdWJKTDVnA2qXPAjCAoaw9OxEFUXztszw3kcaK46u1U790T8FdUBAWv6F9Xt59P8nJCVA==}
+    engines: {node: '>=18'}
     hasBin: true
 
   esbuild@0.19.12:
@@ -4703,6 +4719,10 @@ packages:
     resolution: {integrity: sha512-1FlR+gjXK7X+AsAHso35MnyN5KqGwJRi/31ft6x0M194ht7S+rWAvd7PHss9xSKMzE0asv1pyIHaJYq+BbacAQ==}
     engines: {node: '>=12'}
 
+  open@10.1.0:
+    resolution: {integrity: sha512-mnkeQ1qP5Ue2wd+aivTD3NHd/lZ96Lu0jgf0pwktLPtx6cTZiH7tyeGRRHs0zX0rbrahXPnXlUnbeXyaBBuIaw==}
+    engines: {node: '>=18'}
+
   open@8.4.2:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
@@ -5268,6 +5288,10 @@ packages:
     resolution: {integrity: sha512-3YegKemjoQnYKmsBlOHfMLVPPA5xLkQ8MHLLSw/fBrFaVkEayL51DilPpNNLq1exr98F2B1TzrV0FUlN3gWRPg==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
+
+  run-applescript@7.0.0:
+    resolution: {integrity: sha512-9by4Ij99JUr/MCFBUkDKLWK3G9HVXmabKz9U5MlIAIuvuzkiOicRYs8XJLxX+xahD+mLiiCYDqF9dKAgtzKP1A==}
+    engines: {node: '>=18'}
 
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
@@ -7180,11 +7204,11 @@ snapshots:
       human-id: 1.0.2
       prettier: 2.8.4
 
-  '@commitlint/cli@19.0.0(@types/node@18.11.11)(typescript@5.6.2)':
+  '@commitlint/cli@19.0.0(@types/node@22.0.2)(typescript@5.6.2)':
     dependencies:
       '@commitlint/format': 19.0.0
       '@commitlint/lint': 19.0.0
-      '@commitlint/load': 19.0.0(@types/node@18.11.11)(typescript@5.6.2)
+      '@commitlint/load': 19.0.0(@types/node@22.0.2)(typescript@5.6.2)
       '@commitlint/read': 19.0.0
       '@commitlint/types': 19.0.0
       execa: 8.0.1
@@ -7233,7 +7257,7 @@ snapshots:
       '@commitlint/rules': 19.0.0
       '@commitlint/types': 19.0.0
 
-  '@commitlint/load@19.0.0(@types/node@18.11.11)(typescript@5.6.2)':
+  '@commitlint/load@19.0.0(@types/node@22.0.2)(typescript@5.6.2)':
     dependencies:
       '@commitlint/config-validator': 19.0.0
       '@commitlint/execute-rule': 19.0.0
@@ -7241,7 +7265,7 @@ snapshots:
       '@commitlint/types': 19.0.0
       chalk: 5.3.0
       cosmiconfig: 8.3.6(typescript@5.6.2)
-      cosmiconfig-typescript-loader: 5.0.0(@types/node@18.11.11)(cosmiconfig@8.3.6(typescript@5.6.2))(typescript@5.6.2)
+      cosmiconfig-typescript-loader: 5.0.0(@types/node@22.0.2)(cosmiconfig@8.3.6(typescript@5.6.2))(typescript@5.6.2)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -8080,7 +8104,7 @@ snapshots:
 
   '@repobuddy/biome@1.5.1': {}
 
-  '@repobuddy/jest@4.0.0(@swc/jest@0.2.36(@swc/core@1.7.5))(jest-watch-suspend@1.1.2(jest@29.7.0(@types/node@18.11.11)))(jest-watch-toggle-config-2@2.1.0(jest@29.7.0(@types/node@18.11.11)))(jest-watch-typeahead@2.2.2(jest@29.7.0(@types/node@18.11.11)))(jest@29.7.0(@types/node@18.11.11))(ts-jest@29.1.2(@babel/core@7.23.2)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.23.2))(jest@29.7.0(@types/node@18.11.11))(typescript@5.6.2))':
+  '@repobuddy/jest@4.0.0(@swc/jest@0.2.36(@swc/core@1.7.5))(jest-watch-suspend@1.1.2(jest@29.7.0(@types/node@18.11.11)))(jest-watch-toggle-config-2@2.1.0(jest@29.7.0(@types/node@18.11.11)))(jest-watch-typeahead@2.2.2(jest@29.7.0(@types/node@18.11.11)))(jest@29.7.0(@types/node@18.11.11))(ts-jest@29.1.2(@babel/core@7.24.3)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.3))(jest@29.7.0(@types/node@18.11.11))(typescript@5.6.2))':
     dependencies:
       '@swc/jest': 0.2.36(@swc/core@1.7.5)
       jest: 29.7.0(@types/node@18.11.11)
@@ -8093,7 +8117,7 @@ snapshots:
       jest-watch-suspend: 1.1.2(jest@29.7.0(@types/node@18.11.11))
       jest-watch-toggle-config-2: 2.1.0(jest@29.7.0(@types/node@18.11.11))
       jest-watch-typeahead: 2.2.2(jest@29.7.0(@types/node@18.11.11))
-      ts-jest: 29.1.2(@babel/core@7.23.2)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.23.2))(jest@29.7.0(@types/node@18.11.11))(typescript@5.6.2)
+      ts-jest: 29.1.2(@babel/core@7.24.3)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.3))(jest@29.7.0(@types/node@18.11.11))(typescript@5.6.2)
 
   '@repobuddy/typescript@2.0.0':
     dependencies:
@@ -8164,10 +8188,10 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
-  '@size-limit/esbuild-why@9.0.0(size-limit@9.0.0)':
+  '@size-limit/esbuild-why@11.1.5(size-limit@9.0.0)':
     dependencies:
-      esbuild-visualizer: 0.4.1
-      open: 8.4.2
+      esbuild-visualizer: 0.6.0
+      open: 10.1.0
       size-limit: 9.0.0
 
   '@size-limit/esbuild@9.0.0(size-limit@9.0.0)':
@@ -8377,7 +8401,6 @@ snapshots:
   '@types/node@22.0.2':
     dependencies:
       undici-types: 6.11.1
-    optional: true
 
   '@types/normalize-package-data@2.4.1': {}
 
@@ -8778,20 +8801,6 @@ snapshots:
   b4a@1.6.6:
     optional: true
 
-  babel-jest@29.7.0(@babel/core@7.23.2):
-    dependencies:
-      '@babel/core': 7.23.2
-      '@jest/transform': 29.7.0
-      '@types/babel__core': 7.20.5
-      babel-plugin-istanbul: 6.1.1
-      babel-preset-jest: 29.6.3(@babel/core@7.23.2)
-      chalk: 4.1.2
-      graceful-fs: 4.2.11
-      slash: 3.0.0
-    transitivePeerDependencies:
-      - supports-color
-    optional: true
-
   babel-jest@29.7.0(@babel/core@7.24.3):
     dependencies:
       '@babel/core': 7.24.3
@@ -8862,13 +8871,6 @@ snapshots:
       '@babel/plugin-syntax-optional-catch-binding': 7.8.3(@babel/core@7.24.3)
       '@babel/plugin-syntax-optional-chaining': 7.8.3(@babel/core@7.24.3)
       '@babel/plugin-syntax-top-level-await': 7.14.5(@babel/core@7.24.3)
-
-  babel-preset-jest@29.6.3(@babel/core@7.23.2):
-    dependencies:
-      '@babel/core': 7.23.2
-      babel-plugin-jest-hoist: 29.6.3
-      babel-preset-current-node-syntax: 1.0.1(@babel/core@7.23.2)
-    optional: true
 
   babel-preset-jest@29.6.3(@babel/core@7.24.3):
     dependencies:
@@ -9021,6 +9023,10 @@ snapshots:
   builtins@5.0.1:
     dependencies:
       semver: 7.6.0
+
+  bundle-name@4.1.0:
+    dependencies:
+      run-applescript: 7.0.0
 
   bytes-iec@3.1.1: {}
 
@@ -9274,9 +9280,9 @@ snapshots:
 
   cookie@0.6.0: {}
 
-  cosmiconfig-typescript-loader@5.0.0(@types/node@18.11.11)(cosmiconfig@8.3.6(typescript@5.6.2))(typescript@5.6.2):
+  cosmiconfig-typescript-loader@5.0.0(@types/node@22.0.2)(cosmiconfig@8.3.6(typescript@5.6.2))(typescript@5.6.2):
     dependencies:
-      '@types/node': 18.11.11
+      '@types/node': 22.0.2
       cosmiconfig: 8.3.6(typescript@5.6.2)
       jiti: 1.21.0
       typescript: 5.6.2
@@ -9311,6 +9317,21 @@ snapshots:
       exit: 0.1.2
       graceful-fs: 4.2.11
       jest-config: 29.7.0(@types/node@18.11.11)
+      jest-util: 29.7.0
+      prompts: 2.4.2
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
+
+  create-jest@29.7.0(@types/node@22.0.2):
+    dependencies:
+      '@jest/types': 29.6.3
+      chalk: 4.1.2
+      exit: 0.1.2
+      graceful-fs: 4.2.11
+      jest-config: 29.7.0(@types/node@22.0.2)
       jest-util: 29.7.0
       prompts: 2.4.2
     transitivePeerDependencies:
@@ -9387,6 +9408,13 @@ snapshots:
 
   deepmerge@4.3.1: {}
 
+  default-browser-id@5.0.0: {}
+
+  default-browser@5.2.1:
+    dependencies:
+      bundle-name: 4.1.0
+      default-browser-id: 5.0.0
+
   defaults@1.0.4:
     dependencies:
       clone: 1.0.4
@@ -9394,6 +9422,8 @@ snapshots:
   defer-to-connect@2.0.1: {}
 
   define-lazy-prop@2.0.0: {}
+
+  define-lazy-prop@3.0.0: {}
 
   define-properties@1.1.4:
     dependencies:
@@ -9573,10 +9603,11 @@ snapshots:
       is-date-object: 1.0.5
       is-symbol: 1.0.4
 
-  esbuild-visualizer@0.4.1:
+  esbuild-visualizer@0.6.0:
     dependencies:
       open: 8.4.2
-      yargs: 17.7.1
+      picomatch: 2.3.1
+      yargs: 17.7.2
 
   esbuild@0.19.12:
     optionalDependencies:
@@ -10761,6 +10792,25 @@ snapshots:
       - supports-color
       - ts-node
 
+  jest-cli@29.7.0(@types/node@22.0.2):
+    dependencies:
+      '@jest/core': 29.7.0
+      '@jest/test-result': 29.7.0
+      '@jest/types': 29.6.3
+      chalk: 4.1.2
+      create-jest: 29.7.0(@types/node@22.0.2)
+      exit: 0.1.2
+      import-local: 3.1.0
+      jest-config: 29.7.0(@types/node@22.0.2)
+      jest-util: 29.7.0
+      jest-validate: 29.7.0
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
+
   jest-config@29.7.0(@types/node@18.11.11):
     dependencies:
       '@babel/core': 7.24.3
@@ -10787,6 +10837,36 @@ snapshots:
       strip-json-comments: 3.1.1
     optionalDependencies:
       '@types/node': 18.11.11
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+
+  jest-config@29.7.0(@types/node@22.0.2):
+    dependencies:
+      '@babel/core': 7.24.3
+      '@jest/test-sequencer': 29.7.0
+      '@jest/types': 29.6.3
+      babel-jest: 29.7.0(@babel/core@7.24.3)
+      chalk: 4.1.2
+      ci-info: 3.9.0
+      deepmerge: 4.3.1
+      glob: 7.2.3
+      graceful-fs: 4.2.11
+      jest-circus: 29.7.0
+      jest-environment-node: 29.7.0
+      jest-get-type: 29.6.3
+      jest-regex-util: 29.6.3
+      jest-resolve: 29.7.0
+      jest-runner: 29.7.0
+      jest-util: 29.7.0
+      jest-validate: 29.7.0
+      micromatch: 4.0.5
+      parse-json: 5.2.0
+      pretty-format: 29.7.0
+      slash: 3.0.0
+      strip-json-comments: 3.1.1
+    optionalDependencies:
+      '@types/node': 22.0.2
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -11067,16 +11147,38 @@ snapshots:
       jest: 29.7.0(@types/node@18.11.11)
       unpartial: 0.6.4
 
+  jest-watch-suspend@1.1.2(jest@29.7.0(@types/node@22.0.2)):
+    dependencies:
+      chalk: 2.4.2
+      jest: 29.7.0(@types/node@22.0.2)
+      unpartial: 0.6.4
+
   jest-watch-toggle-config-2@2.1.0(jest@29.7.0(@types/node@18.11.11)):
     dependencies:
       chalk: 4.1.2
       jest: 29.7.0(@types/node@18.11.11)
+
+  jest-watch-toggle-config-2@2.1.0(jest@29.7.0(@types/node@22.0.2)):
+    dependencies:
+      chalk: 4.1.2
+      jest: 29.7.0(@types/node@22.0.2)
 
   jest-watch-typeahead@2.2.2(jest@29.7.0(@types/node@18.11.11)):
     dependencies:
       ansi-escapes: 6.0.0
       chalk: 5.2.0
       jest: 29.7.0(@types/node@18.11.11)
+      jest-regex-util: 29.6.3
+      jest-watcher: 29.7.0
+      slash: 5.0.0
+      string-length: 5.0.1
+      strip-ansi: 7.0.1
+
+  jest-watch-typeahead@2.2.2(jest@29.7.0(@types/node@22.0.2)):
+    dependencies:
+      ansi-escapes: 6.0.0
+      chalk: 5.2.0
+      jest: 29.7.0(@types/node@22.0.2)
       jest-regex-util: 29.6.3
       jest-watcher: 29.7.0
       slash: 5.0.0
@@ -11107,6 +11209,18 @@ snapshots:
       '@jest/types': 29.6.3
       import-local: 3.1.0
       jest-cli: 29.7.0(@types/node@18.11.11)
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
+
+  jest@29.7.0(@types/node@22.0.2):
+    dependencies:
+      '@jest/core': 29.7.0
+      '@jest/types': 29.6.3
+      import-local: 3.1.0
+      jest-cli: 29.7.0(@types/node@22.0.2)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -12135,6 +12249,13 @@ snapshots:
     dependencies:
       mimic-fn: 4.0.0
 
+  open@10.1.0:
+    dependencies:
+      default-browser: 5.2.1
+      define-lazy-prop: 3.0.0
+      is-inside-container: 1.0.0
+      is-wsl: 3.1.0
+
   open@8.4.2:
     dependencies:
       define-lazy-prop: 2.0.0
@@ -12806,6 +12927,8 @@ snapshots:
       '@rollup/rollup-win32-x64-msvc': 4.13.0
       fsevents: 2.3.3
 
+  run-applescript@7.0.0: {}
+
   run-parallel@1.2.0:
     dependencies:
       queue-microtask: 1.2.3
@@ -13377,7 +13500,7 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  ts-jest@29.1.2(@babel/core@7.23.2)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.23.2))(jest@29.7.0(@types/node@18.11.11))(typescript@5.6.2):
+  ts-jest@29.1.2(@babel/core@7.24.3)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.3))(jest@29.7.0(@types/node@18.11.11))(typescript@5.6.2):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
@@ -13390,15 +13513,15 @@ snapshots:
       typescript: 5.6.2
       yargs-parser: 21.1.1
     optionalDependencies:
-      '@babel/core': 7.23.2
+      '@babel/core': 7.24.3
       '@jest/types': 29.6.3
-      babel-jest: 29.7.0(@babel/core@7.23.2)
+      babel-jest: 29.7.0(@babel/core@7.24.3)
 
-  ts-jest@29.1.2(@babel/core@7.24.3)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.3))(jest@29.7.0(@types/node@18.11.11))(typescript@5.6.2):
+  ts-jest@29.1.2(@babel/core@7.24.3)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.3))(jest@29.7.0(@types/node@22.0.2))(typescript@5.6.2):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
-      jest: 29.7.0(@types/node@18.11.11)
+      jest: 29.7.0(@types/node@22.0.2)
       jest-util: 29.5.0
       json5: 2.2.3
       lodash.memoize: 4.1.2
@@ -13538,8 +13661,7 @@ snapshots:
 
   undici-types@5.26.5: {}
 
-  undici-types@6.11.1:
-    optional: true
+  undici-types@6.11.1: {}
 
   unherit@3.0.1: {}
 
