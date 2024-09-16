@@ -59,6 +59,6 @@
     "@repobuddy/typescript": "^2.0.0",
     "depcheck": "^1.4.3",
     "npm-run-all2": "^6.1.1",
-    "rimraf": "^5.0.5"
+    "rimraf": "^6.0.0"
   }
 }
