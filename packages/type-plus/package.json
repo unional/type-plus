@@ -48,8 +48,6 @@
     "cjs",
     "esm",
     "src",
-    "!src/types",
-    "!src/type-checker",
     "!**/*.{spec,test,unit,accept,integrate,system,perf,stress}.*"
   ],
   "scripts": {
@@ -84,7 +82,6 @@
     "@size-limit/esbuild-why": "^11.1.5",
     "@size-limit/preset-small-lib": "^11.1.5",
     "@types/node": "^18.11.11",
-    "@unional/fixture": "^3.2.7",
     "assertron": "^11.0.2",
     "cross-env": "^7.0.3",
     "depcheck": "^1.4.3",
@@ -94,7 +91,6 @@
     "jest-watch-typeahead": "^2.2.2",
     "npm-run-all2": "^6.1.1",
     "rimraf": "^6.0.0",
-    "satisfier": "^5.4.2",
     "size-limit": "^11.1.5",
     "ts-5.4": "npm:typescript@~5.4.5",
     "ts-5.5": "npm:typescript@~5.5.4",

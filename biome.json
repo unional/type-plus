@@ -10,6 +10,7 @@
 			"packages/*/dist",
 			"packages/*/esm",
 			"packages/*/tslib",
+			"old/checker",
 			"packages/type-plus/src/types",
 			"packages/type-plus/src/type-checker",
 			"pages/dist",

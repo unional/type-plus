@@ -1,9 +1,10 @@
 {
 	"extends": "@repobuddy/typescript/tsconfig/monorepo",
 	"compilerOptions": {
+		"exactOptionalPropertyTypes": true,
+		"outDir": "esm",
 		"rootDir": "src",
-		"skipLibCheck": true
+		"verbatimModuleSyntax": true
 	},
-	"exclude": ["node_modules", "src/**/*.ts*.spec.ts"],
 	"include": ["src", "types"]
 }
