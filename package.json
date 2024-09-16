@@ -11,7 +11,7 @@
 		"cs": "changeset",
 		"depcheck": "turbo run depcheck",
 		"format": "biome format .",
-		"lint": "run-p lint:biome lint:eslint",
+		"lint": "run-p lint:*",
 		"lint:biome": "biome lint .",
 		"lint:eslint": "eslint .",
 		"nuke": "turbo run nuke && pnpm nuke:local",
