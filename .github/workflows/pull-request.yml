@@ -9,3 +9,12 @@ jobs:
     uses: unional/.github/.github/workflows/pnpm-verify.yml@main
     with:
       os: '["ubuntu-latest"]'
+    secrets: inherit
+  # codecov:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: codecov
+  #       needs: code
+  #       uses: codecov/codecov-action@v4.5.0
+  #       env:
+  #         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
