@@ -2,7 +2,7 @@ import type { Assignable } from '../predicates/assignable.js'
 import type { $Equality } from '../type_plus/$equality.js'
 import type { $MergeOptions } from '../type_plus/$merge_options.js'
 import type { $SpecialType } from '../type_plus/$special_type.js'
-import type { $Exact } from '../type_plus/branch/$exact.js'
+import type { $ExactOptions, $IsExact } from '../type_plus/branch/$exact.js'
 import type { $IsDistributive } from '../type_plus/branch/$is_distributive.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../type_plus/branch/$selection.js'
@@ -72,7 +72,7 @@ export type IsArray<T, $O extends IsArray.$Options = {}> = $SpecialType<
 >
 
 export namespace IsArray {
-	export type $Options = $Equality.$Options & $Exact.$Options
+	export type $Options = $Equality.$Options & $ExactOptions
 	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
 
 	/**
@@ -83,7 +83,7 @@ export namespace IsArray {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> = $Exact.$IsExact<
+	export type $<T, $O extends $UtilOptions> = $IsExact<
 		$O,
 		{
 			$then: $IsDistributive<
@@ -111,5 +111,5 @@ export namespace IsArray {
 		}
 	>
 
-	export type $UtilOptions = Assignable.$UtilOptions & $Exact.$Options
+	export type $UtilOptions = Assignable.$UtilOptions & $ExactOptions
 }

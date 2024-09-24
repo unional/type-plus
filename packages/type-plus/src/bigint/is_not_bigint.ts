@@ -3,7 +3,7 @@ import type { $Equality } from '../type_plus/$equality.js'
 import type { $MergeOptions } from '../type_plus/$merge_options.js'
 import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
 import type { $SpecialType } from '../type_plus/$special_type.js'
-import type { $Exact } from '../type_plus/branch/$exact.js'
+import type { $ExactOptions } from '../type_plus/branch/$exact.js'
 import type { $IsDistributive } from '../type_plus/branch/$is_distributive.js'
 import type { $ResolveBranch } from '../type_plus/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../type_plus/branch/$selection.js'
@@ -79,7 +79,7 @@ export type IsNotBigint<T, $O extends IsNotBigint.$Options = {}> = $SpecialType<
 >
 
 export namespace IsNotBigint {
-	export type $Options = $Equality.$Options & $Exact.$Options
+	export type $Options = $Equality.$Options & $ExactOptions
 	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
 
 	/**
@@ -93,7 +93,7 @@ export namespace IsNotBigint {
 	export type $<T, $O extends $UtilOptions> = $ResolveOptions<[$O['exact'], false]> extends true
 		? $IsDistributive<$O, { $then: _SD<T, $O>; $else: _SN<T, $O> }>
 		: NotAssignable.$<T, bigint, $O>
-	export type $UtilOptions = NotAssignable.$UtilOptions & $Exact.$Options
+	export type $UtilOptions = NotAssignable.$UtilOptions & $ExactOptions
 
 	export type _SD<T, $O extends $Options> = T extends bigint & infer U
 		? U extends bigint
