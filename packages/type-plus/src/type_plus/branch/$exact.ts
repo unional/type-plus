@@ -1,14 +1,6 @@
 import type { $ResolveOptions } from '../$resolve_options.js'
-import type { $Branch } from './$branch.js'
 import type { $InputOptions } from './$input_options.js'
 import type { $Else, $Then } from './$selection.js'
-
-/**
- * 🧰 *type util*
- *
- * Branch to handle exact comparison.
- */
-export type $Exact = $Branch<'$exact'>
 
 export namespace $Exact {
 	/**
