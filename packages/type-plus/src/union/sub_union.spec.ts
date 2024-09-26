@@ -12,4 +12,5 @@ it('defines a type that is a subset of the superset union type', () => {
 it('does not allow to define a type that is not a subset of the superset union type', () => {
 	// @ts-expect-error
 	type R = SubUnion<Fruit, 'carrot'>
+	testType.equal<R, 'carrot'>(true)
 })
