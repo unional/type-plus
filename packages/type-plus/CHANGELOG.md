@@ -1,5 +1,20 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 8.0.0-beta.5
+
+### Minor Changes
+
+- 17bf492: Remove `$Exact` namespace.
+  `$Exact.$Options` is now `$ExactOptions`.
+  `$Exact.$Default` is now `$ExactDefault`.
+  `$Exact.$IsExact` is now `$IsExact`.
+
+### Patch Changes
+
+- ac73d79: Removing incorrect usage of the `typesVersions` field in `package.json`.
+- 1e5108d: Add `SubUnion` type.
+- 37e47dc: Remove `$Exact` branch type. It is not needed anymore.
+
 ## 8.0.0-beta.4
 
 ### Minor Changes
