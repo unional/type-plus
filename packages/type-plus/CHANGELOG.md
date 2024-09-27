@@ -1,5 +1,11 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 8.0.0-beta.6
+
+### Minor Changes
+
+- cb37ca4: Add `AdjustExactOptionalProps`.
+
 ## 8.0.0-beta.5
 
 ### Minor Changes
