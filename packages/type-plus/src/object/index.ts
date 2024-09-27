@@ -1,3 +1,4 @@
+export type * from './adjust_exact_optional_props.js'
 export type { ANotB, BNotA } from './ANotB.js'
 export type { AnyRecord } from './any_record.js'
 export * from './everyKey.js'
@@ -36,3 +37,4 @@ export * from './split.js'
 export type { SpreadRecord } from './SpreadRecord.js'
 export * from './typeOverrideIncompatible.js'
 export type { ValueOf } from './ValueOf.js'
+
