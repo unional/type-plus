@@ -3,6 +3,7 @@
 	"extends": ["@repobuddy/biome/recommended"],
 	"files": {
 		"ignore": [
+			".turbo",
 			".vscode/*.txt",
 			"./docs",
 			"packages/*/coverage",

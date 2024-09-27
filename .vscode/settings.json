@@ -3,7 +3,7 @@
 		"editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
 	},
 	"[typescript]": {
-		"editor.defaultFormatter": "vscode.typescript-language-features"
+		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"cSpell.words": [
 		"ajafff",
@@ -79,7 +79,7 @@
 	"material-icon-theme.files.associations": {
 		"tsconfig.ts54.json": "tsconfig",
 		"tsconfig.ts55.json": "tsconfig",
-		"tsconfig.ts56.json": "tsconfig",
+		"tsconfig.ts56.json": "tsconfig"
 	},
 	"tsimporter.filesToExclude": ["**/cjs", "**/esm", "**/tslib"],
 	"typescript.tsdk": "node_modules/typescript/lib"

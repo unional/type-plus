@@ -37,4 +37,3 @@ export * from './split.js'
 export type { SpreadRecord } from './SpreadRecord.js'
 export * from './typeOverrideIncompatible.js'
 export type { ValueOf } from './ValueOf.js'
-
