@@ -1,0 +1,36 @@
+{
+	"folders": [
+		{
+			"name": "type-plus",
+			"path": ".."
+		},
+		{
+			"name": "typescript-blackbook",
+			"path": "../../typescript-blackbook"
+		}
+	],
+	"settings": {
+		"markdown.extension.list.toggle.candidate-markers": [
+			"-",
+			"1."
+		],
+		"markdown.extension.toc.levels": "2..6",
+		"markdown.extension.toc.omittedFromToc": {
+			"type-plus/README.md": [
+				"## Table of Contents",
+				"## Installation"
+			]
+		},
+		"markdown.extension.toc.orderedList": true,
+		"markdown.extension.toc.unorderedList.marker": "-",
+		"material-icon-theme.files.associations": {
+			"tsconfig.ts54.json": "tsconfig",
+			"tsconfig.ts55.json": "tsconfig",
+			"tsconfig.ts56.json": "tsconfig"
+		},
+		"typescript.tsdk": "node_modules/typescript/lib",
+		"cSpell.words": [
+			"astrolib"
+		]
+	}
+}
