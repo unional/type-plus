@@ -1,8 +1,15 @@
 {
 	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
 	"extends": ["@repobuddy/biome/recommended"],
+	"vcs": {
+		"defaultBranch": "main",
+		"clientKind": "git",
+		"enabled": true,
+		"useIgnoreFile": true
+	},
 	"files": {
 		"ignore": [
+			".changeset/*.json",
 			".turbo",
 			".vscode/*.txt",
 			"./docs",

@@ -24,3 +24,7 @@ insert_final_newline = false
 
 [.vscode/ltex.*.txt]
 insert_final_newline = false
+
+[.changeset/*.json]
+indent_style = space
+insert_final_newline = true
