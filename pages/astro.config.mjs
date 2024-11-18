@@ -6,7 +6,9 @@ import solidJs from '@astrojs/solid-js'
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
-		tailwind(),
+		tailwind({
+			configFile: './tailwind.config.ts',
+		}),
 		solidJs(),
 		starlight({
 			title: 'type-plus',
@@ -38,4 +40,5 @@ export default defineConfig({
 			],
 		}),
 	],
+	site: 'https://unional.github.io/type-plus/'
 })

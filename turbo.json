@@ -6,6 +6,9 @@
 			"inputs": ["src/**/*.tsx?", "!src/**/*.spec.tsx?", "!src/**/*.stories.tsx?", "tsconfig.*"],
 			"outputs": ["lib/**", "cjs/**", "esm/**", "dist/**"]
 		},
+		"pages#build": {
+			"inputs": ["astro.config.mjs"]
+		},
 		"build:doc": {
 			"dependsOn": ["^build"]
 		},
