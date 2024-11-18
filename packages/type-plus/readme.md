@@ -19,26 +19,26 @@ and type-level programming.
 	1. [Update organization](#update-organization)
 	2. [Update documentation](#update-documentation)
 4. [Assertion Function](#assertion-function)
-	1. [assertType](#asserttype)
+	1. [`assertType`](#asserttype)
 5. [Type Guard](#type-guard)
 6. [Type Utilities](#type-utilities)
 7. [Type Specific Utilities](#type-specific-utilities)
 	1. [any](#any)
 	2. [Array](#array)
-	3. [union](#union)
-	4. [bigint](#bigint)
-	5. [boolean](#boolean)
-	6. [function](#function)
-	7. [never](#never)
-	8. [null](#null)
-	9. [number](#number)
-	10. [numeric](#numeric)
-	11. [object](#object)
+	3. [Union](#union)
+	4. [`bigint`](#bigint)
+	5. [Boolean](#boolean)
+	6. [Function](#function)
+	7. [Never](#never)
+	8. [Null](#null)
+	9. [Number](#number)
+	10. [Numeric](#numeric)
+	11. [Object](#object)
 	12. [Promise](#promise)
-	13. [string](#string)
-	14. [symbol](#symbol)
-	15. [tuple](#tuple)
-	16. [undefined](#undefined)
+	13. [String](#string)
+	14. [Symbol](#symbol)
+	15. [Tuple](#tuple)
+	16. [Undefined](#undefined)
 	17. [unknown](#unknown)
 	18. [void](#void)
 8. [Testing Utilities](#testing-utilities)
@@ -46,7 +46,7 @@ and type-level programming.
 10. [JSON Support](#json-support)
 11. [Type manipulation](#type-manipulation)
 12. [Type Predicates](#type-predicates)
-	1. [Logical](#logical)
+	 1. [Logical](#logical)
 13. [Math](#math)
 14. [Utility Functions](#utility-functions)
 15. [Nominal Types](#nominal-types)
@@ -67,12 +67,12 @@ pnpm add type-plus
 
 ## What's in the package?
 
-With over 200 types in [type-plus],
+With over 200 types in [`type-plus`],
 it can become difficult to find the types you need.
 
 Also, some types need to be updated as TypeScript continue to evolve.
 
-Currently, we are updating [type-plus] with the following objective:
+Currently, we are updating [`type-plus`] with the following objective:
 
 - Update organization
 - Update documentation
@@ -81,7 +81,7 @@ Currently, we are updating [type-plus] with the following objective:
 
 ### Update organization
 
-Top-level exports of [type-plus] will contain types and functions that do not expect the input to be a specific type. For example,
+Top-level exports of [`type-plus`] will contain types and functions that do not expect the input to be a specific type. For example,
 
 - `assertType()`, `isType()`, and `testType()`
 - Type filters and predicates such as `AnyType` or `IsArray`
@@ -93,7 +93,7 @@ Other type specific utilities will be added under their respective `*Plus` names
 
 ### Update documentation
 
-Each type and utility function in [type-plus] will be updated to include examples and tags to indicate its category and behavior.
+Each type and utility function in [`type-plus`] will be updated to include examples and tags to indicate its category and behavior.
 
 Each tag has an associated icon:
 
@@ -124,10 +124,10 @@ They throw an error if the condition is not met, and return nothing otherwise.
 These assertion functions are typically used in runtime,
 so that that type of the value can be narrowed down.
 
-### assertType
+### `assertType`
 
 [`assertType`](./src/assertion/assert_type.ts) provides a generic assertion function,
-as well as many assertion functions for builtin types.
+as well as many assertion functions for built-in types.
 
 > [`assertType<T>(subject)`](./src/assertion/readme.md#asserttype)
 
@@ -275,7 +275,7 @@ This works similar to manual assertion `;(subject as T)`
 
 > `Equal<A, B, Then = true, Else = false>`
 
-💀 deprecated. use `IsEqual` instead. This will be converted to a ↪️ `parse`.
+💀 deprecated. Use `IsEqual` instead. This will be converted to a ↪️ `parse`.
 
 > `IsEqual<A, B, Then = true, Else = false>`
 
@@ -283,7 +283,7 @@ This works similar to manual assertion `;(subject as T)`
 
 > `NotEqual<A, B, Then = true, Else = false>`
 
-💀 deprecated. use `IsNotEqual` instead. This will be converted to a ↪️ `parse`.
+💀 deprecated. Use `IsNotEqual` instead. This will be converted to a ↪️ `parse`.
 
 > `IsNotEqual<A, B, Then = true, Else = false>`:
 
@@ -357,7 +357,7 @@ notA({ a: '' }) // TypeScript complains
 
 ## Type Specific Utilities
 
-[type-plus](./README.md) privides type checking utilities for every type.
+[`type-plus`](./README.md) provides type checking utilities for every type.
 
 Each type has at least 4 type checks.
 Using `string` as an example, there are `StringType<T>`, `IsString<T>`, `NotStringType<T>`, and `IsNotString<T>`.
@@ -399,7 +399,7 @@ You can learn more in their respective sections:
 - 🌪️[`NotArrayType`](./src/array/readme.md#notarraytype): Filter `T` to ensure it is not an array, excluding tuple.
 - 🎭[`IsNotArrayType`](./src/array/readme.md#isnotarraytype): Validate that `T` is not an array, excluding tuple.
 - 🦴[`At`](./src/array/readme.md#at): Gets the type of the array or tuple at positive or negative index `N`.
-- 🦴💀[`Concat`](./src/array/readme.md#concat): Concats two arrays or tuples.
+- 🦴💀[`Concat`](./src/array/readme.md#concat): Concatenates two arrays or tuples.
 - 🦴🔢[`FindFirst`](./src/array/readme.md#findfirst): Find the first type in the array or tuple `A` that matches `Criteria`.
 - [`FindLast`](./src/array/readme.md#findlast)
 - [`Some`](./src/array/readme.md#some)
@@ -425,12 +425,12 @@ You can learn more in their respective sections:
 - [`ArrayPlus.SplitAt`](./src/array/readme.md#arrayplussplitat)
 - [`ArrayPlus.Some`](./src/array/readme.md#arrayplussome)
 
-### [union](./src/union/readme.md)
+### [Union](./src/union/readme.md)
 
 - [`IsUnion`](./src/union//readme.md#isunion)
 - [`UnionType`](./src/union/readme.md#uniontype)
 
-### bigint
+### `bigint`
 
 > [`BigintType<T, Then = T, Else = never>`](./src/bigint/bigint_type.ts#L15)
 
@@ -464,7 +464,7 @@ You can learn more in their respective sections:
 
 ⭕ `predicate`: if `T` is not exactly `bigint`.
 
-### boolean
+### Boolean
 
 > [`BooleanType<T>`](./src/boolean/readme.md#type-checking)
 
@@ -482,7 +482,7 @@ You can learn more in their respective sections:
 
 ⭕ `predicate`: `T !== boolean`
 
-### function
+### Function
 
 > [`FunctionType<T>`](./src/function/readme.md#type-checking)
 
@@ -516,7 +516,7 @@ You can learn more in their respective sections:
 
 🔨 `utilities`: inspect a value and return it. Inspector defaults to `console.dir()`
 
-### never
+### Never
 
 > [`NeverType<T>`](./src/never/readme.md#type-checking)
 
@@ -534,7 +534,7 @@ You can learn more in their respective sections:
 
 ⭕ `predicate`: `T !== never`
 
-### null
+### Null
 
 > [`NullType<T>`](./src/null/readme.md#type-checking)
 
@@ -552,7 +552,7 @@ You can learn more in their respective sections:
 
 ⭕ `predicate`: `T !== null`
 
-### number
+### Number
 
 > [`NumberType<T, Then = N, Else = never>`](./src/number/number_type.ts#L14)
 
@@ -586,7 +586,7 @@ You can learn more in their respective sections:
 
 ⭕ `predicate`: is the type `T` not exactly `number`.
 
-### numeric
+### Numeric
 
 > [`Numeric`](./src/numeric/numeric_type.ts#L4)
 
@@ -648,7 +648,7 @@ You can learn more in their respective sections:
 
 ⭕ `predicate`: is not positive.
 
-### object
+### Object
 
 > `filterKey()`
 
@@ -686,7 +686,7 @@ You can learn more in their respective sections:
 
 🔨 `utilities`: gets the value type `T`from `Record<any, T>`
 
-[video](https://www.youtube.com/watch?v=1J7xK6FUqPw).
+[Video](https://www.youtube.com/watch?v=1J7xK6FUqPw).
 
 > `reduceByKey()`
 
@@ -732,7 +732,7 @@ You can learn more in their respective sections:
 🔨 `utilities`: Apply the `transformer` to the `value`.\
   It is also exported under `MaybePromise.transform()`.
 
-### string
+### String
 
 > [`StringType<T>`](ts/string/readme.md#type-checking)
 
@@ -750,7 +750,7 @@ You can learn more in their respective sections:
 
 ⭕ `predicate`: is not `string`.
 
-### symbol
+### Symbol
 
 > [`SymbolType<T>`](ts/symbol/readme.md#type-checking)
 
@@ -768,12 +768,12 @@ You can learn more in their respective sections:
 
 ⭕ `predicate`: is not `symbol`.
 
-### tuple
+### Tuple
 
 - 🌪️ [`TupleType`](./src/tuple/readme.md#tupletype): Filter `T` to ensure it is a tuple, excluding array.
 - 🎭 [`IsTuple`](./src/tuple/readme.md#istuple): Validate that `T` is a tuple, excluding array.
-- 🌪️ [`NotTupleType`](./src/tuple/readme.md#nottupletype): Filter `T` to ensure it is not an tuple, excluding array.
-- 🎭 [`IsNotTuple`](./src/tuple/readme.md#isnottupletype): Validate that `T` is not an tuple, excluding array.
+- 🌪️ [`NotTupleType`](./src/tuple/readme.md#nottupletype): Filter `T` to ensure it is not a tuple, excluding array.
+- 🎭 [`IsNotTuple`](./src/tuple/readme.md#isnottupletype): Validate that `T` is not a tuple, excluding array.
 - ⚗️🔢[`CommonPropKeys`](./src/tuple/readme.md#commonpropkeys): Gets the common property keys of the elements in tuple `T`.
 - ⚗️💀`CommonKeys`: Deprecated. Please use `CommonPropKeys` instead.
 - ⚗️🔢[`DropFirst`](./src/tuple/readme.md#dropfirst): Drops the first entry in the tuple`T`.
@@ -795,7 +795,7 @@ You can learn more in their respective sections:
 
 🔨 `utilities`: drop undefined entries from array of tuple `A`.
 
-### undefined
+### Undefined
 
 > [`UndefinedType<T>`](./src/undefined/readme.md#type-checking)
 
@@ -851,7 +851,7 @@ You can learn more in their respective sections:
 
 ## Testing Utilities
 
-[type-plus](./README.md) privides some testing utilities to help you test your types.
+[`type-plus`](./README.md) provides some testing utilities to help you test your types.
 
 One of the key utilities is [`testType`](./src/testing/readme.md#testtype).
 
@@ -933,7 +933,7 @@ JSONTypes.get<string>(someJson, 'a', 'b', 1, 'c') // miku
 
 > `EitherAnd<A, B, [C, D]>`
 
-💀🔨 `deprecated`,`utilities`: Renamed to `EitherOrBoth`. combines 2 to 4 types as `A | B | (A & B)`.
+💀🔨 `deprecated`,`utilities`: Renamed to `EitherOrBoth`. Combines 2 to 4 types as `A | B | (A & B)`.
 
 This is useful for combining options.
 
@@ -1050,7 +1050,7 @@ They can be used to compose complex types.
 
 > `IsAny<T>`
 
-🔨 `utilities`: `T === any` (updated to impl: [expect-type]).
+🔨 `utilities`: `T === any`.
 
 > `IsBoolean<T>`
 
@@ -1238,7 +1238,7 @@ overrider(source, { foo: !!source.foo })
 🔨 `utilities`: a context builder.
 
 This is useful to build context for functional programming.
-It is a sync version of the `AsyncContext` from [async-fp](https://unional/async-fp).
+It is a sync version of the `AsyncContext` from [`async-fp`](https://unional/async-fp).
 
 ```ts
 import { context } from 'type-plus'
@@ -1332,45 +1332,45 @@ Whenever possible, I add attribution to the person who created those **codes** i
 
 ## Similar projects
 
-- [expect-type]: Compile-time tests for types
-- [hotscript]: Higher-order TypeScript
-- [spec.ts]: write tests for your types!
-- [ts-calc]: compute with typescript type system, part of [hotscript]
-- [ts-essentials]: all essential TypeScript types in one place.
-- [ts-expect]: Checks values in TypeScript match expectations.
-- [ts-toolbelt]: TypeScript's largest utility library.
-- [type-fest]: a collection of essential TypeScript types.
-- [type-zoo]: a modest type lib usable today.
-- [typepark]: a new type collection offering tuple manipulation and `Pipe`.
-- [typelevel-ts]: a type lib by [@gcanti], author of several FP libraries in TS.
-- [typical]: a playground of type-level operations for TypeScript.
-- [utility-types]: collection of utility types, complementing TypeScript build-in mapped types ans aliases.
-- [earl]: Ergonomic, modern and type-safe assertion library for TypeScript
+- [`expect-type`]: Compile-time tests for types
+- [`hotscript`]: Higher-order TypeScript
+- [`spec.ts`]: write tests for your types!
+- [`ts-calc`]: compute with typescript type system, part of [`hotscript`]
+- [`ts-essentials`]: all essential TypeScript types in one place.
+- [`ts-expect`]: Checks values in TypeScript match expectations.
+- [`ts-toolbelt`]: TypeScript's largest utility library.
+- [`type-fest`]: a collection of essential TypeScript types.
+- [`type-zoo`]: a modest type lib usable today.
+- [`typepark`]: a new type collection offering tuple manipulation and `Pipe`.
+- [`typelevel-ts`]: a type lib by [@gcanti], author of several FP libraries in TS.
+- [`typical`]: a playground of type-level operations for TypeScript.
+- [`utility-types`]: collection of utility types, complementing TypeScript built-in mapped types and aliases.
+- [`earl`]: Ergonomic, modern and type-safe assertion library for TypeScript
 
 [@gcanti]: https://github.com/gcanti
 [codecov_image]: https://codecov.io/gh/unional/type-plus/branch/master/graph/badge.svg
 [codecov_url]: https://codecov.io/gh/unional/type-plus
 [downloads_image]: https://img.shields.io/npm/dm/type-plus.svg?style=flat
-[earl]: https://github.com/l2beat/earl
-[expect-type]: https://github.com/mmkal/expect-type
+[`earl`]: https://github.com/l2beat/earl
+[`expect-type`]: https://github.com/mmkal/expect-type
 [github_action_url]: https://github.com/unional/type-plus/actions
 [github_release]: https://github.com/unional/type-plus/workflows/release/badge.svg
-[hotscript]: https://github.com/gvergnaud/hotscript
+[`hotscript`]: https://github.com/gvergnaud/hotscript
 [npm_image]: https://img.shields.io/npm/v/type-plus.svg?style=flat
 [npm_url]: https://npmjs.org/package/type-plus
-[spec.ts]: https://github.com/aleclarson/spec.ts
-[ts-calc]: https://github.com/ecyrbe/ts-calc
-[ts-essentials]: https://github.com/ts-essentials/ts-essentials
-[ts-expect]: https://github.com/TypeStrong/ts-expect
-[ts-toolbelt]: https://github.com/millsp/ts-toolbelt
-[type-fest]: https://github.com/sindresorhus/type-fest
-[type-plus]: https://github.com/unional/type-plus
-[type-zoo]: https://github.com/pelotom/type-zoo
-[typelevel-ts]: https://github.com/gcanti/typelevel-ts
-[typepark]: https://github.com/kgtkr/typepark
+[`spec.ts`]: https://github.com/aleclarson/spec.ts
+[`ts-calc`]: https://github.com/ecyrbe/ts-calc
+[`ts-essentials`]: https://github.com/ts-essentials/ts-essentials
+[`ts-expect`]: https://github.com/TypeStrong/ts-expect
+[`ts-toolbelt`]: https://github.com/millsp/ts-toolbelt
+[`type-fest`]: https://github.com/sindresorhus/type-fest
+[`type-plus`]: https://github.com/unional/type-plus
+[`type-zoo`]: https://github.com/pelotom/type-zoo
+[`typelevel-ts`]: https://github.com/gcanti/typelevel-ts
+[`typepark`]: https://github.com/kgtkr/typepark
 [TypeScript]: https://www.typescriptlang.org
-[typical]: https://github.com/KiaraGrouwstra/typical
-[utility-types]: https://github.com/piotrwitek/utility-types
+[`typical`]: https://github.com/KiaraGrouwstra/typical
+[`utility-types`]: https://github.com/piotrwitek/utility-types
 [vscode_image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode_url]: https://code.visualstudio.com/
 [assertion_functions]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions
