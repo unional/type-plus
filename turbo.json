@@ -4,7 +4,7 @@
 		"build": {
 			"dependsOn": ["^build"],
 			"inputs": ["src/**/*.tsx?", "!src/**/*.spec.tsx?", "!src/**/*.stories.tsx?", "tsconfig.*"],
-			"outputs": ["lib/**"]
+			"outputs": ["lib/**", "cjs/**", "esm/**", "dist/**"]
 		},
 		"build:doc": {
 			"dependsOn": ["^build"]
@@ -14,7 +14,8 @@
 		},
 		"coverage": {
 			"dependsOn": ["^build"],
-			"inputs": ["src/**/*.tsx?"]
+			"inputs": ["src/**/*.tsx?"],
+			"outputs": ["coverage/**"]
 		},
 		"depcheck": {},
 		"dev": {
