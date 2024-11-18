@@ -16,7 +16,7 @@ and type-level programming.</p>
 </li>
 <li><a href="#md:assertion-function">Assertion Function</a>
 <ol>
-<li><a href="#md:asserttype">assertType</a></li>
+<li><a href="#md:asserttype"><code>assertType</code></a></li>
 </ol>
 </li>
 <li><a href="#md:type-guard">Type Guard</a></li>
@@ -25,20 +25,20 @@ and type-level programming.</p>
 <ol>
 <li><a href="#md:any">any</a></li>
 <li><a href="#md:array">Array</a></li>
-<li><a href="#md:union">union</a></li>
-<li><a href="#md:bigint">bigint</a></li>
-<li><a href="#md:boolean">boolean</a></li>
-<li><a href="#md:function">function</a></li>
-<li><a href="#md:never">never</a></li>
-<li><a href="#md:null">null</a></li>
-<li><a href="#md:number">number</a></li>
-<li><a href="#md:numeric">numeric</a></li>
-<li><a href="#md:object">object</a></li>
+<li><a href="#md:union">Union</a></li>
+<li><a href="#md:bigint"><code>bigint</code></a></li>
+<li><a href="#md:boolean">Boolean</a></li>
+<li><a href="#md:function">Function</a></li>
+<li><a href="#md:never">Never</a></li>
+<li><a href="#md:null">Null</a></li>
+<li><a href="#md:number">Number</a></li>
+<li><a href="#md:numeric">Numeric</a></li>
+<li><a href="#md:object">Object</a></li>
 <li><a href="#md:promise">Promise</a></li>
-<li><a href="#md:string">string</a></li>
-<li><a href="#md:symbol">symbol</a></li>
-<li><a href="#md:tuple">tuple</a></li>
-<li><a href="#md:undefined">undefined</a></li>
+<li><a href="#md:string">String</a></li>
+<li><a href="#md:symbol">Symbol</a></li>
+<li><a href="#md:tuple">Tuple</a></li>
+<li><a href="#md:undefined">Undefined</a></li>
 <li><a href="#md:unknown">unknown</a></li>
 <li><a href="#md:void">void</a></li>
 </ol>
@@ -63,17 +63,17 @@ and type-level programming.</p>
 <a id="md:installation" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Installation<a href="#md:installation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><pre><code class="sh"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">install</span><span class="hl-1"> </span><span class="hl-2">type-plus</span><br/><br/><span class="hl-0">yarn</span><span class="hl-1"> </span><span class="hl-2">add</span><span class="hl-1"> </span><span class="hl-2">type-plus</span><br/><br/><span class="hl-0">pnpm</span><span class="hl-1"> </span><span class="hl-2">add</span><span class="hl-1"> </span><span class="hl-2">type-plus</span>
 </code><button type="button">Copy</button></pre>
 
-<a id="md:whats-in-the-package" class="tsd-anchor"></a><h2 class="tsd-anchor-link">What's in the package?<a href="#md:whats-in-the-package" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>With over 200 types in <a href="https://github.com/unional/type-plus" target="_blank" class="external">type-plus</a>,
+<a id="md:whats-in-the-package" class="tsd-anchor"></a><h2 class="tsd-anchor-link">What's in the package?<a href="#md:whats-in-the-package" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>With over 200 types in <a href="https://github.com/unional/type-plus" target="_blank" class="external"><code>type-plus</code></a>,
 it can become difficult to find the types you need.</p>
 <p>Also, some types need to be updated as TypeScript continue to evolve.</p>
-<p>Currently, we are updating <a href="https://github.com/unional/type-plus" target="_blank" class="external">type-plus</a> with the following objective:</p>
+<p>Currently, we are updating <a href="https://github.com/unional/type-plus" target="_blank" class="external"><code>type-plus</code></a> with the following objective:</p>
 <ul>
 <li>Update organization</li>
 <li>Update documentation</li>
 <li>Clean up and deprecate types</li>
 <li>Upgrade TypeScript from 5.0.4 to 5.1 (potential breaking changes)</li>
 </ul>
-<a id="md:update-organization" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Update organization<a href="#md:update-organization" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Top-level exports of <a href="https://github.com/unional/type-plus" target="_blank" class="external">type-plus</a> will contain types and functions that do not expect the input to be a specific type. For example,</p>
+<a id="md:update-organization" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Update organization<a href="#md:update-organization" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Top-level exports of <a href="https://github.com/unional/type-plus" target="_blank" class="external"><code>type-plus</code></a> will contain types and functions that do not expect the input to be a specific type. For example,</p>
 <ul>
 <li><code>assertType()</code>, <code>isType()</code>, and <code>testType()</code></li>
 <li>Type filters and predicates such as <code>AnyType</code> or <code>IsArray</code></li>
@@ -81,7 +81,7 @@ it can become difficult to find the types you need.</p>
 <p>It can also have types and functions for specific types if it is a common convention,
 or the is no ambiguity, or for backwards compatibility purpose.</p>
 <p>Other type specific utilities will be added under their respective <code>*Plus</code> namespaces such as <code>ArrayPlus.At</code> or <code>NumberPlus.Positive</code>.</p>
-<a id="md:update-documentation" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Update documentation<a href="#md:update-documentation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Each type and utility function in <a href="https://github.com/unional/type-plus" target="_blank" class="external">type-plus</a> will be updated to include examples and tags to indicate its category and behavior.</p>
+<a id="md:update-documentation" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Update documentation<a href="#md:update-documentation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Each type and utility function in <a href="https://github.com/unional/type-plus" target="_blank" class="external"><code>type-plus</code></a> will be updated to include examples and tags to indicate its category and behavior.</p>
 <p>Each tag has an associated icon:</p>
 <ul>
 <li>👽 <em>alias</em>: Alias of another type</li>
@@ -105,8 +105,8 @@ or the is no ambiguity, or for backwards compatibility purpose.</p>
 <p>They throw an error if the condition is not met, and return nothing otherwise.</p>
 <p>These assertion functions are typically used in runtime,
 so that that type of the value can be narrowed down.</p>
-<a id="md:asserttype" class="tsd-anchor"></a><h3 class="tsd-anchor-link">assertType<a href="#md:asserttype" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p><a href="media/assert_type.ts"><code>assertType</code></a> provides a generic assertion function,
-as well as many assertion functions for builtin types.</p>
+<a id="md:asserttype" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><code>assertType</code><a href="#md:asserttype" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p><a href="media/assert_type.ts"><code>assertType</code></a> provides a generic assertion function,
+as well as many assertion functions for built-in types.</p>
 <blockquote>
 <p><a href="./src/assertion/readme.md#asserttype"><code>assertType&lt;T&gt;(subject)</code></a></p>
 </blockquote>
@@ -237,7 +237,7 @@ If the subject is an arrow function, it can still return true after compilation.
 <a id="md:type-utilities" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Type Utilities<a href="#md:type-utilities" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><blockquote>
 <p><code>Equal&lt;A, B, Then = true, Else = false&gt;</code></p>
 </blockquote>
-<p>💀 deprecated. use <code>IsEqual</code> instead. This will be converted to a ↪️ <code>parse</code>.</p>
+<p>💀 deprecated. Use <code>IsEqual</code> instead. This will be converted to a ↪️ <code>parse</code>.</p>
 <blockquote>
 <p><code>IsEqual&lt;A, B, Then = true, Else = false&gt;</code></p>
 </blockquote>
@@ -245,7 +245,7 @@ If the subject is an arrow function, it can still return true after compilation.
 <blockquote>
 <p><code>NotEqual&lt;A, B, Then = true, Else = false&gt;</code></p>
 </blockquote>
-<p>💀 deprecated. use <code>IsNotEqual</code> instead. This will be converted to a ↪️ <code>parse</code>.</p>
+<p>💀 deprecated. Use <code>IsNotEqual</code> instead. This will be converted to a ↪️ <code>parse</code>.</p>
 <blockquote>
 <p><code>IsNotEqual&lt;A, B, Then = true, Else = false&gt;</code>:</p>
 </blockquote>
@@ -302,7 +302,7 @@ If the subject is an arrow function, it can still return true after compilation.
 <pre><code class="ts"><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-4">notA</span><span class="hl-1"> = </span><span class="hl-0">canAssign</span><span class="hl-1">&lt;{ </span><span class="hl-8">a</span><span class="hl-1">: </span><span class="hl-5">string</span><span class="hl-1"> }&gt;(</span><span class="hl-3">false</span><span class="hl-1">)</span><br/><span class="hl-8">assertType</span><span class="hl-1">.</span><span class="hl-0">isTrue</span><span class="hl-1">(</span><span class="hl-0">notA</span><span class="hl-1">({ </span><span class="hl-8">a:</span><span class="hl-1"> </span><span class="hl-6">1</span><span class="hl-1"> }))</span><br/><br/><span class="hl-0">notA</span><span class="hl-1">({ </span><span class="hl-8">a:</span><span class="hl-1"> </span><span class="hl-2">&#39;&#39;</span><span class="hl-1"> }) </span><span class="hl-7">// TypeScript complains</span>
 </code><button type="button">Copy</button></pre>
 
-<a id="md:type-specific-utilities" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Type Specific Utilities<a href="#md:type-specific-utilities" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p><a href="./README.md">type-plus</a> privides type checking utilities for every type.</p>
+<a id="md:type-specific-utilities" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Type Specific Utilities<a href="#md:type-specific-utilities" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p><a href="./README.md"><code>type-plus</code></a> provides type checking utilities for every type.</p>
 <p>Each type has at least 4 type checks.
 Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</code>, <code>IsString&lt;T&gt;</code>, <code>NotStringType&lt;T&gt;</code>, and <code>IsNotString&lt;T&gt;</code>.</p>
 <p>Some types will have more checks, such as <code>boolean</code> has <code>StrictBooleanType&lt;T&gt;</code>, <code>TrueType&lt;T&gt;</code>, <code>FalseType&lt;T&gt;</code>.</p>
@@ -339,7 +339,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <li>🌪️<a href="./src/array/readme.md#notarraytype"><code>NotArrayType</code></a>: Filter <code>T</code> to ensure it is not an array, excluding tuple.</li>
 <li>🎭<a href="./src/array/readme.md#isnotarraytype"><code>IsNotArrayType</code></a>: Validate that <code>T</code> is not an array, excluding tuple.</li>
 <li>🦴<a href="./src/array/readme.md#at"><code>At</code></a>: Gets the type of the array or tuple at positive or negative index <code>N</code>.</li>
-<li>🦴💀<a href="./src/array/readme.md#concat"><code>Concat</code></a>: Concats two arrays or tuples.</li>
+<li>🦴💀<a href="./src/array/readme.md#concat"><code>Concat</code></a>: Concatenates two arrays or tuples.</li>
 <li>🦴🔢<a href="./src/array/readme.md#findfirst"><code>FindFirst</code></a>: Find the first type in the array or tuple <code>A</code> that matches <code>Criteria</code>.</li>
 <li><a href="./src/array/readme.md#findlast"><code>FindLast</code></a></li>
 <li><a href="./src/array/readme.md#some"><code>Some</code></a></li>
@@ -365,11 +365,11 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <li><a href="./src/array/readme.md#arrayplussplitat"><code>ArrayPlus.SplitAt</code></a></li>
 <li><a href="./src/array/readme.md#arrayplussome"><code>ArrayPlus.Some</code></a></li>
 </ul>
-<a id="md:union" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><a href="media/readme-15.md">union</a><a href="#md:union" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<a id="md:union" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><a href="media/readme-15.md">Union</a><a href="#md:union" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
 <li><a href="./src/union//readme.md#isunion"><code>IsUnion</code></a></li>
 <li><a href="./src/union/readme.md#uniontype"><code>UnionType</code></a></li>
 </ul>
-<a id="md:bigint" class="tsd-anchor"></a><h3 class="tsd-anchor-link">bigint<a href="#md:bigint" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
+<a id="md:bigint" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><code>bigint</code><a href="#md:bigint" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
 <p><a href="./src/bigint/bigint_type.ts#L15"><code>BigintType&lt;T, Then = T, Else = never&gt;</code></a></p>
 </blockquote>
 <p>↪️ <code>parse</code>: if <code>T</code> is <code>bigint</code> or bigint literal.</p>
@@ -401,7 +401,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <p><a href="./src/bigint/strict_bigint_type.ts#L61"><code>IsNotStrictBigint&lt;T, Then = true, Else = false&gt;</code></a></p>
 </blockquote>
 <p>⭕ <code>predicate</code>: if <code>T</code> is not exactly <code>bigint</code>.</p>
-<a id="md:boolean" class="tsd-anchor"></a><h3 class="tsd-anchor-link">boolean<a href="#md:boolean" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
+<a id="md:boolean" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Boolean<a href="#md:boolean" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
 <p><a href="./src/boolean/readme.md#type-checking"><code>BooleanType&lt;T&gt;</code></a></p>
 </blockquote>
 <p>↪️ <code>parse</code>: <code>T === boolean</code>.</p>
@@ -417,7 +417,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <p><a href="./src/boolean/readme.md#type-checking"><code>IsNotBoolean&lt;T&gt;</code></a></p>
 </blockquote>
 <p>⭕ <code>predicate</code>: <code>T !== boolean</code></p>
-<a id="md:function" class="tsd-anchor"></a><h3 class="tsd-anchor-link">function<a href="#md:function" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
+<a id="md:function" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Function<a href="#md:function" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
 <p><a href="./src/function/readme.md#type-checking"><code>FunctionType&lt;T&gt;</code></a></p>
 </blockquote>
 <p>↪️ <code>parse</code>: <code>T === function</code>.</p>
@@ -449,7 +449,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <p><code>inspect&lt;T&gt;(value: T, inspector?: (v: T) =&gt; void)</code></p>
 </blockquote>
 <p>🔨 <code>utilities</code>: inspect a value and return it. Inspector defaults to <code>console.dir()</code></p>
-<a id="md:never" class="tsd-anchor"></a><h3 class="tsd-anchor-link">never<a href="#md:never" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
+<a id="md:never" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Never<a href="#md:never" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
 <p><a href="./src/never/readme.md#type-checking"><code>NeverType&lt;T&gt;</code></a></p>
 </blockquote>
 <p>↪️ <code>parse</code>: <code>T === never</code>.</p>
@@ -465,7 +465,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <p><a href="./src/never/readme.md#type-checking"><code>IsNotNever&lt;T&gt;</code></a></p>
 </blockquote>
 <p>⭕ <code>predicate</code>: <code>T !== never</code></p>
-<a id="md:null" class="tsd-anchor"></a><h3 class="tsd-anchor-link">null<a href="#md:null" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
+<a id="md:null" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Null<a href="#md:null" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
 <p><a href="./src/null/readme.md#type-checking"><code>NullType&lt;T&gt;</code></a></p>
 </blockquote>
 <p>↪️ <code>parse</code>: <code>T === null</code>.</p>
@@ -481,7 +481,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <p><a href="./src/null/readme.md#type-checking"><code>IsNotNull&lt;T&gt;</code></a></p>
 </blockquote>
 <p>⭕ <code>predicate</code>: <code>T !== null</code></p>
-<a id="md:number" class="tsd-anchor"></a><h3 class="tsd-anchor-link">number<a href="#md:number" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
+<a id="md:number" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Number<a href="#md:number" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
 <p><a href="./src/number/number_type.ts#L14"><code>NumberType&lt;T, Then = N, Else = never&gt;</code></a></p>
 </blockquote>
 <p>↪️ <code>parse</code>: is the type <code>T</code> <code>number</code>.</p>
@@ -513,7 +513,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <p><a href="./src/number/strict_number_type.ts#L69"><code>IsNotStrictNumber&lt;T, Then = true, Else = false&gt;</code></a></p>
 </blockquote>
 <p>⭕ <code>predicate</code>: is the type <code>T</code> not exactly <code>number</code>.</p>
-<a id="md:numeric" class="tsd-anchor"></a><h3 class="tsd-anchor-link">numeric<a href="#md:numeric" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
+<a id="md:numeric" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Numeric<a href="#md:numeric" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
 <p><a href="./src/numeric/numeric_type.ts#L4"><code>Numeric</code></a></p>
 </blockquote>
 <p>📘 <code>definition</code>: <code>number | bigint</code>.</p>
@@ -573,7 +573,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <p><a href="./src/numeric/positive.ts#L60"><code>IsNotPositive&lt;N, Then = true, Else = false&gt;</code></a></p>
 </blockquote>
 <p>⭕ <code>predicate</code>: is not positive.</p>
-<a id="md:object" class="tsd-anchor"></a><h3 class="tsd-anchor-link">object<a href="#md:object" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
+<a id="md:object" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Object<a href="#md:object" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
 <p><code>filterKey()</code></p>
 </blockquote>
 <p>🔨 <code>utilities</code>: type adjusted filter by key.</p>
@@ -609,7 +609,7 @@ Using <code>string</code> as an example, there are <code>StringType&lt;T&gt;</co
 <p><code>RecordValue&lt;R&gt;</code></p>
 </blockquote>
 <p>🔨 <code>utilities</code>: gets the value type <code>T</code>from <code>Record&lt;any, T&gt;</code></p>
-<p><a href="https://www.youtube.com/watch?v=1J7xK6FUqPw" target="_blank" class="external">video</a>.</p>
+<p><a href="https://www.youtube.com/watch?v=1J7xK6FUqPw" target="_blank" class="external">Video</a>.</p>
 <blockquote>
 <p><code>reduceByKey()</code></p>
 </blockquote>
@@ -652,7 +652,7 @@ for array, just do <code>[...A, ...B]</code>.</p>
 </blockquote>
 <p>🔨 <code>utilities</code>: Apply the <code>transformer</code> to the <code>value</code>.<br>
 It is also exported under <code>MaybePromise.transform()</code>.</p>
-<a id="md:string" class="tsd-anchor"></a><h3 class="tsd-anchor-link">string<a href="#md:string" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
+<a id="md:string" class="tsd-anchor"></a><h3 class="tsd-anchor-link">String<a href="#md:string" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
 <p><a href="ts/string/readme.md#type-checking"><code>StringType&lt;T&gt;</code></a></p>
 </blockquote>
 <p>↪️ <code>parse</code>: is <code>string</code>.</p>
@@ -668,7 +668,7 @@ It is also exported under <code>MaybePromise.transform()</code>.</p>
 <p><a href="ts/string/readme.md#type-checking"><code>IsNotString&lt;T&gt;</code></a></p>
 </blockquote>
 <p>⭕ <code>predicate</code>: is not <code>string</code>.</p>
-<a id="md:symbol" class="tsd-anchor"></a><h3 class="tsd-anchor-link">symbol<a href="#md:symbol" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
+<a id="md:symbol" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Symbol<a href="#md:symbol" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
 <p><a href="ts/symbol/readme.md#type-checking"><code>SymbolType&lt;T&gt;</code></a></p>
 </blockquote>
 <p>↪️ <code>parse</code>: is <code>symbol</code>.</p>
@@ -684,11 +684,11 @@ It is also exported under <code>MaybePromise.transform()</code>.</p>
 <p><a href="ts/symbol/readme.md#type-checking"><code>IsNotSymbol&lt;T&gt;</code></a></p>
 </blockquote>
 <p>⭕ <code>predicate</code>: is not <code>symbol</code>.</p>
-<a id="md:tuple" class="tsd-anchor"></a><h3 class="tsd-anchor-link">tuple<a href="#md:tuple" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<a id="md:tuple" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Tuple<a href="#md:tuple" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
 <li>🌪️ <a href="./src/tuple/readme.md#tupletype"><code>TupleType</code></a>: Filter <code>T</code> to ensure it is a tuple, excluding array.</li>
 <li>🎭 <a href="./src/tuple/readme.md#istuple"><code>IsTuple</code></a>: Validate that <code>T</code> is a tuple, excluding array.</li>
-<li>🌪️ <a href="./src/tuple/readme.md#nottupletype"><code>NotTupleType</code></a>: Filter <code>T</code> to ensure it is not an tuple, excluding array.</li>
-<li>🎭 <a href="./src/tuple/readme.md#isnottupletype"><code>IsNotTuple</code></a>: Validate that <code>T</code> is not an tuple, excluding array.</li>
+<li>🌪️ <a href="./src/tuple/readme.md#nottupletype"><code>NotTupleType</code></a>: Filter <code>T</code> to ensure it is not a tuple, excluding array.</li>
+<li>🎭 <a href="./src/tuple/readme.md#isnottupletype"><code>IsNotTuple</code></a>: Validate that <code>T</code> is not a tuple, excluding array.</li>
 <li>⚗️🔢<a href="./src/tuple/readme.md#commonpropkeys"><code>CommonPropKeys</code></a>: Gets the common property keys of the elements in tuple <code>T</code>.</li>
 <li>⚗️💀<code>CommonKeys</code>: Deprecated. Please use <code>CommonPropKeys</code> instead.</li>
 <li>⚗️🔢<a href="./src/tuple/readme.md#dropfirst"><code>DropFirst</code></a>: Drops the first entry in the tuple<code>T</code>.</li>
@@ -710,7 +710,7 @@ It is also exported under <code>MaybePromise.transform()</code>.</p>
 <p><code>DropUndefined&lt;A&gt;</code></p>
 </blockquote>
 <p>🔨 <code>utilities</code>: drop undefined entries from array of tuple <code>A</code>.</p>
-<a id="md:undefined" class="tsd-anchor"></a><h3 class="tsd-anchor-link">undefined<a href="#md:undefined" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
+<a id="md:undefined" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Undefined<a href="#md:undefined" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><blockquote>
 <p><a href="./src/undefined/readme.md#type-checking"><code>UndefinedType&lt;T&gt;</code></a></p>
 </blockquote>
 <p>↪️ <code>parse</code>: <code>T === undefined</code>.</p>
@@ -758,7 +758,7 @@ It is also exported under <code>MaybePromise.transform()</code>.</p>
 <p><a href="./src/void/readme.md#type-checking"><code>IsNotVoid&lt;T&gt;</code></a></p>
 </blockquote>
 <p>⭕ <code>predicate</code>: <code>T !== void</code></p>
-<a id="md:testing-utilities" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Testing Utilities<a href="#md:testing-utilities" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p><a href="./README.md">type-plus</a> privides some testing utilities to help you test your types.</p>
+<a id="md:testing-utilities" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Testing Utilities<a href="#md:testing-utilities" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p><a href="./README.md"><code>type-plus</code></a> provides some testing utilities to help you test your types.</p>
 <p>One of the key utilities is <a href="./src/testing/readme.md#testtype"><code>testType</code></a>.</p>
 <pre><code class="ts"><span class="hl-9">import</span><span class="hl-1"> { </span><span class="hl-8">testType</span><span class="hl-1"> } </span><span class="hl-9">from</span><span class="hl-1"> </span><span class="hl-2">&#39;type-plus&#39;</span><br/><br/><span class="hl-8">testType</span><span class="hl-1">.</span><span class="hl-0">any</span><span class="hl-1">&lt;</span><span class="hl-5">T</span><span class="hl-1">&gt;(</span><span class="hl-3">true</span><span class="hl-1">) </span><span class="hl-7">// T is `any`</span><br/><span class="hl-8">testType</span><span class="hl-1">.</span><span class="hl-0">equal</span><span class="hl-1">&lt;</span><span class="hl-5">A</span><span class="hl-1">, </span><span class="hl-5">B</span><span class="hl-1">&gt;(</span><span class="hl-3">true</span><span class="hl-1">) </span><span class="hl-7">// A is equal to B</span><br/><span class="hl-8">testType</span><span class="hl-1">.</span><span class="hl-0">never</span><span class="hl-1">&lt;</span><span class="hl-5">T</span><span class="hl-1">&gt;(</span><span class="hl-3">false</span><span class="hl-1">) </span><span class="hl-7">// T is not `never`</span>
 </code><button type="button">Copy</button></pre>
@@ -822,7 +822,7 @@ It is also exported under <code>MaybePromise.transform()</code>.</p>
 <blockquote>
 <p><code>EitherAnd&lt;A, B, [C, D]&gt;</code></p>
 </blockquote>
-<p>💀🔨 <code>deprecated</code>,<code>utilities</code>: Renamed to <code>EitherOrBoth</code>. combines 2 to 4 types as <code>A | B | (A &amp; B)</code>.</p>
+<p>💀🔨 <code>deprecated</code>,<code>utilities</code>: Renamed to <code>EitherOrBoth</code>. Combines 2 to 4 types as <code>A | B | (A &amp; B)</code>.</p>
 <p>This is useful for combining options.</p>
 <blockquote>
 <p><code>EitherOrBoth&lt;A, B, [C, D]&gt;</code></p>
@@ -932,7 +932,7 @@ They can be used to compose complex types.</p>
 <blockquote>
 <p><code>IsAny&lt;T&gt;</code></p>
 </blockquote>
-<p>🔨 <code>utilities</code>: <code>T === any</code> (updated to impl: <a href="https://github.com/mmkal/expect-type" target="_blank" class="external">expect-type</a>).</p>
+<p>🔨 <code>utilities</code>: <code>T === any</code>.</p>
 <blockquote>
 <p><code>IsBoolean&lt;T&gt;</code></p>
 </blockquote>
@@ -1091,7 +1091,7 @@ So you may encounter some weird behavior if your logic is complex.</p>
 </blockquote>
 <p>🔨 <code>utilities</code>: a context builder.</p>
 <p>This is useful to build context for functional programming.
-It is a sync version of the <code>AsyncContext</code> from <a href="https://unional/async-fp" target="_blank" class="external">async-fp</a>.</p>
+It is a sync version of the <code>AsyncContext</code> from <a href="https://unional/async-fp" target="_blank" class="external"><code>async-fp</code></a>.</p>
 <pre><code class="ts"><span class="hl-9">import</span><span class="hl-1"> { </span><span class="hl-8">context</span><span class="hl-1"> } </span><span class="hl-9">from</span><span class="hl-1"> </span><span class="hl-2">&#39;type-plus&#39;</span><br/><br/><span class="hl-7">// { a: 1, b: 2 }</span><br/><span class="hl-3">const</span><span class="hl-1"> </span><span class="hl-4">ctx</span><span class="hl-1"> = </span><span class="hl-0">context</span><span class="hl-1">({ </span><span class="hl-8">a:</span><span class="hl-1"> </span><span class="hl-6">1</span><span class="hl-1"> })</span><br/><span class="hl-1">  .</span><span class="hl-0">extend</span><span class="hl-1">(</span><span class="hl-8">c</span><span class="hl-1"> </span><span class="hl-3">=&gt;</span><span class="hl-1"> ({ </span><span class="hl-8">b:</span><span class="hl-1"> </span><span class="hl-8">c</span><span class="hl-1">.</span><span class="hl-8">a</span><span class="hl-1"> + </span><span class="hl-6">1</span><span class="hl-1"> }))</span><br/><span class="hl-1">  .</span><span class="hl-0">build</span><span class="hl-1">()</span>
 </code><button type="button">Copy</button></pre>
 
@@ -1142,19 +1142,19 @@ Whenever possible, I add attribution to the person who created those <strong>cod
 <p><a href="https://github.com/microsoft/TypeScript/wiki/Performance" target="_blank" class="external">https://github.com/microsoft/TypeScript/wiki/Performance</a></p>
 </blockquote>
 <a id="md:similar-projects" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Similar projects<a href="#md:similar-projects" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
-<li><a href="https://github.com/mmkal/expect-type" target="_blank" class="external">expect-type</a>: Compile-time tests for types</li>
-<li><a href="https://github.com/gvergnaud/hotscript" target="_blank" class="external">hotscript</a>: Higher-order TypeScript</li>
-<li><a href="https://github.com/aleclarson/spec.ts" target="_blank" class="external">spec.ts</a>: write tests for your types!</li>
-<li><a href="https://github.com/ecyrbe/ts-calc" target="_blank" class="external">ts-calc</a>: compute with typescript type system, part of <a href="https://github.com/gvergnaud/hotscript" target="_blank" class="external">hotscript</a></li>
-<li><a href="https://github.com/ts-essentials/ts-essentials" target="_blank" class="external">ts-essentials</a>: all essential TypeScript types in one place.</li>
-<li><a href="https://github.com/TypeStrong/ts-expect" target="_blank" class="external">ts-expect</a>: Checks values in TypeScript match expectations.</li>
-<li><a href="https://github.com/millsp/ts-toolbelt" target="_blank" class="external">ts-toolbelt</a>: TypeScript's largest utility library.</li>
-<li><a href="https://github.com/sindresorhus/type-fest" target="_blank" class="external">type-fest</a>: a collection of essential TypeScript types.</li>
-<li><a href="https://github.com/pelotom/type-zoo" target="_blank" class="external">type-zoo</a>: a modest type lib usable today.</li>
-<li><a href="https://github.com/kgtkr/typepark" target="_blank" class="external">typepark</a>: a new type collection offering tuple manipulation and <code>Pipe</code>.</li>
-<li><a href="https://github.com/gcanti/typelevel-ts" target="_blank" class="external">typelevel-ts</a>: a type lib by <a href="https://github.com/gcanti" target="_blank" class="external">@gcanti</a>, author of several FP libraries in TS.</li>
-<li><a href="https://github.com/KiaraGrouwstra/typical" target="_blank" class="external">typical</a>: a playground of type-level operations for TypeScript.</li>
-<li><a href="https://github.com/piotrwitek/utility-types" target="_blank" class="external">utility-types</a>: collection of utility types, complementing TypeScript build-in mapped types ans aliases.</li>
-<li><a href="https://github.com/l2beat/earl" target="_blank" class="external">earl</a>: Ergonomic, modern and type-safe assertion library for TypeScript</li>
+<li><a href="https://github.com/mmkal/expect-type" target="_blank" class="external"><code>expect-type</code></a>: Compile-time tests for types</li>
+<li><a href="https://github.com/gvergnaud/hotscript" target="_blank" class="external"><code>hotscript</code></a>: Higher-order TypeScript</li>
+<li><a href="https://github.com/aleclarson/spec.ts" target="_blank" class="external"><code>spec.ts</code></a>: write tests for your types!</li>
+<li><a href="https://github.com/ecyrbe/ts-calc" target="_blank" class="external"><code>ts-calc</code></a>: compute with typescript type system, part of <a href="https://github.com/gvergnaud/hotscript" target="_blank" class="external"><code>hotscript</code></a></li>
+<li><a href="https://github.com/ts-essentials/ts-essentials" target="_blank" class="external"><code>ts-essentials</code></a>: all essential TypeScript types in one place.</li>
+<li><a href="https://github.com/TypeStrong/ts-expect" target="_blank" class="external"><code>ts-expect</code></a>: Checks values in TypeScript match expectations.</li>
+<li><a href="https://github.com/millsp/ts-toolbelt" target="_blank" class="external"><code>ts-toolbelt</code></a>: TypeScript's largest utility library.</li>
+<li><a href="https://github.com/sindresorhus/type-fest" target="_blank" class="external"><code>type-fest</code></a>: a collection of essential TypeScript types.</li>
+<li><a href="https://github.com/pelotom/type-zoo" target="_blank" class="external"><code>type-zoo</code></a>: a modest type lib usable today.</li>
+<li><a href="https://github.com/kgtkr/typepark" target="_blank" class="external"><code>typepark</code></a>: a new type collection offering tuple manipulation and <code>Pipe</code>.</li>
+<li><a href="https://github.com/gcanti/typelevel-ts" target="_blank" class="external"><code>typelevel-ts</code></a>: a type lib by <a href="https://github.com/gcanti" target="_blank" class="external">@gcanti</a>, author of several FP libraries in TS.</li>
+<li><a href="https://github.com/KiaraGrouwstra/typical" target="_blank" class="external"><code>typical</code></a>: a playground of type-level operations for TypeScript.</li>
+<li><a href="https://github.com/piotrwitek/utility-types" target="_blank" class="external"><code>utility-types</code></a>: collection of utility types, complementing TypeScript built-in mapped types and aliases.</li>
+<li><a href="https://github.com/l2beat/earl" target="_blank" class="external"><code>earl</code></a>: Ergonomic, modern and type-safe assertion library for TypeScript</li>
 </ul>
-</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#md:type-plus"><span>type-<wbr/>plus</span></a><ul><li><a href="#md:table-of-contents"><span>Table of <wbr/>Contents</span></a></li><li><a href="#md:installation"><span>Installation</span></a></li><li><a href="#md:whats-in-the-package"><span>What&#39;s in the package?</span></a></li><li><ul><li><a href="#md:update-organization"><span>Update organization</span></a></li><li><a href="#md:update-documentation"><span>Update documentation</span></a></li></ul></li><li><a href="#md:assertion-function"><span>Assertion <wbr/>Function</span></a></li><li><ul><li><a href="#md:asserttype"><span>assert<wbr/>Type</span></a></li></ul></li><li><a href="#md:type-guard"><span>Type <wbr/>Guard</span></a></li><li><a href="#md:type-utilities"><span>Type <wbr/>Utilities</span></a></li><li><a href="#md:type-specific-utilities"><span>Type <wbr/>Specific <wbr/>Utilities</span></a></li><li><ul><li><a href="#md:any"><span>any</span></a></li><li><a href="#md:array"><span>Array</span></a></li><li><a href="#md:union"><span>union</span></a></li><li><a href="#md:bigint"><span>bigint</span></a></li><li><a href="#md:boolean"><span>boolean</span></a></li><li><a href="#md:function"><span>function</span></a></li><li><a href="#md:never"><span>never</span></a></li><li><a href="#md:null"><span>null</span></a></li><li><a href="#md:number"><span>number</span></a></li><li><a href="#md:numeric"><span>numeric</span></a></li><li><a href="#md:object"><span>object</span></a></li><li><a href="#md:promise"><span>Promise</span></a></li><li><a href="#md:string"><span>string</span></a></li><li><a href="#md:symbol"><span>symbol</span></a></li><li><a href="#md:tuple"><span>tuple</span></a></li><li><a href="#md:undefined"><span>undefined</span></a></li><li><a href="#md:unknown"><span>unknown</span></a></li><li><a href="#md:void"><span>void</span></a></li></ul></li><li><a href="#md:testing-utilities"><span>Testing <wbr/>Utilities</span></a></li><li><a href="#md:constant-types"><span>Constant <wbr/>Types</span></a></li><li><a href="#md:json-support"><span>JSON <wbr/>Support</span></a></li><li><a href="#md:type-manipulation"><span>Type manipulation</span></a></li><li><a href="#md:type-predicates"><span>Type <wbr/>Predicates</span></a></li><li><ul><li><a href="#md:logical"><span>Logical</span></a></li></ul></li><li><a href="#md:math"><span>Math</span></a></li><li><a href="#md:utility-functions"><span>Utility <wbr/>Functions</span></a></li><li><a href="#md:nominal-types"><span>Nominal <wbr/>Types</span></a></li><li><a href="#md:functional-types"><span>Functional <wbr/>Types</span></a></li><li><a href="#md:attribution"><span>Attribution</span></a></li><li><a href="#md:useful-tips"><span>Useful <wbr/>Tips</span></a></li><li><a href="#md:similar-projects"><span>Similar projects</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>type-plus - v8.0.0-beta.6</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#md:type-plus"><span>type-<wbr/>plus</span></a><ul><li><a href="#md:table-of-contents"><span>Table of <wbr/>Contents</span></a></li><li><a href="#md:installation"><span>Installation</span></a></li><li><a href="#md:whats-in-the-package"><span>What&#39;s in the package?</span></a></li><li><ul><li><a href="#md:update-organization"><span>Update organization</span></a></li><li><a href="#md:update-documentation"><span>Update documentation</span></a></li></ul></li><li><a href="#md:assertion-function"><span>Assertion <wbr/>Function</span></a></li><li><ul><li><a href="#md:asserttype"><span>assert<wbr/>Type</span></a></li></ul></li><li><a href="#md:type-guard"><span>Type <wbr/>Guard</span></a></li><li><a href="#md:type-utilities"><span>Type <wbr/>Utilities</span></a></li><li><a href="#md:type-specific-utilities"><span>Type <wbr/>Specific <wbr/>Utilities</span></a></li><li><ul><li><a href="#md:any"><span>any</span></a></li><li><a href="#md:array"><span>Array</span></a></li><li><a href="#md:union"><span>Union</span></a></li><li><a href="#md:bigint"><span>bigint</span></a></li><li><a href="#md:boolean"><span>Boolean</span></a></li><li><a href="#md:function"><span>Function</span></a></li><li><a href="#md:never"><span>Never</span></a></li><li><a href="#md:null"><span>Null</span></a></li><li><a href="#md:number"><span>Number</span></a></li><li><a href="#md:numeric"><span>Numeric</span></a></li><li><a href="#md:object"><span>Object</span></a></li><li><a href="#md:promise"><span>Promise</span></a></li><li><a href="#md:string"><span>String</span></a></li><li><a href="#md:symbol"><span>Symbol</span></a></li><li><a href="#md:tuple"><span>Tuple</span></a></li><li><a href="#md:undefined"><span>Undefined</span></a></li><li><a href="#md:unknown"><span>unknown</span></a></li><li><a href="#md:void"><span>void</span></a></li></ul></li><li><a href="#md:testing-utilities"><span>Testing <wbr/>Utilities</span></a></li><li><a href="#md:constant-types"><span>Constant <wbr/>Types</span></a></li><li><a href="#md:json-support"><span>JSON <wbr/>Support</span></a></li><li><a href="#md:type-manipulation"><span>Type manipulation</span></a></li><li><a href="#md:type-predicates"><span>Type <wbr/>Predicates</span></a></li><li><ul><li><a href="#md:logical"><span>Logical</span></a></li></ul></li><li><a href="#md:math"><span>Math</span></a></li><li><a href="#md:utility-functions"><span>Utility <wbr/>Functions</span></a></li><li><a href="#md:nominal-types"><span>Nominal <wbr/>Types</span></a></li><li><a href="#md:functional-types"><span>Functional <wbr/>Types</span></a></li><li><a href="#md:attribution"><span>Attribution</span></a></li><li><a href="#md:useful-tips"><span>Useful <wbr/>Tips</span></a></li><li><a href="#md:similar-projects"><span>Similar projects</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>type-plus - v8.0.0-beta.6</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>
