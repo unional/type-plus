@@ -9,8 +9,8 @@ import type { AnyFunction } from '../function/any_function.js'
  * @return The composed function will expect the parameters of the first function,
  * and return the result of the last function.
  */
-export function compose<FS extends AnyFunction[]>(...fns: FS): (...args: Parameters<Head<FS>>) => ReturnType<Last<FS>> {
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-	// biome-ignore lint/performance/noAccumulatingSpread: https://github.com/biomejs/biome/issues/2183
-	return (...args: any[]) => fns.reduce((args, fn) => [fn(...args)], args)[0]
+export function compose<FS extends AnyFunction[]>(
+	...fns: FS
+): (...args: Parameters<Head<FS>>) => ReturnType<Last<FS>> {
+	return (...args: any[]) => fns.reduce((args, fn) => [fn.apply(null, args)], args)[0]
 }
