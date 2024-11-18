@@ -22,6 +22,7 @@
 			"packages/type-plus/src/types",
 			"packages/type-plus/src/type-checker",
 			"pages/dist",
+			"_revealjs",
 			"*.astro",
 			"package.json"
 		]
