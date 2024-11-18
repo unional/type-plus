@@ -5,8 +5,8 @@ PropType
 Homa
 unional
 NONINFRINGEMENT
+util
+bigint
 endofunctor
 endofunction
 Endofunction
-bigint
-util

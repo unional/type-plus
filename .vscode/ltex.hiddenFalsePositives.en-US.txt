@@ -4,11 +4,11 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[NPM version]npm-url [NPM downloads]downloads-url\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[Semantic Release]semantic-release-url\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[Visual Studio Code]vscode-url [Wallaby.js]wallaby-url\\E$"}
-{"rule":"EN_US_SIMPLE_REPLACE","sentence":"^\\Q⚗️ :alembic:\n🔄 :arrows_counterclockwise:\n🚛 :articulated_lorry:\n➰ :curly_loop:\n💱 :currency_exchange:\n🌀 :cyclone:\n💠 :diamond_shape_with_a_dot_inside:\n➿ :loop:\n🪄 :magic_wand:\n🔁 :repeat:\n🔀 :twisted_rightwards_arrows:\n:dizzy:\\E$"}
-{"rule":"EN_US_SIMPLE_REPLACE","sentence":"^\\Q⚗️ :alembic:\n🔄 :arrows_counterclockwise:\n🚛 :articulated_lorry:\n➰ :curly_loop:\n💱 :currency_exchange:\n🌀 :cyclone:\n💠 :diamond_shape_with_a_dot_inside:\n➿ :loop:\n🪄 :magic_wand:\n🔁 :repeat:\n🔀 :twisted_rightwards_arrows:\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[NPM version]npm_url [NPM downloads]npm_url\\E$"}
 {"rule":"GITHUB","sentence":"^\\Q[Release]github_action_url [Codecov]codecov_url\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[Release]github_action_url [Codecov]codecov_url\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[Visual Studio Code]vscode_url\\E$"}
 {"rule":"EN_A_VS_AN","sentence":"^\\Q🚦\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q: assert the \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
 {"rule":"EN_A_VS_AN","sentence":"^\\Q🚦\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q: assert the \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is not an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"EN_UNPAIRED_BRACKETS","sentence":"^\\QTransformation type (:alembic:) transform the input type from one set to another.\\E$"}
+{"rule":"EN_US_SIMPLE_REPLACE","sentence":"^\\Q⚗️ :alembic:\n🔄 :arrows_counterclockwise:\n🚛 :articulated_lorry:\n➰ :curly_loop:\n💱 :currency_exchange:\n🌀 :cyclone:\n💠 :diamond_shape_with_a_dot_inside:\n➿ :loop:\n🪄 :magic_wand:\n🔁 :repeat:\n🔀 :twisted_rightwards_arrows:\\E$"}
