@@ -1,7 +1,7 @@
 # Any
 
 `any` is one of the two top types in TypeScript.
-It is a supertype of all types.
+It is a super-type of all types.
 It is a way to opt-out of type checking and let the values pass through compile-time checks.
 
 ## [IsAny](./is_any.ts)
