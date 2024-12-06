@@ -1,5 +1,18 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 8.0.0-beta.7
+
+### Patch Changes
+
+- 20ded29: Use `fn.apply` instead of spread.
+  It has better performance and function that are already bound continue to work as expected.
+
+  ```ts
+  const bindFn = fn.bind(This);
+
+  bindFn.apply(null, args); // `this` is not affected
+  ```
+
 ## 8.0.0-beta.6
 
 ### Minor Changes
