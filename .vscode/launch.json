@@ -2,7 +2,7 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"command": "./pages/node_modules/.bin/astro dev",
+			"command": "./apps/website/node_modules/.bin/astro dev",
 			"name": "Astro Development server",
 			"request": "launch",
 			"type": "node-terminal"

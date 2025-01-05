@@ -1,15 +1,10 @@
-import { defineConfig } from 'astro/config'
-import starlight from '@astrojs/starlight'
-import tailwind from '@astrojs/tailwind'
-import solidJs from '@astrojs/solid-js'
+// @ts-check
+import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
-		tailwind({
-			configFile: './tailwind.config.ts',
-		}),
-		solidJs(),
 		starlight({
 			title: 'type-plus',
 			logo: {
@@ -26,7 +21,7 @@ export default defineConfig({
 					label: 'Guides',
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Getting Started', link: '/guides/getting-started/' },
+						{ label: 'Getting Started', link: '/guides/getting-started/' }
 					],
 				},
 				{
@@ -40,5 +35,4 @@ export default defineConfig({
 			],
 		}),
 	],
-	site: 'https://unional.github.io/type-plus/'
-})
+});

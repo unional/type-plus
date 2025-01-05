@@ -26,7 +26,8 @@
 		"ptp": "pnpm --filter type-plus",
 		"verify": "run-p lint verify:turbo",
 		"verify:turbo": "turbo run build build:doc depcheck coverage size",
-		"version": "changeset version"
+		"version": "changeset version",
+		"web": "pnpm --filter website"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
