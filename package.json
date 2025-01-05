@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "turbo run build",
-		"build:doc": "typedoc --plugin typedoc-plugin-extras",
+		"build:doc": "typedoc",
 		"check": "biome check .",
 		"clean": "turbo run clean",
 		"coverage": "turbo run coverage",

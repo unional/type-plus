@@ -1,0 +1,8 @@
+{
+	"$schema": "https://typedoc.org/schema.json",
+	"titleLink": "https://github.com/unional/type-plus",
+	"entryPointStrategy": "packages",
+	"includeVersion": true,
+	"entryPoints": ["../packages/type-plus"],
+	"out": "../docs"
+}
