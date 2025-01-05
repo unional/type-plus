@@ -62,18 +62,30 @@
 	},
 	"json.schemas": [
 		{
-			"fileMatch": ["tslint.json"],
+			"fileMatch": [
+				"tslint.json"
+			],
 			"url": "http://json.schemastore.org/tslint"
 		},
 		{
-			"fileMatch": ["tsconfig.*.json"],
+			"fileMatch": [
+				"tsconfig.*.json"
+			],
 			"url": "http://json.schemastore.org/tsconfig"
 		}
 	],
-	"markdown.extension.list.toggle.candidate-markers": ["-", "1."],
+	"livePreview.defaultPreviewPath": "/apps/website/dist/index.html",
+	"livePreview.serverRoot": "/apps/website/dist",
+	"markdown.extension.list.toggle.candidate-markers": [
+		"-",
+		"1."
+	],
 	"markdown.extension.toc.levels": "2..6",
 	"markdown.extension.toc.omittedFromToc": {
-		"type-plus/README.md": ["## Table of Contents", "## Installation"]
+		"type-plus/README.md": [
+			"## Table of Contents",
+			"## Installation"
+		]
 	},
 	"markdown.extension.toc.orderedList": true,
 	"markdown.extension.toc.unorderedList.marker": "-",
@@ -82,6 +94,10 @@
 		"tsconfig.ts55.json": "tsconfig",
 		"tsconfig.ts56.json": "tsconfig"
 	},
-	"tsimporter.filesToExclude": ["**/cjs", "**/esm", "**/tslib"],
+	"tsimporter.filesToExclude": [
+		"**/cjs",
+		"**/esm",
+		"**/tslib"
+	],
 	"typescript.tsdk": "node_modules/typescript/lib"
 }
