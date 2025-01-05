@@ -1,81 +1,106 @@
-# Function
+# bigint
 
-`Function` is a type to represent functions.
+`bigint` is a type to represent integers that are too large to be represented by a `number`.
 
-## Type Checking
+## [IsBigint](./is_bigint.ts)
 
-The `FunctionType<T>` and friends are used to check if a type is `Function` or not.
+`IsBigint<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
-They are loose type checks, meaning they match `Function` and function signatures,
-function overloads, as well as intersection types.
+🎭 *predicate*
 
-```ts
-import type { FunctionType } from 'type-plus'
-
-type R = FunctionType<Function> // Function
-type R = FunctionType<() => void> // () => void
-type R = FunctionType<(() => void) | { a: 1 }> // (() => void) | { a: 1 }
-
-type R = FunctionType<{ a: 1 }> // never
-type R = FunctionType<never> // never
-type R = FunctionType<unknown> // never
-```
-
-- [`FunctionType<T, Then = T, Else = never>`](function_type.ts#L18): check if `T` is `Function` or Function literal.
-- [`IsFunction<T, Then = true, Else = false`](function_type.ts#L39): is `T` `Function`.
-- [`NotFunctionType<T, Then = T, Else = never>`](function_type.ts#L56): check if `T` is not `Function`.
-- [`IsNotFunction<T, Then = true, Else = false>`](function_type.ts#L72): is `T` not `Function`.
-
----
-
-The `StrictFunctionType<T>` and friends are used to check if a type is exactly `Function` or not.
-
-They are strict type checks, meaning they match only the type `Function` only.
+Validate if `T` is `bigint` or `bigint` literals.
 
 ```ts
-import type { StrictFunctionType } from 'type-plus'
+type R = IsBigint<bigint> // true
+type R = IsBigint<1n> // true
 
- * type R = StrictFunctionType<Function> // Function
- *
- * type R = StrictFunctionType<() => void> // never
- * type R = StrictFunctionType<Function & { a: 1 }> // never
+type R = IsBigint<never> // false
+type R = IsBigint<unknown> // false
+type R = IsBigint<string | boolean> // false
+
+type R = IsBigint<string | bigint> // boolean
 ```
 
-- [`StrictFunctionType<T, Then = T, Else = never>`](strict_function_type.ts#L15): check if `T` is exactly `Function`.
-- [`IsStrictFunction<T, Then = true, Else = false`](strict_function_type.ts#L33): is `T` exactly `Function`.
-- [`NotStrictFunctionType<T, Then = T, Else = never>`](strict_function_type.ts#L47): check if `T` is not exactly `Function`.
-- [`IsNotStrictFunction<T, Then = true, Else = false>`](strict_function_type.ts#L61): is `T` not exactly `Function`.
+🔢 *customize*
 
----
-
-`AnyFunction` is a type to represent any function.
-
-You can also use it to build specific signatures.
+Filter to ensure `T` is `bigint` or `bigint` literals, otherwise returns `never`.
 
 ```ts
-import type { AnyFunction } from 'type-plus'
+type R = IsBigint<bigint, { selection: 'filter' }> // bigint
+type R = IsBigint<1n, { selection: 'filter' }> // 1n
 
-type R = AnyFunction // (...args: any[]) => any
-type R = AnyFunction<[a: string, b: number], boolean> // (a: string, b: number) => boolean
+type R = IsBigint<never, { selection: 'filter' }> // never
+type R = IsBigint<unknown, { selection: 'filter' }> // never
+type R = IsBigint<string | boolean, { selection: 'filter' }> // never
+
+type R = IsBigint<string | bigint> // bigint
 ```
 
----
+🔢 *customize*:
 
-`ExtractFunction<T>` extracts the function type from a type.
-Note that it does not work with function overloads.
+Disable distribution of union types.
 
 ```ts
-import type { ExtractFunction } from 'type-plus'
-
-type R = ExtractFunction<{
-  () => void
-  a: 1
-}> // () => void
+type R = IsBigint<bigint | 1> // boolean
+type R = IsBigint<bigint | 1, { distributive: false }> // false
 ```
 
----
+🔢 *customize*
 
-`extractFunction` is the function form of `ExtractFunction<T>`.
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
+type R = IsBigint<bigint, $SelectionBranch> // $Then
+type R = IsBigint<string, $SelectionBranch> // $Else
+```
+
+## [IsNotBigint](./is_not_bigint.ts)
+
+`IsNotBigint<T, { distributive: true, selection: 'predicate' | 'filter', $then: false, $else: true }>`
+
+🎭 *predicate*
+
+Validate if `T` is not `bigint` nor `bigint` literals.
+
+```ts
+type R = IsNotBigint<bigint> // false
+type R = IsNotBigint<1n> // false
+
+type R = IsNotBigint<never> // true
+type R = IsNotBigint<unknown> // true
+type R = IsNotBigint<string | boolean> // true
+```
+
+🔢 *customize*
+
+Filter to ensure `T` is not `bigint` nor `bigint` literals, otherwise returns `never`.
+
+```ts
+type R = IsNotBigint<bigint, { selection: 'filter' }> // never
+type R = IsNotBigint<1n, { selection: 'filter' }> // never
+
+type R = IsNotBigint<never, { selection: 'filter' }> // never
+type R = IsNotBigint<unknown, { selection: 'filter' }> // unknown
+type R = IsNotBigint<string | boolean, { selection: 'filter' }> // string | boolean
+```
+
+🔢 *customize*
+
+Disable distribution of union types.
+
+```ts
+type R = IsNotBigint<bigint | 1> // boolean
+type R = IsNotBigint<bigint | 1, { distributive: false }> // true
+```
+
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
+type R = IsNotBigint<string, $SelectionBranch> // $Then
+type R = IsNotBigint<bigint, $SelectionBranch> // $Else
+```
 
 ## References
 

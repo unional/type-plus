@@ -1,107 +1,84 @@
-# null
+# Function
 
-`null` is one of the two primitive values in JavaScript to represent the absence of a value.
+`Function` is a type to represent functions.
 
-Most of the time it is used when working with objects from JSON.
+## Type Checking
 
-## [IsNull](./is_null.ts)
+The `FunctionType<T>` and friends are used to check if a type is `Function` or not.
 
-`IsNull<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
-
-🎭 *predicate*
-
-Validate if `T` is `null`.
+They are loose type checks, meaning they match `Function` and function signatures,
+function overloads, as well as intersection types.
 
 ```ts
-type R = IsNull<null> // true
+import type { FunctionType } from 'type-plus'
 
-type R = IsNull<never> // false
-type R = IsNull<unknown> // false
-type R = IsNull<string | boolean> // false
+type R = FunctionType<Function> // Function
+type R = FunctionType<() => void> // () => void
+type R = FunctionType<(() => void) | { a: 1 }> // (() => void) | { a: 1 }
 
-type R = IsNull<string | null> // boolean
+type R = FunctionType<{ a: 1 }> // never
+type R = FunctionType<never> // never
+type R = FunctionType<unknown> // never
 ```
 
-🔢 *customize*
+- [`FunctionType<T, Then = T, Else = never>`](function_type.ts#L18): check if `T` is `Function` or Function literal.
+- [`IsFunction<T, Then = true, Else = false`](function_type.ts#L39): is `T` `Function`.
+- [`NotFunctionType<T, Then = T, Else = never>`](function_type.ts#L56): check if `T` is not `Function`.
+- [`IsNotFunction<T, Then = true, Else = false>`](function_type.ts#L72): is `T` not `Function`.
 
-Filter to ensure `T` is `null`, otherwise returns `never`.
+---
+
+The `StrictFunctionType<T>` and friends are used to check if a type is exactly `Function` or not.
+
+They are strict type checks, meaning they match only the type `Function` only.
 
 ```ts
-type R = IsNull<null, { selection: 'filter' }> // null
+import type { StrictFunctionType } from 'type-plus'
 
-type R = IsNull<never, { selection: 'filter' }> // never
-type R = IsNull<unknown, { selection: 'filter' }> // never
-type R = IsNull<string | boolean, { selection: 'filter' }> // never
-
-type R = IsNull<string | null> // null
+ * type R = StrictFunctionType<Function> // Function
+ *
+ * type R = StrictFunctionType<() => void> // never
+ * type R = StrictFunctionType<Function & { a: 1 }> // never
 ```
 
-🔢 *customize*:
+- [`StrictFunctionType<T, Then = T, Else = never>`](strict_function_type.ts#L15): check if `T` is exactly `Function`.
+- [`IsStrictFunction<T, Then = true, Else = false`](strict_function_type.ts#L33): is `T` exactly `Function`.
+- [`NotStrictFunctionType<T, Then = T, Else = never>`](strict_function_type.ts#L47): check if `T` is not exactly `Function`.
+- [`IsNotStrictFunction<T, Then = true, Else = false>`](strict_function_type.ts#L61): is `T` not exactly `Function`.
 
-Disable distribution of union types.
+---
+
+`AnyFunction` is a type to represent any function.
+
+You can also use it to build specific signatures.
 
 ```ts
-type R = IsNull<null | 1> // boolean
-type R = IsNull<null | 1, { distributive: false }> // false
+import type { AnyFunction } from 'type-plus'
+
+type R = AnyFunction // (...args: any[]) => any
+type R = AnyFunction<[a: string, b: number], boolean> // (a: string, b: number) => boolean
 ```
 
-🔢 *customize*
+---
 
-Use unique branch identifiers to allow precise processing of the result.
+`ExtractFunction<T>` extracts the function type from a type.
+Note that it does not work with function overloads.
 
 ```ts
-type R = IsNull<null, $SelectionBranch> // $Then
-type R = IsNull<string, $SelectionBranch> // $Else
+import type { ExtractFunction } from 'type-plus'
+
+type R = ExtractFunction<{
+  () => void
+  a: 1
+}> // () => void
 ```
 
-## [IsNotnull](./is_not_null.ts)
+---
 
-`IsNotnull<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
-
-🎭 *predicate*
-
-Validate if `T` is not `null`.
-
-```ts
-type R = IsNotnull<null> // false
-
-type R = IsNotnull<never> // true
-type R = IsNotnull<unknown> // true
-type R = IsNotnull<string | boolean> // true
-```
-
-🔢 *customize*
-
-Filter to ensure `T` is not `null`, otherwise returns `never`.
-
-```ts
-type R = IsNotnull<null, { selection: 'filter' }> // never
-
-type R = IsNotnull<never, { selection: 'filter' }> // never
-type R = IsNotnull<unknown, { selection: 'filter' }> // unknown
-type R = IsNotnull<string | boolean, { selection: 'filter' }> // string | boolean
-```
-
-🔢 *customize*
-
-Disable distribution of union types.
-
-```ts
-type R = IsNotnull<null | 1> // boolean
-type R = IsNotnull<null | 1, { distributive: false }> // true
-```
-
-🔢 *customize*
-
-Use unique branch identifiers to allow precise processing of the result.
-
-```ts
-type R = IsNotnull<string, $SelectionBranch> // $Then
-type R = IsNotnull<null, $SelectionBranch> // $Else
-```
+`extractFunction` is the function form of `ExtractFunction<T>`.
 
 ## References
 
-- [Handbook]
+- [mdn web docs: BigInt][mdn]
 
-[handbook]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#null-and-null
+[mdn]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt

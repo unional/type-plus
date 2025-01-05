@@ -1,140 +1,34 @@
-# undefined
+# symbol
 
-`undefined` is one of the two primitive values in JavaScript to represent the absence of a value.
+`symbol` is a primitive type of `Symbol` in TypeScript.
 
-## [IsUndefined](./is_undefined.ts)
+## Type Checking
 
-`IsUndefined<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
+The `SymbolType<T>` and friends are used to check if a type is a `symbol` or not.
 
-🎭 *predicate*
+Note that when creating a `Symbol`, the type of the `Symbol` is `unique symbol` and not `symbol`.
 
-Validate if `T` is `undefined`.
-
-```ts
-type R = IsUndefined<undefined> // true
-
-type R = IsUndefined<never> // false
-type R = IsUndefined<unknown> // false
-type R = IsUndefined<string | boolean> // false
-
-type R = IsUndefined<string | undefined> // boolean
-```
-
-🔢 *customize*
-
-Filter to ensure `T` is `undefined`, otherwise returns `never`.
+There is no way to declare a `unique symbol` type in TypeScript, so `SymbolType` can only check if a type is `symbol` and treat `unique symbol` the same way.
 
 ```ts
-type R = IsUndefined<undefined, { selection: 'filter' }> // undefined
+import type { SymbolType } from 'type-plus'
 
-type R = IsUndefined<never, { selection: 'filter' }> // never
-type R = IsUndefined<unknown, { selection: 'filter' }> // never
-type R = IsUndefined<string | boolean, { selection: 'filter' }> // never
+type R = SymbolType<symbol> // symbol
 
-type R = IsUndefined<string | undefined> // undefined
+const s = Symbol() // unique symbol
+type R = SymbolType<typeof s> // unique symbol
+type.equal<R, symbol>(true) // true
+
+type R = SymbolType<1> // never
 ```
 
-🔢 *customize*:
-
-Disable distribution of union types.
-
-```ts
-type R = IsUndefined<undefined | 1> // boolean
-type R = IsUndefined<undefined | 1, { distributive: false }> // false
-```
-
-🔢 *customize*
-
-Use unique branch identifiers to allow precise processing of the result.
-
-```ts
-type R = IsUndefined<undefined, $SelectionBranch> // $Then
-type R = IsUndefined<string, $SelectionBranch> // $Else
-```
-
-## [IsNotUndefined](./is_not_undefined.ts)
-
-`IsNotUndefined<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
-
-🎭 *predicate*
-
-Validate if `T` is not `undefined`.
-
-```ts
-type R = IsNotUndefined<undefined> // false
-
-type R = IsNotUndefined<never> // true
-type R = IsNotUndefined<unknown> // true
-type R = IsNotUndefined<string | boolean> // true
-```
-
-🔢 *customize*
-
-Filter to ensure `T` is not `undefined`, otherwise returns `never`.
-
-```ts
-type R = IsNotUndefined<undefined, { selection: 'filter' }> // never
-
-type R = IsNotUndefined<never, { selection: 'filter' }> // never
-type R = IsNotUndefined<unknown, { selection: 'filter' }> // unknown
-type R = IsNotUndefined<string | boolean, { selection: 'filter' }> // string | boolean
-```
-
-🔢 *customize*
-
-Disable distribution of union types.
-
-```ts
-type R = IsNotUndefined<undefined | 1> // boolean
-type R = IsNotUndefined<undefined | 1, { distributive: false }> // true
-```
-
-🔢 *customize*
-
-Use unique branch identifiers to allow precise processing of the result.
-
-```ts
-type R = IsNotUndefined<string, $SelectionBranch> // $Then
-type R = IsNotUndefined<undefined, $SelectionBranch> // $Else
-```
-
-## [HasUndefined](./has_undefined.ts)
-
-`HasUndefined<T, { selection: 'predicate' | 'filter', $then: true, $else: false }>`
-
-🎭 *predicate*
-
-Validate if `T` is `undefined` or an union with `undefined`.
-
-```ts
-type R = HasUndefined<undefined> // true
-type R = HasUndefined<undefined | 1> // true
-
-type R = HasUndefined<number> // false
-```
-
-🔢 *customize*
-
-Filter to ensure `T` is `undefined` or an union with `undefined`, otherwise returns `never`.
-
-```ts
-type R = HasUndefined<undefined> // undefined
-type R = HasUndefined<undefined | 1> // undefined | 1
-
-type R = HasUndefined<number> // never
-```
-
-🔢 *customize*
-
-Use unique branch identifiers to allow precise processing of the result.
-
-```ts
-type R = HasUndefined<undefined, $SelectionBranch> // $Then
-type R = HasUndefined<string, $SelectionBranch> // $Else
-```
+- [`SymbolType<T, Then = T, Else = never>`](symbol_type.ts#L16): check if `T` is `symbol`.
+- [`IsSymbol<T, Then = true, Else = false`](symbol_type.ts#L35): is `T` `symbol`.
+- [`NotSymbolType<T, Then = T, Else = never>`](symbol_type.ts#L50): check if `T` is not `symbol`.
+- [`IsNotSymbol<T, Then = true, Else = false>`](symbol_type.ts#L65): is `T` not `symbol`.
 
 ## References
 
 - [Handbook]
 
-[handbook]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#null-and-undefined
+[handbook]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#symbol

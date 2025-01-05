@@ -1,38 +1,37 @@
-# void
+# undefined
 
-`void` is a type that represents the absence of type information.
-It is typically used as the return type of a function that does not explicitly return a value.
+`undefined` is one of the two primitive values in JavaScript to represent the absence of a value.
 
-## [IsVoid](./is_void.ts)
+## [IsUndefined](./is_undefined.ts)
 
-`IsVoid<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
+`IsUndefined<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
 
-Validate if `T` is `void`.
+Validate if `T` is `undefined`.
 
 ```ts
-type R = IsVoid<void> // true
+type R = IsUndefined<undefined> // true
 
-type R = IsVoid<never> // false
-type R = IsVoid<unknown> // false
-type R = IsVoid<string | boolean> // false
+type R = IsUndefined<never> // false
+type R = IsUndefined<unknown> // false
+type R = IsUndefined<string | boolean> // false
 
-type R = IsVoid<string | void> // boolean
+type R = IsUndefined<string | undefined> // boolean
 ```
 
 🔢 *customize*
 
-Filter to ensure `T` is `void`, otherwise returns `never`.
+Filter to ensure `T` is `undefined`, otherwise returns `never`.
 
 ```ts
-type R = IsVoid<void, { selection: 'filter' }> // void
+type R = IsUndefined<undefined, { selection: 'filter' }> // undefined
 
-type R = IsVoid<never, { selection: 'filter' }> // never
-type R = IsVoid<unknown, { selection: 'filter' }> // never
-type R = IsVoid<string | boolean, { selection: 'filter' }> // never
+type R = IsUndefined<never, { selection: 'filter' }> // never
+type R = IsUndefined<unknown, { selection: 'filter' }> // never
+type R = IsUndefined<string | boolean, { selection: 'filter' }> // never
 
-type R = IsVoid<string | void> // void
+type R = IsUndefined<string | undefined> // undefined
 ```
 
 🔢 *customize*:
@@ -40,8 +39,8 @@ type R = IsVoid<string | void> // void
 Disable distribution of union types.
 
 ```ts
-type R = IsVoid<void | 1> // boolean
-type R = IsVoid<void | 1, { distributive: false }> // false
+type R = IsUndefined<undefined | 1> // boolean
+type R = IsUndefined<undefined | 1, { distributive: false }> // false
 ```
 
 🔢 *customize*
@@ -49,47 +48,45 @@ type R = IsVoid<void | 1, { distributive: false }> // false
 Use unique branch identifiers to allow precise processing of the result.
 
 ```ts
-type R = IsVoid<void, $SelectionBranch> // $Then
-type R = IsVoid<string, $SelectionBranch> // $Else
+type R = IsUndefined<undefined, $SelectionBranch> // $Then
+type R = IsUndefined<string, $SelectionBranch> // $Else
 ```
 
-## [IsNotVoid](./is_not_void.ts)
+## [IsNotUndefined](./is_not_undefined.ts)
 
-`IsNotVoid<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
+`IsNotUndefined<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
 
-Validate if `T` is not `void`.
+Validate if `T` is not `undefined`.
 
 ```ts
-type R = IsNotVoid<void> // false
+type R = IsNotUndefined<undefined> // false
 
-type R = IsNotVoid<never> // true
-type R = IsNotVoid<unknown> // true
-type R = IsNotVoid<string | boolean> // true
-
-type R = IsNotVoid<string | void> // boolean
+type R = IsNotUndefined<never> // true
+type R = IsNotUndefined<unknown> // true
+type R = IsNotUndefined<string | boolean> // true
 ```
 
 🔢 *customize*
 
-Filter to ensure `T` is not `void`, otherwise returns `never`.
+Filter to ensure `T` is not `undefined`, otherwise returns `never`.
 
 ```ts
-type R = IsNotVoid<void, { selection: 'filter' }> // never
+type R = IsNotUndefined<undefined, { selection: 'filter' }> // never
 
-type R = IsNotVoid<never, { selection: 'filter' }> // never
-type R = IsNotVoid<unknown, { selection: 'filter' }> // unknown
-type R = IsNotVoid<string | void, { selection: 'filter' }> // string
+type R = IsNotUndefined<never, { selection: 'filter' }> // never
+type R = IsNotUndefined<unknown, { selection: 'filter' }> // unknown
+type R = IsNotUndefined<string | boolean, { selection: 'filter' }> // string | boolean
 ```
 
-🔢 *customize*:
+🔢 *customize*
 
 Disable distribution of union types.
 
 ```ts
-type R = IsNotVoid<void | string> // boolean
-type R = IsNotVoid<void | string, { distributive: false }> // true
+type R = IsNotUndefined<undefined | 1> // boolean
+type R = IsNotUndefined<undefined | 1, { distributive: false }> // true
 ```
 
 🔢 *customize*
@@ -97,12 +94,47 @@ type R = IsNotVoid<void | string, { distributive: false }> // true
 Use unique branch identifiers to allow precise processing of the result.
 
 ```ts
-type R = IsNotVoid<void, $SelectionBranch> // $Else
-type R = IsNotVoid<string, $SelectionBranch> // $Then
+type R = IsNotUndefined<string, $SelectionBranch> // $Then
+type R = IsNotUndefined<undefined, $SelectionBranch> // $Else
+```
+
+## [HasUndefined](./has_undefined.ts)
+
+`HasUndefined<T, { selection: 'predicate' | 'filter', $then: true, $else: false }>`
+
+🎭 *predicate*
+
+Validate if `T` is `undefined` or an union with `undefined`.
+
+```ts
+type R = HasUndefined<undefined> // true
+type R = HasUndefined<undefined | 1> // true
+
+type R = HasUndefined<number> // false
+```
+
+🔢 *customize*
+
+Filter to ensure `T` is `undefined` or an union with `undefined`, otherwise returns `never`.
+
+```ts
+type R = HasUndefined<undefined> // undefined
+type R = HasUndefined<undefined | 1> // undefined | 1
+
+type R = HasUndefined<number> // never
+```
+
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
+type R = HasUndefined<undefined, $SelectionBranch> // $Then
+type R = HasUndefined<string, $SelectionBranch> // $Else
 ```
 
 ## References
 
 - [Handbook]
 
-[handbook]: https://www.typescriptlang.org/docs/handbook/2/functions.html#void
+[handbook]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#null-and-undefined

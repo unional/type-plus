@@ -1,46 +1,34 @@
-# number
+# never
 
-## [IsNumber](./is_number.ts)
+`never` is a bottom type in TypeScript.
+That means it is a subtype of all other types.
 
-`IsNumber<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
+## [IsNever](./is_never.ts)
+
+`IsNever<T, $Options = { selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
 
-Validate if `T` is `number` or `number` literals.
+Validate if `T` is `never`.
 
 ```ts
-type R = IsNumber<number> // true
-type R = IsNumber<1> // true
+type R = IsNever<never> // true
 
-type R = IsNumber<never> // false
-type R = IsNumber<unknown> // false
-type R = IsNumber<string | boolean> // false
-
-type R = IsNumber<string | number> // boolean
+type R = IsNever<1> // false
 ```
 
 🔢 *customize*
 
-Filter to ensure `T` is `number` or `number` literals, otherwise returns `never`.
+Filter to ensure `T` is `never`, otherwise returns `$NotNever`.
+
+Filter normally returns `never` in the `$else` clause.
+But since we are checking for `never` here,
+we have to return `$NotNever` instead.
 
 ```ts
-type R = IsNumber<number, { selection: 'filter' }> // number
-type R = IsNumber<1, { selection: 'filter' }> // 1
+type R = IsNever<never, { selection: 'filter' }> // never
 
-type R = IsNumber<never, { selection: 'filter' }> // never
-type R = IsNumber<unknown, { selection: 'filter' }> // never
-type R = IsNumber<string | boolean, { selection: 'filter' }> // never
-
-type R = IsNumber<string | number> // number
-```
-
-🔢 *customize*:
-
-Disable distribution of union types.
-
-```ts
-type R = IsNumber<number | 1> // boolean
-type R = IsNumber<number | 1, { distributive: false }> // false
+type R = IsNever<1, { selection: 'filter' }> // $NotNever
 ```
 
 🔢 *customize*
@@ -48,47 +36,36 @@ type R = IsNumber<number | 1, { distributive: false }> // false
 Use unique branch identifiers to allow precise processing of the result.
 
 ```ts
-type R = IsNumber<number, $SelectionBranch> // $Then
-type R = IsNumber<string, $SelectionBranch> // $Else
+type R = IsNever<never, $SelectionBranch> // $Then
+type R = IsNever<1, $SelectionBranch> // $Else
 ```
 
-## [IsNotNumber](./is_not_number.ts)
+### [IsNotNever](./is_not_never.ts)
 
-`IsNotNumber<T, { distributive: true, selection: 'predicate' | 'filter', $then: false, $else: true }>`
+`IsNotNever<T, $Options = { selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
 
-Validate if `T` is not `number` nor `number` literals.
+Validate if `T` not `never`.
 
 ```ts
-type R = IsNotNumber<number> // false
-type R = IsNotNumber<1> // false
+type R = IsNotNever<1> // true
 
-type R = IsNotNumber<never> // true
-type R = IsNotNumber<unknown> // true
-type R = IsNotNumber<string | number> // boolean
+type R = IsNotNever<never> // false
 ```
 
 🔢 *customize*
 
-Filter to ensure `T` is not `number` nor `number` literals, otherwise returns `never`.
+Filter to ensure `T` is not `never`, otherwise returns `$Never`.
+
+Filter normally returns `never` in the `$else` clause.
+But since we are checking for `never` here,
+we have to return `$Never` instead.
 
 ```ts
-type R = IsNotNumber<number, { selection: 'filter' }> // never
-type R = IsNotNumber<1, { selection: 'filter' }> // never
+type R = IsNotNever<1, { selection: 'filter' }> // 1
 
-type R = IsNotNumber<never, { selection: 'filter' }> // never
-type R = IsNotNumber<unknown, { selection: 'filter' }> // unknown
-type R = IsNotNumber<string | 1, { selection: 'filter' }> // string
-```
-
-🔢 *customize*
-
-Disable distribution of union types.
-
-```ts
-type R = IsNotNumber<number | 1> // boolean
-type R = IsNotNumber<number | 1, { distributive: false }> // true
+type R = IsNotNever<never, { selection: 'filter' }> // $Never
 ```
 
 🔢 *customize*
@@ -96,130 +73,76 @@ type R = IsNotNumber<number | 1, { distributive: false }> // true
 Use unique branch identifiers to allow precise processing of the result.
 
 ```ts
-type R = IsNotNumber<string, $SelectionBranch> // $Then
-type R = IsNotNumber<number, $SelectionBranch> // $Else
+type R = IsNotNever<never, $SelectionBranch> // $Else
+type R = IsNotNever<1, $SelectionBranch> // $Then
 ```
 
-## [IsStrictNumber](./is_strict_number.ts)
+## [$Never](./never.ts)
 
-`IsStrictNumber<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
+`$Never` is a special branch type to indicate the type is `never`.
 
-🎭 *predicate*
+It is used in [`IsNotNever`](#isnotnever).
 
-Validate if `T` is `number`, returns false for number literals or other types.
+## [$NeverOptions](./never.ts)
+
+🧰 *type util*
+
+`$NeverOptions` enables customizing the behavior of the `$never` branch.
+
+The `$never` branch is used to handle when the input type is `never`.
 
 ```ts
-type R = IsStrictNumber<number> // true
+type YourType<
+  T,
+  $Options extends YourType.$Options = YourType.$Default
+> = ...
 
-type R = IsStrictNumber<1> // false
-type R = IsStrictNumber<never> // false
-type R = IsStrictNumber<unknown> // false
-type R = IsStrictNumber<string | boolean> // false
-
-type R = IsStrictNumber<string | number> // boolean
+namespace YourType {
+  export type $Options = $NeverOptions
+  export type $Default = $NeverDefault
+  export type $Branch = $NeverBranch
+}
 ```
 
-🔢 *customize*
+## [$NeverBranch](./never.ts)
 
-Filter to ensure `T` is `number`, returns `never` for number literals or other types.
+🧰 *type util*
+
+`$NeverBranch` is the branch option for the `$never` branch.
+
+It sets the value to [`$Never`](#never-1),
+so that the branch can be uniquely identified and handled.
+
+Use this to allow the consumer to customize the behavior of your type.
 
 ```ts
-type R = IsStrictNumber<number, { selection: 'filter' }> // number
+type YourType<T, $O extends $NeverOptions> = NeverType<T> extends infer R
+  ? R extends $Never
+    ? $ResolveOptions<[$O['$never'], never]>
+    : HandleOtherBranches<R> // R is narrowed
+  : never
 
-type R = IsStrictNumber<1, { selection: 'filter' }> // never
-type R = IsStrictNumber<never, { selection: 'filter' }> // never
-type R = IsStrictNumber<unknown, { selection: 'filter' }> // never
-type R = IsStrictNumber<string | boolean, { selection: 'filter' }> // never
-
-type R = IsStrictNumber<string | number> // number
+type R = YourType<T, $NeverBranch> extends $Never ? HandleNever : HandleOthers
 ```
 
-🔢 *customize*:
+## [$NeverDefault](./never.ts)
 
-Disable distribution of union types.
+🧰 *type util*
 
-```ts
-type R = IsStrictNumber<number | string> // boolean
-type R = IsStrictNumber<number | string, { distributive: false }> // false
-```
+`$NeverDefault` is the default option for the `$never` branch.
 
-🔢 *customize*
+Unsurprisingly, defaulting `$never` to `never`.
 
-Use unique branch identifiers to allow precise processing of the result.
+## [$NotNever](./never.ts)
 
-```ts
-type R = IsStrictNumber<number, $SelectionBranch> // $Then
-type R = IsStrictNumber<string, $SelectionBranch> // $Else
-```
+`$NotNever` is a special branch type to indicate the type is not `never`.
 
-## [IsNotStrictNumber](./is_not_strict_number.ts)
-
-`IsNotStrictNumber<T, { distributive: true, selection: 'predicate' | 'filter', $then: false, $else: true }>`
-
-🎭 *predicate*
-
-Validate if `T` is not `number`, returns false for number literals or other types.
-
-```ts
-type R = IsNotStrictNumber<number> // false
-type R = IsNotStrictNumber<1> // false
-
-type R = IsNotStrictNumber<never> // true
-type R = IsNotStrictNumber<unknown> // true
-type R = IsNotStrictNumber<string | boolean> // true
-```
-
-🔢 *customize*
-
-Filter to ensure `T` is not `number`, returns `never` for number literals or other types.
-
-
-🎭 *predicate*
-
-Validate if `T` is not strictly `number`, returns true for number literals or other types.
-
-```ts
-type R = IsNotStrictNumber<number> // false
-type R = IsNotStrictNumber<1> // true
-
-type R = IsNotStrictNumber<never> // true
-type R = IsNotStrictNumber<unknown> // true
-type R = IsNotStrictNumber<string | boolean> // true
-```
-
-🔢 *customize*
-
-Filter to ensure `T` is not strictly `number`, returns `T` for number literals or other types.
-
-```ts
-type R = IsNotStrictNumber<number, { selection: 'filter' }> // never
-type R = IsNotStrictNumber<1, { selection: 'filter' }> // 1
-
-type R = IsNotStrictNumber<never, { selection: 'filter' }> // never
-type R = IsNotStrictNumber<unknown, { selection: 'filter' }> // unknown
-type R = IsNotStrictNumber<string | boolean, { selection: 'filter' }> // string | boolean
-```
-
-🔢 *customize*
-
-Disable distribution of union types.
-
-```ts
-type R = IsNotStrictNumber<number | string> // boolean
-type R = IsNotStrictNumber<number | string, { distributive: false }> // true
-```
-
-🔢 *customize*
-
-Use unique branch identifiers to allow precise processing of the result.
-
-```ts
-type R = IsNotStrictNumber<string, $SelectionBranch> // $Then
-type R = IsNotStrictNumber<number, $SelectionBranch> // $Else
-```
+It is used in [`IsNever`](#isnever).
 
 ## References
 
 - [Handbook]
+- [TypeScript Deep Dive][deep_dive]
 
-[handbook]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#the-primitives-string-number-and-boolean
+[deep_dive]: https://basarat.gitbook.io/typescript/type-system/never
+[handbook]: https://www.typescriptlang.org/docs/handbook/2/functions.html#never

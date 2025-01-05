@@ -1,81 +1,108 @@
-# union
+# unknown
 
-Union type is a type that combines multiple types as union.
+`unknown` is one of the top types in TypeScript.
+It is a "safer" variant of `any` that you cannot use the value until there are some type guards or type assertions to the value.
 
-A value belongs to a union type if it belongs to one (or more) of its member types.
+`unknown | T => unknown` except `unknown | any => any.
 
-For example:
+`unknown & T => T`
 
-```ts
-type U1 = string | number
+## [IsUnknown](./is_unknown.ts)
 
-const u1: U1 = 'a'
-const u2: U1 = 1
-```
-
-As a mental shortcut, you can think of it as an *or* operator.
-But it is better to think of it as union of category instead.
-
-## Union Members
-
-Each member of a union type is referred to as the union's member.
-
-It is useful to understand the relationship between members of a union type.
-
-In this context, we are going to consider types as sets,
-instead of categories, to make it easier to understand.
-
-Given two union members of a union,
-their relationship can be describe as "A x B" where "x" is:
-
-- disjoint: there is no overlap between A and B (e.g. `number | string`).
-- overlap: there are some overlap between A and B (e.g. `1 | 2` and `2 | 3` has overlap `2`)
-- subset/superset: A is a subset of B (or B is a superset of A) when every element in A is also in B (e.g. `1 | 2` is a subset of `number`)
-
-The union type will consider these relations when it is declared.
-
-There are other relations between members of a union type,
-which will affect how the union type behaves.
-
-For example:
-
-- property overlap: e.g. `{ a: 1 } | { a: 2 }`
-- property overlap with extension: e.g. `{ a: 1, b?: 2 } | { a: 1, c?: 3 }`
-
-The names of these relations are not properly defined and may change in the future.
-
-## [UnionType](./union.ts#l13)
-
-`UnionType<T, Then = T, Else = never>`
-
-🌪️ *filter*
-
-Filter the type `T` to ensure it is a union.
-
-```ts
-import type { UnionType } from 'type-plus'
-
-type R = UnionType<1 | 2> // 1 | 2
-type R = UnionType<boolean> // boolean
-type R = UnionType<number> // never
-```
-
-## [IsUnion](./union.ts#l30)
+`IsUnknown<T, $Options = { selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
 🎭 *predicate*
 
-Validate that `T` is a union.
+Validate if `T` is exactly `unknown`.
 
 ```ts
-import type { IsUnion } from 'type-plus'
+type R = IsUnknown<unknown> // true
 
-type R = IsUnion<1 | 2> // true
-type R = IsUnion<boolean> // true
-type R = IsUnion<number> // false
+type R = IsUnknown<number> // false
+type R = IsUnknown<never> // false
 ```
 
-## Reference
+🔢 *customize*
 
-- [handbook]
+Filter to ensure `T` is exactly `unknown`.
 
-[handbook]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types
+```ts
+type R = IsUnknown<unknown, { selection: 'filter' }> // unknown
+
+type R = IsUnknown<number, { selection: 'filter' }> // never
+type R = IsUnknown<never, { selection: 'filter' }> // never
+```
+
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
+type R = IsUnknown<unknown, $SelectionBranch> // $Then
+type R = IsUnknown<string, $SelectionBranch> // $Else
+```
+
+### [IsNotUnknown](./is_not_unknown.ts)
+
+`IsNotUnknown<T, $Options = { selection: 'predicate' | 'filter', $then: true, $else: false }>`
+
+🎭 *predicate*
+
+Validate if `T` is not exactly `unknown`.
+
+```ts
+type R = IsNotUnknown<unknown> // false
+
+type R = IsNotUnknown<number> // true
+type R = IsNotUnknown<never> // true
+```
+
+🔢 *customize*
+
+Filter to ensure `T` is not exactly `unknown`.
+
+```ts
+type R = IsNotUnknown<unknown, { selection: 'filter' }> // never
+
+type R = IsNotUnknown<number, { selection: 'filter' }> // number
+type R = IsNotUnknown<never, { selection: 'filter' }> // never
+```
+
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
+type R = IsNotUnknown<unknown, $SelectionBranch> // $Else
+type R = IsNotUnknown<string, $SelectionBranch> // $Then
+```
+
+### [NotUnknownOr](./not_unknown_or.ts)
+
+`NotUnknownOr<T, Else>`
+
+🌪️ *filter*
+
+Returns `T` if `T` is not `unknown`, otherwise `$Unknown`.
+
+```ts
+type R = NotUnknownOr<number> // number
+type R = NotUnknownOr<unknown> // $Unknown
+
+// customize
+type R = NotUnknownOr<unknown, number> // number
+```
+
+🔢 *customize*
+
+Replace `unknown` branch with `Replace`.
+
+```ts
+type R = NotUnknownOr<unknown, number> // number
+```
+
+## References
+
+- [Handbook]
+
+[handbook]: https://www.typescriptlang.org/docs/handbook/2/functions.html#unknown

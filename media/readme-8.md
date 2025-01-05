@@ -1,79 +1,107 @@
-# object
+# null
 
-## Type Checking
+`null` is one of the two primitive values in JavaScript to represent the absence of a value.
 
-The `ObjectType<T>` and friends are used to check if a type is `object` or object types.
+Most of the time it is used when working with objects from JSON.
 
-Note that `Function` are also considered `object` in TypeScript.
+## [IsNull](./is_null.ts)
 
-```ts
-import type { ObjectType } from 'type-plus'
+`IsNull<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
-type R = ObjectType<object> // object
-type R = ObjectType<{}> // {}
-type R = ObjectType<{ a: number }> // { a: number }
+🎭 *predicate*
 
-type R = ObjectType<1> // never
-```
-
-- [`ObjectType<T, Then = T, Else = never>`](object_type.ts#L16): check if `T` is `object`.
-- [`IsObject<T, Then = true, Else = false`](object_type.ts#L33): is `T` `object`.
-- [`NotObjectType<T, Then = T, Else = never>`](object_type.ts#L48): check if `T` is not `object`.
-- [`IsNotObject<T, Then = true, Else = false>`](object_type.ts#L65): is `T` not `object`.
-
-## IsOptionalKey
-
-> `IsOptionalKey<T, K, Then = true, Else = false>`
-
-Validate if the key `K` in `T` is optional.
+Validate if `T` is `null`.
 
 ```ts
-import type { IsOptionalKey } from 'type-plus'
+type R = IsNull<null> // true
 
-type R = IsOptionalKey<{ a?: number }, 'a'> // true
-type R = IsOptionalKey<{ a: number }, 'a'> // false
+type R = IsNull<never> // false
+type R = IsNull<unknown> // false
+type R = IsNull<string | boolean> // false
+
+type R = IsNull<string | null> // boolean
 ```
 
-## OptionalKeys
+🔢 *customize*
 
-> `OptionalKeys<T>`
-
-Gets the optional keys of `T`.
+Filter to ensure `T` is `null`, otherwise returns `never`.
 
 ```ts
-import type { OptionalKeys } from 'type-plus'
+type R = IsNull<null, { selection: 'filter' }> // null
 
-type R = OptionalKeys<{ a?: number; b: string }> // 'a'
+type R = IsNull<never, { selection: 'filter' }> // never
+type R = IsNull<unknown, { selection: 'filter' }> // never
+type R = IsNull<string | boolean, { selection: 'filter' }> // never
+
+type R = IsNull<string | null> // null
 ```
 
-## OptionalProps
+🔢 *customize*:
 
-> `OptionalProps<T>`
-
-Gets the optional properties of `T`.
+Disable distribution of union types.
 
 ```ts
-import type { OptionalProps } from 'type-plus'
-
-type R = OptionalProps<{ a?: number; b: string }> // { a?: number }
+type R = IsNull<null | 1> // boolean
+type R = IsNull<null | 1, { distributive: false }> // false
 ```
 
-## [ObjectPlus.Merge](./merge.ts)
+🔢 *customize*
 
-`Merge<A, B, Options = { }>`
+Use unique branch identifiers to allow precise processing of the result.
 
-⚗️ *transform*
-🔢 *customizable*
+```ts
+type R = IsNull<null, $SelectionBranch> // $Then
+type R = IsNull<string, $SelectionBranch> // $Else
+```
 
-Merges type `A` and type `B`.
+## [IsNotnull](./is_not_null.ts)
 
-This type performs the same operations as `{ ...a, ...b }` but at the type level.
+`IsNotnull<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
-It handles cases like A or B are `Record`,
-joining between required and optional props, etc.
+🎭 *predicate*
+
+Validate if `T` is not `null`.
+
+```ts
+type R = IsNotnull<null> // false
+
+type R = IsNotnull<never> // true
+type R = IsNotnull<unknown> // true
+type R = IsNotnull<string | boolean> // true
+```
+
+🔢 *customize*
+
+Filter to ensure `T` is not `null`, otherwise returns `never`.
+
+```ts
+type R = IsNotnull<null, { selection: 'filter' }> // never
+
+type R = IsNotnull<never, { selection: 'filter' }> // never
+type R = IsNotnull<unknown, { selection: 'filter' }> // unknown
+type R = IsNotnull<string | boolean, { selection: 'filter' }> // string | boolean
+```
+
+🔢 *customize*
+
+Disable distribution of union types.
+
+```ts
+type R = IsNotnull<null | 1> // boolean
+type R = IsNotnull<null | 1, { distributive: false }> // true
+```
+
+🔢 *customize*
+
+Use unique branch identifiers to allow precise processing of the result.
+
+```ts
+type R = IsNotnull<string, $SelectionBranch> // $Then
+type R = IsNotnull<null, $SelectionBranch> // $Else
+```
 
 ## References
 
 - [Handbook]
 
-[handbook]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#object-types
+[handbook]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#null-and-null

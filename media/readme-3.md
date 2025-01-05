@@ -1,430 +1,567 @@
-# boolean
+# Array
 
-`boolean` is a type that represents the two values: `true` and `false`.
+In TypeScript, the type of an JavaScript array can be an [array](#array) or a [tuple](../tuple/readme.md).
 
-Unlike other types, `boolean` is a primitive union type.
-It is exactly equivalent to the union type `true | false`.
+`Array<T>` or `T[]` is a type that represents an array of `T`
 
-## [IsBoolean](./is_boolean.ts)
+There is no length limitation to an `Array`,
+and each element has the same type `T`.
 
-`IsBoolean<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
+## Type Checking
+
+The `ArrayType<T>` and friends are used to check if a type is exactly `Array<T>` or not.
+
+They are strict type checks, meaning they match only the type `Array<T>`,
+and not [tuple], [union], or intersection types.
+
+### [ArrayType](./array_type.ts#l18)
+
+`ArrayType<T, Then = T, Else = never>`
+
+🌪️ *filter*
+
+Filter `T` to ensure it is an array, excluding tuple.
+
+```ts
+import type { ArrayType } from 'type-plus'
+
+type R = ArrayType<number[]> // number[]
+
+type R = ArrayType<[1]> // never
+type R = ArrayType<number[] | 1> // never
+type R = ArrayType<number[] & { a: 1 }> // never
+```
+
+### [IsArray](./array_type.ts#l41)
+
+`IsArray<T, Then = true, Else = false>`
 
 🎭 *predicate*
 
-Validate if `T` is `boolean`, including `true` and `false`.
+Validate that `T` is an array, excluding tuple.
 
 ```ts
-type R = IsBoolean<boolean> // true
-type R = IsBoolean<true> // true
-type R = IsBoolean<false> // true
+import type { IsArray } from 'type-plus'
 
-type R = IsBoolean<number> // false
-type R = IsBoolean<unknown> // false
-type R = IsBoolean<string | boolean> // boolean
+type R = IsArray<number[]> // true
+
+type R = IsArray<number> // false
+type R = IsArray<[1]> // false
 ```
 
-🔢 *customize*
+### [NotArrayType](./array_type.ts#l58)
 
-Filter to ensure `T` is `boolean`, including `true` and `false`, otherwise returns `never`.
+`NotArrayType<T, Then = T, Else = never>`
+
+🌪️ *filter*
+
+Filter `T` to ensure it is not an array, excluding tuple.
 
 ```ts
-type R = IsBoolean<boolean, { selection: 'filter' }> // boolean
-type R = IsBoolean<true, { selection: 'filter' }> // true
-type R = IsBoolean<false, { selection: 'filter' }> // true
+import type { NotArrayType } from 'type-plus'
 
-type R = IsBoolean<number, { selection: 'filter' }> // never
-type R = IsBoolean<unknown, { selection: 'filter' }> // never
-type R = IsBoolean<never, { selection: 'filter' }> // never
-type R = IsBoolean<string | boolean, { selection: 'filter' }> // boolean
+type R = NotArrayType<number[]> // never
+
+type R = NotArrayType<number> // number
+type R = NotArrayType<[1]> // [1]
 ```
 
-🔢 *customize*:
+### [IsNotArrayType](./array_type.ts#l75)
 
-Disable distribution of union types.
-
-```ts
-type R = IsBoolean<boolean | 1> // boolean
-type R = IsBoolean<boolean | 1, { distributive: false }> // false
-```
-
-🔢 *customize*
-
-Use unique branch identifiers to allow precise processing of the result.
-
-```ts
-type R = IsBoolean<boolean, $SelectionBranch> // $Then
-type R = IsBoolean<string, $SelectionBranch> // $Else
-```
-
-## [IsTrue](./is_true.ts)
-
-`IsTrue<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
+`IsNotArrayType<T, Then = true, Else = false>`
 
 🎭 *predicate*
 
-Validate if `T` is `true`.
+Validate that `T` is not an array, excluding tuple.
 
 ```ts
-type R = IsTrue<boolean> // boolean
-type R = IsTrue<true> // true
-type R = IsTrue<false> // false
+import type { IsNotArrayType } from 'type-plus'
 
-type R = IsTrue<number> // false
-type R = IsTrue<unknown> // false
-type R = IsTrue<string | boolean> // boolean
+type R = IsNotArrayType<number[]> // false
+
+type R = IsNotArrayType<number> // true
+type R = IsNotArrayType<[1]> // true
 ```
 
-🔢 *customize*
+## [At](./array.at.ts#l20)
 
-Filter to ensure `T` is `true`, otherwise returns `never`.
+`At<A, N, Fail = never>`
+
+🦴 *utilities*
+
+Gets the type of the array or tuple at positive or negative index `N`.
+
+For array, it will return the union of the type of the array value and `undefined`,
+as there is no way to guarantee the array has value at `N`.
 
 ```ts
-type R = IsTrue<boolean, { selection: 'filter' }> // true
-type R = IsTrue<true, { selection: 'filter' }> // true
-type R = IsTrue<false, { selection: 'filter' }> // never
+type A = Array<string | number>
 
-type R = IsTrue<number, { selection: 'filter' }> // never
-type R = IsTrue<unknown, { selection: 'filter' }> // never
-type R = IsTrue<never, { selection: 'filter' }> // never
-type R = IsTrue<string | boolean, { selection: 'filter' }> // true
+type R = ArrayPlus.At<A, 0> // string | number | undefined
 ```
 
-🔢 *customize*:
-
-Disable distribution of union types.
+For tuple, it will return the type of the tuple value at index `N`.
 
 ```ts
-type R = IsTrue<true | 1> // boolean
-type R = IsTrue<boolean | 1> // boolean
-type R = IsTrue<true | 1, { distributive: false }> // false
+type T = [number, string, 1, 2, 3]
+
+type R = ArrayPlus.At<T, 0> // number
+type R = ArrayPlus.At<T, -1> // 3
 ```
 
-🔢 *customize*
+If the `N` is out of bound,
+or `N` is not a valid index,
+`ArrayPlus.At` will return the `Fail` case, which defaults to `never`.
 
-Use unique branch identifiers to allow precise processing of the result.
+## [`Concat`](./array_plus.concat.ts#l15)
+
+`Concat<A, B>`
+
+🦴 *utilities*
+💀 *deprecated* Will be available only as `ArrayPlus.Concat` in the next version
+
+Concats two arrays or tuples.
+
+It is just an alias of `[...A, ...B]`.
+It is added for completeness.
+
+You are encouraged to use `[...A, ...B]` directly.
+
+## [`FindFirst`](./find_first.ts#l52)
+
+`FindFirst<A, Criteria, Options = { widen, caseEmptyTuple, $never, $noMatch, $widen, $unionMiss }>`
+
+🦴 *utilities*
+🔢 *customizable*
+
+Find the first type in the array or tuple `A` that matches `Criteria`.
 
 ```ts
-type R = IsTrue<true, $SelectionBranch> // $Then
-type R = IsTrue<boolean, $SelectionBranch> // $Then | $Else
-type R = IsTrue<string, $SelectionBranch> // $Else
+import type { FindFirst } from 'type-plus'
+
+type R = FindFirst<[true, 1, 'x', 3], string> // 'x'
+type R = FindFirst<[true, 1, 'x', 3], number> // 1
+type R = FindFirst<[string, number, 1], 1> // widen: 1 | undefined
+type R = FindFirst<[true, number | string], string> // unionNotMatch: string
+type R = FindFirst<Array<string>, string> // string
+type R = FindFirst<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
+type R = FindFirst<Array<string | number>, number | string> // string | number
+type R = FindFirst<Array<number>, 1> // widen: 1 | undefined
+type R = FindFirst<Array<string | number>, number> // unionNotMatch: number
+
+type R = FindFirst<[true, 1, 'x'], 2> // never
+type R = FindFirst<string[], number> // never
+
+// customization
+type R = FindFirst<[number], 1, { widen: false }> // never
+type R = FindFirst<[number], 1, { $widen: never }> // never
+type R = FindFirst<[], 1, { caseEmptyTuple: 2 }> // 2
+type R = FindFirst<never, 1, { $never: 2 }> // 2
+type R = FindFirst<[string], number, { $notMatch: 2 }> // 2
+type R = FindFirst<[string | number], number, { $unionNotMatch: undefined }> // number | undefined
 ```
 
-## [IsFalse](./is_false.ts)
+## [`FindLast`](./array.find_last.tsl19)
 
-`IsFalse<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
+## [`Some`](./array.some.ts)
+
+## [`Filter`](./filter.ts#l17)
+
+`Filter<A, Criteria>`
+
+⚗️ *transform*
+
+Filter the array or tuple `A`, keeping entries satisfying `Criteria`.
+
+```ts
+import type { Filter } from 'type-plus'
+
+type R = Filter<[1, 2, '3'], number> // [1, 2]
+type R = Filter<Array<string | undefined>, string> // string[]
+```
+
+## [`KeepMatch`](./filter.ts)
+
+`KeepMatch<A, Criteria>`
+
+⚗️ *transform*
+👽 *alias* of [`Filter`](#filter)
+
+Keeps entries satisfying `Criteria` in array or tuple `A`.
+
+```ts
+import type { KeepMatch } from 'type-plus'
+
+type R = KeepMatch<[1, 2, '3'], number> // [1, 2]
+type R = KeepMatch<Array<string | undefined>, string> // string[]
+```
+
+## [`Head`](./head.ts#l23)
+
+`Head<T, Options = { $never, caseEmptyTuple }>`
+
+🦴 *utilities*
+🔢 *customizable*
+
+Gets the first entry in the tuple or the type of array `T`.
+
+```ts
+import type { Head } from 'type-plus'
+
+type R = Head<[1, 2, 3]> // 1
+type R = Head<string[]> // string
+type R = Head<never> // $never: never
+type R = Head<[]> // caseEmptyTuple: never
+
+// customization
+type R = Head<never, { $never: 1 }> // 1
+type R = Head<[], { caseEmptyTuple: undefined }> // undefined
+```
+
+## [`IntersectOfProps`](./intersect_of_props.ts)
+
+## [`MapToProp`](./intersect_of_props.ts)
+
+## [`Last`](./last.ts#l23)
+
+`Last<T, Options = { $never, caseEmptyTuple }>`
+
+🦴 *utilities*
+🔢 *customizable*
+
+Gets the last entry in the tuple or the type of array `T`.
+
+```ts
+import type { Last } from 'type-plus'
+
+type R = Last<[1, 2, 3]> // 3
+type R = Last<string[]> // string
+type R = Last<never> // $never: never
+type R = Last<[]> // caseEmptyTuple: never
+
+// customization
+type R = Last<never, { $never: 1 }> // 1
+type R = Last<[], { caseEmptyTuple: undefined }> // undefined
+```
+
+## [`literalArray`](./literal_array.ts)
+
+## [`PadStart`](./pad_start.ts)
+
+## [`reduceWhile`](./reduce_while.ts)
+
+## [`Reverse`](./reverse.ts)
+
+## [`PropUnion`](./union_of_props.ts)
+
+## [`UnionOfProps`](./union_of_props.ts)
+
+## [`UnionOfValues`](./union_of_values.ts)
+
+## ArrayPlus
+
+`ArrayPlus` contains all types and type utilities related to array.
+Whenever possible, these types and type utilities also work with *tuples*,
+as *tuples* is a subset of array.
+
+For *tuple* specific types and type utilities,
+please check [`TuplePlus`](../tuple/readme.md#TuplePlus).
+
+### [`ArrayPlus.At`](./array.at.ts#L18)
+
+`ArrayPlus.At<A, N, Fail = never>`
+
+Alias of [At](#at).
+
+### [ArrayPlus.CommonPropKeys](./array_plus.common_prop_keys.ts#l21)
+
+`ArrayPlus.CommonPropKeys<T extends Record[], Options = { $never }>`
+
+⚗️ *transform*
+🔢 *customizable*
+
+Gets the common property keys of the elements in array `A`.
+
+```ts
+import { type ArrayPlus } from 'type-plus'
+
+type R = ArrayPlus.CommonPropKeys<Array<{ a: 1 }>> // 'a'
+type R = ArrayPlus.CommonPropKeys<Array<{ a: 1, b: 1 } | { a: 1, c: 1 }>> // 'a'
+
+// customization
+type R = ArrayPlus.CommonPropKeys<never, { $never: 1 }> // 1
+```
+
+### [`ArrayPlus.Concat`](./array.concat.ts#l12)
+
+`ArrayPlus.Concat<A, B>`
+
+Alias of [Concat](#concat).
+
+### [`ArrayPlus.ElementMatch`](./array_plus.element_match.ts#l30)
+
+`ArrayPlus.ElementMatch<T, Criteria, Options = { widen, $notMatch, $widen, $unionNotMatch }>`
+
+🌪️ *filter*
+🔢 *customizable*
+
+Filter the element `T` in an array or tuple to match `Criteria`.
+
+```ts
+import type { ArrayPlus } from 'type-plus'
+
+type R = ArrayPlus.ElementMatch<number, number> // number
+type R = ArrayPlus.ElementMatch<1, number> // 1
+type R = ArrayPlus.ElementMatch<number, string> // notMatch: never
+type R = ArrayPlus.ElementMatch<number, 1> // widen: 1
+type R = ArrayPlus.ElementMatch<number | string, number> // unionNotMatch: number
+
+// customization
+type R = ArrayPlus.ElementMatch<number, string, { $notMatch: 1 }> // 1
+type R = ArrayPlus.ElementMatch<number, 1, { widen: false }> // never
+type R = ArrayPlus.ElementMatch<number, 1, { $widen: never }> // never
+type R = ArrayPlus.ElementMatch<number | string, number, { $unionNotMatch: undefined }> // number | undefined
+```
+
+### [`ArrayPlus.Entries`](./array.entries.ts#L14)
+
+> `ArrayPlus.Entries<A>`
+
+Returns an array of key-value pairs for every entry in the array or tuple.
+
+Note that this is not the same as `Array.entries(A)`,
+which returns an iterable interator.
+
+```ts
+type R = ArrayPlus.Entries<Array<string | number>> // Array<[number, string | number]>
+type R = ArrayPlus.Entries<[1, 2, 3]> // [[0, 1], [1, 2], [2, 3]]
+```
+
+### [`ArrayPlus.Filter`](./array_plus.filter.ts#l11)
+
+`ArrayPlus.Filter<A, Criteria, Options = { $notArray }>`
+
+⚗️ *transform*
+🔢 *customizable*
+
+Filter the array `A`, keeping entries satisfying `Criteria`.
+
+```ts
+type R = Filter<Array<string | undefined>, string> // string[]
+
+// customization
+type R = Filter<never, string, { $never: 1 }> // 1
+type R = Filter<['x'], string, { $notArray: 1 }> // 1
+```
+
+### [`ArrayPlus.Find`](./array_plus.find.ts#l49)
+
+`ArrayPlus.Find<A, Criteria, Options { widen, $never, $notMatch, $tuple, $widen, $unionNotMatch }>`
+
+🦴 *utilities*
+🔢 *customizable*
+
+Finds the type in array `A` that matches `Criteria`.
+
+```ts
+import type { ArrayPlus } from 'type-plus'
+
+type R = ArrayPlus.Find<Array<string>, string> // string
+type R = ArrayPlus.Find<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
+type R = ArrayPlus.Find<Array<string | number>, number | string> // string | number
+type R = ArrayPlus.Find<number[], 1> // widen: 1 | undefined
+type R = ArrayPlus.Find<Array<string | number>, number> // unionNotMatch: number
+
+type R = ArrayPlus.Find<string[], number> // never
+
+// customization
+type R = ArrayPlus.Find<number[], 1, { widen: false }> // never
+type R = ArrayPlus.Find<number[], 1, { $widen: never }> // never
+type R = ArrayPlus.Find<never, 1, { $never: 2 }> // 2
+type R = ArrayPlus.Find<string[], number, { $notMatch: 2 }> // 2
+type R = ArrayPlus.Find<[], 1, { $tuple: 2 }> // 2
+type R = ArrayPlus.Find<Array<string | number>, number, { $unionNotMatch: undefined }> // number | undefined
+```
+
+### [`ArrayPlus.FindLast`](./array.find_last.ts#L17)
+
+> `ArrayPlus.FindLast<A, Criteria>
+
+Returns the last type in the array or tuple that matches the `Criteria`.
+
+If the `Criteria` is not met, it will return `never'.
+
+For `Array<T>`, it will return `T | undefined` if `T` satisfies `Criteria`.
+
+```ts
+ArrayPlus.FindLast<Array<1 | 2 | 'x'>, number> // 1 | 2 | undefined
+
+ArrayPlus.FindLast<[true, 123, 'x', 321], number> // 321
+```
+
+### [`ArrayPlus.IndexAt](./array_plus.index_at.ts#l25)
+
+`ArrayPlus.IndexAt<A, Index>`
+
+🦴 *utilities*
+
+Gets the normalized index to access the element of an array or tuple.
+
+```ts
+type R = IndexAt<['a', 'b', 'c'], 2> // 2
+type R = IndexAt<['a', 'b', 'c'], -2> // 1
+
+type R = IndexAt<['a', 'b', 'c'], 3> // never
+type R = IndexAt<['a', 'b', 'c'], -4> // never
+```
+
+### [`ArrayPlus.IsIndexOutOfBound](./array_plus.is_index_out_of_bound.ts#l18)
 
 🎭 *predicate*
 
-Validate if `T` is `false`.
+Is `N` an out of bound index of `A`.
 
 ```ts
-type R = IsFalse<boolean> // boolean
-type R = IsFalse<true> // false
-type R = IsFalse<false> // true
+type R = IsIndexOutOfBound<[1], 0> // false
+type R = IsIndexOutOfBound<[1], -1> // false
 
-type R = IsFalse<number> // false
-type R = IsFalse<unknown> // false
-type R = IsFalse<string | boolean> // boolean
+type R = IsIndexOutOfBound<[1], 1> // true
+type R = IsIndexOutOfBound<[1], -2> // true
 ```
 
-🔢 *customize*
+### [`ArrayPlus.IsReadonly](./array_plus.is_readonly.ts#l19)
 
-Filter to ensure `T` is `false`, otherwise returns `never`.
-
-```ts
-type R = IsFalse<boolean, { selection: 'filter' }> // false
-type R = IsFalse<true, { selection: 'filter' }> // never
-type R = IsFalse<false, { selection: 'filter' }> // false
-
-type R = IsFalse<number, { selection: 'filter' }> // never
-type R = IsFalse<unknown, { selection: 'filter' }> // never
-type R = IsFalse<never, { selection: 'filter' }> // never
-type R = IsFalse<string | boolean, { selection: 'filter' }> // false
-```
-
-🔢 *customize*:
-
-Disable distribution of union types.
-
-```ts
-type R = IsFalse<false | 1> // boolean
-type R = IsFalse<boolean | 1> // boolean
-type R = IsFalse<boolean | 1, { distributive: false }> // false
-```
-
-🔢 *customize*
-
-Use unique branch identifiers to allow precise processing of the result.
-
-```ts
-type R = IsFalse<false, $SelectionBranch> // $Then
-type R = IsFalse<boolean, $SelectionBranch> // $Then | $Else
-type R = IsFalse<string, $SelectionBranch> // $Else
-```
-
-## [IsNotBoolean](./is_not_boolean.ts)
-
-`IsNotBoolean<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
+`ArrayPlus.IsReadonly<A, Options = { $then, $else, $never, $notArray }>`
 
 🎭 *predicate*
+🔢 *customizable*
 
-Validate if `T` is not `boolean`.
-
-```ts
-type R = IsNotBoolean<boolean> // false
-type R = IsNotBoolean<true> // false
-type R = IsNotBoolean<false> // false
-
-type R = IsNotBoolean<number> // true
-type R = IsNotBoolean<unknown> // true
-type R = IsNotBoolean<string | boolean> // boolean
- ```
-
-🔢 *customize*
-
-Filter to ensure `T` is not `boolean`, including `true` and `false`, otherwise returns `never`.
+Checks if `A` is a readonly array or tuple.
 
 ```ts
-type R = IsNotBoolean<boolean, { selection: 'filter' }> // never
-type R = IsNotBoolean<true, { selection: 'filter' }> // never
-type R = IsNotBoolean<false, { selection: 'filter' }> // never
+type R = IsReadonly<readonly string[]> // true
+type R = IsReadonly<readonly [1, 2, 3, 4, 5]> // true
 
-type R = IsNotBoolean<number, { selection: 'filter' }> // number
-type R = IsNotBoolean<unknown, { selection: 'filter' }> // unknown
-type R = IsNotBoolean<never, { selection: 'filter' }> // never
-type R = IsNotBoolean<string | boolean, { selection: 'filter' }> // string
+type R = IsReadonly<[1, 2, 3, 4, 5]> // false
+type R = IsReadonly<readonly string[] | number> // boolean
+
+// customization
+type R = IsReadonly<readonly string[], { $then: 1 }> // 1
+type R = IsReadonly<string[], { $else: 1 }> // 1
+type R = IsReadonly<number, { $notArray: 1 }> // 1
+type R = IsReadonly<never, { $never: 1 }> // 1
 ```
 
-🔢 *customize*:
+### [`ArrayPlus.Reverse`](./array.reverse.ts#l14)
 
-Disable distribution of union types.
+> `ArrayPlus.Reverse<A>`
+
+Reverses the order of the array or tuple.
 
 ```ts
-type R = IsNotBoolean<boolean | 1> // boolean
-type R = IsNotBoolean<boolean | 1, { distributive: false }> // true
+ArrayPlus.Reverse<[1, 2, 3]> // [3, 2, 1]
 ```
 
-🔢 *customize*
+### [`ArrayPlus.SplitAt`](./array_plus.split_at.ts#L22)
 
-Use unique branch identifiers to allow precise processing of the result.
+`ArrayPlus.SplitAt<A, Index>`
+
+⚗️ *transform*
+
+Splits array or tuple `A` into two at the specified `Index`.
+
+If the `Index` is out of bounds,
+it will set to the boundary value.
+
+It is the type level `splice()`.
 
 ```ts
-type R = IsNotBoolean<boolean, $SelectionBranch> // $Else
-type R = IsNotBoolean<string, $SelectionBranch> // $Then
+SplitAt<[1, 2, 3, 4, 5], 2> // [[1, 2], [3, 4, 5]]
+SplitAt<[1, 2, 3, 4, 5], -3> // [[1, 2], [3, 4, 5]]
+
+SplitAt<[1, 2, 3, 4, 5], 2, 2> // [[1, 2, 5], [3, 4]]
+
+SplitAt<[1, 2, 3, 4, 5], 2, 2, ['a', 'b']> // [[1, 2, 'a', 'b', 5], [3, 4]]
+
+// out of bound resets to boundary
+SplitAt<[1, 2, 3, 4, 5], 6> // [[1, 2, 3, 4, 5], []]
+SplitAt<[1, 2, 3, 4, 5], -6> // [[], [1, 2, 3, 4, 5]]
 ```
 
-## [IsNotTrue](./is_not_true.ts)
+### [`ArrayPlus.Some`](./array.some.ts#L23)
 
-`IsNotTrue<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
+> `ArrayPlus.Some<A, Criteria, Mode, Then, Else>`
 
-🎭 *predicate*
+Determines whether the array type `A` contains any elements that satisfies the specified `Criteria` type.
 
-Validate if `T` is not `true`.
+It operates in `loose` mode by default,
+which means literal types satisfies their widened counterparts.
+You can also change it to `strict` mode.
 
 ```ts
-type R = IsNotTrue<boolean> // boolean
-type R = IsNotTrue<true> // false
-type R = IsNotTrue<false> // true
+Some<string[], string> // true
+Some<['a', boolean], boolean> // true
+Some<['a', true], boolean> //true
 
-type R = IsNotTrue<number> // true
-type R = IsNotTrue<unknown> // true
-type R = IsNotTrue<string | boolean> // boolean
+Some<['a', true], boolean, 'strict'> // false
 ```
 
-🔢 *customize*
+## Builtin array methods
 
-Filter to ensure `T` is not `true`, otherwise returns `never`.
+JavaScript has many builtin array methods.
+We will try to bring them to the type-level.
 
-```ts
-type R = IsNotTrue<boolean, { selection: 'filter' }> // false
-type R = IsNotTrue<true, { selection: 'filter' }> // never
-type R = IsNotTrue<false, { selection: 'filter' }> // false
+Not all methods can be implemented in the type-level,
+or in the same way.
 
-type R = IsNotTrue<number, { selection: 'filter' }> // number
-type R = IsNotTrue<never, { selection: 'filter' }> // never
-type R = IsNotTrue<unknown, { selection: 'filter' }> // unknown
-type R = IsNotTrue<string | boolean, { selection: 'filter' }> // string | false
-type R = IsNotTrue<string | true, { selection: 'filter' }> // string
-```
+For example, type-level does not support higher-level generics,
+i.e. it is not possible to pass in a generic type and "invoke" it.
 
-🔢 *customize*:
+Therefore, methods like `map` and `reduce()` cannot be implemented generically.
+They have to be implemented separately for each specific use case,
+or with reduced capability.
 
-Disable distribution of union types.
+They are exposed under the `ArrayPlus` namespace,
+while some common ones are exposed at top-level.
 
-```ts
-type R = IsNotTrue<boolean | 1> // boolean
-type R = IsNotTrue<true | 1> // boolean
-type R = IsNotTrue<false | 1> // true
-type R = IsNotTrue<boolean | 1, { distributive: false }> // true
-```
+Here are the list of array methods and their corresponding type-level functions, if available.
 
-🔢 *customize*
+✅ means it is implemented.
+✴️ means it is implemented with reduced functionality
+🧬 means there is a built-in mechanism or type for it.
 
-Use unique branch identifiers to allow precise processing of the result.
+- ✅ `at`: [`ArrayPlus.At`](#arrayplusat)
+- ✅ `concat`: [`Concat` | `ArrayPlus.Concat`](#arrayplusconcat) (`[...A, ...B]`)
+- 🚧 `copyWithin`:  `CopyWithin<A, Target, Start, End>`
+- ✴️ `entries`: [`ArrayPlus.Entries`](#arrayplusentries)
+- 🚧 `every`: `Every<A, Criteria, Then = A, Else = never>`
+- 🚧 `fill`: `Fill<A, V, Start, End>`
+- ✴️ `find`: [`FindFirst` | `ArrayPlus.Find`](#arrayplusfind)
+  - ✴️ [`FindLast` | `ArrayPlus.FindLast`](#arrayplusfindlast)
+- 🚧 `findIndex`: `FindIndex<A, Criteria> => number | number literal | never`
+- 🚧 `flat`: `Flat<A>`
+- 🚧 `flatMap`: `Flat<A, Criteria, R>`
+- 🚧 `includes`:
+- 🚧 `join`:
+- 🚧 `keys`: `Range<0, T['length']>`?
+- 🚧 `map`: `Map<A, Criteria, R>`
+- 🚧 `pop`: `Pop<A>`
+- 🧬 `push`: `[...A, T]`
+- 🚧 `reduce`:
+- 🚧 `reduceRight`:
+- ✅ `reverse`: [`ArrayPlus.Reverse`](#arrayplusreverse)
+- 🚧 `shift`:
+- 🚧 `slice`:
+- ✴️ `some`: [`Some` | `ArrayPlus.Some`](#arrayplussome)
+- 🚧 `sort`:
+- ✴️ `splice`: [`ArrayPlus.SplitAt`](#arrayplussplitat)
+- 🧬 `unshift`: `[T, ...A]`
+- 🧬 `values`: `keyof A`
 
-```ts
-type R = IsNotTrue<true, $SelectionBranch> // $Else
-type R = IsNotTrue<boolean, $SelectionBranch> // $Then | $Else
-type R = IsNotTrue<string, $SelectionBranch> // $Then
-```
+## References
 
-## [IsNotFalse](./is_not_false.ts)
+- [handbook]
 
-`IsNotFalse<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
-
-🎭 *predicate*
-
-Validate if `T` is not `false`.
-
-```ts
-type R = IsNotFalse<boolean> // boolean
-type R = IsNotFalse<true> // true
-type R = IsNotFalse<false> // false
-
-type R = IsNotFalse<number> // true
-type R = IsNotFalse<unknown> // true
-type R = IsNotFalse<string | boolean> // boolean
-```
-
-🔢 *customize*
-
-Filter to ensure `T` is not `false`, otherwise returns `never`.
-
-```ts
-type R = IsNotFalse<boolean, { selection: 'filter' }> // true
-type R = IsNotFalse<true, { selection: 'filter' }> // true
-type R = IsNotFalse<false, { selection: 'filter' }> // never
-
-type R = IsNotFalse<number, { selection: 'filter' }> // number
-type R = IsNotFalse<never, { selection: 'filter' }> // never
-type R = IsNotFalse<unknown, { selection: 'filter' }> // unknown
-type R = IsNotFalse<string | boolean, { selection: 'filter' }> // string | true
-type R = IsNotFalse<string | false, { selection: 'filter' }> // string
-```
-
-🔢 *customize*:
-
-Disable distribution of union types.
-
-```ts
-type R = IsNotFalse<false | 1> // boolean
-type R = IsNotFalse<boolean | 1> // boolean
-type R = IsNotFalse<boolean | 1, { distributive: false }> // true
-```
-
-🔢 *customize*
-
-Use unique branch identifiers to allow precise processing of the result.
-
-```ts
-type R = IsNotFalse<false, $SelectionBranch> // $Else
-type R = IsNotFalse<boolean, $SelectionBranch> // $Then | $Else
-type R = IsNotFalse<string, $SelectionBranch> // $Then
-```
-
-## [IsStrictBoolean](./is_strict_boolean.ts)
-
-`IsStrictBoolean<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
-
-🎭 *predicate*
-
-Validate if `T` is exactly `boolean`.
-
-```ts
-type R = IsStrictBoolean<boolean> // true
-type R = IsStrictBoolean<true> // false
-type R = IsStrictBoolean<false> // false
-
-type R = IsStrictBoolean<number> // false
-type R = IsStrictBoolean<unknown> // false
-type R = IsStrictBoolean<string | boolean> // boolean
-```
-
-🔢 *customize*
-
-Filter to ensure `T` is exactly `boolean`, otherwise returns `never`.
-
-```ts
-type R = IsStrictBoolean<boolean, { selection: 'filter' }> // boolean
-type R = IsStrictBoolean<true, { selection: 'filter' }> // never
-type R = IsStrictBoolean<false, { selection: 'filter' }> // never
-
-type R = IsStrictBoolean<number, { selection: 'filter' }> // never
-type R = IsStrictBoolean<unknown, { selection: 'filter' }> // never
-type R = IsStrictBoolean<never, { selection: 'filter' }> // never
-type R = IsStrictBoolean<string | boolean, { selection: 'filter' }> // boolean
-type R = IsStrictBoolean<string | true, { selection: 'filter' }> // never
-```
-
-🔢 *customize*:
-
-Disable distribution of union types.
-
-```ts
-type R = IsStrictBoolean<boolean | 1> // boolean
-type R = IsStrictBoolean<boolean | 1, { distributive: false }> // false
-```
-
-🔢 *customize*
-
-Use unique branch identifiers to allow precise processing of the result.
-
-```ts
-type R = IsStrictBoolean<boolean, $SelectionBranch> // $Then
-type R = IsStrictBoolean<true, $SelectionBranch> // $Else
-type R = IsStrictBoolean<false, $SelectionBranch> // $Else
-type R = IsStrictBoolean<string, $SelectionBranch> // $Else
-```
-
-## [IsNotStrictBoolean](./is_not_strict_boolean.ts)
-
-`IsNotStrictBoolean<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
-
-🎭 *predicate*
-
-Validate if `T` is not exactly `boolean`.
-
-```ts
-type R = IsNotStrictBoolean<boolean> // false
-type R = IsNotStrictBoolean<true> // true
-type R = IsNotStrictBoolean<false> // true
-
-type R = IsNotStrictBoolean<number> // true
-type R = IsNotStrictBoolean<unknown> // true
-type R = IsNotStrictBoolean<string | boolean> // boolean
- ```
-
-🔢 *customize*
-
-Filter to ensure `T` is not exactly `boolean`, otherwise returns `never`.
-
-```ts
-type R = IsNotStrictBoolean<boolean, { selection: 'filter' }> // never
-type R = IsNotStrictBoolean<true, { selection: 'filter' }> // true
-type R = IsNotStrictBoolean<false, { selection: 'filter' }> // false
-
-type R = IsNotStrictBoolean<number, { selection: 'filter' }> // number
-type R = IsNotStrictBoolean<unknown, { selection: 'filter' }> // unknown
-type R = IsNotStrictBoolean<never, { selection: 'filter' }> // never
-type R = IsNotStrictBoolean<string | boolean, { selection: 'filter' }> // string
-```
-
-🔢 *customize*:
-
-Disable distribution of union types.
-
-```ts
-type R = IsNotStrictBoolean<boolean | 1> // boolean
-type R = IsNotStrictBoolean<boolean | 1, { distributive: false }> // true
-```
-
-🔢 *customize*
-
-Use unique branch identifiers to allow precise processing of the result.
-
-```ts
-type R = IsNotStrictBoolean<boolean, $SelectionBranch> // $Else
-type R = IsNotStrictBoolean<true, $SelectionBranch> // $Then
-type R = IsNotStrictBoolean<false, $SelectionBranch> // $Then
-type R = IsNotStrictBoolean<string, $SelectionBranch> // $Then
-```
+[handbook]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#arrays
+[tuple]: ../tuple/readme.md
+[union]: ../union/readme.md
