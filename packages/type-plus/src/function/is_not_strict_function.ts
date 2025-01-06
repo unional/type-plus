@@ -1,4 +1,4 @@
-import type { $Any } from '../any/any.js'
+import type { $Any } from '../any/$any.js'
 import type { $Never } from '../never/never.js'
 import type { $ResolveOptions } from '../type_plus/$resolve_options.js'
 import type { $SpecialType } from '../type_plus/$special_type.js'

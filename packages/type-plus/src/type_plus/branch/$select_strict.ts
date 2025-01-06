@@ -1,4 +1,4 @@
-import type { $Any } from '../../any/any.js'
+import type { $Any } from '../../any/$any.js'
 import type { $Never } from '../../never/never.js'
 import type { $Unknown } from '../../unknown/unknown.js'
 import type { $SpecialType } from '../$special_type.js'

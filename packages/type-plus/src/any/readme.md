@@ -4,7 +4,7 @@ The `any` type is one of the two top types in TypeScript.
 It is a super-type of all types.
 It is a way to opt-out of type checking and let the values pass through compile-time checks.
 
-## [IsAny](./is_any.ts)
+## [`IsAny`](./is_any.ts)
 
 `IsAny<T, $O = { selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
@@ -41,7 +41,7 @@ type R = IsAny<any, $SelectionBranch> // $Then
 type R = IsAny<string, $SelectionBranch> // $Else
 ```
 
-### [IsNotAny](./is_not_any.ts)
+### [`IsNotAny`](./is_not_any.ts)
 
 `IsNotAny<T, $O = { selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
@@ -78,6 +78,17 @@ type R = IsNotAny<any, $SelectionBranch> // $Else
 type R = IsNotAny<string, $SelectionBranch> // $Then
 ```
 
+## [`$Any`](./any.ts)
+
+`$Any<T>`
+
+Selector for `$any` branch.
+
+```ts
+$ResolveBranch<'input', { $then: 1 }, [$Any, $Then]> // 1
+$ResolveBranch<'input', { $any: 2, $then: 1 }, [$Any, $Then]> // 2
+```
+
 ## Trivia
 
 > Both `any` and `unknown` are top types?
@@ -85,8 +96,8 @@ type R = IsNotAny<string, $SelectionBranch> // $Then
 Well, yeah:
 
 ```ts
-type A = any extends unknown ? 1 : 2 // 1
-type B = unknown extends any ? 1 : 2 // 1
+type A = any extends unknown ? true : false // true
+type B = unknown extends any ? true : false // true
 ```
 
 > Aren't using `any` is bad?

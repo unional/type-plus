@@ -1,4 +1,4 @@
-export type * from './any/any.js'
+export type * from './any/$any.js'
 export type { IsAny } from './any/is_any.js'
 export type { IsNotAny } from './any/is_not_any.js'
 export type { At } from './array/array.at.js'
