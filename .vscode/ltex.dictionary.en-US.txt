@@ -10,3 +10,7 @@ bigint
 endofunctor
 endofunction
 Endofunction
+Astro
+Vercel
+StackBlitz
+CodeSandbox
