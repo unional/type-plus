@@ -1,4 +1,4 @@
-import type { $Any } from '../any/any.js'
+import type { $Any } from '../any/$any.js'
 import type { $Never } from '../never/never.js'
 import type { $SpecialType } from '../type_plus/$special_type.js'
 import type { $DistributiveDefault, $DistributiveOptions } from '../type_plus/branch/$distributive.js'

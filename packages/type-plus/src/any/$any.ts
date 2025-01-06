@@ -1,5 +1,10 @@
 import type { $Branch } from '../type_plus/branch/$branch.js'
 
+/**
+ * 🧰 *type util*
+ *
+ * Selector for `$any` branch.
+ */
 export type $Any = $Branch<'$any'>
 
 export namespace $Any {
@@ -21,6 +26,7 @@ export namespace $Any {
 	 * ```
 	 */
 	export type $Options = { $any?: unknown }
+
 	/**
 	 * 🧰 *type util*
 	 *
