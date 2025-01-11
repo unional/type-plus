@@ -1,0 +1,105 @@
+---
+title: type branching
+---
+
+Introduced in v8,
+type branching is a way to finely control output of the type utility.
+
+Using `IsNever` as an example, it supports 4 branches:
+
+```ts
+type R = IsNever<Input, {
+	$any: ...,
+	$unknown: ...,
+	$then: ...,
+	$else: ...,
+}>
+```
+
+These branches allow you to control the behavior on those specific cases:
+
+```ts
+type R = IsNever<any> // false
+type R = IsNever<any, { $any: 'any' }> // 'any'
+
+type R = IsNever<unknown> // false
+type R = IsNever<unknown, { $unknown: 'unknown' }> // 'unknown'
+
+type R = IsNever<never> // true
+type R = IsNever<never, { $then: 'never' }> // 'never'
+
+type R = IsNever<123> // false
+type R = IsNever<123, { $else: 'else' }> // 'else'
+```
+
+Without this, you would have to write conditional type to achieve the same result:
+
+```ts
+type R = IsAny<any> extends true ? 'any' : IsNever<any>
+type R = IsUnknown<unknown> extends true ? 'unknown' : IsNever<unknown>
+type R = IsNever<never> extends true ? 'never' : false
+type R = IsNever<123> extends true ? true : 'else'
+```
+
+It could also get more complicated with the special types (`any`, `unknown`, `never`, `void`),
+as well as union and intersection types.
+
+## Branch Selectors
+
+Besides customizing the output,
+type branching is also useful for type level programming.
+
+When you are using some type utils within your type,
+you may want to do different things based on the type of the input.
+
+In this case, only using the construct above may not be enough,
+because the branching can be influenced by the type of the input.
+
+Instead, you can use the branch selectors:
+
+```ts
+type YourType<T> = IsNever<T, IsNever.$Branch> extends infer B
+	? B extends $Any ? ...
+	: B extends $Unknown ? ...
+	: B extends $Then ? ...
+	: B extends $Else ? ...
+: never
+```
+
+The `$Options` in `IsNever<T, $Options>` defines the options, branches, and their default values.
+The `IsNever.$Branch` replaces the branches with the branch selectors.
+
+You can still provide options using intersection:
+
+```ts
+type YourType<T> = IsNever<T, IsNever.$Branch & { selection: 'filter' }> extends infer B
+	...
+```
+
+## $ResolveBranch
+
+`$ResolveBranch` is a utility to resolve the branch selector.
+You may notice that in the example above,
+there could be a overlap between the branches:
+
+```ts
+type R = IsNever<any, { $any: 'any', $else: 'else' }> // 'any' or `else`?
+```
+
+Since properties in object type are not ordered,
+i.e. `{ $any: 'any', $else: 'else' }` is the same as `{ $else: 'else', $any: 'any' }`,
+there needs to be a way to resolve the branch.
+
+Inside `$ResolveBranch` is the type used within `IsNever` to handle this:
+
+```ts
+// only emphasize the relevant parts
+type IsNever<T, $O> = $SpecialType<T, {
+	$any: $ResolveBranch<T, ..., [$Any, $Else]>,
+	...
+}>
+```
+
+The `$ResolveBranch` will check the result and return the first matching branch selector in the array.
+
+You can use it to develop your own type utils with type branching support.
