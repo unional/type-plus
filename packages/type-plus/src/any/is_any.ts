@@ -33,7 +33,7 @@ import type { $Unknown } from '../unknown/unknown.js'
  * type R = IsAny<string | boolean, { selection: 'filter' }> // never
  * ```
  *
- * 🔢 *customize*
+ * 🔀 *branching*
  *
  * Use unique branch identifiers to allow precise processing of the result.
  *
@@ -41,6 +41,8 @@ import type { $Unknown } from '../unknown/unknown.js'
  * ```ts
  * type R = IsAny<any, $SelectionBranch> // $Then
  * type R = IsAny<string, $SelectionBranch> // $Else
+ * type R = IsAny<unknown, $Unknown.$Branch> // $Unknown
+ * type R = IsAny<string, $Never.$Branch> // $Never
  * ```
  */
 export type IsAny<T, $O extends IsAny.$Options = {}> = $SpecialType<
@@ -55,5 +57,5 @@ export type IsAny<T, $O extends IsAny.$Options = {}> = $SpecialType<
 
 export namespace IsAny {
 	export type $Options = $SelectionOptions & $InputOptions<$Unknown | $Never>
-	export type $Branch = $SelectionBranch
+	export type $Branch = $SelectionBranch & $Unknown.$Branch & $Never.$Branch
 }
