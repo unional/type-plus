@@ -28,10 +28,13 @@ export type IndexAt<
 	Fail = never,
 	Upper = A['length'],
 	Lower = 0,
-> = IsNever<A, {
-	$then: Fail,
-	$else: IndexAt._<A, N, Fail, Upper, Lower>,
-}>
+> = IsNever<
+	A,
+	{
+		$then: Fail
+		$else: IndexAt._<A, N, Fail, Upper, Lower>
+	}
+>
 
 export namespace IndexAt {
 	export type _<A extends readonly unknown[], N extends number, Fail = never, Upper = A['length'], Lower = 0> = IsEqual<
@@ -41,25 +44,26 @@ export namespace IndexAt {
 		IsInteger<
 			N,
 			{
-				$then: IsNumber<A['length'], { exact: true,
-					$then: N,
-					$else:IsNegative<
-					N,
+				$then: IsNumber<
+					A['length'],
 					{
-						$then: GreaterThan<Abs<N>, A['length']> extends true ? Lower : Subtract<A['length'], Abs<N>>
-						$else: GreaterThan<A['length'], N> extends true ? N : Upper
+						exact: true
+						$then: N
+						$else: IsNegative<
+							N,
+							{
+								$then: GreaterThan<Abs<N>, A['length']> extends true ? Lower : Subtract<A['length'], Abs<N>>
+								$else: GreaterThan<A['length'], N> extends true ? N : Upper
+							}
+						>
 					}
 				>
-				 }>
 				// N: number or float
 				$else: IsAny<
 					N,
 					{
 						$then: number
-						$else: IsNumber<N, { exact: true,
-							$then: N,
-							$else: never
-						 }>
+						$else: IsNumber<N, { exact: true; $then: N; $else: never }>
 					}
 				>
 			}

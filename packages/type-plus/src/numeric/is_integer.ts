@@ -20,22 +20,22 @@ export type IsInteger<T, $O extends IsInteger.$Options = {}> = IsNumber<
 	{
 		distributive: $O['distributive']
 		$then: number extends T
-		? $ResolveBranch<number, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
-		: T extends number & infer U
-			? `${T}` extends `${number}.${number}`
-				? $ResolveBranch<T, $O, [$Else]>
-				: [T, U] extends [U, T]
-					? $ResolveBranch<T, $O, [$Then]>
-					: $ResolveBranch<number, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
-			: never
+			? $ResolveBranch<number, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
+			: T extends number & infer U
+				? `${T}` extends `${number}.${number}`
+					? $ResolveBranch<T, $O, [$Else]>
+					: [T, U] extends [U, T]
+						? $ResolveBranch<T, $O, [$Then]>
+						: $ResolveBranch<number, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
+				: never
 		$else: IsBigint<
-		T,
-		{
-			distributive: $O['distributive']
-			$then: $ResolveBranch<T, $O, [$Then]>
-			$else: $ResolveBranch<T, $O, [$Else]>
-		}
-	>
+			T,
+			{
+				distributive: $O['distributive']
+				$then: $ResolveBranch<T, $O, [$Then]>
+				$else: $ResolveBranch<T, $O, [$Else]>
+			}
+		>
 	}
 >
 export namespace IsInteger {

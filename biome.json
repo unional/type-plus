@@ -21,7 +21,7 @@
 			"old/checker",
 			"packages/type-plus/src/types",
 			"packages/type-plus/src/type-checker",
-			"pages/dist",
+			"apps/website/dist",
 			"_revealjs",
 			"*.astro",
 			"package.json"

@@ -29,10 +29,14 @@ export type IsNotNegative<T, $O extends IsNotNegative.$Options = {}> = IsBigint<
 > extends infer R
 	? R extends $Then
 		? IsNotNegative._Negative<T, bigint, $O>
-		: IsNumber<Exclude<T, bigint>, { distributive: $O['distributive'];
-			 $then: IsNotNegative._Negative<T, number, $O>
-			 $else: $ResolveBranch<Exclude<T, number | bigint>, $O, [$Then]>
-			 }>
+		: IsNumber<
+				Exclude<T, bigint>,
+				{
+					distributive: $O['distributive']
+					$then: IsNotNegative._Negative<T, number, $O>
+					$else: $ResolveBranch<Exclude<T, number | bigint>, $O, [$Then]>
+				}
+			>
 	: never
 
 export namespace IsNotNegative {
