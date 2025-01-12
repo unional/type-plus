@@ -12,6 +12,7 @@ pull_request_rules:
       - and:
           - head~=^(?!major-)
           - -title~=update dependency @types\/node
+          - -title~=update dependency ts-
     actions:
       merge:
         method: squash
