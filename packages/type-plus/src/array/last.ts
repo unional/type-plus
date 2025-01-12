@@ -1,6 +1,5 @@
 import type { IsNever } from '../never/is_never.js'
 import type { $Never } from '../never/never.js'
-import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$selection.js'
 
 /**
  * 🦴 *utilities*
@@ -23,18 +22,15 @@ import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$select
  */
 export type Last<T extends readonly unknown[], Options extends Last.Options = Last.DefaultOptions> = IsNever<
 	T,
-	$SelectionBranch
-> extends infer R
-	? R extends $Then
-		? Options['$never']
-		: R extends $Else
-			? T['length'] extends 0
-				? Options['caseEmptyTuple']
-				: T extends readonly [...unknown[], infer R]
-					? R
-					: T[0]
-			: never
-	: never
+	{
+		$then: Options['$never'],
+		$else: T['length'] extends 0
+		? Options['caseEmptyTuple']
+		: T extends readonly [...unknown[], infer R]
+			? R
+			: T[0]
+	}
+>
 
 export namespace Last {
 	export interface Options extends $Never.$Options {

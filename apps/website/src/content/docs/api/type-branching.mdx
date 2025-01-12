@@ -88,9 +88,9 @@ type R = IsNever<any, { $any: 'any', $else: 'else' }> // 'any' or `else`?
 
 Since properties in object type are not ordered,
 i.e. `{ $any: 'any', $else: 'else' }` is the same as `{ $else: 'else', $any: 'any' }`,
-there needs to be a way to resolve the branch.
+there needs to be a way to define and resolve the branch in a particular order.
 
-Inside `$ResolveBranch` is the type used within `IsNever` to handle this:
+`$ResolveBranch` is the type used within `IsNever` to handle this:
 
 ```ts
 // only emphasize the relevant parts
