@@ -7,6 +7,9 @@
 		{
 			"name": "typescript-blackbook",
 			"path": "../../typescript-blackbook"
+		},
+		{
+			"path": "../../.github"
 		}
 	],
 	"settings": {
