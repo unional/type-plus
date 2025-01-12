@@ -23,3 +23,16 @@ Exact (📌 pushpin) means type comparison will be performed strictly, treating 
 ```ts
 type R1 = IsString<'a', { exact: true }> // false
 ```
+
+## 🔱 Branching
+
+Branching (🔱 trident) allows you to control the behavior of the types with [type branching](../api/type-branching.mdx).
+
+```ts
+type R = IsNever<Input, {
+	$any: 1,
+	$unknown: 2,
+	$then: 3,
+	$else: 4,
+}>
+```
