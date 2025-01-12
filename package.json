@@ -16,8 +16,6 @@
 		"lint:eslint": "eslint .",
 		"nuke": "turbo run nuke && pnpm nuke:local",
 		"nuke:local": "rimraf node_modules",
-		"page": "pnpm --filter pages",
-		"tpage": "turbo --filter pages",
 		"prepare": "husky",
 		"release": "changeset publish",
 		"size": "turbo run size",
