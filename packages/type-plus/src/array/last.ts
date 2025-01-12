@@ -23,12 +23,8 @@ import type { $Never } from '../never/never.js'
 export type Last<T extends readonly unknown[], Options extends Last.Options = Last.DefaultOptions> = IsNever<
 	T,
 	{
-		$then: Options['$never'],
-		$else: T['length'] extends 0
-		? Options['caseEmptyTuple']
-		: T extends readonly [...unknown[], infer R]
-			? R
-			: T[0]
+		$then: Options['$never']
+		$else: T['length'] extends 0 ? Options['caseEmptyTuple'] : T extends readonly [...unknown[], infer R] ? R : T[0]
 	}
 >
 

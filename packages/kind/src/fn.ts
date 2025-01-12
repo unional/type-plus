@@ -8,7 +8,6 @@ export interface Fn {
  */
 export type Eval<Input, Fns extends Fn[]> = Pipe<[Input, unknown], Fns>[0]
 
-
 /**
  * Pipe input and error to a series of functions.
  *
