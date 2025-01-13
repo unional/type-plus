@@ -11,6 +11,7 @@
 		"cs": "changeset",
 		"depcheck": "turbo run depcheck",
 		"format": "biome format .",
+		"k": "pnpm --filter ./packages/kind",
 		"lint": "run-p lint:*",
 		"lint:biome": "biome lint .",
 		"lint:eslint": "eslint .",
