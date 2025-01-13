@@ -1,7 +1,7 @@
 {
 	"extends": "@repobuddy/typescript/tsconfig/monorepo",
 	"compilerOptions": {
-		"exactOptionalPropertyTypes": true,
+		"composite": false,
 		"outDir": "dist",
 		"rootDir": "src",
 		"verbatimModuleSyntax": true

@@ -1,6 +1,7 @@
 {
 	"extends": "@repobuddy/typescript/tsconfig/monorepo",
 	"compilerOptions": {
+		"composite": false,
 		"rootDir": "src",
 		"skipLibCheck": true
 	},

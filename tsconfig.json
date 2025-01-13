@@ -1,9 +1,0 @@
-{
-	"files": [],
-	"references": [
-		{ "path": "./packages/kind/tsconfig.json" },
-		{
-			"path": "./packages/type-plus/tsconfig.json"
-		}
-	]
-}
