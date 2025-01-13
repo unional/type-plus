@@ -33,7 +33,7 @@ import type { $Unknown } from '../unknown/unknown.js'
  * type R = IsAny<string | boolean, { selection: 'filter' }> // never
  * ```
  *
- * 🔀 *branching*
+ * 🔱 *branching*
  *
  * Use unique branch identifiers to allow precise processing of the result.
  *
