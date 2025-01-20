@@ -2,7 +2,6 @@
   "mode": "pre",
   "tag": "beta",
   "initialVersions": {
-    "pages": "0.0.1",
     "type-plus": "7.6.0",
     "@type-plus/kind": "0.0.0"
   },
