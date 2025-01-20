@@ -3,7 +3,11 @@
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
-			"inputs": ["src/**/*.tsx?", "!src/**/*.spec.tsx?", "!src/**/*.stories.tsx?", "tsconfig.*"],
+			"inputs": [
+				"src/",
+				"!src/**/*.{spec,test,unit,accept,integrate,system,perf,stress,stories}.{ts,tsx}",
+				"tsconfig*.json"
+			],
 			"outputs": ["lib/**", "cjs/**", "esm/**", "dist/**"]
 		},
 		"pages#build": {
@@ -17,7 +21,7 @@
 		},
 		"coverage": {
 			"dependsOn": ["^build"],
-			"inputs": ["src/**/*.tsx?"],
+			"inputs": ["src/"],
 			"outputs": ["coverage/**"]
 		},
 		"depcheck": {},
@@ -34,27 +38,27 @@
 		},
 		"test": {
 			"dependsOn": ["^build"],
-			"inputs": ["src/**/*.tsx?"]
+			"inputs": ["src/"]
 		},
 		"test:type": {
 			"dependsOn": ["^build"],
-			"inputs": ["src/**/*.tsx?"]
+			"inputs": ["src/"]
 		},
 		"test:type:latest": {
 			"dependsOn": ["^build"],
-			"inputs": ["src/**/*.tsx?"]
+			"inputs": ["src/"]
 		},
 		"test:type:54": {
 			"dependsOn": ["^build"],
-			"inputs": ["src/**/*.tsx?"]
+			"inputs": ["src/"]
 		},
 		"test:type:55": {
 			"dependsOn": ["^build"],
-			"inputs": ["src/**/*.tsx?"]
+			"inputs": ["src/"]
 		},
 		"test:type:56": {
 			"dependsOn": ["^build"],
-			"inputs": ["src/**/*.tsx?"]
+			"inputs": ["src/"]
 		}
 	}
 }
