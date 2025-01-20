@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { testType, type TuplePlus } from '../index.js'
+import { type TuplePlus, testType } from '../index.js'
 
 it('never returns never', () => {
 	testType.equal<TuplePlus.CommonPropKeys<never>, never>(true)

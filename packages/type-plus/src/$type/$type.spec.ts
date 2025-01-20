@@ -29,29 +29,29 @@ it('same type is assignable', () => {
 })
 
 it('can be used with primitive types', () => {
-	testType.equal<$Type<'a', null>['_$value'], null>(true)
-	testType.equal<$Type<'a', undefined>['_$value'], undefined>(true)
-	testType.equal<$Type<'a', void>['_$value'], void>(true)
-	testType.equal<$Type<'a', unknown>['_$value'], unknown>(true)
-	testType.equal<$Type<'a', never>['_$value'], never>(true)
-	testType.equal<$Type<'a', boolean>['_$value'], boolean>(true)
-	testType.equal<$Type<'a', true>['_$value'], true>(true)
-	testType.equal<$Type<'a', false>['_$value'], false>(true)
-	testType.equal<$Type<'a', number>['_$value'], number>(true)
-	testType.equal<$Type<'a', 123>['_$value'], 123>(true)
-	testType.equal<$Type<'a', string>['_$value'], string>(true)
-	testType.equal<$Type<'a', 'abc'>['_$value'], 'abc'>(true)
-	testType.equal<$Type<'a', symbol>['_$value'], symbol>(true)
-	testType.equal<$Type<'a', bigint>['_$value'], bigint>(true)
-	testType.equal<$Type<'a', 1n>['_$value'], 1n>(true)
-	testType.equal<$Type<'a', Function>['_$value'], Function>(true)
+	testType.equal<$Type<'a', null>[$Type._$value], null>(true)
+	testType.equal<$Type<'a', undefined>[$Type._$value], undefined>(true)
+	testType.equal<$Type<'a', void>[$Type._$value], void>(true)
+	testType.equal<$Type<'a', unknown>[$Type._$value], unknown>(true)
+	testType.equal<$Type<'a', never>[$Type._$value], never>(true)
+	testType.equal<$Type<'a', boolean>[$Type._$value], boolean>(true)
+	testType.equal<$Type<'a', true>[$Type._$value], true>(true)
+	testType.equal<$Type<'a', false>[$Type._$value], false>(true)
+	testType.equal<$Type<'a', number>[$Type._$value], number>(true)
+	testType.equal<$Type<'a', 123>[$Type._$value], 123>(true)
+	testType.equal<$Type<'a', string>[$Type._$value], string>(true)
+	testType.equal<$Type<'a', 'abc'>[$Type._$value], 'abc'>(true)
+	testType.equal<$Type<'a', symbol>[$Type._$value], symbol>(true)
+	testType.equal<$Type<'a', bigint>[$Type._$value], bigint>(true)
+	testType.equal<$Type<'a', 1n>[$Type._$value], 1n>(true)
+	testType.equal<$Type<'a', Function>[$Type._$value], Function>(true)
 })
 
 it('can be used with object', () => {
 	type X = $Type<'a', { a: 1 }>
 
-	testType.equal<X['_$value'], { a: 1 }>(true)
-	testType.equal<X['_$value']['a'], 1>(true)
+	testType.equal<X[$Type._$value], { a: 1 }>(true)
+	testType.equal<X[$Type._$value]['a'], 1>(true)
 	testType.equal<X['a'], 1>(true)
 	testType.canAssign<X, { a: 1 }>(true)
 	testType.canAssign<{ a: 1 }, X>(false)
@@ -60,6 +60,6 @@ it('can be used with object', () => {
 it('can set bare usage', () => {
 	type X = $Type<'a', { a: 1 }, { bare: true }>
 
-	testType.equal<X['_$value'], { a: 1 }>(true)
+	testType.equal<X[$Type._$value], { a: 1 }>(true)
 	testType.canAssign<X, { a: 1 }>(false)
 })

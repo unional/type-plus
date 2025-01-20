@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { testType, type TuplePlus } from '../index.js'
+import { type TuplePlus, testType } from '../index.js'
 
 it('pads with unknown', () => {
 	testType.equal<TuplePlus.PadStart<[1, 2, 3], 5>, [unknown, unknown, 1, 2, 3]>(true)

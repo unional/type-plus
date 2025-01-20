@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { testType, type TuplePlus } from '../index.js'
+import { type TuplePlus, testType } from '../index.js'
 
 it('filters empty tuple -> empty tuple', () => {
 	testType.equal<TuplePlus.Filter<[]>, []>(true)

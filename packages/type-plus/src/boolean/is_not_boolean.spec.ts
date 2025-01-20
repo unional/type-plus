@@ -1,14 +1,14 @@
 import { describe, it } from '@jest/globals'
 
 import {
+	type $Any,
+	type $BranchOptions,
 	type $Else,
+	type $Never,
 	type $Then,
+	type $Unknown,
 	type IsNotBoolean,
 	testType,
-	type $BranchOptions,
-	type $Any,
-	type $Unknown,
-	type $Never,
 } from '../index.js'
 
 it('returns false if T is boolean', () => {

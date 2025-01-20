@@ -1,6 +1,6 @@
 import { describe, expect, test } from '@jest/globals'
 
-import { assertType, type HasKey, hasKey } from '../index.js'
+import { type HasKey, assertType, hasKey } from '../index.js'
 
 describe('HasKey<T, K>', () => {
 	test('true if has key', () => {

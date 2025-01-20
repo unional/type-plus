@@ -1,6 +1,6 @@
 import { describe, it } from '@jest/globals'
 
-import { testType, type $Else, type $Then, type IsBigint } from '../index.js'
+import { type $Else, type $Then, type IsBigint, testType } from '../index.js'
 
 it('returns true for bigint', () => {
 	testType.equal<IsBigint<bigint>, true>(true)

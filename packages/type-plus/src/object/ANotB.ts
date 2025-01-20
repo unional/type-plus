@@ -1,7 +1,7 @@
 import type { IsEqual } from '../equal/equal.js'
-import type { AnyRecord } from './any_record.js'
 import type { IsDisjoint } from './IsDisjoint.js'
 import type { KeysWithDiffType } from './KeysWithDiffType.js'
+import type { AnyRecord } from './any_record.js'
 
 export type ANotB<A extends AnyRecord, B extends AnyRecord> = IsEqual<A, B> extends true
 	? never

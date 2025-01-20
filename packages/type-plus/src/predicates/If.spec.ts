@@ -1,6 +1,6 @@
 import { test } from '@jest/globals'
 
-import { assertType, type If, isType } from '../index.js'
+import { type If, assertType, isType } from '../index.js'
 
 test('true gets Then', () => {
 	assertType<If<true, 2, 3>>(2)

@@ -12,6 +12,7 @@
 			".changeset/*.json",
 			".turbo",
 			".vscode/*.txt",
+			".vscode/*.code-snippets",
 			"./docs",
 			"packages/*/coverage",
 			"packages/*/cjs",

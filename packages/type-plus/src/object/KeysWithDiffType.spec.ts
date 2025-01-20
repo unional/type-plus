@@ -1,6 +1,6 @@
 import { test } from '@jest/globals'
 
-import { assertType, type KeysWithDiffType } from '../index.js'
+import { type KeysWithDiffType, assertType } from '../index.js'
 
 test('disjoint type gets never', () => {
 	type A = { a: 1 }

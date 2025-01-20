@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { isType, MaybePromise } from '../index.js'
+import { MaybePromise, isType } from '../index.js'
 
 describe(`${MaybePromise.transform.name}()`, () => {
 	it('returns the result from the handler directly if it is not a promise', () => {

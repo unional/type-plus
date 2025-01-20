@@ -1,5 +1,5 @@
-import type { AnyRecord } from './any_record.js'
 import type { KeyTypes } from './KeyTypes.js'
+import type { AnyRecord } from './any_record.js'
 
 /**
  * Validate if the key `K` in `T` is optional.

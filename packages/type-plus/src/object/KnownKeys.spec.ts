@@ -1,6 +1,6 @@
 import { test } from '@jest/globals'
 
-import { assertType, type KnownKeys } from '../index.js'
+import { type KnownKeys, assertType } from '../index.js'
 
 test('pick out only known keys', () => {
 	type A = {

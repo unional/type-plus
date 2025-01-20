@@ -1,7 +1,6 @@
 import { describe, it } from '@jest/globals'
 
 import {
-	testType,
 	type $Any,
 	type $BranchOptions,
 	type $Else,
@@ -9,6 +8,7 @@ import {
 	type $Then,
 	type $Unknown,
 	type IsNotBigint,
+	testType,
 } from '../index.js'
 
 it('returns false for bigint', () => {

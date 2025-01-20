@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type ArrayPlus } from '../index.js'
+import { type ArrayPlus, testType } from '../index.js'
 
 it('exports all array types and utils', () => {
 	testType.equal<ArrayPlus.At<[1, 2, 3], -1>, 3>(true)
