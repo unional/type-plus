@@ -8,9 +8,9 @@ import type { IsUndefined } from '../../undefined/is_undefined.js'
  *
  * 🦴 *utilities*
  *
- * @deprecated TypeScript 5.4 provides a built-in `NoInfer`.
+ * @deprecated 💀 **deprecated since 8.0.0**: use `NoInfer` from TypeScript 5.4 instead
  *
- * @ajafff original version author
+ * @author original version author @ajafff
  * @see https://github.com/microsoft/TypeScript/issues/14829#issuecomment-298425341
  *
  * @example

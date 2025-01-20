@@ -41,8 +41,9 @@ it('cannot assign from unbranded type', () => {
 })
 
 it('can assign to unbranded type', () => {
-	const a = { a: 1 }
+	let a = { a: 1 }
 	const b = brand('a', { a: 1 })
+	a = b
 	testType.canAssign<typeof b, typeof a>(true)
 })
 
