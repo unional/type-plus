@@ -10,11 +10,11 @@ function noInfer<T>(v: NoInfer<T>): T {
 	return v
 }
 
-declare function foo1<T extends string>(a: T, b: NoInfer<T>): void
-declare function foo2<T extends string>(a: T, b: NoInfer<T>[]): void
-declare function foo3<T extends string>(a: T, b: NoInfer<T[]>): void
-declare function foo4<T extends string>(a: T, b: { x: NoInfer<T> }): void
-declare function foo5<T extends string>(a: T, b: NoInfer<{ x: T }>): void
+function foo1<T extends string>(_a: T, _b: NoInfer<T>): void {}
+function foo2<T extends string>(_a: T, _b: NoInfer<T>[]): void {}
+function foo3<T extends string>(_a: T, _b: NoInfer<T[]>): void {}
+function foo4<T extends string>(_a: T, _b: { x: NoInfer<T> }): void {}
+function foo5<T extends string>(_a: T, _b: NoInfer<{ x: T }>): void {}
 
 foo1('foo', 'foo') // ok
 // @ts-expect-error

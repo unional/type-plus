@@ -1,4 +1,4 @@
-import type { $Type } from '../$type.js'
+import type { $Type } from '../../$type/$type.js'
 
 /**
  * 🧰 *type util*
@@ -10,7 +10,7 @@ import type { $Type } from '../$type.js'
  * type R = IsString<any, { $any: $Override<DoThisInstead> }> // use DoThisInstead as the sole branch logic
  * ```
  */
-export type $Override<T> = $Type<'override', 'override', T>
+export type $Override<T> = $Type<'override', T>
 
 export namespace $Override {
 	/**

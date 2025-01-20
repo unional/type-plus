@@ -36,5 +36,8 @@
 				"noConfusingVoidType": "off"
 			}
 		}
+	},
+	"organizeImports": {
+		"enabled": true
 	}
 }
