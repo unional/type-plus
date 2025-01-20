@@ -1,7 +1,7 @@
 import type { IsNull } from '../../null/is_null.js'
 import type { Or } from '../../predicates/logical.js'
-import type { $SelectionPredicate } from '../../type_plus/branch/$selection.js'
 import type { IsUndefined } from '../../undefined/is_undefined.js'
+import type { $SelectionPredicate } from '../branch/$selection.js'
 
 /**
  * Prevents inference of a type parameter `T`.

@@ -1,6 +1,6 @@
+import type { $Else, $Then } from '../$type/branch/$selection.js'
 import type { IsBigint } from '../bigint/is_bigint.js'
 import type { IsNumber } from '../number/is_number.js'
-import type { $Else, $Then } from '../type_plus/branch/$selection.js'
 
 /*
  * Returns the absolute value of a number or bigint `N`.

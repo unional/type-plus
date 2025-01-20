@@ -1,4 +1,4 @@
-import type { $SelectInvert } from '../type_plus/branch/$select_invert.js'
+import type { $SelectInvert } from '../$type/branch/$select_invert.js'
 
 /**
  * Is `T` not numeric.

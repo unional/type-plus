@@ -1,7 +1,7 @@
+import type { $SelectionPredicate } from '../$type/branch/$selection.js'
+import type { $SelectionOptions } from '../$type/branch/$selection_options.js'
 import type { IsAny } from '../any/is_any.js'
 import type { IsNever } from '../never/is_never.js'
-import type { $SelectionPredicate } from '../type_plus/branch/$selection.js'
-import type { $SelectionOptions } from '../type_plus/branch/$selection_options.js'
 
 /**
  * 🎭 *predicate*

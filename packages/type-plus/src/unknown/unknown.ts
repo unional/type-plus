@@ -1,4 +1,4 @@
-import type { $Branch } from '../type_plus/branch/$branch.js'
+import type { $Branch } from '../$type/branch/$branch.js'
 
 /**
  * 🧰 *type util*
