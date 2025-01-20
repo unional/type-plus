@@ -10,6 +10,8 @@ declare const uniSym: unique symbol
  * If you want to add additional type information,
  * use `FailedT` or create your own failed type instead.
  *
+ * @deprecated use `$Error` instead.
+ *
  * ```ts
  * type T = Failed<'error message'>
  * ```
@@ -26,6 +28,8 @@ export interface Failed<Msg extends string> {
  * e.g. `FailedT<'missing', number | string>`
  *
  * It's recommended to create custom failed types instead of using this to provide better message.
+ *
+ * @deprecated use `$Error` instead.
  */
 export interface FailedT<Msg extends string, _T> {
 	[uniSym]: Msg
