@@ -7,3 +7,10 @@ it('requires message', () => {
 	testType.equal<R['type'], 'error'>(true)
 	testType.equal<R['message'], 'some message'>(true)
 })
+
+it('can provide type', () => {
+	type R = $Error<'some message', number>
+	testType.equal<R['type'], 'error'>(true)
+	testType.equal<R['message'], 'some message'>(true)
+	testType.equal<R['value'], number>(true)
+})
