@@ -1,15 +1,6 @@
-// https://github.com/microsoft/TypeScript/issues/14829
-
-// alternative implementations that don't work:
-// export type NoInfer<T> = T & {}
-// export type NoInfer<T> = T & { [K in keyof T]: T[K] }
-// export type NoInfer<T> = [T][T extends any ? 0 : never]
-// export type NoInfer<T> = T extends infer S ? S : never;
-
 import { it } from '@jest/globals'
 import { testType } from '../../index.js'
 import type { UnionToIntersection } from '../../union/union_to_intersection.js'
-import type { NoInfer } from './no_infer.js'
 
 function id<T>(v: T): T {
 	return v
@@ -19,13 +10,31 @@ function noInfer<T>(v: NoInfer<T>): T {
 	return v
 }
 
-it('infers T when used directly', () => {
-	const x = id({ a: 1 })
-	testType.equal<typeof x, { a: number }>(true)
+declare function foo1<T extends string>(a: T, b: NoInfer<T>): void
+declare function foo2<T extends string>(a: T, b: NoInfer<T>[]): void
+declare function foo3<T extends string>(a: T, b: NoInfer<T[]>): void
+declare function foo4<T extends string>(a: T, b: { x: NoInfer<T> }): void
+declare function foo5<T extends string>(a: T, b: NoInfer<{ x: T }>): void
 
-	const y = noInfer({ a: 1 })
-	testType.equal<typeof y, { a: number }>(true)
-})
+foo1('foo', 'foo') // ok
+// @ts-expect-error
+foo1('foo', 'bar') // error
+
+foo2('foo', ['foo']) // ok
+// @ts-expect-error
+foo2('foo', ['bar']) // error
+
+foo3('foo', ['foo']) // ok
+// @ts-expect-error
+foo3('foo', ['bar']) // error
+
+foo4('foo', { x: 'foo' }) // ok
+// @ts-expect-error
+foo4('foo', { x: 'bar' }) // error
+
+foo5('foo', { x: 'foo' }) // ok
+// @ts-expect-error
+foo5('foo', { x: 'bar' }) // error
 
 it('works with primitive types', () => {
 	id<undefined>(noInfer(undefined))
@@ -122,9 +131,7 @@ it('', () => {
 		_value: UnionToIntersection<K<NoInfer<T>>>,
 	) {}
 
-	// TODO: This should pass
 	// Use a function parameter
-	// @ts-expect-error
 	doSomethingNoInfer((_x) => new Dog(), { woof: '', move: '' })
 
 	doSomethingNoInfer((_x: any) => new Dog(), { woof: '', move: '' })
