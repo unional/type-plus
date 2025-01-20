@@ -19,6 +19,4 @@ import type { $Error } from './$error.js'
  *
  * @since 8.0.0
  */
-export type $InferError<M extends string, T = unknown> = M extends any
-	? $Error<`Unable to infer: ${M}`, T>
-	: never
+export type $InferError<M extends string, T = unknown> = M extends any ? $Error<`Unable to infer: ${M}`, T> : never

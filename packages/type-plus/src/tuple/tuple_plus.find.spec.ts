@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type TuplePlus } from '../index.js'
+import { type TuplePlus, testType } from '../index.js'
 
 // TODO: handle never and $never
 // it('returns never if input is never', () => {

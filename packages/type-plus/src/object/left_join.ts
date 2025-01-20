@@ -1,6 +1,6 @@
 import type { IsEqual } from '../equal/equal.js'
-import type { AnyRecord } from './any_record.js'
 import type { IsDisjoint } from './IsDisjoint.js'
+import type { AnyRecord } from './any_record.js'
 import type { Properties } from './properties.js'
 
 export type LeftJoin<A extends AnyRecord, B extends AnyRecord> = IsEqual<A, B> extends true

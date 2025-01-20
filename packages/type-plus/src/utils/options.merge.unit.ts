@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { testType, type TypePlusOptions } from '../index.js'
+import { type TypePlusOptions, testType } from '../index.js'
 
 it('overrides cases', () => {
 	testType.equal<TypePlusOptions.Merge<{ a: 3 }, { a: 1; b: 2 }>, { a: 3; b: 2 }>(true)

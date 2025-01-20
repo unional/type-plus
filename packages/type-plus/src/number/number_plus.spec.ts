@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { isType, type NumberPlus, testType } from '../index.js'
+import { type NumberPlus, isType, testType } from '../index.js'
 
 it('exports', () => {
 	isType<NumberPlus.Zero>(-0)

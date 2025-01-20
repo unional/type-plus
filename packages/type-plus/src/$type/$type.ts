@@ -24,8 +24,14 @@ export type $Type<T extends string, V = unknown, $O extends { bare: true } | unk
 		: $Type.$<T, V> & V
 
 export namespace $Type {
+	export declare const _$type: '_$type'
+	export type _$type = '_$type'
+
+	export declare const _$value: '_$value'
+	export type _$value = '_$value'
+
 	export type $<T extends string, V = unknown> = {
-		_$type: T
-		_$value: V
+		[_$type]: T
+		[_$value]: V
 	}
 }

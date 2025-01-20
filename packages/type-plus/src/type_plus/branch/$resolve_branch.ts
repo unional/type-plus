@@ -1,3 +1,4 @@
+import type { $Type } from '../../$type/$type.js'
 import type { $Branch } from './$branch.js'
 import type { $Override } from './$override.js'
 import type { $Else, $Then } from './$selection.js'
@@ -41,18 +42,18 @@ export namespace $ResolveBranch {
 			: never
 
 	export type _OLast<$D, $O extends Record<string, any>, $B extends $Branch<any> | unknown> = $B extends $Branch<any>
-		? $B['_$value'] extends keyof $O
-			? $O[$B['_$value']] extends infer R extends $Override<any>
+		? $B[$Type._$value] extends keyof $O
+			? $O[$B[$Type._$value]] extends infer R extends $Override<any>
 				? [R, never] extends [never, R]
 					? $D
-					: R['_$value']
+					: R[$Type._$value]
 				: $D
 			: $D
 		: $D
 
 	export type _<T, $O extends Record<string, any>, $B> = $B extends $Branch<any>
-		? $B['_$value'] extends keyof $O
-			? $Override.$Unwrap<$O[$B['_$value']]>
+		? $B[$Type._$value] extends keyof $O
+			? $Override.$Unwrap<$O[$B[$Type._$value]]>
 			: T
 		: T
 	export type _Last<T, $O extends Record<string, any>, $B> = $B extends $Then

@@ -1,6 +1,6 @@
+import type { RequiredKeys } from './RequiredKeys.js'
 import type { AnyRecord } from './any_record.js'
 import type { OptionalKeys } from './optional_key.js'
-import type { RequiredKeys } from './RequiredKeys.js'
 
 /**
  * ⚗️ *transform*

@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { testType, type UnionOfValues } from '../index.js'
+import { type UnionOfValues, testType } from '../index.js'
 
 it('returns type T of Array<T>', () => {
 	testType.equal<UnionOfValues<string[]>, string>(true)

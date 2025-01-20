@@ -10,7 +10,7 @@
 		"scope": "typescript",
 		"prefix": "@since",
 		"body": [
-			"@since 🏷️ ${1:version}",
+			"@since 🏷️ ${1:version}"
 		],
 		"description": "since"
 	},
@@ -18,7 +18,7 @@
 		"scope": "typescript",
 		"prefix": "@bug",
 		"body": [
-			"@bug 🐞 **known issue**: $0",
+			"@bug 🐞 **known issue**: $0"
 		],
 		"description": "Known Issue"
 	},
@@ -26,7 +26,7 @@
 		"scope": "typescript",
 		"prefix": "@deprecated",
 		"body": [
-			"@deprecated 💀 **deprecated since ${1:version}**: $0",
+			"@deprecated 💀 **deprecated since ${1:version}**: $0"
 		],
 		"description": "Deprecated"
 	},
@@ -34,7 +34,7 @@
 		"scope": "typescript",
 		"prefix": "@distributive",
 		"body": [
-			"🔀 **distributive**",
+			"🔀 **distributive**"
 		],
 		"description": "Distributive"
 	},
@@ -42,8 +42,8 @@
 		"scope": "typescript",
 		"prefix": "@exact",
 		"body": [
-			"📌 **exact**",
+			"📌 **exact**"
 		],
 		"description": "Exact"
-	},
+	}
 }

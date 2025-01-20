@@ -1,6 +1,6 @@
+import type { ValueOf } from './ValueOf.js'
 import type { AnyRecord } from './any_record.js'
 import { reduceByKey } from './reduceKey.js'
-import type { ValueOf } from './ValueOf.js'
 
 /**
  * An Object-specific version of `map`.

@@ -1,5 +1,5 @@
 import { expect, it } from '@jest/globals'
-import { testType, type UnionKeys } from './index.js'
+import { type UnionKeys, testType } from './index.js'
 
 it('gets the keys of an object', () => {
 	testType.equal<UnionKeys<{ a: 1; b: 2 }>, 'a' | 'b'>(true)

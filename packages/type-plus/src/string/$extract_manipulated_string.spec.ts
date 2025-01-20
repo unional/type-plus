@@ -1,5 +1,5 @@
 import { it } from '@jest/globals'
-import { testType, type $ExtractManipulatedString } from '../index.js'
+import { type $ExtractManipulatedString, testType } from '../index.js'
 
 it('returns T if T is a string', () => {
 	testType.equal<$ExtractManipulatedString<string>, string>(true)

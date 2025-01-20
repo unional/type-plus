@@ -19,7 +19,7 @@
 		"scope": "markdown",
 		"prefix": "@bug",
 		"body": [
-			"🐞 **known issue**: $0",
+			"🐞 **known issue**: $0"
 		],
 		"description": "Known Issue"
 	},
@@ -27,7 +27,7 @@
 		"scope": "markdown",
 		"prefix": "@deprecated",
 		"body": [
-			"💀 **deprecated since ${1:version}**: $0",
+			"💀 **deprecated since ${1:version}**: $0"
 		],
 		"description": "Deprecated"
 	},
@@ -35,7 +35,7 @@
 		"scope": "markdown",
 		"prefix": "@removed",
 		"body": [
-			"🗑️ **removed since ${1:version}**",
+			"🗑️ **removed since ${1:version}**"
 		],
 		"description": "Removed"
 	},
@@ -43,7 +43,7 @@
 		"scope": "markdown",
 		"prefix": "@distributive",
 		"body": [
-			"🔀 **distributive**",
+			"🔀 **distributive**"
 		],
 		"description": "Distributive"
 	},
@@ -51,7 +51,7 @@
 		"scope": "markdown",
 		"prefix": "@exact",
 		"body": [
-			"📌 **exact**",
+			"📌 **exact**"
 		],
 		"description": "Exact"
 	},
@@ -59,7 +59,7 @@
 		"scope": "markdown",
 		"prefix": "@branching",
 		"body": [
-			"🔱 **branching**",
+			"🔱 **branching**"
 		],
 		"description": "Branching"
 	},

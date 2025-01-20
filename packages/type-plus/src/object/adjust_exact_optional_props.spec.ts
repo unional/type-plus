@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
-import { testType } from '../testing/test_type.js'
 import type { AdjustExactOptionalProps } from '../index.js'
+import { testType } from '../testing/test_type.js'
 
 it('adds undefined to optional props', () => {
 	type X = { a: string; b?: string }

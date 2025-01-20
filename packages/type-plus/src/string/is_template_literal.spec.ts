@@ -1,5 +1,5 @@
 import { describe, it } from '@jest/globals'
-import { testType, type $Else, type IsTemplateLiteral } from '../index.js'
+import { type $Else, type IsTemplateLiteral, testType } from '../index.js'
 
 it('returns false for string', () => {
 	testType.false<IsTemplateLiteral<string>>(true)

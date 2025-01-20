@@ -1,4 +1,4 @@
-import { it, describe } from '@jest/globals'
+import { describe, it } from '@jest/globals'
 
 import { type $Else, type $Then, type IsNotObject, testType } from '../index.js'
 

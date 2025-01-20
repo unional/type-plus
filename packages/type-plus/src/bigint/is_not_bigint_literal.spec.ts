@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { testType, type $Else, type $Then, type IsNotBigintLiteral } from '../index.js'
+import { type $Else, type $Then, type IsNotBigintLiteral, testType } from '../index.js'
 
 it('returns true for number', () => {
 	testType.true<IsNotBigintLiteral<number>>(true)
