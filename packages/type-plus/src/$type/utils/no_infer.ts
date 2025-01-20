@@ -23,8 +23,5 @@ import type { IsUndefined } from '../../undefined/is_undefined.js'
  * assertEqual(123, 'abc') // Error
  * assertEqual({ x: 1 }, { x: 1, y: 2 }) // Error
  * ```
- *
- * A build-in `NoInfer` is coming soon.
- * @see https://github.com/microsoft/TypeScript/pull/52968
  */
 export type NoInfer<T> = Or<IsNull<T>, IsUndefined<T, $SelectionPredicate>, T, T & {}>
