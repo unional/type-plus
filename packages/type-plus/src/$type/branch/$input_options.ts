@@ -1,4 +1,4 @@
-import type { $Type } from '../../$type/$type.js'
+import type { $Type } from '../$type.js'
 import type { $Branch } from './$branch.js'
 
 /**

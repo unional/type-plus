@@ -1,4 +1,4 @@
-import type { $Select } from '../type_plus/branch/$select.js'
+import type { $Select } from '../$type/branch/$select.js'
 
 /**
  * 🎭 *predicate*

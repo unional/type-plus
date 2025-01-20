@@ -1,3 +1,4 @@
+import type { $Else, $SelectionBranch, $Then } from '../$type/branch/$selection.js'
 import type { IsBigint } from '../bigint/is_bigint.js'
 import type { IsBoolean } from '../boolean/is_boolean.js'
 import type { IsFunction } from '../function/is_function.js'
@@ -5,7 +6,6 @@ import type { IsNumber } from '../number/is_number.js'
 import type { IsObject } from '../object/is_object.js'
 import type { IsString } from '../string/is_string.js'
 import type { IsSymbol } from '../symbol/is_symbol.js'
-import type { $Else, $SelectionBranch, $Then } from '../type_plus/branch/$selection.js'
 
 /**
  * ⚗️ *transform*
