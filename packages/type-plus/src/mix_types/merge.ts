@@ -23,23 +23,28 @@ import type { Box } from './box.js'
 export type Merge<A, B> = Or<
 	IsNever<A>,
 	IsNever<B>,
-	never,
-	Or<
-		IsVoid<A>,
-		IsVoid<B>,
-		A & B,
-		Or<
-			IsUnknown<A>,
-			Or<IsUndefined<A>, IsNull<A>>,
-			B,
-			Or<
-				IsUnknown<B>,
-				Or<IsUndefined<B>, IsNull<B>>,
-				A,
-				ObjectMerge<Box<A, { $notBoxable: {} }>, Box<B, { $notBoxable: {} }>>
-			>
+	{
+		$then: never
+		$else: Or<
+			IsVoid<A>,
+			IsVoid<B>,
+			{
+				$then: A & B
+				$else: Or<
+					IsUnknown<A>,
+					Or<IsUndefined<A>, IsNull<A>>,
+					{
+						$then: B
+						$else: Or<
+							IsUnknown<B>,
+							Or<IsUndefined<B>, IsNull<B>>,
+							{ $then: A; $else: ObjectMerge<Box<A, { $notBoxable: {} }>, Box<B, { $notBoxable: {} }>> }
+						>
+					}
+				>
+			}
 		>
-	>
+	}
 >
 
 /**

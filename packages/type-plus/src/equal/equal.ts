@@ -83,10 +83,37 @@ export type Equal<A, B, $O extends Equal.$Options = {}> = [A, B] extends [B, A]
 		>
 	: $ResolveBranch<A, $O, [$Else]>
 
-type BothNever<A, B, Both, One, None> = And<IsNever<A>, IsNever<B>, Both, Or<IsNever<A>, IsNever<B>, One, None>>
+type BothNever<A, B, Both, One, None> = And<
+	IsNever<A>,
+	IsNever<B>,
+	{
+		$then: Both
+		$else: Or<
+			IsNever<A>,
+			IsNever<B>,
+			{
+				$then: One
+				$else: None
+			}
+		>
+	}
+>
 
-type BothAny<A, B, Both, One, None> = And<IsAny<A>, IsAny<B>, Both, Or<IsAny<A>, IsAny<B>, One, None>>
-
+type BothAny<A, B, Both, One, None> = And<
+	IsAny<A>,
+	IsAny<B>,
+	{
+		$then: Both
+		$else: Or<
+			IsAny<A>,
+			IsAny<B>,
+			{
+				$then: One
+				$else: None
+			}
+		>
+	}
+>
 // export type Equal<A, B, $O extends Equal.$Options = {}> = [
 // 	$Special<A, $Special.Branch>,
 // 	$Special<B, $Special.Branch>,

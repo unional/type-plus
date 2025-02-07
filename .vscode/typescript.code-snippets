@@ -54,4 +54,12 @@
 		],
 		"description": "Branching"
 	},
+	"predicate": {
+		"scope": "typescript",
+		"prefix": "@predicate",
+		"body": [
+			"🎭 **predicate**"
+		],
+		"description": "Predicate"
+	},
 }

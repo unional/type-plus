@@ -24,4 +24,11 @@ import type { IsUndefined } from '../undefined/is_undefined.js'
  * assertEqual({ x: 1 }, { x: 1, y: 2 }) // Error
  * ```
  */
-export type NoInfer<T> = Or<IsNull<T>, IsUndefined<T, $Selection.Predicate>, T, T & {}>
+export type NoInfer<T> = Or<
+	IsNull<T>,
+	IsUndefined<T, $Selection.Predicate>,
+	{
+		$then: T
+		$else: T & {}
+	}
+>
