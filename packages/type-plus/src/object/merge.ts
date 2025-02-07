@@ -1,4 +1,4 @@
-import type { $Never } from '../$type/branch/$never.js'
+import type { $Never } from '../$type/special/$never.js'
 import type { IsAny } from '../any/is_any.js'
 import type { NonComposableTypes } from '../composable_types.js'
 import type { IsNever } from '../never/is_never.js'

@@ -1,6 +1,5 @@
-import { it, test } from '@jest/globals'
-
-import { type $Type, type $Unknown, testType } from '../../index.js'
+import { test } from '@jest/globals'
+import { testType } from '../index.js'
 
 test('union behavior of unknown', () => {
 	testType.equal<unknown | null, unknown>(true)
@@ -50,8 +49,4 @@ test('intersection behavior of unknown', () => {
 	testType.equal<unknown & unknown, unknown>(true)
 	testType.equal<unknown & never, never>(true)
 	testType.equal<unknown & void, void>(true)
-})
-
-it('is a unique branch', () => {
-	testType.canAssign<$Type<'branch', 'something else'>, $Unknown>(false)
 })

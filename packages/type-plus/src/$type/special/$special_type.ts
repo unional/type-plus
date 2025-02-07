@@ -1,15 +1,13 @@
-import type { $Any } from './branch/$any.js'
-import type { $BranchOptions } from './branch/$branch.js'
-import type { $InputOptions } from './branch/$input_options.js'
-import type { $Never } from './branch/$never.js'
-import type { $ResolveBranch } from './branch/$resolve_branch.js'
-import type { $Else, $SelectionBranch, $Then } from './branch/$selection.js'
-import type { $SelectionOptions } from './branch/$selection_options.js'
-import type { $Unknown } from './branch/$unknown.js'
+import type { $BranchOptions } from '../branch/$branch.js'
+import type { $InputOptions } from '../branch/$input_options.js'
+import type { $ResolveBranch } from '../branch/$resolve_branch.js'
+import type { $Else, $SelectionBranch, $Then } from '../branch/$selection.js'
+import type { $SelectionOptions } from '../branch/$selection_options.js'
+import type { $Any } from './$any.js'
+import type { $Never } from './$never.js'
+import type { $Unknown } from './$unknown.js'
 
 /**
- * 🧰 *type util*
- *
  * A type utility to handle special types: `any`, `unknown`, and `never`.
  */
 export type $SpecialType<T, $O extends $SpecialType.$Options> = 0 extends 1 & T

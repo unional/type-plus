@@ -1,4 +1,4 @@
-import type { $Never } from '../$type/branch/$never.js'
+import type { $Never } from '../$type/special/$never.js'
 import type { ElementMatch } from '../array/array_plus.element_match.js'
 import type { TypePlusOptions } from '../utils/options.js'
 import type { IsTuple } from './is_tuple.js'

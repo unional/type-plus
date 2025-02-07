@@ -1,5 +1,5 @@
-import type { $Never } from '../$type/branch/$never.js'
 import type { $SelectionOptions } from '../$type/branch/$selection_options.js'
+import type { $Never } from '../$type/special/$never.js'
 import type { IsNever } from '../never/is_never.js'
 import type { TypePlusOptions } from '../utils/options.js'
 import type { LooseArrayType } from './loose_array_type.js'

@@ -1,7 +1,7 @@
 import type { $Equality } from '../$type/$equality.js'
-import type { $SpecialType } from '../$type/$special_type.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else } from '../$type/branch/$selection.js'
+import type { $SpecialType } from '../$type/special/$special_type.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { Assignable } from '../predicates/assignable.js'
 

@@ -1,4 +1,4 @@
-import type { $Never } from '../$type/branch/$never.js'
+import type { $Never } from '../$type/special/$never.js'
 import type { IsNever } from '../never/is_never.js'
 import type { KeyTypes } from '../object/KeyTypes.js'
 
