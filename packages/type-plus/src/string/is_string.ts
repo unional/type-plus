@@ -4,7 +4,7 @@ import type { $SpecialType } from '../$type/$special_type.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
-import type { $ExactOptions } from '../$type/exact/$exact.js'
+import type { $Exact } from '../$type/exact/$exact.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { Assignable } from '../predicates/assignable.js'
 
@@ -68,7 +68,7 @@ export type IsString<T, $O extends IsString.$Options = {}> = $SpecialType<
 >
 
 export namespace IsString {
-	export type $Options = $Equality.$Options & $ExactOptions
+	export type $Options = $Equality.$Options & $Exact.Options
 	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
 
 	/**
@@ -83,7 +83,7 @@ export namespace IsString {
 		? $Distributive.Parse<$O, { $then: _D<T, $O>; $else: _N<T, $O> }>
 		: Assignable.$<T, string, $O>
 
-	export type $UtilOptions = Assignable.$UtilOptions & $ExactOptions
+	export type $UtilOptions = Assignable.$UtilOptions & $Exact.Options
 
 	export type _D<T, $O extends $UtilOptions> = T extends string & infer U
 		? U extends string

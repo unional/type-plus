@@ -5,7 +5,7 @@ import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
 import type { $SelectionOptions } from '../$type/branch/$selection_options.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
-import type { $ExactDefault, $ExactOptions } from '../$type/exact/$exact.js'
+import type { $Exact } from '../$type/exact/$exact.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { Assignable } from '../predicates/assignable.js'
 import type { _StringType } from './_string_type.js'
@@ -80,7 +80,7 @@ export type IsStringLiteral<T, $O extends IsStringLiteral.$Options = {}> = $Spec
 >
 
 export namespace IsStringLiteral {
-	export type $Options = $Equality.$Options & $ExactOptions
+	export type $Options = $Equality.$Options & $Exact.Options
 	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
 
 	/**
@@ -91,11 +91,11 @@ export namespace IsStringLiteral {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> = $ResolveOptions<[$O['exact'], $ExactDefault]> extends true
+	export type $<T, $O extends $UtilOptions> = $ResolveOptions<[$O['exact'], $Exact.Default]> extends true
 		? $Distributive.Parse<$O, { $then: _ED<T, $O>; $else: _EN<T, $O> }>
 		: $Distributive.Parse<$O, { $then: _D<T, $O>; $else: _N<T, $O> }>
 
-	export type $UtilOptions = Assignable.$UtilOptions & $ExactOptions
+	export type $UtilOptions = Assignable.$UtilOptions & $Exact.Options
 
 	export type _ED<T, $O extends $SelectionOptions> = T extends string ? _E<T, $O> : $ResolveBranch<T, $O, [$Else]>
 

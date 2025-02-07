@@ -3,7 +3,7 @@ import type { $SpecialType } from '../$type/$special_type.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
-import type { $ExactOptions, $IsExact } from '../$type/exact/$exact.js'
+import type { $Exact } from '../$type/exact/$exact.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { NotAssignable } from '../predicates/not_assignable.js'
 
@@ -71,7 +71,7 @@ export type IsNotArray<T, $O extends IsNotArray.$Options = {}> = $SpecialType<
 	>
 >
 export namespace IsNotArray {
-	export type $Options = $Equality.$Options & $ExactOptions
+	export type $Options = $Equality.$Options & $Exact.Options
 	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
 
 	/**
@@ -82,7 +82,7 @@ export namespace IsNotArray {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> = $IsExact<
+	export type $<T, $O extends $UtilOptions> = $Exact.Parse<
 		$O,
 		{
 			$then: $Distributive.Parse<
@@ -110,5 +110,5 @@ export namespace IsNotArray {
 		}
 	>
 
-	export type $UtilOptions = NotAssignable.$UtilOptions & $ExactOptions
+	export type $UtilOptions = NotAssignable.$UtilOptions & $Exact.Options
 }

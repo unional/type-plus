@@ -4,7 +4,7 @@ import type { $SpecialType } from '../$type/$special_type.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
-import type { $ExactDefault, $ExactOptions } from '../$type/exact/$exact.js'
+import type { $Exact } from '../$type/exact/$exact.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { Assignable } from '../predicates/assignable.js'
 
@@ -82,7 +82,7 @@ export type IsBigint<T, $O extends IsBigint.$Options = {}> = $SpecialType<
 >
 
 export namespace IsBigint {
-	export type $Options = $Equality.$Options & $ExactOptions
+	export type $Options = $Equality.$Options & $Exact.Options
 	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
 
 	/**
@@ -93,10 +93,10 @@ export namespace IsBigint {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> = $ResolveOptions<[$O['exact'], $ExactDefault]> extends true
+	export type $<T, $O extends $UtilOptions> = $ResolveOptions<[$O['exact'], $Exact.Default]> extends true
 		? $Distributive.Parse<$O, { $then: _SD<T, $O>; $else: _SN<T, $O> }>
 		: Assignable.$<T, bigint, $O>
-	export type $UtilOptions = Assignable.$UtilOptions & $ExactOptions
+	export type $UtilOptions = Assignable.$UtilOptions & $Exact.Options
 
 	export type _SD<T, $O extends $Options> = T extends bigint & infer U
 		? U extends bigint
