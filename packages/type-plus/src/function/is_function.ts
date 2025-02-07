@@ -1,4 +1,4 @@
-import type { $Select } from '../$type/$select.js'
+import type { $Select } from '../$type/equal/$select.js'
 
 /**
  * 🎭 *predicate*

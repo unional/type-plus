@@ -1,6 +1,6 @@
-import type { $Equality } from '../$type/$equality.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
+import type { $Equality } from '../$type/equal/$equal.js'
 import type { IsBigint } from '../bigint/is_bigint.js'
 import type { IsNumber } from '../number/is_number.js'
 
