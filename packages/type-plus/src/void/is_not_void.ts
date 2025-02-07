@@ -3,7 +3,7 @@ import type { $Else, $Then } from '../$type/branch/$selection.js'
 import type { $Special } from '../$type/special/$special.js'
 import type { $Void } from '../$type/special/$void.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
-import type { $Equal } from '../equal/equal.js'
+import type { Equal } from '../equal/equal.js'
 import type { NotAssignable } from '../predicates/not_assignable.js'
 import type { IsUndefined } from '../undefined/is_undefined.js'
 
@@ -69,8 +69,8 @@ export type IsNotVoid<T, $O extends IsNotVoid.$Options = {}> = $Special<
 >
 
 export namespace IsNotVoid {
-	export type $Options = $Equal.$Options
-	export type $Branch<$O extends $Options = {}> = $Equal.$Branch<$O>
+	export type $Options = Equal.$Options
+	export type $Branch<$O extends $Options = {}> = Equal.$Branch<$O>
 
 	/**
 	 * 🧰 *type util*

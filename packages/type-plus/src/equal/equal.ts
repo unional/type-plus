@@ -60,7 +60,7 @@ import type { $Void } from '../$type/special/$void.js'
  * type R = $Equal<string, undefined, $SelectionBranch> // $Else
  * ```
  */
-export type $Equal<T, U, $O extends $Equal.$Options = {}> = $Special<
+export type Equal<T, U, $O extends Equal.$Options = {}> = $Special<
 	T,
 	{
 		$any: $ResolveBranch<T, $O, [$Any, $Else]>
@@ -70,21 +70,21 @@ export type $Equal<T, U, $O extends $Equal.$Options = {}> = $Special<
 		$else: $Exact.Parse<
 			$O,
 			{
-				$then: $Equal._ExactEqual<T, U, $O>
+				$then: Equal._ExactEqual<T, U, $O>
 				$else: _LooseEqual<T, U, $O>
 			}
 		>
 	}
 >
 
-type _LooseEqual<T, U, $O extends $Equal.$Options> = $Distributive.Parse<$O> extends true
+type _LooseEqual<T, U, $O extends Equal.$Options> = $Distributive.Parse<$O> extends true
 	? _LooseEqualDistributive<T, U, $O>
 	: _LooseEqualNonDistributive<T, U, $O>
 
-type _LooseEqualDistributive<T, U, $O extends $Equal.$Options> = T extends U
+type _LooseEqualDistributive<T, U, $O extends Equal.$Options> = T extends U
 	? $ResolveBranch<T, $O, [$Then]>
 	: $ResolveBranch<T, $O, [$Else]>
-type _LooseEqualNonDistributive<T, U, $O extends $Equal.$Options> = [T] extends [U]
+type _LooseEqualNonDistributive<T, U, $O extends Equal.$Options> = [T] extends [U]
 	? $ResolveBranch<T, $O, [$Then]>
 	: $ResolveBranch<T, $O, [$Else]>
 
@@ -235,7 +235,7 @@ export namespace $SelectInvertStrict {
 		: $ResolveBranch<T, $O, [$Then]>
 }
 
-export namespace $Equal {
+export namespace Equal {
 	export type $Options = $Selection.Options &
 		$Distributive.Options &
 		$InputOptions<$Any | $Unknown | $Never> &

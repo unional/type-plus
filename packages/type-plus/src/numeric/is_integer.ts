@@ -1,7 +1,7 @@
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
 import type { IsBigint } from '../bigint/is_bigint.js'
-import type { $Equal } from '../equal/equal.js'
+import type { Equal } from '../equal/equal.js'
 import type { IsNumber } from '../number/is_number.js'
 
 /**
@@ -39,6 +39,6 @@ export type IsInteger<T, $O extends IsInteger.$Options = {}> = IsNumber<
 	}
 >
 export namespace IsInteger {
-	export type $Options = $Equal.$Options
-	export type $Branch<$O extends $Options = {}> = $Equal.$Branch<$O>
+	export type $Options = Equal.$Options
+	export type $Branch<$O extends $Options = {}> = Equal.$Branch<$O>
 }

@@ -5,7 +5,7 @@ import type { $Distributive } from '../$type/distributive/$distributive.js'
 import type { $Exact } from '../$type/exact/$exact.js'
 import type { $Special } from '../$type/special/$special.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
-import type { $Equal } from '../equal/equal.js'
+import type { Equal } from '../equal/equal.js'
 import type { NotAssignable } from '../predicates/not_assignable.js'
 
 /**
@@ -68,8 +68,8 @@ export type IsNotString<T, $O extends IsNotString.$Options = {}> = $Special<
 >
 
 export namespace IsNotString {
-	export type $Options = $Equal.$Options & $Exact.Options
-	export type $Branch<$O extends $Options = {}> = $Equal.$Branch<$O>
+	export type $Options = Equal.$Options & $Exact.Options
+	export type $Branch<$O extends $Options = {}> = Equal.$Branch<$O>
 
 	/**
 	 * 🧰 *type util*

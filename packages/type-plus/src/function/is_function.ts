@@ -1,4 +1,4 @@
-import type { $Equal } from '../equal/equal.js'
+import type { Equal } from '../equal/equal.js'
 
 /**
  * 🎭 *predicate*
@@ -53,10 +53,10 @@ import type { $Equal } from '../equal/equal.js'
  * type R = IsFunction<string, $SelectionBranch> // $Else
  * ```
  */
-export type IsFunction<T, $O extends IsFunction.$Options = {}> = $Equal<T, Function, $O>
+export type IsFunction<T, $O extends IsFunction.$Options = {}> = Equal<T, Function, $O>
 
 export namespace IsFunction {
-	export type $Options = $Equal.$Options
-	export type $Default = $Equal.$Default
-	export type $Branch = $Equal.$Branch
+	export type $Options = Equal.$Options
+	export type $Default = Equal.$Default
+	export type $Branch = Equal.$Branch
 }
