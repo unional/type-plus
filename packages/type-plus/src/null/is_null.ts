@@ -1,7 +1,7 @@
 import type { $Equality } from '../$type/$equality.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else } from '../$type/branch/$selection.js'
-import type { $SpecialType } from '../$type/special/$special_type.js'
+import type { $Special } from '../$type/special/$special.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { Assignable } from '../predicates/assignable.js'
 
@@ -55,7 +55,7 @@ import type { Assignable } from '../predicates/assignable.js'
  * type R = IsNull<string, $SelectionBranch> // $Else
  * ```
  */
-export type IsNull<T, $O extends IsNull.$Options = {}> = $SpecialType<
+export type IsNull<T, $O extends IsNull.$Options = {}> = $Special<
 	T,
 	$MergeOptions<
 		$O,

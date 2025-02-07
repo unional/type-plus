@@ -1,7 +1,7 @@
 import type { $Equality } from '../$type/$equality.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else } from '../$type/branch/$selection.js'
-import type { $SpecialType } from '../$type/special/$special_type.js'
+import type { $Special } from '../$type/special/$special.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { Assignable } from '../predicates/assignable.js'
 import type { IsUndefined } from '../undefined/is_undefined.js'
@@ -56,7 +56,7 @@ import type { IsUndefined } from '../undefined/is_undefined.js'
  * type R = IsVoid<string, $SelectionBranch> // $Else
  * ```
  */
-export type IsVoid<T, $O extends IsVoid.$Options = {}> = $SpecialType<
+export type IsVoid<T, $O extends IsVoid.$Options = {}> = $Special<
 	T,
 	$MergeOptions<
 		$O,

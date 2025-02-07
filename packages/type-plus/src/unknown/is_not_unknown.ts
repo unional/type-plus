@@ -4,7 +4,7 @@ import type { $Else, $SelectionBranch, $Then } from '../$type/branch/$selection.
 import type { $SelectionOptions } from '../$type/branch/$selection_options.js'
 import type { $Any } from '../$type/special/$any.js'
 import type { $Never } from '../$type/special/$never.js'
-import type { $SpecialType } from '../$type/special/$special_type.js'
+import type { $Special } from '../$type/special/$special.js'
 
 /**
  * 🎭 *predicate*
@@ -41,7 +41,7 @@ import type { $SpecialType } from '../$type/special/$special_type.js'
  * type R = IsNotUnknown<string, $SelectionBranch> // $Then
  * ```
  */
-export type IsNotUnknown<T, $O extends IsNotUnknown.$Options = {}> = $SpecialType<
+export type IsNotUnknown<T, $O extends IsNotUnknown.$Options = {}> = $Special<
 	T,
 	{
 		$any: $ResolveBranch<T, $O, [$Any, $Then]>
