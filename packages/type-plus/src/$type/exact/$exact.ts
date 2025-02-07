@@ -4,20 +4,26 @@ import type { $Else, $Then } from '../branch/$selection.js'
 
 export namespace $Exact {
 	/**
-	 * `$Exact.$Options` enables customizing the behavior of the `$exact` branch.
-	 *
-	 * The `$exact` branch is used to handle when it is an exact comparison.
+	 * Options for controlling if the type perform exact comparison.
 	 */
 	export type Options = {
 		exact?: boolean | undefined
 	}
 
+	/**
+	 * Default options for `exact` behavior.
+	 *
+	 * By default it is `false`.
+	 */
 	export type Default = {
 		exact: false
 	}
 
-	export type Parse<$Opt extends Options, $O extends $InputOptions<$Then | $Else> = {}> = $ResolveOptions<
-		[$Opt['exact'], Default]
+	/**
+	 * Parse the options for `exact`.
+	 */
+	export type Parse<$Options extends Options, $O extends $InputOptions<$Then | $Else> = {}> = $ResolveOptions<
+		[$Options['exact'], Default]
 	> extends true
 		? '$then' extends keyof $O
 			? $O['$then']
