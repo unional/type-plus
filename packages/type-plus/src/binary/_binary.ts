@@ -1,1 +1,2 @@
-export type { Bit, And, Not, Or, Xor } from './bit.js'
+export * as B from './bit.js'
+export * as Bit from './bit.js'

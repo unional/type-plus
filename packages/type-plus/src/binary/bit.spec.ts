@@ -1,7 +1,6 @@
 import { test } from '@jest/globals'
-
+import type { Bit } from '../index.js'
 import { testType } from '../index.js'
-import type { Bit } from './index.js'
 
 test('Bit.BitNot<T>', () => {
 	testType.equal<Bit.Not<1>, 0>(true)
