@@ -1,4 +1,23 @@
-# IsEqual
+# Equality
+
+Equality check in TypeScript is hard.
+
+In fact, it is impossible to implement a perfect equality check in TypeScript,
+unless TypeScript itself provides a built-in type for it.
+
+## [`Equal`](./equal.ts)
+
+🏷️ **since 8.0.0**
+
+`Equal<A, B>` checks if `A` and `B` are equal.
+
+Note that intersection type checks only works at first level.
+It cannot be checked recursively,
+or else will run into infinite recursion if the type includes recursive types.
+
+## [`IsEqual`](./is_equal.ts)
+
+💀 **deprecated since 8.0.0**: use [`Equal`] instead.
 
 `IsEqual<A, B>` and friends check if `A` and `B` are equal.
 
