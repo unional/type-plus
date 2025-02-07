@@ -8,11 +8,11 @@ import { type $Else, type $Then, type IsNotAny, testType } from '../index.js'
 // 	$O extends IsNotAny.$Options = {}
 // > =
 // 	0 extends 1 & T
-// 	? $ResolveBranch<T, $O, [$Else]>
+// 	? $ResolveBranch<$O, [$Else], T>
 // 	: $ResolveBranch<
-// 		T,
 // 		$O,
-// 		[[unknown] extends [T] ? $Unknown : unknown, [never] extends [T] ? $Never : unknown, $Then]
+// 		[[unknown] extends [T] ? $Unknown : unknown, [never] extends [T] ? $Never : unknown, $Then],
+// 		T
 // 	>
 
 it('returns false for any', () => {

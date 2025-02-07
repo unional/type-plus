@@ -17,15 +17,15 @@ import {
 // 	$O extends IsNotNever.$Options = {}
 // > = [T, never] extends [never, T]
 // 	? $ResolveBranch<
-// 		T,
 // 		'$else' extends keyof $O ? $O :
 // 		$O['selection'] extends 'filter' ? $O & { $else: $Never } : $O,
-// 		[$Else]
+// 		[$Else],
+// 		T
 // 	>
 // 	: $ResolveBranch<
-// 		T,
 // 		$O,
-// 		[0 extends 1 & T ? $Any : unknown, [unknown] extends [T] ? $Unknown : unknown, $Then]
+// 		[0 extends 1 & T ? $Any : unknown, [unknown] extends [T] ? $Unknown : unknown, $Then],
+// 		T
 // 	>
 
 it('returns false for never', () => {

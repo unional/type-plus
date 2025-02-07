@@ -66,7 +66,7 @@ export type IsNotNumberLiteral<T, $O extends IsNotNumberLiteral.$Options = {}> =
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Then]>
+			$then: $ResolveBranch<$O, [$Then], T>
 			$else: IsNotNumberLiteral.$<T, $O>
 		}
 	>
@@ -99,12 +99,12 @@ export namespace IsNotNumberLiteral {
 
 	export type _D<T, $O extends $UtilOptions> = T extends number & infer U
 		? U extends number
-			? $ResolveBranch<T, $O, [$Else]>
-			: $ResolveBranch<T, $O, [$Then]>
-		: $ResolveBranch<T, $O, [$Then]>
+			? $ResolveBranch<$O, [$Else], T>
+			: $ResolveBranch<$O, [$Then], T>
+		: $ResolveBranch<$O, [$Then], T>
 	export type _N<T, $O extends $UtilOptions> = [T] extends [number & infer U]
 		? U extends number
-			? $ResolveBranch<T, $O, [$Else]>
-			: $ResolveBranch<T, $O, [$Then]>
-		: $ResolveBranch<T, $O, [$Then]>
+			? $ResolveBranch<$O, [$Else], T>
+			: $ResolveBranch<$O, [$Then], T>
+		: $ResolveBranch<$O, [$Then], T>
 }

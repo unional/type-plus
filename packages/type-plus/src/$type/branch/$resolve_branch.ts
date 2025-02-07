@@ -1,4 +1,5 @@
 import type { $Type } from '../$type.js'
+import type { $InferError } from '../errors/$infer_error.js'
 import type { $Branch } from './$branch.js'
 import type { $Else, $Then } from './$selection.js'
 
@@ -11,34 +12,35 @@ import type { $Else, $Then } from './$selection.js'
  * it does not perform extensive validations.
  * Please check the description of each input below for information.
  *
- * @typeparam $O Should be a Record, not any, unknown, or never
+ * @typeparam $O The input option. It should be a Record, not any, unknown, or never
  * @typeparam $B Tuple of branches with at least one entry.
+ * @typeparam D Default value to return if no branch is found.
  */
-export type $ResolveBranch<T, $O extends Record<string, any>, $B extends Array<$Branch<any> | unknown>> = $B extends [
-	infer B,
-]
-	? $ResolveBranch._Last<T, $O, B>
-	: $B extends [infer B, ...infer Bs extends Array<$Branch<any> | unknown>]
-		? $ResolveBranch._<$ResolveBranch<T, $O, Bs>, $O, B>
-		: never
+export type $ResolveBranch<
+	$O extends Record<string, any>,
+	$Branches extends Array<$Branch<any> | unknown>,
+	D = unknown,
+> = $Branches extends [infer B]
+	? _Last<$O, B, D>
+	: $Branches extends [infer B, ...infer Rest extends Array<$Branch<any> | unknown>]
+		? _<$O, B, $ResolveBranch<$O, Rest, D>>
+		: $InferError<'$Branches must have at least one entry'>
 
-export namespace $ResolveBranch {
-	export type _<T, $O extends Record<string, any>, $B> = $B extends $Branch<any>
-		? $B[$Type.$ValueKey] extends keyof $O
-			? $O[$B[$Type.$ValueKey]]
-			: T
-		: T
-	export type _Last<T, $O extends Record<string, any>, $B> = $B extends $Then
-		? '$then' extends keyof $O
-			? $O['$then']
+type _<$O extends Record<string, any>, $B, D> = $B extends $Branch<any>
+	? $B[$Type.$ValueKey] extends keyof $O
+		? $O[$B[$Type.$ValueKey]]
+		: D
+	: D
+type _Last<$O extends Record<string, any>, $B, D> = $B extends $Then
+	? '$then' extends keyof $O
+		? $O['$then']
+		: $O['selection'] extends 'filter'
+			? D
+			: true
+	: $B extends $Else
+		? '$else' extends keyof $O
+			? $O['$else']
 			: $O['selection'] extends 'filter'
-				? T
-				: true
-		: $B extends $Else
-			? '$else' extends keyof $O
-				? $O['$else']
-				: $O['selection'] extends 'filter'
-					? never
-					: false
-			: _<T, $O, $B>
-}
+				? never
+				: false
+		: _<$O, $B, D>

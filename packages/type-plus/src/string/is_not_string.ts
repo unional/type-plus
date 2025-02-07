@@ -65,7 +65,7 @@ export type IsNotString<T, $O extends IsNotString.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Then]>
+			$then: $ResolveBranch<$O, [$Then], T>
 			$else: IsNotString.$<T, $O>
 		}
 	>
@@ -93,12 +93,12 @@ export namespace IsNotString {
 
 	export type _D<T, $O extends $Selection.Options> = T extends string & infer U
 		? U extends string
-			? $ResolveBranch<T, $O, [$Then]>
-			: $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Then]>
+			? $ResolveBranch<$O, [$Then], T>
+			: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Then], T>
 	export type _N<T, $O extends $Selection.Options> = [T] extends [string & infer U]
 		? U extends string
-			? $ResolveBranch<T, $O, [$Then]>
-			: $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Then]>
+			? $ResolveBranch<$O, [$Then], T>
+			: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Then], T>
 }

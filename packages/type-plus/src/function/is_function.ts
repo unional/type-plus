@@ -69,7 +69,7 @@ export type IsFunction<T, $O extends IsFunction.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Else]>
+			$then: $ResolveBranch<$O, [$Else], T>
 			$else: IsFunction.$<T, $O>
 		}
 	>

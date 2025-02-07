@@ -67,8 +67,8 @@ export type IsVoid<T, $O extends IsVoid.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$void: $ResolveBranch<T, $O, [$Void, $Then]>
-			$then: $ResolveBranch<T, $O, [$Else]>
+			$void: $ResolveBranch<$O, [$Void, $Then], T>
+			$then: $ResolveBranch<$O, [$Else], T>
 			$else: IsVoid.$<T, $O>
 		}
 	>
@@ -92,7 +92,7 @@ export namespace IsVoid {
 	export type $<T, $O extends $UtilOptions> = IsUndefined.$<
 		T,
 		{
-			$then: $ResolveBranch<T, $O, [$Else]>
+			$then: $ResolveBranch<$O, [$Else], T>
 			$else: Assignable.$<T, void, $O>
 		}
 	>

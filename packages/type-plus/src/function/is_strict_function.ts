@@ -24,10 +24,10 @@ import type { Equal } from '../equal/equal.js'
 export type IsStrictFunction<T, $O extends IsStrictFunction.$Options = {}> = $Special<
 	T,
 	{
-		$any: $ResolveBranch<T, $O, [$Any, $Else]>
-		$never: $ResolveBranch<T, $O, [$Never, $Else]>
-		$unknown: $ResolveBranch<T, $O, [$Unknown, $Else]>
-		$void: $ResolveBranch<T, $O, [$Void, $Else]>
+		$any: $ResolveBranch<$O, [$Any, $Else], T>
+		$never: $ResolveBranch<$O, [$Never, $Else], T>
+		$unknown: $ResolveBranch<$O, [$Unknown, $Else], T>
+		$void: $ResolveBranch<$O, [$Void, $Else], T>
 		$else: $ResolveOptions<[$O['distributive'], $Distributive.Default['distributive']]> extends true
 			? IsStrictFunction._D<T, $O>
 			: Equal._ExactEqualNonDistributive<T, Function, $O>
@@ -43,7 +43,7 @@ export namespace IsStrictFunction {
 	export type $Branch<$O extends $Options = {}> = $Selection.Branch<$O>
 	export type _D<T, $O extends Equal.$Options> = T extends Function
 		? T extends (...args: any[]) => any
-			? $ResolveBranch<T, $O, [$Else]>
-			: $ResolveBranch<T, $O, [$Then]>
-		: $ResolveBranch<T, $O, [$Else]>
+			? $ResolveBranch<$O, [$Else], T>
+			: $ResolveBranch<$O, [$Then], T>
+		: $ResolveBranch<$O, [$Else], T>
 }

@@ -76,7 +76,7 @@ export type IsNotBigint<T, $O extends IsNotBigint.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Then]>
+			$then: $ResolveBranch<$O, [$Then], T>
 			$else: IsNotBigint.$<T, $O>
 		}
 	>
@@ -104,12 +104,12 @@ export namespace IsNotBigint {
 
 	export type _SD<T, $O extends $Options> = T extends bigint & infer U
 		? U extends bigint
-			? $ResolveBranch<T, $O, [$Then]>
-			: $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Then]>
+			? $ResolveBranch<$O, [$Then], T>
+			: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Then], T>
 	export type _SN<T, $O extends $Options> = [T] extends [bigint & infer U]
 		? U extends bigint
-			? $ResolveBranch<T, $O, [$Then]>
-			: $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Then]>
+			? $ResolveBranch<$O, [$Then], T>
+			: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Then], T>
 }

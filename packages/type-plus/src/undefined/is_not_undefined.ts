@@ -63,7 +63,7 @@ export type IsNotUndefined<T, $O extends IsNotUndefined.$Options = {}> = $Specia
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Then]>
+			$then: $ResolveBranch<$O, [$Then], T>
 			$else: IsNotUndefined.$<T, $O>
 		}
 	>

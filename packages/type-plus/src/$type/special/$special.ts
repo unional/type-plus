@@ -14,25 +14,25 @@ import type { $Void } from './$void.js'
  * ```ts
  * type YourType<T, $Options extends $Special.Options> = Special<T,
  * {
- *   $any: $ResolveBranch<T, $Options, [$Any, ...]>
- *   $unknown: $ResolveBranch<T, $Options, [$Unknown, ...]>
- *   $never: $ResolveBranch<T, $Options, [$Never, ...]>
- *   $void: $ResolveBranch<T, $Options, [$Void, ...]>
- *   $then: $ResolveBranch<T, $Options, [...]>
- *   $else: $ResolveBranch<T, $Options, [...]>
+ *   $any: $ResolveBranch<$Options, [$Any, ...], T>
+ *   $unknown: $ResolveBranch<$Options, [$Unknown, ...], T>
+ *   $never: $ResolveBranch<$Options, [$Never, ...], T>
+ *   $void: $ResolveBranch<$Options, [$Void, ...], T>
+ *   $then: $ResolveBranch<$Options, [...], T>
+ *   $else: $ResolveBranch<$Options, [...], T>
  * }>
  *
  * @since 🏷️ 8.0.0
  */
 export type $Special<T, $O extends $Special.Options = {}> = 0 extends 1 & T
-	? $ResolveBranch<T, $O, [$Any, $Then]>
+	? $ResolveBranch<$O, [$Any, $Then], T>
 	: [T, unknown] extends [unknown, T]
-		? $ResolveBranch<T, $O, [$Unknown, $Then]>
+		? $ResolveBranch<$O, [$Unknown, $Then], T>
 		: [T, never] extends [never, T]
-			? $ResolveBranch<T, $O, [$Never, $Then]>
+			? $ResolveBranch<$O, [$Never, $Then], T>
 			: [T, void] extends [void, T]
-				? $ResolveBranch<T, $O, [$Void, $Then]>
-				: $ResolveBranch<T, $O, [$Else]>
+				? $ResolveBranch<$O, [$Void, $Then], T>
+				: $ResolveBranch<$O, [$Else], T>
 
 export namespace $Special {
 	export type Options = $Selection.Options & $InputOptions<$Any | $Unknown | $Never | $Void>

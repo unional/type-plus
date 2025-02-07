@@ -57,15 +57,15 @@ import type { $Unknown } from '../$type/special/$unknown.js'
 export type Assignable<A, B, $O extends Assignable.$Options = {}> = $Special<
 	B,
 	{
-		$any: $ResolveBranch<A, $O, [0 extends 1 & A ? $Any : unknown, $Then]>
-		$unknown: $ResolveBranch<A, $O, [[A, unknown] extends [unknown, A] ? $Unknown : unknown, $Then]>
-		$never: $ResolveBranch<A, $O, [A, never] extends [never, A] ? [$Never, $Then] : [$Else]>
+		$any: $ResolveBranch<$O, [0 extends 1 & A ? $Any : unknown, $Then], A>
+		$unknown: $ResolveBranch<$O, [[A, unknown] extends [unknown, A] ? $Unknown : unknown, $Then], A>
+		$never: $ResolveBranch<$O, [A, never] extends [never, A] ? [$Never, $Then] : [$Else], A>
 		$else: $Special<
 			A,
 			{
-				$any: $ResolveBranch<A, $O, [$Any, $Then]>
-				$unknown: $ResolveBranch<A, $O, [$Unknown, $Then]>
-				$never: $ResolveBranch<A, $O, [$Never, $Then]>
+				$any: $ResolveBranch<$O, [$Any, $Then], A>
+				$unknown: $ResolveBranch<$O, [$Unknown, $Then], A>
+				$never: $ResolveBranch<$O, [$Never, $Then], A>
 				$else: Assignable.$<A, B, $O>
 			}
 		>
@@ -90,8 +90,8 @@ export namespace Assignable {
 	export type $<A, B, $O extends $UtilOptions> = $Distributive.Parse<
 		$O,
 		{
-			$then: A extends B ? $ResolveBranch<A, $O, [$Then]> : $ResolveBranch<A, $O, [$Else]>
-			$else: [A] extends [B] ? $ResolveBranch<A, $O, [$Then]> : $ResolveBranch<A, $O, [$Else]>
+			$then: A extends B ? $ResolveBranch<$O, [$Then], A> : $ResolveBranch<$O, [$Else], A>
+			$else: [A] extends [B] ? $ResolveBranch<$O, [$Then], A> : $ResolveBranch<$O, [$Else], A>
 		}
 	>
 

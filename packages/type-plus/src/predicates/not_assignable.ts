@@ -57,15 +57,15 @@ import type { $Unknown } from '../$type/special/$unknown.js'
 export type NotAssignable<A, B, $O extends NotAssignable.$Options = {}> = $Special<
 	B,
 	{
-		$any: $ResolveBranch<A, $O, [0 extends 1 & A ? $Any : unknown, $Else]>
-		$unknown: $ResolveBranch<A, $O, [[A, unknown] extends [unknown, A] ? $Unknown : unknown, $Else]>
-		$never: $ResolveBranch<A, $O, [A, never] extends [never, A] ? [$Never, $Else] : [$Then]>
+		$any: $ResolveBranch<$O, [0 extends 1 & A ? $Any : unknown, $Else], A>
+		$unknown: $ResolveBranch<$O, [[A, unknown] extends [unknown, A] ? $Unknown : unknown, $Else], A>
+		$never: $ResolveBranch<$O, [A, never] extends [never, A] ? [$Never, $Else] : [$Then], A>
 		$else: $Special<
 			A,
 			{
-				$any: $ResolveBranch<A, $O, [$Any, $Else]>
-				$unknown: $ResolveBranch<A, $O, [$Unknown, $Else]>
-				$never: $ResolveBranch<A, $O, [$Never, $Else]>
+				$any: $ResolveBranch<$O, [$Any, $Else], A>
+				$unknown: $ResolveBranch<$O, [$Unknown, $Else], A>
+				$never: $ResolveBranch<$O, [$Never, $Else], A>
 				$else: NotAssignable.$<A, B, $O>
 			}
 		>
@@ -90,8 +90,8 @@ export namespace NotAssignable {
 	export type $<A, B, $O extends $UtilOptions> = $Distributive.Parse<
 		$O,
 		{
-			$then: A extends B ? $ResolveBranch<A, $O, [$Else]> : $ResolveBranch<A, $O, [$Then]>
-			$else: [A] extends [B] ? $ResolveBranch<A, $O, [$Else]> : $ResolveBranch<A, $O, [$Then]>
+			$then: A extends B ? $ResolveBranch<$O, [$Else], A> : $ResolveBranch<$O, [$Then], A>
+			$else: [A] extends [B] ? $ResolveBranch<$O, [$Else], A> : $ResolveBranch<$O, [$Then], A>
 		}
 	>
 

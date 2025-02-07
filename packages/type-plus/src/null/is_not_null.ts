@@ -62,7 +62,7 @@ export type IsNotNull<T, $O extends IsNotNull.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Then]>
+			$then: $ResolveBranch<$O, [$Then], T>
 			$else: IsNotNull.$<T, $O>
 		}
 	>
