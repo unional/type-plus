@@ -68,7 +68,7 @@ export type IsBigintLiteral<T, $O extends IsBigintLiteral.$Options = {}> = $Spec
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<$O, [$Else], T>
+			$then: $ResolveBranch<$O, [$Else]>
 			$else: IsBigintLiteral.$<T, $O>
 		}
 	>
@@ -96,11 +96,11 @@ export namespace IsBigintLiteral {
 	export type _D<T, $O extends $UtilOptions> = T extends bigint & infer U
 		? U extends bigint
 			? $ResolveBranch<$O, [$Then], T>
-			: $ResolveBranch<$O, [$Else], T>
-		: $ResolveBranch<$O, [$Else], T>
+			: $ResolveBranch<$O, [$Else]>
+		: $ResolveBranch<$O, [$Else]>
 	export type _N<T, $O extends $UtilOptions> = [T] extends [bigint & infer U]
 		? U extends bigint
 			? $ResolveBranch<$O, [$Then], T>
-			: $ResolveBranch<$O, [$Else], T>
-		: $ResolveBranch<$O, [$Else], T>
+			: $ResolveBranch<$O, [$Else]>
+		: $ResolveBranch<$O, [$Else]>
 }

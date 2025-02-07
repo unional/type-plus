@@ -26,20 +26,20 @@ export type IsInteger<T, $O extends IsInteger.$Options = {}> = IsNumber<
 	{
 		distributive: $O['distributive']
 		$then: number extends T
-			? $ResolveBranch<$O, [$Then], number> | $ResolveBranch<$O, [$Else], T>
+			? $ResolveBranch<$O, [$Then], number> | $ResolveBranch<$O, [$Else]>
 			: T extends number & infer U
 				? `${T}` extends `${number}.${number}`
-					? $ResolveBranch<$O, [$Else], T>
+					? $ResolveBranch<$O, [$Else]>
 					: [T, U] extends [U, T]
 						? $ResolveBranch<$O, [$Then], T>
-						: $ResolveBranch<$O, [$Then], number> | $ResolveBranch<$O, [$Else], T>
+						: $ResolveBranch<$O, [$Then], number> | $ResolveBranch<$O, [$Else]>
 				: never
 		$else: IsBigint<
 			T,
 			{
 				distributive: $O['distributive']
 				$then: $ResolveBranch<$O, [$Then], T>
-				$else: $ResolveBranch<$O, [$Else], T>
+				$else: $ResolveBranch<$O, [$Else]>
 			}
 		>
 	}

@@ -95,7 +95,7 @@ there needs to be a way to define and resolve the branch in a particular order.
 ```ts
 // only emphasize the relevant parts
 type IsNever<T, $O> = $SpecialType<T, {
-	$any: $ResolveBranch<..., [$Any, $Else], T>,
+	$any: $ResolveBranch<..., [$Any, $Else]>,
 	...
 }>
 ```

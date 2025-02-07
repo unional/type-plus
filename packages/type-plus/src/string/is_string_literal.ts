@@ -76,7 +76,7 @@ export type IsStringLiteral<T, $O extends IsStringLiteral.$Options = {}> = $Spec
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<$O, [$Else], T>
+			$then: $ResolveBranch<$O, [$Else]>
 			$else: IsStringLiteral.$<T, $O>
 		}
 	>
@@ -103,25 +103,25 @@ export namespace IsStringLiteral {
 
 	export type $UtilOptions = Assignable.$UtilOptions & $Exact.Options
 
-	export type _ED<T, $O extends $Selection.Options> = T extends string ? _E<T, $O> : $ResolveBranch<$O, [$Else], T>
+	export type _ED<T, $O extends $Selection.Options> = T extends string ? _E<T, $O> : $ResolveBranch<$O, [$Else]>
 
-	export type _EN<T, $O extends $Selection.Options> = [T] extends [string] ? _E<T, $O> : $ResolveBranch<$O, [$Else], T>
+	export type _EN<T, $O extends $Selection.Options> = [T] extends [string] ? _E<T, $O> : $ResolveBranch<$O, [$Else]>
 
 	export type _E<T extends string, $O extends $Selection.Options> = T extends string
 		? _StringType<T> extends infer R
 			? R extends 'stringLiteral'
 				? $ResolveBranch<$O, [$Then], T>
-				: $ResolveBranch<$O, [$Else], T>
+				: $ResolveBranch<$O, [$Else]>
 			: never
-		: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Else]>
 
 	export type _D<T, $O extends $Selection.Options> = T extends string & infer U
 		? _U<T, U, $O>
-		: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Else]>
 
 	export type _N<T, $O extends $Selection.Options> = [T] extends [string & infer U]
 		? _U<T, U, $O>
-		: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Else]>
 
 	export type _U<T, U, $O extends $Selection.Options> = U extends `${any}`
 		? $ResolveBranch<$O, [$Then], T>
@@ -129,5 +129,5 @@ export namespace IsStringLiteral {
 			? _D<N, $O>
 			: U extends Lowercase<infer N>
 				? _D<N, $O>
-				: $ResolveBranch<$O, [$Else], T>
+				: $ResolveBranch<$O, [$Else]>
 }

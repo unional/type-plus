@@ -48,7 +48,7 @@ export type IsNotNever<T, $O extends IsNotNever.$Options = {}> = $Special<
 	T,
 	{
 		$any: $ResolveBranch<$O, [$Any, $Then], T>
-		$never: $ResolveBranch<IsNotNever._O<$O>, [$Else], T>
+		$never: $ResolveBranch<IsNotNever._O<$O>, [$Else]>
 		$unknown: $ResolveBranch<$O, [$Unknown, $Then], T>
 		$void: $ResolveBranch<$O, [$Void, $Then], T>
 		$else: $ResolveBranch<$O, [$Then], T>

@@ -100,12 +100,12 @@ export namespace IsNotBigintLiteral {
 
 	export type _D<T, $O extends $UtilOptions> = T extends bigint & infer U
 		? U extends bigint
-			? $ResolveBranch<$O, [$Else], T>
+			? $ResolveBranch<$O, [$Else]>
 			: $ResolveBranch<$O, [$Then], T>
 		: $ResolveBranch<$O, [$Then], T>
 	export type _N<T, $O extends $UtilOptions> = [T] extends [bigint & infer U]
 		? U extends bigint
-			? $ResolveBranch<$O, [$Else], T>
+			? $ResolveBranch<$O, [$Else]>
 			: $ResolveBranch<$O, [$Then], T>
 		: $ResolveBranch<$O, [$Then], T>
 }

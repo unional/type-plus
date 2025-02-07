@@ -23,7 +23,7 @@ import {
 // 		? $ResolveBranch<$O, [$Never, $Then],T>
 // 		: (
 // 			[T, unknown] extends [unknown, T]
-// 			? $ResolveBranch<$O, [$Else], T>
+// 			? $ResolveBranch<$O, [$Else]>
 // 			: $ResolveBranch<$O, [$Then], T>
 // 		)
 // 	)

@@ -64,7 +64,7 @@ export type IsSymbol<T, $O extends IsSymbol.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<$O, [$Else], T>
+			$then: $ResolveBranch<$O, [$Else]>
 			$else: IsSymbol.$<T, $O>
 		}
 	>

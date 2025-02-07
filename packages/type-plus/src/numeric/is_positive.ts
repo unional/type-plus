@@ -29,19 +29,17 @@ export type IsPositive<T, $O extends IsPositive.$Options = {}> = IsBigint<
 	T,
 	{
 		distributive: $O['distributive']
-		$then: $Then
-		$else: $Else
+		$then: IsPositive._Positive<T, bigint, $O>
+		$else: IsNumber<
+			Exclude<T, bigint>,
+			{
+				distributive: $O['distributive']
+				$then: IsPositive._Positive<T, number, $O>
+				$else: $ResolveBranch<$O, [$Else]>
+			}
+		>
 	}
-> extends infer R
-	? R extends $Then
-		? IsPositive._Positive<T, bigint, $O>
-		: IsNumber<Exclude<T, bigint>, { distributive: $O['distributive']; $then: $Then; $else: $Else }> extends infer R
-			? R extends $Then
-				? IsPositive._Positive<T, number, $O>
-				: $ResolveBranch<$O, [$Else], T>
-			: never
-	: never
-
+>
 export namespace IsPositive {
 	export type $Options = $Selection.Options &
 		$Distributive.Options &
@@ -51,11 +49,11 @@ export namespace IsPositive {
 
 	export type _Positive<T, U extends number | bigint, $O extends IsPositive.$Options> = T extends U & infer R
 		? `${T}` extends `-${string}`
-			? $ResolveBranch<$O, [$Else], T>
+			? $ResolveBranch<$O, [$Else]>
 			: U extends T
-				? $ResolveBranch<$O, [$Then], T> | $ResolveBranch<$O, [$Else], T>
+				? $ResolveBranch<$O, [$Then], T> | $ResolveBranch<$O, [$Else]>
 				: [T, R] extends [R, T]
 					? $ResolveBranch<$O, [$Then], T>
-					: $ResolveBranch<$O, [$Then], number> | $ResolveBranch<$O, [$Else], T>
+					: $ResolveBranch<$O, [$Then], T> | $ResolveBranch<$O, [$Else]>
 		: never
 }

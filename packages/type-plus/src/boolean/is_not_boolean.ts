@@ -100,9 +100,9 @@ export namespace IsNotBoolean {
 		? ['aBcD' | 'AbCd' | 'abcd'] extends [R]
 			? $ResolveBranch<$O, [$Then | $Else], Exclude<T, boolean>>
 			: ['aBcD' | 'AbCd'] extends [R]
-				? $ResolveBranch<$O, [$Else], T>
+				? $ResolveBranch<$O, [$Else]>
 				: ['aBcd' | 'Abcd'] extends [R]
-					? $ResolveBranch<$O, [$Else], T>
+					? $ResolveBranch<$O, [$Else]>
 					: $ResolveBranch<$O, [$Then], T>
 		: never
 	export type _N<T, $O extends $Options> = [T] extends [boolean]
@@ -110,6 +110,6 @@ export namespace IsNotBoolean {
 			? $ResolveBranch<$O, [$Then], T>
 			: [T] extends [false]
 				? $ResolveBranch<$O, [$Then], T>
-				: $ResolveBranch<$O, [$Else], T>
+				: $ResolveBranch<$O, [$Else]>
 		: $ResolveBranch<$O, [$Then], T>
 }

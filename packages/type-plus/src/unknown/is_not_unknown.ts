@@ -45,7 +45,7 @@ export type IsNotUnknown<T, $O extends IsNotUnknown.$Options = {}> = $Special<
 	T,
 	{
 		$any: $ResolveBranch<$O, [$Any, $Then], T>
-		$unknown: $ResolveBranch<$O, [$Else], T>
+		$unknown: $ResolveBranch<$O, [$Else]>
 		$never: $ResolveBranch<$O, [$Never, $Then], T>
 		$void: $ResolveBranch<$O, [$Void, $Then], T>
 		$else: $ResolveBranch<$O, [$Then], T>

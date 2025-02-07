@@ -44,11 +44,11 @@ import type { $Void } from '../$type/special/$void.js'
 export type IsUnknown<T, $O extends IsUnknown.$Options = {}> = $Special<
 	T,
 	{
-		$any: $ResolveBranch<$O, [$Any, $Else], T>
-		$never: $ResolveBranch<$O, [$Never, $Else], T>
+		$any: $ResolveBranch<$O, [$Any, $Else]>
+		$never: $ResolveBranch<$O, [$Never, $Else]>
 		$unknown: $ResolveBranch<$O, [$Then], T>
-		$void: $ResolveBranch<$O, [$Void, $Else], T>
-		$else: $ResolveBranch<$O, [$Else], T>
+		$void: $ResolveBranch<$O, [$Void, $Else]>
+		$else: $ResolveBranch<$O, [$Else]>
 	}
 >
 

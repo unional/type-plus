@@ -94,12 +94,12 @@ export namespace IsNotTuple {
 			$then: T extends readonly any[]
 				? number extends T['length']
 					? $ResolveBranch<$O, [$Then], T>
-					: $ResolveBranch<$O, [$Else], T>
+					: $ResolveBranch<$O, [$Else]>
 				: $ResolveBranch<$O, [$Then], T>
 			$else: [T] extends [readonly any[]]
 				? number extends T['length']
 					? $ResolveBranch<$O, [$Then], T>
-					: $ResolveBranch<$O, [$Else], T>
+					: $ResolveBranch<$O, [$Else]>
 				: $ResolveBranch<$O, [$Then], T>
 		}
 	>

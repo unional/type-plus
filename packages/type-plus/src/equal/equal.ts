@@ -153,11 +153,11 @@ export namespace Equal {
 	export type _ExactEqualDistributive<T, U, $O extends $Options> = T extends U
 		? U extends T
 			? $ResolveBranch<$O, [$Then], T>
-			: $ResolveBranch<$O, [$Else], T>
-		: $ResolveBranch<$O, [$Else], T>
+			: $ResolveBranch<$O, [$Else]>
+		: $ResolveBranch<$O, [$Else]>
 	export type _ExactEqualNonDistributive<T, U, $O extends $Options> = [T, U] extends [U, T]
 		? $ResolveBranch<$O, [$Then], T>
-		: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Else]>
 
 	/**
 	 * 🎭 *predicate*
@@ -267,10 +267,10 @@ export namespace $SelectInvert {
 	export type $Default = $Selection.Predicate & $Distributive.Default
 	export type $Branch = $Selection.Branch & $Distributive.Default
 	export type _D<T, U, $O extends $SelectInvert.$Options> = T extends U
-		? $ResolveBranch<$O, [$Else], T>
+		? $ResolveBranch<$O, [$Else]>
 		: $ResolveBranch<$O, [$Then], T>
 	export type _N<T, U, $O extends $SelectInvert.$Options> = [T] extends [U]
-		? $ResolveBranch<$O, [$Else], T>
+		? $ResolveBranch<$O, [$Else]>
 		: $ResolveBranch<$O, [$Then], T>
 }
 
@@ -340,9 +340,9 @@ export namespace $SelectInvertStrict {
 	export type $Default = $Selection.Predicate & $Distributive.Default
 	export type $Branch = $Selection.Branch & $Distributive.Default
 	export type _D<T, U, $O extends $SelectInvertStrict.$Options> = T extends U
-		? $ResolveBranch<$O, [$Else], T>
+		? $ResolveBranch<$O, [$Else]>
 		: $ResolveBranch<$O, [$Then], T>
 	export type _N<T, U, $O extends $SelectInvertStrict.$Options> = [T, U] extends [U, T]
-		? $ResolveBranch<$O, [$Else], T>
+		? $ResolveBranch<$O, [$Else]>
 		: $ResolveBranch<$O, [$Then], T>
 }

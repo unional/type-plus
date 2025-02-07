@@ -32,7 +32,7 @@ export type $Special<T, $O extends $Special.Options = {}> = 0 extends 1 & T
 			? $ResolveBranch<$O, [$Never, $Then], T>
 			: [T, void] extends [void, T]
 				? $ResolveBranch<$O, [$Void, $Then], T>
-				: $ResolveBranch<$O, [$Else], T>
+				: $ResolveBranch<$O, [$Else]>
 
 export namespace $Special {
 	export type Options = $Selection.Options & $InputOptions<$Any | $Unknown | $Never | $Void>

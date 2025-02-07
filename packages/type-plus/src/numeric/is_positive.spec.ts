@@ -84,7 +84,9 @@ it.skip('returns false if T is intersection of non-positive number', () => {
 
 it('returns boolean when T is an intersection type with number or bigint', () => {
 	testType.equal<IsPositive<number & { a: 1 }>, boolean>(true)
+	testType.equal<IsPositive<number & { a: 1 }, { selection: 'filter' }>, number & { a: 1 }>(true)
 	testType.equal<IsPositive<bigint & { a: 1 }>, boolean>(true)
+	testType.equal<IsPositive<bigint & { a: 1 }, { selection: 'filter' }>, bigint & { a: 1 }>(true)
 })
 
 it('distributes over union type', () => {

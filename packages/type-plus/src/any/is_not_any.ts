@@ -46,7 +46,7 @@ import type { $Void } from '../$type/special/$void.js'
 export type IsNotAny<T, $O extends IsNotAny.$Options = {}> = $Special<
 	T,
 	{
-		$any: $ResolveBranch<$O, [$Else], T>
+		$any: $ResolveBranch<$O, [$Else]>
 		$never: $ResolveBranch<$O, [$Never, $Then], T>
 		$unknown: $ResolveBranch<$O, [$Unknown, $Then], T>
 		$void: $ResolveBranch<$O, [$Void, $Then], T>

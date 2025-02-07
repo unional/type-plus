@@ -85,7 +85,7 @@ export type IsObject<T, $O extends IsObject.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<$O, [$Else], T>
+			$then: $ResolveBranch<$O, [$Else]>
 			$else: IsObject.$<T, $O>
 		}
 	>
@@ -115,20 +115,20 @@ export namespace IsObject {
 		? IdentityEqual<
 				T,
 				{},
-				$ResolveBranch<$O, [$Else], T>,
+				$ResolveBranch<$O, [$Else]>,
 				IsNever<
 					keyof T,
 					{
 						$then: $ResolveBranch<$O, [$Then], T>
-						$else: $ResolveBranch<$O, [$Else], T>
+						$else: $ResolveBranch<$O, [$Else]>
 					}
 				>
 			>
-		: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Else]>
 
 	export type _N<T, $O extends $UtilOptions> = [T] extends [object & infer U]
 		? U extends object
-			? $ResolveBranch<$O, [$Else], T>
+			? $ResolveBranch<$O, [$Else]>
 			: $ResolveBranch<$O, [$Then], T>
-		: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Else]>
 }

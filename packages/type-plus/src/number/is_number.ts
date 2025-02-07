@@ -69,7 +69,7 @@ export type IsNumber<T, $O extends IsNumber.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<$O, [$Else], T>
+			$then: $ResolveBranch<$O, [$Else]>
 			$else: IsNumber.$<T, $O>
 		}
 	>
@@ -97,12 +97,12 @@ export namespace IsNumber {
 
 	export type _D<T, $O extends $UtilOptions> = T extends number & infer U
 		? U extends number
-			? $ResolveBranch<$O, [$Else], T>
+			? $ResolveBranch<$O, [$Else]>
 			: $ResolveBranch<$O, [$Then], T>
-		: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Else]>
 	export type _N<T, $O extends $UtilOptions> = [T] extends [number & infer U]
 		? U extends number
-			? $ResolveBranch<$O, [$Else], T>
+			? $ResolveBranch<$O, [$Else]>
 			: $ResolveBranch<$O, [$Then], T>
-		: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Else]>
 }

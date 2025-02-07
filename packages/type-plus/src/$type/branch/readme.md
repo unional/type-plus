@@ -39,14 +39,14 @@ you can use these branch options and compose them.
 ## Branch Selectors
 
 Branch selectors are used to select a branch during resolution.
-There are a few branch selectors provided in [`type-plus`](../../../readme.md): `$Any`, `$Unknown`, `$Never`, `$Then`, and `$Else`.
+There are a few branch selectors provided in [`type-plus`](../../../readme.md): `$Any`, `$Unknown`, `$Never`, `$Void`, `$Then`, and `$Else`.
 
 They are primarily used with `$ResolveBranch` inside the type.
 
 ```ts
 export type SomeType<T, $O extends $SelectionOptions> = ...
 	? $ResolveBranch<$O, [$Then], T>
-	: $ResolveBranch<$O, [$Else], T>
+	: $ResolveBranch<$O, [$Else]>
 ```
 
 ## Branching Types

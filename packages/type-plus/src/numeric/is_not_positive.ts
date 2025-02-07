@@ -54,7 +54,7 @@ export namespace IsNotPositive {
 		? `${T}` extends `-${string}`
 			? $ResolveBranch<$O, [$Then], T>
 			: U extends T
-				? $ResolveBranch<$O, [$Then], T> | $ResolveBranch<$O, [$Else], T>
-				: $ResolveBranch<$O, [$Else], T>
+				? $ResolveBranch<$O, [$Then], T> | $ResolveBranch<$O, [$Else]>
+				: $ResolveBranch<$O, [$Else]>
 		: never
 }
