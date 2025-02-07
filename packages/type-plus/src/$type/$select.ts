@@ -1,13 +1,13 @@
-import type { $SpecialType } from './$special_type.js'
-import type { $Any } from './branch/$any.js'
 import type { $InputOptions } from './branch/$input_options.js'
-import type { $Never } from './branch/$never.js'
 import type { $ResolveBranch } from './branch/$resolve_branch.js'
 import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './branch/$selection.js'
 import type { $SelectionOptions } from './branch/$selection_options.js'
-import type { $Unknown } from './branch/$unknown.js'
 import type { $Distributive } from './distributive/$distributive.js'
 import type { $Exact } from './exact/$exact.js'
+import type { $Any } from './special/$any.js'
+import type { $Never } from './special/$never.js'
+import type { $SpecialType } from './special/$special_type.js'
+import type { $Unknown } from './special/$unknown.js'
 
 /**
  * 🎭 *predicate*

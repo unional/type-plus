@@ -1,4 +1,4 @@
-import type { $Unknown } from '../$type/branch/$unknown.js'
+import type { $Unknown } from '../$type/special/$unknown.js'
 import type { IsUnknown } from './is_unknown.js'
 
 /**

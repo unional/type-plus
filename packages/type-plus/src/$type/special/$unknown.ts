@@ -1,4 +1,4 @@
-import type { $Branch } from './$branch.js'
+import type { $Branch } from '../branch/$branch.js'
 
 /**
  * Branch selector for type `unknown`.

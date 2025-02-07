@@ -5,7 +5,7 @@
 //  */
 // export type Filter<A extends readonly unknown[], Criteria = true> = Filter._<A, Criteria, []>
 
-import type { $Never } from '../$type/branch/$never.js'
+import type { $Never } from '../$type/special/$never.js'
 import type { IsEqual } from '../equal/equal.js'
 import type { IsNever } from '../never/is_never.js'
 import type { TypePlusOptions } from '../utils/options.js'

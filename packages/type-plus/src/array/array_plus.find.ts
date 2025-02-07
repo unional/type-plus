@@ -1,5 +1,5 @@
 import type { $ResolveOptions } from '../$type/$resolve_options.js'
-import type { $Never } from '../$type/branch/$never.js'
+import type { $Never } from '../$type/special/$never.js'
 import type { IsTuple } from '../tuple/is_tuple.js'
 import type { ElementMatch } from './array_plus.element_match.js'
 
