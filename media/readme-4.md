@@ -1,12 +1,20 @@
-# bigint
+# `bigint`
 
 `bigint` is a type to represent integers that are too large to be represented by a `number`.
 
-## [IsBigint](./is_bigint.ts)
+## [`IsBigint`](./is_bigint.ts)
 
-`IsBigint<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
+```ts
+IsBigint<T, $O = {
+	distributive: true,
+	selection: 'predicate' | 'filter',
+	exact: false,
+	$then: true,
+	$else: false
+}>
+```
 
-🎭 *predicate*
+🎭 **predicate**
 
 Validate if `T` is `bigint` or `bigint` literals.
 
@@ -21,7 +29,7 @@ type R = IsBigint<string | boolean> // false
 type R = IsBigint<string | bigint> // boolean
 ```
 
-🔢 *customize*
+🔢 **customize**
 
 Filter to ensure `T` is `bigint` or `bigint` literals, otherwise returns `never`.
 
@@ -36,7 +44,7 @@ type R = IsBigint<string | boolean, { selection: 'filter' }> // never
 type R = IsBigint<string | bigint> // bigint
 ```
 
-🔢 *customize*:
+🔀 **distributive**
 
 Disable distribution of union types.
 
@@ -45,7 +53,16 @@ type R = IsBigint<bigint | 1> // boolean
 type R = IsBigint<bigint | 1, { distributive: false }> // false
 ```
 
-🔢 *customize*
+📌 **exact**
+
+Validate if `T` is exactly `bigint` and not `bigint` literals.
+
+```ts
+type R = IsBigint<bigint, { exact: true }> // true
+type R = IsBigint<1n, { exact: true }> // false
+```
+
+🔱 **branching**
 
 Use unique branch identifiers to allow precise processing of the result.
 
@@ -54,7 +71,7 @@ type R = IsBigint<bigint, $SelectionBranch> // $Then
 type R = IsBigint<string, $SelectionBranch> // $Else
 ```
 
-## [IsNotBigint](./is_not_bigint.ts)
+## [`IsNotBigint`](./is_not_bigint.ts)
 
 `IsNotBigint<T, { distributive: true, selection: 'predicate' | 'filter', $then: false, $else: true }>`
 
