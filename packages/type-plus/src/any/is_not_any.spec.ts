@@ -1,6 +1,7 @@
 import { describe, it } from '@jest/globals'
 
-import { type $Else, type $Then, type IsNotAny, testType } from '../index.js'
+import type { $Void } from '../$type/special/$void.js'
+import { type $Else, type $Never, type $Then, type $Unknown, type IsNotAny, testType } from '../index.js'
 
 // alternative implementation
 // export type IsNotAny<
@@ -59,9 +60,9 @@ it('work as branching', () => {
 	testType.equal<IsNotAny<any, IsNotAny.$Branch>, $Else>(true)
 	testType.equal<IsNotAny<0, IsNotAny.$Branch>, $Then>(true)
 
-	testType.equal<IsNotAny<unknown, IsNotAny.$Branch>, $Then>(true)
-	testType.equal<IsNotAny<never, IsNotAny.$Branch>, $Then>(true)
-	testType.equal<IsNotAny<void, IsNotAny.$Branch>, $Then>(true)
+	testType.equal<IsNotAny<unknown, IsNotAny.$Branch>, $Unknown>(true)
+	testType.equal<IsNotAny<never, IsNotAny.$Branch>, $Never>(true)
+	testType.equal<IsNotAny<void, IsNotAny.$Branch>, $Void>(true)
 })
 
 it('works with partial customization', () => {

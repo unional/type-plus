@@ -1,4 +1,4 @@
-# Any
+# `any`
 
 The `any` type is one of the two top types in TypeScript.
 It is a super-type of all types.
@@ -6,11 +6,20 @@ It is a way to opt-out of type checking and let the values pass through compile-
 
 ## [`IsAny`](./is_any.ts)
 
-`IsAny<T, $O = { selection: 'predicate' | 'filter', $then: true, $else: false }>`
+```ts
+IsAny<T, $O = {
+	selection: 'predicate' | 'filter' = 'predicate',
+	$then: unknown = true,
+	$else: unknown = false,
+	$unknown: unknown,
+	$never: unknown,
+	$void: unknown
+}>
+```
 
-🎭 *predicate*
+🎭 **predicate**
 
-Validate if `T` is exactly `any`.
+Validate if `T` is `any`.
 
 ```ts
 type R = IsAny<any> // true
@@ -20,32 +29,34 @@ type R = IsAny<unknown> // false
 type R = IsAny<string | boolean> // false
 ```
 
-🔢 *customize*
+🌪️ **filter**
 
-Filter to ensure `T` is exactly `any`.
+Filter to ensure `T` is `any`.
 
 ```ts
 type R = IsAny<any, { selection: 'filter' }> // any
-
 type R = IsAny<never, { selection: 'filter' }> // never
 type R = IsAny<unknown, { selection: 'filter' }> // never
 type R = IsAny<string | boolean, { selection: 'filter' }> // never
 ```
 
-🔢 *customize*
+🔱 **branching**
 
 Use unique branch identifiers to allow precise processing of the result.
 
 ```ts
-type R = IsAny<any, $SelectionBranch> // $Then
-type R = IsAny<string, $SelectionBranch> // $Else
+type R = IsAny<any, $Selection.Branch> // $Then
+type R = IsAny<string, $Selection.Branch> // $Else
+type R = IsAny<unknown, IsAny.$Branch> // $Unknown
+type R = IsAny<never, IsAny.$Branch> // $Never
+type R = IsAny<void, IsAny.$Branch> // $Void
 ```
 
 ### [`IsNotAny`](./is_not_any.ts)
 
 `IsNotAny<T, $O = { selection: 'predicate' | 'filter', $then: true, $else: false }>`
 
-🎭 *predicate*
+🎭 **predicate**
 
 Validate if `T` is not exactly `any`.
 
@@ -57,7 +68,7 @@ type R = IsNotAny<unknown> // true
 type R = IsNotAny<string | boolean> // true
 ```
 
-🔢 *customize*
+🌪️ **filter**
 
 Filter to ensure `T` is not exactly `any`.
 
@@ -69,7 +80,7 @@ type R = IsNotAny<unknown, { selection: 'filter' }> // unknown
 type R = IsNotAny<string | boolean, { selection: 'filter' }> // string | boolean
 ```
 
-🔢 *customize*
+🔱 **branching**
 
 Use unique branch identifiers to allow precise processing of the result.
 

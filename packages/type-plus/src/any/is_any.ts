@@ -7,7 +7,7 @@ import type { $Unknown } from '../$type/special/$unknown.js'
 import type { $Void } from '../$type/special/$void.js'
 
 /**
- * 🎭 *predicate*
+ * 🎭 **predicate**
  *
  * Validate if `T` is `any`.
  *
@@ -20,29 +20,29 @@ import type { $Void } from '../$type/special/$void.js'
  * type R = IsAny<string | boolean> // false
  * ```
  *
- * 🔢 *customize*
+ * 🌪️ **filter**
  *
  * Filter to ensure `T` is `any`.
  *
  * @example
  * ```ts
  * type R = IsAny<any, { selection: 'filter' }> // any
- *
  * type R = IsAny<never, { selection: 'filter' }> // never
  * type R = IsAny<unknown, { selection: 'filter' }> // never
  * type R = IsAny<string | boolean, { selection: 'filter' }> // never
  * ```
  *
- * 🔱 *branching*
+ * 🔱 **branching**
  *
  * Use unique branch identifiers to allow precise processing of the result.
  *
  * @example
  * ```ts
- * type R = IsAny<any, $SelectionBranch> // $Then
- * type R = IsAny<string, $SelectionBranch> // $Else
- * type R = IsAny<unknown, $Unknown.$Branch> // $Unknown
- * type R = IsAny<string, $Never.$Branch> // $Never
+ * type R = IsAny<any, $Selection.Branch> // $Then
+ * type R = IsAny<string, $Selection.Branch> // $Else
+ * type R = IsAny<unknown, IsAny.$Branch> // $Unknown
+ * type R = IsAny<never, IsAny.$Branch> // $Never
+ * type R = IsAny<void, IsAny.$Branch> // $Void
  * ```
  */
 export type IsAny<T, $O extends IsAny.$Options = {}> = $Special<
@@ -58,5 +58,5 @@ export type IsAny<T, $O extends IsAny.$Options = {}> = $Special<
 
 export namespace IsAny {
 	export type $Options = $Selection.Options & $InputOptions<$Unknown | $Never | $Void>
-	export type $Branch = $Selection.Branch & $Unknown.$Branch & $Never.$Branch
+	export type $Branch = $Selection.Branch & $Unknown.$Branch & $Never.$Branch & $Void.$Branch
 }

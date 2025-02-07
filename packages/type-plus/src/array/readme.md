@@ -1,10 +1,10 @@
 # Array
 
-In TypeScript, the type of an JavaScript array can be an [array](#array) or a [tuple](../tuple/readme.md).
+In TypeScript, the type of JavaScript array can be an [array](#array) or a [tuple](../tuple/readme.md).
 
 `Array<T>` or `T[]` is a type that represents an array of `T`
 
-There is no length limitation to an `Array`,
+There is no length limitation to a `Array`,
 and each element has the same type `T`.
 
 ## Type Checking
@@ -14,7 +14,7 @@ The `ArrayType<T>` and friends are used to check if a type is exactly `Array<T>`
 They are strict type checks, meaning they match only the type `Array<T>`,
 and not [tuple], [union], or intersection types.
 
-### [ArrayType](./array_type.ts#l18)
+### [`ArrayType`](./array_type.ts#l18)
 
 `ArrayType<T, Then = T, Else = never>`
 
