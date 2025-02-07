@@ -1,7 +1,7 @@
-import type { $DistributiveDefault, $DistributiveOptions } from './$distributive.js'
 import type { $ResolveOptions } from './$resolve_options.js'
 import type { $InputOptions } from './branch/$input_options.js'
 import type { $Else, $Then } from './branch/$selection.js'
+import type { $DistributiveDefault, $DistributiveOptions } from './utils/$distributive.js'
 
 export type $IsDistributive<
 	$Options extends $DistributiveOptions,
