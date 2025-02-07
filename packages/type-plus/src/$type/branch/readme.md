@@ -30,8 +30,8 @@ type IsAny<T, $O extends {
 
 Note that the actual definition of `IsAny` looks different, but the idea is the same.
 
-The property keys `$unknown`, `$never`, `$then`, and `$els`e` are branch identifiers.
-They come from individual options: `$Unknown.$Options` , `$Never.$Options` , `$SelectionOptions`.
+The property keys `$unknown`, `$never`, `$then`, and `$else` are branch identifiers.
+They come from individual options: `$Unknown.$Options`, `$Never.$Options`, `$SelectionOptions`.
 
 When you implement your type with branching support,
 you can use these branch options and compose them.
