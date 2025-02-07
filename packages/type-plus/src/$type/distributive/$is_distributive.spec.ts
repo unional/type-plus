@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { testType } from '../index.js'
+import { testType } from '../../index.js'
 import type { $IsDistributive } from './$is_distributive.js'
 
 it('returns true by default when $Options does not have distributive property', () => {

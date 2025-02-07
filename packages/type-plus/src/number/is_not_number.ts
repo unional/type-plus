@@ -1,10 +1,10 @@
 import type { $Equality } from '../$type/$equality.js'
 import type { $ExactOptions } from '../$type/$exact.js'
-import type { $IsDistributive } from '../$type/$is_distributive.js'
 import type { $ResolveOptions } from '../$type/$resolve_options.js'
 import type { $SpecialType } from '../$type/$special_type.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
+import type { $IsDistributive } from '../$type/distributive/$is_distributive.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { NotAssignable } from '../predicates/not_assignable.js'
 

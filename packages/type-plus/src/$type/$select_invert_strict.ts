@@ -1,4 +1,3 @@
-import type { $IsDistributive } from './$is_distributive.js'
 import type { $SpecialType } from './$special_type.js'
 import type { $Any } from './branch/$any.js'
 import type { $InputOptions } from './branch/$input_options.js'
@@ -7,7 +6,8 @@ import type { $ResolveBranch } from './branch/$resolve_branch.js'
 import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './branch/$selection.js'
 import type { $SelectionOptions } from './branch/$selection_options.js'
 import type { $Unknown } from './branch/$unknown.js'
-import type { $Distributive } from './utils/$distributive.js'
+import type { $Distributive } from './distributive/$distributive.js'
+import type { $IsDistributive } from './distributive/$is_distributive.js'
 
 /**
  * 🎭 *predicate*
