@@ -1,16 +1,12 @@
-/**
- * 🧰 *type util*
- *
- * Options for to control if the type is distributive.
- */
 export namespace $Distributive {
+	/**
+	 * Options for controlling if the type is distributive.
+	 */
 	export type Options = {
 		distributive?: boolean | undefined
 	}
 
 	/**
-	 * 🧰 *type util*
-	 *
 	 * Default options for `distributive` behavior.
 	 *
 	 * By default it is `true`.
