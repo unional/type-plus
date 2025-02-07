@@ -1,5 +1,46 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 8.0.0-beta.7
+
+### Minor Changes
+
+- 335b870: Rename `$ExactOptions` to `$Exact.Options`,
+  `$ExactDefault` to `$Exact.Default`,
+  `$IsExact` to `$Exact.Parse`
+- 4b2b89c: Replace `Equal` with the new `$Equal` type.
+- d418300: Rename `$IsDistributive` to `$Distributive.Parse`.
+- 1debfc2: `$Equality` to `$Equal`.
+- 407b3d3: Deprecate `NoInfer`.
+- 3d70869: Remove `$Override`. It is not needed.
+- abdc5fe: Update bit types
+- 53f6c0b: Consolidate `$Selection` types.
+- 1c7bab7: Deprecate `Failed` and `FailedT`.
+- 2ed6063: Update `$Type` to work with primitive types and improve object type usage.
+- 19663d7: Rename `$SpecialType` to `$Special`.
+- f09ef4d: Add `$Void` support.
+- d5e732a: Update `Equal` signature and implementation.
+  Deprecate `IsEqual` and `IsNotEqual` in favor of `Equal`.
+- 5263e8f: Rename `$DistributiveOptions` to `$Distributive.Options` and `$DistributiveDefault` to `$Distributive.Default`.
+- 51a7bea: Rename `$Select` to `$Equal`.
+  Remove `$SelectStrict`, use `$Equal<T, U, { exact: true }>` instead.
+- b150471: Updato logical types.
+- ed723c7: Add `$Void` support to `IsAny` and `IsNotAny`.
+- c56d4a0: Change `$ResolveBranch` type parameters order.
+  `T` is moved to the last position as `D` (as it is the default value), and made optional.
+- b364e73: Export `$Exact`.
+
+### Patch Changes
+
+- e110219: Fix `$ResolveOptions` type to handle `undefined` value.
+- 20ded29: Use `fn.apply` instead of spread.
+  It has better performance and function that are already bound continue to work as expected.
+
+  ```ts
+  const bindFn = fn.bind(This);
+
+  bindFn.apply(null, args); // `this` is not affected
+  ```
+
 ## 8.0.0-beta.6
 
 ### Minor Changes
