@@ -55,7 +55,7 @@ There are a few branching provided in [`type-plus`](../../../readme.md).
 
 ### Selection Branching
 
-The most common branching is "selection", referring to "selection" in the 3 fundamental building blocks of structured programming: sequence, selection, and iteration.
+The most common branching is `$Selection`, referring to "selection" in the 3 fundamental building blocks of structured programming: sequence, selection, and iteration.
 
 Using `IsAny` as an example, we can see how branching works:
 
