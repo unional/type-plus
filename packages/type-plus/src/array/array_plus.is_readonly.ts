@@ -1,4 +1,4 @@
-import type { $SelectionOptions } from '../$type/branch/$selection_options.js'
+import type { $Selection } from '../$type/branch/$selection.js'
 import type { $Never } from '../$type/special/$never.js'
 import type { IsNever } from '../never/is_never.js'
 import type { TypePlusOptions } from '../utils/options.js'
@@ -35,7 +35,7 @@ export type IsReadonly<A, $Options extends IsReadonly.Options = IsReadonly.Defau
 	: never
 
 export namespace IsReadonly {
-	export interface Options extends $Never.$Options, $SelectionOptions, TypePlusOptions.NotArray {}
+	export interface Options extends $Never.$Options, $Selection.Options, TypePlusOptions.NotArray {}
 
 	export interface DefaultOptions {
 		$then: true

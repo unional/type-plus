@@ -1,7 +1,6 @@
 import type { $InputOptions } from './branch/$input_options.js'
 import type { $ResolveBranch } from './branch/$resolve_branch.js'
-import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './branch/$selection.js'
-import type { $SelectionOptions } from './branch/$selection_options.js'
+import type { $Else, $Selection, $Then } from './branch/$selection.js'
 import type { $Distributive } from './distributive/$distributive.js'
 import type { $Any } from './special/$any.js'
 import type { $Never } from './special/$never.js'
@@ -72,9 +71,9 @@ export type $SelectInvert<T, U, $O extends $SelectInvert.$Options = {}> = $Speci
 >
 
 export namespace $SelectInvert {
-	export type $Options = $SelectionOptions & $Distributive.Options & $InputOptions<$Any | $Unknown | $Never>
-	export type $Default = $SelectionPredicate & $Distributive.Default
-	export type $Branch = $SelectionBranch & $Distributive.Default
+	export type $Options = $Selection.Options & $Distributive.Options & $InputOptions<$Any | $Unknown | $Never>
+	export type $Default = $Selection.Predicate & $Distributive.Default
+	export type $Branch = $Selection.Branch & $Distributive.Default
 	export type _D<T, U, $O extends $SelectInvert.$Options> = T extends U
 		? $ResolveBranch<T, $O, [$Else]>
 		: $ResolveBranch<T, $O, [$Then]>

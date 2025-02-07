@@ -1,8 +1,7 @@
 import type { $Equality } from '../$type/$equality.js'
 import type { $ResolveOptions } from '../$type/$resolve_options.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
-import type { $Else, $Then } from '../$type/branch/$selection.js'
-import type { $SelectionOptions } from '../$type/branch/$selection_options.js'
+import type { $Else, $Selection, $Then } from '../$type/branch/$selection.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
 import type { $Exact } from '../$type/exact/$exact.js'
 import type { $Special } from '../$type/special/$special.js'
@@ -85,12 +84,12 @@ export namespace IsNotString {
 		: NotAssignable.$<T, string, $O>
 	export type $UtilOptions = NotAssignable.$UtilOptions & $Exact.Options
 
-	export type _D<T, $O extends $SelectionOptions> = T extends string & infer U
+	export type _D<T, $O extends $Selection.Options> = T extends string & infer U
 		? U extends string
 			? $ResolveBranch<T, $O, [$Then]>
 			: $ResolveBranch<T, $O, [$Else]>
 		: $ResolveBranch<T, $O, [$Then]>
-	export type _N<T, $O extends $SelectionOptions> = [T] extends [string & infer U]
+	export type _N<T, $O extends $Selection.Options> = [T] extends [string & infer U]
 		? U extends string
 			? $ResolveBranch<T, $O, [$Then]>
 			: $ResolveBranch<T, $O, [$Else]>

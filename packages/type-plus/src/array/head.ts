@@ -1,4 +1,4 @@
-import type { $Else, $SelectionBranch, $Then } from '../$type/branch/$selection.js'
+import type { $Else, $Selection, $Then } from '../$type/branch/$selection.js'
 import type { $Never } from '../$type/special/$never.js'
 import type { IsNever } from '../never/is_never.js'
 
@@ -24,7 +24,7 @@ import type { IsNever } from '../never/is_never.js'
  */
 export type Head<T extends readonly unknown[], Options extends Head.Options = Head.DefaultOptions> = IsNever<
 	T,
-	$SelectionBranch
+	$Selection.Branch
 > extends infer R
 	? R extends $Then
 		? Options['$never']

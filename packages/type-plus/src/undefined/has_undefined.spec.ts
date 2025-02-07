@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else, type $SelectionBranch, type $Then, type HasUndefined, testType } from '../index.js'
+import { type $Else, type $Selection, type $Then, type HasUndefined, testType } from '../index.js'
 
 it('returns false when there is no undefined', () => {
 	testType.equal<HasUndefined<1 | 2>, false>(true)
@@ -19,8 +19,8 @@ it('works as filter', () => {
 })
 
 it('works with unique branches', () => {
-	testType.equal<HasUndefined<undefined, $SelectionBranch>, $Then>(true)
-	testType.equal<HasUndefined<number, $SelectionBranch>, $Else>(true)
+	testType.equal<HasUndefined<undefined, $Selection.Branch>, $Then>(true)
+	testType.equal<HasUndefined<number, $Selection.Branch>, $Else>(true)
 })
 
 it('works with partial customization', () => {
