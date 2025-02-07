@@ -1,5 +1,5 @@
 import type { IsAny } from '../any/is_any.js'
-import type { IsEqual } from '../equal/equal.js'
+import type { IsEqual } from '../equal/is_equal.js'
 import type { Abs } from '../math/abs.js'
 import type { GreaterThan } from '../math/greater_than.js'
 import type { Subtract } from '../math/subtract.js'

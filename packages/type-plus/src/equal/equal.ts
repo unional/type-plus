@@ -1,130 +1,257 @@
-import type { IsAny } from '../any/is_any.js'
-import type { IsNever } from '../never/is_never.js'
-import type { IsObject } from '../object/is_object.js'
-import type { Properties } from '../object/properties.js'
-import type { And, Or } from '../predicates/logical.js'
-import type { IsSymbol } from '../symbol/is_symbol.js'
-import type { IdentityEqual } from './identity_equal.js'
-
-type BothNever<A, B, Both, One, None> = And<IsNever<A>, IsNever<B>, Both, Or<IsNever<A>, IsNever<B>, One, None>>
-
-type BothAny<A, B, Both, One, None> = And<IsAny<A>, IsAny<B>, Both, Or<IsAny<A>, IsAny<B>, One, None>>
+import type { $InputOptions } from '../$type/branch/$input_options.js'
+import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
+import type { $Selection } from '../$type/branch/$selection.js'
+import type { $Else, $Then } from '../$type/branch/$selection.js'
+import type { $Distributive } from '../$type/distributive/$distributive.js'
+import type { $Exact } from '../$type/exact/$exact.js'
+import type { $Any } from '../$type/special/$any.js'
+import type { $Never } from '../$type/special/$never.js'
+import type { $Special } from '../$type/special/$special.js'
+import type { $Unknown } from '../$type/special/$unknown.js'
+import type { $Void } from '../$type/special/$void.js'
 
 /**
- * Checks `A` and `B` are equal.
+ * 🎭 *predicate*
  *
+ * Validate if `T` is `U`.
+ *
+ * @example
  * ```ts
- * type R = IsEqual<1, 1> // true
- * type R = IsEqual<any, any> // true
- * type R = IsEqual<boolean, boolean> // true
- * type R = IsEqual<true, true> // true
- * type R = IsEqual<[1], [1]> // true
+ * type R = $Equal<undefined, undefined> // true
  *
- * type R = IsEqual<boolean, true> // false
- * type R = IsEqual<any, 1> // false
- * type R = IsEqual<[any], [1]> // false
- * type R = IsEqual<{ a: 1 }, { a: 1; b: 2 }> // false
+ * type R = $Equal<never, undefined> // false
+ * type R = $Equal<unknown, undefined> // false
+ * type R = $Equal<string | boolean, undefined> // false
+ *
+ * type R = $Equal<string | undefined, undefined> // boolean
  * ```
  *
- * Note that intersection type checks only works at first level.
- * It cannot be check recursively,
- * or else will run into infinite recursion if the type includes recursive types.
+ * 🔢 *customize*
+ *
+ * Filter to ensure `T` is `U`, otherwise returns `never`.
+ *
+ * @example
+ * ```ts
+ * type R = $Equal<undefined, undefined, { selection: 'filter' }> // undefined
+ *
+ * type R = $Equal<never, undefined, { selection: 'filter' }> // never
+ * type R = $Equal<unknown, undefined, { selection: 'filter' }> // never
+ * type R = $Equal<string | boolean, undefined, { selection: 'filter' }> // never
+ *
+ * type R = $Equal<string | undefined, undefined> // undefined
+ * ```
+ *
+ * 🔢 *customize*:
+ *
+ * Disable distribution of union types.
+ *
+ * ```ts
+ * type R = $Equal<undefined | 1, undefined> // boolean
+ * type R = $Equal<undefined | 1, undefined, { distributive: false }> // false
+ * ```
+ *
+ * 🔢 *customize*
+ *
+ * Use unique branch identifiers to allow precise processing of the result.
+ *
+ * @example
+ * ```ts
+ * type R = $Equal<undefined, undefined, $SelectionBranch> // $Then
+ * type R = $Equal<string, undefined, $SelectionBranch> // $Else
+ * ```
  */
-export type IsEqual<A, B, Then = true, Else = false> = [A, B] extends [B, A]
-	? BothNever<
-			A,
-			B,
-			Then,
-			Else,
-			BothAny<
-				A,
-				B,
-				Then,
-				Else,
-				IdentityEqual<
-					A,
-					B,
-					Then,
-					And<
-						IsObject<A>,
-						IsObject<B>,
-						IdentityEqual<
-							Properties<A>,
-							Properties<B>,
-							[A, B] extends [(...args: infer P1) => any, (...args: infer P2) => any]
-								? IsEqual<P1, P2, Then, Else>
-								: Then,
-							Else
-						>,
-						// `A` and `B` are narrowed, need to check again.
-						// This is fixed in TS 5.0.2, but keeping it to support older versions.
-						[A, B] extends [B, A] ? Then : Else
-					>
-				>
-			>
+export type $Equal<T, U, $O extends $Equal.$Options = {}> = $Special<
+	T,
+	{
+		$any: $ResolveBranch<T, $O, [$Any, $Else]>
+		$never: $ResolveBranch<T, $O, [$Never, $Else]>
+		$unknown: $ResolveBranch<T, $O, [$Unknown, $Else]>
+		$void: $ResolveBranch<T, $O, [$Void, $Else]>
+		$else: $Exact.Parse<
+			$O,
+			{
+				$then: $Equal._ExactEqual<T, U, $O>
+				$else: _LooseEqual<T, U, $O>
+			}
 		>
-	: And<IsSymbol<A, { distributive: false }>, IsSymbol<B, { distributive: false }>, Then, Else>
+	}
+>
+
+type _LooseEqual<T, U, $O extends $Equal.$Options> = $Distributive.Parse<$O> extends true
+	? _LooseEqualDistributive<T, U, $O>
+	: _LooseEqualNonDistributive<T, U, $O>
+
+type _LooseEqualDistributive<T, U, $O extends $Equal.$Options> = T extends U
+	? $ResolveBranch<T, $O, [$Then]>
+	: $ResolveBranch<T, $O, [$Else]>
+type _LooseEqualNonDistributive<T, U, $O extends $Equal.$Options> = [T] extends [U]
+	? $ResolveBranch<T, $O, [$Then]>
+	: $ResolveBranch<T, $O, [$Else]>
 
 /**
- * Checks `A` and `B` are not equal.
+ * 🎭 *predicate*
+ * ㊙️ *internal*
  *
+ * Validate if `T` is `U`.
+ *
+ * @example
  * ```ts
- * type R = IsNotEqual<1, 1> // false
- * type R = IsNotEqual<any, any> // false
- * type R = IsNotEqual<boolean, boolean> // false
- * type R = IsNotEqual<true, true> // false
- * type R = IsNotEqual<[1], [1]> // false
+ * type R = $SelectInvert<undefined, undefined> // true
  *
- * type R = IsNotEqual<boolean, true> // true
- * type R = IsNotEqual<any, 1> // true
- * type R = IsNotEqual<[any], [1]> // true
- * type R = IsNotEqual<{ a: 1 }, { a: 1; b: 2 }> // true
+ * type R = $SelectInvert<never, undefined> // false
+ * type R = $SelectInvert<unknown, undefined> // false
+ * type R = $SelectInvert<string | boolean, undefined> // false
+ *
+ * type R = $SelectInvert<string | undefined, undefined> // boolean
  * ```
  *
- * Note that intersection type checks only works at first level.
- * It cannot be check recursively,
- * or else will run into infinite recursion if the type includes recursive types.
+ * 🔢 *customize*
+ *
+ * Filter to ensure `T` is `U`, otherwise returns `never`.
+ *
+ * @example
+ * ```ts
+ * type R = $SelectInvert<undefined, undefined, { selection: 'filter' }> // undefined
+ *
+ * type R = $SelectInvert<never, undefined, { selection: 'filter' }> // never
+ * type R = $SelectInvert<unknown, undefined, { selection: 'filter' }> // never
+ * type R = $SelectInvert<string | boolean, undefined, { selection: 'filter' }> // never
+ *
+ * type R = $SelectInvert<string | undefined, undefined> // undefined
+ * ```
+ *
+ * 🔢 *customize*:
+ *
+ * Disable distribution of union types.
+ *
+ * ```ts
+ * type R = $SelectInvert<undefined | 1, undefined> // boolean
+ * type R = $SelectInvert<undefined | 1, undefined, { distributive: false }> // false
+ * ```
+ *
+ * 🔢 *customize*
+ *
+ * Use unique branch identifiers to allow precise processing of the result.
+ *
+ * @example
+ * ```ts
+ * type R = $SelectInvert<undefined, undefined, $SelectionBranch> // $Then
+ * type R = $SelectInvert<string, undefined, $SelectionBranch> // $Else
+ * ```
  */
-export type IsNotEqual<A, B, Then = true, Else = false> = IsEqual<A, B, Else, Then>
+export type $SelectInvert<T, U, $O extends $SelectInvert.$Options = {}> = $Special<
+	T,
+	{
+		$any: $ResolveBranch<T, $O, [$Any, $Then]>
+		$never: $ResolveBranch<T, $O, [$Never, $Then]>
+		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>
+		$void: $ResolveBranch<T, $O, [$Void, $Then]>
+		$else: $Distributive.Parse<$O> extends true ? $SelectInvert._D<T, U, $O> : $SelectInvert._N<T, U, $O>
+	}
+>
+
+export namespace $SelectInvert {
+	export type $Options = $Selection.Options & $Distributive.Options & $InputOptions<$Any | $Unknown | $Never>
+	export type $Default = $Selection.Predicate & $Distributive.Default
+	export type $Branch = $Selection.Branch & $Distributive.Default
+	export type _D<T, U, $O extends $SelectInvert.$Options> = T extends U
+		? $ResolveBranch<T, $O, [$Else]>
+		: $ResolveBranch<T, $O, [$Then]>
+	export type _N<T, U, $O extends $SelectInvert.$Options> = [T] extends [U]
+		? $ResolveBranch<T, $O, [$Else]>
+		: $ResolveBranch<T, $O, [$Then]>
+}
 
 /**
- * Checks `A` and `B` are equal.
+ * 🎭 *predicate*
+ * ㊙️ *internal*
  *
- * @deprecated this will be changed to `filter` variant in the future.
- * Please use `IsEqual` for the `predicate` behavior.
+ * Validate if `T` is `U`.
+ *
+ * @example
+ * ```ts
+ * type R = $SelectInvertStrict<undefined, undefined> // true
+ *
+ * type R = $SelectInvertStrict<never, undefined> // false
+ * type R = $SelectInvertStrict<unknown, undefined> // false
+ * type R = $SelectInvertStrict<string | boolean, undefined> // false
+ *
+ * type R = $SelectInvertStrict<string | undefined, undefined> // boolean
+ * ```
+ *
+ * 🔢 *customize*
+ *
+ * Filter to ensure `T` is `U`, otherwise returns `never`.
+ *
+ * @example
+ * ```ts
+ * type R = $SelectInvertStrict<undefined, undefined, { selection: 'filter' }> // undefined
+ *
+ * type R = $SelectInvertStrict<never, undefined, { selection: 'filter' }> // never
+ * type R = $SelectInvertStrict<unknown, undefined, { selection: 'filter' }> // never
+ * type R = $SelectInvertStrict<string | boolean, undefined, { selection: 'filter' }> // never
+ *
+ * type R = $SelectInvertStrict<string | undefined, undefined> // undefined
+ * ```
+ *
+ * 🔢 *customize*:
+ *
+ * Disable distribution of union types.
  *
  * ```ts
- * type R = Equal<1, 1> // true
- * type R = Equal<any, any> // true
- * type R = Equal<boolean, boolean> // true
- * type R = Equal<true, true> // true
- * type R = Equal<[1], [1]> // true
+ * type R = $SelectInvertStrict<undefined | 1, undefined> // boolean
+ * type R = $SelectInvertStrict<undefined | 1, undefined, { distributive: false }> // false
+ * ```
  *
- * type R = Equal<boolean, true> // false
- * type R = Equal<any, 1> // false
- * type R = Equal<[any], [1]> // false
- * type R = Equal<{ a: 1 }, { a: 1; b: 2 }> // false
+ * 🔢 *customize*
+ *
+ * Use unique branch identifiers to allow precise processing of the result.
+ *
+ * @example
+ * ```ts
+ * type R = $SelectInvertStrict<undefined, undefined, $SelectionBranch> // $Then
+ * type R = $SelectInvertStrict<string, undefined, $SelectionBranch> // $Else
  * ```
  */
-export type Equal<A, B, Then = true, Else = false> = IsEqual<A, B, Then, Else>
+export type $SelectInvertStrict<T, U, $O extends $SelectInvertStrict.$Options = {}> = $Special<
+	T,
+	{
+		$any: $ResolveBranch<T, $O, [$Any, $Then]>
+		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>
+		$never: $ResolveBranch<T, $O, [$Never, $Then]>
+		$else: $Distributive.Parse<$O> extends true ? $SelectInvertStrict._D<T, U, $O> : $SelectInvertStrict._N<T, U, $O>
+	}
+>
 
-/**
- * Checks `A` and `B` are not equal.
- *
- * @deprecated this will be changed to `filter` variant in the future.
- * Please use `IsNotEqual` for the `predicate` behavior.
- *
- * ```ts
- * type R = NotEqual<1, 1> // false
- * type R = NotEqual<any, any> // false
- * type R = NotEqual<boolean, boolean> // false
- * type R = NotEqual<true, true> // false
- * type R = NotEqual<[1], [1]> // false
- *
- * type R = NotEqual<boolean, true> // true
- * type R = NotEqual<any, 1> // true
- * type R = NotEqual<[any], [1]> // true
- * type R = NotEqual<{ a: 1 }, { a: 1; b: 2 }> // true
- * ```
- */
-export type NotEqual<A, B, Then = true, Else = false> = IsNotEqual<A, B, Then, Else>
+export namespace $SelectInvertStrict {
+	export type $Options = $Selection.Options & $Distributive.Options & $InputOptions<$Any | $Unknown | $Never>
+	export type $Default = $Selection.Predicate & $Distributive.Default
+	export type $Branch = $Selection.Branch & $Distributive.Default
+	export type _D<T, U, $O extends $SelectInvertStrict.$Options> = T extends U
+		? $ResolveBranch<T, $O, [$Else]>
+		: $ResolveBranch<T, $O, [$Then]>
+	export type _N<T, U, $O extends $SelectInvertStrict.$Options> = [T, U] extends [U, T]
+		? $ResolveBranch<T, $O, [$Else]>
+		: $ResolveBranch<T, $O, [$Then]>
+}
+
+export namespace $Equal {
+	export type $Options = $Selection.Options &
+		$Distributive.Options &
+		$InputOptions<$Any | $Unknown | $Never> &
+		$Exact.Options
+	export type $Default = $Selection.Predicate & $Distributive.Default
+	export type $Branch<$O extends $Options = $Distributive.Default> = $Selection.Branch & $O
+
+	export type _ExactEqual<T, U, $O extends $Options> = $Distributive.Parse<$O> extends true
+		? _ExactEqualDistributive<T, U, $O>
+		: _ExactEqualNonDistributive<T, U, $O>
+	export type _ExactEqualDistributive<T, U, $O extends $Options> = T extends U
+		? U extends T
+			? $ResolveBranch<T, $O, [$Then]>
+			: $ResolveBranch<T, $O, [$Else]>
+		: $ResolveBranch<T, $O, [$Else]>
+	export type _ExactEqualNonDistributive<T, U, $O extends $Options> = [T, U] extends [U, T]
+		? $ResolveBranch<T, $O, [$Then]>
+		: $ResolveBranch<T, $O, [$Else]>
+}

@@ -2,10 +2,10 @@ import type { $ResolveOptions } from '../$type/$resolve_options.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
-import type { $Equal } from '../$type/equal/$equal.js'
 import type { $Exact } from '../$type/exact/$exact.js'
 import type { $Special } from '../$type/special/$special.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
+import type { $Equal } from '../equal/equal.js'
 import type { Assignable } from '../predicates/assignable.js'
 
 /**
