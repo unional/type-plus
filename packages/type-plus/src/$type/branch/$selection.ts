@@ -4,15 +4,20 @@ import type { $SelectionOptions } from './$selection_options.js'
 export type $Then = $Branch<'$then'>
 export type $Else = $Branch<'$else'>
 
+declare const $then: '$then'
+declare const $else: '$else'
+
 export namespace $Then {
+	export type $Key = '$then'
 	export type $Branch = {
-		$then: $Then
+		[$then]: $Then
 	}
 }
 
 export namespace $Else {
+	export type $Key = '$else'
 	export type $Branch = {
-		$else: $Else
+		[$else]: $Else
 	}
 }
 
@@ -56,8 +61,8 @@ export type $InvertSelection<Branch extends $Then | $Else> = Branch extends $The
  * ```
  */
 export type $SelectionBranch<$O extends $SelectionOptions = {}> = {
-	$then: $Then
-	$else: $Else
+	[$then]: $Then
+	[$else]: $Else
 } & $O
 
 /**
@@ -85,8 +90,8 @@ export type $SelectionBranch<$O extends $SelectionOptions = {}> = {
  */
 export type $SelectionFilter<T> = {
 	selection: 'filter'
-	$then: T
-	$else: never
+	[$then]: T
+	[$else]: never
 }
 
 /**
@@ -112,8 +117,8 @@ export type $SelectionFilter<T> = {
  * ```
  */
 export type $SelectionPredicate = {
-	$then: true
-	$else: false
+	[$then]: true
+	[$else]: false
 }
 
 /**
@@ -129,6 +134,6 @@ export type $SelectionPredicate = {
  * ```
  */
 export type $FlipSelection<$Options extends $SelectionOptions> = {
-	$then: $Options['$else']
-	$else: $Options['$then']
+	[$then]: $Options['$else']
+	[$else]: $Options['$then']
 } & Omit<$Options, '$then' | '$else'>

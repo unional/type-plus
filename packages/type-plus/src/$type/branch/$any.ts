@@ -5,7 +5,10 @@ import type { $Branch } from './$branch.js'
  */
 export type $Any = $Branch<'$any'>
 
+declare const $any: '$any'
+
 export namespace $Any {
+	export type $Key = '$any'
 	/**
 	 * Options to specifically handles the `any` type.
 	 *
@@ -14,7 +17,7 @@ export namespace $Any {
 	 * type YourType<T, $Options extends $Any.$Options> = ...
 	 * ```
 	 */
-	export type $Options = { $any?: unknown }
+	export type $Options = { [$any]?: unknown }
 
 	/**
 	 * Branch option to specifically handles the `any` type.
@@ -27,5 +30,5 @@ export namespace $Any {
 	 * type R = YourType<T, $Any.$Branch> extends $Any ? HandleAny : HandleOthers
 	 * ```
 	 */
-	export type $Branch = { $any: $Any }
+	export type $Branch = { [$any]: $Any }
 }
