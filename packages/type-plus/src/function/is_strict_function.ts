@@ -1,11 +1,11 @@
 import type { $ResolveOptions } from '../$type/$resolve_options.js'
 import type { $SpecialType } from '../$type/$special_type.js'
+import type { $Any } from '../$type/branch/$any.js'
+import type { $Never } from '../$type/branch/$never.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $SelectStrict } from '../$type/branch/$select_strict.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
-import type { $Any } from '../any/$any.js'
-import type { $Never } from '../never/never.js'
-import type { $Unknown } from '../unknown/unknown.js'
+import type { $Unknown } from '../$type/branch/$unknown.js'
 
 /**
  * Is `T` exactly `Function`.

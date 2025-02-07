@@ -1,6 +1,6 @@
+import type { $Never } from '../$type/branch/$never.js'
 import type { $Else, $SelectionBranch, $Then } from '../$type/branch/$selection.js'
 import type { IsNever } from '../never/is_never.js'
-import type { $Never } from '../never/never.js'
 
 /**
  * 🦴 *utilities*

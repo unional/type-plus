@@ -1,11 +1,11 @@
-import type { $Any } from '../any/$any.js'
-import type { $Never } from '../never/never.js'
-import type { $Unknown } from '../unknown/unknown.js'
+import type { $Any } from './branch/$any.js'
 import type { $BranchOptions } from './branch/$branch.js'
 import type { $InputOptions } from './branch/$input_options.js'
+import type { $Never } from './branch/$never.js'
 import type { $ResolveBranch } from './branch/$resolve_branch.js'
 import type { $Else, $SelectionBranch, $Then } from './branch/$selection.js'
 import type { $SelectionOptions } from './branch/$selection_options.js'
+import type { $Unknown } from './branch/$unknown.js'
 
 /**
  * 🧰 *type util*

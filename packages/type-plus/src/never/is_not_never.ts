@@ -1,11 +1,11 @@
 import type { $SpecialType } from '../$type/$special_type.js'
+import type { $Any } from '../$type/branch/$any.js'
 import type { $InputOptions } from '../$type/branch/$input_options.js'
+import type { $Never } from '../$type/branch/$never.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $SelectionBranch, $Then } from '../$type/branch/$selection.js'
 import type { $SelectionOptions } from '../$type/branch/$selection_options.js'
-import type { $Any } from '../any/$any.js'
-import type { $Unknown } from '../unknown/unknown.js'
-import type { $Never } from './never.js'
+import type { $Unknown } from '../$type/branch/$unknown.js'
 
 /**
  * 🎭 *predicate*
