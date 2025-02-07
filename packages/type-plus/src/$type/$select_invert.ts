@@ -7,7 +7,6 @@ import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './bran
 import type { $SelectionOptions } from './branch/$selection_options.js'
 import type { $Unknown } from './branch/$unknown.js'
 import type { $Distributive } from './distributive/$distributive.js'
-import type { $IsDistributive } from './distributive/$is_distributive.js'
 
 /**
  * 🎭 *predicate*
@@ -66,7 +65,7 @@ export type $SelectInvert<T, U, $O extends $SelectInvert.$Options = {}> = $Speci
 		$any: $ResolveBranch<T, $O, [$Any, $Then]>
 		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>
 		$never: $ResolveBranch<T, $O, [$Never, $Then]>
-		$else: $IsDistributive<$O> extends true ? $SelectInvert._D<T, U, $O> : $SelectInvert._N<T, U, $O>
+		$else: $Distributive.Parse<$O> extends true ? $SelectInvert._D<T, U, $O> : $SelectInvert._N<T, U, $O>
 	}
 >
 

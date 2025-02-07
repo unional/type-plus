@@ -4,7 +4,7 @@ import type { $ResolveOptions } from '../$type/$resolve_options.js'
 import type { $SpecialType } from '../$type/$special_type.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
-import type { $IsDistributive } from '../$type/distributive/$is_distributive.js'
+import type { $Distributive } from '../$type/distributive/$distributive.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { NotAssignable } from '../predicates/not_assignable.js'
 
@@ -81,7 +81,7 @@ export namespace IsNotNumber {
 	 * It does not check against special types.
 	 */
 	export type $<T, $O extends $UtilOptions> = $ResolveOptions<[$O['exact'], false]> extends true
-		? $IsDistributive<$O, { $then: _D<T, $O>; $else: _N<T, $O> }>
+		? $Distributive.Parse<$O, { $then: _D<T, $O>; $else: _N<T, $O> }>
 		: NotAssignable.$<T, number, $O>
 	export type $UtilOptions = NotAssignable.$UtilOptions & $ExactOptions
 	export type _D<T, $O extends IsNotNumber.$Options> = T extends number & infer U

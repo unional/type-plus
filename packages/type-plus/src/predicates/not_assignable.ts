@@ -7,7 +7,6 @@ import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from '../$ty
 import type { $SelectionOptions } from '../$type/branch/$selection_options.js'
 import type { $Unknown } from '../$type/branch/$unknown.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
-import type { $IsDistributive } from '../$type/distributive/$is_distributive.js'
 
 /**
  * 🎭 *predicate*
@@ -89,7 +88,7 @@ export namespace NotAssignable {
 	 *
 	 * It is suitable for building custom types.
 	 */
-	export type $<A, B, $O extends $UtilOptions> = $IsDistributive<
+	export type $<A, B, $O extends $UtilOptions> = $Distributive.Parse<
 		$O,
 		{
 			$then: A extends B ? $ResolveBranch<A, $O, [$Else]> : $ResolveBranch<A, $O, [$Then]>
