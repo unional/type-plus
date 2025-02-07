@@ -1,4 +1,4 @@
-# Type-level programming utilities
+# Type-level programming
 
 This folder contains utility types for type-level programming.
 
