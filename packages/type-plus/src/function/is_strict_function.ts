@@ -6,6 +6,7 @@ import type { $Any } from '../$type/special/$any.js'
 import type { $Never } from '../$type/special/$never.js'
 import type { $Special } from '../$type/special/$special.js'
 import type { $Unknown } from '../$type/special/$unknown.js'
+import type { $Void } from '../$type/special/$void.js'
 
 /**
  * Is `T` exactly `Function`.
@@ -21,8 +22,9 @@ export type IsStrictFunction<T, $O extends IsStrictFunction.$Options = {}> = $Sp
 	T,
 	{
 		$any: $ResolveBranch<T, $O, [$Any, $Else]>
-		$unknown: $ResolveBranch<T, $O, [$Unknown, $Else]>
 		$never: $ResolveBranch<T, $O, [$Never, $Else]>
+		$unknown: $ResolveBranch<T, $O, [$Unknown, $Else]>
+		$void: $ResolveBranch<T, $O, [$Void, $Else]>
 		$else: $ResolveOptions<[$O['distributive'], $SelectStrict.$Default['distributive']]> extends true
 			? IsStrictFunction._D<T, $O>
 			: $SelectStrict._N<T, Function, $O>

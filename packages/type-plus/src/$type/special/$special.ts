@@ -6,11 +6,12 @@ import type { $SelectionOptions } from '../branch/$selection_options.js'
 import type { $Any } from './$any.js'
 import type { $Never } from './$never.js'
 import type { $Unknown } from './$unknown.js'
+import type { $Void } from './$void.js'
 
 /**
  * 🏷️ **since 8.0.0**
  *
- * A type utility to handle special types: `any`, `unknown`, and `never`.
+ * A type utility to handle special types: `any`, `unknown`, `never`, and `void`.
  */
 export type $Special<T, $O extends $Special.Options> = 0 extends 1 & T
 	? $ResolveBranch<T, $O, [$Any, $Then]>
@@ -18,7 +19,9 @@ export type $Special<T, $O extends $Special.Options> = 0 extends 1 & T
 		? $ResolveBranch<T, $O, [$Unknown, $Then]>
 		: [T, never] extends [never, T]
 			? $ResolveBranch<T, $O, [$Never, $Then]>
-			: $ResolveBranch<T, $O, [$Else]>
+			: [T, void] extends [void, T]
+				? $ResolveBranch<T, $O, [$Void, $Then]>
+				: $ResolveBranch<T, $O, [$Else]>
 
 export namespace $Special {
 	export type Options = $SelectionOptions & $InputOptions<$Any | $Unknown | $Never>

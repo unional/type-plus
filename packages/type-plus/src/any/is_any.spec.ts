@@ -92,6 +92,11 @@ it('can override $never branch', () => {
 	testType.equal<IsAny<never, { $never: unknown }>, unknown>(true)
 })
 
+it('can override $void branch', () => {
+	testType.equal<IsAny<void>, false>(true)
+	testType.equal<IsAny<void, { $void: unknown }>, unknown>(true)
+})
+
 describe('filter', () => {
 	it('returns any for any', () => {
 		testType.equal<IsAny<any, { selection: 'filter' }>, any>(true)

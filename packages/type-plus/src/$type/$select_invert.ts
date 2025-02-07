@@ -7,6 +7,7 @@ import type { $Any } from './special/$any.js'
 import type { $Never } from './special/$never.js'
 import type { $Special } from './special/$special.js'
 import type { $Unknown } from './special/$unknown.js'
+import type { $Void } from './special/$void.js'
 
 /**
  * 🎭 *predicate*
@@ -63,8 +64,9 @@ export type $SelectInvert<T, U, $O extends $SelectInvert.$Options = {}> = $Speci
 	T,
 	{
 		$any: $ResolveBranch<T, $O, [$Any, $Then]>
-		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>
 		$never: $ResolveBranch<T, $O, [$Never, $Then]>
+		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>
+		$void: $ResolveBranch<T, $O, [$Void, $Then]>
 		$else: $Distributive.Parse<$O> extends true ? $SelectInvert._D<T, U, $O> : $SelectInvert._N<T, U, $O>
 	}
 >
