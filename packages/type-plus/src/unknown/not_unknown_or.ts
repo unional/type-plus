@@ -1,5 +1,5 @@
+import type { $Unknown } from '../$type/branch/$unknown.js'
 import type { IsUnknown } from './is_unknown.js'
-import type { $Unknown } from './unknown.js'
 
 /**
  * 🌪️ *filter*
