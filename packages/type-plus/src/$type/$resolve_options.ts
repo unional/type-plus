@@ -13,5 +13,7 @@ export type $ResolveOptions<V extends unknown[]> = V extends [infer T]
 	: V extends [infer T, ...infer U]
 		? [T, unknown] extends [unknown, T]
 			? $ResolveOptions<U>
-			: T
+			: [T] extends [undefined]
+				? $ResolveOptions<U>
+				: T
 		: $InferError<'cannot [infer T, ...infer U] from', V>
