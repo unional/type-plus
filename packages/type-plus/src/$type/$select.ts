@@ -67,7 +67,7 @@ export type $Select<T, U, $O extends $Select.$Options = {}> = $SpecialType<
 		$any: $ResolveBranch<T, $O, [$Any, $Else]>
 		$unknown: $ResolveBranch<T, $O, [$Unknown, $Else]>
 		$never: $ResolveBranch<T, $O, [$Never, $Else]>
-		$else: $ResolveBranch<T, $O, [$Else], $Select._<T, U, $O>>
+		$else: $Select._<T, U, $O>
 	}
 >
 

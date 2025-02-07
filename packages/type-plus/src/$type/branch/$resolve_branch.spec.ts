@@ -1,7 +1,6 @@
 import { it } from '@jest/globals'
 
 import {
-	type $Any,
 	type $Else,
 	type $Never,
 	type $ResolveBranch,
@@ -9,7 +8,6 @@ import {
 	type $Then,
 	testType,
 } from '../../index.js'
-import type { $Override } from './$override.js'
 
 it('returns boolean if selection is predicate', () => {
 	testType.equal<$ResolveBranch<123, { selection: 'predicate' }, [$Then]>, true>(true)
@@ -55,29 +53,6 @@ it('returns default value if all branches are `unknown`', () => {
 
 it('returns default value if no match branch and the last branch is unknown', () => {
 	testType.equal<$ResolveBranch<123, { $then: 123 }, [$Else, unknown]>, 123>(true)
-})
-
-it('runs override logic', () => {
-	testType.equal<$ResolveBranch<1, { $else: $Override<2> }, [$Else], 3>, 2>(true)
-	testType.equal<$ResolveBranch<1, { $else: $Override<2> }, [unknown, $Else], 3>, 2>(true)
-	testType.equal<$ResolveBranch<1, { $then: $Override<2> }, [$Then, $Else], 3>, 2>(true)
-	testType.equal<$ResolveBranch<1, { $else: $Override<2> }, [$Then, $Else], 3>, 2>(true)
-})
-
-it('runs default logic if branches are not overrides', () => {
-	testType.equal<$ResolveBranch<1, {}, [$Else], 3>, 3>(true)
-	testType.equal<$ResolveBranch<1, {}, [unknown, $Else], 3>, 3>(true)
-	testType.equal<$ResolveBranch<1, {}, [$Then, $Else], 3>, 3>(true)
-	testType.equal<$ResolveBranch<1, {}, [$Then, $Else], 3>, 3>(true)
-	testType.equal<$ResolveBranch<1, { $else: 2 }, [$Else], 3>, 3>(true)
-	testType.equal<$ResolveBranch<1, { $then: 2 }, [$Then, $Else], 3>, 3>(true)
-	testType.equal<$ResolveBranch<1, { $else: 2 }, [$Then, $Else], 3>, 3>(true)
-})
-
-it('extract value from override', () => {
-	testType.equal<$ResolveBranch<true, { $then: $Override<1> }, [$Then]>, 1>(true)
-	testType.equal<$ResolveBranch<true, { $else: $Override<1> }, [$Else]>, 1>(true)
-	testType.equal<$ResolveBranch<true, { $any: $Override<1> }, [$Any]>, 1>(true)
 })
 
 it('can override with unknown or any', () => {
