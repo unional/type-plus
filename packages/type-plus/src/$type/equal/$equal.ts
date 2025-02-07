@@ -62,112 +62,33 @@ import type { $Special } from '../special/$special.js'
  * type R = $Select<string, undefined, $SelectionBranch> // $Else
  * ```
  */
-export type $Select<T, U, $O extends $Select.$Options = {}> = $Special<
+export type $Equal<T, U, $O extends $Equal.$Options = {}> = $Special<
 	T,
 	{
 		$any: $ResolveBranch<T, $O, [$Any, $Else]>
 		$never: $ResolveBranch<T, $O, [$Never, $Else]>
 		$unknown: $ResolveBranch<T, $O, [$Unknown, $Else]>
 		$void: $ResolveBranch<T, $O, [$Void, $Else]>
-		$else: _<T, U, $O>
+		$else: $Exact.Parse<
+			$O,
+			{
+				$then: $Equal._ExactEqual<T, U, $O>
+				$else: _LooseEqual<T, U, $O>
+			}
+		>
 	}
 >
 
-type _<T, U, $O extends $Select.$Options> = $Distributive.Parse<$O> extends true ? _D<T, U, $O> : _N<T, U, $O>
+type _LooseEqual<T, U, $O extends $Equal.$Options> = $Distributive.Parse<$O> extends true
+	? _LooseEqualDistributive<T, U, $O>
+	: _LooseEqualNonDistributive<T, U, $O>
 
-type _D<T, U, $O extends $Select.$Options> = T extends U
+type _LooseEqualDistributive<T, U, $O extends $Equal.$Options> = T extends U
 	? $ResolveBranch<T, $O, [$Then]>
 	: $ResolveBranch<T, $O, [$Else]>
-type _N<T, U, $O extends $Select.$Options> = [T] extends [U]
+type _LooseEqualNonDistributive<T, U, $O extends $Equal.$Options> = [T] extends [U]
 	? $ResolveBranch<T, $O, [$Then]>
 	: $ResolveBranch<T, $O, [$Else]>
-
-export namespace $Select {
-	export type $Options = $Selection.Options &
-		$Distributive.Options &
-		$InputOptions<$Any | $Unknown | $Never> &
-		$Exact.Options
-	export type $Default = $Selection.Predicate & $Distributive.Default
-	export type $Branch<$O extends $Distributive.Options = $Distributive.Default> = $Selection.Branch & $O
-}
-
-/**
- * 🎭 *predicate*
- * ㊙️ *internal*
- *
- * Validate if `T` is `U`.
- *
- * @example
- * ```ts
- * type R = $SelectStrict<undefined, undefined> // true
- *
- * type R = $SelectStrict<never, undefined> // false
- * type R = $SelectStrict<unknown, undefined> // false
- * type R = $SelectStrict<string | boolean, undefined> // false
- *
- * type R = $SelectStrict<string | undefined, undefined> // boolean
- * ```
- *
- * 🔢 *customize*
- *
- * Filter to ensure `T` is `U`, otherwise returns `never`.
- *
- * @example
- * ```ts
- * type R = $SelectStrict<undefined, undefined, { selection: 'filter' }> // undefined
- *
- * type R = $SelectStrict<never, undefined, { selection: 'filter' }> // never
- * type R = $SelectStrict<unknown, undefined, { selection: 'filter' }> // never
- * type R = $SelectStrict<string | boolean, undefined, { selection: 'filter' }> // never
- *
- * type R = $SelectStrict<string | undefined, undefined> // undefined
- * ```
- *
- * 🔢 *customize*:
- *
- * Disable distribution of union types.
- *
- * ```ts
- * type R = $SelectStrict<undefined | 1, undefined> // boolean
- * type R = $SelectStrict<undefined | 1, undefined, { distributive: false }> // false
- * ```
- *
- * 🔢 *customize*
- *
- * Use unique branch identifiers to allow precise processing of the result.
- *
- * @example
- * ```ts
- * type R = $SelectStrict<undefined, undefined, $SelectionBranch> // $Then
- * type R = $SelectStrict<string, undefined, $SelectionBranch> // $Else
- * ```
- */
-export type $SelectStrict<T, U, $O extends $SelectStrict.$Options = {}> = $Special<
-	T,
-	{
-		$any: $ResolveBranch<T, $O, [$Any, $Else]>
-		$unknown: $ResolveBranch<T, $O, [$Unknown, $Else]>
-		$never: $ResolveBranch<T, $O, [$Never, $Else]>
-		$else: $SelectStrict._Else<T, U, $O>
-	}
->
-
-export namespace $SelectStrict {
-	export type $Options = $Selection.Options & $Distributive.Options & $InputOptions<$Any | $Unknown | $Never>
-	export type $Default = $Selection.Predicate & $Distributive.Default
-	export type $Branch = $Selection.Branch & $Distributive.Default
-	export type _Else<T, U, $O extends $SelectStrict.$Options> = $Distributive.Parse<$O> extends true
-		? _D<T, U, $O>
-		: _N<T, U, $O>
-	export type _D<T, U, $O extends $SelectStrict.$Options> = T extends U
-		? U extends T
-			? $ResolveBranch<T, $O, [$Then]>
-			: $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Else]>
-	export type _N<T, U, $O extends $SelectStrict.$Options> = [T, U] extends [U, T]
-		? $ResolveBranch<T, $O, [$Then]>
-		: $ResolveBranch<T, $O, [$Else]>
-}
 
 /**
  * 🎭 *predicate*
@@ -317,6 +238,22 @@ export namespace $SelectInvertStrict {
 }
 
 export namespace $Equal {
-	export type $Options = $Selection.Options & $Distributive.Options & $InputOptions<$Any | $Unknown | $Never | $Void>
-	export type $Branch<$O extends $Selection.Options = {}> = $Selection.Branch<$O>
+	export type $Options = $Selection.Options &
+		$Distributive.Options &
+		$InputOptions<$Any | $Unknown | $Never> &
+		$Exact.Options
+	export type $Default = $Selection.Predicate & $Distributive.Default
+	export type $Branch<$O extends $Options = $Distributive.Default> = $Selection.Branch & $O
+
+	export type _ExactEqual<T, U, $O extends $Options> = $Distributive.Parse<$O> extends true
+		? _ExactEqualDistributive<T, U, $O>
+		: _ExactEqualNonDistributive<T, U, $O>
+	export type _ExactEqualDistributive<T, U, $O extends $Options> = T extends U
+		? U extends T
+			? $ResolveBranch<T, $O, [$Then]>
+			: $ResolveBranch<T, $O, [$Else]>
+		: $ResolveBranch<T, $O, [$Else]>
+	export type _ExactEqualNonDistributive<T, U, $O extends $Options> = [T, U] extends [U, T]
+		? $ResolveBranch<T, $O, [$Then]>
+		: $ResolveBranch<T, $O, [$Else]>
 }

@@ -1,4 +1,4 @@
-import type { $Select } from '../$type/equal/$equal.js'
+import type { $Equal } from '../$type/equal/$equal.js'
 
 /**
  * Is `T` numeric.
@@ -11,10 +11,10 @@ import type { $Select } from '../$type/equal/$equal.js'
  * type R = IsNumeric<unknown> // false
  * ```
  */
-export type IsNumeric<T, $O extends IsNumeric.$Options = {}> = $Select<T, number | bigint, $O>
+export type IsNumeric<T, $O extends IsNumeric.$Options = {}> = $Equal<T, number | bigint, $O>
 
 export namespace IsNumeric {
-	export type $Options = $Select.$Options
-	export type $Default = $Select.$Default
-	export type $Branch = $Select.$Branch
+	export type $Options = $Equal.$Options
+	export type $Default = $Equal.$Default
+	export type $Branch = $Equal.$Branch
 }
