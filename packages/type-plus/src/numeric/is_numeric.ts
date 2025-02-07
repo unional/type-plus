@@ -1,4 +1,4 @@
-import type { $Select } from '../$type/equal/$select.js'
+import type { $Select } from '../$type/equal/$equal.js'
 
 /**
  * Is `T` numeric.

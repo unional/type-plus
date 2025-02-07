@@ -1,4 +1,4 @@
-import type { $SelectInvert } from '../$type/equal/$select_invert.js'
+import type { $SelectInvert } from '../$type/equal/$equal.js'
 
 /**
  * Is `T` not a `Function`.
