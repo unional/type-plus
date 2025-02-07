@@ -110,7 +110,7 @@ export namespace IsNotStringLiteral {
 	export type _E<T extends string, $O extends $Selection.Options> = T extends string
 		? _StringType<T> extends infer R
 			? R extends 'stringLiteral'
-				? $ResolveBranch<$O, [$Else], T>
+				? $ResolveBranch<$O, [$Else]>
 				: $ResolveBranch<$O, [$Then], T>
 			: never
 		: $ResolveBranch<$O, [$Then], T>
@@ -124,7 +124,7 @@ export namespace IsNotStringLiteral {
 		: $ResolveBranch<$O, [$Then], T>
 
 	export type _U<T, U, $O extends $Selection.Options> = U extends `${any}`
-		? $ResolveBranch<$O, [$Else], T>
+		? $ResolveBranch<$O, [$Else]>
 		: U extends Uppercase<infer N>
 			? _D<N, $O>
 			: U extends Lowercase<infer N>

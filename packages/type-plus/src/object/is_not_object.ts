@@ -131,7 +131,7 @@ export namespace IsNotObject {
 				IsNever<
 					keyof T,
 					{
-						$then: $ResolveBranch<$O, [$Else], T>
+						$then: $ResolveBranch<$O, [$Else]>
 						$else: $ResolveBranch<$O, [$Then], T>
 					}
 				>
@@ -141,6 +141,6 @@ export namespace IsNotObject {
 	export type _N<T, $O extends $UtilOptions> = [T] extends [object & infer U]
 		? U extends object
 			? $ResolveBranch<$O, [$Then], T>
-			: $ResolveBranch<$O, [$Else], T>
+			: $ResolveBranch<$O, [$Else]>
 		: $ResolveBranch<$O, [$Then], T>
 }

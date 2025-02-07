@@ -82,7 +82,7 @@ export namespace IsNotTemplateLiteral {
 	type _D<T, $O extends $UtilOptions> = T extends string
 		? _StringType<T> extends infer R
 			? R extends 'templateLiteral'
-				? $ResolveBranch<$O, [$Else], T>
+				? $ResolveBranch<$O, [$Else]>
 				: $ResolveBranch<$O, [$Then], T>
 			: never
 		: $ResolveBranch<$O, [$Then], T>

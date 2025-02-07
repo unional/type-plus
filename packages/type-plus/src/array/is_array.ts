@@ -69,7 +69,7 @@ export type IsArray<T, $O extends IsArray.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<$O, [$Else], T>
+			$then: $ResolveBranch<$O, [$Else]>
 			$else: IsArray.$<T, $O>
 		}
 	>
@@ -99,20 +99,20 @@ export namespace IsArray {
 					$then: T extends readonly any[]
 						? number extends T['length']
 							? $ResolveBranch<$O, [$Then], T>
-							: $ResolveBranch<$O, [$Else], T>
-						: $ResolveBranch<$O, [$Else], T>
+							: $ResolveBranch<$O, [$Else]>
+						: $ResolveBranch<$O, [$Else]>
 					$else: [T] extends [readonly any[]]
 						? number extends T['length']
 							? $ResolveBranch<$O, [$Then], T>
-							: $ResolveBranch<$O, [$Else], T>
-						: $ResolveBranch<$O, [$Else], T>
+							: $ResolveBranch<$O, [$Else]>
+						: $ResolveBranch<$O, [$Else]>
 				}
 			>
 			$else: $Distributive.Parse<
 				$O,
 				{
-					$then: T extends readonly any[] ? $ResolveBranch<$O, [$Then], T> : $ResolveBranch<$O, [$Else], T>
-					$else: [T] extends readonly [any[]] ? $ResolveBranch<$O, [$Then], T> : $ResolveBranch<$O, [$Else], T>
+					$then: T extends readonly any[] ? $ResolveBranch<$O, [$Then], T> : $ResolveBranch<$O, [$Else]>
+					$else: [T] extends readonly [any[]] ? $ResolveBranch<$O, [$Then], T> : $ResolveBranch<$O, [$Else]>
 				}
 			>
 		}

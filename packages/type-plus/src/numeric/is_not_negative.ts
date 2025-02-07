@@ -53,9 +53,9 @@ export namespace IsNotNegative {
 	export type $Branch<$O extends $Options = {}> = $Selection.Branch<$O>
 	export type _Negative<T, U extends number | bigint, $O extends IsNotNegative.$Options> = T extends U
 		? `${T}` extends `-${string}`
-			? $ResolveBranch<$O, [$Else], T>
+			? $ResolveBranch<$O, [$Else]>
 			: U extends T
-				? $ResolveBranch<$O, [$Then], T> | $ResolveBranch<$O, [$Else], T>
+				? $ResolveBranch<$O, [$Then], T> | $ResolveBranch<$O, [$Else]>
 				: $ResolveBranch<$O, [$Then], T>
 		: never
 }

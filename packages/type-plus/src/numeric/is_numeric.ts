@@ -27,7 +27,7 @@ export type IsNumeric<T, $O extends IsNumeric.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<$O, [$Else], T>
+			$then: $ResolveBranch<$O, [$Else]>
 			$else: IsNumeric.$<T, $O>
 		}
 	>

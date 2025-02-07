@@ -66,7 +66,7 @@ export type IsUndefined<T, $O extends IsUndefined.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<$O, [$Else], T>
+			$then: $ResolveBranch<$O, [$Else]>
 			$else: IsUndefined.$<T, $O>
 		}
 	>

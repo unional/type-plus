@@ -67,7 +67,7 @@ export type IsNotVoid<T, $O extends IsNotVoid.$Options = {}> = $Special<
 		$O,
 		{
 			$then: $ResolveBranch<$O, [$Then], T>
-			$void: $ResolveBranch<$O, [$Void, $Else], T>
+			$void: $ResolveBranch<$O, [$Void, $Else]>
 			$else: IsNotVoid.$<T, $O>
 		}
 	>

@@ -97,12 +97,12 @@ export namespace IsNotArray {
 				{
 					$then: T extends readonly any[]
 						? number extends T['length']
-							? $ResolveBranch<$O, [$Else], T>
+							? $ResolveBranch<$O, [$Else]>
 							: $ResolveBranch<$O, [$Then], T>
 						: $ResolveBranch<$O, [$Then], T>
 					$else: [T] extends [readonly any[]]
 						? number extends T['length']
-							? $ResolveBranch<$O, [$Else], T>
+							? $ResolveBranch<$O, [$Else]>
 							: $ResolveBranch<$O, [$Then], T>
 						: $ResolveBranch<$O, [$Then], T>
 				}
@@ -110,8 +110,8 @@ export namespace IsNotArray {
 			$else: $Distributive.Parse<
 				$O,
 				{
-					$then: T extends readonly any[] ? $ResolveBranch<$O, [$Else], T> : $ResolveBranch<$O, [$Then], T>
-					$else: [T] extends readonly [any[]] ? $ResolveBranch<$O, [$Else], T> : $ResolveBranch<$O, [$Then], T>
+					$then: T extends readonly any[] ? $ResolveBranch<$O, [$Else]> : $ResolveBranch<$O, [$Then], T>
+					$else: [T] extends readonly [any[]] ? $ResolveBranch<$O, [$Else]> : $ResolveBranch<$O, [$Then], T>
 				}
 			>
 		}

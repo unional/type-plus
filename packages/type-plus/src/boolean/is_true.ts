@@ -69,7 +69,7 @@ export type IsTrue<T, $O extends IsTrue.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<$O, [$Else], T>
+			$then: $ResolveBranch<$O, [$Else]>
 			$else: IsTrue.$<T, $O>
 		}
 	>
