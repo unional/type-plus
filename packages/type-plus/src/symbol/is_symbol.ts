@@ -1,6 +1,6 @@
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else } from '../$type/branch/$selection.js'
-import type { $Equality } from '../$type/equal/$equal.js'
+import type { $Equal } from '../$type/equal/$equal.js'
 import type { $Special } from '../$type/special/$special.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { Assignable } from '../predicates/assignable.js'
@@ -65,8 +65,8 @@ export type IsSymbol<T, $O extends IsSymbol.$Options = {}> = $Special<
 >
 
 export namespace IsSymbol {
-	export type $Options = $Equality.$Options
-	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
+	export type $Options = $Equal.$Options
+	export type $Branch<$O extends $Options = {}> = $Equal.$Branch<$O>
 
 	/**
 	 * 🧰 *type util*

@@ -1,6 +1,6 @@
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
-import type { $Equality } from '../$type/equal/$equal.js'
+import type { $Equal } from '../$type/equal/$equal.js'
 import type { $Special } from '../$type/special/$special.js'
 import type { $Void } from '../$type/special/$void.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
@@ -70,8 +70,8 @@ export type IsVoid<T, $O extends IsVoid.$Options = {}> = $Special<
 >
 
 export namespace IsVoid {
-	export type $Options = $Equality.$Options
-	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
+	export type $Options = $Equal.$Options
+	export type $Branch<$O extends $Options = {}> = $Equal.$Branch<$O>
 
 	/**
 	 * 🧰 *type util*

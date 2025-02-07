@@ -1,7 +1,7 @@
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
-import type { $Equality } from '../$type/equal/$equal.js'
+import type { $Equal } from '../$type/equal/$equal.js'
 import type { $Special } from '../$type/special/$special.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { Assignable } from '../predicates/assignable.js'
@@ -70,8 +70,8 @@ export type IsNumberLiteral<T, $O extends IsNumberLiteral.$Options = {}> = $Spec
 >
 
 export namespace IsNumberLiteral {
-	export type $Options = $Equality.$Options
-	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
+	export type $Options = $Equal.$Options
+	export type $Branch<$O extends $Options = {}> = $Equal.$Branch<$O>
 
 	/**
 	 * 🧰 *type util*

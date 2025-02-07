@@ -1,6 +1,6 @@
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
-import type { $Equality } from '../$type/equal/$equal.js'
+import type { $Equal } from '../$type/equal/$equal.js'
 import type { IsBigint } from '../bigint/is_bigint.js'
 import type { IsNumber } from '../number/is_number.js'
 
@@ -38,8 +38,8 @@ export type IsNotPositive<T, $O extends IsNotPositive.$Options = {}> = IsBigint<
 	: never
 
 export namespace IsNotPositive {
-	export type $Options = $Equality.$Options
-	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
+	export type $Options = $Equal.$Options
+	export type $Branch<$O extends $Options = {}> = $Equal.$Branch<$O>
 	export type _Negative<T, U extends number | bigint, $O extends IsNotPositive.$Options> = T extends U
 		? `${T}` extends `-${string}`
 			? $ResolveBranch<T, $O, [$Then]>
