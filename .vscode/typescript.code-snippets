@@ -62,4 +62,12 @@
 		],
 		"description": "Predicate"
 	},
+	"filter": {
+		"scope": "typescript",
+		"prefix": "@filter",
+		"body": [
+			"🌪️ **filter**"
+		],
+		"description": "filter"
+	},
 }

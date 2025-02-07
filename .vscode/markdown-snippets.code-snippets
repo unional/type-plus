@@ -71,6 +71,14 @@
 		],
 		"description": "predicate"
 	},
+	"filter": {
+		"scope": "markdown",
+		"prefix": "@filter",
+		"body": [
+			"🌪️ **filter**"
+		],
+		"description": "filter"
+	},
 	"customize": {
 		"scope": "markdown",
 		"prefix": "@customize",
