@@ -1,6 +1,7 @@
 import { it } from '@jest/globals'
 
-import { isType } from '../index.js'
+import { describe } from 'node:test'
+import { isType, testType } from '../index.js'
 import type { Properties } from './properties.js'
 
 it('returns never for non object types except unknown and any', () => {
@@ -91,4 +92,27 @@ it('returns the properties of classes, including methods', () => {
 
 	isType.equal<true, Properties<Foo>, { f: number; foo(): void }>()
 	isType.equal<true, Properties<Boo>, { f: number; b: number; boo(): void; foo(): void }>()
+})
+
+describe('intersection', () => {
+	it('combines properties of disjoint types', () => {
+		type T = { a: number }
+		type U = { c: boolean }
+		testType.equal<Properties<T & U>, { a: number; c: boolean }>(true)
+	})
+	it('combines properties of overlapping types', () => {
+		type T = { a: number; b: string }
+		type U = { a: number; c: boolean }
+		testType.equal<Properties<T & U>, { a: number; b: string; c: boolean }>(true)
+	})
+	it('combines properties of overlapping types with optional properties', () => {
+		type T = { a: number; b?: string }
+		type U = { a: number; c?: boolean }
+		testType.equal<Properties<T & U>, { a: number; b?: string; c?: boolean }>(true)
+	})
+	it('combines properties of overlapping types with different property types', () => {
+		type T = { a: number; b: string }
+		type U = { a: number | string; c: boolean }
+		testType.equal<Properties<T & U>, { a: number; b: string; c: boolean }>(true)
+	})
 })

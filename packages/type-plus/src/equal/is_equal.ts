@@ -29,6 +29,8 @@ type BothAny<A, B, Both, One, None> = And<IsAny<A>, IsAny<B>, Both, Or<IsAny<A>,
  * Note that intersection type checks only works at first level.
  * It cannot be check recursively,
  * or else will run into infinite recursion if the type includes recursive types.
+ *
+ * @deprecated 💀 **deprecated since 8.0.0**: use `Equal` instead.
  */
 export type IsEqual<A, B, Then = true, Else = false> = [A, B] extends [B, A]
 	? BothNever<
@@ -84,6 +86,8 @@ export type IsEqual<A, B, Then = true, Else = false> = [A, B] extends [B, A]
  * Note that intersection type checks only works at first level.
  * It cannot be check recursively,
  * or else will run into infinite recursion if the type includes recursive types.
+ *
+ * @deprecated 💀 **deprecated since 8.0.0**: use `Equal` instead.
  */
 export type IsNotEqual<A, B, Then = true, Else = false> = IsEqual<A, B, Else, Then>
 

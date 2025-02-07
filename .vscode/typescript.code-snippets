@@ -45,5 +45,13 @@
 			"📌 **exact**"
 		],
 		"description": "Exact"
-	}
+	},
+	"branching": {
+		"scope": "typescript",
+		"prefix": "@branching",
+		"body": [
+			"🔱 **branching**"
+		],
+		"description": "Branching"
+	},
 }
