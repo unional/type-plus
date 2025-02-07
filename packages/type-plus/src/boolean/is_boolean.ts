@@ -4,7 +4,7 @@ import type { $ResolveOptions } from '../$type/$resolve_options.js'
 import type { $SpecialType } from '../$type/$special_type.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
-import type { $IsDistributive } from '../$type/distributive/$is_distributive.js'
+import type { $Distributive } from '../$type/distributive/$distributive.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { Assignable } from '../predicates/assignable.js'
 
@@ -82,7 +82,7 @@ export namespace IsBoolean {
 	 * It does not check against special types.
 	 */
 	export type $<T, $O extends $UtilOptions> = $ResolveOptions<[$O['exact'], $ExactDefault]> extends true
-		? $IsDistributive<$O, { $then: _SD<T, $O>; $else: _N<T, $O> }>
+		? $Distributive.Parse<$O, { $then: _SD<T, $O>; $else: _N<T, $O> }>
 		: Assignable.$<T, boolean, $O>
 	export type $UtilOptions = Assignable.$UtilOptions & $ExactOptions
 

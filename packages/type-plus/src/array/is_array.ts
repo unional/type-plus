@@ -3,7 +3,7 @@ import type { $ExactOptions, $IsExact } from '../$type/$exact.js'
 import type { $SpecialType } from '../$type/$special_type.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
-import type { $IsDistributive } from '../$type/distributive/$is_distributive.js'
+import type { $Distributive } from '../$type/distributive/$distributive.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { Assignable } from '../predicates/assignable.js'
 
@@ -86,7 +86,7 @@ export namespace IsArray {
 	export type $<T, $O extends $UtilOptions> = $IsExact<
 		$O,
 		{
-			$then: $IsDistributive<
+			$then: $Distributive.Parse<
 				$O,
 				{
 					$then: T extends readonly any[]
@@ -101,7 +101,7 @@ export namespace IsArray {
 						: $ResolveBranch<T, $O, [$Else]>
 				}
 			>
-			$else: $IsDistributive<
+			$else: $Distributive.Parse<
 				$O,
 				{
 					$then: T extends readonly any[] ? $ResolveBranch<T, $O, [$Then]> : $ResolveBranch<T, $O, [$Else]>

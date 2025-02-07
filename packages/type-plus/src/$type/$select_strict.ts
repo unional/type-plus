@@ -7,7 +7,6 @@ import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './bran
 import type { $SelectionOptions } from './branch/$selection_options.js'
 import type { $Unknown } from './branch/$unknown.js'
 import type { $Distributive } from './distributive/$distributive.js'
-import type { $IsDistributive } from './distributive/$is_distributive.js'
 
 /**
  * 🎭 *predicate*
@@ -74,7 +73,7 @@ export namespace $SelectStrict {
 	export type $Options = $SelectionOptions & $Distributive.Options & $InputOptions<$Any | $Unknown | $Never>
 	export type $Default = $SelectionPredicate & $Distributive.Default
 	export type $Branch = $SelectionBranch & $Distributive.Default
-	export type _Else<T, U, $O extends $SelectStrict.$Options> = $IsDistributive<$O> extends true
+	export type _Else<T, U, $O extends $SelectStrict.$Options> = $Distributive.Parse<$O> extends true
 		? _D<T, U, $O>
 		: _N<T, U, $O>
 	export type _D<T, U, $O extends $SelectStrict.$Options> = T extends U

@@ -8,7 +8,6 @@ import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './bran
 import type { $SelectionOptions } from './branch/$selection_options.js'
 import type { $Unknown } from './branch/$unknown.js'
 import type { $Distributive } from './distributive/$distributive.js'
-import type { $IsDistributive } from './distributive/$is_distributive.js'
 
 /**
  * 🎭 *predicate*
@@ -78,7 +77,7 @@ export namespace $Select {
 		$ExactOptions
 	export type $Default = $SelectionPredicate & $Distributive.Default
 	export type $Branch<$O extends $Distributive.Options = $Distributive.Default> = $SelectionBranch & $O
-	export type _<T, U, $O extends $Select.$Options> = $IsDistributive<$O> extends true ? _D<T, U, $O> : _N<T, U, $O>
+	export type _<T, U, $O extends $Select.$Options> = $Distributive.Parse<$O> extends true ? _D<T, U, $O> : _N<T, U, $O>
 
 	export type _D<T, U, $O extends $Select.$Options> = T extends U
 		? $ResolveBranch<T, $O, [$Then]>
