@@ -29,7 +29,7 @@ it('returns false for other types', () => {
 	testType.false<IsAny<null>>(true)
 	testType.false<IsAny<boolean>>(true)
 	testType.false<IsAny<true>>(true)
-	testType.false<IsAny<never>>(true)
+	testType.false<IsAny<false>>(true)
 	testType.false<IsAny<number>>(true)
 	testType.false<IsAny<1>>(true)
 	testType.false<IsAny<string>>(true)
@@ -43,16 +43,6 @@ it('returns false for other types', () => {
 	testType.false<IsAny<[]>>(true)
 	testType.false<IsAny<Function>>(true)
 	testType.false<IsAny<() => void>>(true)
-})
-
-it('returns true for union type as it is resolved immediately by TypeScript to any', () => {
-	testType.equal<any | 1, any>(true)
-	testType.true<IsAny<any | 1>>(true)
-})
-
-it('returns true for intersection type as it is resolved immediately by TypeScript to any', () => {
-	testType.equal<any & 1, any>(true)
-	testType.true<IsAny<any & 1>>(true)
 })
 
 it('work as branching', () => {

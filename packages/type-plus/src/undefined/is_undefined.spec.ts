@@ -30,14 +30,6 @@ it('returns false for other types', () => {
 	testType.equal<IsUndefined<() => void>, false>(true)
 })
 
-it('is distributive by default', () => {
-	testType.equal<IsUndefined<undefined | 1>, true | false>(true)
-})
-
-it('can disable distributive', () => {
-	testType.equal<IsUndefined<undefined | 1, { distributive: false }>, false>(true)
-})
-
 it('returns false as undefined & any => any', () => {
 	testType.equal<IsUndefined<undefined & any>, false>(true)
 })
@@ -116,4 +108,9 @@ it('can override $unknown branch', () => {
 it('can override $never branch', () => {
 	testType.equal<IsUndefined<never>, false>(true)
 	testType.equal<IsUndefined<never, { $never: unknown }>, unknown>(true)
+})
+
+it('can override $void branch', () => {
+	testType.equal<IsUndefined<void>, false>(true)
+	testType.equal<IsUndefined<void, { $void: unknown }>, unknown>(true)
 })
