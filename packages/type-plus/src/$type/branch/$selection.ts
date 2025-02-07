@@ -56,6 +56,11 @@ export namespace $Selection {
 		$else?: unknown
 	}
 
+	export type $BaseOptions = {
+		$then?: unknown
+		$else?: unknown
+	}
+
 	/**
 	 * Invert the selection branch.
 	 *

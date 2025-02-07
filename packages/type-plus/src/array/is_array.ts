@@ -1,10 +1,14 @@
+import type { $InputOptions } from '../$type/branch/$input_options.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
-import type { $Else, $Then } from '../$type/branch/$selection.js'
+import type { $Else, $Selection, $Then } from '../$type/branch/$selection.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
 import type { $Exact } from '../$type/exact/$exact.js'
+import type { $Any } from '../$type/special/$any.js'
+import type { $Never } from '../$type/special/$never.js'
 import type { $Special } from '../$type/special/$special.js'
+import type { $Unknown } from '../$type/special/$unknown.js'
+import type { $Void } from '../$type/special/$void.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
-import type { Equal } from '../equal/equal.js'
 import type { Assignable } from '../predicates/assignable.js'
 
 /**
@@ -72,8 +76,11 @@ export type IsArray<T, $O extends IsArray.$Options = {}> = $Special<
 >
 
 export namespace IsArray {
-	export type $Options = Equal.$Options & $Exact.Options
-	export type $Branch<$O extends $Options = {}> = Equal.$Branch<$O>
+	export type $Options = $Selection.Options &
+		$Distributive.Options &
+		$Exact.Options &
+		$InputOptions<$Any | $Unknown | $Never | $Void>
+	export type $Branch<$O extends $Options = {}> = $Selection.Branch<$O>
 
 	/**
 	 * 🧰 *type util*
