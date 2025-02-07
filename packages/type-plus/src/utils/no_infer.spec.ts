@@ -7,8 +7,8 @@
 // export type NoInfer<T> = T extends infer S ? S : never;
 
 import { it } from '@jest/globals'
-import { testType } from '../../index.js'
-import type { UnionToIntersection } from '../../union/union_to_intersection.js'
+import { testType } from '../index.js'
+import type { UnionToIntersection } from '../union/union_to_intersection.js'
 import type { NoInfer } from './no_infer.js'
 
 function id<T>(v: T): T {
