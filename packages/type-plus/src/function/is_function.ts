@@ -1,4 +1,9 @@
+import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
+import type { $Else } from '../$type/branch/$selection.js'
+import type { $Special } from '../$type/special/$special.js'
+import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { Equal } from '../equal/equal.js'
+import type { Assignable } from '../predicates/assignable.js'
 
 /**
  * 🎭 *predicate*
@@ -53,10 +58,28 @@ import type { Equal } from '../equal/equal.js'
  * type R = IsFunction<string, $SelectionBranch> // $Else
  * ```
  */
-export type IsFunction<T, $O extends IsFunction.$Options = {}> = Equal<T, Function, $O>
+export type IsFunction<T, $O extends IsFunction.$Options = {}> = $Special<
+	T,
+	$MergeOptions<
+		$O,
+		{
+			$then: $ResolveBranch<T, $O, [$Else]>
+			$else: IsFunction.$<T, $O>
+		}
+	>
+>
 
 export namespace IsFunction {
 	export type $Options = Equal.$Options
 	export type $Default = Equal.$Default
 	export type $Branch = Equal.$Branch
+	/**
+	 * 🧰 *type util*
+	 *
+	 * Validate if `T` is `Function`.
+	 *
+	 * This is a type util for building custom types.
+	 * It does not check against special types.
+	 */
+	export type $<T, $O extends Assignable.$UtilOptions> = Assignable.$<T, Function, $O>
 }
