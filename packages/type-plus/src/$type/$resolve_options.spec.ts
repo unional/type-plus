@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Never, type $ResolveOptions, type $Then, testType } from '../../index.js'
+import { type $Never, type $ResolveOptions, type $Then, testType } from '../index.js'
 
 // alternative implementation
 // export type $ResolveOptions<Values extends unknown[]> =
