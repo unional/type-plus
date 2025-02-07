@@ -2,7 +2,7 @@ import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Then } from '../$type/branch/$selection.js'
 import type { $Special } from '../$type/special/$special.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
-import type { $Equal } from '../equal/equal.js'
+import type { Equal } from '../equal/equal.js'
 import type { NotAssignable } from '../predicates/not_assignable.js'
 
 /**
@@ -63,8 +63,8 @@ export type IsNotSymbol<T, $O extends IsNotSymbol.$Options = {}> = $Special<
 >
 
 export namespace IsNotSymbol {
-	export type $Options = $Equal.$Options
-	export type $Branch<$O extends $Options = {}> = $Equal.$Branch<$O>
+	export type $Options = Equal.$Options
+	export type $Branch<$O extends $Options = {}> = Equal.$Branch<$O>
 
 	/**
 	 * 🧰 *type util*

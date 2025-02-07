@@ -3,7 +3,7 @@ import type { $Else, $Then } from '../$type/branch/$selection.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
 import type { $Special } from '../$type/special/$special.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
-import type { $Equal } from '../equal/equal.js'
+import type { Equal } from '../equal/equal.js'
 import type { Assignable } from '../predicates/assignable.js'
 import type { _StringType } from './_string_type.js'
 
@@ -66,8 +66,8 @@ export type IsTemplateLiteral<T, $O extends IsTemplateLiteral.$Options = {}> = $
 >
 
 export namespace IsTemplateLiteral {
-	export type $Options = $Equal.$Options
-	export type $Branch<$O extends $Options = {}> = $Equal.$Branch<$O>
+	export type $Options = Equal.$Options
+	export type $Branch<$O extends $Options = {}> = Equal.$Branch<$O>
 
 	export type $UtilOptions = Assignable.$UtilOptions
 

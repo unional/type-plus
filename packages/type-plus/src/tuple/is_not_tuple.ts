@@ -3,7 +3,7 @@ import type { $Else, $Then } from '../$type/branch/$selection.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
 import type { $Special } from '../$type/special/$special.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
-import type { $Equal } from '../equal/equal.js'
+import type { Equal } from '../equal/equal.js'
 import type { NotAssignable } from '../predicates/not_assignable.js'
 
 /**
@@ -67,8 +67,8 @@ export type IsNotTuple<T, $O extends IsNotTuple.$Options = {}> = $Special<
 >
 
 export namespace IsNotTuple {
-	export type $Options = $Equal.$Options
-	export type $Branch<$O extends $Options = {}> = $Equal.$Branch<$O>
+	export type $Options = Equal.$Options
+	export type $Branch<$O extends $Options = {}> = Equal.$Branch<$O>
 	// export type $Default = $Select.$Default
 
 	/**
