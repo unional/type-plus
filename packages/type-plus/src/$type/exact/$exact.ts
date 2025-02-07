@@ -23,7 +23,7 @@ export namespace $Exact {
 	 * Parse the options for `exact`.
 	 */
 	export type Parse<$Options extends Options, $O extends $InputOptions<$Then | $Else> = {}> = $ResolveOptions<
-		[$Options['exact'], Default]
+		[$Options['exact'], Default['exact']]
 	> extends true
 		? '$then' extends keyof $O
 			? $O['$then']
