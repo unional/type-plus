@@ -12,3 +12,4 @@
 {"rule":"EN_A_VS_AN","sentence":"^\\Q🚦\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q: assert the \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is not an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
 {"rule":"EN_UNPAIRED_BRACKETS","sentence":"^\\QTransformation type (:alembic:) transform the input type from one set to another.\\E$"}
 {"rule":"EN_US_SIMPLE_REPLACE","sentence":"^\\Q⚗️ :alembic:\n🔄 :arrows_counterclockwise:\n🚛 :articulated_lorry:\n➰ :curly_loop:\n💱 :currency_exchange:\n🌀 :cyclone:\n💠 :diamond_shape_with_a_dot_inside:\n➿ :loop:\n🪄 :magic_wand:\n🔁 :repeat:\n🔀 :twisted_rightwards_arrows:\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[Just Code: I failed]failed-type-url\\E$"}
