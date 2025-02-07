@@ -29,56 +29,60 @@ export type Merge<
 > = Or<
 	IsAny<A>,
 	IsAny<B>,
-	any,
-	Or<
-		IsNever<A>,
-		IsNever<B>,
-		never,
-		IsDisjoint<A, B> extends true
-			? A & B
-			: [keyof A, keyof B] extends [infer KA extends KeyTypes, infer KB extends KeyTypes]
-				? IsLiteral<KA> extends true
-					? IsLiteral<KB> extends true
-						? [OptionalKeys<A>, OptionalKeys<B>] extends [infer PKA extends KeyTypes, infer PKB extends KeyTypes]
-							? // property is optional when both A[k] and B[k] are optional
-								(IsNotNever<PKA & PKB, { selection: 'filter' }> extends infer R extends KeyTypes
-									? { [k in R]?: A[k] | B[k] }
-									: unknown) &
-									// properties only in A excluding partials is A[k]
-									(IsNotNever<Exclude<KA, PKA | KB>, { selection: 'filter' }> extends infer R extends KeyTypes
+	{
+		$then: any
+		$else: Or<
+			IsNever<A>,
+			IsNever<B>,
+			{
+				$then: never
+				$else: IsDisjoint<A, B> extends true
+					? A & B
+					: [keyof A, keyof B] extends [infer KA extends KeyTypes, infer KB extends KeyTypes]
+						? IsLiteral<KA> extends true
+							? IsLiteral<KB> extends true
+								? [OptionalKeys<A>, OptionalKeys<B>] extends [infer PKA extends KeyTypes, infer PKB extends KeyTypes]
+									? // property is optional when both A[k] and B[k] are optional
+										(IsNotNever<PKA & PKB, { selection: 'filter' }> extends infer R extends KeyTypes
+											? { [k in R]?: A[k] | B[k] }
+											: unknown) &
+											// properties only in A excluding partials is A[k]
+											(IsNotNever<Exclude<KA, PKA | KB>, { selection: 'filter' }> extends infer R extends KeyTypes
+												? { [k in R]: A[k] }
+												: unknown) &
+											// properties only in B excluding partials is B[k]
+											(IsNotNever<Exclude<KB, PKB>, { selection: 'filter' }> extends infer R extends KeyTypes
+												? { [k in R]: B[k] }
+												: unknown) &
+											// properties is required in A but optional in B is unionized without undefined
+											(IsNotNever<Exclude<KA & PKB, PKA>, { selection: 'filter' }> extends infer R extends KeyTypes
+												? { [k in R]: A[k] | Exclude<B[k], undefined> }
+												: unknown)
+									: never
+								: (IsNotNever<Exclude<KA, KA & KB>, { selection: 'filter' }> extends infer R extends KeyTypes
 										? { [k in R]: A[k] }
 										: unknown) &
-									// properties only in B excluding partials is B[k]
-									(IsNotNever<Exclude<KB, PKB>, { selection: 'filter' }> extends infer R extends KeyTypes
-										? { [k in R]: B[k] }
+										(IsNotNever<Exclude<KB, KA & KB>, { selection: 'filter' }> extends infer R extends KeyTypes
+											? { [k in R]: B[k] }
+											: unknown) &
+										(IsNotNever<KA & KB, { selection: 'filter' }> extends infer R extends KeyTypes
+											? { [k in R]: A[k] | B[k] }
+											: unknown)
+							: IsLiteral<KB> extends true
+								? { [k in Exclude<KA, KB>]: A[k] } & { [k in keyof B]: B[k] }
+								: (IsNotNever<Exclude<KA, KA & KB>, { selection: 'filter' }> extends infer R extends KeyTypes
+										? { [k in R]: A[k] }
 										: unknown) &
-									// properties is required in A but optional in B is unionized without undefined
-									(IsNotNever<Exclude<KA & PKB, PKA>, { selection: 'filter' }> extends infer R extends KeyTypes
-										? { [k in R]: A[k] | Exclude<B[k], undefined> }
-										: unknown)
-							: never
-						: (IsNotNever<Exclude<KA, KA & KB>, { selection: 'filter' }> extends infer R extends KeyTypes
-								? { [k in R]: A[k] }
-								: unknown) &
-								(IsNotNever<Exclude<KB, KA & KB>, { selection: 'filter' }> extends infer R extends KeyTypes
-									? { [k in R]: B[k] }
-									: unknown) &
-								(IsNotNever<KA & KB, { selection: 'filter' }> extends infer R extends KeyTypes
-									? { [k in R]: A[k] | B[k] }
-									: unknown)
-					: IsLiteral<KB> extends true
-						? { [k in Exclude<KA, KB>]: A[k] } & { [k in keyof B]: B[k] }
-						: (IsNotNever<Exclude<KA, KA & KB>, { selection: 'filter' }> extends infer R extends KeyTypes
-								? { [k in R]: A[k] }
-								: unknown) &
-								(IsNotNever<Exclude<KB, KA & KB>, { selection: 'filter' }> extends infer R extends KeyTypes
-									? { [k in R]: B[k] }
-									: unknown) &
-								(IsNotNever<KA & KB, { selection: 'filter' }> extends infer R extends KeyTypes
-									? { [k in R]: A[k] | B[k] }
-									: unknown)
-				: never
-	>
+										(IsNotNever<Exclude<KB, KA & KB>, { selection: 'filter' }> extends infer R extends KeyTypes
+											? { [k in R]: B[k] }
+											: unknown) &
+										(IsNotNever<KA & KB, { selection: 'filter' }> extends infer R extends KeyTypes
+											? { [k in R]: A[k] | B[k] }
+											: unknown)
+						: never
+			}
+		>
+	}
 >
 
 export namespace Merge {

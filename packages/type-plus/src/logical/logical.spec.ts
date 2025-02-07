@@ -1,6 +1,6 @@
 import { describe, test } from '@jest/globals'
 
-import { type And, type IsEqual, type Not, type Or, type Xor, testType } from '../index.js'
+import { type And, type Not, type Or, type Xor, testType } from '../index.js'
 
 describe('And<A,B>', () => {
 	test('basic', () => {
@@ -10,11 +10,11 @@ describe('And<A,B>', () => {
 		testType.false<And<false, false>>(true)
 	})
 	test('boolean special handling', () => {
-		testType.true<IsEqual<And<boolean, true>, boolean>>(true)
+		testType.equal<And<boolean, true>, boolean>(true)
 		testType.false<And<boolean, false>>(true)
-		testType.true<IsEqual<And<true, boolean>, boolean>>(true)
+		testType.equal<And<true, boolean>, boolean>(true)
 		testType.false<And<false, boolean>>(true)
-		testType.true<IsEqual<And<boolean, boolean>, boolean>>(true)
+		testType.equal<And<boolean, boolean>, boolean>(true)
 	})
 })
 
@@ -27,10 +27,10 @@ describe('Or<A,B>', () => {
 	})
 	test('boolean special handling', () => {
 		testType.true<Or<boolean, true>>(true)
-		testType.true<IsEqual<Or<boolean, false>, boolean>>(true)
+		testType.equal<Or<boolean, false>, boolean>(true)
 		testType.true<Or<true, boolean>>(true)
-		testType.true<IsEqual<Or<false, boolean>, boolean>>(true)
-		testType.true<IsEqual<Or<boolean, boolean>, boolean>>(true)
+		testType.equal<Or<false, boolean>, boolean>(true)
+		testType.equal<Or<boolean, boolean>, boolean>(true)
 	})
 })
 
@@ -42,11 +42,11 @@ describe('Xor<A,B>', () => {
 		testType.false<Xor<false, false>>(true)
 	})
 	test('boolean special handling', () => {
-		testType.true<IsEqual<Xor<boolean, true>, boolean>>(true)
-		testType.true<IsEqual<Xor<boolean, false>, boolean>>(true)
-		testType.true<IsEqual<Xor<true, boolean>, boolean>>(true)
-		testType.true<IsEqual<Xor<false, boolean>, boolean>>(true)
-		testType.true<IsEqual<Xor<boolean, boolean>, boolean>>(true)
+		testType.equal<Xor<boolean, true>, boolean>(true)
+		testType.equal<Xor<boolean, false>, boolean>(true)
+		testType.equal<Xor<true, boolean>, boolean>(true)
+		testType.equal<Xor<false, boolean>, boolean>(true)
+		testType.equal<Xor<boolean, boolean>, boolean>(true)
 	})
 })
 
@@ -56,6 +56,6 @@ describe('Not<X>', () => {
 		testType.false<Not<true>>(true)
 	})
 	test('boolean special handling', () => {
-		testType.true<IsEqual<Not<boolean>, boolean>>(true)
+		testType.equal<Not<boolean>, boolean>(true)
 	})
 })
