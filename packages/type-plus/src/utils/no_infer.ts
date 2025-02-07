@@ -1,6 +1,6 @@
 import type { $Selection } from '../$type/branch/$selection.js'
+import type { Or } from '../logical/logical.js'
 import type { IsNull } from '../null/is_null.js'
-import type { Or } from '../predicates/logical.js'
 import type { IsUndefined } from '../undefined/is_undefined.js'
 
 /**

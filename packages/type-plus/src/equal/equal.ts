@@ -8,11 +8,11 @@ import type { $Special } from '../$type/special/$special.js'
 import type { $Unknown } from '../$type/special/$unknown.js'
 import type { $Void } from '../$type/special/$void.js'
 import type { IsAny } from '../any/is_any.js'
+import type { And, Or } from '../logical/logical.js'
 import type { IsNever } from '../never/is_never.js'
 import type { IsObject } from '../object/is_object.js'
 import type { Properties } from '../object/properties.js'
 import type { Assignable } from '../predicates/assignable.js'
-import type { And, Or } from '../predicates/logical.js'
 import type { IsEqual } from './is_equal.js'
 
 /**
