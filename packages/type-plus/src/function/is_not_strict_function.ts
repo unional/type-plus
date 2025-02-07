@@ -1,7 +1,7 @@
 import type { $ResolveOptions } from '../$type/$resolve_options.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
-import type { $SelectInvertStrict } from '../$type/equal/$select_invert_strict.js'
+import type { $SelectInvertStrict } from '../$type/equal/$equal.js'
 import type { $Any } from '../$type/special/$any.js'
 import type { $Never } from '../$type/special/$never.js'
 import type { $Special } from '../$type/special/$special.js'
