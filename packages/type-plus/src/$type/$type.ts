@@ -27,8 +27,8 @@ declare const _$type: '_$type'
 declare const _$value: '_$value'
 
 export namespace $Type {
-	export type _$type = '_$type'
-	export type _$value = '_$value'
+	export type $TypeKey = '_$type'
+	export type $ValueKey = '_$value'
 
 	export type $<T extends string, V = unknown> = {
 		[_$type]: T

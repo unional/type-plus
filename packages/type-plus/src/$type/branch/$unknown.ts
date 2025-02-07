@@ -1,57 +1,32 @@
 import type { $Branch } from './$branch.js'
 
 /**
- * 🧰 *type util*
- *
- * A special branch for `unknown` check to represent the value is `unknown`.
+ * Branch selector for type `unknown`.
  */
 export type $Unknown = $Branch<'$unknown'>
 
 export namespace $Unknown {
 	/**
-	 * 🧰 *type util*
-	 *
-	 * Options for specifically handling the type `unknown`.
+	 * Options to specifically handles the `unknown` type.
 	 *
 	 * @example
 	 * ```ts
-	 * type YourType<
-	 *   T,
-	 *   $Options extends YourType.$Options = YourType.$Default
-	 * > = ...
-	 *
-	 * namespace YourType {
-	 *   export type $Options = $Unknown.$Options
-	 *   export type $Branch = $Unknown.$Branch
-	 * }
+	 * type YourType<T, $Options extends $Unknown.$Options> = ...
 	 * ```
 	 */
-	export type $Options = {
-		$unknown?: unknown
-	}
+	export type $Options = { $unknown?: unknown }
 
 	/**
-	 * 🧰 *type util*
-	 *
-	 * Branch option for specifically handling the type `unknown`.
+	 * Branch option to specifically handles the `unknown` type.
 	 *
 	 * Use this to finely customize the behavior of your type.
 	 *
+	 * @example
 	 * ```ts
-	 * type YourType<
-	 *   T,
-	 *   $Options extends YourType.$Options = YourType.$Default
-	 * > = ...
+	 * type YourType<T, $Options $Unknown.$Options> = ...
 	 *
-	 * namespace YourType {
-	 *   export type $Options = $Unknown.$Options
-	 *   export type $Branch = $Unknown.$Branch
-	 * }
-	 *
-	 * type R = YourType<T, YourType.$Branch> extends $Unknown ? HandleUnknown : HandleOthers
+	 * type R = YourType<T, $Unknown.$Branch> extends $Unknown ? HandleUnknown : HandleOthers
 	 * ```
 	 */
-	export type $Branch = {
-		$unknown: $Unknown
-	}
+	export type $Branch = { $unknown: $Unknown }
 }

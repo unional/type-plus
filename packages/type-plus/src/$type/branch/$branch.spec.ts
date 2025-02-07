@@ -4,7 +4,7 @@ import { testType } from '../../index.js'
 
 it('create a branch type with property name', () => {
 	type $Then = $Branch<'$then'>
-	testType.equal<$Then[$Type._$value], '$then'>(true)
+	testType.equal<$Then[$Type.$ValueKey], '$then'>(true)
 })
 
 it('the property name must start with $', () => {
