@@ -1,8 +1,10 @@
+const DISABLE = [0]
+
 module.exports = {
 	extends: ['@commitlint/config-conventional'],
 	rules: {
-		'body-max-line-length': [0],
-		'footer-max-line-length': [0],
-		'subject-case': [2, 'never', ['start-case', 'pascal-case']],
+		'body-max-line-length': DISABLE,
+		'footer-max-line-length': DISABLE,
+		'subject-case': DISABLE,
 	},
 }
