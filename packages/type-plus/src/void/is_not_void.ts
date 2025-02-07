@@ -1,8 +1,8 @@
 import type { $Equality } from '../$type/$equality.js'
-import type { $MergeOptions } from '../$type/$merge_options.js'
 import type { $SpecialType } from '../$type/$special_type.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Then } from '../$type/branch/$selection.js'
+import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { NotAssignable } from '../predicates/not_assignable.js'
 import type { IsUndefined } from '../undefined/is_undefined.js'
 
