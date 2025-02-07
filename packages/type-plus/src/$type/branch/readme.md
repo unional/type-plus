@@ -45,8 +45,8 @@ They are primarily used with `$ResolveBranch` inside the type.
 
 ```ts
 export type SomeType<T, $O extends $SelectionOptions> = ...
-	? $ResolveBranch<T, $O, [$Then]>
-	: $ResolveBranch<T, $O, [$Else]>
+	? $ResolveBranch<$O, [$Then], T>
+	: $ResolveBranch<$O, [$Else], T>
 ```
 
 ## Branching Types

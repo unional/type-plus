@@ -69,7 +69,7 @@ export type IsNotBoolean<T, $O extends IsNotBoolean.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Then]>
+			$then: $ResolveBranch<$O, [$Then], T>
 			$else: IsNotBoolean.$<T, $O>
 		}
 	>
@@ -98,18 +98,18 @@ export namespace IsNotBoolean {
 
 	export type _D<T, $O extends $Options> = IsBoolean._DistributeMap<T> extends infer R
 		? ['aBcD' | 'AbCd' | 'abcd'] extends [R]
-			? $ResolveBranch<Exclude<T, boolean>, $O, [$Then | $Else]>
+			? $ResolveBranch<$O, [$Then | $Else], Exclude<T, boolean>>
 			: ['aBcD' | 'AbCd'] extends [R]
-				? $ResolveBranch<T, $O, [$Else]>
+				? $ResolveBranch<$O, [$Else], T>
 				: ['aBcd' | 'Abcd'] extends [R]
-					? $ResolveBranch<T, $O, [$Else]>
-					: $ResolveBranch<T, $O, [$Then]>
+					? $ResolveBranch<$O, [$Else], T>
+					: $ResolveBranch<$O, [$Then], T>
 		: never
 	export type _N<T, $O extends $Options> = [T] extends [boolean]
 		? [T] extends [true]
-			? $ResolveBranch<T, $O, [$Then]>
+			? $ResolveBranch<$O, [$Then], T>
 			: [T] extends [false]
-				? $ResolveBranch<T, $O, [$Then]>
-				: $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Then]>
+				? $ResolveBranch<$O, [$Then], T>
+				: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Then], T>
 }

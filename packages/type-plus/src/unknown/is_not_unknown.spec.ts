@@ -17,14 +17,14 @@ import {
 // 	$O extends IsNotUnknown.$Options = {}
 // > =
 // 	0 extends 1 & T
-// 	? $ResolveBranch<T, $O, [$Any, $Then]>
+// 	? $ResolveBranch<$O, [$Any, $Then],T>
 // 	: (
 // 		[T, never] extends [never, T]
-// 		? $ResolveBranch<T, $O, [$Never, $Then]>
+// 		? $ResolveBranch<$O, [$Never, $Then],T>
 // 		: (
 // 			[T, unknown] extends [unknown, T]
-// 			? $ResolveBranch<T, $O, [$Else]>
-// 			: $ResolveBranch<T, $O, [$Then]>
+// 			? $ResolveBranch<$O, [$Else], T>
+// 			: $ResolveBranch<$O, [$Then], T>
 // 		)
 // 	)
 

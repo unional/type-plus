@@ -64,7 +64,7 @@ export type IsTemplateLiteral<T, $O extends IsTemplateLiteral.$Options = {}> = $
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Else]>
+			$then: $ResolveBranch<$O, [$Else], T>
 			$else: IsTemplateLiteral.$<T, $O>
 		}
 	>
@@ -84,14 +84,14 @@ export namespace IsTemplateLiteral {
 	type _D<T, $O extends $UtilOptions> = T extends string
 		? _StringType<T> extends infer R
 			? R extends 'templateLiteral'
-				? $ResolveBranch<T, $O, [$Then]>
-				: $ResolveBranch<T, $O, [$Else]>
+				? $ResolveBranch<$O, [$Then], T>
+				: $ResolveBranch<$O, [$Else], T>
 			: never
-		: $ResolveBranch<T, $O, [$Else]>
+		: $ResolveBranch<$O, [$Else], T>
 
 	type _N<T, $O extends $UtilOptions> = _D<T, { $then: $Then; $else: $Else }> extends infer R
 		? $Then | $Else extends R
-			? $ResolveBranch<T, $O, [$Else]>
-			: $ResolveBranch<T, $O, [R]>
+			? $ResolveBranch<$O, [$Else], T>
+			: $ResolveBranch<$O, [R], T>
 		: never
 }

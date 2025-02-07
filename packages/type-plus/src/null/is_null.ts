@@ -66,7 +66,7 @@ export type IsNull<T, $O extends IsNull.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Else]>
+			$then: $ResolveBranch<$O, [$Else], T>
 			$else: IsNull.$<T, $O>
 		}
 	>

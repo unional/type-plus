@@ -49,39 +49,39 @@ export type Equal<A, B, $O extends Equal.$Options = {}> = [A, B] extends [B, A]
 	? BothNever<
 			A,
 			B,
-			$ResolveBranch<never, $O, [$Then]>,
-			$ResolveBranch<never, $O, [$Else]>,
+			$ResolveBranch<$O, [$Then]>,
+			$ResolveBranch<$O, [$Else]>,
 			BothAny<
 				A,
 				B,
-				$ResolveBranch<never, $O, [$Then]>,
-				$ResolveBranch<never, $O, [$Else]>,
+				$ResolveBranch<$O, [$Then]>,
+				$ResolveBranch<$O, [$Else]>,
 				Equal.$Same<
 					A,
 					B,
 					{
-						$then: $ResolveBranch<never, $O, [$Then]>
+						$then: $ResolveBranch<$O, [$Then]>
 						$else: [IsObject<A>, IsObject<B>] extends [true, true]
 							? Equal.$Same<
 									Properties<A>,
 									Properties<B>,
 									{
 										$then: [A, B] extends [(...args: infer P1) => any, (...args: infer P2) => any]
-											? IsEqual<P1, P2, $ResolveBranch<never, $O, [$Then]>, $ResolveBranch<never, $O, [$Else]>>
-											: $ResolveBranch<never, $O, [$Then]>
-										$else: $ResolveBranch<never, $O, [$Else]>
+											? IsEqual<P1, P2, $ResolveBranch<$O, [$Then]>, $ResolveBranch<$O, [$Else]>>
+											: $ResolveBranch<$O, [$Then]>
+										$else: $ResolveBranch<$O, [$Else]>
 									}
 								>
 							: // `A` and `B` are narrowed, need to check again.
 								// This is fixed in TS 5.0.2, but keeping it to support older versions.
 								[A, B] extends [B, A]
-								? $ResolveBranch<never, $O, [$Then]>
-								: $ResolveBranch<never, $O, [$Else]>
+								? $ResolveBranch<$O, [$Then]>
+								: $ResolveBranch<$O, [$Else]>
 					}
 				>
 			>
 		>
-	: $ResolveBranch<A, $O, [$Else]>
+	: $ResolveBranch<$O, [$Else], A>
 
 type BothNever<A, B, Both, One, None> = And<
 	IsNever<A>,
@@ -152,12 +152,12 @@ export namespace Equal {
 
 	export type _ExactEqualDistributive<T, U, $O extends $Options> = T extends U
 		? U extends T
-			? $ResolveBranch<T, $O, [$Then]>
-			: $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Else]>
+			? $ResolveBranch<$O, [$Then], T>
+			: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Else], T>
 	export type _ExactEqualNonDistributive<T, U, $O extends $Options> = [T, U] extends [U, T]
-		? $ResolveBranch<T, $O, [$Then]>
-		: $ResolveBranch<T, $O, [$Else]>
+		? $ResolveBranch<$O, [$Then], T>
+		: $ResolveBranch<$O, [$Else], T>
 
 	/**
 	 * 🎭 *predicate*
@@ -254,10 +254,10 @@ export namespace Equal {
 export type $SelectInvert<T, U, $O extends $SelectInvert.$Options = {}> = $Special<
 	T,
 	{
-		$any: $ResolveBranch<T, $O, [$Any, $Then]>
-		$never: $ResolveBranch<T, $O, [$Never, $Then]>
-		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>
-		$void: $ResolveBranch<T, $O, [$Void, $Then]>
+		$any: $ResolveBranch<$O, [$Any, $Then], T>
+		$never: $ResolveBranch<$O, [$Never, $Then], T>
+		$unknown: $ResolveBranch<$O, [$Unknown, $Then], T>
+		$void: $ResolveBranch<$O, [$Void, $Then], T>
 		$else: $Distributive.Parse<$O> extends true ? $SelectInvert._D<T, U, $O> : $SelectInvert._N<T, U, $O>
 	}
 >
@@ -267,11 +267,11 @@ export namespace $SelectInvert {
 	export type $Default = $Selection.Predicate & $Distributive.Default
 	export type $Branch = $Selection.Branch & $Distributive.Default
 	export type _D<T, U, $O extends $SelectInvert.$Options> = T extends U
-		? $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Then]>
+		? $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Then], T>
 	export type _N<T, U, $O extends $SelectInvert.$Options> = [T] extends [U]
-		? $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Then]>
+		? $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Then], T>
 }
 
 /**
@@ -328,9 +328,9 @@ export namespace $SelectInvert {
 export type $SelectInvertStrict<T, U, $O extends $SelectInvertStrict.$Options = {}> = $Special<
 	T,
 	{
-		$any: $ResolveBranch<T, $O, [$Any, $Then]>
-		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>
-		$never: $ResolveBranch<T, $O, [$Never, $Then]>
+		$any: $ResolveBranch<$O, [$Any, $Then], T>
+		$unknown: $ResolveBranch<$O, [$Unknown, $Then], T>
+		$never: $ResolveBranch<$O, [$Never, $Then], T>
 		$else: $Distributive.Parse<$O> extends true ? $SelectInvertStrict._D<T, U, $O> : $SelectInvertStrict._N<T, U, $O>
 	}
 >
@@ -340,9 +340,9 @@ export namespace $SelectInvertStrict {
 	export type $Default = $Selection.Predicate & $Distributive.Default
 	export type $Branch = $Selection.Branch & $Distributive.Default
 	export type _D<T, U, $O extends $SelectInvertStrict.$Options> = T extends U
-		? $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Then]>
+		? $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Then], T>
 	export type _N<T, U, $O extends $SelectInvertStrict.$Options> = [T, U] extends [U, T]
-		? $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Then]>
+		? $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Then], T>
 }

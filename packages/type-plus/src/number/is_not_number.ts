@@ -66,7 +66,7 @@ export type IsNotNumber<T, $O extends IsNotNumber.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Then]>
+			$then: $ResolveBranch<$O, [$Then], T>
 			$else: IsNotNumber.$<T, $O>
 		}
 	>
@@ -93,12 +93,12 @@ export namespace IsNotNumber {
 	export type $UtilOptions = NotAssignable.$UtilOptions & $Exact.Options
 	export type _D<T, $O extends IsNotNumber.$Options> = T extends number & infer U
 		? U extends number
-			? $ResolveBranch<T, $O, [$Then]>
-			: $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Then]>
+			? $ResolveBranch<$O, [$Then], T>
+			: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Then], T>
 	export type _N<T, $O extends IsNotNumber.$Options> = [T] extends [number & infer U]
 		? U extends number
-			? $ResolveBranch<T, $O, [$Then]>
-			: $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Then]>
+			? $ResolveBranch<$O, [$Then], T>
+			: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Then], T>
 }

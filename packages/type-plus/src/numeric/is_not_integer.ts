@@ -33,11 +33,11 @@ export type IsNotInteger<T, $O extends IsNotInteger.$Options = {}> = IsNumber<
 > extends infer R
 	? R extends $Then
 		? number extends T
-			? $ResolveBranch<T, $O, [$Then]> | $ResolveBranch<T, $O, [$Else]>
+			? $ResolveBranch<$O, [$Then], T> | $ResolveBranch<$O, [$Else], T>
 			: T extends number
 				? `${T}` extends `${number}.${number}`
-					? $ResolveBranch<T, $O, [$Then]>
-					: $ResolveBranch<T, $O, [$Else]>
+					? $ResolveBranch<$O, [$Then], T>
+					: $ResolveBranch<$O, [$Else], T>
 				: never
 		: R extends $Else
 			? IsBigint<
@@ -49,8 +49,8 @@ export type IsNotInteger<T, $O extends IsNotInteger.$Options = {}> = IsNumber<
 					}
 				> extends infer R
 				? R extends $Then
-					? $ResolveBranch<T, $O, [$Else]>
-					: $ResolveBranch<Exclude<T, number>, $O, [$Then]>
+					? $ResolveBranch<$O, [$Else], T>
+					: $ResolveBranch<$O, [$Then], Exclude<T, number>>
 				: never
 			: never
 	: never

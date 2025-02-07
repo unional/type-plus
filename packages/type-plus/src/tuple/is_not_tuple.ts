@@ -65,7 +65,7 @@ export type IsNotTuple<T, $O extends IsNotTuple.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Then]>
+			$then: $ResolveBranch<$O, [$Then], T>
 			$else: IsNotTuple.$<T, $O>
 		}
 	>
@@ -93,14 +93,14 @@ export namespace IsNotTuple {
 		{
 			$then: T extends readonly any[]
 				? number extends T['length']
-					? $ResolveBranch<T, $O, [$Then]>
-					: $ResolveBranch<T, $O, [$Else]>
-				: $ResolveBranch<T, $O, [$Then]>
+					? $ResolveBranch<$O, [$Then], T>
+					: $ResolveBranch<$O, [$Else], T>
+				: $ResolveBranch<$O, [$Then], T>
 			$else: [T] extends [readonly any[]]
 				? number extends T['length']
-					? $ResolveBranch<T, $O, [$Then]>
-					: $ResolveBranch<T, $O, [$Else]>
-				: $ResolveBranch<T, $O, [$Then]>
+					? $ResolveBranch<$O, [$Then], T>
+					: $ResolveBranch<$O, [$Else], T>
+				: $ResolveBranch<$O, [$Then], T>
 		}
 	>
 

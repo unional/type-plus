@@ -7,11 +7,11 @@ import { type $Else, type $Never, type $Selection, type $Then, type $Unknown, ty
 // 	T,
 // 	$O extends IsAny.$Options = {}
 // > = 0 extends 1 & T
-// 	? $ResolveBranch<T, $O, [$Then]>
+// 	? $ResolveBranch<$O, [$Then], T>
 // 	: $ResolveBranch<
-// 		T,
 // 		$O,
-// 		[[unknown] extends [T] ? $Unknown : unknown, [never] extends [T] ? $Never : unknown, $Else]
+// 		[[unknown] extends [T] ? $Unknown : unknown, [never] extends [T] ? $Never : unknown, $Else],
+// 		T
 // 	>
 
 it('returns true for any', () => {

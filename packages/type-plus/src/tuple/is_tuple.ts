@@ -63,7 +63,7 @@ export type IsTuple<T, $O extends IsTuple.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Else]>
+			$then: $ResolveBranch<$O, [$Else], T>
 			$else: IsTuple.$<T, $O>
 		}
 	>
@@ -89,14 +89,14 @@ export namespace IsTuple {
 		{
 			$then: T extends readonly any[]
 				? number extends T['length']
-					? $ResolveBranch<T, $O, [$Else]>
-					: $ResolveBranch<T, $O, [$Then]>
-				: $ResolveBranch<T, $O, [$Else]>
+					? $ResolveBranch<$O, [$Else], T>
+					: $ResolveBranch<$O, [$Then], T>
+				: $ResolveBranch<$O, [$Else], T>
 			$else: [T] extends [readonly any[]]
 				? number extends T['length']
-					? $ResolveBranch<T, $O, [$Else]>
-					: $ResolveBranch<T, $O, [$Then]>
-				: $ResolveBranch<T, $O, [$Else]>
+					? $ResolveBranch<$O, [$Else], T>
+					: $ResolveBranch<$O, [$Then], T>
+				: $ResolveBranch<$O, [$Else], T>
 		}
 	>
 

@@ -98,7 +98,7 @@ export type IsNotObject<T, $O extends IsNotObject.$Options = {}> = $Special<
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<T, $O, [$Then]>
+			$then: $ResolveBranch<$O, [$Then], T>
 			$else: IsNotObject.$<T, $O>
 		}
 	>
@@ -127,20 +127,20 @@ export namespace IsNotObject {
 		? IdentityEqual<
 				T,
 				{},
-				$ResolveBranch<T, $O, [$Then]>,
+				$ResolveBranch<$O, [$Then], T>,
 				IsNever<
 					keyof T,
 					{
-						$then: $ResolveBranch<T, $O, [$Else]>
-						$else: $ResolveBranch<T, $O, [$Then]>
+						$then: $ResolveBranch<$O, [$Else], T>
+						$else: $ResolveBranch<$O, [$Then], T>
 					}
 				>
 			>
-		: $ResolveBranch<T, $O, [$Then]>
+		: $ResolveBranch<$O, [$Then], T>
 
 	export type _N<T, $O extends $UtilOptions> = [T] extends [object & infer U]
 		? U extends object
-			? $ResolveBranch<T, $O, [$Then]>
-			: $ResolveBranch<T, $O, [$Else]>
-		: $ResolveBranch<T, $O, [$Then]>
+			? $ResolveBranch<$O, [$Then], T>
+			: $ResolveBranch<$O, [$Else], T>
+		: $ResolveBranch<$O, [$Then], T>
 }

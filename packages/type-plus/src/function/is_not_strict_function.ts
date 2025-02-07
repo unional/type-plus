@@ -22,10 +22,10 @@ import type { $SelectInvertStrict } from '../equal/equal.js'
 export type IsNotStrictFunction<T, $O extends IsNotStrictFunction.$Options = {}> = $Special<
 	T,
 	{
-		$any: $ResolveBranch<T, $O, [$Any, $Then]>
-		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>
-		$never: $ResolveBranch<T, $O, [$Never, $Then]>
-		$void: $ResolveBranch<T, $O, [$Void, $Then]>
+		$any: $ResolveBranch<$O, [$Any, $Then], T>
+		$unknown: $ResolveBranch<$O, [$Unknown, $Then], T>
+		$never: $ResolveBranch<$O, [$Never, $Then], T>
+		$void: $ResolveBranch<$O, [$Void, $Then], T>
 		$else: $ResolveOptions<[$O['distributive'], $SelectInvertStrict.$Default['distributive']]> extends true
 			? IsNotStrictFunction._D<T, $O>
 			: $SelectInvertStrict._N<T, Function, $O>
@@ -37,6 +37,6 @@ export namespace IsNotStrictFunction {
 	export type $Default = $SelectInvertStrict.$Default
 	export type $Branch = $SelectInvertStrict.$Branch
 	export type _D<T, $O extends IsNotStrictFunction.$Options> = T extends Function
-		? $ResolveBranch<T, $O, [T extends (...args: any[]) => any ? $Then : $Else]>
-		: $ResolveBranch<T, $O, [$Then]>
+		? $ResolveBranch<$O, [T extends (...args: any[]) => any ? $Then : $Else], T>
+		: $ResolveBranch<$O, [$Then], T>
 }
