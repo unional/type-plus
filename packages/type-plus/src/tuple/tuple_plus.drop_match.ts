@@ -1,4 +1,4 @@
-import type { IsEqual } from '../equal/equal.js'
+import type { IsEqual } from '../equal/is_equal.js'
 
 export type DropMatch<A extends Readonly<Array<unknown>>, Criteria> = A['length'] extends 0
 	? // empty tuple

@@ -1,4 +1,4 @@
-import type { $SelectInvert } from '../$type/equal/$equal.js'
+import type { $SelectInvert } from '../equal/equal.js'
 
 /**
  * Is `T` not numeric.

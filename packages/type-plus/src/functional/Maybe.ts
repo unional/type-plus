@@ -1,4 +1,4 @@
-import type { IsEqual } from '../equal/equal.js'
+import type { IsEqual } from '../equal/is_equal.js'
 import type { Brand } from '../nominal/index.js'
 import type { Widen } from '../utils/index.js'
 

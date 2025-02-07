@@ -1,4 +1,4 @@
-import type { $Equal } from '../$type/equal/$equal.js'
+import type { $Equal } from '../equal/equal.js'
 
 /**
  * Is `T` numeric.

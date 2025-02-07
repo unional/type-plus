@@ -1,9 +1,9 @@
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
-import type { $Equal } from '../$type/equal/$equal.js'
 import type { $Special } from '../$type/special/$special.js'
 import type { $Void } from '../$type/special/$void.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
+import type { $Equal } from '../equal/equal.js'
 import type { Assignable } from '../predicates/assignable.js'
 import type { IsUndefined } from '../undefined/is_undefined.js'
 

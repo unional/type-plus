@@ -1,4 +1,4 @@
-import type { IsEqual } from '../equal/equal.js'
+import type { IsEqual } from '../equal/is_equal.js'
 import type { CanAssign } from '../index.js'
 import type { Tail } from '../tuple/tail.js'
 import type { UnionOfValues } from './union_of_values.js'
