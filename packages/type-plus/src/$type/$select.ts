@@ -7,7 +7,7 @@ import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from './bran
 import type { $SelectionOptions } from './branch/$selection_options.js'
 import type { $Unknown } from './branch/$unknown.js'
 import type { $Distributive } from './distributive/$distributive.js'
-import type { $ExactOptions } from './exact/$exact.js'
+import type { $Exact } from './exact/$exact.js'
 
 /**
  * 🎭 *predicate*
@@ -74,7 +74,7 @@ export namespace $Select {
 	export type $Options = $SelectionOptions &
 		$Distributive.Options &
 		$InputOptions<$Any | $Unknown | $Never> &
-		$ExactOptions
+		$Exact.Options
 	export type $Default = $SelectionPredicate & $Distributive.Default
 	export type $Branch<$O extends $Distributive.Options = $Distributive.Default> = $SelectionBranch & $O
 	export type _<T, U, $O extends $Select.$Options> = $Distributive.Parse<$O> extends true ? _D<T, U, $O> : _N<T, U, $O>

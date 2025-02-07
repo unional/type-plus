@@ -4,7 +4,7 @@ import type { $SpecialType } from '../$type/$special_type.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
-import type { $ExactDefault, $ExactOptions } from '../$type/exact/$exact.js'
+import type { $Exact } from '../$type/exact/$exact.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { IdentityEqual } from '../equal/identity_equal.js'
 import type { IsNever } from '../never/is_never.js'
@@ -100,7 +100,7 @@ export type IsNotObject<T, $O extends IsNotObject.$Options = {}> = $SpecialType<
 	>
 >
 export namespace IsNotObject {
-	export type $Options = $Equality.$Options & $ExactOptions
+	export type $Options = $Equality.$Options & $Exact.Options
 	export type $Branch<$O extends $Options = {}> = $Equality.$Branch<$O>
 
 	/**
@@ -111,10 +111,10 @@ export namespace IsNotObject {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> = $ResolveOptions<[$O['exact'], $ExactDefault]> extends true
+	export type $<T, $O extends $UtilOptions> = $ResolveOptions<[$O['exact'], $Exact.Default]> extends true
 		? $Distributive.Parse<$O, { $then: _D<T, $O>; $else: _N<T, $O> }>
 		: NotAssignable.$<T, object, $O>
-	export type $UtilOptions = NotAssignable.$UtilOptions & $ExactOptions
+	export type $UtilOptions = NotAssignable.$UtilOptions & $Exact.Options
 
 	export type _D<T, $O extends $UtilOptions> = T extends object
 		? IdentityEqual<
