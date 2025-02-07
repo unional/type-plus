@@ -5,7 +5,10 @@ import type { $Branch } from './$branch.js'
  */
 export type $Unknown = $Branch<'$unknown'>
 
+declare const $unknown: '$unknown'
+
 export namespace $Unknown {
+	export type $Key = '$unknown'
 	/**
 	 * Options to specifically handles the `unknown` type.
 	 *
@@ -14,7 +17,7 @@ export namespace $Unknown {
 	 * type YourType<T, $Options extends $Unknown.$Options> = ...
 	 * ```
 	 */
-	export type $Options = { $unknown?: unknown }
+	export type $Options = { [$unknown]?: unknown }
 
 	/**
 	 * Branch option to specifically handles the `unknown` type.
@@ -28,5 +31,5 @@ export namespace $Unknown {
 	 * type R = YourType<T, $Unknown.$Branch> extends $Unknown ? HandleUnknown : HandleOthers
 	 * ```
 	 */
-	export type $Branch = { $unknown: $Unknown }
+	export type $Branch = { [$unknown]: $Unknown }
 }

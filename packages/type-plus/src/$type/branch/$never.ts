@@ -5,7 +5,11 @@ import type { $Branch } from './$branch.js'
  */
 export type $Never = $Branch<'$never'>
 
+declare const $never: '$never'
+
 export namespace $Never {
+	export type $Key = '$never'
+
 	/**
 	 * Options to specifically handles the `never` type.
 	 *
@@ -14,7 +18,7 @@ export namespace $Never {
 	 * type YourType<T, $Options extends $Never.$Options> = ...
 	 * ```
 	 */
-	export type $Options = { $never?: unknown }
+	export type $Options = { [$never]?: unknown }
 
 	/**
 	 * Branch option to specifically handles the `never` type.
@@ -29,14 +33,14 @@ export namespace $Never {
 
 	 * ```
 	 */
-	export type $Branch = { $never: $Never }
+	export type $Branch = { [$never]: $Never }
 
 	/**
 	 * Default option for the `$never` branch.
 	 *
 	 * Unsurprisingly, defaulting `$never` to `never`.
 	 */
-	export type $Default = { $never: never }
+	export type $Default = { [$never]: never }
 }
 
 /**
