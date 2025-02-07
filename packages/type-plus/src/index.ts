@@ -1,7 +1,7 @@
 export type * from './$type/$equality.js'
 export type * from './$type/$error.js'
 export type * from './$type/$infer_error.js'
-export type * from './$type/$merge_options.js'
+export type * from './$type/utils/$merge_options.js'
 export type * from './$type/$resolve_options.js'
 export type * from './$type/$special_type.js'
 export type * from './$type/$type.js'
