@@ -55,6 +55,6 @@ export type IsNotAny<T, $O extends IsNotAny.$Options = {}> = $Special<
 >
 
 export namespace IsNotAny {
-	export type $Options = $Selection.Options & $InputOptions<$Unknown | $Never>
-	export type $Branch = $Selection.Branch
+	export type $Options = $Selection.Options & $InputOptions<$Unknown | $Never | $Void>
+	export type $Branch = $Selection.Branch & $Unknown.$Branch & $Never.$Branch & $Void.$Branch
 }
