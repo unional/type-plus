@@ -5,7 +5,7 @@ import type { $SelectionOptions } from '../$type/branch/$selection_options.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
 import type { $Any } from '../$type/special/$any.js'
 import type { $Never } from '../$type/special/$never.js'
-import type { $SpecialType } from '../$type/special/$special_type.js'
+import type { $Special } from '../$type/special/$special.js'
 import type { $Unknown } from '../$type/special/$unknown.js'
 
 /**
@@ -55,13 +55,13 @@ import type { $Unknown } from '../$type/special/$unknown.js'
  * type R = NotAssignable<never, any, { $never: 1 }> // 1
  * ```
  */
-export type NotAssignable<A, B, $O extends NotAssignable.$Options = {}> = $SpecialType<
+export type NotAssignable<A, B, $O extends NotAssignable.$Options = {}> = $Special<
 	B,
 	{
 		$any: $ResolveBranch<A, $O, [0 extends 1 & A ? $Any : unknown, $Else]>
 		$unknown: $ResolveBranch<A, $O, [[A, unknown] extends [unknown, A] ? $Unknown : unknown, $Else]>
 		$never: $ResolveBranch<A, $O, [A, never] extends [never, A] ? [$Never, $Else] : [$Then]>
-		$else: $SpecialType<
+		$else: $Special<
 			A,
 			{
 				$any: $ResolveBranch<A, $O, [$Any, $Else]>

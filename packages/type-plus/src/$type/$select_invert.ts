@@ -5,7 +5,7 @@ import type { $SelectionOptions } from './branch/$selection_options.js'
 import type { $Distributive } from './distributive/$distributive.js'
 import type { $Any } from './special/$any.js'
 import type { $Never } from './special/$never.js'
-import type { $SpecialType } from './special/$special_type.js'
+import type { $Special } from './special/$special.js'
 import type { $Unknown } from './special/$unknown.js'
 
 /**
@@ -59,7 +59,7 @@ import type { $Unknown } from './special/$unknown.js'
  * type R = $SelectInvert<string, undefined, $SelectionBranch> // $Else
  * ```
  */
-export type $SelectInvert<T, U, $O extends $SelectInvert.$Options = {}> = $SpecialType<
+export type $SelectInvert<T, U, $O extends $SelectInvert.$Options = {}> = $Special<
 	T,
 	{
 		$any: $ResolveBranch<T, $O, [$Any, $Then]>

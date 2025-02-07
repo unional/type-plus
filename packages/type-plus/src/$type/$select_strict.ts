@@ -5,7 +5,7 @@ import type { $SelectionOptions } from './branch/$selection_options.js'
 import type { $Distributive } from './distributive/$distributive.js'
 import type { $Any } from './special/$any.js'
 import type { $Never } from './special/$never.js'
-import type { $SpecialType } from './special/$special_type.js'
+import type { $Special } from './special/$special.js'
 import type { $Unknown } from './special/$unknown.js'
 
 /**
@@ -59,7 +59,7 @@ import type { $Unknown } from './special/$unknown.js'
  * type R = $SelectStrict<string, undefined, $SelectionBranch> // $Else
  * ```
  */
-export type $SelectStrict<T, U, $O extends $SelectStrict.$Options = {}> = $SpecialType<
+export type $SelectStrict<T, U, $O extends $SelectStrict.$Options = {}> = $Special<
 	T,
 	{
 		$any: $ResolveBranch<T, $O, [$Any, $Else]>

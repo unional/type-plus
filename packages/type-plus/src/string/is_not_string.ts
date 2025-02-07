@@ -5,7 +5,7 @@ import type { $Else, $Then } from '../$type/branch/$selection.js'
 import type { $SelectionOptions } from '../$type/branch/$selection_options.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
 import type { $Exact } from '../$type/exact/$exact.js'
-import type { $SpecialType } from '../$type/special/$special_type.js'
+import type { $Special } from '../$type/special/$special.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { NotAssignable } from '../predicates/not_assignable.js'
 
@@ -57,7 +57,7 @@ import type { NotAssignable } from '../predicates/not_assignable.js'
  * type R = IsNotString<bigint, $IsNotString.$Branch> // $Then
  * ```
  */
-export type IsNotString<T, $O extends IsNotString.$Options = {}> = $SpecialType<
+export type IsNotString<T, $O extends IsNotString.$Options = {}> = $Special<
 	T,
 	$MergeOptions<
 		$O,

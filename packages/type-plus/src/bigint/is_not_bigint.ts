@@ -4,7 +4,7 @@ import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
 import type { $Exact } from '../$type/exact/$exact.js'
-import type { $SpecialType } from '../$type/special/$special_type.js'
+import type { $Special } from '../$type/special/$special.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { NotAssignable } from '../predicates/not_assignable.js'
 
@@ -67,7 +67,7 @@ import type { NotAssignable } from '../predicates/not_assignable.js'
  * type R = IsNotBigint<bigint, $SelectionBranch> // $Else
  * ```
  */
-export type IsNotBigint<T, $O extends IsNotBigint.$Options = {}> = $SpecialType<
+export type IsNotBigint<T, $O extends IsNotBigint.$Options = {}> = $Special<
 	T,
 	$MergeOptions<
 		$O,

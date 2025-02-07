@@ -4,7 +4,7 @@ import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Then } from '../$type/branch/$selection.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
 import type { $Exact } from '../$type/exact/$exact.js'
-import type { $SpecialType } from '../$type/special/$special_type.js'
+import type { $Special } from '../$type/special/$special.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { IdentityEqual } from '../equal/identity_equal.js'
 import type { IsNever } from '../never/is_never.js'
@@ -76,7 +76,7 @@ import type { Assignable } from '../predicates/assignable.js'
  * type R = IsObject<string, $SelectionBranch> // $Else
  * ```
  */
-export type IsObject<T, $O extends IsObject.$Options = {}> = $SpecialType<
+export type IsObject<T, $O extends IsObject.$Options = {}> = $Special<
 	T,
 	$MergeOptions<
 		$O,

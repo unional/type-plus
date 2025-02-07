@@ -4,7 +4,7 @@ import type { $Else, $SelectionBranch, $Then } from '../$type/branch/$selection.
 import type { $SelectionOptions } from '../$type/branch/$selection_options.js'
 import type { $Any } from '../$type/special/$any.js'
 import type { $NotNever } from '../$type/special/$never.js'
-import type { $SpecialType } from '../$type/special/$special_type.js'
+import type { $Special } from '../$type/special/$special.js'
 import type { $Unknown } from '../$type/special/$unknown.js'
 
 /**
@@ -44,7 +44,7 @@ import type { $Unknown } from '../$type/special/$unknown.js'
  * type R = IsNever<1, $SelectionBranch> // $Else
  * ```
  */
-export type IsNever<T, $O extends IsNever.$Options = {}> = $SpecialType<
+export type IsNever<T, $O extends IsNever.$Options = {}> = $Special<
 	T,
 	{
 		$any: $ResolveBranch<T, IsNever._O<$O>, [$Any, $Else]>
