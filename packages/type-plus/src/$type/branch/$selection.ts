@@ -6,7 +6,7 @@ export type $Else = $Branch<'$else'>
 
 export namespace $Then {
 	export type $Branch = {
-		$else: $Then
+		$then: $Then
 	}
 }
 

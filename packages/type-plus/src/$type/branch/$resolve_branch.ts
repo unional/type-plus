@@ -42,18 +42,18 @@ export namespace $ResolveBranch {
 			: never
 
 	export type _OLast<$D, $O extends Record<string, any>, $B extends $Branch<any> | unknown> = $B extends $Branch<any>
-		? $B[$Type._$value] extends keyof $O
-			? $O[$B[$Type._$value]] extends infer R extends $Override<any>
+		? $B[$Type.$ValueKey] extends keyof $O
+			? $O[$B[$Type.$ValueKey]] extends infer R extends $Override<any>
 				? [R, never] extends [never, R]
 					? $D
-					: R[$Type._$value]
+					: R[$Type.$ValueKey]
 				: $D
 			: $D
 		: $D
 
 	export type _<T, $O extends Record<string, any>, $B> = $B extends $Branch<any>
-		? $B[$Type._$value] extends keyof $O
-			? $Override.$Unwrap<$O[$B[$Type._$value]]>
+		? $B[$Type.$ValueKey] extends keyof $O
+			? $Override.$Unwrap<$O[$B[$Type.$ValueKey]]>
 			: T
 		: T
 	export type _Last<T, $O extends Record<string, any>, $B> = $B extends $Then

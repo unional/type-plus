@@ -1,51 +1,30 @@
 import type { $Branch } from './$branch.js'
 
 /**
- * 🧰 *type util*
- *
- * Selector for `$any` branch.
+ * Branch selector for type `any`.
  */
 export type $Any = $Branch<'$any'>
 
 export namespace $Any {
 	/**
-	 * 🧰 *type util*
-	 *
-	 * Options for specifically handling the type `any`.
+	 * Options to specifically handles the `any` type.
 	 *
 	 * @example
 	 * ```ts
-	 * type YourType<
-	 *   T,
-	 *   $Options extends YourType.$Options = YourType.$Default
-	 * > = ...
-	 *
-	 * namespace YourType {
-	 *   export type $Options = $AnyOptions
-	 * }
+	 * type YourType<T, $Options extends $Any.$Options> = ...
 	 * ```
 	 */
 	export type $Options = { $any?: unknown }
 
 	/**
-	 * 🧰 *type util*
-	 *
-	 * Branch option for specifically handling the type `any`.
+	 * Branch option to specifically handles the `any` type.
 	 *
 	 * Use this to finely customize the behavior of your type.
 	 *
 	 * ```ts
-	 * type YourType<
-	 *   T,
-	 *   $Options extends YourType.$Options = YourType.$Default
-	 * > = ...
+	 * type YourType<T, $Options extends $Any.Options> = ...
 	 *
-	 * namespace YourType {
-	 *   export type $Options = $Any.$Options
-	 *   export type $Branch = $Any.$Branch
-	 * }
-	 *
-	 * type R = YourType<T, YourType.$Branch> extends $Any ? HandleAny : HandleOthers
+	 * type R = YourType<T, $Any.$Branch> extends $Any ? HandleAny : HandleOthers
 	 * ```
 	 */
 	export type $Branch = { $any: $Any }

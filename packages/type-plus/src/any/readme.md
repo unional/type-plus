@@ -78,17 +78,6 @@ type R = IsNotAny<any, $SelectionBranch> // $Else
 type R = IsNotAny<string, $SelectionBranch> // $Then
 ```
 
-## [`$Any`](./any.ts)
-
-`$Any<T>`
-
-Selector for `$any` branch.
-
-```ts
-$ResolveBranch<'input', { $then: 1 }, [$Any, $Then]> // 1
-$ResolveBranch<'input', { $any: 2, $then: 1 }, [$Any, $Then]> // 2
-```
-
 ## Trivia
 
 > Both `any` and `unknown` are top types?

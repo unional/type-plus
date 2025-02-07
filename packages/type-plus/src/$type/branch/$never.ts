@@ -1,78 +1,47 @@
 import type { $Branch } from './$branch.js'
 
 /**
- * 🧰 *type util*
- *
- * A special branch type to indicate the type is `never`.
+ * Branch selector for type `never`.
  */
 export type $Never = $Branch<'$never'>
 
 export namespace $Never {
 	/**
-	 * 🧰 *type util*
-	 *
-	 * `$Never.$Options` enables customizing the behavior of the `$never` branch.
-	 *
-	 * The `$never` branch is used to handle when the input type is `never`.
+	 * Options to specifically handles the `never` type.
 	 *
 	 * @example
 	 * ```ts
-	 * type YourType<
-	 *   T,
-	 *   $Options extends YourType.$Options = YourType.$Default
-	 * > = ...
-	 *
-	 * namespace YourType {
-	 *   export type $Options = $Never.$Options
-	 *   export type $Branch = $Never.$Branch
-	 * }
+	 * type YourType<T, $Options extends $Never.$Options> = ...
 	 * ```
 	 */
-	export type $Options = {
-		$never?: unknown
-	}
-	/**
-	 * 🧰 *type util*
-	 *
-	 * `$Never.$Branch` is the branch option for the `$never` branch.
-	 *
-	 * It sets the value to `$Never`,
-	 * so that the branch can be uniquely identified and handled.
-	 *
-	 * Use this to allow the consumer to customize the behavior of your type.
-	 *
-	 * @example
-	 * ```ts
-	 * type YourType<T, $O extends $NeverOptions> = NeverType<T> extends infer R
-	 *   ? R extends $Never
-	 *     ? $ResolveOptions<[$O['$never'], never]>
-	 *     : HandleOtherBranches<R> // R is narrowed
-	 *   : never
-	 *
-	 * type R = YourType<T, $Never.$Branch> extends $Never ? HandleNever : HandleOthers
-	 * ```
-	 */
-	export type $Branch = {
-		$never: $Never
-	}
+	export type $Options = { $never?: unknown }
 
 	/**
-	 * 🧰 *type util*
+	 * Branch option to specifically handles the `never` type.
 	 *
+	 * Use this to finely customize the behavior of your type.
+	 *
+	 * @example
+	 * ```ts
+	 * type YourType<T, $Options $Never.$Options> = ...
+	 *
+	 * type R = YourType<T, $Never.$Branch> extends $Never ? HandleNever : HandleOthers
+
+	 * ```
+	 */
+	export type $Branch = { $never: $Never }
+
+	/**
 	 * Default option for the `$never` branch.
 	 *
 	 * Unsurprisingly, defaulting `$never` to `never`.
 	 */
-	export type $Default = {
-		$never: never
-	}
+	export type $Default = { $never: never }
 }
 
 /**
- * 🧰 *type util*
+ * Branch selector for type is not `never`.
  *
- * `$NotNever` is a special branch type to indicate the type is not `never`.
- *
- * It is used in [`NeverType`](./never_type.ts).
+ * It is used in [`IsNever`](../../never/is_never.ts).
  */
 export type $NotNever = $Branch<'$not_never'>
