@@ -6,6 +6,7 @@ import type { $Any } from '../$type/special/$any.js'
 import type { $Never } from '../$type/special/$never.js'
 import type { $Special } from '../$type/special/$special.js'
 import type { $Unknown } from '../$type/special/$unknown.js'
+import type { $Void } from '../$type/special/$void.js'
 
 /**
  * 🎭 *predicate*
@@ -48,8 +49,9 @@ export type IsNotNever<T, $O extends IsNotNever.$Options = {}> = $Special<
 	T,
 	{
 		$any: $ResolveBranch<T, $O, [$Any, $Then]>
-		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>
 		$never: $ResolveBranch<T, IsNotNever._O<$O>, [$Else]>
+		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>
+		$void: $ResolveBranch<T, $O, [$Void, $Then]>
 		$else: $ResolveBranch<T, $O, [$Then]>
 	}
 >

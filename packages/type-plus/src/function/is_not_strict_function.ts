@@ -6,6 +6,7 @@ import type { $Any } from '../$type/special/$any.js'
 import type { $Never } from '../$type/special/$never.js'
 import type { $Special } from '../$type/special/$special.js'
 import type { $Unknown } from '../$type/special/$unknown.js'
+import type { $Void } from '../$type/special/$void.js'
 
 /**
  * Is `T` not exactly `Function`.
@@ -24,6 +25,7 @@ export type IsNotStrictFunction<T, $O extends IsNotStrictFunction.$Options = {}>
 		$any: $ResolveBranch<T, $O, [$Any, $Then]>
 		$unknown: $ResolveBranch<T, $O, [$Unknown, $Then]>
 		$never: $ResolveBranch<T, $O, [$Never, $Then]>
+		$void: $ResolveBranch<T, $O, [$Void, $Then]>
 		$else: $ResolveOptions<[$O['distributive'], $SelectInvertStrict.$Default['distributive']]> extends true
 			? IsNotStrictFunction._D<T, $O>
 			: $SelectInvertStrict._N<T, Function, $O>

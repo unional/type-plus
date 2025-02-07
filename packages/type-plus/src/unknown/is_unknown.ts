@@ -5,6 +5,7 @@ import type { $SelectionOptions } from '../$type/branch/$selection_options.js'
 import type { $Any } from '../$type/special/$any.js'
 import type { $Never } from '../$type/special/$never.js'
 import type { $Special } from '../$type/special/$special.js'
+import type { $Void } from '../$type/special/$void.js'
 
 /**
  * 🎭 *predicate*
@@ -45,8 +46,9 @@ export type IsUnknown<T, $O extends IsUnknown.$Options = {}> = $Special<
 	T,
 	{
 		$any: $ResolveBranch<T, $O, [$Any, $Else]>
-		$unknown: $ResolveBranch<T, $O, [$Then]>
 		$never: $ResolveBranch<T, $O, [$Never, $Else]>
+		$unknown: $ResolveBranch<T, $O, [$Then]>
+		$void: $ResolveBranch<T, $O, [$Void, $Else]>
 		$else: $ResolveBranch<T, $O, [$Else]>
 	}
 >
