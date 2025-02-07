@@ -1,7 +1,6 @@
 import type { $InputOptions } from '../$type/branch/$input_options.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
-import type { $Else, $SelectionBranch, $SelectionPredicate, $Then } from '../$type/branch/$selection.js'
-import type { $SelectionOptions } from '../$type/branch/$selection_options.js'
+import type { $Else, $Selection, $Then } from '../$type/branch/$selection.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
 import type { $Any } from '../$type/special/$any.js'
 import type { $Never } from '../$type/special/$never.js'
@@ -74,9 +73,9 @@ export type Assignable<A, B, $O extends Assignable.$Options = {}> = $Special<
 >
 
 export namespace Assignable {
-	export type $Options = $SelectionOptions & $Distributive.Options & $InputOptions<$Any | $Unknown | $Never>
-	export type $Default = $SelectionPredicate & $Distributive.Default
-	export type $Branch<$O extends $Distributive.Options = {}> = $SelectionBranch & $O
+	export type $Options = $Selection.Options & $Distributive.Options & $InputOptions<$Any | $Unknown | $Never>
+	export type $Default = $Selection.Predicate & $Distributive.Default
+	export type $Branch<$O extends $Distributive.Options = {}> = $Selection.Branch & $O
 
 	/**
 	 * 🧰 *type util*
@@ -96,5 +95,5 @@ export namespace Assignable {
 		}
 	>
 
-	export type $UtilOptions = $SelectionOptions & $Distributive.Options
+	export type $UtilOptions = $Selection.Options & $Distributive.Options
 }

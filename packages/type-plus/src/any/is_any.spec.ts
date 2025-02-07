@@ -1,14 +1,6 @@
 import { describe, it } from '@jest/globals'
 
-import {
-	type $Else,
-	type $Never,
-	type $SelectionBranch,
-	type $Then,
-	type $Unknown,
-	type IsAny,
-	testType,
-} from '../index.js'
+import { type $Else, type $Never, type $Selection, type $Then, type $Unknown, type IsAny, testType } from '../index.js'
 
 // alternative implementation
 // export type IsAny<
@@ -67,9 +59,9 @@ it('work as branching', () => {
 	testType.equal<IsAny<any, IsAny.$Branch>, $Then>(true)
 	testType.equal<IsAny<0, IsAny.$Branch>, $Else>(true)
 
-	testType.equal<IsAny<unknown, $SelectionBranch>, $Else>(true)
+	testType.equal<IsAny<unknown, $Selection.Branch>, $Else>(true)
 	testType.equal<IsAny<unknown, IsAny.$Branch & $Unknown.$Branch>, $Unknown>(true)
-	testType.equal<IsAny<never, $SelectionBranch>, $Else>(true)
+	testType.equal<IsAny<never, $Selection.Branch>, $Else>(true)
 	testType.equal<IsAny<never, IsAny.$Branch & $Never.$Branch>, $Never>(true)
 	testType.equal<IsAny<void, IsAny.$Branch>, $Else>(true)
 })

@@ -5,7 +5,7 @@ import {
 	type $BranchOptions,
 	type $Else,
 	type $Never,
-	type $SelectionBranch,
+	type $Selection,
 	type $Then,
 	type IsNotUnknown,
 	testType,
@@ -122,7 +122,7 @@ it('works with unique branches', () => {
 	testType.equal<IsNotUnknown<never, $BranchOptions<$Never>>, $Never>(true)
 	testType.equal<IsNotUnknown<never, $BranchOptions<$Never | $Then>>, $Never>(true)
 
-	testType.equal<IsNotUnknown<void, $SelectionBranch>, $Then>(true)
+	testType.equal<IsNotUnknown<void, $Selection.Branch>, $Then>(true)
 })
 
 it('can override $never branch', () => {

@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $SelectionPredicate, type IsAnyOrNever, testType } from '../index.js'
+import { type $Selection, type IsAnyOrNever, testType } from '../index.js'
 
 it('returns true for any', () => {
 	testType.equal<IsAnyOrNever<any>, true>(true)
@@ -55,10 +55,10 @@ it('returns true for intersection type', () => {
 })
 
 it('can override Then/Else', () => {
-	testType.equal<IsAnyOrNever<any, $SelectionPredicate>, true>(true)
-	testType.equal<IsAnyOrNever<never, $SelectionPredicate>, true>(true)
+	testType.equal<IsAnyOrNever<any, $Selection.Predicate>, true>(true)
+	testType.equal<IsAnyOrNever<never, $Selection.Predicate>, true>(true)
 
-	testType.equal<IsAnyOrNever<0, $SelectionPredicate>, false>(true)
-	testType.equal<IsAnyOrNever<unknown, $SelectionPredicate>, false>(true)
-	testType.equal<IsAnyOrNever<void, $SelectionPredicate>, false>(true)
+	testType.equal<IsAnyOrNever<0, $Selection.Predicate>, false>(true)
+	testType.equal<IsAnyOrNever<unknown, $Selection.Predicate>, false>(true)
+	testType.equal<IsAnyOrNever<void, $Selection.Predicate>, false>(true)
 })

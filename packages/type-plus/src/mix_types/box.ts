@@ -1,4 +1,4 @@
-import type { $Else, $SelectionBranch, $Then } from '../$type/branch/$selection.js'
+import type { $Else, $Selection, $Then } from '../$type/branch/$selection.js'
 import type { IsBigint } from '../bigint/is_bigint.js'
 import type { IsBoolean } from '../boolean/is_boolean.js'
 import type { IsFunction } from '../function/is_function.js'
@@ -33,7 +33,7 @@ export type Box<T, Options extends Box.Options = Box.DefaultOptions> = IsFunctio
 				? Object
 				: T extends Record<any, any>
 					? T
-					: IsBoolean<T, $SelectionBranch> extends infer R
+					: IsBoolean<T, $Selection.Branch> extends infer R
 						? R extends $Then
 							? Boolean
 							: R extends $Else

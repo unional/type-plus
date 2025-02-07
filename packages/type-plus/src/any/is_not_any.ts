@@ -1,7 +1,6 @@
 import type { $InputOptions } from '../$type/branch/$input_options.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
-import type { $Else, $SelectionBranch, $Then } from '../$type/branch/$selection.js'
-import type { $SelectionOptions } from '../$type/branch/$selection_options.js'
+import type { $Else, $Selection, $Then } from '../$type/branch/$selection.js'
 import type { $Never } from '../$type/special/$never.js'
 import type { $Special } from '../$type/special/$special.js'
 import type { $Unknown } from '../$type/special/$unknown.js'
@@ -56,6 +55,6 @@ export type IsNotAny<T, $O extends IsNotAny.$Options = {}> = $Special<
 >
 
 export namespace IsNotAny {
-	export type $Options = $SelectionOptions & $InputOptions<$Unknown | $Never>
-	export type $Branch = $SelectionBranch
+	export type $Options = $Selection.Options & $InputOptions<$Unknown | $Never>
+	export type $Branch = $Selection.Branch
 }

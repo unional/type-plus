@@ -1,13 +1,6 @@
 import { it } from '@jest/globals'
 
-import {
-	type $Else,
-	type $Never,
-	type $ResolveBranch,
-	type $SelectionBranch,
-	type $Then,
-	testType,
-} from '../../index.js'
+import { type $Else, type $Never, type $ResolveBranch, type $Selection, type $Then, testType } from '../../index.js'
 
 it('returns boolean if selection is predicate', () => {
 	testType.equal<$ResolveBranch<123, { selection: 'predicate' }, [$Then]>, true>(true)
@@ -32,18 +25,18 @@ it('returns the default value if `$O` does not define any specific branch', () =
 })
 
 it('returns the value of the single specified branch if `$O` defines it', () => {
-	testType.equal<$ResolveBranch<true, $SelectionBranch, [$Then]>, $Then>(true)
+	testType.equal<$ResolveBranch<true, $Selection.Branch, [$Then]>, $Then>(true)
 	testType.equal<$ResolveBranch<false, { $else: 123 }, [$Else]>, 123>(true)
 })
 
 it('returns the first matching branch value in `$O`', () => {
-	testType.equal<$ResolveBranch<123, $SelectionBranch & $Never.$Branch, [$Never, $Else]>, $Never>(true)
-	testType.equal<$ResolveBranch<123, $SelectionBranch & { $never: unknown }, [$Never, $Else]>, unknown>(true)
-	testType.equal<$ResolveBranch<123, $SelectionBranch, [$Never, $Else]>, $Else>(true)
+	testType.equal<$ResolveBranch<123, $Selection.Branch & $Never.$Branch, [$Never, $Else]>, $Never>(true)
+	testType.equal<$ResolveBranch<123, $Selection.Branch & { $never: unknown }, [$Never, $Else]>, unknown>(true)
+	testType.equal<$ResolveBranch<123, $Selection.Branch, [$Never, $Else]>, $Else>(true)
 })
 
 it('skip over branches that is `unknown`', () => {
-	testType.equal<$ResolveBranch<123, $SelectionBranch, [unknown, $Else]>, $Else>(true)
+	testType.equal<$ResolveBranch<123, $Selection.Branch, [unknown, $Else]>, $Else>(true)
 })
 
 it('returns default value if all branches are `unknown`', () => {

@@ -1,8 +1,7 @@
 import type { $Equality } from '../$type/$equality.js'
 import type { $ResolveOptions } from '../$type/$resolve_options.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
-import type { $Else, $Then } from '../$type/branch/$selection.js'
-import type { $SelectionOptions } from '../$type/branch/$selection_options.js'
+import type { $Else, $Selection, $Then } from '../$type/branch/$selection.js'
 import type { $Distributive } from '../$type/distributive/$distributive.js'
 import type { $Exact } from '../$type/exact/$exact.js'
 import type { $Special } from '../$type/special/$special.js'
@@ -97,11 +96,11 @@ export namespace IsNotStringLiteral {
 
 	export type $UtilOptions = Assignable.$UtilOptions & $Exact.Options
 
-	export type _ED<T, $O extends $SelectionOptions> = T extends string ? _E<T, $O> : $ResolveBranch<T, $O, [$Then]>
+	export type _ED<T, $O extends $Selection.Options> = T extends string ? _E<T, $O> : $ResolveBranch<T, $O, [$Then]>
 
-	export type _EN<T, $O extends $SelectionOptions> = [T] extends [string] ? _E<T, $O> : $ResolveBranch<T, $O, [$Then]>
+	export type _EN<T, $O extends $Selection.Options> = [T] extends [string] ? _E<T, $O> : $ResolveBranch<T, $O, [$Then]>
 
-	export type _E<T extends string, $O extends $SelectionOptions> = T extends string
+	export type _E<T extends string, $O extends $Selection.Options> = T extends string
 		? _StringType<T> extends infer R
 			? R extends 'stringLiteral'
 				? $ResolveBranch<T, $O, [$Else]>
@@ -109,15 +108,15 @@ export namespace IsNotStringLiteral {
 			: never
 		: $ResolveBranch<T, $O, [$Then]>
 
-	export type _D<T, $O extends $SelectionOptions> = T extends string & infer U
+	export type _D<T, $O extends $Selection.Options> = T extends string & infer U
 		? _U<T, U, $O>
 		: $ResolveBranch<T, $O, [$Then]>
 
-	export type _N<T, $O extends $SelectionOptions> = [T] extends [string & infer U]
+	export type _N<T, $O extends $Selection.Options> = [T] extends [string & infer U]
 		? _U<T, U, $O>
 		: $ResolveBranch<T, $O, [$Then]>
 
-	export type _U<T, U, $O extends $SelectionOptions> = U extends `${any}`
+	export type _U<T, U, $O extends $Selection.Options> = U extends `${any}`
 		? $ResolveBranch<T, $O, [$Else]>
 		: U extends Uppercase<infer N>
 			? _D<N, $O>

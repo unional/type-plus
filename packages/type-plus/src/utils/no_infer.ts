@@ -1,4 +1,4 @@
-import type { $SelectionPredicate } from '../$type/branch/$selection.js'
+import type { $Selection } from '../$type/branch/$selection.js'
 import type { IsNull } from '../null/is_null.js'
 import type { Or } from '../predicates/logical.js'
 import type { IsUndefined } from '../undefined/is_undefined.js'
@@ -24,4 +24,4 @@ import type { IsUndefined } from '../undefined/is_undefined.js'
  * assertEqual({ x: 1 }, { x: 1, y: 2 }) // Error
  * ```
  */
-export type NoInfer<T> = Or<IsNull<T>, IsUndefined<T, $SelectionPredicate>, T, T & {}>
+export type NoInfer<T> = Or<IsNull<T>, IsUndefined<T, $Selection.Predicate>, T, T & {}>
