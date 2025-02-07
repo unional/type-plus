@@ -1,5 +1,5 @@
 import { describe, it } from '@jest/globals'
-import { type $Else, type $Then, type Equal, testType } from '../index.js'
+import { type $Else, type $Then, type Equal, type Head, testType } from '../index.js'
 
 describe('any', () => {
 	it('basic comparison', () => {
@@ -578,6 +578,12 @@ describe('symbol', () => {
 		testType.false<Equal<symbol, () => void>>(true)
 	})
 
+	it('compares actual symbol', () => {
+		const s = Symbol()
+		testType.true<Equal<typeof s, typeof s>>(true)
+		testType.false<Equal<typeof s, symbol>>(true)
+	})
+
 	it('with branching', () => {
 		testType.equal<Equal<symbol, symbol, Equal.$Branch>, $Then>(true)
 		testType.equal<Equal<symbol, 0, Equal.$Branch>, $Else>(true)
@@ -754,19 +760,330 @@ describe('object literal', () => {
 		testType.false<Equal<{}, () => void>>(true)
 	})
 
+	it('object with any', () => {
+		testType.false<Equal<{ a: any }, { a: 1 }>>(true)
+		testType.false<Equal<{ a: 1 }, { a: any }>>(true)
+		testType.true<Equal<{ a: any }, { a: any }>>(true)
+	})
+
+	it('A subset of B is false', () => {
+		testType.false<Equal<{ a: 1 }, { a: 1; b: 1 }>>(true)
+	})
+
+	it('B subset of A is false', () => {
+		testType.false<Equal<{ a: 1; b: 1 }, { a: 1 }>>(true)
+	})
+
+	it('disjoin is false', () => {
+		testType.false<Equal<{ b: 1 }, { a: 1 }>>(true)
+	})
+
+	it('overlap is false', () => {
+		testType.false<Equal<{ a: 1; b: 1 }, { a: 1; c: 2 }>>(true)
+	})
+
 	it('with branching', () => {
-		testType.equal<Equal<{}, {}, Equal.$Branch>, $Then>(true)
-		testType.equal<Equal<{}, 0, Equal.$Branch>, $Else>(true)
+		testType.equal<Equal<{ a: 1 }, { a: 1 }, Equal.$Branch>, $Then>(true)
+		testType.equal<Equal<{ a: 1 }, 0, Equal.$Branch>, $Else>(true)
 	})
 
 	it('with partial customization', () => {
-		testType.equal<Equal<{}, {}, { $then: 1 }>, 1>(true)
-		testType.equal<Equal<{}, '', { $else: 1 }>, 1>(true)
+		testType.equal<Equal<{ a: 1 }, { a: 1 }, { $then: 1 }>, 1>(true)
+		testType.equal<Equal<{ a: 1 }, '', { $else: 1 }>, 1>(true)
 	})
 
 	it('with union', () => {
-		testType.equal<Equal<{} | 0, {} | 0>, true>(true)
-		testType.equal<Equal<{} | 0, {}>, false>(true)
-		testType.equal<Equal<{}, {} | 0>, false>(true)
+		testType.equal<Equal<{ a: 1 } | 0, { a: 1 } | 0>, true>(true)
+		testType.equal<Equal<{ a: 1 } | 0, { a: 1 }>, false>(true)
+		testType.equal<Equal<{ a: 1 }, { a: 1 } | 0>, false>(true)
 	})
+})
+
+describe('array', () => {
+	it('basic comparison', () => {
+		testType.true<Equal<number[], number[]>>(true)
+		testType.false<Equal<number[], any>>(true)
+		testType.false<Equal<number[], unknown>>(true)
+		testType.false<Equal<number[], never>>(true)
+		testType.false<Equal<number[], void>>(true)
+		testType.false<Equal<number[], undefined>>(true)
+		testType.false<Equal<number[], null>>(true)
+		testType.false<Equal<number[], boolean>>(true)
+		testType.false<Equal<number[], true>>(true)
+		testType.false<Equal<number[], false>>(true)
+		testType.false<Equal<number[], number>>(true)
+		testType.false<Equal<number[], 1>>(true)
+		testType.false<Equal<number[], string>>(true)
+		testType.false<Equal<number[], ''>>(true)
+		testType.false<Equal<number[], symbol>>(true)
+		testType.false<Equal<number[], 1n>>(true)
+		testType.false<Equal<number[], {}>>(true)
+		testType.false<Equal<number[], { a: 1 }>>(true)
+		testType.false<Equal<number[], string[]>>(true)
+		testType.false<Equal<number[], []>>(true)
+		testType.false<Equal<number[], Function>>(true)
+		testType.false<Equal<number[], () => void>>(true)
+	})
+
+	it('with branching', () => {
+		testType.equal<Equal<number[], number[], Equal.$Branch>, $Then>(true)
+		testType.equal<Equal<number[], 0, Equal.$Branch>, $Else>(true)
+	})
+
+	it('with partial customization', () => {
+		testType.equal<Equal<number[], number[], { $then: 1 }>, 1>(true)
+		testType.equal<Equal<number[], '', { $else: 1 }>, 1>(true)
+	})
+
+	it('with union', () => {
+		testType.equal<Equal<number[] | 0, number[] | 0>, true>(true)
+		testType.equal<Equal<number[] | 0, number[]>, false>(true)
+		testType.equal<Equal<number[], number[] | 0>, false>(true)
+	})
+})
+
+describe('tuple', () => {
+	it('basic comparison', () => {
+		testType.true<Equal<[number], [number]>>(true)
+		testType.false<Equal<[number], any>>(true)
+		testType.false<Equal<[number], unknown>>(true)
+		testType.false<Equal<[number], never>>(true)
+		testType.false<Equal<[number], void>>(true)
+		testType.false<Equal<[number], undefined>>(true)
+		testType.false<Equal<[number], null>>(true)
+		testType.false<Equal<[number], boolean>>(true)
+		testType.false<Equal<[number], true>>(true)
+		testType.false<Equal<[number], false>>(true)
+		testType.false<Equal<[number], number>>(true)
+		testType.false<Equal<[number], 1>>(true)
+		testType.false<Equal<[number], string>>(true)
+		testType.false<Equal<[number], ''>>(true)
+		testType.false<Equal<[number], symbol>>(true)
+		testType.false<Equal<[number], 1n>>(true)
+		testType.false<Equal<[number], {}>>(true)
+		testType.false<Equal<[number], { a: 1 }>>(true)
+		testType.false<Equal<[number], string[]>>(true)
+		testType.false<Equal<[number], []>>(true)
+		testType.false<Equal<[number], [number, number]>>(true)
+		testType.false<Equal<[number], [string]>>(true)
+		testType.false<Equal<[number], Function>>(true)
+		testType.false<Equal<[number], () => void>>(true)
+	})
+	it('works against tuple', () => {
+		testType.true<Equal<[1], [1]>>(true)
+		testType.true<Equal<[1, 2], [1, 2]>>(true)
+		testType.true<Equal<[any], [any]>>(true)
+
+		testType.false<Equal<[any], [1]>>(true)
+		testType.false<Equal<1, [1]>>(true)
+		testType.false<Equal<[1], 1>>(true)
+		testType.false<Equal<[1, 2], [2, 1]>>(true)
+
+		testType.true<Equal<[never], [never]>>(true)
+		testType.true<Equal<[any], [any]>>(true)
+		testType.true<Equal<[unknown], [unknown]>>(true)
+		testType.true<Equal<[void], [void]>>(true)
+
+		testType.false<Equal<[any], [unknown]>>(true)
+		testType.false<Equal<[any], [never]>>(true)
+		testType.false<Equal<[any], [void]>>(true)
+		testType.false<Equal<[never], [any]>>(true)
+		testType.false<Equal<[never], [unknown]>>(true)
+		testType.false<Equal<[never], [void]>>(true)
+		testType.false<Equal<[unknown], [any]>>(true)
+		testType.false<Equal<[unknown], [never]>>(true)
+		testType.false<Equal<[unknown], [void]>>(true)
+		testType.false<Equal<[void], [any]>>(true)
+		testType.false<Equal<[void], [unknown]>>(true)
+		testType.false<Equal<[void], [never]>>(true)
+
+		testType.false<Equal<[any, number], [number, any]>>(true)
+	})
+
+	it('with branching', () => {
+		testType.equal<Equal<[number], [number], Equal.$Branch>, $Then>(true)
+		testType.equal<Equal<[number], 0, Equal.$Branch>, $Else>(true)
+	})
+
+	it('with partial customization', () => {
+		testType.equal<Equal<[number], [number], { $then: 1 }>, 1>(true)
+		testType.equal<Equal<[number], '', { $else: 1 }>, 1>(true)
+	})
+
+	it('with union', () => {
+		testType.equal<Equal<[number] | 0, [number] | 0>, true>(true)
+		testType.equal<Equal<[number] | 0, [number]>, false>(true)
+		testType.equal<Equal<[number], [number] | 0>, false>(true)
+	})
+})
+
+describe('Function', () => {
+	it('basic comparison', () => {
+		testType.true<Equal<Function, Function>>(true)
+		testType.false<Equal<Function, any>>(true)
+		testType.false<Equal<Function, unknown>>(true)
+		testType.false<Equal<Function, never>>(true)
+		testType.false<Equal<Function, void>>(true)
+		testType.false<Equal<Function, undefined>>(true)
+		testType.false<Equal<Function, null>>(true)
+		testType.false<Equal<Function, boolean>>(true)
+		testType.false<Equal<Function, true>>(true)
+		testType.false<Equal<Function, false>>(true)
+		testType.false<Equal<Function, number>>(true)
+		testType.false<Equal<Function, 1>>(true)
+		testType.false<Equal<Function, string>>(true)
+		testType.false<Equal<Function, ''>>(true)
+		testType.false<Equal<Function, symbol>>(true)
+		testType.false<Equal<Function, bigint>>(true)
+		testType.false<Equal<Function, 1n>>(true)
+		testType.false<Equal<Function, object>>(true)
+		testType.false<Equal<Function, {}>>(true)
+		testType.false<Equal<Function, { a: 1 }>>(true)
+		testType.false<Equal<Function, string[]>>(true)
+		testType.false<Equal<Function, []>>(true)
+		testType.false<Equal<Function, () => void>>(true)
+	})
+
+	it('with branching', () => {
+		testType.equal<Equal<Function, Function, Equal.$Branch>, $Then>(true)
+		testType.equal<Equal<Function, 0, Equal.$Branch>, $Else>(true)
+	})
+
+	it('with partial customization', () => {
+		testType.equal<Equal<Function, Function, { $then: 1 }>, 1>(true)
+		testType.equal<Equal<Function, '', { $else: 1 }>, 1>(true)
+	})
+
+	it('with union', () => {
+		testType.equal<Equal<Function | 0, Function | 0>, true>(true)
+		testType.equal<Equal<Function | 0, Function>, false>(true)
+		testType.equal<Equal<Function, Function | 0>, false>(true)
+	})
+})
+
+it('works with union types containing undefined', () => {
+	testType.false<Equal<string | undefined, string | undefined | number>>(true)
+})
+
+it('works with union types containing symbol', () => {
+	testType.false<Equal<1 | 2, 1>>(true)
+	testType.false<Equal<string | symbol, string | symbol | number>>(true)
+})
+
+it('works with union of functions', () => {
+	testType.true<
+		Equal<((v: string) => string) | ((v: number) => number), ((v: string) => string) | ((v: number) => number)>
+	>(true)
+
+	testType.false<Equal<(v: string) => string, ((v: string) => string) | ((v: number) => number)>>(true)
+	testType.false<Equal<((v: string) => string) | ((v: number) => number), (v: string) => string>>(true)
+})
+
+it('detects literal and widen type are different', () => {
+	testType.false<Equal<1, number>>(true)
+	testType.false<Equal<number, 1>>(true)
+	testType.false<Equal<1 & { a: 1 }, number & { a: 1 }>>(true)
+	testType.false<Equal<bigint & { a: 1 }, 1n & { a: 1 }>>(true)
+
+	testType.true<Equal<1 & { a: 1 }, 1 & { a: 1 }>>(true)
+})
+
+it('works with intersect types', () => {
+	testType.true<Equal<{ a: number; b: string }, { a: number } & { b: string }>>(true)
+	testType.true<Equal<{ a: number } & { b: number }, { a: number; b: number }>>(true)
+	testType.true<Equal<{ a: number; b?: string }, { a: number } & { b?: string }>>(true)
+	testType.true<Equal<{ a: number } & { b?: string }, { a: number; b?: string }>>(true)
+
+	testType.false<Equal<{ a: number } & { c: number }, { a: number; b: number }>>(true)
+	testType.false<Equal<{ a: number; b: number }, { a: number } & { c: number }>>(true)
+
+	testType.true<Equal<{ nested: { a: number; b: string } }, { nested: { a: number } & { b: string } }>>(
+		// @ts-expect-error: Known limitation: nested intersection type properties don't work.
+		true,
+	)
+})
+
+it('works with function overload', () => {
+	function foo(v: string): string
+	function foo(v: number): number
+	function foo(v: unknown) {
+		return v
+	}
+	type F = typeof foo
+
+	testType.true<Equal<F, { (v: string): string; (v: number): number }>>(true)
+	testType.false<Equal<F, { (v: string): string; (v: number): string }>>(true)
+
+	testType.false<Equal<F, (v: number) => number>>(true)
+	testType.false<Equal<F, (v: string) => number>>(true)
+
+	testType.false<Equal<(x: 0, y: null) => void, (x: number, y: string) => void>>(true)
+	testType.true<
+		Equal<
+			((x: 0, y: null) => void) & ((x: number, y: string) => void),
+			((x: number, y: string) => void) & ((x: 0, y: null) => void)
+		>
+	>(true)
+})
+
+it('works with complex cases', () => {
+	testType.true<Equal<1 | (number & {}), 1 | (number & {})>>(true)
+
+	testType.false<Equal<() => void, () => undefined>>(true)
+
+	type A = (() => 'foo') & (() => true)
+	type B = (() => true) & (() => 'foo')
+
+	testType.true<Equal<A, B>>(true)
+	testType.true<Equal<A | B, B>>(true)
+
+	testType.true<Equal<Head<[1, 2, 3]>, 1>>(true)
+})
+
+it('works with complex cases 2', () => {
+	type A = () => 'foo'
+	type B = () => 'foo'
+
+	testType.true<Equal<A, B>>(true)
+	testType.true<Equal<A | B, B>>(true)
+})
+
+it('works with intersect of the same type', () => {
+	type P = { c: 1 } | { c: 1 }
+
+	testType.true<Equal<P, { c: 1 }>>(true)
+	testType.true<Equal<P, { c: 1 } | { c: 1 }>>(true)
+	testType.true<Equal<P, { c: 1 } | { c: 1 } | { c: 1 }>>(true)
+})
+
+it('detect redonly', () => {
+	testType.false<Equal<{ a: 1 }, { readonly a: 1 }>>(true)
+})
+
+it('works with deep any', () => {
+	testType.true<
+		Equal<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: never; u: unknown; v: void } }>
+	>(true)
+
+	testType.false<
+		Equal<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: 1; n: never; u: unknown; v: void } }>
+	>(true)
+
+	testType.false<Equal<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: 2; u: unknown; v: void } }>>(
+		true,
+	)
+	testType.false<Equal<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: never; u: 3; v: void } }>>(
+		true,
+	)
+	testType.false<
+		Equal<{ a: { a: any; n: never; u: unknown; v: void } }, { a: { a: any; n: never; u: unknown; v: 4 } }>
+	>(true)
+})
+
+it('can detect difference with optional param', () => {
+	testType.false<Equal<() => void, (a?: number) => void>>(true)
+})
+
+it('can detect difference with union return value', () => {
+	testType.false<Equal<() => number, () => number | undefined>>(true)
 })
