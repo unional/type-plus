@@ -1,6 +1,7 @@
 import type { $ResolveOptions } from '../$resolve_options.js'
 import type { $InputOptions } from '../branch/$input_options.js'
 import type { $Else, $Then } from '../branch/$selection.js'
+
 export namespace $Distributive {
 	/**
 	 * Options for controlling if the type is distributive.
@@ -18,10 +19,12 @@ export namespace $Distributive {
 		distributive: true
 	}
 
-	export type Parse<
-		$Options extends $Distributive.Options,
-		$O extends $InputOptions<$Then | $Else> = {},
-	> = $ResolveOptions<[$Options['distributive'], $Distributive.Default['distributive']]> extends true
+	/**
+	 * Parse the options for `distributive`.
+	 */
+	export type Parse<$Options extends Options, $O extends $InputOptions<$Then | $Else> = {}> = $ResolveOptions<
+		[$Options['distributive'], Default['distributive']]
+	> extends true
 		? '$then' extends keyof $O
 			? $O['$then']
 			: true
