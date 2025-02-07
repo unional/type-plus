@@ -63,4 +63,20 @@
 		],
 		"description": "Branching"
 	},
+	"predicate": {
+		"scope": "markdown",
+		"prefix": "@predicate",
+		"body": [
+			"🎭 **predicate**"
+		],
+		"description": "predicate"
+	},
+	"customize": {
+		"scope": "markdown",
+		"prefix": "@customize",
+		"body": [
+			"🔢 **customize**"
+		],
+		"description": "customize"
+	},
 }

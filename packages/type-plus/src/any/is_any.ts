@@ -50,8 +50,8 @@ export type IsAny<T, $O extends IsAny.$Options = {}> = $Special<
 	T,
 	{
 		$any: $ResolveBranch<T, $O, [$Then]>
-		$never: $ResolveBranch<T, $O, [$Never, $Else]>
 		$unknown: $ResolveBranch<T, $O, [$Unknown, $Else]>
+		$never: $ResolveBranch<T, $O, [$Never, $Else]>
 		$void: $ResolveBranch<T, $O, [$Void, $Else]>
 		$else: $ResolveBranch<T, $O, [$Else]>
 	}
