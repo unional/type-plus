@@ -1,13 +1,23 @@
-# void
+# `void`
 
 `void` is a type that represents the absence of type information.
-It is typically used as the return type of a function that does not explicitly return a value.
+It is typically used as the return type of function that does not explicitly return a value.
 
-## [IsVoid](./is_void.ts)
+## [`IsVoid`](./is_void.ts)
 
-`IsVoid<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
+```ts
+IsVoid<T, {
+	distributive: boolean = true,
+	selection: 'predicate' | 'filter' = 'predicate',
+	$then: unknown = true,
+	$else: unknown = false,
+	$any: unknown,
+	$unknown: unknown,
+	$never: unknown,
+}>
+```
 
-🎭 *predicate*
+🎭 **predicate**
 
 Validate if `T` is `void`.
 
@@ -16,12 +26,12 @@ type R = IsVoid<void> // true
 
 type R = IsVoid<never> // false
 type R = IsVoid<unknown> // false
+type R = IsVoid<undefined> // false
 type R = IsVoid<string | boolean> // false
-
 type R = IsVoid<string | void> // boolean
 ```
 
-🔢 *customize*
+🌪️ **filter**
 
 Filter to ensure `T` is `void`, otherwise returns `never`.
 
@@ -31,11 +41,10 @@ type R = IsVoid<void, { selection: 'filter' }> // void
 type R = IsVoid<never, { selection: 'filter' }> // never
 type R = IsVoid<unknown, { selection: 'filter' }> // never
 type R = IsVoid<string | boolean, { selection: 'filter' }> // never
-
-type R = IsVoid<string | void> // void
+type R = IsVoid<string | void, { selection: 'filter' }> // void
 ```
 
-🔢 *customize*:
+🔀 **distributive**
 
 Disable distribution of union types.
 
@@ -44,20 +53,33 @@ type R = IsVoid<void | 1> // boolean
 type R = IsVoid<void | 1, { distributive: false }> // false
 ```
 
-🔢 *customize*
+🔱 **branching**
 
 Use unique branch identifiers to allow precise processing of the result.
 
 ```ts
-type R = IsVoid<void, $SelectionBranch> // $Then
-type R = IsVoid<string, $SelectionBranch> // $Else
+type R = IsVoid<void, $Selection.Branch> // $Then
+type R = IsVoid<string, $Selection.Branch> // $Else
+type R = IsVoid<any, IsVoid.Branch> // $Any
+type R = IsVoid<unknown, IsVoid.Branch> // $Unknown
+type R = IsVoid<never, IsVoid.Branch> // $Never
 ```
 
-## [IsNotVoid](./is_not_void.ts)
+## [`IsNotVoid`](./is_not_void.ts)
 
-`IsNotVoid<T, { distributive: true, selection: 'predicate' | 'filter', $then: true, $else: false }>`
+```ts
+IsNotVoid<T, {
+	distributive: boolean = true,
+	selection: 'predicate' | 'filter' = 'predicate',
+	$then: unknown = true,
+	$else: unknown = false,
+	$any: unknown,
+	$unknown: unknown,
+	$never: unknown
+}>
+```
 
-🎭 *predicate*
+🎭 **predicate**
 
 Validate if `T` is not `void`.
 
@@ -71,7 +93,7 @@ type R = IsNotVoid<string | boolean> // true
 type R = IsNotVoid<string | void> // boolean
 ```
 
-🔢 *customize*
+🌪️ **filter**
 
 Filter to ensure `T` is not `void`, otherwise returns `never`.
 
@@ -83,7 +105,7 @@ type R = IsNotVoid<unknown, { selection: 'filter' }> // unknown
 type R = IsNotVoid<string | void, { selection: 'filter' }> // string
 ```
 
-🔢 *customize*:
+🔀 **distributive**
 
 Disable distribution of union types.
 
@@ -92,13 +114,35 @@ type R = IsNotVoid<void | string> // boolean
 type R = IsNotVoid<void | string, { distributive: false }> // true
 ```
 
-🔢 *customize*
+🔱 **branching**
 
 Use unique branch identifiers to allow precise processing of the result.
 
 ```ts
-type R = IsNotVoid<void, $SelectionBranch> // $Else
-type R = IsNotVoid<string, $SelectionBranch> // $Then
+type R = IsNotVoid<void, $Selection.Branch> // $Else
+type R = IsNotVoid<string, $Selection.Branch> // $Then
+```
+
+## [`IsVoid.$`](./is_void.ts)
+
+Type-level utility for `IsVoid`.
+It does not check for special types like `any`, `unknown`, and `never`.
+
+```ts
+type R = IsVoid.$<void> // true
+type R = IsVoid.$<undefined> // false
+type R = IsVoid.$<string | void> // boolean
+```
+
+## [`IsNotVoid.$`](./is_not_void.ts)
+
+Type-level utility for `IsNotVoid`.
+It does not check for special types like `any`, `unknown`, and `never`.
+
+```ts
+type R = IsNotVoid.$<void> // false
+type R = IsNotVoid.$<undefined> // true
+type R = IsNotVoid.$<string | void> // boolean
 ```
 
 ## References

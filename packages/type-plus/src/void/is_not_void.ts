@@ -1,19 +1,16 @@
 import type { $InputOptions } from '../$type/branch/$input_options.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
 import type { $Else, $Selection, $Then } from '../$type/branch/$selection.js'
-import type { $Distributive } from '../$type/distributive/$distributive.js'
-import type { $Exact } from '../$type/exact/$exact.js'
 import type { $Any } from '../$type/special/$any.js'
 import type { $Never } from '../$type/special/$never.js'
 import type { $Special } from '../$type/special/$special.js'
 import type { $Unknown } from '../$type/special/$unknown.js'
-import type { $Void } from '../$type/special/$void.js'
 import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { NotAssignable } from '../predicates/not_assignable.js'
 import type { IsUndefined } from '../undefined/is_undefined.js'
 
 /**
- * 🎭 *predicate*
+ * 🎭 **predicate**
  *
  * Validate if `T` is not `void`.
  *
@@ -24,11 +21,10 @@ import type { IsUndefined } from '../undefined/is_undefined.js'
  * type R = IsNotVoid<never> // true
  * type R = IsNotVoid<unknown> // true
  * type R = IsNotVoid<string | boolean> // true
- *
  * type R = IsNotVoid<string | void> // boolean
  * ```
  *
- * 🔢 *customize*
+ * 🌪️ **filter**
  *
  * Filter to ensure `T` is not `void`, otherwise returns `never`.
  *
@@ -41,7 +37,7 @@ import type { IsUndefined } from '../undefined/is_undefined.js'
  * type R = IsNotVoid<string | void, { selection: 'filter' }> // string
  * ```
  *
- * 🔢 *customize*:
+ * 🔀 **distributive**
  *
  * Disable distribution of union types.
  *
@@ -51,50 +47,48 @@ import type { IsUndefined } from '../undefined/is_undefined.js'
  * type R = IsNotVoid<void | string, { distributive: false }> // true
  * ```
  *
- * 🔢 *customize*
+ * 🔱 **branching**
  *
  * Use unique branch identifiers to allow precise processing of the result.
  *
  * @example
  * ```ts
- * type R = IsNotVoid<void, $SelectionBranch> // $Else
- * type R = IsNotVoid<string, $SelectionBranch> // $Then
+ * type R = IsNotVoid<void, $Selection.Branch> // $Else
+ * type R = IsNotVoid<string, $Selection.Branch> // $Then
  * ```
  */
-export type IsNotVoid<T, $O extends IsNotVoid.$Options = {}> = $Special<
+export type IsNotVoid<T, $O extends IsNotVoid.Options = {}> = $Special<
 	T,
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<$O, [$Then], T>
-			$void: $ResolveBranch<$O, [$Void, $Else]>
+			$any: $ResolveBranch<$O, [$Any, $Then], T>
+			$unknown: $ResolveBranch<$O, [$Unknown, $Then], T>
+			$never: $ResolveBranch<$O, [$Never, $Then], T>
+			$void: $ResolveBranch<$O, [$Else]>
 			$else: IsNotVoid.$<T, $O>
 		}
 	>
 >
 
 export namespace IsNotVoid {
-	export type $Options = $Selection.Options &
-		$Distributive.Options &
-		$Exact.Options &
-		$InputOptions<$Any | $Unknown | $Never | $Void>
-	export type $Branch<$O extends $Options = {}> = $Selection.Branch<$O>
+	export type Options = $Options & $InputOptions<$Any | $Unknown | $Never>
+	export type Branch<$O extends Options = {}> = $Branch<$O> & $Any.$Branch & $Unknown.$Branch & $Never.$Branch
 
 	/**
-	 * 🧰 *type util*
-	 *
-	 * Validate if `T` is `undefined`.
+	 * Validate if `T` is not `void`.
 	 *
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> = IsUndefined.$<
+	export type $<T, $O extends $Options> = IsUndefined.$<
 		T,
 		{
 			$then: $ResolveBranch<$O, [$Then], T>
-			$else: NotAssignable.$<T, void, $O>
+			$else: NotAssignable.$<Exclude<T, undefined>, void, $O>
 		}
 	>
 
-	export type $UtilOptions = NotAssignable.$UtilOptions
+	export type $Options = NotAssignable.$UtilOptions
+	export type $Branch<$O extends $Options = {}> = $Selection.Branch<$O>
 }
