@@ -7,7 +7,7 @@ import type { $Special } from '../$type/special/$special.js'
 import type { $Void } from '../$type/special/$void.js'
 
 /**
- * 🎭 *predicate*
+ * 🎭 **predicate**
  *
  * Validate if `T` is exactly `unknown`.
  *
@@ -19,7 +19,7 @@ import type { $Void } from '../$type/special/$void.js'
  * type R = IsUnknown<never> // false
  * ```
  *
- * 🔢 *customize*
+ * 🌪️ **filter**
  *
  * Filter to ensure `T` is exactly `unknown`.
  *
@@ -31,17 +31,17 @@ import type { $Void } from '../$type/special/$void.js'
  * type R = IsUnknown<never, { selection: 'filter' }> // never
  * ```
  *
- * 🔢 *customize*
+ * 🔱 **branching**
  *
  * Use unique branch identifiers to allow precise processing of the result.
  *
  * @example
  * ```ts
- * type R = IsUnknown<unknown, $SelectionBranch> // $Then
- * type R = IsUnknown<string, $SelectionBranch> // $Else
+ * type R = IsUnknown<unknown, $Selection.Branch> // $Then
+ * type R = IsUnknown<string, $Selection.Branch> // $Else
  * ```
  */
-export type IsUnknown<T, $O extends IsUnknown.$Options = {}> = $Special<
+export type IsUnknown<T, $O extends IsUnknown.Options = {}> = $Special<
 	T,
 	{
 		$any: $ResolveBranch<$O, [$Any, $Else]>
@@ -53,6 +53,6 @@ export type IsUnknown<T, $O extends IsUnknown.$Options = {}> = $Special<
 >
 
 export namespace IsUnknown {
-	export type $Options = $Selection.Options & $InputOptions<$Any | $Never>
-	export type $Branch = $Selection.Branch
+	export type Options = $Selection.Options & $InputOptions<$Any | $Never | $Void>
+	export type Branch = $Selection.Branch & $Any.$Branch & $Never.$Branch & $Void.$Branch
 }

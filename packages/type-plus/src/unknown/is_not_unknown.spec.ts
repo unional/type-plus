@@ -2,11 +2,11 @@ import { it } from '@jest/globals'
 
 import {
 	type $Any,
-	type $BranchOptions,
 	type $Else,
 	type $Never,
 	type $Selection,
 	type $Then,
+	type $Void,
 	type IsNotUnknown,
 	testType,
 } from '../index.js'
@@ -111,18 +111,17 @@ it('works as filter', () => {
 })
 
 it('works with unique branches', () => {
-	testType.equal<IsNotUnknown<unknown, $BranchOptions<$Else>>, $Else>(true)
-	testType.equal<IsNotUnknown<number, $BranchOptions<$Then | $Else>>, $Then>(true)
+	testType.equal<IsNotUnknown<unknown, $Selection.Branch>, $Else>(true)
+	testType.equal<IsNotUnknown<number, $Selection.Branch>, $Then>(true)
 
-	testType.equal<IsNotUnknown<any, $BranchOptions<$Then>>, $Then>(true)
-	testType.equal<IsNotUnknown<any, $BranchOptions<$Any>>, $Any>(true)
-	testType.equal<IsNotUnknown<any, $BranchOptions<$Any | $Then>>, $Any>(true)
+	testType.equal<IsNotUnknown<any, $Selection.Branch>, $Then>(true)
+	testType.equal<IsNotUnknown<any, IsNotUnknown.Branch>, $Any>(true)
 
-	testType.equal<IsNotUnknown<never, $BranchOptions<$Then>>, $Then>(true)
-	testType.equal<IsNotUnknown<never, $BranchOptions<$Never>>, $Never>(true)
-	testType.equal<IsNotUnknown<never, $BranchOptions<$Never | $Then>>, $Never>(true)
+	testType.equal<IsNotUnknown<never, $Selection.Branch>, $Then>(true)
+	testType.equal<IsNotUnknown<never, IsNotUnknown.Branch>, $Never>(true)
 
 	testType.equal<IsNotUnknown<void, $Selection.Branch>, $Then>(true)
+	testType.equal<IsNotUnknown<void, IsNotUnknown.Branch>, $Void>(true)
 })
 
 it('can override $never branch', () => {
@@ -133,4 +132,9 @@ it('can override $never branch', () => {
 it('can override $any branch', () => {
 	testType.equal<IsNotUnknown<any>, true>(true)
 	testType.equal<IsNotUnknown<any, { $any: unknown }>, unknown>(true)
+})
+
+it('can override $void branch', () => {
+	testType.equal<IsNotUnknown<void>, true>(true)
+	testType.equal<IsNotUnknown<void, { $void: unknown }>, unknown>(true)
 })

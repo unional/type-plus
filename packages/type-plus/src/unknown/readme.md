@@ -1,52 +1,69 @@
-# unknown
+# `unknown`
 
 `unknown` is one of the top types in TypeScript.
 It is a "safer" variant of `any` that you cannot use the value until there are some type guards or type assertions to the value.
 
-`unknown | T => unknown` except `unknown | any => any.
+`unknown | T => unknown` except `unknown | any => any`.
 
 `unknown & T => T`
 
-## [IsUnknown](./is_unknown.ts)
+## [`IsUnknown`](./is_unknown.ts)
 
-`IsUnknown<T, $Options = { selection: 'predicate' | 'filter', $then: true, $else: false }>`
+```ts
+IsUnknown<T, $Options = {
+	selection: 'predicate' | 'filter' = 'predicate',
+	$then: unknown = true,
+	$else: unknown = false,
+	$any: unknown,
+	$never: unknown,
+	$void: unknown
+}>
+```
 
-🎭 *predicate*
+🎭 **predicate**
 
 Validate if `T` is exactly `unknown`.
 
 ```ts
 type R = IsUnknown<unknown> // true
-
-type R = IsUnknown<number> // false
+type R = IsUnknown<any> // false
 type R = IsUnknown<never> // false
+type R = IsUnknown<number> // false
 ```
 
-🔢 *customize*
+🌪️ **filter**
 
 Filter to ensure `T` is exactly `unknown`.
 
 ```ts
 type R = IsUnknown<unknown, { selection: 'filter' }> // unknown
-
-type R = IsUnknown<number, { selection: 'filter' }> // never
 type R = IsUnknown<never, { selection: 'filter' }> // never
+type R = IsUnknown<number, { selection: 'filter' }> // never
 ```
 
-🔢 *customize*
+🔱 **branching**
 
 Use unique branch identifiers to allow precise processing of the result.
 
 ```ts
-type R = IsUnknown<unknown, $SelectionBranch> // $Then
-type R = IsUnknown<string, $SelectionBranch> // $Else
+type R = IsUnknown<unknown, $Selection.Branch> // $Then
+type R = IsUnknown<string, $Selection.Branch> // $Else
 ```
 
-### [IsNotUnknown](./is_not_unknown.ts)
+### [`IsNotUnknown`](./is_not_unknown.ts)
 
-`IsNotUnknown<T, $Options = { selection: 'predicate' | 'filter', $then: true, $else: false }>`
+```ts
+IsNotUnknown<T, $Options = {
+	selection: 'predicate' | 'filter' = 'predicate',
+	$then: unknown = true,
+	$else: unknown = false,
+	$any: unknown,
+	$never: unknown,
+	$void: unknown
+}>
+```
 
-🎭 *predicate*
+🎭 **predicate**
 
 Validate if `T` is not exactly `unknown`.
 
@@ -57,7 +74,7 @@ type R = IsNotUnknown<number> // true
 type R = IsNotUnknown<never> // true
 ```
 
-🔢 *customize*
+🌪️ **filter**
 
 Filter to ensure `T` is not exactly `unknown`.
 
@@ -68,32 +85,31 @@ type R = IsNotUnknown<number, { selection: 'filter' }> // number
 type R = IsNotUnknown<never, { selection: 'filter' }> // never
 ```
 
-🔢 *customize*
+🔱 **branching**
 
 Use unique branch identifiers to allow precise processing of the result.
 
 ```ts
-type R = IsNotUnknown<unknown, $SelectionBranch> // $Else
-type R = IsNotUnknown<string, $SelectionBranch> // $Then
+type R = IsNotUnknown<unknown, $Selection.Branch> // $Else
+type R = IsNotUnknown<string, $Selection.Branch> // $Then
 ```
 
-### [NotUnknownOr](./not_unknown_or.ts)
+### [`NotUnknownOr`](./not_unknown_or.ts)
 
 `NotUnknownOr<T, Else>`
 
-🌪️ *filter*
+🔄 **alias**
+
+Alias of [`IsNotUnknown<T, { selection: 'filter', $else: Else }>`](./is_not_unknown.ts)
+
+🌪️ **filter**
 
 Returns `T` if `T` is not `unknown`, otherwise `$Unknown`.
 
 ```ts
 type R = NotUnknownOr<number> // number
 type R = NotUnknownOr<unknown> // $Unknown
-
-// customize
-type R = NotUnknownOr<unknown, number> // number
 ```
-
-🔢 *customize*
 
 Replace `unknown` branch with `Replace`.
 

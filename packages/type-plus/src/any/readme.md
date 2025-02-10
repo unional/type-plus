@@ -26,7 +26,7 @@ type R = IsAny<any> // true
 
 type R = IsAny<never> // false
 type R = IsAny<unknown> // false
-type R = IsAny<string | boolean> // false
+type R = IsAny<string> // false
 ```
 
 🌪️ **filter**

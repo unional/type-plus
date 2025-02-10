@@ -87,4 +87,13 @@
 		],
 		"description": "customize"
 	},
+	"alias": {
+		"scope": "markdown",
+		"prefix": "@alias",
+		"body": [
+			"🔄 **alias**",
+			"",
+			"Alias of $0"
+		],
+	}
 }

@@ -70,4 +70,11 @@
 		],
 		"description": "filter"
 	},
+	"alias": {
+		"scope": "typescript",
+		"prefix": "@alias",
+		"body": [
+			"@alias 🔄 **alias**"
+		],
+	}
 }

@@ -2,11 +2,11 @@ import { it } from '@jest/globals'
 
 import {
 	type $Any,
-	type $BranchOptions,
 	type $Else,
 	type $Never,
 	type $Selection,
 	type $Then,
+	type $Void,
 	type IsUnknown,
 	testType,
 } from '../index.js'
@@ -39,8 +39,10 @@ it('returns false for other special types', () => {
 })
 
 it('returns false for other types', () => {
+	testType.false<IsUnknown<undefined>>(true)
 	testType.false<IsUnknown<null>>(true)
 	testType.false<IsUnknown<number>>(true)
+	testType.false<IsUnknown<1>>(true)
 	testType.false<IsUnknown<boolean>>(true)
 	testType.false<IsUnknown<true>>(true)
 	testType.false<IsUnknown<false>>(true)
@@ -48,6 +50,7 @@ it('returns false for other types', () => {
 	testType.false<IsUnknown<''>>(true)
 	testType.false<IsUnknown<symbol>>(true)
 	testType.false<IsUnknown<bigint>>(true)
+	testType.false<IsUnknown<1n>>(true)
 	testType.false<IsUnknown<{}>>(true)
 	testType.false<IsUnknown<string[]>>(true)
 	testType.false<IsUnknown<[]>>(true)
@@ -73,11 +76,6 @@ it('returns true as unknown & void => void', () => {
 it('returns false as unknown & never => never', () => {
 	testType.equal<unknown & never, never>(true)
 	testType.false<IsUnknown<unknown & never>>(true)
-})
-
-it('returns false for intersection type', () => {
-	testType.equal<unknown & { a: 1 }, { a: 1 }>(true)
-	testType.false<IsUnknown<unknown & { a: 1 }>>(true)
 })
 
 it('returns false as unknown & <others> => <other>', () => {
@@ -111,18 +109,17 @@ it('works as filter', () => {
 })
 
 it('works with unique branches', () => {
-	testType.equal<IsUnknown<unknown, $BranchOptions<$Then>>, $Then>(true)
-	testType.equal<IsUnknown<number, $BranchOptions<$Then | $Else>>, $Else>(true)
+	testType.equal<IsUnknown<unknown, $Selection.Branch>, $Then>(true)
+	testType.equal<IsUnknown<number, $Selection.Branch>, $Else>(true)
 
-	testType.equal<IsUnknown<any, $BranchOptions<$Else>>, $Else>(true)
-	testType.equal<IsUnknown<any, $BranchOptions<$Any>>, $Any>(true)
-	testType.equal<IsUnknown<any, $BranchOptions<$Any | $Else>>, $Any>(true)
+	testType.equal<IsUnknown<any, $Selection.Branch>, $Else>(true)
+	testType.equal<IsUnknown<any, IsUnknown.Branch>, $Any>(true)
 
-	testType.equal<IsUnknown<never, $BranchOptions<$Else>>, $Else>(true)
-	testType.equal<IsUnknown<never, $BranchOptions<$Never>>, $Never>(true)
-	testType.equal<IsUnknown<never, $BranchOptions<$Never | $Else>>, $Never>(true)
+	testType.equal<IsUnknown<never, $Selection.Branch>, $Else>(true)
+	testType.equal<IsUnknown<never, IsUnknown.Branch>, $Never>(true)
 
 	testType.equal<IsUnknown<void, $Selection.Branch>, $Else>(true)
+	testType.equal<IsUnknown<void, IsUnknown.Branch>, $Void>(true)
 })
 
 it('can override $never branch', () => {
@@ -133,4 +130,9 @@ it('can override $never branch', () => {
 it('can override $any branch', () => {
 	testType.equal<IsUnknown<any>, false>(true)
 	testType.equal<IsUnknown<any, { $any: unknown }>, unknown>(true)
+})
+
+it('can override $void branch', () => {
+	testType.equal<IsUnknown<void>, false>(true)
+	testType.equal<IsUnknown<void, { $void: unknown }>, unknown>(true)
 })
