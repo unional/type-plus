@@ -7,7 +7,7 @@ import type { $Unknown } from '../$type/special/$unknown.js'
 import type { $Void } from '../$type/special/$void.js'
 
 /**
- * 🎭 *predicate*
+ * 🎭 **predicate**
  *
  * Validate if `T` is not `any`.
  *
@@ -20,7 +20,7 @@ import type { $Void } from '../$type/special/$void.js'
  * type R = IsNotAny<string | boolean> // true
  * ```
  *
- * 🔢 *customize*
+ * 🌪️ **filter**
  *
  * Filter to ensure `T` is not `any`.
  *
@@ -33,15 +33,17 @@ import type { $Void } from '../$type/special/$void.js'
  * type R = IsNotAny<string | boolean, { selection: 'filter' }> // string | boolean
  * ```
  *
- * 🔢 *customize*
+ * � **branching**
  *
  * Use unique branch identifiers to allow precise processing of the result.
  *
  * @example
  * ```ts
- * type R = IsNotAny<any, $SelectionBranch> // $Else
- * type R = IsNotAny<string, $SelectionBranch> // $Then
+ * type R = IsNotAny<any, $Selection.Branch> // $Else
+ * type R = IsNotAny<string, $Selection.Branch> // $Then
  * ```
+ *
+ * @since 🏷️ 8.0.0
  */
 export type IsNotAny<T, $O extends IsNotAny.$Options = {}> = $Special<
 	T,

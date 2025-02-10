@@ -1,6 +1,16 @@
 import { it } from '@jest/globals'
 
-import { type $Else, type $Then, type IsNull, testType } from '../index.js'
+import {
+	type $Any,
+	type $Else,
+	type $Never,
+	type $Selection,
+	type $Then,
+	type $Unknown,
+	type $Void,
+	type IsNull,
+	testType,
+} from '../index.js'
 
 it('returns true for null', () => {
 	testType.true<IsNull<null>>(true)
@@ -51,12 +61,17 @@ it('can disable union distribution', () => {
 })
 
 it('works with unique branches', () => {
-	testType.equal<IsNull<null, IsNull.$Branch>, $Then>(true)
+	testType.equal<IsNull<null, IsNull.Branch>, $Then>(true)
+	testType.equal<IsNull<1, IsNull.Branch>, $Else>(true)
 
-	testType.equal<IsNull<any, IsNull.$Branch>, $Else>(true)
-	testType.equal<IsNull<unknown, IsNull.$Branch>, $Else>(true)
-	testType.equal<IsNull<never, IsNull.$Branch>, $Else>(true)
-	testType.equal<IsNull<void, IsNull.$Branch>, $Else>(true)
+	testType.equal<IsNull<any, $Selection.Branch>, $Else>(true)
+	testType.equal<IsNull<any, IsNull.Branch>, $Any>(true)
+	testType.equal<IsNull<unknown, $Selection.Branch>, $Else>(true)
+	testType.equal<IsNull<unknown, IsNull.Branch>, $Unknown>(true)
+	testType.equal<IsNull<never, $Selection.Branch>, $Else>(true)
+	testType.equal<IsNull<never, IsNull.Branch>, $Never>(true)
+	testType.equal<IsNull<void, $Selection.Branch>, $Else>(true)
+	testType.equal<IsNull<void, IsNull.Branch>, $Void>(true)
 })
 
 it('can override $any branch', () => {

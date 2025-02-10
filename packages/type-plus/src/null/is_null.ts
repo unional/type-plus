@@ -1,8 +1,6 @@
 import type { $InputOptions } from '../$type/branch/$input_options.js'
 import type { $ResolveBranch } from '../$type/branch/$resolve_branch.js'
-import type { $Else, $Selection } from '../$type/branch/$selection.js'
-import type { $Distributive } from '../$type/distributive/$distributive.js'
-import type { $Exact } from '../$type/exact/$exact.js'
+import type { $Else } from '../$type/branch/$selection.js'
 import type { $Any } from '../$type/special/$any.js'
 import type { $Never } from '../$type/special/$never.js'
 import type { $Special } from '../$type/special/$special.js'
@@ -12,7 +10,7 @@ import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { Assignable } from '../predicates/assignable.js'
 
 /**
- * 🎭 *predicate*
+ * 🎭 **predicate**
  *
  * Validate if `T` is `null`.
  *
@@ -27,7 +25,7 @@ import type { Assignable } from '../predicates/assignable.js'
  * type R = IsNull<string | null> // boolean
  * ```
  *
- * 🔢 *customize*
+ * 🌪️ **filter**
  *
  * Filter to ensure `T` is `null`, otherwise returns `never`.
  *
@@ -42,7 +40,7 @@ import type { Assignable } from '../predicates/assignable.js'
  * type R = IsNull<string | null> // null
  * ```
  *
- * 🔢 *customize*:
+ * 🔀 **distributive**
  *
  * Disable distribution of union types.
  *
@@ -51,33 +49,44 @@ import type { Assignable } from '../predicates/assignable.js'
  * type R = IsNull<null | 1, { distributive: false }> // false
  * ```
  *
- * 🔢 *customize*
+ * 🔱 **branching**
  *
  * Use unique branch identifiers to allow precise processing of the result.
  *
  * @example
  * ```ts
- * type R = IsNull<null, $SelectionBranch> // $Then
- * type R = IsNull<string, $SelectionBranch> // $Else
+ * type R = IsNull<null, $Selection.Branch> // $Then
+ * type R = IsNull<string, $Selection.Branch> // $Else
+ *
+ * type R = IsNull<any, IsNull.Branch> // $Any
+ * type R = IsNull<unknown, IsNull.Branch> // $Unknown
+ * type R = IsNull<never, IsNull.Branch> // $Never
+ * type R = IsNull<void, IsNull.Branch> // $Void
  * ```
+ *
+ * @since 🏷️ 8.0.0
  */
-export type IsNull<T, $O extends IsNull.$Options = {}> = $Special<
+export type IsNull<T, $O extends IsNull.Options = {}> = $Special<
 	T,
 	$MergeOptions<
 		$O,
 		{
-			$then: $ResolveBranch<$O, [$Else]>
+			$any: $ResolveBranch<$O, [$Any, $Else]>
+			$unknown: $ResolveBranch<$O, [$Unknown, $Else]>
+			$never: $ResolveBranch<$O, [$Never, $Else]>
+			$void: $ResolveBranch<$O, [$Void, $Else]>
 			$else: IsNull.$<T, $O>
 		}
 	>
 >
 
 export namespace IsNull {
-	export type $Options = $Selection.Options &
-		$Distributive.Options &
-		$Exact.Options &
-		$InputOptions<$Any | $Unknown | $Never | $Void>
-	export type $Branch<$O extends $Options = {}> = $Selection.Branch<$O>
+	export type Options = $Options & $InputOptions<$Any | $Unknown | $Never | $Void>
+	export type Branch<$O extends Options = {}> = $Branch<$O> &
+		$Any.$Branch &
+		$Unknown.$Branch &
+		$Never.$Branch &
+		$Void.$Branch
 
 	/**
 	 * 🧰 *type util*
@@ -87,7 +96,8 @@ export namespace IsNull {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> = Assignable.$<T, null, $O>
+	export type $<T, $O extends $Options> = Assignable.$<T, null, $O>
 
-	export type $UtilOptions = Assignable.$UtilOptions
+	export type $Options = Assignable.$UtilOptions
+	export type $Branch<$O extends $Options = {}> = Assignable.$Branch<$O>
 }

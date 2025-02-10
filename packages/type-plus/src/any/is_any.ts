@@ -44,6 +44,8 @@ import type { $Void } from '../$type/special/$void.js'
  * type R = IsAny<never, IsAny.$Branch> // $Never
  * type R = IsAny<void, IsAny.$Branch> // $Void
  * ```
+ *
+ * @since 🏷️ 8.0.0
  */
 export type IsAny<T, $O extends IsAny.$Options = {}> = $Special<
 	T,

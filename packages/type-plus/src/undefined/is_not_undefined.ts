@@ -87,10 +87,10 @@ export namespace IsNotUndefined {
 		$Exact.Options &
 		$InputOptions<$Any | $Unknown | $Never | $Void>
 	export type Branch<$O extends Options = {}> = $Selection.Branch<$O> &
-	$Any.$Branch &
-	$Unknown.$Branch &
-	$Never.$Branch &
-	$Void.$Branch
+		$Any.$Branch &
+		$Unknown.$Branch &
+		$Never.$Branch &
+		$Void.$Branch
 
 	/**
 	 * 🧰 *type util*

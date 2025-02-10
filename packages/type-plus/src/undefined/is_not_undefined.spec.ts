@@ -1,6 +1,16 @@
 import { it } from '@jest/globals'
 
-import { type $Any, type $Else, type $Never, type $Selection, type $Then, type $Unknown, type $Void, type IsNotUndefined, testType } from '../index.js'
+import {
+	type $Any,
+	type $Else,
+	type $Never,
+	type $Selection,
+	type $Then,
+	type $Unknown,
+	type $Void,
+	type IsNotUndefined,
+	testType,
+} from '../index.js'
 
 it('returns false for undefined', () => {
 	testType.equal<IsNotUndefined<undefined>, false>(true)
