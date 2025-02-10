@@ -1,6 +1,6 @@
 import { it } from '@jest/globals'
 
-import { type $Else, type $Then, type IsNotUndefined, testType } from '../index.js'
+import { type $Any, type $Else, type $Never, type $Selection, type $Then, type $Unknown, type $Void, type IsNotUndefined, testType } from '../index.js'
 
 it('returns false for undefined', () => {
 	testType.equal<IsNotUndefined<undefined>, false>(true)
@@ -87,14 +87,19 @@ it('works as filter', () => {
 })
 
 it('works with unique branches', () => {
-	testType.equal<IsNotUndefined<undefined, IsNotUndefined.$Branch>, $Else>(true)
+	testType.equal<IsNotUndefined<1, $Selection.Branch>, $Then>(true)
+	testType.equal<IsNotUndefined<undefined, $Selection.Branch>, $Else>(true)
 
-	testType.equal<IsNotUndefined<any, IsNotUndefined.$Branch>, $Then>(true)
-	testType.equal<IsNotUndefined<unknown, IsNotUndefined.$Branch>, $Then>(true)
-	testType.equal<IsNotUndefined<never, IsNotUndefined.$Branch>, $Then>(true)
-	testType.equal<IsNotUndefined<void, IsNotUndefined.$Branch>, $Then>(true)
+	testType.equal<IsNotUndefined<any, $Selection.Branch>, $Then>(true)
+	testType.equal<IsNotUndefined<any, IsNotUndefined.Branch>, $Any>(true)
+	testType.equal<IsNotUndefined<unknown, $Selection.Branch>, $Then>(true)
+	testType.equal<IsNotUndefined<unknown, IsNotUndefined.Branch>, $Unknown>(true)
+	testType.equal<IsNotUndefined<never, $Selection.Branch>, $Then>(true)
+	testType.equal<IsNotUndefined<never, IsNotUndefined.Branch>, $Never>(true)
+	testType.equal<IsNotUndefined<void, $Selection.Branch>, $Then>(true)
+	testType.equal<IsNotUndefined<void, IsNotUndefined.Branch>, $Void>(true)
 
-	testType.equal<IsNotUndefined<undefined | 1, IsNotUndefined.$Branch>, $Then | $Else>(true)
+	testType.equal<IsNotUndefined<undefined | 1, IsNotUndefined.Branch>, $Then | $Else>(true)
 })
 
 it('can override $any branch', () => {

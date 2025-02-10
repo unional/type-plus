@@ -3,7 +3,7 @@ import type { $Else, $Selection, $Then } from '../$type/branch/$selection.js'
 import type { IsUndefined } from './is_undefined.js'
 
 /**
- * 🎭 *predicate*
+ * 🎭 **predicate**
  *
  * Validate if `T` is `undefined` or an union with `undefined`.
  *
@@ -15,7 +15,7 @@ import type { IsUndefined } from './is_undefined.js'
  * type R = HasUndefined<number> // false
  * ```
  *
- * 🔢 *customize*
+ * 🌪️ **filter**
  *
  * Filter to ensure `T` is `undefined` or an union with `undefined`, otherwise returns `never`.
  *
@@ -27,15 +27,17 @@ import type { IsUndefined } from './is_undefined.js'
  * type R = HasUndefined<number> // never
  * ```
  *
- * 🔢 *customize*
+ * � **branching**
  *
  * Use unique branch identifiers to allow precise processing of the result.
  *
  * @example
  * ```ts
- * type R = HasUndefined<undefined, $SelectionBranch> // $Then
+ * type R = HasUndefined<undefined, $Selection.Branch> // $Then
  * type R = HasUndefined<string, $SelectionBranch> // $Else
  * ```
+ *
+ * @since 🏷️ 8.0.0
  */
 export type HasUndefined<T, $O extends $Selection.Options = {}> = $ResolveBranch<
 	$O,

@@ -12,7 +12,7 @@ import type { $MergeOptions } from '../$type/utils/$merge_options.js'
 import type { NotAssignable } from '../predicates/not_assignable.js'
 
 /**
- * 🎭 *predicate*
+ * 🎭 **predicate**
  *
  * Validate if `T` is not `undefined`.
  *
@@ -23,9 +23,10 @@ import type { NotAssignable } from '../predicates/not_assignable.js'
  * type R = IsNotUndefined<never> // true
  * type R = IsNotUndefined<unknown> // true
  * type R = IsNotUndefined<string | boolean> // true
+ * type R = IsNotUndefined<string | undefined> // boolean
  * ```
  *
- * 🔢 *customize*
+ * 🌪️ **filter**
  *
  * Filter to ensure `T` is not `undefined`, otherwise returns `never`.
  *
@@ -38,7 +39,7 @@ import type { NotAssignable } from '../predicates/not_assignable.js'
  * type R = IsNotUndefined<string | boolean, { selection: 'filter' }> // string | boolean
  * ```
  *
- * 🔢 *customize*
+ * 🔀 **distributive**
  *
  * Disable distribution of union types.
  *
@@ -48,21 +49,32 @@ import type { NotAssignable } from '../predicates/not_assignable.js'
  * type R = IsNotUndefined<undefined | 1, { distributive: false }> // true
  * ```
  *
- * 🔢 *customize*
+ * 🔱 **branching**
  *
  * Use unique branch identifiers to allow precise processing of the result.
  *
  * @example
  * ```ts
- * type R = IsNotUndefined<string, $SelectionBranch> // $Then
- * type R = IsNotUndefined<undefined, $SelectionBranch> // $Else
+ * type R = IsNotUndefined<string, $Selection.Branch> // $Then
+ * type R = IsNotUndefined<undefined, $Selection.Branch> // $Else
+ *
+ * type R = IsNotUndefined<any, IsNotUndefined.Branch> // $Any
+ * type R = IsNotUndefined<unknown, IsNotUndefined.Branch> // $Unknown
+ * type R = IsNotUndefined<never, IsNotUndefined.Branch> // $Never
+ * type R = IsNotUndefined<void, IsNotUndefined.Branch> // $Void
  * ```
+ *
+ * @since 🏷️ 8.0.0
  */
-export type IsNotUndefined<T, $O extends IsNotUndefined.$Options = {}> = $Special<
+export type IsNotUndefined<T, $O extends IsNotUndefined.Options = {}> = $Special<
 	T,
 	$MergeOptions<
 		$O,
 		{
+			$any: $ResolveBranch<$O, [$Any, $Then], T>
+			$unknown: $ResolveBranch<$O, [$Unknown, $Then], T>
+			$never: $ResolveBranch<$O, [$Never, $Then], T>
+			$void: $ResolveBranch<$O, [$Void, $Then], T>
 			$then: $ResolveBranch<$O, [$Then], T>
 			$else: IsNotUndefined.$<T, $O>
 		}
@@ -70,11 +82,15 @@ export type IsNotUndefined<T, $O extends IsNotUndefined.$Options = {}> = $Specia
 >
 
 export namespace IsNotUndefined {
-	export type $Options = $Selection.Options &
+	export type Options = $Selection.Options &
 		$Distributive.Options &
 		$Exact.Options &
 		$InputOptions<$Any | $Unknown | $Never | $Void>
-	export type $Branch<$O extends $Options = {}> = $Selection.Branch<$O>
+	export type Branch<$O extends Options = {}> = $Selection.Branch<$O> &
+	$Any.$Branch &
+	$Unknown.$Branch &
+	$Never.$Branch &
+	$Void.$Branch
 
 	/**
 	 * 🧰 *type util*
@@ -84,6 +100,7 @@ export namespace IsNotUndefined {
 	 * This is a type util for building custom types.
 	 * It does not check against special types.
 	 */
-	export type $<T, $O extends $UtilOptions> = NotAssignable.$<T, undefined, $O>
-	export type $UtilOptions = NotAssignable.$UtilOptions
+	export type $<T, $O extends $Options> = NotAssignable.$<T, undefined, $O>
+	export type $Options = NotAssignable.$UtilOptions
+	export type $Branch<$O extends $Options = {}> = $Selection.Branch<$O>
 }
