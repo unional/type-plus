@@ -78,8 +78,8 @@ importers:
         specifier: ^0.9.4
         version: 0.9.4(typescript@5.7.2)
       '@astrojs/starlight':
-        specifier: ^0.31.0
-        version: 0.31.0(astro@5.1.2(@types/node@22.5.5)(jiti@1.21.6)(rollup@4.27.2)(sass@1.78.0)(typescript@5.7.2)(yaml@2.6.1))
+        specifier: ^0.32.0
+        version: 0.32.0(astro@5.1.2(@types/node@22.5.5)(jiti@1.21.6)(rollup@4.27.2)(sass@1.78.0)(typescript@5.7.2)(yaml@2.6.1))
       astro:
         specifier: ^5.1.2
         version: 5.1.2(@types/node@22.5.5)(jiti@1.21.6)(rollup@4.27.2)(sass@1.78.0)(typescript@5.7.2)(yaml@2.6.1)
@@ -222,8 +222,8 @@ packages:
   '@astrojs/sitemap@3.2.1':
     resolution: {integrity: sha512-uxMfO8f7pALq0ADL6Lk68UV6dNYjJ2xGUzyjjVj60JLBs5a6smtlkBYv3tQ0DzoqwS7c9n4FUx5lgv0yPo/fgA==}
 
-  '@astrojs/starlight@0.31.0':
-    resolution: {integrity: sha512-O70j7m42wp0EcX26Vsm8i37KSlcoHNFY6VLMbJKWKel6XRHS+IVG6AePcpBNS1I+FKkkcagTFJfy3X3n2dDo4Q==}
+  '@astrojs/starlight@0.32.0':
+    resolution: {integrity: sha512-RJ+zPeTBlfgZJA3cWl3Nml9RLQhYUupnE0obL3iVxvVKhoCwUJnxmKicPp9EBxSML0TK8X4CUpnEwiC7OtfYwg==}
     peerDependencies:
       astro: ^5.1.5
 
@@ -3082,9 +3082,6 @@ packages:
   hast-util-to-estree@3.1.0:
     resolution: {integrity: sha512-lfX5g6hqVh9kjS/B9E2gSkvHH4SZNiQFiqWS0x9fENzEl+8W12RqdRxX6d/Cwxi30tPQs3bIO+aolQJNp1bIyw==}
 
-  hast-util-to-html@9.0.3:
-    resolution: {integrity: sha512-M17uBDzMJ9RPCqLMO92gNNUDuBSq10a25SDBI08iCCxmorf4Yy6sYHK57n9WAbRAAaU+DuR4W6GN9K4DFZesYg==}
-
   hast-util-to-html@9.0.4:
     resolution: {integrity: sha512-wxQzXtdbhiwGAUKrnQJXlOPmHnEehzphwkK7aluUPQ+lEc1xefC8pblMgpp2w5ldBTEfveRIrADcrhGIWrlTDA==}
 
@@ -3668,6 +3665,10 @@ packages:
   kleur@4.1.5:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
     engines: {node: '>=6'}
+
+  klona@2.0.6:
+    resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
+    engines: {node: '>= 8'}
 
   leven@3.1.0:
     resolution: {integrity: sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==}
@@ -5679,7 +5680,7 @@ snapshots:
       astro: 5.1.2(@types/node@22.5.5)(jiti@1.21.6)(rollup@4.27.2)(sass@1.78.0)(typescript@5.7.2)(yaml@2.6.1)
       es-module-lexer: 1.5.4
       estree-util-visit: 2.0.0
-      hast-util-to-html: 9.0.3
+      hast-util-to-html: 9.0.4
       kleur: 4.1.5
       rehype-raw: 7.0.0
       remark-gfm: 4.0.0
@@ -5700,7 +5701,7 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.23.8
 
-  '@astrojs/starlight@0.31.0(astro@5.1.2(@types/node@22.5.5)(jiti@1.21.6)(rollup@4.27.2)(sass@1.78.0)(typescript@5.7.2)(yaml@2.6.1))':
+  '@astrojs/starlight@0.32.0(astro@5.1.2(@types/node@22.5.5)(jiti@1.21.6)(rollup@4.27.2)(sass@1.78.0)(typescript@5.7.2)(yaml@2.6.1))':
     dependencies:
       '@astrojs/mdx': 4.0.5(astro@5.1.2(@types/node@22.5.5)(jiti@1.21.6)(rollup@4.27.2)(sass@1.78.0)(typescript@5.7.2)(yaml@2.6.1))
       '@astrojs/sitemap': 3.2.1
@@ -5717,6 +5718,7 @@ snapshots:
       hastscript: 9.0.0
       i18next: 23.15.1
       js-yaml: 4.1.0
+      klona: 2.0.6
       mdast-util-directive: 3.0.0
       mdast-util-to-markdown: 2.1.0
       mdast-util-to-string: 4.0.0
@@ -6775,7 +6777,7 @@ snapshots:
     dependencies:
       '@ctrl/tinycolor': 4.1.0
       hast-util-select: 6.0.2
-      hast-util-to-html: 9.0.3
+      hast-util-to-html: 9.0.4
       hast-util-to-text: 4.0.2
       hastscript: 9.0.0
       postcss: 8.4.49
@@ -7328,7 +7330,7 @@ snapshots:
       '@shikijs/types': 1.24.2
       '@shikijs/vscode-textmate': 9.3.0
       '@types/hast': 3.0.4
-      hast-util-to-html: 9.0.3
+      hast-util-to-html: 9.0.4
 
   '@shikijs/core@1.26.2':
     dependencies:
@@ -9188,20 +9190,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  hast-util-to-html@9.0.3:
-    dependencies:
-      '@types/hast': 3.0.4
-      '@types/unist': 3.0.3
-      ccount: 2.0.1
-      comma-separated-tokens: 2.0.3
-      hast-util-whitespace: 3.0.0
-      html-void-elements: 3.0.0
-      mdast-util-to-hast: 13.2.0
-      property-information: 6.5.0
-      space-separated-tokens: 2.0.2
-      stringify-entities: 4.0.4
-      zwitch: 2.0.4
-
   hast-util-to-html@9.0.4:
     dependencies:
       '@types/hast': 3.0.4
@@ -10073,6 +10061,8 @@ snapshots:
   kleur@3.0.3: {}
 
   kleur@4.1.5: {}
+
+  klona@2.0.6: {}
 
   leven@3.1.0: {}
 
@@ -11222,7 +11212,7 @@ snapshots:
   rehype-stringify@10.0.1:
     dependencies:
       '@types/hast': 3.0.4
-      hast-util-to-html: 9.0.3
+      hast-util-to-html: 9.0.4
       unified: 11.0.5
 
   rehype@13.0.2:
