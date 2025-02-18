@@ -27,8 +27,8 @@ importers:
         specifier: ^9.10.0
         version: 9.10.0(jiti@1.21.6)
       eslint-plugin-yml:
-        specifier: ~1.16.0
-        version: 1.16.0(eslint@9.10.0(jiti@1.21.6))
+        specifier: ~1.17.0
+        version: 1.17.0(eslint@9.10.0(jiti@1.21.6))
       globals:
         specifier: ^15.9.0
         version: 15.9.0
@@ -2708,8 +2708,8 @@ packages:
     peerDependencies:
       eslint: '>=6.0.0'
 
-  eslint-plugin-yml@1.16.0:
-    resolution: {integrity: sha512-t4MNCetPjTn18/fUDlQ/wKkcYjnuLYKChBrZ0qUaNqRigVqChHWzTP8SrfFi5s4keX3vdlkWRSu8zHJMdKwxWQ==}
+  eslint-plugin-yml@1.17.0:
+    resolution: {integrity: sha512-Q3LXFRnNpGYAK/PM0BY1Xs0IY1xTLfM0kC986nNQkx1l8tOGz+YS50N6wXkAJkrBpeUN9OxEMB7QJ+9MTDAqIQ==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
@@ -8674,12 +8674,12 @@ snapshots:
       eslint: 9.10.0(jiti@1.21.6)
       semver: 7.6.3
 
-  eslint-plugin-yml@1.16.0(eslint@9.10.0(jiti@1.21.6)):
+  eslint-plugin-yml@1.17.0(eslint@9.10.0(jiti@1.21.6)):
     dependencies:
       debug: 4.3.7
+      escape-string-regexp: 4.0.0
       eslint: 9.10.0(jiti@1.21.6)
       eslint-compat-utils: 0.6.4(eslint@9.10.0(jiti@1.21.6))
-      lodash: 4.17.21
       natural-compare: 1.4.0
       yaml-eslint-parser: 1.2.2
     transitivePeerDependencies:
