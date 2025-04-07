@@ -78,8 +78,8 @@ importers:
         specifier: ^0.9.4
         version: 0.9.4(typescript@5.7.2)
       '@astrojs/starlight':
-        specifier: ^0.32.0
-        version: 0.32.0(astro@5.1.2(@types/node@22.5.5)(jiti@1.21.6)(rollup@4.27.2)(sass@1.78.0)(typescript@5.7.2)(yaml@2.7.0))
+        specifier: ^0.33.0
+        version: 0.33.0(astro@5.1.2(@types/node@22.5.5)(jiti@1.21.6)(rollup@4.27.2)(sass@1.78.0)(typescript@5.7.2)(yaml@2.7.0))
       astro:
         specifier: ^5.1.2
         version: 5.1.2(@types/node@22.5.5)(jiti@1.21.6)(rollup@4.27.2)(sass@1.78.0)(typescript@5.7.2)(yaml@2.7.0)
@@ -222,8 +222,8 @@ packages:
   '@astrojs/sitemap@3.2.1':
     resolution: {integrity: sha512-uxMfO8f7pALq0ADL6Lk68UV6dNYjJ2xGUzyjjVj60JLBs5a6smtlkBYv3tQ0DzoqwS7c9n4FUx5lgv0yPo/fgA==}
 
-  '@astrojs/starlight@0.32.0':
-    resolution: {integrity: sha512-RJ+zPeTBlfgZJA3cWl3Nml9RLQhYUupnE0obL3iVxvVKhoCwUJnxmKicPp9EBxSML0TK8X4CUpnEwiC7OtfYwg==}
+  '@astrojs/starlight@0.33.0':
+    resolution: {integrity: sha512-BAdz3TJ5f7e0iDwu7ZNy6i6Rlca2sgi416K8pGPN3VMIlgJmj9NCqSUGZh+OQhk5FNzmnssi8w+xQQeNpe5hDw==}
     peerDependencies:
       astro: ^5.1.5
 
@@ -1786,9 +1786,6 @@ packages:
 
   '@shikijs/types@3.2.1':
     resolution: {integrity: sha512-/NTWAk4KE2M8uac0RhOsIhYQf4pdU0OywQuYDGIGAJ6Mjunxl2cGiuLkvu4HLCMn+OTTLRWkjZITp+aYJv60yA==}
-
-  '@shikijs/vscode-textmate@10.0.1':
-    resolution: {integrity: sha512-fTIQwLF+Qhuws31iw7Ncl1R3HUDtGwIipiJ9iU+UsDUwMhegFcQKQHd51nZjb7CArq0MvON8rbgCGQYWHUKAdg==}
 
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
@@ -5831,7 +5828,7 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.23.8
 
-  '@astrojs/starlight@0.32.0(astro@5.1.2(@types/node@22.5.5)(jiti@1.21.6)(rollup@4.27.2)(sass@1.78.0)(typescript@5.7.2)(yaml@2.7.0))':
+  '@astrojs/starlight@0.33.0(astro@5.1.2(@types/node@22.5.5)(jiti@1.21.6)(rollup@4.27.2)(sass@1.78.0)(typescript@5.7.2)(yaml@2.7.0))':
     dependencies:
       '@astrojs/mdx': 4.0.5(astro@5.1.2(@types/node@22.5.5)(jiti@1.21.6)(rollup@4.27.2)(sass@1.78.0)(typescript@5.7.2)(yaml@2.7.0))
       '@astrojs/sitemap': 3.2.1
@@ -7550,7 +7547,7 @@ snapshots:
       '@shikijs/engine-javascript': 1.26.2
       '@shikijs/engine-oniguruma': 1.26.2
       '@shikijs/types': 1.26.2
-      '@shikijs/vscode-textmate': 10.0.1
+      '@shikijs/vscode-textmate': 10.0.2
       '@types/hast': 3.0.4
       hast-util-to-html: 9.0.4
 
@@ -7563,7 +7560,7 @@ snapshots:
   '@shikijs/engine-javascript@1.26.2':
     dependencies:
       '@shikijs/types': 1.26.2
-      '@shikijs/vscode-textmate': 10.0.1
+      '@shikijs/vscode-textmate': 10.0.2
       oniguruma-to-es: 1.0.0
 
   '@shikijs/engine-oniguruma@1.24.2':
@@ -7574,7 +7571,7 @@ snapshots:
   '@shikijs/engine-oniguruma@1.26.2':
     dependencies:
       '@shikijs/types': 1.26.2
-      '@shikijs/vscode-textmate': 10.0.1
+      '@shikijs/vscode-textmate': 10.0.2
 
   '@shikijs/engine-oniguruma@3.2.1':
     dependencies:
@@ -7596,15 +7593,13 @@ snapshots:
 
   '@shikijs/types@1.26.2':
     dependencies:
-      '@shikijs/vscode-textmate': 10.0.1
+      '@shikijs/vscode-textmate': 10.0.2
       '@types/hast': 3.0.4
 
   '@shikijs/types@3.2.1':
     dependencies:
       '@shikijs/vscode-textmate': 10.0.2
       '@types/hast': 3.0.4
-
-  '@shikijs/vscode-textmate@10.0.1': {}
 
   '@shikijs/vscode-textmate@10.0.2': {}
 
@@ -11737,7 +11732,7 @@ snapshots:
       '@shikijs/langs': 1.26.2
       '@shikijs/themes': 1.26.2
       '@shikijs/types': 1.26.2
-      '@shikijs/vscode-textmate': 10.0.1
+      '@shikijs/vscode-textmate': 10.0.2
       '@types/hast': 3.0.4
 
   side-channel@1.0.4:
