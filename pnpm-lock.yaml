@@ -27,8 +27,8 @@ importers:
         specifier: ^9.10.0
         version: 9.10.0(jiti@1.21.6)
       eslint-plugin-yml:
-        specifier: ~1.17.0
-        version: 1.17.0(eslint@9.10.0(jiti@1.21.6))
+        specifier: ~1.18.0
+        version: 1.18.0(eslint@9.10.0(jiti@1.21.6))
       globals:
         specifier: ^16.0.0
         version: 16.0.0
@@ -2824,8 +2824,8 @@ packages:
     peerDependencies:
       eslint: '>=6.0.0'
 
-  eslint-plugin-yml@1.17.0:
-    resolution: {integrity: sha512-Q3LXFRnNpGYAK/PM0BY1Xs0IY1xTLfM0kC986nNQkx1l8tOGz+YS50N6wXkAJkrBpeUN9OxEMB7QJ+9MTDAqIQ==}
+  eslint-plugin-yml@1.18.0:
+    resolution: {integrity: sha512-9NtbhHRN2NJa/s3uHchO3qVVZw0vyOIvWlXWGaKCr/6l3Go62wsvJK5byiI6ZoYztDsow4GnS69BZD3GnqH3hA==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
@@ -6553,7 +6553,7 @@ snapshots:
   '@commitlint/is-ignored@19.0.0':
     dependencies:
       '@commitlint/types': 19.0.0
-      semver: 7.6.3
+      semver: 7.7.1
 
   '@commitlint/lint@19.0.0':
     dependencies:
@@ -8887,9 +8887,9 @@ snapshots:
   eslint-compat-utils@0.6.4(eslint@9.10.0(jiti@1.21.6)):
     dependencies:
       eslint: 9.10.0(jiti@1.21.6)
-      semver: 7.6.3
+      semver: 7.7.1
 
-  eslint-plugin-yml@1.17.0(eslint@9.10.0(jiti@1.21.6)):
+  eslint-plugin-yml@1.18.0(eslint@9.10.0(jiti@1.21.6)):
     dependencies:
       debug: 4.3.7
       escape-string-regexp: 4.0.0
@@ -9711,7 +9711,7 @@ snapshots:
       '@babel/parser': 7.26.2
       '@istanbuljs/schema': 0.1.3
       istanbul-lib-coverage: 3.2.2
-      semver: 7.6.3
+      semver: 7.7.1
     transitivePeerDependencies:
       - supports-color
 
@@ -10376,7 +10376,7 @@ snapshots:
 
   make-dir@4.0.0:
     dependencies:
-      semver: 7.6.3
+      semver: 7.7.1
 
   make-error@1.3.6: {}
 
@@ -12129,7 +12129,7 @@ snapshots:
 
   typescript-auto-import-cache@0.3.5:
     dependencies:
-      semver: 7.6.3
+      semver: 7.7.1
 
   typescript@5.4.5: {}
 
@@ -12508,7 +12508,7 @@ snapshots:
     dependencies:
       eslint-visitor-keys: 3.4.3
       lodash: 4.17.21
-      yaml: 2.6.1
+      yaml: 2.7.0
 
   yaml-language-server@1.15.0:
     dependencies:
