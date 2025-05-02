@@ -89,7 +89,7 @@
     "jest-watch-suspend": "^1.1.2",
     "jest-watch-toggle-config-2": "^2.1.0",
     "jest-watch-typeahead": "^2.2.2",
-    "npm-run-all2": "^7.0.0",
+    "npm-run-all2": "^8.0.0",
     "rimraf": "^6.0.0",
     "size-limit": "^11.1.5",
     "ts-5.4": "npm:typescript@~5.4.0",
