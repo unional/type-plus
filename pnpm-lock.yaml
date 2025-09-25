@@ -160,8 +160,8 @@ importers:
         specifier: ^11.1.5
         version: 11.1.5
       ts-5.4:
-        specifier: npm:typescript@~5.4.0
-        version: typescript@5.4.5
+        specifier: npm:typescript@~5.9.0
+        version: typescript@5.9.2
       ts-5.5:
         specifier: npm:typescript@~5.5.0
         version: typescript@5.5.4
@@ -5186,11 +5186,6 @@ packages:
   typescript-auto-import-cache@0.3.5:
     resolution: {integrity: sha512-fAIveQKsoYj55CozUiBoj4b/7WpN0i4o74wiGY5JVUEoD0XiqDk1tJqTEjgzL2/AizKQrXxyRosSebyDzBZKjw==}
 
-  typescript@5.4.5:
-    resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
-    engines: {node: '>=14.17'}
-    hasBin: true
-
   typescript@5.5.4:
     resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
     engines: {node: '>=14.17'}
@@ -5198,6 +5193,11 @@ packages:
 
   typescript@5.7.2:
     resolution: {integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  typescript@5.9.2:
+    resolution: {integrity: sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -12165,11 +12165,11 @@ snapshots:
     dependencies:
       semver: 7.7.2
 
-  typescript@5.4.5: {}
-
   typescript@5.5.4: {}
 
   typescript@5.7.2: {}
+
+  typescript@5.9.2: {}
 
   uc.micro@2.1.0: {}
 
