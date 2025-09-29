@@ -48,8 +48,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.1(jest@29.7.0(@types/node@24.3.0))
       npm-check-updates:
-        specifier: ^18.0.0
-        version: 18.0.0
+        specifier: ^19.0.0
+        version: 19.0.0
       npm-run-all2:
         specifier: ^8.0.0
         version: 8.0.1
@@ -4153,9 +4153,9 @@ packages:
   not@0.1.0:
     resolution: {integrity: sha512-5PDmaAsVfnWUgTUbJ3ERwn7u79Z0dYxN9ErxCpVJJqe2RK0PJ3z+iFUxuqjwtlDDegXvtWoxD/3Fzxox7tFGWA==}
 
-  npm-check-updates@18.0.0:
-    resolution: {integrity: sha512-ymh9KF/xcGypQuCr5NQw1pAMRh5mHnQQDgHwM8gQBG8siG9XAKvcP9OtoARxFRgOjzEfjD6YtU/7KB2jJqGGlQ==}
-    engines: {node: ^18.18.0 || >=20.0.0, npm: '>=8.12.1'}
+  npm-check-updates@19.0.0:
+    resolution: {integrity: sha512-qcfjZEv6xB+WvW24S8wU1MKISPPiTREraBg62XDo/7zmOLXH3Zj7ti2v/LRfks0qITU8SDZLTWwgIitflvursw==}
+    engines: {node: '>=20.0.0', npm: '>=8.12.1'}
     hasBin: true
 
   npm-normalize-package-bin@4.0.0:
@@ -10974,7 +10974,7 @@ snapshots:
 
   not@0.1.0: {}
 
-  npm-check-updates@18.0.0: {}
+  npm-check-updates@19.0.0: {}
 
   npm-normalize-package-bin@4.0.0: {}
 
