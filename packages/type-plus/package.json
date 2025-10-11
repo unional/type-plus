@@ -76,7 +76,7 @@
     "unpartial": "^1.0.4"
   },
   "devDependencies": {
-    "@jest/globals": "^29.5.0",
+    "@jest/globals": "^30.0.0",
     "@repobuddy/jest": "^5.0.0",
     "@repobuddy/typescript": "^2.0.0",
     "@size-limit/esbuild-why": "^11.1.5",
@@ -85,7 +85,7 @@
     "assertron": "^11.0.2",
     "cross-env": "^7.0.3",
     "depcheck": "^1.4.3",
-    "jest": "^29.7.0",
+    "jest": "^30.0.0",
     "jest-watch-suspend": "^1.1.2",
     "jest-watch-toggle-config-2": "^2.1.0",
     "jest-watch-typeahead": "^3.0.0",
