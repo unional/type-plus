@@ -1,19 +1,11 @@
 {
 	"recommendations": [
 		"aaron-bond.better-comments",
-		"astro-build.astro-vscode",
-		"bierner.emojisense",
-		"davidanson.vscode-markdownlint",
+		"daidanson.vscode-markdownlint",
 		"dbaeumer.vscode-eslint",
 		"drknoxy.eslint-disable-snippets",
-		"eamodio.gitlens",
 		"editorconfig.editorconfig",
-		"evilz.vscode-reveal",
-		"github.vscode-pull-request-github",
-		"mhutchie.git-graph",
-		"pflannery.vscode-versionlens",
 		"unional.vscode-sort-package-json",
-		"yzhang.markdown-all-in-one",
-		"ms-vscode.live-server"
+		"yzhang.markdown-all-in-one"
 	]
 }
