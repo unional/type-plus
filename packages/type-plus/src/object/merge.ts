@@ -5,9 +5,9 @@ import type { Or } from '../logical/logical.js'
 import type { IsNever } from '../never/is_never.js'
 import type { IsNotNever } from '../never/is_not_never.js'
 import type { IsLiteral } from '../predicates/literal.js'
+import type { AnyRecord } from './any_record.js'
 import type { IsDisjoint } from './IsDisjoint.js'
 import type { KeyTypes } from './KeyTypes.js'
-import type { AnyRecord } from './any_record.js'
 import type { OptionalKeys } from './optional_key.js'
 
 /**

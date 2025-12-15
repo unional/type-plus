@@ -1,5 +1,5 @@
-import type { NotExtendable } from './Extends.js'
 import type { Assignable } from './assignable.js'
+import type { NotExtendable } from './Extends.js'
 
 /**
  * Can `A` assign to `B`

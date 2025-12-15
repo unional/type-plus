@@ -58,7 +58,6 @@ assertType.isTrue = (subject: true): asserts subject is true => {
 	if (subject !== true) throw TypeError('subject is not true')
 }
 assertType.noTrue = <S>(subject: Exclude<S, true>): void => {
-	// @ts-ignore
 	if (subject === true) throw TypeError('subject is true')
 }
 
@@ -66,7 +65,6 @@ assertType.isFalse = (subject: false): asserts subject is false => {
 	if (subject !== false) throw TypeError('subject is not false')
 }
 assertType.noFalse = <S>(subject: Exclude<S, false>): void => {
-	// @ts-ignore
 	if (subject === false) throw TypeError('subject is false')
 }
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { type KeyTypes, type RecordValue, isType, record, testType } from '../index.js'
+import { isType, type KeyTypes, type RecordValue, record, testType } from '../index.js'
 
 describe(`${record.name}()`, () => {
 	it('creates an empty record with value default to unknown', () => {

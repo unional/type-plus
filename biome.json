@@ -8,24 +8,25 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"ignore": [
-			".changeset/*.json",
-			".turbo",
-			".vscode/*.txt",
-			".vscode/*.code-snippets",
-			"./docs",
-			"packages/*/coverage",
-			"packages/*/cjs",
-			"packages/*/dist",
-			"packages/*/esm",
-			"packages/*/tslib",
-			"old/checker",
-			"packages/type-plus/src/types",
-			"packages/type-plus/src/type-checker",
-			"apps/website/dist",
-			"_revealjs",
-			"*.astro",
-			"package.json"
+		"includes": [
+			"**",
+			"!**/.changeset/**/*.json",
+			"!**/.turbo",
+			"!**/.vscode/**/*.txt",
+			"!**/.vscode/**/*.code-snippets",
+			"!docs",
+			"!**/packages/**/*/coverage",
+			"!**/packages/**/*/cjs",
+			"!**/packages/**/*/dist",
+			"!**/packages/**/*/esm",
+			"!**/packages/**/*/tslib",
+			"!**/old/checker",
+			"!**/packages/type-plus/src/types",
+			"!**/packages/type-plus/src/type-checker",
+			"!**/apps/website/dist",
+			"!**/_revealjs",
+			"!**/*.astro",
+			"!**/package.json"
 		]
 	},
 	"linter": {
@@ -38,7 +39,5 @@
 			}
 		}
 	},
-	"organizeImports": {
-		"enabled": true
-	}
+	"assist": { "actions": { "source": { "organizeImports": "on" } } }
 }

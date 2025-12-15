@@ -1,5 +1,5 @@
 import { expect, it } from '@jest/globals'
-import { type UnionKeys, testType } from './index.js'
+import { testType, type UnionKeys } from './index.js'
 
 it('gets the keys of an object', () => {
 	testType.equal<UnionKeys<{ a: 1; b: 2 }>, 'a' | 'b'>(true)
@@ -11,7 +11,7 @@ it('returns known keys', () => {
 		b: string
 	}
 
-	// @ts-ignore
+	// @ts-expect-error
 	function _foo<T>(_input: UnionKeys<Foo & T>): void {
 		_input = 'a'
 		_input = 'b'

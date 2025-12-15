@@ -1,6 +1,5 @@
-import { it } from '@jest/globals'
-
 import { describe } from 'node:test'
+import { it } from '@jest/globals'
 import { isType, testType } from '../index.js'
 import type { Properties } from './properties.js'
 

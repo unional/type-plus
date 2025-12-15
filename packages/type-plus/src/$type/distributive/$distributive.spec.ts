@@ -1,7 +1,6 @@
 import { it } from '@jest/globals'
-
-import { testType } from '../../index.js'
 import type { $Distributive } from '../../index.js'
+import { testType } from '../../index.js'
 
 it('returns true by default when $Options does not have the `distributive` property or it is undefined', () => {
 	testType.equal<$Distributive.Parse<{}>, true>(true)

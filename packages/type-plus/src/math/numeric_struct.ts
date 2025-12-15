@@ -96,12 +96,12 @@ export namespace NumericStruct {
 	 *
 	 * It includes the normalization of the `NumericStruct`.
 	 */
-	export type ToNumeric<M extends NumericStruct> = DigitsStruct.ToString<M[DIGITS_STRUCT]> extends infer S extends
-		string
-		? M[TYPE] extends 'bigint'
-			? StringToBigint<S, StringToNumber<S, `The value '${S}' cannot be represented as bigint or number`>>
-			: StringToNumber<S, StringToBigint<S, `The value '${S}' cannot be represented as bigint or number`>>
-		: never
+	export type ToNumeric<M extends NumericStruct> =
+		DigitsStruct.ToString<M[DIGITS_STRUCT]> extends infer S extends string
+			? M[TYPE] extends 'bigint'
+				? StringToBigint<S, StringToNumber<S, `The value '${S}' cannot be represented as bigint or number`>>
+				: StringToNumber<S, StringToBigint<S, `The value '${S}' cannot be represented as bigint or number`>>
+			: never
 
 	export type Add<A extends NumericStruct, B extends NumericStruct> = [
 		A[TYPE],
