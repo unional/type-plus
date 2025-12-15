@@ -46,18 +46,17 @@
     "build": "tsc -p tsconfig.json",
     "clean": "rimraf coverage dist --glob *.tsbuildinfo",
     "coverage:x": "bun test --coverage",
-    "depcheck": "depcheck",
+    "knip": "knip",
     "nuke": "run-p clean nuke:local",
     "nuke:local": "rimraf node_modules",
     "test:x": "bun test",
     "test:type": "tsc --noEmit",
-    "verify": "npm-run-all clean -p build depcheck coverage",
+    "verify": "npm-run-all clean -p build knip coverage",
     "watch:x": "bun test --watch",
     "w:x": "bun test --watch"
   },
   "devDependencies": {
     "@repobuddy/typescript": "^2.0.0",
-    "depcheck": "^1.4.3",
     "npm-run-all2": "^8.0.0",
     "rimraf": "^6.0.0"
   }

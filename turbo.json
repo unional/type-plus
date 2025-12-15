@@ -24,7 +24,7 @@
 			"inputs": ["src/"],
 			"outputs": ["coverage/**"]
 		},
-		"depcheck": {},
+		"knip": {},
 		"dev": {
 			"cache": false,
 			"persistent": true
