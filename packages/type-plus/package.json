@@ -54,7 +54,6 @@
     "build": "run-p build:*",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build:esm": "tsc -p tsconfig.esm.json",
-    "build:doc": "typedoc",
     "clean": "rimraf cjs coverage esm lib libm tslib --glob *.tsbuildinfo",
     "coverage": "vitest run --coverage",
     "knip": "knip",
