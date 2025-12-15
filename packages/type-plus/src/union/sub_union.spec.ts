@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 import type { SubUnion } from '../index.js'
 import { testType } from '../testing/test_type.js'
 

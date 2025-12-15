@@ -1,4 +1,4 @@
-import { describe, test } from '@jest/globals'
+import { describe, test } from 'vitest'
 
 import { type DropMatch, type DropNull, type DropNullable, type DropUndefined, testType } from '../index.js'
 

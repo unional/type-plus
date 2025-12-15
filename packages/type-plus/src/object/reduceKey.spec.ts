@@ -1,4 +1,4 @@
-import { expect, it, test } from '@jest/globals'
+import { expect, it, test } from 'vitest'
 
 import { reduceByKey, reduceKey } from '../index.js'
 

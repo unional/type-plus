@@ -1,4 +1,4 @@
-import { test } from '@jest/globals'
+import { test } from 'vitest'
 
 import { type SpreadRecord, testType } from '../index.js'
 

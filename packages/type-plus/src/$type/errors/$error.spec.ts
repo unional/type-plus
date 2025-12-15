@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 
 import { type $Error, type $Type, testType } from '../../index.js'
 

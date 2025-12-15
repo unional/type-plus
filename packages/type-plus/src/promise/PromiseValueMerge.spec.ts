@@ -1,6 +1,6 @@
-import { test } from '@jest/globals'
+import { test } from 'vitest'
 
-import { type PromiseValueMerge, assertType } from '../index.js'
+import { assertType, type PromiseValueMerge } from '../index.js'
 
 test('merge promise value', async () => {
 	const result = {} as PromiseValueMerge<Promise<{ a: string }>, Promise<{ b: string }>>

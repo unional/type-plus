@@ -1,10 +1,10 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 import { type $Type, testType } from '../index.js'
 
 it('is unique for each value', () => {
 	type X = $Type<'a', 'b'>
 	type Y = $Type<'a', 'c'>
-	// @ts-ignore
+	// @ts-expect-error
 	let _x: X = {} as any
 	const y: Y = {} as any
 

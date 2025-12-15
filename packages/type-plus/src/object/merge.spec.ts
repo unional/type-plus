@@ -1,4 +1,4 @@
-import { expect, it } from '@jest/globals'
+import { expect, it } from 'vitest'
 import { type ObjectPlus, testType } from '../index.js'
 
 it('merges with any -> any', () => {

@@ -1,10 +1,10 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 
 import { assertType } from '../index.js'
 import { testType } from './test_type.js'
 
 it('can inspect type T', () => {
-	testType.inspect<{ a: number }>((t) => testType.equal<typeof t.type, { a: number }>(true))
+	testType.inspect<{ a: number }>((_t) => testType.equal<typeof _t.type, { a: number }>(true))
 })
 
 it('can inspect how T extends specific type', () => {

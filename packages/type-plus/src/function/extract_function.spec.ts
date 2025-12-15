@@ -1,4 +1,4 @@
-import { describe, it } from '@jest/globals'
+import { describe, it } from 'vitest'
 
 import { type ExtractFunction, extractFunction, testType } from '../index.js'
 

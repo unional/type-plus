@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 import { type $ExtractManipulatedString, testType } from '../index.js'
 
 it('returns T if T is a string', () => {

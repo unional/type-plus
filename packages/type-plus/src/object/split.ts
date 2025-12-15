@@ -1,7 +1,7 @@
-import type { Partial } from './Partial.js'
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type { AnyRecord } from './any_record.js'
 import type { Omit } from './omit.js'
+import type { Partial } from './Partial.js'
 import { reduceByKey } from './reduceKey.js'
 
 type Splitter<T extends AnyRecord> = Partial<{ [k in keyof T]: T[k] | undefined }>

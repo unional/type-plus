@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 
 import { type StringIncludes, type StringPlus, testType } from '../index.js'
 

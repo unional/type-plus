@@ -1,4 +1,4 @@
-import { test } from '@jest/globals'
+import { test } from 'vitest'
 import { testType } from '../index.js'
 
 test('behavior of array.find()', () => {

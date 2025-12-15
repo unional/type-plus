@@ -1,7 +1,6 @@
-import { it } from '@jest/globals'
-
-import { testType } from '../../index.js'
+import { it } from 'vitest'
 import type { $Exact } from '../../index.js'
+import { testType } from '../../index.js'
 
 it('returns false by default when $Options does not have the `exact` property or it is undefined', () => {
 	testType.equal<$Exact.Parse<{}>, false>(true)

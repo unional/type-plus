@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 import { type $MergeOptions, testType } from '../../index.js'
 
 it('overrides', () => {

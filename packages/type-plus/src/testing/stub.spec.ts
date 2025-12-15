@@ -1,4 +1,4 @@
-import { expect, it } from '@jest/globals'
+import { expect, it } from 'vitest'
 
 import { stub, testType } from '../index.js'
 
@@ -21,9 +21,9 @@ it('retains param types if the requested type is a function', () => {
 	function foo(_v: (a: string, b: number) => boolean) {}
 
 	foo(
-		stub((a, b) => {
-			testType.equal<typeof a, string>(true)
-			testType.equal<typeof b, number>(true)
+		stub((_a, _b) => {
+			testType.equal<typeof _a, string>(true)
+			testType.equal<typeof _b, number>(true)
 			return false
 		}),
 	)

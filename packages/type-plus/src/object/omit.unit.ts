@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 import type { Omit } from '../index.js'
 
 it('intersection types with generic', () => {

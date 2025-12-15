@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 
 import { type $Else, type $Then, type IsBigintLiteral, testType } from '../index.js'
 

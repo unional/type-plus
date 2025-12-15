@@ -1,6 +1,6 @@
-import { test } from '@jest/globals'
+import { test } from 'vitest'
 
-import { type IsRecord, assertType } from '../index.js'
+import { assertType, type IsRecord } from '../index.js'
 
 test('boolean, number, string, null, undefined, symbol are not record', () => {
 	assertType.isFalse(false as IsRecord<undefined>)

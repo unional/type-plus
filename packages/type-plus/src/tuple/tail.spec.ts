@@ -1,4 +1,4 @@
-import { test } from '@jest/globals'
+import { test } from 'vitest'
 
 import { type Tail, testType } from '../index.js'
 

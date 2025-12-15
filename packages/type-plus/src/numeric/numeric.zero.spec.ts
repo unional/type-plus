@@ -1,6 +1,6 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 
-import { type Zero, isType } from '../index.js'
+import { isType, type Zero } from '../index.js'
 
 it('can be 0', () => {
 	isType<Zero>(0)

@@ -1,6 +1,6 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 
-import { type ComposableTypes, type NonComposableTypes, assertType, canAssign } from './index.js'
+import { assertType, type ComposableTypes, canAssign, type NonComposableTypes } from './index.js'
 
 it('includes object, array, and function', () => {
 	assertType<ComposableTypes>({})

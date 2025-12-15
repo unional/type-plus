@@ -1,4 +1,4 @@
-import { describe, it } from '@jest/globals'
+import { describe, it } from 'vitest'
 
 import type { $Void } from '../$type/special/$void.js'
 import { type $Else, type $Never, type $Selection, type $Then, type $Unknown, type IsAny, testType } from '../index.js'

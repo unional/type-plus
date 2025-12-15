@@ -1,4 +1,4 @@
-import { describe, it, test } from '@jest/globals'
+import { describe, it, test } from 'vitest'
 
 import { type StrictCanAssign, testType } from '../index.js'
 

@@ -1,4 +1,4 @@
-import { expect, it } from '@jest/globals'
+import { expect, it } from 'vitest'
 
 import { type Brand, brand, flavor, testType } from '../index.js'
 

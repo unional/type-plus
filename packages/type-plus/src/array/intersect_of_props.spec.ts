@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 
 import { type IntersectOfProps, testType } from '../index.js'
 

@@ -1,6 +1,6 @@
-import { describe, expect, it, test } from '@jest/globals'
+import { describe, expect, it, test } from 'vitest'
 
-import { type Except, type Omit, assertType, isType, omit, record, testType } from '../index.js'
+import { assertType, type Except, isType, type Omit, omit, record, testType } from '../index.js'
 
 describe('Omit<T, K>', () => {
 	test('work with primitive types', () => {

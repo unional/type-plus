@@ -1,4 +1,4 @@
-import { expect, it } from '@jest/globals'
+import { expect, it } from 'vitest'
 
 import { findKey } from '../index.js'
 
