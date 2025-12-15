@@ -31,7 +31,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@changesets/cli": "^2.25.2",
+		"@changesets/cli": "^2.29.8",
 		"@commitlint/cli": "^20.0.0",
 		"@commitlint/config-conventional": "^20.0.0",
 		"@repobuddy/biome": "^1.5.1",
