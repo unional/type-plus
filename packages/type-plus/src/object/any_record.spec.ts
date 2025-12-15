@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 
 import { type AnyRecord, type KeyTypes, testType } from '../index.js'
 

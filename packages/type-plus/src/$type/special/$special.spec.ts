@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 import { type $Special, testType } from '../../index.js'
 
 it('act as predicate by default', () => {

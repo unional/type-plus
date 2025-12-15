@@ -1,4 +1,4 @@
-import { expect, it, test } from '@jest/globals'
+import { expect, it, test } from 'vitest'
 
 test('behavior of array.slice()', () => {
 	const a = [1, 2, 3]

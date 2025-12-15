@@ -1,4 +1,4 @@
-import { describe, it, test } from '@jest/globals'
+import { describe, it, test } from 'vitest'
 
 import { type AwaitedProp, assertType, isType, type PromiseValue } from '../index.js'
 

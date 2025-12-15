@@ -1,4 +1,4 @@
-import { test } from '@jest/globals'
+import { test } from 'vitest'
 
 import { assertType, type RequiredExcept, type RequiredPick, testType } from '../index.js'
 

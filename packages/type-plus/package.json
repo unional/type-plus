@@ -56,44 +56,39 @@
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:doc": "typedoc",
     "clean": "rimraf cjs coverage esm lib libm tslib --glob *.tsbuildinfo",
-    "coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --coverage",
+    "coverage": "vitest run --coverage",
     "knip": "knip",
     "nuke": "run-p clean nuke:local",
     "nuke:local": "rimraf node_modules",
     "size": "size-limit",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest",
+    "test": "vitest run",
     "test:type": "run-p test:type:*",
     "test:type:latest": "./node_modules/typescript/bin/tsc --noEmit",
     "test:type:54": "./node_modules/ts-5.4/bin/tsc -p tsconfig.ts54.json --noEmit",
     "test:type:55": "./node_modules/ts-5.5/bin/tsc -p tsconfig.ts55.json --noEmit",
-    "test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watch",
+    "test:watch": "vitest watch",
     "verify": "npm-run-all clean -p build knip lint coverage -p size",
-    "w": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watch",
-    "watch": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watch"
+    "w": "vitest watch",
+    "watch": "vitest watch"
   },
   "dependencies": {
     "tersify": "^3.11.1",
     "unpartial": "^1.0.4"
   },
   "devDependencies": {
-    "@jest/globals": "^29.5.0",
-    "@repobuddy/jest": "^5.0.0",
     "@repobuddy/typescript": "^2.0.0",
     "@size-limit/esbuild-why": "^11.1.5",
     "@size-limit/preset-small-lib": "^11.1.5",
     "@types/node": "^18.11.11",
+    "@vitest/coverage-v8": "^4.0.15",
     "assertron": "^11.0.2",
     "cross-env": "^7.0.3",
-    "jest": "^29.7.0",
-    "jest-watch-suspend": "^1.1.2",
-    "jest-watch-toggle-config-2": "^2.1.0",
-    "jest-watch-typeahead": "^3.0.0",
     "npm-run-all2": "^8.0.0",
     "rimraf": "^6.0.0",
     "size-limit": "^11.1.5",
     "ts-5.4": "npm:typescript@~5.4.0",
     "ts-5.5": "npm:typescript@~5.5.0",
-    "ts-jest": "^29.1.2",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "vitest": "^4.0.15"
   }
 }

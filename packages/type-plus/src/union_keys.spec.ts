@@ -1,4 +1,4 @@
-import { expect, it } from '@jest/globals'
+import { expect, it } from 'vitest'
 import { testType, type UnionKeys } from './index.js'
 
 it('gets the keys of an object', () => {

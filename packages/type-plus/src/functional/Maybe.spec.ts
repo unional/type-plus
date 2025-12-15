@@ -1,4 +1,4 @@
-import { expect, test } from '@jest/globals'
+import { expect, test } from 'vitest'
 
 import { assertType, type CanAssign, canAssign, testType } from '../index.js'
 import { type Just, just, type Maybe, type None, none } from './Maybe.js'

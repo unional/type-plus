@@ -1,5 +1,5 @@
-import { describe, expect, it } from '@jest/globals'
 import { a } from 'assertron'
+import { describe, expect, it } from 'vitest'
 
 import { type AnyConstructor, type AnyFunction, assertType, testType } from '../index.js'
 
@@ -21,8 +21,8 @@ describe('assertType()', () => {
 	it('error message contains info from validator', () => {
 		const s: unknown = 1
 		a.throws(
-			() => assertType(s, (s) => typeof s === 'boolean'),
-			(e) => /subject fails to satisfy s => typeof s === 'boolean'/.test(e),
+			() => assertType(s, (subject) => typeof subject === 'boolean'),
+			(e) => /subject fails to satisfy subject => typeof subject === "boolean"/.test(e),
 		)
 	})
 	it('Class as validator', () => {
@@ -598,11 +598,11 @@ describe('assertType.custom', () => {
 		expect(isBool(s)).toBe(undefined)
 	})
 	it('error message contains info from validator', () => {
-		const isBool = assertType.custom<boolean>((s) => typeof s === 'boolean')
+		const isBool = assertType.custom<boolean>((subject) => typeof subject === 'boolean')
 		const s: unknown = 1
 		a.throws(
 			() => isBool(s),
-			(e) => /subject fails to satisfy s => typeof s === 'boolean'/.test(e),
+			(e) => /subject fails to satisfy subject => typeof subject === "boolean"/.test(e),
 		)
 	})
 })

@@ -1,4 +1,4 @@
-import { it, test } from '@jest/globals'
+import { it, test } from 'vitest'
 
 import { testType, type UnionOfProps } from '../index.js'
 

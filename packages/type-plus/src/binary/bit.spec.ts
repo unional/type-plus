@@ -1,4 +1,4 @@
-import { test } from '@jest/globals'
+import { test } from 'vitest'
 import type { Bit } from '../index.js'
 import { testType } from '../index.js'
 

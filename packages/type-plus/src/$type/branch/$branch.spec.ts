@@ -1,4 +1,4 @@
-import { describe, it } from '@jest/globals'
+import { describe, it } from 'vitest'
 import type { $Any, $Branch, $BranchOptions, $Type, $Unknown } from '../../index.js'
 import { testType } from '../../index.js'
 

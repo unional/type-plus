@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 
 import { assertType, type ComposableTypes, canAssign, type NonComposableTypes } from './index.js'
 

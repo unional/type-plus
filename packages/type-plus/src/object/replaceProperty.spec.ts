@@ -1,4 +1,4 @@
-import { expect, test } from '@jest/globals'
+import { expect, test } from 'vitest'
 
 import { assertType, type ReplaceProperty, replaceProperty } from '../index.js'
 

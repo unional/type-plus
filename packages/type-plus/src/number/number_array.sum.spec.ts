@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 
 it.todo('to be fixed')
 // import { testType } from '../index.js'

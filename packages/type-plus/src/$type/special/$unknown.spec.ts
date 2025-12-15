@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 import { type $Type, type $Unknown, testType } from '../../index.js'
 
 it('is a unique branch', () => {

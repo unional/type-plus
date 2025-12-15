@@ -1,4 +1,4 @@
-import { describe, it } from '@jest/globals'
+import { describe, it } from 'vitest'
 
 import { type IsOptionalKey, type OptionalKeys, type OptionalProps, testType } from '../index.js'
 

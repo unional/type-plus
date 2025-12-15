@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 import { testType } from '../index.js'
 import type { UnionToIntersection } from '../union/union_to_intersection.js'
 

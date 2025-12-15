@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 import { type $Type, testType } from '../index.js'
 
 it('is unique for each value', () => {

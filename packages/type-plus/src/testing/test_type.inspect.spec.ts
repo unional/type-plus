@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 
 import { assertType } from '../index.js'
 import { testType } from './test_type.js'

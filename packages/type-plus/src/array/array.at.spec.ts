@@ -1,4 +1,4 @@
-import { expect, it, test } from '@jest/globals'
+import { expect, it, test } from 'vitest'
 import { type ArrayPlus, testType } from '../index.js'
 
 test('behavior of array.at()', () => {

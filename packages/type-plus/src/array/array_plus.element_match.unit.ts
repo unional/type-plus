@@ -1,4 +1,4 @@
-import { it } from '@jest/globals'
+import { it } from 'vitest'
 import { testType } from '../index.js'
 import type { ElementMatch } from './array_plus.js'
 

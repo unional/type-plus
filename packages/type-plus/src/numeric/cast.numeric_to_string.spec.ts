@@ -1,4 +1,4 @@
-import { it, test } from '@jest/globals'
+import { it, test } from 'vitest'
 
 import type { NumericToString } from '../index.js'
 import { testType } from '../index.js'

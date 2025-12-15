@@ -1,5 +1,5 @@
-import { describe, expect, it } from '@jest/globals'
 import { AssertOrder } from 'assertron'
+import { describe, expect, it } from 'vitest'
 
 import { context, testType } from '../index.js'
 
