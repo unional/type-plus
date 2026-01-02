@@ -10,5 +10,14 @@ import type { RequiredKeys } from './RequiredKeys.js'
  * It adds `undefined` to optional properties.
  */
 export type AdjustExactOptionalProps<T extends AnyRecord> = T extends object
-	? { [K in OptionalKeys<T>]?: T[K] | undefined } & { [K in RequiredKeys<T>]: T[K] }
+	? [{ [K in OptionalKeys<T>]?: T[K] | undefined }, { [K in RequiredKeys<T>]: T[K] }] extends [
+			infer O extends AnyRecord,
+			infer R extends AnyRecord,
+		]
+		? keyof O extends never
+			? R
+			: keyof R extends never
+				? O
+				: O & R
+		: never
 	: never
