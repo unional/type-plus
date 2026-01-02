@@ -5,6 +5,7 @@ module.exports = {
 	rules: {
 		'body-max-line-length': DISABLE,
 		'footer-max-line-length': DISABLE,
+		'header-max-length': DISABLE,
 		'subject-case': DISABLE,
 	},
 }
