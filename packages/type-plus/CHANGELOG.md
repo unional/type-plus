@@ -1,5 +1,11 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 8.0.0-beta.8
+
+### Patch Changes
+
+- 3c8a66a: Update `AdjustExactOptionalProps` to trim empty object (`{}`) when the input type has only optional or required properties.
+
 ## 8.0.0-beta.7
 
 ### Minor Changes
