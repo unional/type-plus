@@ -1,5 +1,13 @@
 ## [4.18.1](https://github.com/unional/type-plus/compare/v4.18.0...v4.18.1) (2022-12-09)
 
+## 8.0.0-beta.8
+
+### Patch Changes
+
+- 929fb13: Add `typescript` peer dependency (v5.6.0 or higher).
+- 3c8a66a: Update `AdjustExactOptionalProps` to trim empty object (`{}`) when the input type has only optional or required properties.
+- 3dc8849: Preserve `any` and `unknown` in `Properties<T>` so they are returned unchanged instead of mapping to object types. Expand JSDoc with description and examples.
+
 ## 8.0.0-beta.7
 
 ### Minor Changes
