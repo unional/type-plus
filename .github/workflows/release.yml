@@ -19,5 +19,7 @@ jobs:
     secrets: inherit
 
   docgen:
+    permissions:
+      contents: write
     uses: unional/.github/.github/workflows/pnpm-docs.yml@main
     needs: release
