@@ -36,6 +36,7 @@
 		"husky": "^9.0.11",
 		"knip": "^5.73.4",
 		"npm-run-all2": "^8.0.0",
+		"playwright": "^1.58.1",
 		"rimraf": "^6.0.0",
 		"turbo": "2.6.3",
 		"typedoc": "^0.28.16",
