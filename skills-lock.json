@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "fix-security-pr": {
+      "source": "repobuddy/agent-security",
+      "sourceType": "github",
+      "skillPath": "skills/fix-security-pr/SKILL.md",
+      "computedHash": "d78b2e51db20d5e19948faa0428ef3a1d51efed14706d4dc58cea2dfc6ef6530"
+    }
+  }
+}
