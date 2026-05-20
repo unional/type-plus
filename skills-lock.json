@@ -1,41 +1,41 @@
 {
-  "version": 1,
-  "skills": {
-    "add-changeset": {
-      "source": "repobuddy/agent-changesets",
-      "sourceType": "github",
-      "skillPath": "skills/add-changeset/SKILL.md",
-      "computedHash": "8a5266fe92b2f9f755238564e44b5b44e1b5ce0a469d5659c1b03d49dd590dd1"
-    },
-    "create-skill": {
-      "source": "repobuddy/agent-changesets",
-      "sourceType": "github",
-      "skillPath": ".agents/skills/create-skill/SKILL.md",
-      "computedHash": "6f7a5b9959fb330b0fa8308dadca1df6bb654b578aedeb976fb445c62b31f5eb"
-    },
-    "fix-security-pr": {
-      "source": "repobuddy/agent-security",
-      "sourceType": "github",
-      "skillPath": "skills/fix-security-pr/SKILL.md",
-      "computedHash": "d78b2e51db20d5e19948faa0428ef3a1d51efed14706d4dc58cea2dfc6ef6530"
-    },
-    "init": {
-      "source": "repobuddy/agent-changesets",
-      "sourceType": "github",
-      "skillPath": ".agents/skills/init/SKILL.md",
-      "computedHash": "3b7fe09f0412d2607040b48d1a976fd5a3a690a6da7233b6d9c7a45ca11898ef"
-    },
-    "setup-changesets": {
-      "source": "repobuddy/agent-changesets",
-      "sourceType": "github",
-      "skillPath": "skills/setup-changesets/SKILL.md",
-      "computedHash": "6ee922527e013544ff5f739dea8fe6e178caa9629e123a29793776f485ff2e8e"
-    },
-    "validate-skill": {
-      "source": "repobuddy/agent-changesets",
-      "sourceType": "github",
-      "skillPath": ".agents/skills/validate-skill/SKILL.md",
-      "computedHash": "dac87a91e49948a897a82b4df7b5a1b5ef9f3600908282e92731d2e2151d9427"
-    }
-  }
+	"version": 1,
+	"skills": {
+		"add-changeset": {
+			"source": "repobuddy/agent-changesets",
+			"sourceType": "github",
+			"skillPath": "skills/add-changeset/SKILL.md",
+			"computedHash": "8a5266fe92b2f9f755238564e44b5b44e1b5ce0a469d5659c1b03d49dd590dd1"
+		},
+		"create-skill": {
+			"source": "repobuddy/agent-changesets",
+			"sourceType": "github",
+			"skillPath": ".agents/skills/create-skill/SKILL.md",
+			"computedHash": "6f7a5b9959fb330b0fa8308dadca1df6bb654b578aedeb976fb445c62b31f5eb"
+		},
+		"fix-security-pr": {
+			"source": "repobuddy/agent-security",
+			"sourceType": "github",
+			"skillPath": "skills/fix-security-pr/SKILL.md",
+			"computedHash": "d78b2e51db20d5e19948faa0428ef3a1d51efed14706d4dc58cea2dfc6ef6530"
+		},
+		"init": {
+			"source": "repobuddy/agent-changesets",
+			"sourceType": "github",
+			"skillPath": ".agents/skills/init/SKILL.md",
+			"computedHash": "3b7fe09f0412d2607040b48d1a976fd5a3a690a6da7233b6d9c7a45ca11898ef"
+		},
+		"setup-changesets": {
+			"source": "repobuddy/agent-changesets",
+			"sourceType": "github",
+			"skillPath": "skills/setup-changesets/SKILL.md",
+			"computedHash": "6ee922527e013544ff5f739dea8fe6e178caa9629e123a29793776f485ff2e8e"
+		},
+		"validate-skill": {
+			"source": "repobuddy/agent-changesets",
+			"sourceType": "github",
+			"skillPath": ".agents/skills/validate-skill/SKILL.md",
+			"computedHash": "dac87a91e49948a897a82b4df7b5a1b5ef9f3600908282e92731d2e2151d9427"
+		}
+	}
 }
