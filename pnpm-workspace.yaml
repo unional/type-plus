@@ -4,6 +4,7 @@ packages:
 
 allowBuilds:
   esbuild: true
+  fsevents: true
   sharp: true
 
 catalog:
