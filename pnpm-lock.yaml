@@ -124,8 +124,8 @@ importers:
         specifier: npm:typescript@~5.4.0
         version: typescript@5.4.5
       ts-5.5:
-        specifier: npm:typescript@~5.5.0
-        version: typescript@5.5.4
+        specifier: npm:typescript@~5.9.0
+        version: typescript@5.9.3
       typescript:
         specifier: 'catalog:'
         version: 5.6.3
@@ -3597,13 +3597,13 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  typescript@5.5.4:
-    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
+  typescript@5.6.3:
+    resolution: {integrity: sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
-  typescript@5.6.3:
-    resolution: {integrity: sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==}
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -8246,9 +8246,9 @@ snapshots:
 
   typescript@5.4.5: {}
 
-  typescript@5.5.4: {}
-
   typescript@5.6.3: {}
+
+  typescript@5.9.3: {}
 
   uc.micro@2.1.0: {}
 
