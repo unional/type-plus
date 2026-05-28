@@ -24,7 +24,7 @@
   "devDependencies": {
     "@repobuddy/typescript": "^2.0.0",
     "@types/jest": "^29.5.13",
-    "@types/node": "^18.11.11",
+    "@types/node": "^24.0.0",
     "@unional/fixture": "^3.2.7",
     "depcheck": "^1.4.3",
     "npm-run-all2": "^8.0.0",
