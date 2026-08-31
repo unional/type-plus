@@ -8,13 +8,13 @@
     "type",
     "types"
   ],
-  "homepage": "https://github.com/unional/type-plus/tree/main/type-plus/packages/kind#readme",
+  "homepage": "https://github.com/cyberuni/type-plus/tree/main/packages/kind#readme",
   "bugs": {
-    "url": "https://github.com/unional/type-plus/issues"
+    "url": "https://github.com/cyberuni/type-plus/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/unional/type-plus.git",
+    "url": "https://github.com/cyberuni/type-plus.git",
     "directory": "packages/kind"
   },
   "license": "MIT",
