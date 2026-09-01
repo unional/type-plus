@@ -6,6 +6,7 @@
 			"inputs": [
 				"src/",
 				"!src/**/*.{spec,test,unit,accept,integrate,system,perf,stress,stories}.{ts,tsx}",
+				"scripts/",
 				"tsconfig*.json"
 			],
 			"outputs": ["lib/**", "cjs/**", "esm/**", "dist/**"]
