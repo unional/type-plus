@@ -1,3 +1,39 @@
 {
-	"extends": ["github>unional/renovate-preset"]
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["config:recommended", ":preserveSemverRanges", ":semanticCommits"],
+	"minimumReleaseAge": "3 days",
+	"platformAutomerge": true,
+	"rebaseWhen": "behind-base-branch",
+	"ignorePaths": ["**/node_modules/**", "old/**"],
+	"packageRules": [
+		{
+			"description": "Non-breaking updates merge themselves through the merge queue.",
+			"matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+			"automerge": true
+		},
+		{
+			"description": "devDependencies never reach a consumer, so majors are safe to automerge too.",
+			"matchDepTypes": ["devDependencies"],
+			"automerge": true
+		},
+		{
+			"description": "Majors of anything a consumer resolves stay manual.",
+			"matchUpdateTypes": ["major"],
+			"automerge": false,
+			"additionalBranchPrefix": "major-"
+		},
+		{
+			"description": "`ts-5.4` and `ts-5.5` are npm aliases for those exact TypeScript minors. They exist so `test:type` proves the emitted types still compile on the oldest supported compilers. Bumping them defeats the entire point of the matrix.",
+			"matchPackageNames": ["ts-5.4", "ts-5.5"],
+			"enabled": false
+		}
+	],
+	"vulnerabilityAlerts": {
+		"minimumReleaseAge": "1 day",
+		"automerge": true
+	},
+	"lockFileMaintenance": {
+		"enabled": true,
+		"automerge": true
+	}
 }
