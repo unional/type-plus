@@ -1348,13 +1348,13 @@ Whenever possible, I add attribution to the person who created those **codes** i
 - [`earl`]: Ergonomic, modern and type-safe assertion library for TypeScript
 
 [@gcanti]: https://github.com/gcanti
-[codecov_image]: https://codecov.io/gh/cyberuni/type-plus/branch/main/graph/badge.svg
-[codecov_url]: https://codecov.io/gh/cyberuni/type-plus
+[codecov_image]: https://codecov.io/gh/unional/type-plus/branch/main/graph/badge.svg
+[codecov_url]: https://codecov.io/gh/unional/type-plus
 [downloads_image]: https://img.shields.io/npm/dm/type-plus.svg?style=flat
 [`earl`]: https://github.com/l2beat/earl
 [`expect-type`]: https://github.com/mmkal/expect-type
-[github_action_url]: https://github.com/cyberuni/type-plus/actions
-[github_release]: https://github.com/cyberuni/type-plus/workflows/release/badge.svg
+[github_action_url]: https://github.com/unional/type-plus/actions
+[github_release]: https://github.com/unional/type-plus/workflows/release/badge.svg
 [`hotscript`]: https://github.com/gvergnaud/hotscript
 [npm_image]: https://img.shields.io/npm/v/type-plus.svg?style=flat
 [npm_url]: https://npmjs.org/package/type-plus
@@ -1364,7 +1364,7 @@ Whenever possible, I add attribution to the person who created those **codes** i
 [`ts-expect`]: https://github.com/TypeStrong/ts-expect
 [`ts-toolbelt`]: https://github.com/millsp/ts-toolbelt
 [`type-fest`]: https://github.com/sindresorhus/type-fest
-[`type-plus`]: https://github.com/cyberuni/type-plus
+[`type-plus`]: https://github.com/unional/type-plus
 [`type-zoo`]: https://github.com/pelotom/type-zoo
 [`typelevel-ts`]: https://github.com/gcanti/typelevel-ts
 [`typepark`]: https://github.com/kgtkr/typepark

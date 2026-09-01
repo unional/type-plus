@@ -1,6 +1,6 @@
 {
 	"$schema": "https://typedoc.org/schema.json",
-	"titleLink": "https://github.com/cyberuni/type-plus",
+	"titleLink": "https://github.com/unional/type-plus",
 	"entryPointStrategy": "packages",
 	"includeVersion": true,
 	"entryPoints": ["../packages/type-plus"],
