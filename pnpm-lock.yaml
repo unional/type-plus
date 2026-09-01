@@ -84,11 +84,11 @@ importers:
   packages/type-plus:
     dependencies:
       tersify:
-        specifier: ^3.11.1
-        version: 3.11.1
+        specifier: ^4.0.6
+        version: 4.0.6
       unpartial:
-        specifier: ^1.0.4
-        version: 1.0.4
+        specifier: ^1.0.7
+        version: 1.0.7
     devDependencies:
       '@repobuddy/typescript':
         specifier: ^2.0.0
@@ -1520,13 +1520,13 @@ packages:
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
 
-  acorn@8.10.0:
-    resolution: {integrity: sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==}
+  acorn@8.15.0:
+    resolution: {integrity: sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  acorn@8.15.0:
-    resolution: {integrity: sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==}
+  acorn@8.18.0:
+    resolution: {integrity: sha512-lGq+9yr1/GuAWaVYIHRjvvySG5/4VfKIvC8EWxStPdcDh/Ka7FG3twP6v4d5BkravUilhIAsG4Qj83t02LWUPQ==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -3365,6 +3365,9 @@ packages:
   tersify@3.11.1:
     resolution: {integrity: sha512-W/Kv1z+cgDRsI10p9CyCZJ+gopPUVOz1/h7OPntr6D52iIHQTbsg40MBUoaG82q8IgD/GKoWhoujg/rOxQW7SA==}
 
+  tersify@4.0.6:
+    resolution: {integrity: sha512-+z2dTeRvbPyI7qiAmBY+VgWnhhN9IuaGjgrPfeF33hI4A/Yd9KT11tbc4l8vfIA3L/5EWiE0swvxOfAckGRuzA==}
+
   text-extensions@2.4.0:
     resolution: {integrity: sha512-te/NtwBwfiNRLf9Ijqx3T0nlqZiQ2XrrtBvu+cLL8ZRrGkO0NHTug8MYFKyoSrv/sHTaSKfilUkizV6XhxMJ3g==}
     engines: {node: '>=8'}
@@ -3537,6 +3540,10 @@ packages:
   unpartial@1.0.4:
     resolution: {integrity: sha512-xY8319WOQcRDRVFWvTty2YJXKvM8XRPehqWZUd7k/BatpbuitI4Jd+2xlwjTZbZScSvT75TnUsUmy5uwFa3o0g==}
     engines: {node: '>=6'}
+
+  unpartial@1.0.7:
+    resolution: {integrity: sha512-DeyxEI3KSlmDihGAk3Js/p/Ca886ymIz39pWH3VVV/LZ36MsRETylFS37fdzWBWDjMlzB63Rdy2KLCdetOMPig==}
+    engines: {node: '>= 20'}
 
   unstorage@1.17.1:
     resolution: {integrity: sha512-KKGwRTT0iVBCErKemkJCLs7JdxNVfqTPc/85ae1XES0+bsHbc/sFBfVi5kJp156cc51BHinIH2l3k0EZ24vOBQ==}
@@ -5303,9 +5310,9 @@ snapshots:
     dependencies:
       acorn: 8.15.0
 
-  acorn@8.10.0: {}
-
   acorn@8.15.0: {}
+
+  acorn@8.18.0: {}
 
   ajv@8.11.2:
     dependencies:
@@ -7849,9 +7856,14 @@ snapshots:
 
   tersify@3.11.1:
     dependencies:
-      acorn: 8.10.0
+      acorn: 8.15.0
       is-buffer: 2.0.5
       unpartial: 1.0.4
+
+  tersify@4.0.6:
+    dependencies:
+      acorn: 8.18.0
+      unpartial: 1.0.7
 
   text-extensions@2.4.0: {}
 
@@ -8024,6 +8036,8 @@ snapshots:
       unist-util-visit-parents: 6.0.1
 
   unpartial@1.0.4: {}
+
+  unpartial@1.0.7: {}
 
   unstorage@1.17.1:
     dependencies:
