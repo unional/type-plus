@@ -1,6 +1,7 @@
 {
   "name": "@type-plus/kind",
   "version": "0.0.0",
+  "private": true,
   "description": "TypeScript Kind-Level Programming implementation",
   "keywords": [
     "kind",
