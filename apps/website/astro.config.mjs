@@ -13,9 +13,13 @@ export default defineConfig({
 			},
 			description:
 				'Provides over 200 utility types and functions for applications, library, and type-level programming.',
-			social: {
-				github: 'https://github.com/unional/type-plus',
-			},
+			social: [
+				{
+					icon: 'github',
+					label: 'GitHub',
+					href: 'https://github.com/unional/type-plus',
+				},
+			],
 			sidebar: [
 				{
 					label: 'Guides',
@@ -26,11 +30,11 @@ export default defineConfig({
 				},
 				{
 					label: 'API',
-					autogenerate: { directory: 'api' },
+					items: [{ autogenerate: { directory: 'api' } }],
 				},
 				{
 					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					items: [{ autogenerate: { directory: 'reference' } }],
 				},
 			],
 		}),
