@@ -7,5 +7,18 @@ allowBuilds:
   fsevents: true
   sharp: true
 
+# Pinned exclusions from the 24h supply-chain soak in `.npmrc`
+# (`minimumreleaseage=1440`). NOT a weakening of the policy: the soak still
+# governs every other package, and every future release of these two — only
+# these exact versions are let through, because they are the upstream releases
+# this repo is deliberately picking up as part of the modernization sweep.
+#
+# Both were reviewed by hand: `unpartial@1.0.7` and `tersify@4.0.6` are the
+# current `latest` on the registry, published by the same owner as this repo
+# with provenance attestations. Remove these entries once they age past 24h.
+minimumReleaseAgeExclude:
+  - tersify@4.0.6
+  - unpartial@1.0.7
+
 catalog:
   typescript: ~5.6.0
