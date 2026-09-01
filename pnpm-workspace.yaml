@@ -16,6 +16,7 @@ allowBuilds:
 # Both were reviewed by hand: `unpartial@1.0.7` and `tersify@4.0.6` are the
 # current `latest` on the registry, published by the same owner as this repo
 # with provenance attestations. Remove these entries once they age past 24h.
+minimumReleaseAgeStrict: true
 minimumReleaseAgeExclude:
   - tersify@4.0.6
   - unpartial@1.0.7
