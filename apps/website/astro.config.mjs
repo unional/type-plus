@@ -17,7 +17,7 @@ export default defineConfig({
 				{
 					icon: 'github',
 					label: 'GitHub',
-					href: 'https://github.com/unional/type-plus',
+					href: 'https://github.com/cyberuni/type-plus',
 				},
 			],
 			sidebar: [
