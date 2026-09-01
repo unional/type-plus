@@ -1,5 +1,6 @@
 {
   "name": "@type-plus/checker",
+  "private": true,
   "version": "0.0.0",
   "description": "Type-plus checker",
   "homepage": "https://github.com/unional/type-plus/tree/main/type-plus/packages/checker#readme",

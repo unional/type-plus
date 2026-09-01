@@ -1348,7 +1348,7 @@ Whenever possible, I add attribution to the person who created those **codes** i
 - [`earl`]: Ergonomic, modern and type-safe assertion library for TypeScript
 
 [@gcanti]: https://github.com/gcanti
-[codecov_image]: https://codecov.io/gh/unional/type-plus/branch/master/graph/badge.svg
+[codecov_image]: https://codecov.io/gh/unional/type-plus/branch/main/graph/badge.svg
 [codecov_url]: https://codecov.io/gh/unional/type-plus
 [downloads_image]: https://img.shields.io/npm/dm/type-plus.svg?style=flat
 [`earl`]: https://github.com/l2beat/earl

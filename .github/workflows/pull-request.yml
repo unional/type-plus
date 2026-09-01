@@ -2,19 +2,15 @@ name: pull-request
 on:
   pull_request:
     types: [opened, synchronize]
-    branches-ignore:
-      - changeset-release/main
+  merge_group:
+
 jobs:
   code:
-    uses: unional/.github/.github/workflows/pnpm-verify.yml@main
+    uses: cyberuni/.github/.github/workflows/pnpm-verify.yml@v2
     with:
       os: '["ubuntu-latest"]'
-    secrets: inherit
-  # codecov:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: codecov
-  #       needs: code
-  #       uses: codecov/codecov-action@v4.5.0
-  #       env:
-  #         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      # No browser tests in this repo: `packages/type-plus/vitest.config.ts` runs
+      # `environment: 'node'` with no browser project, and there are no `*.stories.*`
+      # files. The root `playwright` devDependency is not referenced by any config or
+      # script. Verified, not assumed — `tersify` (batch 2) had a real browser project.
+      skip-playwright: true

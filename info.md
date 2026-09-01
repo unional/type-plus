@@ -530,7 +530,7 @@ test results immediately as you type, and see the results in
 your editor right next to your code.
 
 [@gcanti]: https://github.com/gcanti
-[codecov_image]: https://codecov.io/gh/unional/type-plus/branch/master/graph/badge.svg
+[codecov_image]: https://codecov.io/gh/unional/type-plus/branch/main/graph/badge.svg
 [codecov_url]: https://codecov.io/gh/unional/type-plus
 [downloads_image]: https://img.shields.io/npm/dm/type-plus.svg?style=flat
 [expect-type]: https://github.com/mmkal/expect-type

@@ -1,6 +1,7 @@
 {
   "name": "@type-plus/kind",
   "version": "0.0.0",
+  "private": true,
   "description": "TypeScript Kind-Level Programming implementation",
   "keywords": [
     "kind",
@@ -8,7 +9,7 @@
     "type",
     "types"
   ],
-  "homepage": "https://github.com/unional/type-plus/tree/main/type-plus/packages/kind#readme",
+  "homepage": "https://github.com/unional/type-plus/tree/main/packages/kind#readme",
   "bugs": {
     "url": "https://github.com/unional/type-plus/issues"
   },
