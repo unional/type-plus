@@ -3,7 +3,7 @@ title: Categories
 description: What does those icons mean?
 ---
 
-The types and utilities in [`type-plus`](https://github.com/unional/type-plus) can be categorized in one or more categories.
+The types and utilities in [`type-plus`](https://github.com/cyberuni/type-plus) can be categorized in one or more categories.
 
 They can fit into multiple categories because they can be customizable.
 

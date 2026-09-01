@@ -530,12 +530,12 @@ test results immediately as you type, and see the results in
 your editor right next to your code.
 
 [@gcanti]: https://github.com/gcanti
-[codecov_image]: https://codecov.io/gh/unional/type-plus/branch/main/graph/badge.svg
-[codecov_url]: https://codecov.io/gh/unional/type-plus
+[codecov_image]: https://codecov.io/gh/cyberuni/type-plus/branch/main/graph/badge.svg
+[codecov_url]: https://codecov.io/gh/cyberuni/type-plus
 [downloads_image]: https://img.shields.io/npm/dm/type-plus.svg?style=flat
 [expect-type]: https://github.com/mmkal/expect-type
-[github_action_url]: https://github.com/unional/type-plus/actions
-[github_release]: https://github.com/unional/type-plus/workflows/release/badge.svg
+[github_action_url]: https://github.com/cyberuni/type-plus/actions
+[github_release]: https://github.com/cyberuni/type-plus/workflows/release/badge.svg
 [hotscript]: https://github.com/gvergnaud/hotscript
 [npm_image]: https://img.shields.io/npm/v/type-plus.svg?style=flat
 [npm_url]: https://npmjs.org/package/type-plus
