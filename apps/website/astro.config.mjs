@@ -1,6 +1,7 @@
 // @ts-check
 import starlight from '@astrojs/starlight'
 import { defineConfig } from 'astro/config'
+import ecTwoSlash from 'expressive-code-twoslash'
 
 // https://astro.build/config
 export default defineConfig({
@@ -8,6 +9,13 @@ export default defineConfig({
 	base: '/type-plus',
 	integrations: [
 		starlight({
+			// Code blocks tagged ```ts twoslash are compiled by the real TypeScript
+			// compiler, so hovers show the types this library actually produces
+			// rather than a comment claiming what it produces. For a type-level
+			// library that is the difference between documentation and assertion.
+			expressiveCode: {
+				plugins: [ecTwoSlash()],
+			},
 			title: 'type-plus',
 			logo: {
 				light: './src/assets/type-plus.svg',

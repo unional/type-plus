@@ -42,11 +42,13 @@ for the versions covered by the test matrix.
 
 Most of `type-plus` is types, so nothing needs to be imported at runtime:
 
-```ts
+```ts twoslash
 import type { IsEqual } from 'type-plus'
 
-type A = IsEqual<'a', 'a'> // true
-type B = IsEqual<'a', 'b'> // false
+type A = IsEqual<'a', 'a'>
+//   ^?
+type B = IsEqual<'a', 'b'>
+//   ^?
 ```
 
 ## Branching options
@@ -55,13 +57,25 @@ The predicate types share one convention: instead of collapsing to `boolean`, th
 choose what each branch returns, and how the special types `any`, `never` and `unknown` are
 treated:
 
-```ts
+```ts twoslash
 import type { IsString } from 'type-plus'
 
-type A = IsString<string>          // true
-type B = IsString<number>          // false
-type C = IsString<any>             // boolean — `any` is both
-type D = IsString<any, { $any: 1 }> // 1 — unless you say otherwise
+type A = IsString<string>
+//   ^?
+type B = IsString<number>
+//   ^?
+
+// Unions distribute, so a mixed union answers `boolean`
+type C = IsString<string | 1>
+//   ^?
+
+// The special types get their own branches. `any` answers `false` by default,
+type D = IsString<any>
+//   ^?
+
+// unless you say otherwise
+type E = IsString<any, { $any: 1 }>
+//   ^?
 ```
 
 This is the single idea that makes the library composable. Read
