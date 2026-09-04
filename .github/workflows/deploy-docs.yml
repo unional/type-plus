@@ -30,12 +30,6 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm --filter website build
-      # The typedoc API dump used to be the whole Pages site. Nest it under the
-      # Astro build so the generated reference survives the move to Actions Pages.
-      - run: pnpm build:doc
-      - run: |
-          mkdir -p apps/website/dist/typedoc
-          cp -R docs/. apps/website/dist/typedoc/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

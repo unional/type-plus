@@ -16,9 +16,6 @@
 			"inputs": ["astro.config.mjs", "src/", "public/", "tsconfig.json"],
 			"outputs": ["dist/**", ".astro/**"]
 		},
-		"build:doc": {
-			"dependsOn": ["^build"]
-		},
 		"clean": {
 			"cache": false
 		},
