@@ -7,19 +7,18 @@ allowBuilds:
   fsevents: true
   sharp: true
 
-# Pinned exclusions from the 24h supply-chain soak in `.npmrc`
-# (`minimumreleaseage=1440`). NOT a weakening of the policy: the soak still
-# governs every other package, and every future release of these two — only
-# these exact versions are let through, because they are the upstream releases
-# this repo is deliberately picking up as part of the modernization sweep.
+# Supply-chain soak: no dependency may be installed until it is 24h old.
+# `minimumReleaseAge` must be set here, not in `.npmrc` - `minimumreleaseage` is not a
+# valid npm key, so from `.npmrc` it never reaches pnpm's typed config and the soak is
+# inert. Strict mode makes a too-young resolution fail the install instead of being
+# silently appended to `minimumReleaseAgeExclude` and installed anyway; with no window
+# set, strict mode on its own enforces nothing.
 #
-# Both were reviewed by hand: `unpartial@1.0.7` and `tersify@4.0.6` are the
-# current `latest` on the registry, published by the same owner as this repo
-# with provenance attestations. Remove these entries once they age past 24h.
+# To take something younger than the window, add an exact version to a
+# `minimumReleaseAgeExclude:` list here with the reason and the date it becomes
+# removable - and drop it again once the soak has elapsed.
+minimumReleaseAge: 1440 # 1 day
 minimumReleaseAgeStrict: true
-minimumReleaseAgeExclude:
-  - tersify@4.0.6
-  - unpartial@1.0.7
 
 catalog:
   typescript: ~5.6.0
