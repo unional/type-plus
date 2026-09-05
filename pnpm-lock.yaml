@@ -7,8 +7,8 @@ settings:
 catalogs:
   default:
     typescript:
-      specifier: ~5.6.0
-      version: 5.6.3
+      specifier: ~5.9.0
+      version: 5.9.3
 
 importers:
 
@@ -22,7 +22,7 @@ importers:
         version: 3.0.1
       '@commitlint/cli':
         specifier: ^21.0.0
-        version: 21.2.2(@types/node@24.13.3)(conventional-commits-parser@7.1.2)(typescript@5.6.3)
+        version: 21.2.2(@types/node@24.13.3)(conventional-commits-parser@7.1.2)(typescript@5.9.3)
       '@commitlint/config-conventional':
         specifier: ^21.0.0
         version: 21.2.2
@@ -34,7 +34,7 @@ importers:
         version: 9.0.11
       knip:
         specifier: ^5.73.4
-        version: 5.73.4(@types/node@24.13.3)(typescript@5.6.3)
+        version: 5.73.4(@types/node@24.13.3)(typescript@5.9.3)
       npm-run-all2:
         specifier: ^8.0.0
         version: 8.0.1
@@ -46,10 +46,10 @@ importers:
         version: 2.10.12
       typedoc:
         specifier: ^0.28.16
-        version: 0.28.16(typescript@5.6.3)
+        version: 0.28.16(typescript@5.9.3)
       typescript:
         specifier: 'catalog:'
-        version: 5.6.3
+        version: 5.9.3
       vitest:
         specifier: ^4.0.15
         version: 4.1.0(@types/node@24.13.3)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.6.0)(yaml@2.9.0))
@@ -58,10 +58,10 @@ importers:
     dependencies:
       '@astrojs/check':
         specifier: ^0.9.4
-        version: 0.9.4(typescript@5.6.3)
+        version: 0.9.4(typescript@5.9.3)
       '@astrojs/starlight':
         specifier: ^0.41.10
-        version: 0.41.10(@astrojs/markdown-remark@7.2.4(supports-color@9.3.1))(astro@7.2.9(@astrojs/markdown-remark@7.2.4(supports-color@9.3.1))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@24.13.3)(jiti@2.6.0)(yaml@2.9.0))(supports-color@9.3.1)(typescript@5.6.3)
+        version: 0.41.10(@astrojs/markdown-remark@7.2.4(supports-color@9.3.1))(astro@7.2.9(@astrojs/markdown-remark@7.2.4(supports-color@9.3.1))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@24.13.3)(jiti@2.6.0)(yaml@2.9.0))(supports-color@9.3.1)(typescript@5.9.3)
       astro:
         specifier: ^7.2.9
         version: 7.2.9(@astrojs/markdown-remark@7.2.4(supports-color@9.3.1))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@24.13.3)(jiti@2.6.0)(yaml@2.9.0)
@@ -125,7 +125,7 @@ importers:
         version: typescript@5.5.4
       typescript:
         specifier: 'catalog:'
-        version: 5.6.3
+        version: 5.9.3
       vitest:
         specifier: ^4.0.15
         version: 4.1.0(@types/node@18.11.11)(vite@8.2.2(@types/node@18.11.11)(esbuild@0.28.2)(jiti@2.6.0)(yaml@2.9.0))
@@ -1924,10 +1924,6 @@ packages:
   destr@2.0.5:
     resolution: {integrity: sha512-ugFTXCtDZunbzasqBxrK93Ik/DRYsO6S/fedkWEMKqt04xZ4csmnmwGDBAb07QWNaGMAmnTIemsYZCksjATwsA==}
 
-  detect-libc@2.0.3:
-    resolution: {integrity: sha512-bwy0MGW55bG41VqxxypOsdSdGqLwXPI/focwgTYCFMbdUiBAxLg9CFzG08sz2aqzknwiX7Hkl0bQENjg8iLByw==}
-    engines: {node: '>=8'}
-
   detect-libc@2.1.2:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
     engines: {node: '>=8'}
@@ -3517,8 +3513,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  typescript@5.6.3:
-    resolution: {integrity: sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==}
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -3984,12 +3980,12 @@ packages:
 
 snapshots:
 
-  '@astrojs/check@0.9.4(typescript@5.6.3)':
+  '@astrojs/check@0.9.4(typescript@5.9.3)':
     dependencies:
-      '@astrojs/language-server': 2.15.4(typescript@5.6.3)
+      '@astrojs/language-server': 2.15.4(typescript@5.9.3)
       chokidar: 4.0.3
       kleur: 4.1.5
-      typescript: 5.6.3
+      typescript: 5.9.3
       yargs: 17.7.2
     transitivePeerDependencies:
       - prettier
@@ -4053,7 +4049,7 @@ snapshots:
 
   '@astrojs/internal-helpers@0.10.4':
     dependencies:
-      '@types/hast': 3.0.4
+      '@types/hast': 3.0.5
       '@types/mdast': 4.0.4
       js-yaml: 4.3.2
       picomatch: 4.0.7
@@ -4062,24 +4058,24 @@ snapshots:
       smol-toml: 1.8.0
       unified: 11.0.5
 
-  '@astrojs/language-server@2.15.4(typescript@5.6.3)':
+  '@astrojs/language-server@2.15.4(typescript@5.9.3)':
     dependencies:
       '@astrojs/compiler': 2.10.3
       '@astrojs/yaml2ts': 0.2.2
       '@jridgewell/sourcemap-codec': 1.6.0
-      '@volar/kit': 2.4.11(typescript@5.6.3)
+      '@volar/kit': 2.4.11(typescript@5.9.3)
       '@volar/language-core': 2.4.11
-      '@volar/language-server': 2.4.11(typescript@5.6.3)
-      '@volar/language-service': 2.4.11(typescript@5.6.3)
+      '@volar/language-server': 2.4.11(typescript@5.9.3)
+      '@volar/language-service': 2.4.11(typescript@5.9.3)
       fast-glob: 3.3.2
       muggle-string: 0.4.1
-      volar-service-css: 0.0.62(@volar/language-service@2.4.11(typescript@5.6.3))
-      volar-service-emmet: 0.0.62(@volar/language-service@2.4.11(typescript@5.6.3))
-      volar-service-html: 0.0.62(@volar/language-service@2.4.11(typescript@5.6.3))
-      volar-service-prettier: 0.0.62(@volar/language-service@2.4.11(typescript@5.6.3))
-      volar-service-typescript: 0.0.62(@volar/language-service@2.4.11(typescript@5.6.3))(typescript@5.6.3)
-      volar-service-typescript-twoslash-queries: 0.0.62(@volar/language-service@2.4.11(typescript@5.6.3))(typescript@5.6.3)
-      volar-service-yaml: 0.0.62(@volar/language-service@2.4.11(typescript@5.6.3))
+      volar-service-css: 0.0.62(@volar/language-service@2.4.11(typescript@5.9.3))
+      volar-service-emmet: 0.0.62(@volar/language-service@2.4.11(typescript@5.9.3))
+      volar-service-html: 0.0.62(@volar/language-service@2.4.11(typescript@5.9.3))
+      volar-service-prettier: 0.0.62(@volar/language-service@2.4.11(typescript@5.9.3))
+      volar-service-typescript: 0.0.62(@volar/language-service@2.4.11(typescript@5.9.3))(typescript@5.9.3)
+      volar-service-typescript-twoslash-queries: 0.0.62(@volar/language-service@2.4.11(typescript@5.9.3))(typescript@5.9.3)
+      volar-service-yaml: 0.0.62(@volar/language-service@2.4.11(typescript@5.9.3))
       vscode-html-languageservice: 5.3.1
       vscode-uri: 3.0.8
     transitivePeerDependencies:
@@ -4146,7 +4142,7 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 4.5.4
 
-  '@astrojs/starlight@0.41.10(@astrojs/markdown-remark@7.2.4(supports-color@9.3.1))(astro@7.2.9(@astrojs/markdown-remark@7.2.4(supports-color@9.3.1))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@24.13.3)(jiti@2.6.0)(yaml@2.9.0))(supports-color@9.3.1)(typescript@5.6.3)':
+  '@astrojs/starlight@0.41.10(@astrojs/markdown-remark@7.2.4(supports-color@9.3.1))(astro@7.2.9(@astrojs/markdown-remark@7.2.4(supports-color@9.3.1))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@24.13.3)(jiti@2.6.0)(yaml@2.9.0))(supports-color@9.3.1)(typescript@5.9.3)':
     dependencies:
       '@astrojs/markdown-satteri': 0.3.8
       '@astrojs/mdx': 7.0.8(@astrojs/markdown-satteri@0.3.8)(astro@7.2.9(@astrojs/markdown-remark@7.2.4(supports-color@9.3.1))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@24.13.3)(jiti@2.6.0)(yaml@2.9.0))(supports-color@9.3.1)
@@ -4162,7 +4158,7 @@ snapshots:
       hast-util-select: 6.0.4
       hast-util-to-string: 3.0.1
       hastscript: 9.0.1
-      i18next: 26.4.0(typescript@5.6.3)
+      i18next: 26.4.0(typescript@5.9.3)
       js-yaml: 4.1.1
       klona: 2.0.6
       magic-string: 0.30.21
@@ -4452,12 +4448,12 @@ snapshots:
       fast-wrap-ansi: 0.2.2
       sisteransi: 1.0.5
 
-  '@commitlint/cli@21.2.2(@types/node@24.13.3)(conventional-commits-parser@7.1.2)(typescript@5.6.3)':
+  '@commitlint/cli@21.2.2(@types/node@24.13.3)(conventional-commits-parser@7.1.2)(typescript@5.9.3)':
     dependencies:
       '@commitlint/config-conventional': 21.2.2
       '@commitlint/format': 21.2.2
       '@commitlint/lint': 21.2.2
-      '@commitlint/load': 21.2.2(@types/node@24.13.3)(typescript@5.6.3)
+      '@commitlint/load': 21.2.2(@types/node@24.13.3)(typescript@5.9.3)
       '@commitlint/read': 21.2.1(conventional-commits-parser@7.1.2)
       '@commitlint/types': 21.2.0
       tinyexec: 1.3.0
@@ -4502,14 +4498,14 @@ snapshots:
       '@commitlint/rules': 21.2.2
       '@commitlint/types': 21.2.0
 
-  '@commitlint/load@21.2.2(@types/node@24.13.3)(typescript@5.6.3)':
+  '@commitlint/load@21.2.2(@types/node@24.13.3)(typescript@5.9.3)':
     dependencies:
       '@commitlint/config-validator': 21.2.0
       '@commitlint/execute-rule': 21.0.1
       '@commitlint/resolve-extends': 21.2.2
       '@commitlint/types': 21.2.0
-      cosmiconfig: 9.0.2(typescript@5.6.3)
-      cosmiconfig-typescript-loader: 6.1.0(@types/node@24.13.3)(cosmiconfig@9.0.2(typescript@5.6.3))(typescript@5.6.3)
+      cosmiconfig: 9.0.2(typescript@5.9.3)
+      cosmiconfig-typescript-loader: 6.1.0(@types/node@24.13.3)(cosmiconfig@9.0.2(typescript@5.9.3))(typescript@5.9.3)
       es-toolkit: 1.52.0
       is-plain-obj: 4.1.0
       picocolors: 1.1.1
@@ -5359,12 +5355,12 @@ snapshots:
       convert-source-map: 2.0.0
       tinyrainbow: 3.1.1
 
-  '@volar/kit@2.4.11(typescript@5.6.3)':
+  '@volar/kit@2.4.11(typescript@5.9.3)':
     dependencies:
-      '@volar/language-service': 2.4.11(typescript@5.6.3)
-      '@volar/typescript': 2.4.11(typescript@5.6.3)
+      '@volar/language-service': 2.4.11(typescript@5.9.3)
+      '@volar/typescript': 2.4.11(typescript@5.9.3)
       typesafe-path: 0.2.2
-      typescript: 5.6.3
+      typescript: 5.9.3
       vscode-languageserver-textdocument: 1.0.12
       vscode-uri: 3.0.8
 
@@ -5372,11 +5368,11 @@ snapshots:
     dependencies:
       '@volar/source-map': 2.4.11
 
-  '@volar/language-server@2.4.11(typescript@5.6.3)':
+  '@volar/language-server@2.4.11(typescript@5.9.3)':
     dependencies:
       '@volar/language-core': 2.4.11
-      '@volar/language-service': 2.4.11(typescript@5.6.3)
-      '@volar/typescript': 2.4.11(typescript@5.6.3)
+      '@volar/language-service': 2.4.11(typescript@5.9.3)
+      '@volar/typescript': 2.4.11(typescript@5.9.3)
       path-browserify: 1.0.1
       request-light: 0.7.0
       vscode-languageserver: 9.0.1
@@ -5384,26 +5380,26 @@ snapshots:
       vscode-languageserver-textdocument: 1.0.12
       vscode-uri: 3.0.8
     optionalDependencies:
-      typescript: 5.6.3
+      typescript: 5.9.3
 
-  '@volar/language-service@2.4.11(typescript@5.6.3)':
+  '@volar/language-service@2.4.11(typescript@5.9.3)':
     dependencies:
       '@volar/language-core': 2.4.11
       vscode-languageserver-protocol: 3.17.5
       vscode-languageserver-textdocument: 1.0.12
       vscode-uri: 3.0.8
     optionalDependencies:
-      typescript: 5.6.3
+      typescript: 5.9.3
 
   '@volar/source-map@2.4.11': {}
 
-  '@volar/typescript@2.4.11(typescript@5.6.3)':
+  '@volar/typescript@2.4.11(typescript@5.9.3)':
     dependencies:
       '@volar/language-core': 2.4.11
       path-browserify: 1.0.1
       vscode-uri: 3.0.8
     optionalDependencies:
-      typescript: 5.6.3
+      typescript: 5.9.3
 
   '@vscode/emmet-helper@2.11.0':
     dependencies:
@@ -5721,21 +5717,21 @@ snapshots:
 
   cookie@2.0.1: {}
 
-  cosmiconfig-typescript-loader@6.1.0(@types/node@24.13.3)(cosmiconfig@9.0.2(typescript@5.6.3))(typescript@5.6.3):
+  cosmiconfig-typescript-loader@6.1.0(@types/node@24.13.3)(cosmiconfig@9.0.2(typescript@5.9.3))(typescript@5.9.3):
     dependencies:
       '@types/node': 24.13.3
-      cosmiconfig: 9.0.2(typescript@5.6.3)
+      cosmiconfig: 9.0.2(typescript@5.9.3)
       jiti: 2.6.0
-      typescript: 5.6.3
+      typescript: 5.9.3
 
-  cosmiconfig@9.0.2(typescript@5.6.3):
+  cosmiconfig@9.0.2(typescript@5.9.3):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.0
       js-yaml: 4.1.1
       parse-json: 5.2.0
     optionalDependencies:
-      typescript: 5.6.3
+      typescript: 5.9.3
 
   cross-env@10.1.0:
     dependencies:
@@ -5807,10 +5803,7 @@ snapshots:
 
   destr@2.0.5: {}
 
-  detect-libc@2.0.3: {}
-
-  detect-libc@2.1.2:
-    optional: true
+  detect-libc@2.1.2: {}
 
   devalue@5.9.2: {}
 
@@ -6137,7 +6130,7 @@ snapshots:
 
   hast-util-from-html@2.0.3:
     dependencies:
-      '@types/hast': 3.0.4
+      '@types/hast': 3.0.5
       devlop: 1.1.0
       hast-util-from-parse5: 8.0.3
       parse5: 7.3.0
@@ -6146,7 +6139,7 @@ snapshots:
 
   hast-util-from-parse5@8.0.3:
     dependencies:
-      '@types/hast': 3.0.4
+      '@types/hast': 3.0.5
       '@types/unist': 3.0.3
       devlop: 1.1.0
       hastscript: 9.0.1
@@ -6165,7 +6158,7 @@ snapshots:
 
   hast-util-is-element@3.0.0:
     dependencies:
-      '@types/hast': 3.0.4
+      '@types/hast': 3.0.5
 
   hast-util-minify-whitespace@1.0.0:
     dependencies:
@@ -6189,7 +6182,7 @@ snapshots:
 
   hast-util-raw@9.1.0:
     dependencies:
-      '@types/hast': 3.0.4
+      '@types/hast': 3.0.5
       '@types/unist': 3.0.3
       '@ungap/structured-clone': 1.3.0
       hast-util-from-parse5: 8.0.3
@@ -6198,7 +6191,7 @@ snapshots:
       mdast-util-to-hast: 13.2.0
       parse5: 7.3.0
       unist-util-position: 5.0.0
-      unist-util-visit: 5.0.0
+      unist-util-visit: 5.1.0
       vfile: 6.0.3
       web-namespaces: 2.0.1
       zwitch: 2.0.4
@@ -6263,7 +6256,7 @@ snapshots:
 
   hast-util-to-html@9.0.5:
     dependencies:
-      '@types/hast': 3.0.4
+      '@types/hast': 3.0.5
       '@types/unist': 3.0.3
       ccount: 2.0.1
       comma-separated-tokens: 2.0.3
@@ -6297,7 +6290,7 @@ snapshots:
 
   hast-util-to-parse5@8.0.0:
     dependencies:
-      '@types/hast': 3.0.4
+      '@types/hast': 3.0.5
       comma-separated-tokens: 2.0.3
       devlop: 1.1.0
       property-information: 6.5.0
@@ -6315,7 +6308,7 @@ snapshots:
 
   hast-util-to-text@4.0.2:
     dependencies:
-      '@types/hast': 3.0.4
+      '@types/hast': 3.0.5
       '@types/unist': 3.0.3
       hast-util-is-element: 3.0.0
       unist-util-find-after: 5.0.0
@@ -6348,9 +6341,9 @@ snapshots:
 
   husky@9.0.11: {}
 
-  i18next@26.4.0(typescript@5.6.3):
+  i18next@26.4.0(typescript@5.9.3):
     optionalDependencies:
-      typescript: 5.6.3
+      typescript: 5.9.3
 
   import-fresh@3.3.0:
     dependencies:
@@ -6494,7 +6487,7 @@ snapshots:
 
   klona@2.0.6: {}
 
-  knip@5.73.4(@types/node@24.13.3)(typescript@5.6.3):
+  knip@5.73.4(@types/node@24.13.3)(typescript@5.9.3):
     dependencies:
       '@nodelib/fs.walk': 1.2.8
       '@types/node': 24.13.3
@@ -6508,7 +6501,7 @@ snapshots:
       picomatch: 4.0.3
       smol-toml: 1.5.2
       strip-json-comments: 5.0.3
-      typescript: 5.6.3
+      typescript: 5.9.3
       zod: 4.1.13
 
   launch-editor@2.14.1:
@@ -6551,7 +6544,7 @@ snapshots:
 
   lightningcss@1.33.0:
     dependencies:
-      detect-libc: 2.0.3
+      detect-libc: 2.1.2
     optionalDependencies:
       lightningcss-android-arm64: 1.33.0
       lightningcss-darwin-arm64: 1.33.0
@@ -6628,7 +6621,7 @@ snapshots:
     dependencies:
       '@types/mdast': 4.0.4
       '@types/unist': 3.0.3
-      unist-util-visit: 5.0.0
+      unist-util-visit: 5.1.0
 
   mdast-util-directive@3.0.0(supports-color@9.3.1):
     dependencies:
@@ -6662,7 +6655,7 @@ snapshots:
       '@types/mdast': 4.0.4
       escape-string-regexp: 5.0.0
       unist-util-is: 6.0.0
-      unist-util-visit-parents: 6.0.1
+      unist-util-visit-parents: 6.0.2
 
   mdast-util-from-markdown@2.0.2(supports-color@9.3.1):
     dependencies:
@@ -6794,14 +6787,14 @@ snapshots:
 
   mdast-util-to-hast@13.2.0:
     dependencies:
-      '@types/hast': 3.0.4
+      '@types/hast': 3.0.5
       '@types/mdast': 4.0.4
       '@ungap/structured-clone': 1.3.0
       devlop: 1.1.0
       micromark-util-sanitize-uri: 2.0.1
       trim-lines: 3.0.1
       unist-util-position: 5.0.0
-      unist-util-visit: 5.0.0
+      unist-util-visit: 5.1.0
       vfile: 6.0.3
 
   mdast-util-to-markdown@2.1.2:
@@ -7464,7 +7457,7 @@ snapshots:
 
   rehype-raw@7.0.0:
     dependencies:
-      '@types/hast': 3.0.4
+      '@types/hast': 3.0.5
       hast-util-raw: 9.1.0
       vfile: 6.0.3
 
@@ -7478,7 +7471,7 @@ snapshots:
 
   rehype-stringify@10.0.1:
     dependencies:
-      '@types/hast': 3.0.4
+      '@types/hast': 3.0.5
       hast-util-to-html: 9.0.5
       unified: 11.0.5
 
@@ -7527,7 +7520,7 @@ snapshots:
 
   remark-rehype@11.1.2:
     dependencies:
-      '@types/hast': 3.0.4
+      '@types/hast': 3.0.5
       '@types/mdast': 4.0.4
       mdast-util-to-hast: 13.2.0
       unified: 11.0.5
@@ -7538,7 +7531,7 @@ snapshots:
       retext: 9.0.0
       retext-smartypants: 6.2.0
       unified: 11.0.5
-      unist-util-visit: 5.0.0
+      unist-util-visit: 5.1.0
 
   remark-stringify@11.0.0:
     dependencies:
@@ -7572,7 +7565,7 @@ snapshots:
     dependencies:
       '@types/nlcst': 2.0.3
       nlcst-to-string: 4.0.0
-      unist-util-visit: 5.0.0
+      unist-util-visit: 5.1.0
 
   retext-stringify@4.0.0:
     dependencies:
@@ -7921,13 +7914,13 @@ snapshots:
       tersify: 3.11.1
       unpartial: 1.0.4
 
-  typedoc@0.28.16(typescript@5.6.3):
+  typedoc@0.28.16(typescript@5.9.3):
     dependencies:
       '@gerrit0/mini-shiki': 3.21.0
       lunr: 2.3.9
       markdown-it: 14.1.0
       minimatch: 9.0.5
-      typescript: 5.6.3
+      typescript: 5.9.3
       yaml: 2.8.2
 
   typesafe-path@0.2.2: {}
@@ -7940,7 +7933,7 @@ snapshots:
 
   typescript@5.5.4: {}
 
-  typescript@5.6.3: {}
+  typescript@5.9.3: {}
 
   uc.micro@2.1.0: {}
 
@@ -7997,7 +7990,7 @@ snapshots:
   unist-util-remove-position@5.0.0:
     dependencies:
       '@types/unist': 3.0.3
-      unist-util-visit: 5.0.0
+      unist-util-visit: 5.1.0
 
   unist-util-stringify-position@4.0.0:
     dependencies:
@@ -8027,7 +8020,7 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
       unist-util-is: 6.0.0
-      unist-util-visit-parents: 6.0.1
+      unist-util-visit-parents: 6.0.2
 
   unpartial@1.0.4: {}
 
@@ -8157,45 +8150,45 @@ snapshots:
     transitivePeerDependencies:
       - msw
 
-  volar-service-css@0.0.62(@volar/language-service@2.4.11(typescript@5.6.3)):
+  volar-service-css@0.0.62(@volar/language-service@2.4.11(typescript@5.9.3)):
     dependencies:
       vscode-css-languageservice: 6.3.2
       vscode-languageserver-textdocument: 1.0.12
       vscode-uri: 3.0.8
     optionalDependencies:
-      '@volar/language-service': 2.4.11(typescript@5.6.3)
+      '@volar/language-service': 2.4.11(typescript@5.9.3)
 
-  volar-service-emmet@0.0.62(@volar/language-service@2.4.11(typescript@5.6.3)):
+  volar-service-emmet@0.0.62(@volar/language-service@2.4.11(typescript@5.9.3)):
     dependencies:
       '@emmetio/css-parser': 0.4.0
       '@emmetio/html-matcher': 1.3.0
       '@vscode/emmet-helper': 2.11.0
       vscode-uri: 3.0.8
     optionalDependencies:
-      '@volar/language-service': 2.4.11(typescript@5.6.3)
+      '@volar/language-service': 2.4.11(typescript@5.9.3)
 
-  volar-service-html@0.0.62(@volar/language-service@2.4.11(typescript@5.6.3)):
+  volar-service-html@0.0.62(@volar/language-service@2.4.11(typescript@5.9.3)):
     dependencies:
       vscode-html-languageservice: 5.3.1
       vscode-languageserver-textdocument: 1.0.12
       vscode-uri: 3.0.8
     optionalDependencies:
-      '@volar/language-service': 2.4.11(typescript@5.6.3)
+      '@volar/language-service': 2.4.11(typescript@5.9.3)
 
-  volar-service-prettier@0.0.62(@volar/language-service@2.4.11(typescript@5.6.3)):
+  volar-service-prettier@0.0.62(@volar/language-service@2.4.11(typescript@5.9.3)):
     dependencies:
       vscode-uri: 3.0.8
     optionalDependencies:
-      '@volar/language-service': 2.4.11(typescript@5.6.3)
+      '@volar/language-service': 2.4.11(typescript@5.9.3)
 
-  volar-service-typescript-twoslash-queries@0.0.62(@volar/language-service@2.4.11(typescript@5.6.3))(typescript@5.6.3):
+  volar-service-typescript-twoslash-queries@0.0.62(@volar/language-service@2.4.11(typescript@5.9.3))(typescript@5.9.3):
     dependencies:
       vscode-uri: 3.0.8
     optionalDependencies:
-      '@volar/language-service': 2.4.11(typescript@5.6.3)
-      typescript: 5.6.3
+      '@volar/language-service': 2.4.11(typescript@5.9.3)
+      typescript: 5.9.3
 
-  volar-service-typescript@0.0.62(@volar/language-service@2.4.11(typescript@5.6.3))(typescript@5.6.3):
+  volar-service-typescript@0.0.62(@volar/language-service@2.4.11(typescript@5.9.3))(typescript@5.9.3):
     dependencies:
       path-browserify: 1.0.1
       semver: 7.8.5
@@ -8204,15 +8197,15 @@ snapshots:
       vscode-nls: 5.2.0
       vscode-uri: 3.0.8
     optionalDependencies:
-      '@volar/language-service': 2.4.11(typescript@5.6.3)
-      typescript: 5.6.3
+      '@volar/language-service': 2.4.11(typescript@5.9.3)
+      typescript: 5.9.3
 
-  volar-service-yaml@0.0.62(@volar/language-service@2.4.11(typescript@5.6.3)):
+  volar-service-yaml@0.0.62(@volar/language-service@2.4.11(typescript@5.9.3)):
     dependencies:
       vscode-uri: 3.0.8
       yaml-language-server: 1.15.0
     optionalDependencies:
-      '@volar/language-service': 2.4.11(typescript@5.6.3)
+      '@volar/language-service': 2.4.11(typescript@5.9.3)
 
   vscode-css-languageservice@6.3.2:
     dependencies:
